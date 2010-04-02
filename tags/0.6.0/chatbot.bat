@@ -1,1 +1,0 @@
-@php -c php-win.ini -f mainloop.php
