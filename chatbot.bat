@@ -1,0 +1,1 @@
+@php -f mainloop.php
