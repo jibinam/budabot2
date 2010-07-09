@@ -38,8 +38,8 @@
 	//Setup
 	$this->loadSQLFile($MODULE_NAME, "org_history");
 
-	$this->command("msg guild", "$MODULE_NAME/org_history.php", "orghistory", GUILDMEMBER, "Shows the org history (invites and kicks and leaves) for a player");
+	$this->command("msg guild", $MODULE_NAME, "org_history.php", "orghistory", GUILDMEMBER, "Shows the org history (invites and kicks and leaves) for a player");
 	
 	// events
-	$this->event("orgmsg", "$MODULE_NAME/org_action_listener.php", "none", "Capture Org Invite/Kick messages");
+	$this->event("orgmsg", $MODULE_NAME, "org_action_listener.php", "none", "Capture Org Invite/Kick messages");
 ?>

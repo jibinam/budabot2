@@ -3,8 +3,8 @@
 	$PLUGIN_VERSION = 1.0;
 
 	//Tell
-	$this->command("", "$MODULE_NAME/cmd.php", "cmd", LEADER, "Creates a highly visible messaage");
+	$this->command("", $MODULE_NAME, "cmd.php", "cmd", LEADER, "Creates a highly visible messaage");
 	
 	//Helpfile
-	$this->help("cmd", "$MODULE_NAME/cmd.txt", ALL, "Repeating of a msg 3 times");
+	$this->help("cmd", $MODULE_NAME, "cmd.txt", ALL, "Repeating of a msg 3 times");
 ?>

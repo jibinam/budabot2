@@ -39,13 +39,13 @@
 	$this->loadSQLFile($MODULE_NAME, "nanolines");
 
 	//Private
-	$this->command("", "$MODULE_NAME/nanolines.php", "nanolines", ALL, "Shows a list of professions to choose from");
-	$this->command("", "$MODULE_NAME/nlprof.php", "nlprof", ALL, "Shows a list of nanolines given a profession");
-	$this->command("", "$MODULE_NAME/nlline.php", "nlline", ALL, "Shows a list of nanos given a nanoline");
+	$this->command("", $MODULE_NAME, "nanolines.php", "nanolines", ALL, "Shows a list of professions to choose from");
+	$this->command("", $MODULE_NAME, "nlprof.php", "nlprof", ALL, "Shows a list of nanolines given a profession");
+	$this->command("", $MODULE_NAME, "nlline.php", "nlline", ALL, "Shows a list of nanos given a nanoline");
 
 	//Help
-	$this->help("Nanolines", "$MODULE_NAME/nanolines.txt", ALL, "Nanolines help");
+	$this->help("Nanolines", $MODULE_NAME, "nanolines.txt", ALL, "Nanolines help");
 
 	//Settings
-	$this->addsetting("shownanolineicons", "Show icons for the nanolines", "edit", "0", "true;false", "1;0");
+	$this->addsetting("shownanolineicons", $MODULE_NAME, "Show icons for the nanolines", "edit", "0", "true;false", "1;0");
 ?>

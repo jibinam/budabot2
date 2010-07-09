@@ -14,9 +14,9 @@
 	$this->loadSQLFile($MODULE_NAME, "boss_namedb");
 	$this->loadSQLFile($MODULE_NAME, "boss_lootdb");
 	
-	$this->command("", "$MODULE_NAME/boss.php", "boss", ALL, "Bossloot Tables");
-	$this->command("", "$MODULE_NAME/bossloot.php", "bossloot", ALL, "Bossloot Search");
+	$this->command("", $MODULE_NAME, "boss.php", "boss", ALL, "Bossloot Tables");
+	$this->command("", $MODULE_NAME, "bossloot.php", "bossloot", ALL, "Bossloot Search");
 	
-	$this->help("Boss", "$MODULE_NAME/boss.txt", ALL, "Bossloot Tables", "Boss");
+	$this->help("Boss", $MODULE_NAME, "boss.txt", ALL, "Bossloot Tables", "Boss");
 	
 ?>

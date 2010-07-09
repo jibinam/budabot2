@@ -34,20 +34,20 @@
 	
 	$this->loadSQLFile($MODULE_NAME, 'org_city');
 
-    $this->command("guild", "$MODULE_NAME/city_guild.php", "city", ALL, "Shows the status of the Citycloak");
+    $this->command("guild", $MODULE_NAME, "city_guild.php", "city", ALL, "Shows the status of the Citycloak");
 
-    $this->event("guild", "$MODULE_NAME/city_guild.php", "city");
-    $this->event("1min", "$MODULE_NAME/city_guild_timer.php", "city");
-	$this->event("1min", "$MODULE_NAME/city_guild_raise_cloak.php", "city", "Reminds the player who lowered cloak to raise it when it can be raised.");
-	$this->event("logOn", "$MODULE_NAME/city_guild_logon.php", "city", "Displays summary of city status.");
+    $this->event("guild", $MODULE_NAME, "city_guild.php", "city");
+    $this->event("1min", $MODULE_NAME, "city_guild_timer.php", "city");
+	$this->event("1min", $MODULE_NAME, "city_guild_raise_cloak.php", "city", "Reminds the player who lowered cloak to raise it when it can be raised.");
+	$this->event("logOn", $MODULE_NAME, "city_guild_logon.php", "city", "Displays summary of city status.");
 	
 	// Help files
-	$this->help("citycloak", "$MODULE_NAME/citycloak.txt", GUILDMEMBER, "Status of the citycloak");
+	$this->help("citycloak", $MODULE_NAME, "citycloak.txt", GUILDMEMBER, "Status of the citycloak");
 	
 	// Auto Wave
-	$this->command("guild","$MODULE_NAME/start.php", "startraid");
-	$this->command("guild","$MODULE_NAME/stopraid.php", "stopraid");
-	$this->event("setup", "$MODULE_NAME/setup.php");
-	$this->event("guild", "$MODULE_NAME/start.php");
-	$this->event("2sec", "$MODULE_NAME/counter.php");
+	$this->command("guild",$MODULE_NAME, "start.php", "startraid");
+	$this->command("guild",$MODULE_NAME, "stopraid.php", "stopraid");
+	$this->event("setup", $MODULE_NAME, "setup.php");
+	$this->event("guild", $MODULE_NAME, "start.php");
+	$this->event("2sec", $MODULE_NAME, "counter.php");
 ?>

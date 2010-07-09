@@ -35,10 +35,10 @@
 
 	$MODULE_NAME = "TRICKLE_MODULE";
 
-	$this->command("", "$MODULE_NAME/trickle.php", "trickle", ALL, "Shows how much skills you will gain by increasing an ability");
+	$this->command("", $MODULE_NAME, "trickle.php", "trickle", ALL, "Shows how much skills you will gain by increasing an ability");
 
 	//Help
-	$this->help("Trickle", "$MODULE_NAME/trickle.txt", ALL, "Trickle help");
+	$this->help("Trickle", $MODULE_NAME, "trickle.txt", ALL, "Trickle help");
 
 	//Setup
 	$this->loadSQLFile($MODULE_NAME, "trickle");

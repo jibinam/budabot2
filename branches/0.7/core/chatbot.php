@@ -47,7 +47,7 @@ class bot extends AOChat{
 /*===============================
 ** Name: __construct
 ** Constructor of this class.
-*/	function __construct($vars, $settings){
+*/	function __construct($vars, $settings) {
 		parent::__construct("callback");
 
 		global $db;
@@ -65,7 +65,7 @@ class bot extends AOChat{
 		$db->query("CREATE TABLE IF NOT EXISTS hlpcfg_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `description` VARCHAR(50), `file` VARCHAR(255), `access_level` INT DEFAULT 0, `verify` INT Default '0')");
 
 		// Load the Core Modules -- SETINGS must be first in case the other modules have settings
-		if($this->settings['debug'] > 0) print("\n:::::::CORE MODULES::::::::\n");
+		if ($this->settings['debug'] > 0) print("\n:::::::CORE MODULES::::::::\n");
 		$this->loadCoreModule("SETTINGS");
 		$this->loadCoreModule("SYSTEM");
 		$this->loadCoreModule("ADMIN");
@@ -85,7 +85,7 @@ class bot extends AOChat{
 ** Name: loadCoreModule
 ** Loads a core module
 */	function loadCoreModule($module_name) {
-		if($this->settings['debug'] > 0) {
+		if ($this->settings['debug'] > 0) {
 			print("CORE_MODULE_NAME:($module_name)\n");
 		}
 		include "./core/$module_name/$module_name.php";
@@ -127,41 +127,46 @@ class bot extends AOChat{
 
 		//Getting existing commands, events and so on
 		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'cmd'");
-		while($row = $db->fObject())
+		while ($row = $db->fObject()) {
 			$this->existing_commands[$row->type][$row->cmd] = true;
+		}
 
 		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'subcmd'");
-		while($row = $db->fObject())
+		while ($row = $db->fObject()) {
 			$this->existing_subcmds[$row->type][$row->cmd] = true;
+		}
 
 		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'event'");
-		while($row = $db->fObject())
+		while ($row = $db->fObject()) {
 			$this->existing_events[$row->type][$row->file] = true;
+		}
 
 		$db->query("SELECT * FROM settings_<myname>");
-		while($row = $db->fObject())
+		while ($row = $db->fObject()) {
 			$this->existing_settings[$row->name] = true;
+		}
 			
 		$db->query("SELECT * FROM hlpcfg_<myname>");
-		while($row = $db->fObject())
+		while ($row = $db->fObject()) {
 			$this->existing_helps[$row->name] = true;
+		}
 
 		// Load User Modules
-		if($this->settings['debug'] > 0) print("\n:::::::User MODULES::::::::\n");	
+		if ($this->settings['debug'] > 0) print("\n:::::::User MODULES::::::::\n");	
 
 		//Load modules
 		$this->loadModules();
 
 		//Load active commands
-		if($this->settings['debug'] > 0) print("\nSetting up commands.\n");
+		if ($this->settings['debug'] > 0) print("\nSetting up commands.\n");
 		$this->loadCommands();
 
 		//Load active subcommands
-		if($this->settings['debug'] > 0) print("\nSetting up subcommands.\n");
+		if ($this->settings['debug'] > 0) print("\nSetting up subcommands.\n");
 		$this->loadSubcommands();
 
 		//Load active events
-		if($this->settings['debug'] > 0) print("\nSetting up events.\n");
+		if ($this->settings['debug'] > 0) print("\nSetting up events.\n");
 		$this->loadEvents();
 
 		//kill unused vars
@@ -179,23 +184,23 @@ class bot extends AOChat{
 /*===============================
 ** Name: connect
 ** Connect to AO chat servers.
-*/	function connectAO($login, $password){
+*/	function connectAO($login, $password) {
 		// remove any old entries on buddy list
 		$buddyList = array();
 
 		echo "\n\n";
 
 		// Choose Server
-		if($this->vars["dimension"] == 1) {
+		if ($this->vars["dimension"] == 1) {
 			$server = "chat.d1.funcom.com";
 			$port = 7101;
-		} elseif($this->vars["dimension"] == 2) {
+		} else if ($this->vars["dimension"] == 2) {
 			$server = "chat.d2.funcom.com";
 			$port = 7102;
-		} elseif($this->vars["dimension"] == 3) {
+		} else if ($this->vars["dimension"] == 3) {
 			$server = "chat.d3.funcom.com";
 			$port = 7103;
-		} elseif($this->vars["dimension"] == 4) {
+		} else if ($this->vars["dimension"] == 4) {
 			$server = "chat.dt.funcom.com";
 			$port = 7109;
 		} else {
@@ -208,7 +213,7 @@ class bot extends AOChat{
 		echo "Connecting to AO Server...($server)\n";
 		$this->connect($server, $port);
 		sleep(2);
-		if($this->state != "auth") {
+		if ($this->state != "auth") {
 			echo "Connection failed! Please check your Internet connection and firewall.\n";
 			sleep(10);
 			die();
@@ -217,7 +222,7 @@ class bot extends AOChat{
 		echo "Authenticate login data...\n";
 		$this->authenticate($login, $password);
 		sleep(2);
-		if($this->state != "login") {
+		if ($this->state != "login") {
 			echo "Authentication failed! Please check your username and password.\n";
 			sleep(10);
 			die();
@@ -226,7 +231,7 @@ class bot extends AOChat{
 		echo "Logging in {$this->vars["name"]}...\n";
 		$this->login($this->vars["name"]);
 		sleep(2);
-		if($this->state != "ok") {
+		if ($this->state != "ok") {
 			echo "Logging in of {$this->vars["name"]} failed! Please check the character name and dimension.\n";
 			sleep(10);
 			die();
@@ -280,7 +285,7 @@ class bot extends AOChat{
 	}
 	
 	function remove_buddy($name, $type = '') {
-		if(($uid = $this->get_uid($name)) === false) {
+		if (($uid = $this->get_uid($name)) === false) {
 			return false;
 		} else if (isset($this->buddyList[$uid])) {
 			if (isset($this->buddyList[$uid]['types'][$type])) {
@@ -301,7 +306,7 @@ class bot extends AOChat{
 	}
 
 	function is_buddy($name, $type) {
-		if(($uid = $this->get_uid($name)) === false) {
+		if (($uid = $this->get_uid($name)) === false) {
 			return false;
 		} else {
 			if ($type == null || $type == false) {
@@ -315,14 +320,14 @@ class bot extends AOChat{
 /*===============================
 ** Name: ping
 ** Get next packet info from AOChat
-*/	function ping(){
+*/	function ping() {
 		return $this->wait_for_packet();
 	}
 
 /*===============================
 ** Name: connectedEvents
 ** Execute Events that needs to be executed right after login
-*/	function connectedEvents(){
+*/	function connectedEvents() {
 		global $db;
 
 		// Check files, for all 'connect events'.
@@ -428,7 +433,7 @@ class bot extends AOChat{
 					'Download' => "chatcmd:///start http://budabot.aodevs.com/index.php?page=14");
 		}
 		if (strtolower($links) != "none") {
-			foreach ($links as $key => $value){
+			foreach ($links as $key => $value) {
 				$header .= "$color4:$color3:$color2:";
 				$header .= "<a style='text-decoration:none' href='$value'>$color$key</font></a>";
 				$header .= ":</font>:</font>:</font>";
@@ -490,7 +495,7 @@ class bot extends AOChat{
 /*===============================
 ** Name: makeItem
 ** Make item link reference.
-*/	function makeItem($lowID, $hiID,  $ql, $name){
+*/	function makeItem($lowID, $hiID,  $ql, $name) {
 		return "<a href='itemref://$lowID/$hiID/$ql'>$name</a>";
 	}
 	
@@ -579,7 +584,7 @@ class bot extends AOChat{
 /*===============================
 ** Name: Command
 ** 	Register a command
-*/	function command($type, $module, $filename, $command, $access_level = ALL, $description = ''){
+*/	function command($type, $module, $filename, $command, $access_level = ALL, $description = '') {
 		global $db;
 
 		if (!$this->processCommandArgs($type, $access_level)) {
@@ -589,14 +594,13 @@ class bot extends AOChat{
 
 		$command = strtolower($command);
 		$description = str_replace("'", "''", $desription);
-		$module = explode("/", strtolower($filename));
 
 		for ($i = 0; $i < count($type); $i++) {
-			if($this->settings['debug'] > 1) print("Adding Command to list:($command) File:($filename)\n");
-			if($this->settings['debug'] > 1) print("                 Admin:({$access_level[$i]}) Type:({$type[$i]})\n");
-			if($this->settings['debug'] > 2) sleep(1);
+			if ($this->settings['debug'] > 1) print("Adding Command to list:($command) File:($filename)\n");
+			if ($this->settings['debug'] > 1) print("                 Admin:({$access_level[$i]}) Type:({$type[$i]})\n");
+			if ($this->settings['debug'] > 2) sleep(1);
 			
-			if($this->existing_commands[$type[$i]][$command] == true) {
+			if ($this->existing_commands[$type[$i]][$command] == true) {
 				$db->query("UPDATE cmdcfg_<myname> SET `module` = '$module', `verify` = 1, `file` = '$filename', `description` = '$description' WHERE `cmd` = '$command' AND `type` = '{$type[$i]}'");
 			} else {
 				$db->query("INSERT INTO cmdcfg_<myname> (`module`, `type`, `file`, `cmd`, `access_level`, `description`, `verify`, `cmdevent`, `status`) VALUES ('$module', '{$type[$i]}', '$filename', '$command', $access_level, '$description', 1, 'cmd', '".$this->settings["default module status"]."')");
@@ -607,15 +611,12 @@ class bot extends AOChat{
 /*===============================
 ** Name: regcommand
 **  Sets an command as active
-*/	function regcommand($type, $filename, $command, $access_level = ALL) {
+*/	function regcommand($type, $module, $filename, $command, $access_level = ALL) {
 		global $db;
 
-	  	if($this->settings['debug'] > 1) print("Activate Command:($command) Admin Type:($access_level)\n");
-		if($this->settings['debug'] > 1) print("            File:($filename) Type:($type)\n");
-		if($this->settings['debug'] > 2) sleep(1);
-
-		$module = explode("/", strtolower($filename));
-		$module = strtoupper($module[0]);
+	  	if ($this->settings['debug'] > 1) print("Activate Command:($command) Admin Type:($access_level)\n");
+		if ($this->settings['debug'] > 1) print("            File:($filename) Type:($type)\n");
+		if ($this->settings['debug'] > 2) sleep(1);
 
 		//Check if the file exists
 		if (($filename = $this->verifyFilename($filename)) === FALSE) {
@@ -627,21 +628,21 @@ class bot extends AOChat{
 			$command = strtolower($command);
 		}
 
-		switch ($type){
+		switch ($type) {
 			case "msg":
-				if($this->tellCmds[$command]["filename"] == ""){
+				if ($this->tellCmds[$command]["filename"] == "") {
 					$this->tellCmds[$command]["filename"] = $filename;
 					$this->tellCmds[$command]["access_level"] = $access_level;
 				}
 			break;
 			case "priv":
-				if($this->privCmds[$command]["filename"] == ""){
+				if ($this->privCmds[$command]["filename"] == "") {
 					$this->privCmds[$command]["filename"] = $filename;
 					$this->privCmds[$command]["access_level"] = $access_level;
 				}
 			break;
 			case "guild":
-				if($this->guildCmds[$command]["filename"] == ""){
+				if ($this->guildCmds[$command]["filename"] == "") {
 					$this->guildCmds[$command]["filename"] = $filename;
 					$this->guildCmds[$command]["access_level"] = $access_level;
 				}
@@ -652,15 +653,15 @@ class bot extends AOChat{
 		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `dependson` = '$command' AND `cmdevent` = 'event' AND `type` != 'setup'");
 		$data = $db->fObject("all");
   		forEach ($data as $row) {
-  		  	$this->regevent($row->type, $row->file);
+  		  	$this->regevent($row->type, $row->module, $row->file);
 		}
 
 		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `module` = '$module' AND `cmdevent` = 'event' AND `type` = 'setup'");
-		if($db->numrows() != 0) {
+		if ($db->numrows() != 0) {
 			$data = $db->fObject("all");
-	  		foreach($data as $row) {
-			  	if($row->status == 0) {
-				    $this->regevent($row->type, $row->file);
+	  		forEach ($data as $row) {
+			  	if ($row->status == 0) {
+				    $this->regevent($row->type, $row->module, $row->file);
 				    $db->query("UPDATE cmdcfg_<myname> SET `status` = 1 WHERE `module` = '$module' AND `cmdevent` = 'event' AND `type` = 'setup'");
 				}
 			}
@@ -670,30 +671,32 @@ class bot extends AOChat{
 /*===============================
 ** Name: unregcommand
 ** 	Deactivates an command
-*/	function unregcommand($type, $filename, $command) {
+*/	function unregcommand($type, $module, $filename, $command) {
   		global $db;
 		$command = strtolower($command);
 
-	  	if($this->settings['debug'] > 1) print("Deactivate Command:($command) File:($filename)\n");
-		if($this->settings['debug'] > 1) print("              Type:($type)\n");
-		if($this->settings['debug'] > 2) sleep(1);
+	  	if ($this->settings['debug'] > 1) print("Deactivate Command:($command) File:($filename)\n");
+		if ($this->settings['debug'] > 1) print("              Type:($type)\n");
+		if ($this->settings['debug'] > 2) sleep(1);
 
-		switch ($type){
+		switch ($type) {
 			case "msg":
 				unset($this->tellCmds[$command]);
-			break;
+				break;
 			case "priv":
 				unset($this->privCmds[$command]);
-			break;
+				break;
 			case "guild":
 				unset($this->guildCmds[$command]);
-			break;
+				break;
+			default:
+				echo "ERROR! Invalid type: '$type' for command: '$command' in file: '$filename'\n";
 		}
 
 		//Deactivate Events that are asssigned to this command
 		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `dependson` = '$command' AND `cmdevent` = 'event' AND `type` != 'setup'");
   		while ($row = $db->fObject()) {
-  		  	$this->unregevent($row->type, $row->file);
+  		  	$this->unregevent($row->type, $row->module, $row->file);
 		}
 	}
 
@@ -720,7 +723,7 @@ class bot extends AOChat{
 /*===============================
 ** Name: Subcommand
 ** 	Register a subcommand
-*/	function subcommand($type, $module, $filename, $command, $access_level = ALL, $dependson, $description = 'none'){
+*/	function subcommand($type, $module, $filename, $command, $access_level = ALL, $dependson, $description = 'none') {
 		global $db;
 
 		if (!$this->processCommandArgs($type, $access_level)) {
@@ -729,23 +732,22 @@ class bot extends AOChat{
 		}
 
 		$command = strtolower($command);
-		$module = explode("/", strtolower($filename));
 	  	
 		//Check if the file exists
-		if(($filename = $this->verifyFilename($filename)) === FALSE) {
+		if (($filename = $this->verifyFilename($filename)) === FALSE) {
 			echo "Error in registering the file $filename for Subcommand $command. The file doesn't exists!\n";
 			return;
 		}
 
-		if($command != NULL) // Change commands to lower case.
+		if ($command != NULL) // Change commands to lower case.
 			$command = strtolower($command);
 
 		for ($i = 0; $i < count($type); $i++) {
-			if($this->settings['debug'] > 1) print("Adding Subcommand to list:($command) File:($filename)\n");
-			if($this->settings['debug'] > 1) print("                    Admin:($access_level[$i]) Type:({$type[$i]})\n");
-			if($this->settings['debug'] > 2) sleep(1);
+			if ($this->settings['debug'] > 1) print("Adding Subcommand to list:($command) File:($filename)\n");
+			if ($this->settings['debug'] > 1) print("                    Admin:($access_level[$i]) Type:({$type[$i]})\n");
+			if ($this->settings['debug'] > 2) sleep(1);
 			
-			if($this->existing_subcmds[$type[$i]][$command] == true) {
+			if ($this->existing_subcmds[$type[$i]][$command] == true) {
 				$db->query("UPDATE cmdcfg_<myname> SET `module` = '$module', `verify` = 1, `file` = '$filename', `description` = '$description', `dependson` = '$dependson' WHERE `cmd` = '$command' AND `type` = '{$type[$i]}'");
 			} else {
 				$db->query("INSERT INTO cmdcfg_<myname> (`module`, `type`, `file`, `cmd`, `access_level`, `description`, `verify`, `cmdevent`, `dependson`, `status`) VALUES ('$module', '{$type[$i]}', '$filename', '$command', $access_level, '$description', 1, 'subcmd', '$dependson', '".$this->settings["default module status"]."')");
@@ -756,13 +758,11 @@ class bot extends AOChat{
 /*===============================
 ** Name: event
 **  Registers an event
-*/	function event($type, $filename, $dependson = 'none', $desc = 'none'){
+*/	function event($type, $module, $filename, $dependson = 'none', $desc = 'none') {
 		global $db;
 
-		$module = explode("/", strtolower($filename));
-
-	  	if($this->settings['debug'] > 1) print("Adding Event to list:($type) File:($filename)\n");
-		if($this->settings['debug'] > 2) sleep(1);
+	  	if ($this->settings['debug'] > 1) print("Adding Event to list:($type) File:($filename)\n");
+		if ($this->settings['debug'] > 2) sleep(1);
 
 		if ($dependson == "none" && $this->settings["default module status"] == 1) {
 			$status = 1;
@@ -770,7 +770,7 @@ class bot extends AOChat{
 			$status = 0;
 		}
 
-		if($this->existing_events[$type][$filename] == true) {
+		if ($this->existing_events[$type][$filename] == true) {
 		  	$db->query("UPDATE cmdcfg_<myname> SET `dependson` = '$dependson', `verify` = 1, `description` = '$desc' WHERE `type` = '$type' AND `cmdevent` = 'event' AND `file` = '$filename' AND `module` = '$module'");
 		} else {
 		  	$db->query("INSERT INTO cmdcfg_<myname> (`module`, `cmdevent`, `type`, `file`, `verify`, `dependson`, `description`, `status`) VALUES ('$module', 'event', '$type', '$filename', '1', '$dependson', '$desc', '$status')");
@@ -780,11 +780,13 @@ class bot extends AOChat{
 /*===============================
 ** Name: regevent
 **  Sets an event as active
-*/	function regevent($type, $filename){
+*/	function regevent($type, $module, $filename) {
 		global $db;
+		
+		$filename = $module . '/' . $filename;
 
-	  	if($this->settings['debug'] > 1) print("Activating Event:($type) File:($filename)\n");
-		if($this->settings['debug'] > 2) sleep(1);
+	  	if ($this->settings['debug'] > 1) print("Activating Event:($type) File:($filename)\n");
+		if ($this->settings['debug'] > 2) sleep(1);
 
 		//Check if the file exists
 		if (($filename = $this->verifyFilename($filename)) === FALSE) {
@@ -792,273 +794,299 @@ class bot extends AOChat{
 			return;
 		}
 
-		switch ($type){
+		switch ($type) {
 			case "towers":
-				if(!in_array($filename, $this->towers))
+				if (!in_array($filename, $this->towers)) {
 					$this->towers[] = $filename;
-			break;
+				}
+				break;
 			case "orgmsg":
-				if(!in_array($filename, $this->orgmsg))
+				if (!in_array($filename, $this->orgmsg)) {
 					$this->orgmsg[] = $filename;
-			break;
+				}
+				break;
 			case "msg":
-				if(!in_array($filename, $this->privMsgs))
+				if (!in_array($filename, $this->privMsgs)) {
 					$this->privMsgs[] = $filename;
-			break;
+				}
+				break;
 			case "priv":
-				if(!in_array($filename, $this->privChat))
+				if (!in_array($filename, $this->privChat)) {
 					$this->privChat[] = $filename;
-			break;
+				}
+				break;
 			case "extPriv":
-				if(!in_array($filename, $this->extPrivChat))
+				if (!in_array($filename, $this->extPrivChat)) {
 					$this->extPrivChat[] = $filename;
-			break;
+				}
+				break;
 			case "guild":
-				if(!in_array($filename, $this->guildChat))
+				if (!in_array($filename, $this->guildChat)) {
 					$this->guildChat[] = $filename;
-			break;
+				}
+				break;
 			case "joinPriv":
-				if(!in_array($filename, $this->joinPriv))
+				if (!in_array($filename, $this->joinPriv)) {
 					$this->joinPriv[] = $filename;
-			break;
+				}
+				break;
 			case "extJoinPriv":
-				if(!in_array($filename, $this->extJoinPriv))
+				if (!in_array($filename, $this->extJoinPriv)) {
 					$this->extJoinPriv[] = $filename;
-			break;
+				}
+				break;
 			case "leavePriv":
-				if(!in_array($filename, leavePriv))
+				if (!in_array($filename, leavePriv)) {
 					$this->leavePriv[] = $filename;
-			break;
+				}
+				break;
 			case "extLeavePriv":
-				if(!in_array($filename, extLeavePriv))
+				if (!in_array($filename, extLeavePriv)) {
 					$this->extLeavePriv[] = $filename;
-			break;
+				}
+				break;
 			case "extJoinPrivRequest":
-				if(!in_array($filename, $this->extJoinPrivRequest))
+				if (!in_array($filename, $this->extJoinPrivRequest)) {
 					$this->extJoinPrivRequest[] = $filename;
-			break;
+				}
+				break;
 			case "extKickPriv":
-				if(!in_array($filename, $this->extKickPriv))
+				if (!in_array($filename, $this->extKickPriv)) {
 					$this->extKickPriv[] = $filename;
-			break;
+				}
+				break;
 			case "logOn":
-				if(!in_array($filename, $this->logOn))
+				if (!in_array($filename, $this->logOn)) {
 					$this->logOn[] = $filename;
-			break;
+				}
+				break;
 			case "logOff":
-				if(!in_array($filename, $this->logOff))
+				if (!in_array($filename, $this->logOff)) {
 					$this->logOff[] = $filename;
-			break;
+				}
+				break;
 			case "2sec":
-				if(!in_array($filename, $this->_2sec))
+				if (!in_array($filename, $this->_2sec)) {
 					$this->_2sec[] = $filename;
-			break;
+				}
+				break;
 			case "1min":
-				if(!in_array($filename, $this->_1min))
+				if (!in_array($filename, $this->_1min)) {
 					$this->_1min[] = $filename;
-			break;
+				}
+				break;
 			case "10mins":
-				if(!in_array($filename, $this->_10mins))
+				if (!in_array($filename, $this->_10mins)) {
 					$this->_10mins[] = $filename;
-			break;
+				}
+				break;
 			case "15mins":
-				if(!in_array($filename, $this->_15mins))
+				if (!in_array($filename, $this->_15mins)) {
 					$this->_15mins[] = $filename;
-			break;
+				}
+				break;
 			case "30mins":
-				if(!in_array($filename, $this->_30mins))
+				if (!in_array($filename, $this->_30mins)) {
 					$this->_30mins[] = $filename;
-			break;
+				}
+				break;
 			case "1hour":
-				if(!in_array($filename, $this->_1hour))
+				if (!in_array($filename, $this->_1hour)) {
 					$this->_1hour[] = $filename;
-			break;
+				}
+				break;
 			case "24hrs":
-				if(!in_array($filename, $this->_24hrs))
+				if (!in_array($filename, $this->_24hrs)) {
 					$this->_24hrs[] = $filename;
-			break;
+				}
+				break;
 			case "connect":
-				if(!in_array($filename, $this->_connect))
+				if (!in_array($filename, $this->_connect)) {
 					$this->_connect[] = $filename;
-			break;
+				}
+				break;
 			case "setup":
 				include $filename;
-			break;
+				break;
+			default:
+				echo "ERROR: invalid event type: '$type' for file: '$filename'\n";
 		}
 	}
 
 /*===============================
 ** Name: unregevent
 **  Disables an event
-*/	function unregevent($type, $filename) {
-		if($this->settings['debug'] > 1) print("Deactivating Event:($type) File:($filename)\n");
-		if($this->settings['debug'] > 2) sleep(1);
+*/	function unregevent($type, $module, $filename) {
+		if ($this->settings['debug'] > 1) print("Deactivating Event:($type) File:($filename)\n");
+		if ($this->settings['debug'] > 2) sleep(1);
+		
+		$filename = $module . '/' . $filename;
 
-		switch ($type){
+		switch ($type) {
 			case "towers":
-				if(in_array($filename, $this->towers)) {
+				if (in_array($filename, $this->towers)) {
 					$temp = array_flip($this->towers);
 					unset($this->towers[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "orgmsg":
-				if(in_array($filename, $this->orgmsg)) {
+				if (in_array($filename, $this->orgmsg)) {
 					$temp = array_flip($this->orgmsg);
 					unset($this->orgmsg[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "msg":
-				if(in_array($filename, $this->privMsgs)) {
+				if (in_array($filename, $this->privMsgs)) {
 					$temp = array_flip($this->privMsgs);
 					unset($this->privMsgs[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "priv":
-				if(in_array($filename, $this->privChat)) {
+				if (in_array($filename, $this->privChat)) {
 					$temp = array_flip($this->privChat);
 					unset($this->privChat[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "extPriv":
-				if(in_array($filename, $this->extPrivChat)) {
+				if (in_array($filename, $this->extPrivChat)) {
 					$temp = array_flip($this->extPrivChat);
 					unset($this->extPrivChat[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "guild":
-				if(in_array($filename, $this->guildChat)) {
+				if (in_array($filename, $this->guildChat)) {
 					$temp = array_flip($this->guildChat);
 					unset($this->guildChat[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "joinPriv":
-				if(in_array($filename, $this->joinPriv)) {
+				if (in_array($filename, $this->joinPriv)) {
 					$temp = array_flip($this->joinPriv);
 					unset($this->joinPriv[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "extJoinPriv":
-				if(in_array($filename, $this->extJoinPriv)) {
+				if (in_array($filename, $this->extJoinPriv)) {
 					$temp = array_flip($this->extJoinPriv);
 					unset($this->extJoinPriv[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "leavePriv":
-				if(in_array($filename, $this->leavePriv)) {
+				if (in_array($filename, $this->leavePriv)) {
 					$temp = array_flip($this->leavePriv);
 					unset($this->leavePriv[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "extLeavePriv":
-				if(in_array($filename, $this->extLeavePriv)) {
+				if (in_array($filename, $this->extLeavePriv)) {
 					$temp = array_flip($this->extLeavePriv);
 					unset($this->extLeavePriv[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "extJoinPrivRequest":
-				if(in_array($filename, $this->extJoinPrivRequest)) {
+				if (in_array($filename, $this->extJoinPrivRequest)) {
 					$temp = array_flip($this->extJoinPrivRequest);
 					unset($this->extJoinPrivRequest[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "extKickPriv":
-				if(in_array($filename, $this->extKickPriv)) {
+				if (in_array($filename, $this->extKickPriv)) {
 					$temp = array_flip($this->extKickPriv);
 					unset($this->extKickPriv[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "logOn":
-				if(in_array($filename, $this->logOn)) {
+				if (in_array($filename, $this->logOn)) {
 					$temp = array_flip($this->logOn);
 					unset($this->logOn[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "logOff":
-				if(in_array($filename, $this->logOff)) {
+				if (in_array($filename, $this->logOff)) {
 					$temp = array_flip($this->logOff);
 					unset($this->logOff[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "2sec":
-				if(in_array($filename, $this->_2sec)) {
+				if (in_array($filename, $this->_2sec)) {
 					$temp = array_flip($this->_2sec);
 					unset($this->_2sec[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "1min":
-				if(in_array($filename, $this->_1min)) {
+				if (in_array($filename, $this->_1min)) {
 					$temp = array_flip($this->_1min);
 					unset($this->_1min[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "10mins":
-				if(in_array($filename, $this->_10mins)) {
+				if (in_array($filename, $this->_10mins)) {
 					$temp = array_flip($this->_10mins);
 					unset($this->_10mins[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "15mins":
-				if(in_array($filename, $this->_15mins)) {
+				if (in_array($filename, $this->_15mins)) {
 					$temp = array_flip($this->_15mins);
 					unset($this->_15mins[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "30mins":
-				if(in_array($filename, $this->_30mins)) {
+				if (in_array($filename, $this->_30mins)) {
 					$temp = array_flip($this->_30mins);
 					unset($this->_30mins[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "1hour":
-				if(in_array($filename, $this->_1hour)) {
+				if (in_array($filename, $this->_1hour)) {
 					$temp = array_flip($this->_1hour);
 					unset($this->_1hour[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "24hrs":
-				if(in_array($filename, $this->_24hrs)) {
+				if (in_array($filename, $this->_24hrs)) {
 					$temp = array_flip($this->_24hrs);
 					unset($this->_24hrs[$temp[$filename]]);
 				}
-			break;
+				break;
 			case "connect":
-				if(in_array($filename, $this->_connect)) {
+				if (in_array($filename, $this->_connect)) {
 					$temp = array_flip($this->_connect);
 					unset($this->_connect[$temp[$filename]]);
 				}
-			break;
+				break;
 		}
 	}
 
 /*===============================
 ** Name: reggroup
 **  Register a group of commands
-*/	function regGroup($group, $module = 'none', $desc = 'none'){
+*/	function regGroup($group, $module, $desc) {
 		global $db;
 
 		$group = strtolower($group);
 		//Check if the module is correct
-		if($module == "none") {
+		if ($module == "none") {
 			echo "Error in creating group $group. You need to specify a module for the group.\n";
 			return;
 		}
 		//Check if the group already exists
 		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `grp` = '$group'");
-		if($db->numrows() != 0) {
+		if ($db->numrows() != 0) {
 			echo "Error in creating group $group. This group already exists.\n";
 			return;
 		}
     	$numargs = func_num_args();
     	$arg_list = func_get_args();
 		//Check if enough commands are given for the group
-		if($numargs < 5) {
-			echo "Not enough commands to build group $group(must be at least 2commands)";
+		if ($numargs < 5) {
+			echo "Not enough commands to build group $group(must be at least 2 commands)";
 			return;
 		}
 		//Go through the arg list and assign it to the group
-		for($i = 3;$i < $numargs; $i++) {
+		for ($i = 3;$i < $numargs; $i++) {
 		  	$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '".$arg_list[$i]."' AND `module` = '$module'");
-		  	if($db->numrows() != 0) {
+		  	if ($db->numrows() != 0) {
 			    $db->query("UPDATE cmdcfg_<myname> SET `grp` = '$group' WHERE `cmd` = '".$arg_list[$i]."' AND `module` = '$module'");
 			} else {
 			  	echo "Error in creating group $group for module $module. Command ".$arg_list[$i]." doesn't exists.\n";
@@ -1117,14 +1145,12 @@ class bot extends AOChat{
 /*===============================
 ** Name: help
 ** Add a help command and display text file in a link.
-*/	function help($command, $filename, $access_level = ALL, $description = "") {
+*/	function help($command, $module, $filename, $access_level = ALL, $description = "") {
 	  	global $db;
-		if($this->settings['debug'] > 1) print("Registering Helpfile:($filename) Cmd:($command)\n");
-		if($this->settings['debug'] > 2) sleep(1);
+		if ($this->settings['debug'] > 1) print("Registering Helpfile:($filename) Cmd:($command)\n");
+		if ($this->settings['debug'] > 2) sleep(1);
 
 		$command = strtolower($command);
-
-		$module = explode("/", $filename);
 
 		//Check if the file exists
 		if (($filename = $this->verifyFilename($filename)) === FALSE) {
@@ -1135,7 +1161,7 @@ class bot extends AOChat{
 		$sql = "SELECT * FROM hlpcfg_<myname> WHERE name = '$command'";
 		$db->query($sql);
 		if ($db->numrows() == 0) {
-			$db->query("INSERT INTO hlpcfg_<myname> (name, module, file, description, access_level, verify) VALUES ('$command', '$module[0]', '$filename', '$description', $access_level, 1)");
+			$db->query("INSERT INTO hlpcfg_<myname> (name, module, file, description, access_level, verify) VALUES ('$command', '$module', '$filename', '$description', $access_level, 1)");
 		} else {
 			$db->query("UPDATE hlpcfg_<myname> SET `verify` = 1, `description` = '$description', file = '$filename' WHERE `name` = '$command'");
 		}
@@ -1164,14 +1190,15 @@ class bot extends AOChat{
 /*===========================================================================================
 ** Name: processCallback
 ** Proccess all incoming messages that bot recives
-*/	function processCallback($type, $args){
+*/	function processCallback($type, $args) {
 		global $db;
 
-		switch ($type){
+		switch ($type) {
 			case AOCP_GROUP_ANNOUNCE: // 60
 				$b = unpack("C*", $args[0]);
-				if ($b[1]==3)
+				if ($b[1]==3) {
 					$this->vars["my guild id"] = $b[2]*256*256*256 + $b[3]*256*256 + $b[4]*256 + $b[5];
+				}
 			break;
 			case AOCP_PRIVGRP_CLIJOIN: // 55, Incoming player joined private chat
 				$type = "joinPriv"; // Set message type.
@@ -1180,21 +1207,26 @@ class bot extends AOChat{
 
 				// Add sender to the chatlist.
 				$this->chatlist[$sender] = true;
+				
 				// Echo
-				if($this->settings['echo'] >= 1) newLine("Priv Group", $sender, "joined the channel.", $this->settings['echo']);
+				if ($this->settings['echo'] >= 1) newLine("Priv Group", $sender, "joined the channel.", $this->settings['echo']);
 
 				// Remove sender if they are /ignored or /banned or They gone above spam filter
-                if($this->settings["Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || $this->spam[$sender] > 100){
+                if ($this->settings["Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || $this->spam[$sender] > 100) {
 					$this->privategroup_kick($sender);
 					return;
 				}
 				// Check files, for all 'player joined channel events'.
-				if($this->joinPriv != NULL)
-					foreach($this->joinPriv as $filename)
+				if ($this->joinPriv != NULL) {
+					forEach ($this->joinPriv as $filename) {
 						include $filename;
+					}
+				}
+				
 				// Kick if there access is restricted.
-				if($restricted === true)
+				if ($restricted === true) {
 					$this->privategroup_kick($sender);
+				}
 			break;
 			case AOCP_PRIVGRP_CLIPART: // 56, Incoming player left private chat
 				$type = "leavePriv"; // Set message type.
@@ -1202,16 +1234,20 @@ class bot extends AOChat{
 				$char_id = $args[1];
 
 				// Echo
-				if($this->settings['echo'] >= 1) newLine("Priv Group", $sender, "left the channel.", $this->settings['echo']);
+				if ($this->settings['echo'] >= 1) newLine("Priv Group", $sender, "left the channel.", $this->settings['echo']);
 
 				// Remove from Chatlist array.
 				unset($this->chatlist[$sender]);
+				
 				// Remove sender if they are /ignored or /banned or They gone above spam filter
-				if($this->settings["Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || $this->spam[$sender] > 100)
+				if ($this->settings["Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || $this->spam[$sender] > 100) {
 					return;
+				}
+				
 				// Check files, for all 'player left channel events'.
-				foreach($this->leavePriv as $filename)
+				forEach ($this->leavePriv as $filename) {
 					include $filename;
+				}
 			break;
 			case AOCP_BUDDY_ADD: // 40, Incoming buddy logon or off
 				// Basic packet data
@@ -1227,8 +1263,9 @@ class bot extends AOChat{
 				$this->buddyList[$bid]['known'] = (ord($btype) ? 1 : 0);
 
 				//Ignore Logon/Logoff from other bots or phantom logon/offs
-                if($this->settings["Ignore"][$sender] == true || $sender == "")
+                if ($this->settings["Ignore"][$sender] == true || $sender == "") {
 					return;
+				}
 
 				// If Status == 0(logoff) if Status == 1(logon)
 				if ($status == 0) {
@@ -1266,31 +1303,33 @@ class bot extends AOChat{
 				$sendto = $sender;
 				
 				// Removing tell color
-				if(preg_match("/^<font color='#([0-9a-f]+)'>(.+)$/i", $args[1], $arr))
+				if (preg_match("/^<font color='#([0-9a-f]+)'>(.+)$/i", $args[1], $arr)) {
 					$message = $arr[2];
-				else
+				} else {
 					$message = $args[1];
+				}
 
 				$message = html_entity_decode($message, ENT_QUOTES);
 
 				// Echo
-				if($this->settings['echo'] >= 1) newLine("Inc. Msg.", $sender, $message, $this->settings['echo']);
+				if ($this->settings['echo'] >= 1) newLine("Inc. Msg.", $sender, $message, $this->settings['echo']);
 
 				// AFK/bot check
-				if (preg_match("/^$sender is AFK/si", $message, $arr))
+				if (preg_match("/^$sender is AFK/si", $message, $arr)) {
 					return;
-				else if (preg_match("/^I am away from my keyboard right now/si", $message))
+				} else if (preg_match("/^I am away from my keyboard right now/si", $message)) {
 					return;
-				else if (preg_match("/^Unknown command/si", $message, $arr))
+				} else if (preg_match("/^Unknown command/si", $message, $arr)) {
 					return;
-				else if (preg_match("/^I am responding/si", $message, $arr))
+				} else if (preg_match("/^I am responding/si", $message, $arr)) {
 					return;
-				else if (preg_match("/^I only listen/si", $message, $arr))
+				} else if (preg_match("/^I only listen/si", $message, $arr)) {
 					return;
-				else if (preg_match("/^Error!/si", $message, $arr))
+				} else if (preg_match("/^Error!/si", $message, $arr)) {
 					return;
+				}
 
-				if($this->settings["Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || ($this->spam[$sender] > 100 && $this->vars['spam protection'] == 1)){
+				if ($this->settings["Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || ($this->spam[$sender] > 100 && $this->vars['spam protection'] == 1)) {
 					$this->spam[$sender] += 20;
 					return;
 				}
@@ -1334,7 +1373,7 @@ class bot extends AOChat{
 				}
 
 				// Upload Command File or return error message
-				if ($restricted == true || $filename == ""){
+				if ($restricted == true || $filename == "") {
 					$this->send("Error! Unknown command or Access denied! for more info try /tell <myname> help", $sendto);
 					$this->spam[$sender] = $this->spam[$sender] + 20;
 					return;
@@ -1360,16 +1399,17 @@ class bot extends AOChat{
 				$message = $args[2];
 				$restricted = false;
 				if ($sender == $this->vars["name"]) {
-					if($this->settings['echo'] >= 1) newLine("Priv Group", $sender, $message, $this->settings['echo']);
+					if ($this->settings['echo'] >= 1) newLine("Priv Group", $sender, $message, $this->settings['echo']);
 					return;
 				}
-				if ($this->banlist["$sender"]["name"] == "$sender")
+				if ($this->banlist["$sender"]["name"] == $sender) {
 					return;
+				}
 
 				if ($this->vars['spam protection'] == 1) {
 					if ($this->spam[$sender] == 40) $this->send("Error! Your client is sending a high frequency of chat messages. Stop or be kicked.", $sender);
 					if ($this->spam[$sender] > 60) $this->privategroup_kick($sender);
-					if (strlen($args[1]) > 400){
+					if (strlen($args[1]) > 400) {
 						$this->largespam[$sender] = $this->largespam[$sender] + 1;
 						if ($this->largespam[$sender] > 1) $this->privategroup_kick($sender);
 						if ($this->largespam[$sender] > 0) $this->send("Error! Your client is sending large chat messages. Stop or be kicked.", $sender);
@@ -1392,7 +1432,7 @@ class bot extends AOChat{
 
 					$msg = "";
 					if (!$restriced && (($message[0] == $this->settings["symbol"] && strlen($message) >= 2) || preg_match("/^(afk|brb)/i", $message, $arr))) {
-						if($message[0] == $this->settings["symbol"]) {
+						if ($message[0] == $this->settings["symbol"]) {
 							$message 	= substr($message, 1);
 						}
 						$words		= split(' ', strtolower($message));
@@ -1477,23 +1517,25 @@ class bot extends AOChat{
 						return;
 				}
 
-				if ($channel == "All Towers" || $channel == "Tower Battle Outcome"){
+				if ($channel == "All Towers" || $channel == "Tower Battle Outcome") {
                     $type = "towers";
-    				if ($this->towers != NULL)
+    				if ($this->towers != NULL) {
     					forEach ($this->towers as $file) {
     						$msg = "";
 							include $file;
     					}
+					}
                     return;
-                } else if ($channel == "Org Msg"){
+                } else if ($channel == "Org Msg") {
                     $type = "orgmsg";
-    				if($this->orgmsg != NULL)
+    				if ($this->orgmsg != NULL) {
 						foreach($this->orgmsg as $file) {
     						$msg = "";
 							include $file;
     					}
+					}
                     return;
-                } else if ($channel == $this->vars["my guild"]){
+                } else if ($channel == $this->vars["my guild"]) {
                     $type = "guild";
 					$sendto = 'org';
 					if ($this->guildChat != NULL)
@@ -1560,68 +1602,78 @@ class bot extends AOChat{
 /*===============================
 ** Name: crons()
 ** Call php-Scripts at certin time intervals. 2 sec, 1 min, 15 min, 1 hour, 24 hours
-*/	function crons(){
+*/	function crons() {
 		global $db;
-		switch($this->vars){
+		switch($this->vars) {
 			case $this->vars["2sec"] < time();
 				$this->vars["2sec"] 	= time() + 2;
-				foreach($this->spam as $key => $value){
-					if($value > 0)
+				forEach ($this->spam as $key => $value) {
+					if ($value > 0) {
 						$this->spam[$key] = $value - 10;
-					else
+					} else {
 						$this->spam[$key] = 0;
+					}
 				}
-				if($this->_2sec != NULL)
-					foreach($this->_2sec as $filename)
+				if ($this->_2sec != NULL) {
+					forEach ($this->_2sec as $filename) {
 						include $filename;
+					}
+				}
 				break;
 			case $this->vars["1min"] < time();
-				foreach($this->largespam as $key => $value){
-					if($value > 0)
+				forEach ($this->largespam as $key => $value) {
+					if ($value > 0) {
 						$this->largespam[$key] = $value - 1;
-					else
+					} else {
 						$this->largespam[$key] = 0;
+					}
 				}
 				$this->vars["1min"] 	= time() + 60;
-				if($this->_1min != NULL)
-					foreach($this->_1min as $filename)
+				if ($this->_1min != NULL) {
+					forEach ($this->_1min as $filename) {
 						include $filename;
-
+					}
+				}
 				break;
 			case $this->vars["10mins"] < time();
 				$this->vars["10mins"] 	= time() + (60 * 10);
-				if($this->_10mins != NULL)
-					foreach($this->_10mins as $filename)
+				if ($this->_10mins != NULL) {
+					forEach ($this->_10mins as $filename) {
 						include $filename;
-
+					}
+				}
 				break;
 			case $this->vars["15mins"] < time();
 				$this->vars["15mins"] 	= time() + (60 * 15);
-				if($this->_15mins != NULL)
-					foreach($this->_15mins as $filename)
+				if ($this->_15mins != NULL) {
+					forEach ($this->_15mins as $filename) {
 						include $filename;
-
+					}
+				}
 				break;
 			case $this->vars["30mins"] < time();
 				$this->vars["30mins"] 	= time() + (60 * 30);
-				if($this->_30mins != NULL)
-					foreach($this->_30mins as $filename)
+				if ($this->_30mins != NULL) {
+					forEach ($this->_30mins as $filename) {
 						include $filename;
-
+					}
+				}
 				break;
 			case $this->vars["1hour"] < time();
 				$this->vars["1hour"] 	= time() + (60 * 60);
-				if($this->_1hour != NULL)
-					foreach($this->_1hour as $filename)
+				if ($this->_1hour != NULL) {
+					forEach ($this->_1hour as $filename) {
 						include $filename;
-
+					}
+				}
 				break;
 			case $this->vars["24hours"] < time();
 				$this->vars["24hours"] 	= time() + ((60 * 60) * 24);
-				if($this->_24hrs != NULL)
-					foreach($this->_24hrs as $filename)
+				if ($this->_24hrs != NULL) {
+					forEach ($this->_24hrs as $filename) {
 						include $filename;
-
+					}
+				}
 				break;
 		}
 	}
@@ -1646,7 +1698,7 @@ class bot extends AOChat{
 
 	function verifyNameConvention($filename) {
 		preg_match("/^(.+)/([0-9a-z_]+).php$/i", $filename, $arr);
-		if($arr[2] == strtolower($arr[2])) {
+		if ($arr[2] == strtolower($arr[2])) {
 			return TRUE;
 		} else {
 			echo "Warning: $filename does not match the nameconvention(All php files needs to be in lowercases except loading files)!\n";
