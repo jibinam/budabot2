@@ -42,7 +42,7 @@ echo "		****          http://www.budabot.com/         ****\n";
 echo "		**************************************************\n";
 echo "\n";
 
-if(isWindows()) {
+if (isWindows()) {
     // Load Extention 
     dl("php_sockets.dll");
     dl("php_pdo_sqlite.dll");
@@ -76,13 +76,14 @@ error_reporting(E_ERROR | E_PARSE);
 //error_reporting(-1);
 
 //Show setup dialog
-if(!file_exists("delete me for new setup"))
+if (!file_exists("delete me for new setup")) {
 	include("./core/SETUP/setup.php");
+}
 
 //Bring the ignore list to a bot readable format
 $ignore = explode(";", $settings["Ignore"]);
 unset($settings["Ignore"]);
-foreach($ignore as $bot){
+forEach ($ignore as $bot){
 	$bot = ucfirst(strtolower($bot));
 	$settings["Ignore"][$bot] = true;
 }
@@ -165,13 +166,13 @@ main(true, $chatBot);
 ** Record incoming info into the chatbot's log.
 */	function newLine($channel, $sender, $message, $target){
 		global $vars;
-		if($channel == "")
+		if ($channel == "")
 			return;
 			
-		if($sender == "")
+		if ($sender == "")
 			return;
 		
-		if($channel == "Buddy")
+		if ($channel == "Buddy")
 			$line = "[".date("H:i", time())."] [$channel] $sender $message";
 		else
 			$line = "[".date("H:i", time())."] [$channel] $sender: $message";
@@ -184,10 +185,10 @@ main(true, $chatBot);
         
 		echo "$line\n";
 		
-		if($target == 1 || $channel == "logOn" || $channel == "logOff" || $channel == "Buddy")
+		if ($target == 1 || $channel == "logOn" || $channel == "logOff" || $channel == "Buddy")
 			return;
 		
-		if($channel == "Inc. Msg." || $channel == "Out. Msg.")
+		if ($channel == "Inc. Msg." || $channel == "Out. Msg.")
 			$channel = "Tells";
 
 		$today =  date("m.d");
@@ -196,7 +197,7 @@ main(true, $chatBot);
         * Open and append to log-file. Complain on failure.
         */
         $filename = "./logs/{$vars['name']}.{$vars['dimension']}/$today.$channel.txt";
-        if(($fp = fopen($filename, "a")) === FALSE) {
+        if (($fp = fopen($filename, "a")) === FALSE) {
             echo "    *** Failed to open log-file $filename for writing ***\n";
         } else {
             fwrite($fp, $line . PHP_EOL);
@@ -247,11 +248,11 @@ main(true, $chatBot);
 	function date_difference($sdate, $edate)
 	{
 		$time = $edate - $sdate;
-		if($time>=0 && $time<=59) {
+		if ($time>=0 && $time<=59) {
 			// Seconds
 			$timeshift = $time.' seconds';
 
-		} elseif($time>=60 && $time<=3599) {
+		} else if ($time>=60 && $time<=3599) {
 			// Minutes + Seconds
 			$pmin = ($edate - $sdate) / 60;
 			$premin = explode('.', $pmin);
@@ -261,7 +262,7 @@ main(true, $chatBot);
 			
 			$timeshift = $premin[0].' min '.round($sec,0).' sec';
 
-		} elseif($time>=3600 && $time<=86399) {
+		} else if ($time>=3600 && $time<=86399) {
 			// Hours + Minutes
 			$phour = ($edate - $sdate) / 3600;
 			$prehour = explode('.',$phour);
@@ -274,7 +275,7 @@ main(true, $chatBot);
 
 			$timeshift = $prehour[0].' hrs '.$min[0].' min '.round($sec,0).' sec';
 
-		} elseif($time>=86400) {
+		} else if ($time>=86400) {
 			// Days + Hours + Minutes
 			$pday = ($edate - $sdate) / 86400;
 			$preday = explode('.',$pday);

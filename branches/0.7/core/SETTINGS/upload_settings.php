@@ -31,6 +31,8 @@
    
 if (!function_exists("save_setting_to_db")) {
 	function save_setting_to_db($name, $value, $options, $intoptions, $description, $help) {
+		global $db;
+	
 		$name = str_replace("'", "''", $name);
 		$value = str_replace("'", "''", $value);
 		$options = str_replace("'", "''", $options);

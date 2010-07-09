@@ -3,7 +3,7 @@
 	$PLUGIN_VERSION = 0.1;
 
 	//Invite/Leave/lock commands
-	$this->addsetting("topic_guild_join", "Show Topic in guild on join", "edit", "0", "ON;OFF", "1;0", MODERATOR, $MODULE_NAME, "topic_show_guild.txt");
+	$this->addsetting("topic_guild_join", $MODULE_NAME, "Show Topic in guild on join", "edit", "0", "ON;OFF", "1;0", MODERATOR, $MODULE_NAME, "topic_show_guild.txt");
 	$this->addsetting("priv_status", "no", $MODULE_NAME, "hide", "open");
 	$this->addsetting("priv_status_reason", $MODULE_NAME, "no", "hide", "not set");	
 

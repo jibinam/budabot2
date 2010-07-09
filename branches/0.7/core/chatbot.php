@@ -95,6 +95,8 @@ class bot extends AOChat{
 ** Name: loadUserModules
 ** Loads (or reloads) all the user modules
 */	function loadUserModules() {
+		global $db;
+
 		//Delete old vars
 		unset($this->subcommands);
 		unset($this->tellCmds);
@@ -180,6 +182,74 @@ class bot extends AOChat{
 		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0");
 		$db->query("DELETE FROM hlpcfg_<myname> WHERE `verify` = 0");
 	}
+	
+/*===============================
+** Name: loadModules
+** Load all Modules
+*/	function loadModules(){
+		global $db;
+		global $chatBot;
+		if ($d = dir("./modules")){
+			while (false !== ($entry = $d->read())){
+				if (!is_dir("$entry")){
+					// Look for the plugin's ... setup file
+					if (file_exists("./modules/$entry/$entry.php")){
+						if($chatBot->settings['debug'] > 0) print("MODULE_NAME:($entry.php)\n");
+						include "./modules/$entry/$entry.php";
+					}
+					else // else add entry as a single file.
+						include "./modules/$entry";
+				}
+			}
+			$d->close();
+		}
+	}
+
+/*===============================
+** Name: loadCommands
+**  Load the Commands that are set as active
+*/	function loadCommands() {
+	  	global $db;
+		global $chatBot;
+		//Delete commands that are not verified
+		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0 AND `cmdevent` = 'cmd'");
+		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `status` = '1' AND `cmdevent` = 'cmd'");
+		$data = $db->fObject("all");
+		forEach ($data as $row) {
+			$chatBot->regcommand($row->type, $row->file, $row->cmd, $row->access_level);
+		}
+	}
+
+/*===============================
+** Name: loadSubcommands
+**  Load the Commands that are set as active
+*/	function loadSubcommands() {
+	  	global $db;
+		global $chatBot;
+		//Delete subcommands that are not verified
+		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0 AND `cmdevent` = 'subcmd'");
+		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'subcmd'");
+		$data = $db->fObject("all");
+		forEach ($data as $row) {
+			$chatBot->subcommands[$row->file][$row->type]["cmd"] = $row->cmd;
+			$chatBot->subcommands[$row->file][$row->type]["access_level"] = $row->access_level;
+		}
+	}
+
+/*===============================
+** Name: loadEvents
+**  Load the Events that are set as active
+*/	function loadEvents() {
+	  	global $db;
+		global $chatBot;
+		//Delete events that are not verified
+		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0 AND `cmdevent` = 'event'");
+		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `status` = '1' AND `cmdevent` = 'event' AND `dependson` = 'none'");
+		$data = $db->fObject("all");
+		forEach ($data as $row) {
+			$chatBot->regevent($row->type, $row->file);
+		}
+	}
 
 /*===============================
 ** Name: connect
@@ -251,8 +321,7 @@ class bot extends AOChat{
 		$this->vars["15min"] 			= time() + $this->settings["CronDelay"];
 	}
 	
-	function get_buddy($name)
-    {
+	function get_buddy($name) {
 		if (($uid = $this->get_uid($name)) === false || !isset($this->buddyList[$uid])) {
 			return null;
 		} else {
@@ -260,8 +329,7 @@ class bot extends AOChat{
 		}
     }
 
-    function buddy_online($name)
-    {
+    function buddy_online($name) {
 		$buddy = $this->get_buddy($name);
 		return ($buddy === null ? null : $buddy['online']);
     }
@@ -425,7 +493,6 @@ class bot extends AOChat{
 		$header = $color4.":::".$color3.":::".$color2.":::".$color;
 		$header .= "$title";
 		$header .= "</font>:::</font>:::</font>:::</font>\n";
-
 
 		if ($links == TRUE) {
 			$links = array( 'Help' => "chatcmd:///tell ".$this->vars["name"]." help",
@@ -593,7 +660,7 @@ class bot extends AOChat{
 		}
 
 		$command = strtolower($command);
-		$description = str_replace("'", "''", $desription);
+		$description = str_replace("'", "''", $description);
 
 		for ($i = 0; $i < count($type); $i++) {
 			if ($this->settings['debug'] > 1) print("Adding Command to list:($command) File:($filename)\n");
@@ -613,6 +680,8 @@ class bot extends AOChat{
 **  Sets an command as active
 */	function regcommand($type, $module, $filename, $command, $access_level = ALL) {
 		global $db;
+		
+		$filename = $module . '/' . $filename;
 
 	  	if ($this->settings['debug'] > 1) print("Activate Command:($command) Admin Type:($access_level)\n");
 		if ($this->settings['debug'] > 1) print("            File:($filename) Type:($type)\n");
@@ -620,7 +689,7 @@ class bot extends AOChat{
 
 		//Check if the file exists
 		if (($filename = $this->verifyFilename($filename)) === FALSE) {
-			echo "Error in registering the File $filename for command $command. The file doesn't exists!\n";
+			echo "Error in registering the file '$filename' for command '$command'. The file doesn't exists!\n";
 			return;
 		}
 
@@ -733,12 +802,6 @@ class bot extends AOChat{
 
 		$command = strtolower($command);
 	  	
-		//Check if the file exists
-		if (($filename = $this->verifyFilename($filename)) === FALSE) {
-			echo "Error in registering the file $filename for Subcommand $command. The file doesn't exists!\n";
-			return;
-		}
-
 		if ($command != NULL) // Change commands to lower case.
 			$command = strtolower($command);
 
@@ -790,7 +853,7 @@ class bot extends AOChat{
 
 		//Check if the file exists
 		if (($filename = $this->verifyFilename($filename)) === FALSE) {
-			echo "Error in registering the File $filename for Eventtype $type. The file doesn't exists!\n";
+			echo "Error in registering the file '$filename' for eventtype '$type'. The file doesn't exists!\n";
 			return;
 		}
 
@@ -1147,16 +1210,11 @@ class bot extends AOChat{
 ** Add a help command and display text file in a link.
 */	function help($command, $module, $filename, $access_level = ALL, $description = "") {
 	  	global $db;
-		if ($this->settings['debug'] > 1) print("Registering Helpfile:($filename) Cmd:($command)\n");
-		if ($this->settings['debug'] > 2) sleep(1);
-
+		
 		$command = strtolower($command);
 
-		//Check if the file exists
-		if (($filename = $this->verifyFilename($filename)) === FALSE) {
-			echo "Error in registering the File $filename for Helpcommand $command. The file doesn't exists!\n";
-			return;
-		}
+		if ($this->settings['debug'] > 1) print("Registering Helpfile:($filename) Cmd:($command)\n");
+		if ($this->settings['debug'] > 2) sleep(1);
 
 		$sql = "SELECT * FROM hlpcfg_<myname> WHERE name = '$command'";
 		$db->query($sql);
@@ -1697,7 +1755,7 @@ class bot extends AOChat{
 	}
 
 	function verifyNameConvention($filename) {
-		preg_match("/^(.+)/([0-9a-z_]+).php$/i", $filename, $arr);
+		preg_match("/^([0-9a-z_]+)\\/([0-9a-z_]+)\\.php$/i", $filename, $arr);
 		if ($arr[2] == strtolower($arr[2])) {
 			return TRUE;
 		} else {
