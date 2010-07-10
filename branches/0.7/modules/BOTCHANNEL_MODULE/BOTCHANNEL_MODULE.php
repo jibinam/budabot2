@@ -27,7 +27,7 @@
 	$this->addsetting("guest_relay_commands", $MODULE_NAME, "Relay commands and results from/to guestchannel", "edit", "0", "ON;OFF", "1;0");
 	
 	//Autoreinvite Players after a botrestart or crash
-	$this->event("connect", $MODULE_NAME, "autoreinvite.php", "none", "Reinvites the players that were in the privgrp before restart/crash");
+	$this->event("setup", $MODULE_NAME, "autoreinvite.php", "none", "Reinvites the players that were in the privgrp before restart/crash");
 	
 	$this->event("guild", $MODULE_NAME, "guest_channel_relay.php", "none");
 	$this->event("priv", $MODULE_NAME, "guest_channel_relay.php", "none");
