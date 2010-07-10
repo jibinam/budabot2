@@ -329,7 +329,10 @@ class bot extends AOChat{
 		}
     }
 
-    function buddy_online($name) {
+/*===============================
+** Name: buddy_online
+** Returns null when online status is unknown, 1 when buddy is online, 0 when buddy is offline
+*/	function buddy_online($name) {
 		$buddy = $this->get_buddy($name);
 		return ($buddy === null ? null : $buddy['online']);
     }
