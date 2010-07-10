@@ -1147,7 +1147,7 @@ class bot extends AOChat{
 			return;
 		}
 		//Go through the arg list and assign it to the group
-		for ($i = 3;$i < $numargs; $i++) {
+		for ($i = 3; $i < $numargs; $i++) {
 		  	$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '".$arg_list[$i]."' AND `module` = '$module'");
 		  	if ($db->numrows() != 0) {
 			    $db->query("UPDATE cmdcfg_<myname> SET `grp` = '$group' WHERE `cmd` = '".$arg_list[$i]."' AND `module` = '$module'");
