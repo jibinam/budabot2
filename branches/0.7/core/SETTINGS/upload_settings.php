@@ -62,7 +62,7 @@ save_setting_to_db('default module status', $this->settings["default module stat
 save_setting_to_db('max_blob_size', $this->settings["max_blob_size"], 'number', null, 'Max chars for a window', './core/SETTINGS/max_blob_size_help.txt');
 
 //Upload Settings from the db that are set by modules
-$db->query("SELECT * FROM settings_<myname> WHERE `source` = 'db'");
+$db->query("SELECT * FROM settings_<myname>");
 while ($row = $db->fObject()) {
 	$this->settings[$row->name] = $row->setting;
 }
