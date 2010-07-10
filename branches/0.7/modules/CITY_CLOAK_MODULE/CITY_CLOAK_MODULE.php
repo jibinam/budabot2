@@ -41,6 +41,8 @@
 	$this->event("1min", $MODULE_NAME, "city_guild_raise_cloak.php", "city", "Reminds the player who lowered cloak to raise it when it can be raised.");
 	$this->event("logOn", $MODULE_NAME, "city_guild_logon.php", "city", "Displays summary of city status.");
 	
+	$this->addsetting("showcloakstatus", $MODULE_NAME, "Show cloak status to players at logon", "edit", "1", "Never;When cloak is down;Always", "0;1;2");
+	
 	// Help files
 	$this->help("citycloak", $MODULE_NAME, "citycloak.txt", GUILDMEMBER, "Status of the citycloak");
 	
