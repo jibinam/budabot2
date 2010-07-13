@@ -129,7 +129,7 @@ if (preg_match("/^(orglist|onlineorg) end$/i", $message, $arr)) {
 	if (!ctype_digit($arr[2])) {
 		// Someone's name.  Doing a whois to get an orgID.
 		$name = ucfirst(strtolower($arr[2]));
-		$whois = new whois($name);
+		$whois = new WhoisXML($name);
 		$orgid = $whois->org_id;
 
 		if (!$whois->name) {
@@ -152,7 +152,7 @@ if (preg_match("/^(orglist|onlineorg) end$/i", $message, $arr)) {
 	
 	$this->send("Searching and reading org list...", $sendto);
 
-	$orgmate = new org($orgid);
+	$orgmate = new OrgXML($orgid);
 
 	if($orgmate->errorCode != 0) {
 		$msg = "Error in getting the Org info. Either org does not exist or AO's server was too slow to respond.";

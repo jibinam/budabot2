@@ -38,7 +38,7 @@ if (preg_match("/^updateme$/i", $message)) {
 		  	return;
 		}
 	    
-	    $info = new whois($sender);
+	    $info = new WhoisXML($sender);
 	    if ($info->errorCode != 0) {
 		  	$this->send("An Error occurred while trying to update your infos. Please try again laters.", $sendto);
 		  	return;

@@ -34,7 +34,7 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
     $uid = $this->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
     if ($uid) {
-        $whois = new whois($arr[1]);
+        $whois = new WhoisXML($arr[1]);
         if ($whois->errorCode != 0) {
         	$msg = $whois->errorInfo;
         } else {
@@ -84,7 +84,7 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
             $server = "Die Neue Welt";
 		}
         $msg = "";
-        $whois = new whois($name, $i);
+        $whois = new WhoisXML($name, $i);
         if ($whois->name != "") {
             if ($whois->firstname) {
                 $msg = $whois->firstname." ";
@@ -124,7 +124,7 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
   	$msg = "Getting Org info. Please standby.";
     $this->send($msg, $sendto);
 	
-    $org = new org($org_id);
+    $org = new OrgXML($org_id);
 	if ($org->errorCode == 0) {
   		$num_adv = 0;
   		$num_agent = 0;

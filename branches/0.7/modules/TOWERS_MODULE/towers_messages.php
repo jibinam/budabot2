@@ -77,7 +77,7 @@ if ($def_guild) {
 		"161-220", "161-220", "162-220", "163-220", "164-220", "165-220", "165-220", "166-220", "167-220", "168-220", 
 		"169-220", "169-220", "170-220", "171-220", "172-220", "172-220", "172-220", "173-220", "174-220", "175-220");
 
-	$whois = new whois($att_player, $this->vars["dimension"]);
+	$whois = new WhoisXML($att_player, $this->vars["dimension"]);
 	if (!$att_side) {$att_side = $whois->faction;}
 	if (!$att_side) {$att_side = "Unknown";}
 

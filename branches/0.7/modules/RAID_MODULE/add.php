@@ -58,7 +58,7 @@ if(preg_match("/^add$/i", $message)) {
 	
 	//Check if minlvl is set and if the player is higher then it
 	if(isset($raidloot[$cat][$index]["minlvl"])) {
-	  	$whois = new whois($sender);
+	  	$whois = new WhoisXML($sender);
 	  	if($whois->level < $raidloot[$cat][$index]["minlvl"]) {
 		    $msg = "You need to be at least lvl<highlight>{$raidloot[$cat][$index]["minlvl"]}<end> to join this roll.";
 	  		$this->send($msg, $sender);
@@ -146,7 +146,7 @@ if(preg_match("/^add$/i", $message)) {
 	
 		//Check if minlvl is set and if the player is higher then it
 		if(isset($raidloot[$cat][$index]["minlvl"])) {
-		  	$whois = new whois($sender);
+		  	$whois = new WhoisXML($sender);
 		  	if($whois->level < $raidloot[$cat][$index]["minlvl"]) {
 			    $msg = "You need to be at least lvl<highlight>{$raidloot[$cat][$index]["minlvl"]}<end> to join this roll.";
 		  		$this->send($msg, $sender);
@@ -189,7 +189,7 @@ if(preg_match("/^add$/i", $message)) {
 	
 		//Check if minlvl is set and if the player is higher then it
 		if (isset($loot[$slot]["minlvl"])) {
-		  	$whois = new whois($sender);
+		  	$whois = new WhoisXML($sender);
 		  	if ($whois->lvl < $loot[$slot]["minlvl"]) {
 			    $msg = "You need to be at least lvl<highlight>{$loot[$slot]["minlvl"]}<end> to join this roll.";
 		  		$this->send($msg, $sender);

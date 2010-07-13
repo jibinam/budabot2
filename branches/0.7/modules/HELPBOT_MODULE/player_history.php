@@ -37,7 +37,7 @@ if(preg_match("/^history (.+)$/i", $message, $arr)) {
 	  	$msg = "Getting History of player <highlight>$name<end>. Please standby.";
         $this->send($msg, $sendto);
 
-		$history = new history($name);
+		$history = new HistoryXML($name);
 		if($history->errorCode != 0) {
 			$msg = $history->errorInfo;
 		} else {

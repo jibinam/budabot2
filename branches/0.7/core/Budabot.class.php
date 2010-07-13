@@ -40,7 +40,7 @@ define('GUILDMEMBER', 6);
 define('MEMBER', 7);
 define('ALL', 8);
 
-class bot extends AOChat{
+class Budabot extends AOChat {
 
 	var $buddyList = array();
 

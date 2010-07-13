@@ -30,7 +30,7 @@
    */ 
 
 //Database Abstraction Class
-class db {
+class DB {
 	private $type;
 	private $sql;
 	private $dbName;

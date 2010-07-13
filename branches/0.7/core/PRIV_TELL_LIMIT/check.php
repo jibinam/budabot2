@@ -55,7 +55,7 @@ if ((preg_match("/^join$/i", $message) || preg_match("/^invite$/i", $message)) &
 	
 	//Get his character infos if minlvl or faction is set
 	if ($this->settings["priv_req_lvl"] != 0 || $this->settings["priv_req_faction"] != "all") {
-		$whois = new whois($sender);
+		$whois = new WhoisXML($sender);
 	   	if ($whois->errorCode != 0) {
 		    $msg = "<red>Error! Unable to get your character info. Please try again later.<end>";
 		    $this->send($msg, $sender);
@@ -117,7 +117,7 @@ if ((preg_match("/^join$/i", $message) || preg_match("/^invite$/i", $message)) &
 	
 	//Get his character infos if minlvl or faction is set
 	if ($this->settings["tell_req_lvl"] != 0 || $this->settings["tell_req_faction"] != "all") {
-		$whois = new whois($sender);
+		$whois = new WhoisXML($sender);
 	   	if ($whois->errorCode != 0) {
 		    $msg = "<red>Error! Sorry, I was unable to get your char infos. Please try again later.<end>";
 		    $this->send($msg, $sender);

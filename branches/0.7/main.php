@@ -68,10 +68,14 @@ if (isWindows()) {
 //Load Required Files
 $config_file = $argv[1];
 require_once $config_file;
-require_once "./core/aochat.php";
-require_once "./core/chatbot.php";
-require_once "./core/sql.php";
-require_once "./core/xml.php";
+require_once './core/AOChat.class.php';
+require_once "./core/Budabot.class.php";
+require_once "./core/DB.class.php";
+require_once "./core/XML.class.php";
+require_once "./core/OrgXML.class.php";
+require_once "./core/WhoisXML.class.php";
+require_once "./core/HistoryXML.class.php";
+require_once "./core/ServerXML.class.php";
 
 //Set Error Level
 error_reporting(E_ERROR | E_PARSE);
@@ -101,7 +105,7 @@ unset($vars['password']);
 //////////////////////////////////////////////////////////////
 // Create new objects
 	global $db;
-	$db = new db($settings["DB Type"], $settings["DB Name"], $settings["DB Host"], $settings["DB username"], $settings["DB password"]);
+	$db = new DB($settings["DB Type"], $settings["DB Name"], $settings["DB Host"], $settings["DB username"], $settings["DB password"]);
 	if($db->errorCode != 0) {
 	  	echo "Error in creating Database Object\n";
 	  	echo "ErrorMsg: $db->errorInfo";
@@ -109,7 +113,7 @@ unset($vars['password']);
 	  	die();
 	}
 	
-	$chatBot = new bot($vars, $settings);
+	$chatBot = new Budabot($vars, $settings);
 	if(!$chatBot)
 		die("No Chatbot.....");
 

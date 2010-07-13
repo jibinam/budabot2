@@ -251,7 +251,7 @@ $level[219] = 2555840;
 if (preg_match("/^(capxp|capsk) ([0-9]+)/i$", $message, $arr)) {
 		//get player lvl
 		$rk_num = $this->vars["dimension"];
-		$info = new whois($sender);
+		$info = new WhoisXML($sender);
 		
 		if ($info->errorCode != 0) {
 			$this->send("An Error occurred while trying to get your level. Please input it manually via <highlight><symbol>capxp 'mission reward' 'your lvl'<end> or try again later.", $sendto);

@@ -29,7 +29,7 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-$server = new server();
+$server = new ServerXML();
 if($server->errorCode != 0)
 	return;
 

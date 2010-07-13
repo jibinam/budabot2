@@ -34,7 +34,7 @@ if (preg_match("/^server(.*)$/i", $message, $arr)) {
 	 	$msg = "Getting Server status. Please standby.";
         $this->send($msg, $sendto);
 
-		$server = new server(trim($arr[1]));
+		$server = new ServerXML(trim($arr[1]));
 	  	if ($server->errorCode != 0) {
 	  		$msg = $server->errorInfo;
 	  	} else {
