@@ -436,12 +436,14 @@ class AOChat
 	{
 		$u = ucfirst(strtolower($u));
 
-		if(isset($this->id[$u]))
-		return $this->id[$u];
+		if(isset($this->id[$u])) {
+			return $this->id[$u];
+		}
 
 		$this->send_packet(new AOChatPacket("out", AOCP_CLIENT_LOOKUP, $u));
-		for($i=0; $i<100 && !isset($this->id[$u]); $i++)
-		$this->get_packet();
+		for($i=0; $i<100 && !isset($this->id[$u]); $i++) {
+			$this->get_packet();
+		}
 
 		return isset($this->id[$u]) ? $this->id[$u] : false;
 	}

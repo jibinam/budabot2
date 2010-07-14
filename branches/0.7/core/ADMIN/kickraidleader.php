@@ -31,34 +31,36 @@
 
 if (preg_match("/^kickraidleader (.+)$/i", $message, $arr)){
 	$who = ucfirst(strtolower($arr[1]));
-	if ($this->get_uid($who) == NULL){
-		$this->send("<red>Sorry player you wish to remove does not exist.", $sendto);
-		return;
-	}
-	
-	if ($who == $sender) {
-		$this->send("<red>You can't kick yourself.<end>", $sendto);
+	$uid = $this->get_uid($who);
+
+	if($uid == NULL){
+		$this->send("<red>Error! Player '$who' does not exist.", $sendto);
 		return;
 	}
 
+	if ($uid == $char_id) {
+		$this->send("<red>Error! You can't kick yourself.<end>", $sendto);
+		return;
+	}
 
-	if ($this->admins[$who]["level"] != MODERATOR) {
-		$this->send("<red>Sorry $who is not a Raidleader of this Bot.<end>", $sendto);
+	$user_access_level = $this->getUserAccessLevel($who);
+	if ($user_access_level != RAIDLEADER) {
+		$this->send("<red>Error! $who is not a raidleader.<end>", $sendto);
 		return;
 	}
 	
-	if ((int)$this->admins[$sender]["level"] >= (int)$this->admins[$who]["level"]){
-		$this->send("<red>You must have a rank higher then $who.", $sendto);
+	$sender_access_level = $this->getUserAccessLevel($sender);
+	if ($sender_access_level >= $user_access_level) {
+		$this->send("<red>Error! You must have a higher access level than '$who' to modify his/her access.<end>", $sendto);
 		return;
 	}
 	
-	unset($this->admins[$who]);
-	$db->query("DELETE FROM admin_<myname> WHERE `name` = '$who'");
-		
+	$db->query("DELETE FROM admin_<myname> WHERE `uid` = $uid");
+	
 	$this->remove_buddy($who, 'admin');
-
-	$this->send("<highlight>$who<end> has been removed as Raidleader of this Bot.", $sendto);
-	$this->send("Your raidleader access to <myname> has been removed.", $who);
+	
+	$this->send("<highlight>$who<end> has been removed as a Raidleader.", $sendto);
+	$this->send("You have been removed as a Raidleader of <myname>", $who);
 } else {
 	$syntax_error = true;
 }

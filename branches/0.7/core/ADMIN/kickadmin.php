@@ -31,33 +31,36 @@
 
 if (preg_match("/^kickadmin (.+)$/i", $message, $arr)){
 	$who = ucfirst(strtolower($arr[1]));
-	if($this->get_uid($who) == NULL){
-		$this->send("<red>Sorry player you wish to remove does not exist.", $sendto);
+	$uid = $this->get_uid($who);
+
+	if($uid == NULL){
+		$this->send("<red>Error! Player '$who' does not exist.", $sendto);
 		return;
 	}
 
-	if ($who == $sender) {
-		$this->send("<red>You can't kick yourself.<end>", $sendto);
+	if ($uid == $char_id) {
+		$this->send("<red>Error! You can't kick yourself.<end>", $sendto);
 		return;
 	}
 
-	if ($this->admins[$who]["level"] != ADMIN) {
-		$this->send("<red>Sorry $who is not a Administrator of this Bot.<end>", $sendto);
+	$user_access_level = $this->getUserAccessLevel($who);
+	if ($user_access_level != ADMIN) {
+		$this->send("<red>Error! $who is not an administrator.<end>", $sendto);
 		return;
 	}
 	
-	if ($this->settings["Super Admin"] != $sender){
-		$this->send("<red>You need to be Super-Administrator to kick a Administrator<end>", $sendto);
+	$sender_access_level = $this->getUserAccessLevel($sender);
+	if ($sender_access_level >= $user_access_level) {
+		$this->send("<red>Error! You must have a higher access level than '$who' to modify his/her access.<end>", $sendto);
 		return;
 	}
 	
-	unset($this->admins[$who]);
-	$db->query("DELETE FROM admin_<myname> WHERE `name` = '$who'");
+	$db->query("DELETE FROM admin_<myname> WHERE `uid` = $uid");
 	
 	$this->remove_buddy($who, 'admin');
 	
-	$this->send("<highlight>$who<end> has been removed as Administrator of this Bot.", $sendto);
-	$this->send("Your Administrator access to <myname> has been removed.", $who);
+	$this->send("<highlight>$who<end> has been removed as an Administrator.", $sendto);
+	$this->send("You have been removed as an Administrator of <myname>", $who);
 } else {
 	$syntax_error = true;
 }

@@ -29,21 +29,21 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-$db->query("CREATE TABLE IF NOT EXISTS admin_<myname> (`name` VARCHAR(25) NOT NULL PRIMARY KEY, `adminlevel` INT)");
+$db->query("CREATE TABLE IF NOT EXISTS admin_<myname> (uid INT NOT NULL PRIMARY KEY, `adminlevel` INT NOT NULL)");
 
-$this->settings["Super Admin"] = ucfirst(strtolower($this->settings["Super Admin"]));
+$superAdmin = ucfirst(strtolower($this->settings["Super Admin"]));
+$uid = $this->get_uid($superAdmin);
 
-$db->query("SELECT * FROM admin_<myname> WHERE `adminlevel` = " . SUPERADMIN);
-if ($db->numrows() == 0) {
-	$db->query("DELETE FROM admin_<myname> WHERE `name` = '{$this->settings["Super Admin"]}'");
-	$db->query("INSERT INTO admin_<myname> (`adminlevel`, `name`) VALUES (" . SUPERADMIN . ", '{$this->settings["Super Admin"]}')");
+if ($uid === FALSE) {
+	echo "Error! could not get char_id for super admin: '$superAdmin'";
 } else {
-	$db->query("UPDATE admin_<myname> SET `name` = '{$this->settings["Super Admin"]}' WHERE `adminlevel` = " . SUPERADMIN);
-}
-
-$db->query("SELECT * FROM admin_<myname>");
-while ($row = $db->fObject()) {
-	$this->admins[$row->name]["level"] = $row->adminlevel;
+	$db->query("SELECT * FROM admin_<myname> WHERE `adminlevel` = " . SUPERADMIN);
+	if ($db->numrows() == 0) {
+		$db->query("DELETE FROM admin_<myname> WHERE `uid` = $uid");
+		$db->query("INSERT INTO admin_<myname> (`adminlevel`, `uid`) VALUES (" . SUPERADMIN . ", $uid)");
+	} else {
+		$db->query("UPDATE admin_<myname> SET `uid` = $uid WHERE `adminlevel` = " . SUPERADMIN);
+	}
 }
 
 ?>

@@ -31,43 +31,43 @@
 
 if (preg_match("/^addmod (.+)$/i", $message, $arr)){
 	$who = ucfirst(strtolower($arr[1]));
+	$uid = $this->get_uid($who);
 
-	if ($this->get_uid($who) == NULL){
-		$this->send("<red>Sorry the player you wish to add doesn't exist.<end>", $sendto);
+	if ($uid == NULL){
+		$this->send("<red>Error! Player '$who' does not exist.", $sendto);
 		return;
 	}
 	
-	if ($who == $sender) {
-		$this->send("<red>You can't add yourself to another group.<end>", $sendto);
+	if ($uid == $char_id) {
+		$this->send("<red>Error! You can't kick yourself.<end>", $sendto);
 		return;
 	}
 
-
-	if ($this->admins[$who]["level"] == MODERATOR) {
-		$this->send("<red>Sorry but $who is already a moderator.<end>", $sendto);
+	$user_access_level = $this->getUserAccessLevel($who);
+	if ($user_access_level == MODERATOR) {
+		$this->send("<red>Error! $who is already a moderator.<end>", $sendto);
 		return;
 	}
 	
-	if ((int)$this->admins[$sender]["level"] >= (int)$this->admins[$who]["level"]){
-		$this->send("<red>You must have a rank higher then $who.<end>", $sendto);
+	$sender_access_level = $this->getUserAccessLevel($sender);
+	if ($sender_access_level >= $user_access_level) {
+		$this->send("<red>Error! You must have a higher access level than '$who' to modify his/her access.<end>", $sendto);
 		return;
 	}
 
-	if (isset($this->admins[$who]["level"]) && $this->admins[$who]["level"] < MODERATOR) {
-		if($this->admins[$who]["level"] > MODERATOR) {
-			$this->send("<highlight>$who<end> has been demoted to the rank of a Moderator.", $sendto);
-			$this->send("You have been demoted to the rank of a Moderator on {$this->vars["name"]}", $who);
+	if ($user_access_level <= RAIDLEADER) {
+		if ($user_access_level < MODERATOR) {
+			$this->send("<highlight>$who<end> has been demoted to Moderator.", $sendto);
+			$this->send("You have been demoted to Moderator on <myname>", $who);
 		} else {
-			$this->send("<highlight>$who<end> has been promoted to the rank of a Moderator.", $sendto);
-			$this->send("You have been promoted to the rank of a Moderator on {$this->vars["name"]}", $who);
+			$this->send("<highlight>$who<end> has been promoted to Moderator.", $sendto);
+			$this->send("You have been promoted to Moderator on <myname>", $who);
 		}
-		$db->query("UPDATE admin_<myname> SET `adminlevel` = " . MODERATOR . " WHERE `name` = '$who'");
-		$this->admins[$who]["level"] = MODERATOR;
+		$db->query("UPDATE admin_<myname> SET `adminlevel` = ". MODERATOR . " WHERE `uid` = $uid");
 	} else {
-		$db->query("INSERT INTO admin_<myname> (`adminlevel`, `name`) VALUES (" . MODERATOR . ", '$who')");
-		$this->admins[$who]["level"] = MODERATOR;
-		$this->send("<highlight>$who<end> has been added to the Moderator group", $sendto);
-		$this->send("You got moderator access to <myname>", $who);
+		$db->query("INSERT INTO admin_<myname> (`adminlevel`, `uid`) VALUES (" . MODERATOR . ", '$uid')");
+		$this->send("<highlight>$who<end> has been added as a Moderator", $sendto);
+		$this->send("You have been added as a Moderator to <myname>", $who);
 	}
 
 	$this->add_buddy($who, 'admin');

@@ -1,17 +1,19 @@
 <?php 
 	$MODULE_NAME = "ADMIN";
 	
+	require_once 'functions.php';
+	
 	//Setup
 	$this->regevent("setup", $MODULE_NAME, "upload_admins.php");
 
 	//Commands	
-	$this->regcommand("msg", $MODULE_NAME, "addadmin.php", "addadmin", ADMIN);
-	$this->regcommand("priv", $MODULE_NAME, "addadmin.php", "addadmin", ADMIN);
-	$this->regcommand("guild", $MODULE_NAME, "addadmin.php", "addadmin", ADMIN);
+	$this->regcommand("msg", $MODULE_NAME, "addadmin.php", "addadmin", SUPERADMIN);
+	$this->regcommand("priv", $MODULE_NAME, "addadmin.php", "addadmin", SUPERADMIN);
+	$this->regcommand("guild", $MODULE_NAME, "addadmin.php", "addadmin", SUPERADMIN);
 	
-	$this->regcommand("msg", $MODULE_NAME, "kickadmin.php", "kickadmin", ADMIN);
-	$this->regcommand("priv", $MODULE_NAME, "kickadmin.php", "kickadmin", ADMIN);
-	$this->regcommand("guild", $MODULE_NAME, "kickadmin.php", "kickadmin", ADMIN);
+	$this->regcommand("msg", $MODULE_NAME, "kickadmin.php", "kickadmin", SUPERADMIN);
+	$this->regcommand("priv", $MODULE_NAME, "kickadmin.php", "kickadmin", SUPERADMIN);
+	$this->regcommand("guild", $MODULE_NAME, "kickadmin.php", "kickadmin", SUPERADMIN);
 	
 	$this->regcommand("msg", $MODULE_NAME, "addmod.php", "addmod", ADMIN);
 	$this->regcommand("priv", $MODULE_NAME, "addmod.php", "addmod", ADMIN);
