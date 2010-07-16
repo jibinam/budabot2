@@ -486,7 +486,7 @@ class Budabot extends AOChat {
 ** Name: makeHeader
 ** Make header.
 */	function makeHeader($title, $links = null) {
-		$color = $this->settings['default header color'];
+		$color = $this->settings['default_header_color'];
 		$baseR = hexdec(substr($color,14,2)); $baseG = hexdec(substr($color,16,2)); $baseB = hexdec(substr($color,18,2));
 		$color2 = "<font color='#".strtoupper(substr("00".dechex($baseR*.75),-2).substr("00".dechex($baseG*.75),-2).substr("00".dechex($baseB*.75),-2))."'>";
 		$color3 = "<font color='#".strtoupper(substr("00".dechex($baseR*.50),-2).substr("00".dechex($baseG*.50),-2).substr("00".dechex($baseB*.50),-2))."'>";
@@ -510,7 +510,7 @@ class Budabot extends AOChat {
 			}
 		}
 
-		$header .= $this->settings["default window color"]."\n\n";
+		$header .= $this->settings["default_window_color"]."\n\n";
 
 		return $header;
 	}
@@ -530,10 +530,10 @@ class Budabot extends AOChat {
 		}
 		$pages = count($result);
 		if ($pages == 1) {
-			$result[$page] = "<a href=\"text://".$this->makeHeader($name, $links).$this->settings["default window color"].$result[$page]."\">$name</a>";
+			$result[$page] = "<a href=\"text://".$this->makeHeader($name, $links).$this->settings["default_window_color"].$result[$page]."\">$name</a>";
 		} else {
 			forEach ($result as $page => $content) {
-				$result[$page] = "<a href=\"text://".$this->makeHeader("$name Page $page / $pages", $links).$this->settings["default window color"].$result[$page]."\">$name</a> (Page <highlight>$page / $pages<end>)";
+				$result[$page] = "<a href=\"text://".$this->makeHeader("$name Page $page / $pages", $links).$this->settings["default_window_color"].$result[$page]."\">$name</a> (Page <highlight>$page / $pages<end>)";
 			}
 		}
 		return $result;
@@ -574,8 +574,9 @@ class Budabot extends AOChat {
 ** Formats an outgoing message with correct colors, replaces values, etc
 */	function formatMessage($message) {
 		// Color
-		$message = str_replace("<header>", $this->settings['default header color'], $message);
-		$message = str_replace("<highlight>", $this->settings['default highlight color'], $message);
+		$message = str_replace("<header>", $this->settings['default_header_color'], $message);
+		$message = str_replace("<error>", $this->settings['default_error_color'], $message);
+		$message = str_replace("<highlight>", $this->settings['default_highlight_color'], $message);
 		$message = str_replace("<black>", "<font color='#000000'>", $message);
 		$message = str_replace("<white>", "<font color='#FFFFFF'>", $message);
 		$message = str_replace("<yellow>", "<font color='#FFFF00'>", $message);
@@ -610,9 +611,9 @@ class Budabot extends AOChat {
 		}
 	
 		$message = $this->formatMessage($message);
-		$this->send_privgroup($group,$this->settings["default priv color"].$message);
+		$this->send_privgroup($group,$this->settings["default_priv_color"].$message);
 		if (($this->settings["guest_relay"] == 1 && $this->settings["guest_relay_commands"] == 1 && !$disable_relay)) {
-			$this->send_group($group, "</font>{$this->settings["guest_color_channel"]}[Guest]<end> {$this->settings["guest_color_username"]}{$this->vars["name"]}</font>: {$this->settings["default priv color"]}$message</font>");
+			$this->send_group($group, "</font>{$this->settings["guest_color_channel"]}[Guest]<end> {$this->settings["guest_color_username"]}{$this->vars["name"]}</font>: {$this->settings["default_priv_color"]}$message</font>");
 		}
 	}
 
@@ -638,21 +639,21 @@ class Budabot extends AOChat {
 
 		// Send
 		if ($who == 'prv') { // Target is private chat by defult.
-			$this->send_privgroup($this->vars["name"],$this->settings["default priv color"].$message);
+			$this->send_privgroup($this->vars["name"],$this->settings["default_priv_color"].$message);
 			if ($this->settings["guest_relay"] == 1 && $this->settings["guest_relay_commands"] == 1 && !$disable_relay) {
-				$this->send_group($this->vars["my guild"], "</font>{$this->settings["guest_color_channel"]}[Guest]<end> {$this->settings["guest_color_username"]}".$this->makeLink($this->vars["name"],$this->vars["name"],"user")."</font>: {$this->settings["default priv color"]}$message</font>");
+				$this->send_group($this->vars["my guild"], "</font>{$this->settings["guest_color_channel"]}[Guest]<end> {$this->settings["guest_color_username"]}".$this->makeLink($this->vars["name"],$this->vars["name"],"user")."</font>: {$this->settings["default_priv_color"]}$message</font>");
 			}
 		} else if ($who == $this->vars["my guild"] || $who == 'org') {// Target is guild chat.
-    		$this->send_group($this->vars["my guild"],$this->settings["default guild color"].$message);
+    		$this->send_group($this->vars["my guild"],$this->settings["default_guild_color"].$message);
 			if ($this->settings["guest_relay"] == 1 && $this->settings["guest_relay_commands"] == 1 && !$disable_relay) {
-				$this->send_privgroup($this->vars["name"], "</font>{$this->settings["guest_color_channel"]}[{$this->vars["my guild"]}]<end> {$this->settings["guest_color_username"]}".$this->makeLink($this->vars["name"],$this->vars["name"],"user")."</font>: {$this->settings["default guild color"]}$message</font>");
+				$this->send_privgroup($this->vars["name"], "</font>{$this->settings["guest_color_channel"]}[{$this->vars["my guild"]}]<end> {$this->settings["guest_color_username"]}".$this->makeLink($this->vars["name"],$this->vars["name"],"user")."</font>: {$this->settings["default_guild_color"]}$message</font>");
 			}
 		} else if ($this->get_uid($who) != NULL) {// Target is a player.
-    		$this->send_tell($who,$this->settings["default tell color"].$message);
+    		$this->send_tell($who,$this->settings["default_tell_color"].$message);
 			// Echo
 			if ($this->settings['echo'] >= 1) newLine("Out. Msg.", $who, $message, $this->settings['echo']);
 		} else { // Public channels that are not myguild.
-	    	$this->send_group($who,$this->settings["default guild color"].$message);
+	    	$this->send_group($who,$this->settings["default_guild_color"].$message);
 		}
 	}
 

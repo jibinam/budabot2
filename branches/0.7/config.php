@@ -36,12 +36,13 @@
     $settings['CronDelay']      = 0;
 	
     // Default Colors that should be used
-	$settings['default guild color']     = "<font color='#84FFFF'>";
-	$settings['default priv color']      = "<font color='#84FFFF'>";
-	$settings['default window color']    = "<font color='#84FFFF'>";
-	$settings['default tell color']      = "<font color='#DDDDDD'>";
-	$settings['default highlight color'] = "<font color='#9CC6E7'>";
-	$settings['default header color']    = "<font color='#FFFF00'>";
+	$settings['default_guild_color']		= "<font color='#84FFFF'>";
+	$settings['default_priv_color']			= "<font color='#84FFFF'>";
+	$settings['default_window_color']		= "<font color='#84FFFF'>";
+	$settings['default_tell_color']			= "<font color='#DDDDDD'>";
+	$settings['default_highlight_color']	= "<font color='#9CC6E7'>";
+	$settings['default_header_color']		= "<font color='#FFFF00'>";
+	$settings['default_error_color']		= "<font color='#FCA712'>";
 	
 	// Replace "Insert Name here" with the bot that
 	// tells should be ignored by default
