@@ -591,6 +591,11 @@ class Budabot extends AOChat {
 		$message = str_replace("<tab>", "    ", $message);
 		$message = str_replace("<end>", "</font>", $message);
 		$message = str_replace("<symbol>", $this->settings["symbol"] , $message);
+		
+		$message = str_replace("<neutral>", "<font color='#EEEEEE'>", $message);
+		$message = str_replace("<omni>", "<font color='#00FFFF'>", $message);
+		$message = str_replace("<clan>", "<font color='#F79410'>", $message);
+		$message = str_replace("<unknown>", "<font color='#FF0000'>", $message);
 
 		return $message;
 	}

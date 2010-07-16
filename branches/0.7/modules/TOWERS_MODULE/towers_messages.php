@@ -222,14 +222,8 @@ if ($def_guild) {
 	    (strtolower($att_side) == "neutral" && ($a & 2)) ||
         (strtolower($att_side) == "omni"    && ($a & 4)) ))) {
 
-		// Won't need these 4 lines for 0.7.0
-		$msg = str_replace("<neutral>", "<font color='#EEEEEE'>", $msg);
-		$msg = str_replace("<omni>", "<font color='#00FFFF'>", $msg);
-		$msg = str_replace("<clan>", "<font color='#F79410'>", $msg);
-		$msg = str_replace("<unknown>", "<font color='#FF0000'>", $msg);
-
     	$this->send($msg, "guild", true);
-    	$this->send($msg, NULL, true);
+    	$this->send($msg, "priv", true);
 	}
 
 	$sql = "INSERT INTO tower_attack_<myname> (`time`, `att_guild`, `att_side`, `att_player`, `att_level`, `att_profession`,
