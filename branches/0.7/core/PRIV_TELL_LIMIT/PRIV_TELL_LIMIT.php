@@ -1,37 +1,49 @@
 <?php
-$MODULE_NAME = "PRIV_TELL_LIMIT";
+	$MODULE_NAME = "PRIV_TELL_LIMIT";
+	
+	require_once 'Whitelist.class.php';
+	
+	$this->loadSqlFile($MODULE_NAME, 'whitelist');
 	
 	//Set/Show Limits
-	$this->regcommand("msg", $MODULE_NAME, "config.php", "limits", MODERATOR);	
+	$this->regcommand("msg", $MODULE_NAME, "config.php", "limits", MODERATOR);
 	$this->regcommand("msg", $MODULE_NAME, "config.php", "limit", MODERATOR);
+	$this->regcommand("msg", $MODULE_NAME, "whitelist.php", "whitelist", MODERATOR);
+	
+	$this->regcommand("priv", $MODULE_NAME, "config.php", "limits", MODERATOR);
+	$this->regcommand("priv", $MODULE_NAME, "config.php", "limit", MODERATOR);
+	$this->regcommand("msg", $MODULE_NAME, "whitelist.php", "whitelist", MODERATOR);
+	
+	$this->regcommand("guild", $MODULE_NAME, "config.php", "limits", MODERATOR);
+	$this->regcommand("guild", $MODULE_NAME, "config.php", "limit", MODERATOR);
+	$this->regcommand("msg", $MODULE_NAME, "whitelist.php", "whitelist", MODERATOR);
 
 	//Set/Show minlvl for Tells
-	$this->regcommand("msg", $MODULE_NAME, "set_limits_tells.php", "tminlvl", MODERATOR);	
+	$this->regcommand("msg", $MODULE_NAME, "set_limits_tells.php", "tminlvl", MODERATOR);
 	$this->regcommand("priv", $MODULE_NAME, "set_limits_tells.php", "tminlvl", MODERATOR);
 
 	//Set/Show general limit for Tells
-	$this->regcommand("msg", $MODULE_NAME, "set_limits_tells.php", "topen", MODERATOR);	
+	$this->regcommand("msg", $MODULE_NAME, "set_limits_tells.php", "topen", MODERATOR);
 	$this->regcommand("priv", $MODULE_NAME, "set_limits_tells.php", "topen", MODERATOR);
 
 	//Set/Show faction limit for Tells
-	$this->regcommand("msg", $MODULE_NAME, "set_limits_tells.php", "tfaction", MODERATOR);	
+	$this->regcommand("msg", $MODULE_NAME, "set_limits_tells.php", "tfaction", MODERATOR);
 	$this->regcommand("priv", $MODULE_NAME, "set_limits_tells.php", "tfaction", MODERATOR);
 
-
 	//Set/Show minlvl for privategroup
-	$this->regcommand("msg", $MODULE_NAME, "set_limits_priv.php", "minlvl", MODERATOR);	
+	$this->regcommand("msg", $MODULE_NAME, "set_limits_priv.php", "minlvl", MODERATOR);
 	$this->regcommand("priv", $MODULE_NAME, "set_limits_priv.php", "minlvl", MODERATOR);
 
 	//Set/Show general limit for privategroup
-	$this->regcommand("msg", $MODULE_NAME, "set_limits_priv.php", "open", MODERATOR);	
+	$this->regcommand("msg", $MODULE_NAME, "set_limits_priv.php", "open", MODERATOR);
 	$this->regcommand("priv", $MODULE_NAME, "set_limits_priv.php", "open", MODERATOR);
 
 	//Set/Show faction limit for privategroup
-	$this->regcommand("msg", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);	
+	$this->regcommand("msg", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
 	$this->regcommand("priv", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
 
 	//Set/Show faction limit for privategroup
-	$this->regcommand("msg", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);	
+	$this->regcommand("msg", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
 	$this->regcommand("priv", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
 
 	//Settings
