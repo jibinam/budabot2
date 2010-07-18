@@ -28,15 +28,13 @@
    ** along with Budabot; if not, write to the Free Software
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
-   
+
+global $config_file;
 
 function read_input ($output = "") {
 	echo $output;
 	return trim(fgets(STDIN));
 }
-
-global $config_file;
-
 
 function savecfg($vars, $settings) {
 	global $config_file;
