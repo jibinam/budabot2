@@ -334,7 +334,7 @@ if (preg_match("/^config$/i", $message)) {
 			else
 				$status = "<red>Disabled<end>";
 				
-			$admin = $this->getAccessDescription($row->access_level);
+			$admin = AccessLevel::get_description($row->access_level);
 			
 			$list .= "Current Status: $status (Access: $admin) \n";
 			$list .= "Enable or Disable Command: ";
@@ -365,7 +365,7 @@ if (preg_match("/^config$/i", $message)) {
 			else
 				$status = "<red>Disabled<end>";
 				
-			$admin = $this->getAccessDescription($row->access_level);
+			$admin = AccessLevel::get_description($row->access_level);
 
 			$list .= "Current Status: $status (Access: $admin) \n";
 			$list .= "Enable or Disable Command: ";
@@ -396,7 +396,7 @@ if (preg_match("/^config$/i", $message)) {
 			else
 				$status = "<red>Disabled<end>";
 				
-			$admin = $this->getAccessDescription($row->access_level);
+			$admin = AccessLevel::get_description($row->access_level);
 
 			$list .= "Current Status: $status (Access: $admin) \n";
 			$list .= "Enable or Disable Command: ";
@@ -425,7 +425,7 @@ if (preg_match("/^config$/i", $message)) {
 				else
 					$list .= "Command: $row->cmd\n";
 					
-				$admin = $this->getAccessDescription($row->access_level);
+				$admin = AccessLevel::get_description($row->access_level);
 					
 				$list .= "Current Access: <highlight>$admin<end> \n";
 				$list .= "Set min. access lvl to use this command: ";
@@ -449,7 +449,7 @@ if (preg_match("/^config$/i", $message)) {
 				else
 					$list .= "Command: $row->cmd\n";
 					
-				$admin = $this->getAccessDescription($row->access_level);
+				$admin = AccessLevel::get_description($row->access_level);
 				
 				$list .= "Current Access: <highlight>$admin<end> \n";
 				$list .= "Set min. access lvl to use this command: ";
@@ -473,7 +473,7 @@ if (preg_match("/^config$/i", $message)) {
 				else
 					$list .= "Command: $row->cmd\n";
 					
-				$admin = $this->getAccessDescription($row->access_level);
+				$admin = AccessLevel::get_description($row->access_level);
 				
 				$list .= "Current Access: <highlight>$admin<end> \n";
 				$list .= "Set min. access lvl to use this command: ";

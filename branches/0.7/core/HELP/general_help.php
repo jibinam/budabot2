@@ -36,7 +36,7 @@ if (preg_match("/^about$/i", $message)) {
 } else if (preg_match("/^help$/i", $message)) {
 	global $version;
 	$data .= "\nBudabot version: $version\n\n";
-	$user_access_level = $this->getUserAccessLevel($sender);
+	$user_access_level = AccessLevel::get_user_access_level($sender);
 	
 	$sql = "SELECT name, module, description FROM hlpcfg_<myname> WHERE access_level >= $user_access_level ORDER BY module ASC";
 	$db->query($sql);

@@ -29,17 +29,6 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-// Access levels
-define('SUPERADMIN', 0);
-define('ADMIN', 1);
-define('MODERATOR', 2);
-define('RAIDLEADER', 3);
-define('GUILDADMIN', 4);
-define('LEADER', 5);
-define('GUILDMEMBER', 6);
-define('MEMBER', 7);
-define('ALL', 8);
-
 class Budabot extends AOChat {
 
 	var $buddyList = array();
@@ -405,81 +394,6 @@ class Budabot extends AOChat {
 		forEach ($this->_connect as $filename) {
 			include $filename;
 		}
-	}
-	
-/*===============================
-** Name: getUserAccessLevel
-** Returns the integer value that corresponds to an access level for the specified user
-*/	function getUserAccessLevel($user) {
-		$user = ucfirst(strtolower($user));
-
-		// covers superadmin, admin, moderator, raidleader
-		if (isset($this->admins[$user])) {
-			return $this->admins[$user]['level'];
-		}
-		
-		// covers guildadmin
-		if (isset($this->guildmembers[$user]) && $this->guildmembers[$sender] <= $this->settings['guild admin level']) {
-			return GUILDADMIN;
-		}
-		
-		// covers leader
-		if ($this->vars["leader"] = $user) {
-			return LEADER;
-		}
-		
-		// covers guildmember
-		if (isset($this->guildmembers[$user])) {
-			return GUILDMEMBER;
-		}
-
-		// covers member
-		$db->query("SELECT * FROM members_<myname> WHERE `name` = '$user'");
-	  	if ($db->numrows() != 0) {
-	  		return MEMBER;
-	  	}
-		
-		// covers all
-		return ALL;
-	}
-	
-/*===============================
-** Name: getAccessDescription
-** Returns the string value that corresponds to an access level
-*/	function getAccessDescription($access_level) {
-		$desc = '';
-		switch ($access_level) {
-			case SUPERADMIN:
-				$desc = "SuperAdmin";
-				break;
-			case ADMIN:
-				$desc = "Admin";
-				break;
-			case MODERATOR:
-				$desc = "Moderator";
-				break;
-			case RAIDLEADER:
-				$desc = 'Raidleader';
-				break;
-			case GUILDADMIN:
-				$desc = "GuildAdmin";
-				break;
-			case LEADER:
-				$desc = "Leader";
-				break;
-			case GUILDMEMBER:
-				$desc = "GuildMember";
-				break;
-			case MEMBER:
-				$desc = "Member";
-				break;
-			case ALL:
-				$desc = "All";
-				break;
-			default:
-				echo "Error! Invalid access_level value specified: '$access_level'\b";
-		}
-		return $desc;
 	}
 
 /*===============================
@@ -1192,7 +1106,7 @@ class Budabot extends AOChat {
 ** Find a help topic for a command if it exists
 */	function help_lookup($sender, $helpcmd) {
 		$helpcmd = strtolower($helpcmd);
-		$user_access_level = $this->getUserAccessLevel($sender);
+		$user_access_level = AccessLevel::get_user_access_level($sender);
 		$sql = "SELECT name, module, description, file FROM hlpcfg_<myname> WHERE access_level >= $user_access_level AND name = '$helpcmd' ORDER BY module ASC";
 		$db->query($sql);
 		if ($db->numrows() == 0) {
@@ -1386,7 +1300,7 @@ class Budabot extends AOChat {
 						}
 					}
 
-					$user_access_level = $this->getUserAccessLevel($sender);
+					$user_access_level = AccessLevel::get_user_access_level($sender);
 					if ($user_access_level > $access_level) {
 						$restricted = true;
 					}
@@ -1467,7 +1381,7 @@ class Budabot extends AOChat {
 						}
 
 
-						$user_access_level = $this->getUserAccessLevel($sender);
+						$user_access_level = AccessLevel::get_user_access_level($sender);
 						if ($user_access_level > $access_level) {
 							$restricted = true;
 						} else {
@@ -1580,7 +1494,7 @@ class Budabot extends AOChat {
 							}
 						}
 
-						$user_access_level = $this->getUserAccessLevel($sender);
+						$user_access_level = AccessLevel::get_user_access_level($sender);
 						if ($user_access_level > $access_level) {
 							$this->send("Error! You do not have access to this command.", "guild");
 						} else {

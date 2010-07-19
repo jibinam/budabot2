@@ -1,7 +1,7 @@
 <?php 
 	$MODULE_NAME = "ADMIN";
 	
-	require_once 'functions.php';
+	require_once 'AccessLevel.class.php';
 	
 	//Setup
 	$this->regevent("setup", $MODULE_NAME, "upload_admins.php");

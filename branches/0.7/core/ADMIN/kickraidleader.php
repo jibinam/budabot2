@@ -43,13 +43,13 @@ if (preg_match("/^kickraidleader (.+)$/i", $message, $arr)){
 		return;
 	}
 
-	$user_access_level = $this->getUserAccessLevel($who);
+	$user_access_level = AccessLevel::get_user_access_level($who);
 	if ($user_access_level != RAIDLEADER) {
 		$this->send("<red>Error! $who is not a raidleader.<end>", $sendto);
 		return;
 	}
 	
-	$sender_access_level = $this->getUserAccessLevel($sender);
+	$sender_access_level = AccessLevel::get_user_access_level($sender);
 	if ($sender_access_level >= $user_access_level) {
 		$this->send("<red>Error! You must have a higher access level than '$who' to modify his/her access.<end>", $sendto);
 		return;
