@@ -125,7 +125,7 @@ if (preg_match("/^stats$/i", $message, $arr)) {
 		<a href=skillid://202>Char stability</a> (unknown)
 		<a href=skillid://203>Char extroverty</a> (unknown)";
 
-	$msg = $this->makeBlob('Stats', $window);
+	$msg = Links::makeBlob('Stats', $window);
 
 	$this->send($msg, $sendto);
 }

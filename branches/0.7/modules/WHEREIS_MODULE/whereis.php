@@ -30,7 +30,7 @@ if (preg_match("/^whereis (.+)$/i", $message, $arr)) {
 		
 		$whereis = "There are $whereis_found matches to your query.\n\n" . $whereis;
 	
-		$msg = $this->makeBlob("Result of Whereis Search For $search", $whereis);
+		$msg = Links::makeBlob("Result of Whereis Search For $search", $whereis);
 	} else if ($whereis_found == 1) {
 		$msg = $whereis;
 	} else {

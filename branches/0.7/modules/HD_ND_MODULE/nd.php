@@ -11,7 +11,7 @@ if (preg_match("/^nd$/i", $message)) {
 				   "<tab><tab>-><tab>".(strlen(28 - 2 * $i) < 2 ? "0" : "").(28 - 2 * $i)."s</font>\n".
 				   ($i % 3 == 2 ? "<img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n" : "");
 	}
-	$msg = $this->makeLink("Nano delta tick info", $inside.$footer);
+	$msg = Links::makeLink("Nano delta tick info", $inside.$footer);
 } elseif (preg_match("/^nd ([0-9]+)$/i", $message, $arr)) {
 	$tick = (28-floor($arr[1]/30)); 
 	if ($tick < 2) $tick = 2;

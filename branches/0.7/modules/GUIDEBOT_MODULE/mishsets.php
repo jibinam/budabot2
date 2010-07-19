@@ -72,7 +72,7 @@ The HeadOn-Stealth slider seems to determine the number of trapped chests and al
 The Money-XP slider should be obvious. In general, the bonus XP seems to ammount to about 1 mob's worth in the mission, so leaving it set all the way to money is my suggestion.
  ";
 
-$mishset_txt = $this->makeLink("Guide to Mission Settings", $mishset_txt); 
+$mishset_txt = Links::makeLink("Guide to Mission Settings", $mishset_txt); 
 if($type == "msg") 
 $this->send($mishset_txt, $sender); 
 elseif($type == "all") 

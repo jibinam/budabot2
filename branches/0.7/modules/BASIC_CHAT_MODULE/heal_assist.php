@@ -34,7 +34,7 @@ if(preg_match("/heal$/i", $message)) {
   	if(isset($heal_assist)) {
 		$link = "<header>::::: Healassist Macro on $heal_assist :::::\n\n";
 	  	$link .= "<a href='chatcmd:///macro $heal_assist /assist $heal_assist'>Click here to make an healassist on $heal_assist macro</a>";
-	  	$msg = $this->makeLink("Current Healassist is $heal_assist", $link);
+	  	$msg = Links::makeLink("Current Healassist is $heal_assist", $link);
 	} else
 		$msg = "No Healassist set atm.";
 	$this->send($msg);
@@ -46,7 +46,7 @@ if(preg_match("/heal$/i", $message)) {
 	  	$heal_assist = $name;
 		$link = "<header>::::: HealAssist Macro on $name :::::\n\n";
 	  	$link .= "<a href='chatcmd:///macro $name /assist $name'>Click here to make an healassist on $name macro</a>";
-	  	$msg = $this->makeLink("Healassist on $name Macro", $link);
+	  	$msg = Links::makeLink("Healassist on $name Macro", $link);
 		$this->send($msg);
 		$this->send($msg);
 		$this->send($msg);
@@ -54,7 +54,7 @@ if(preg_match("/heal$/i", $message)) {
 	  	$heal_assist = $name;
 		$link = "<header>::::: HealAssist Macro on $name :::::\n\n";
 	  	$link .= "<a href='chatcmd:///macro $name /assist $name'>Click here to make an healassist on $name macro</a>";
-	  	$msg = $this->makeLink("Healassist on $name Macro", $link);
+	  	$msg = Links::makeLink("Healassist on $name Macro", $link);
 		$this->send($msg);
 		$this->send($msg);
 		$this->send($msg);

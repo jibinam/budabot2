@@ -102,7 +102,7 @@ Trader
  
  ";
 
-$tier3armor_txt = $this->makeLink("Making Tier 3 Chosen/Faithful Armor", $tier3armor_txt); 
+$tier3armor_txt = Links::makeLink("Making Tier 3 Chosen/Faithful Armor", $tier3armor_txt); 
 if($type == "msg") 
 $this->send($tier3armor_txt, $sender); 
 elseif($type == "all") 

@@ -45,7 +45,7 @@ http://forums.anarchy-online.com/showthread.php?t=392937
 
 ";
 
-$apf28guide_txt = $this->makeLink("Guide to Apf Sector 28", $apf28guide_txt);
+$apf28guide_txt = Links::makeLink("Guide to Apf Sector 28", $apf28guide_txt);
 if($type == "msg")
 $this->send($apf28guide_txt, $sender);
 elseif($type == "all")

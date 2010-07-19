@@ -135,7 +135,7 @@ $panven_txt = "Pandemonium Vendors
 <a href='itemref://223324/223324/220'>LINK </a> Widowmaker Battle Drone - Engineer</font>
  ";
 
-$panven_txt = $this->makeLink("Pandemonium Vendor Nanos", $panven_txt); 
+$panven_txt = Links::makeLink("Pandemonium Vendor Nanos", $panven_txt); 
 if($type == "msg") 
 $this->send($panven_txt, $sender); 
 elseif($type == "all") 

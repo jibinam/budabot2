@@ -91,9 +91,9 @@ if($countitems > 1) {
 			$name = str_replace("&amp;", "&", $name);
 //	        $list .= "<img src=rdb://".$item["icon"]."> \n";
 	        if($ql) {
-		        $list .= "QL $ql ".$this->makeItem($item["lowid"], $item["highid"], $ql, $name);
+		        $list .= "QL $ql ".Links::makeItem($item["lowid"], $item["highid"], $ql, $name);
 			} else {
-		        $list .= $this->makeItem($item["lowid"], $item["highid"], $item["highql"], $name);		  
+		        $list .= Links::makeItem($item["lowid"], $item["highid"], $item["highql"], $name);		  
 			}
 	
 	        if($item["lowql"] != $item["highql"])
@@ -108,7 +108,7 @@ if($countitems > 1) {
 	    }
     }
     $list = "<header>::::: Nano Search Result :::::<end>\n\n".$list;
-    $link = $this->makeLink("$countitems results in total", $list);
+    $link = Links::makeLink("$countitems results in total", $list);
     $this->send($link, $sendto);
       	
 	//Show a warning if the maxnano are reached
@@ -124,9 +124,9 @@ else {
 			$name = str_replace("&#58;", ":", $name);
 			$name = str_replace("&amp;", "&", $name); 
 	        if($ql)
-		        $link .= "\n QL $ql ".$this->makeItem($item["lowid"], $item["highid"], $ql, $name);
+		        $link .= "\n QL $ql ".Links::makeItem($item["lowid"], $item["highid"], $ql, $name);
 			else
-		        $link .= "\n".$this->makeItem($item["lowid"], $item["highid"], $item["highql"], $name);
+		        $link .= "\n".Links::makeItem($item["lowid"], $item["highid"], $item["highql"], $name);
 	        
 	        if($item["lowql"] != $item["highql"])
 		        $link .= " (QL".$item["lowql"]." - ".$item["highql"].")";

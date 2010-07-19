@@ -79,7 +79,7 @@ Last updated on 02.07.2007 by Tepamina
 Written by Tepamina";
 
  
-$bsinfo_txt = $this->makeLink("Information On Battlestations", $bsinfo_txt); 
+$bsinfo_txt = Links::makeLink("Information On Battlestations", $bsinfo_txt); 
 if($type == "msg") 
 $this->send($bsinfo_txt, $sender); 
 elseif($type == "priv") 

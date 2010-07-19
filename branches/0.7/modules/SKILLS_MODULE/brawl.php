@@ -18,7 +18,7 @@
 	$help .= "<a href='chatcmd:///tell <myname> <symbol>brawl 750'>/tell <myname> <symbol>brawl MA 750</a>\n\n";
 	$help .= $footer;
 
-	$helplink = $this->makeLink("::How to use brawl::", $help);
+	$helplink = Links::makeLink("::How to use brawl::", $help);
 	
 	if (!function_exists(interpolate)){
 		function interpolate($x1, $x2, $y1, $y2, $x) {
@@ -59,7 +59,7 @@
 		$inside .= "Stun duration: ".$stunD."\n";
 		$inside .= $footer;
 		
-		$windowlink = $this->makeLink("::Your Brawl skill results::", $inside);
+		$windowlink = Links::makeLink("::Your Brawl skill results::", $inside);
 		$this->send($windowlink, $sendto);
 	} else {
 		$this->send($helplink, $sendto);

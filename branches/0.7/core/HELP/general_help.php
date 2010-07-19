@@ -31,7 +31,7 @@
 
 if (preg_match("/^about$/i", $message)) {
 	$data = file_get_contents("./core/HELP/about.txt");
-	$msg = $this->makeLink("About", $data);
+	$msg = Links::makeLink("About", $data);
 	$this->send($msg, $sendto);
 } else if (preg_match("/^help$/i", $message)) {
 	global $version;
@@ -56,7 +56,7 @@ if (preg_match("/^about$/i", $message)) {
 	if ($list == "") {
 		$msg = "<orange>No Help files found.<end>";
 	} else {
-		$msg = $this->makeLink("Help(main)", $data.$list);
+		$msg = Links::makeLink("Help(main)", $data.$list);
 	}
 	$this->send($msg, $sendto);
 } else if (preg_match("/^help (.+)$/i", $message, $arr)) {

@@ -66,7 +66,7 @@ if (!$syntax_error) {
 	
 	$title = 'Shopping Results for ' . $postFields['search'];
 	$items = '';
-	foreach ($rows as $row){
+	forEach ($rows as $row){
 		$childNodes = $row->childNodes;
 		
 		$ql = trim($childNodes->item(0)->nodeValue);
@@ -81,14 +81,14 @@ if (!$syntax_error) {
 		
 		//echo $childNodes->item(1)->getElementsByTagName('a')->item(0)->getAttribute('href') . "\n\n";
 		
-		$lookup = $this->makeLink('Lookup', "/tell <myname> items $ql $item", 'chatcmd');
+		$lookup = Links::makeLink('Lookup', "/tell <myname> items $ql $item", 'chatcmd');
 
-		$items .= $this->makeLink($seller, "/tell $seller", 'chatcmd') . ": $item (ql $ql) [" . $time . "] $lookup \n";
+		$items .= Links::makeLink($seller, "/tell $seller", 'chatcmd') . ": $item (ql $ql) [" . $time . "] $lookup \n";
 	}
 	
 	if ($items != '') {
 		$items .= "\n\nSearch results provided by http://www.aojunkyard.com/";
-		$msg = $this->makeBlob($title, $items);
+		$msg = Links::makeBlob($title, $items);
 	} else {
 		$msg = 'No items found. Maybe try fewer keywords.';
 	}

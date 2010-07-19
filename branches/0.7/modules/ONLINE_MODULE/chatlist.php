@@ -59,7 +59,7 @@ if(preg_match("/^chatlist$/i", $message) || preg_match("/^sm$/i", $message)){
 	if($this->vars["topic"] != "")
 		$topic = "Topic: {Settings::get("topic")}<br><br>";
 	$list = "<green>$topic<lgreen>".$list;
-	$link = $this->makeBlob('Chatlist', $list);
+	$link = Links::makeBlob('Chatlist', $list);
 
 	$this->send($link, $sender);
 }

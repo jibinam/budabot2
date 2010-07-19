@@ -61,7 +61,7 @@ if(preg_match("/^aigen (ankari|ilari|rimah|jaax|xoch|cha)$/i", $message, $arr)) 
 		break;
 	}
 	
-	$msg = $this->makeLink("Info for General ".ucfirst($gen), $msg);
+	$msg = Links::makeLink("Info for General ".ucfirst($gen), $msg);
 	if($type == "msg")
 		$this->send($msg, $sender);
 	elseif($type == "guild")

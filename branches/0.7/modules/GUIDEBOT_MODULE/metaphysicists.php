@@ -37,7 +37,7 @@ Guide is too large to load into the bot, so I have included the link on AOForums
 "
 ;
 
-$Metaphysicists_txt = $this->makeLink("Guide to Meta Physicists", $Metaphysicists_txt); 
+$Metaphysicists_txt = Links::makeLink("Guide to Meta Physicists", $Metaphysicists_txt); 
 if($type == "msg") 
 $this->send($Metaphysicists_txt, $sender); 
 elseif($type == "all") 

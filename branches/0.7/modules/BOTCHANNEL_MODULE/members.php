@@ -48,7 +48,7 @@ if (preg_match("/^members$/i", $message)) {
 	  	}
 	  	
 	    $msg = "<highlight>".$autoguests."<end> players on the Autoinvitelist ";
-	    $link = ":: ".$this->makeLink('Click here', $list);
+	    $link = ":: ".Links::makeLink('Click here', $list);
 	    if ($autoguests != 0) {
            	$this->send($msg.$link, $sendto);
         } else {

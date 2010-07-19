@@ -15,7 +15,7 @@
 	$help .= "<a href='chatcmd:///tell <myname> <symbol>whatbuffs comp lit'>/tell <myname> <symbol>whatbuffs comp lit</a>\n\n";
 	$help .= $footer;
 
-	$helplink = $this->makeLink("::How to use 'what buffs what?'::", $help);
+	$helplink = Links::makeLink("::How to use 'what buffs what?'::", $help);
 
 	if (preg_match("/^whatbuffs (.+)$/i", $message, $arr)) {
 		$name = trim($arr[1]);
@@ -45,7 +45,7 @@
 						$inside .= "Items that buff ".$skills[0].":\n\n";
 						$inside .= $info;
 						$inside .= "\n\nClick the item(s) for more info\n\n".$footer;
-						$windowlink = $this->makeLink(":: Your \"What buffs ...?\" results ::", $inside);
+						$windowlink = Links::makeLink(":: Your \"What buffs ...?\" results ::", $inside);
 						$this->send($windowlink, $sendto); 
 						$this->send("<highlight>$found<end> result(s) in total", $sendto);
 						return;
@@ -61,7 +61,7 @@
 					$inside .= $info."\n";
 					$inside .= "Which of those skills did you mean?\n\n";
 					$inside .= $footer;
-					$windowlink = $this->makeLink(":: Your \"What buffs ...?\" results ::", $inside);
+					$windowlink = Links::makeLink(":: Your \"What buffs ...?\" results ::", $inside);
 					$this->send($windowlink, $sendto); 
 					$this->send("Found several skills matching your key words.", $sendto);
 					return;

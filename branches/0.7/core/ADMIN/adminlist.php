@@ -91,7 +91,7 @@ if (preg_match("/^adminlist$/i", $message)) {
 		}
 	}
 	
-	$link = $this->makeLink('Adminlist', $list);	
+	$link = Links::makeLink('Adminlist', $list);	
 	$this->send($link, $sendto);
 } else {
 	$syntax_error = true;

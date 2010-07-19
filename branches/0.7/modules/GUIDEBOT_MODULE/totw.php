@@ -123,7 +123,7 @@ Misc:
 Bracers:
 <a href='itemref://204756/204756/1'>Bracelet of Amplified Sound</a> ";
 
-$totw_txt = $this->makeLink("Information on The Temple of Three Winds", $totw_txt); 
+$totw_txt = Links::makeLink("Information on The Temple of Three Winds", $totw_txt); 
 if($type == "msg") 
 $this->send($totw_txt, $sender); 
 elseif($type == "all") 

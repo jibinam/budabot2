@@ -36,7 +36,7 @@ Go back to the Unredeemed Garden and show the device to Hypnagogic Urga-Lum Thra
 
 The Key to the Garden of Thrak ";
 
-$nasckey_txt = $this->makeLink("Guide to Nascence Garden Key", $nasckey_txt); 
+$nasckey_txt = Links::makeLink("Guide to Nascence Garden Key", $nasckey_txt); 
 if($type == "msg") 
 $this->send($nasckey_txt, $sender); 
 elseif($type == "all") 

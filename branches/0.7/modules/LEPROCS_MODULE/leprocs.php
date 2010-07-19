@@ -25,7 +25,7 @@ if(preg_match("/^leprocs? (.+)$/i", $message, $arr)) {
 			$blob .= "<yellow>$row->name<end> $row->duration <orange>$row->modifiers<end>\n";
 		}
 
-		$msg = $this->makeLink('LE Proc results', $blob);
+		$msg = Links::makeLink('LE Proc results', $blob);
 	}
 	$this->send($msg, $sendto);
 }

@@ -53,7 +53,7 @@
 	   	break;
    }
    
-   $msg = $this->makeLink("Quote stats from (".date("F j, Y, g:i a").")", $msg);
+   $msg = Links::makeLink("Quote stats from (".date("F j, Y, g:i a").")", $msg);
    
    $this->vars["quotestats"]= $msg;
 ?>

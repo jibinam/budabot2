@@ -146,7 +146,7 @@ if(preg_match("/^time$/i", $message)) {
 
 
 	
-	$msg .= " ".$this->makeLink("All Timezones", $link);
+	$msg .= " ".Links::makeLink("All Timezones", $link);
     $this->send($msg, $sendto);
 } elseif(preg_match("/^time (.+)$/i", $message, $arr)) {
   	$zone = strtoupper($arr[1]);

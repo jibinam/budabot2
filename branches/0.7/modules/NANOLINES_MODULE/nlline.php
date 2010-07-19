@@ -71,7 +71,7 @@ if (preg_match("/^nlline ([0-9]*)$/i", $message, $arr)) {
 
 		$window .= "\n\nAO Nanos by Voriuste";
 
-		$msg = $this->makeBlob($header, $window);
+		$msg = Links::makeBlob($header, $window);
 
 	} else {
 

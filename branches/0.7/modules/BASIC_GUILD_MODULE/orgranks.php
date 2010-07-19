@@ -55,7 +55,7 @@ if(preg_match("/^orgranks$/i", $message)) {
 	  	$list .= "<tab><highlight>$row->name<end> (Lvl $row->level/<green>$row->ai_level<end> $row->profession) (<highlight>$row->rank<end>) <highlight>::<end> Last logoff: $logged_off\n";
 	}
 	
-	$msg = $this->makeLink("{$this->vars["my guild"]} has $members members currently.", $list);
+	$msg = Links::makeLink("{$this->vars["my guild"]} has $members members currently.", $list);
     $this->send($msg, $sendto);
 } else {
 	$syntax_error = true;

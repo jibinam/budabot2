@@ -201,7 +201,7 @@ That's the way I approach my Trading sessions, and I do go out regularly and sto
 
 So there you go, what are you waiting for? Get out there and shop! ";
 
-$money_txt = $this->makeLink("Guide to Making Money", $money_txt);
+$money_txt = Links::makeLink("Guide to Making Money", $money_txt);
 
 $this->send($money_txt, $sendto);
 

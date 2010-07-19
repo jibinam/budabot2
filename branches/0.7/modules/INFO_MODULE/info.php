@@ -43,13 +43,13 @@ if(preg_match("/^info(.*)$/i", $message))
 		    $linkContents = '';
 		    foreach($topicList as $topic)
 		    {
-				$linkContents .= $this->makeLink($topic, "/tell " . $vars['name'] . " " . $settings['symbol'] . "info $topic", 'chatcmd') . "\n";  
-				//$linkContents .= $this->makeLink($topic, getTopicContents($path, $topic, $fileExt), "blob") . "\n";  
+				$linkContents .= Links::makeLink($topic, "/tell " . $vars['name'] . " " . $settings['symbol'] . "info $topic", 'chatcmd') . "\n";  
+				//$linkContents .= Links::makeLink($topic, getTopicContents($path, $topic, $fileExt), "blob") . "\n";  
 		    }
 		    
 		    if($linkContents)
 		    {
-				$msg = $this->makeLink('Topics (' . count($topicList) . ')', count($topicList) . " Topics Available\n==========\n\n$linkContents", "blob");
+				$msg = Links::makeLink('Topics (' . count($topicList) . ')', count($topicList) . " Topics Available\n==========\n\n$linkContents", "blob");
 		    }
 		    else
 		    {
@@ -75,7 +75,7 @@ if(preg_match("/^info(.*)$/i", $message))
 		}
 		else
 		{	
-			$msg = $this->makeLink($fileName, $info);
+			$msg = Links::makeLink($fileName, $info);
 		}
 	}
 	

@@ -23,7 +23,7 @@ $help .= "Your Nano Init skill is <orange>1200<end>.\n";
 $help .= "<a href='chatcmd:///tell <myname> <symbol>nanoinit 1.2 1200'>/tell <myname> <symbol>nanoinit 1.2 1200</a>\n\n";
 $help .= $footer;
 
-$helplink = $this->makeLink("::How to use Nano Init::", $help);
+$helplink = Links::makeLink("::How to use Nano Init::", $help);
 
 if((!$AttTim) || (!$RechT))
 	$this->send($helplink, $sendto);
@@ -65,7 +65,7 @@ else{
 	$inside	.= "NanoC. Init needed to instacast at Full Def:<orange> ". $Init3 ." <end>inits.";
 	$inside .= $footer;
 
-	$windowlink = $this->makeLink("::Nano Init Results::", $inside);
+	$windowlink = Links::makeLink("::Nano Init Results::", $inside);
 	$this->send($windowlink, $sendto);
 	}
 ?>

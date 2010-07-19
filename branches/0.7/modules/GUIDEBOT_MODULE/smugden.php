@@ -69,7 +69,7 @@ The Mantis Egg is used for the very valuable Virral Triumvirate Egg
 
 The DeCranum's armor drops rarely and getting a whole set is difficult. It has level requirements and is one of the best armors ingame (adds NCU and HP) for medium level players. ";
 
-$smugden_txt = $this->makeLink("Guide to Smuggler's Den", $smugden_txt); 
+$smugden_txt = Links::makeLink("Guide to Smuggler's Den", $smugden_txt); 
 if($type == "msg") 
 $this->send($smugden_txt, $sender); 
 elseif($type == "all") 

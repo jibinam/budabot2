@@ -29,7 +29,7 @@ Modern breeds are not normally able to get a sun tan - because of their extended
 The sunglasses looks damn nice on those models they fit, like for the previously sunglass-deprieved opifexes, and really adds some to the diversity all around (here's to hoping the solitus skewering gets fixed too). The hats might seem a bit silly to some, but for most it's a funny addition along the lines of more is good! Overall a good job and very nice new trinkets, with the promise of more to come.
  ";
 
-$zoftig_txt = $this->makeLink("Guide to Zoftig Blimp", $zoftig_txt);
+$zoftig_txt = Links::makeLink("Guide to Zoftig Blimp", $zoftig_txt);
 
 $this->send($zoftig_txt, $sendto);
 

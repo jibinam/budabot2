@@ -68,7 +68,7 @@ if("-1" == $sender) {
                 $list .= "Player: <highlight>".$row->player."<end>\n\n";
             }
         }
-        $msg .= " ".$this->makeLink("City History", $list);
+        $msg .= " ".Links::makeLink("City History", $list);
 
     }
     $this->send($msg, $sendto);

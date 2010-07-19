@@ -53,7 +53,7 @@ if (preg_match("/^assist$/i", $message)) {
 		
 		$link = "<header>::::: Assist Macro for $name :::::\n\n";
 		$link .= "<a href='chatcmd:///macro $name /assist $name'>Click here to make an assist $name macro</a>";
-		$assist = $this->makeLink("Assist $name Macro", $link);
+		$assist = Links::makeLink("Assist $name Macro", $link);
 	} else {
 		forEach ($nameArray as $key => $name) {
 			$name = ucfirst(strtolower($name));

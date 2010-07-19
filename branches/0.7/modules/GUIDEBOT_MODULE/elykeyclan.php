@@ -68,7 +68,7 @@ Information originally provided by Roedran and Herodotus to the SL Library Forum
 Courtesy of AO Universe
 "
 ;
-$elykeyclan_txt = $this->makeLink("Elysium: Garden Key Quest Clan", $elykeyclan_txt); 
+$elykeyclan_txt = Links::makeLink("Elysium: Garden Key Quest Clan", $elykeyclan_txt); 
 if($type == "msg") 
 $this->send($elykeyclan_txt, $sender); 
 elseif($type == "all") 

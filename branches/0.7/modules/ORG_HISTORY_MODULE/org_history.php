@@ -53,7 +53,7 @@ if (preg_match("/^orghistory$/i", $message, $arr) || preg_match("/^orghistory (\
 		$window .= "$row->actor $row->action $row->actee in $row->organization at " . gmdate("M j, Y, G:i", $row->time)." (GMT)\n";
 	}
 
-	$msg = $this->makeBlob('Org History', $window);
+	$msg = Links::makeBlob('Org History', $window);
 
 	$this->send($msg, $sendto);
 } else if (preg_match("/^orghistory (.+)$/i", $message, $arr)) {
@@ -78,7 +78,7 @@ if (preg_match("/^orghistory$/i", $message, $arr) || preg_match("/^orghistory (\
 		$window .= "$row->actor $row->action $row->actee in $row->organization at " . gmdate("M j, Y, G:i", $row->time)." (GMT)\n";
 	}
 
-	$msg = $this->makeBlob('Org History', $window);
+	$msg = Links::makeBlob('Org History', $window);
 
 	$this->send($msg, $sendto);
 

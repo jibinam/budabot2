@@ -73,7 +73,7 @@ if(preg_match("/^history (.+)$/i", $message, $arr)) {
 	
 			  	$link .= "$key |  $level  | $ailevel | $faction | $guild\n";
 			}
-			$msg = $this->makeLink("History of $name", $link);
+			$msg = Links::makeLink("History of $name", $link);
 		}
 	}
 

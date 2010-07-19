@@ -56,7 +56,7 @@ He'll ask for the sealed letter, hand it to him and he'll speak some more then y
 17. Now head back to the garden and return the Ancient Tracking Device to Garboil Chi Shere and he'll give your coveted 'The Key to the Garden of Shere.' 
  ";
 
-$elykey_txt = $this->makeLink("Elysium Shere Garden Key Quest", $elykey_txt); 
+$elykey_txt = Links::makeLink("Elysium Shere Garden Key Quest", $elykey_txt); 
 if($type == "msg") 
 $this->send($elykey_txt, $sender); 
 elseif($type == "all") 

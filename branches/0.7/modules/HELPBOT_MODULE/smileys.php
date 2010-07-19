@@ -124,8 +124,8 @@ User is braindead.
 User just died. ";
 	
 if(preg_match("/^smileys$/i", $message)) {
-	$basiclink = $this->makeLink("Basic Smileys", $basic) ;
-	$widelink = $this->makeLink("Widely Used Smileys", $wide);
+	$basiclink = Links::makeLink("Basic Smileys", $basic) ;
+	$widelink = Links::makeLink("Widely Used Smileys", $wide);
 
 	$this->send($basiclink, $sendto);
 	$this->send($widelink, $sendto);

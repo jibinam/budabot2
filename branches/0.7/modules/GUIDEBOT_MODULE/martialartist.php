@@ -7,7 +7,7 @@ $martialartists_txt = "Please see the following website for an excellent, yet so
 This guide is quite excellent in giving you information all about the MA class and how to play them
  ";
 
-$martialartists_txt = $this->makeLink("Guide to Martialartists", $martialartists_txt); 
+$martialartists_txt = Links::makeLink("Guide to Martialartists", $martialartists_txt); 
 if($type == "msg") 
 $this->send($martialartists_txt, $sender); 
 elseif($type == "all") 

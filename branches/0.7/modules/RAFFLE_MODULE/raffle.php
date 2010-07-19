@@ -21,7 +21,7 @@ if (preg_match("/^raffle (.+) ([0-9]+)$/i", $message, $arr) || preg_match("/^raf
 
 Click <a href='chatcmd:///tell <myname> joinRaffle'>here</a> to join the raffle!
 Click <a href='chatcmd:///tell <myname> leaveRaffle'>here</a> if you wish to leave the raffle.";
-        $link = $this->makeLink("here", $jnRflMsg);
+        $link = Links::makeLink("here", $jnRflMsg);
         $msg = "
 -----------------------------------------------------------------------
 A raffle for $item has been started by $sender!

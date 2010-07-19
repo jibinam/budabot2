@@ -23,7 +23,7 @@
 	$help .= "<a href='chatcmd:///tell <myname> <symbol>dimach keeper 750'>/tell <myname> <symbol>dimach keeper 750</a>\n\n";
 	$help .= $footer;
 
-	$helplink = $this->makeLink("::How to use Dimach::", $help);
+	$helplink = Links::makeLink("::How to use Dimach::", $help);
 			
 	if (preg_match("/^dimach (ma|martial artist|keep|keeper|shad|shade|other|gen) ([0-9]+)$/i", $message, $arr)) {
 		$dim_skill = trim($arr[2]);
@@ -81,7 +81,7 @@
 		$inside .= $info;
 		$inside .= $footer;
 		
-		$windowlink = $this->makeLink("::Your Dimach skill results::", $inside);
+		$windowlink = Links::makeLink("::Your Dimach skill results::", $inside);
 		$this->send($windowlink, $sendto);
 	} else {
 		$this->send($helplink, $sendto);

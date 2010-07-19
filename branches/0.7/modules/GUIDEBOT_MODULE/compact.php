@@ -161,7 +161,7 @@ Information originally provided by Trgeorge.
 Coordinates provided by Sorceress.
 AO Universe";
 
-$compact_txt = $this->makeLink("Guide to SL Compact Discs Quests", $compact_txt); 
+$compact_txt = Links::makeLink("Guide to SL Compact Discs Quests", $compact_txt); 
 if($type == "msg") 
 $this->send($compact_txt, $sender); 
 elseif($type == "all") 

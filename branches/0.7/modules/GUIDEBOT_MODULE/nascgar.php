@@ -12,7 +12,7 @@ $nascgar_txt = "Nascence Garden
 <a href='itemref://231014/231014/24'>LINK </a> Team Empowered Bend Will - Crat
 <a href='itemref://231020/231020/17'>LINK </a> Team Empowered Temporary Glamor - Crat</font> ";
 
-$nascgar_txt = $this->makeLink("Nascense Garden Nanos", $nascgar_txt); 
+$nascgar_txt = Links::makeLink("Nascense Garden Nanos", $nascgar_txt); 
 if($type == "msg") 
 $this->send($nascgar_txt, $sender); 
 elseif($type == "all") 

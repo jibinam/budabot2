@@ -53,10 +53,10 @@ if(preg_match("/^news del ([0-9]+)$/i", $message, $arr)) {
 			
 		  	$link .= "<highlight>Date:<end> ".gmdate("dS M, H:i", $row->time)."\n";
 		  	$link .= "<highlight>Author:<end> $row->name\n";
-		  	$link .= "<highlight>Options:<end> ".$this->makeLink("Delete this newsentry", "/tell <myname> news del $row->id", "chatcmd")."\n";
+		  	$link .= "<highlight>Options:<end> ".Links::makeLink("Delete this newsentry", "/tell <myname> news del $row->id", "chatcmd")."\n";
 		  	$link .= "<highlight>Message:<end> $row->news\n\n";
 		}
-		$msg = $this->makeLink("Click to view the latest News", $link)." [Last updated at ".gmdate("dS M, H:i", $updated)."]";
+		$msg = Links::makeLink("Click to view the latest News", $link)." [Last updated at ".gmdate("dS M, H:i", $updated)."]";
 	} else
 		$msg = "No News recorded yet.";
 

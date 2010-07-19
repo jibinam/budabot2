@@ -29,8 +29,8 @@ if(preg_match("/^reroll$/i", $message)) {
 	if(is_array($loot)) {
 		  	$list = "<header>::::: Loot List :::::<end>\n\nUse <symbol>flatroll or <symbol>roll to roll.\n\n";
 			foreach($loot as $key => $item) {
-				$add = $this->makeLink("Add", "/tell <myname> add $key", "chatcmd");
-				$rem = $this->makeLink("Remove", "/tell <myname> add 0", "chatcmd");
+				$add = Links::makeLink("Add", "/tell <myname> add $key", "chatcmd");
+				$rem = Links::makeLink("Remove", "/tell <myname> add 0", "chatcmd");
 				$added_players = count($item["users"]);
 	
 				$list .= "<u>Slot #<font color='#FF00AA'>$key</font></u>\n";
@@ -65,7 +65,7 @@ if(preg_match("/^reroll$/i", $message)) {
 				
 				$list .= "\n\n";
 			}
-			$msg2 = $this->makeLink("New loot List", $list);
+			$msg2 = Links::makeLink("New loot List", $list);
 		} else{
 			$msg2 = "No List exists yet.";
 			}

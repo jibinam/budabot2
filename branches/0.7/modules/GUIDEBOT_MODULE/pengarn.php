@@ -28,7 +28,7 @@ $pengarn_txt = "Penumbra Garden
 <font color='#69E61E'><a href='itemref://223744/223744/159'>LINK </a> Vengeance of the Virtuous - Keeper
 <font color='#69E61E'><a href='itemref://227673/227673/140'>LINK </a> Weapon Smithing Mastery - Engie</font> ";
 
-$pengarn_txt = $this->makeLink("Pennumbra Garden Nanos", $pengarn_txt); 
+$pengarn_txt = Links::makeLink("Pennumbra Garden Nanos", $pengarn_txt); 
 if($type == "msg") 
 $this->send($pengarn_txt, $sender); 
 elseif($type == "all") 

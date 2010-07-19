@@ -47,7 +47,7 @@ if(preg_match("/^kos$/i", $message)) {
 			$link .= "$i. $key <highlight>(Voted {$value}times)<end>\n";
 		}
 			
-		$msg = $this->makeLink("KOS-List", $link);
+		$msg = Links::makeLink("KOS-List", $link);
 	}
 
 	$this->send($msg, $sendto);
@@ -129,7 +129,7 @@ elseif(preg_match("/^kos (.+)$/i", $message, $arr)) {
 
 			$link .= "\n";
 		}
-		$msg = $this->makeLink("KOS-List from $name", $link);
+		$msg = Links::makeLink("KOS-List from $name", $link);
 	} else
 	$msg = "The player <highlight>$name<end> isn't on the KOS List.";
 

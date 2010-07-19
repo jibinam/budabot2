@@ -162,7 +162,7 @@ if ($def_guild) {
 		$link .= "<highlight>Playfield:<end> ".$colorvalue.$data[$key]["playfield"]." (<highlight>#".$data[$key]["hugemaploc"]."<end> : ".$data[$key]["level"].")<end>\n";
 		$link .= $colorlabel."Location:<end> ".$colorvalue.$data[$key]["location"]." (".$coordx." x ".$coordy.")<end>\n";
 
-		$more = "[".$this->makeLink("more", $link)."]";
+		$more = "[".Links::makeLink("more", $link)."]";
 	}
 	
 	// Prep for if our org is being attacked.

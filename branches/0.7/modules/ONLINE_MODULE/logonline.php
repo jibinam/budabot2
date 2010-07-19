@@ -37,7 +37,7 @@ if(Settings::get("logonline_tell"] && (isset($this->guildmembers[$sender]) || is
 	$msg = "";
 	$type = "msg";
 	list($numonline, $msg, $list) = online($type, $sender, $sendto, $this);
-	$link = ":: ".$this->makeLink('Click here', $list);
+	$link = ":: ".Links::makeLink('Click here', $list);
 	if($numonline != 0) {
 		$this->send($msg.$link, $sender);
 	} else {

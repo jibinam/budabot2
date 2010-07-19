@@ -26,7 +26,7 @@ if (preg_match("/^searchcmd (.*)/i", $message, $arr))
 	foreach ($data as $row)
 	{
 		$foundmodule = strtoupper($row->module);
-		$blob .= $this->makeLink($foundmodule.' configuration', '/tell <myname> config '.$foundmodule, 'chatcmd') . "\n";
+		$blob .= Links::makeLink($foundmodule.' configuration', '/tell <myname> config '.$foundmodule, 'chatcmd') . "\n";
 	}
 	if (count($data) == 0)
 	{
@@ -34,7 +34,7 @@ if (preg_match("/^searchcmd (.*)/i", $message, $arr))
 	}
 	else
 	{
-		$msg = $this->makeLink(count($data) . ' results found.', $blob);
+		$msg = Links::makeLink(count($data) . ' results found.', $blob);
 	}
 	$this->send($msg, $sendto);
 }

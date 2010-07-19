@@ -24,7 +24,7 @@ If (preg_match("/^research ([0-9]+)$/i",$message, $arr)) {
 		$research .= "<green>You must be <blue>Level $levelcap<end> to reach <blue>Research Level $level<end>.\n";
 		$research .= "You need <blue>$sk SK<end> to reach <blue>Research Level $level<end>.\n\n";
 		$research .= "This equals <range>$xp XP.<end>";
-		$research = $this->makeLink("Research", $research);
+		$research = Links::makeLink("Research", $research);
 	}	
 } else if (preg_match("/^research ([0-9]+) ([0-9]+)$/i", $message, $arr)) {
 	$lolevel = $arr[1];
@@ -54,7 +54,7 @@ If (preg_match("/^research ([0-9]+)$/i",$message, $arr)) {
 		$research .= "<green>You must be <blue>Level $row->hilevelcap<end> to reach <blue>Research Level $row->hilevel.<end>\n";
 		$research .= "It takes <blue>$range SK<end> to go from <blue>Research Level $row->lolevel<end> to <blue>Research Level $row->hilevel<end>.\n\n";
 		$research .= "This equals <orange>$xp XP.<end>";
-		$research = $this->makeLink("Research", $research);
+		$research = Links::makeLink("Research", $research);
 	}
 }
 else {

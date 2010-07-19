@@ -17,7 +17,7 @@ $help .= "You have <orange>1200<end> Aimed Shot.\n";
 $help .= "<a href='chatcmd:///tell <myname> <symbol>as 1.5 1200'>/tell <myname> <symbol>as 1.5 1200</a>\n\n";
 $help .= $footer;
 
-$helplink = $this->makeLink("::How to use Aimed Shot::", $help);
+$helplink = Links::makeLink("::How to use Aimed Shot::", $help);
 
 if ((!$AttTim) || (!$RechT) || (!$InitS)) {
 	$this->send($helplink, $sendto);
@@ -41,6 +41,6 @@ if ((!$AttTim) || (!$RechT) || (!$InitS)) {
 	$inside	.= "You need <orange>".$ASCap."<end> AS skill to cap your recharge.";
 	$inside .= $footer;
 
-	$windowlink = $this->makeLink("::Your Aimed Shot Results::", $inside);
+	$windowlink = Links::makeLink("::Your Aimed Shot Results::", $inside);
 	$this->send($windowlink, $sendto);
 }

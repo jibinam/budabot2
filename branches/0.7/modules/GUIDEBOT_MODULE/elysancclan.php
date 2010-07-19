@@ -31,7 +31,7 @@ Last updated on 12.03.2006 by Windkeeper
 Courtesy of AO Universe
 "
 ;
-$elysancclan_txt = $this->makeLink("Elysium: Sanctuary Garden Key Quest Clan", $elysancclan_txt); 
+$elysancclan_txt = Links::makeLink("Elysium: Sanctuary Garden Key Quest Clan", $elysancclan_txt); 
 if($type == "msg") 
 $this->send($elysancclan_txt, $sender); 
 elseif($type == "all") 

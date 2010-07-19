@@ -42,7 +42,7 @@ Raids Dept.
 
 If you have any questions about these departments, or would like to contribute to one, please let a General or Plugsz know. ";
 
-$orgdepts_txt = $this->makeLink("Organizational Departments", $orgdepts_txt); 
+$orgdepts_txt = Links::makeLink("Organizational Departments", $orgdepts_txt); 
 if($type == "msg") 
 $this->send($orgdepts_txt, $sender); 
 elseif($type == "all") 

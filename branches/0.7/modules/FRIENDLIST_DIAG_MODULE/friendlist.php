@@ -40,10 +40,10 @@ if (preg_match("/^friendlist(.+)?$/i", $message, $arg)) {
 		} else {
 			$blob .= "\n\nUnknown: ($orphanCount) ";
 			if ($orphanCount > 0) {
-				$blob .= $this->makeLink('Remove Orphans', '/tell <myname> <symbol>friendlist clean', 'chatcmd');
+				$blob .= Links::makeLink('Remove Orphans', '/tell <myname> <symbol>friendlist clean', 'chatcmd');
 			}
 		}
-		$this->send($this->makeLink("Friendlist Details", $blob), $sendto);
+		$this->send(Links::makeLink("Friendlist Details", $blob), $sendto);
 	}
 }
 ?>

@@ -73,7 +73,7 @@ And when the Cloak is fully upgraded, it get's a special attack, which you can u
 
 Guide courtesy of AO Universe 18 June 2008
 ";
-$cloakr_txt = $this->makeLink("Cloak Of The Reanimated Upgrade Process", $cloakr_txt);
+$cloakr_txt = Links::makeLink("Cloak Of The Reanimated Upgrade Process", $cloakr_txt);
 
 $this->send($cloakr_txt, $sendto);
 

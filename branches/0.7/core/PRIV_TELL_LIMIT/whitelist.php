@@ -7,10 +7,10 @@ if (preg_match("/^whitelist$/", $message)) {
 	} else {
 		$blob = "<highlight>::: Whitelist :::<end>\n\n";
 		forEach ($list as $entry) {
-			$remove = $this->makeLink('Remove', "/tell <myname> whitelist remove $entry->name", 'chatcmd');
+			$remove = Links::makeLink('Remove', "/tell <myname> whitelist remove $entry->name", 'chatcmd');
 			$blob .= "<white>$entry->name<end> added by <white>$entry->added_by<end> on $entry->added_dt $remove\n";
 		}
-		$msg = $this->makeLink("Whitelist", $blob, 'blob');
+		$msg = Links::makeLink("Whitelist", $blob, 'blob');
 		$this->send($msg, $sendto);
 	}
 } else if (preg_match("/^whitelist add (.+)$/", $message, $arr)) {
