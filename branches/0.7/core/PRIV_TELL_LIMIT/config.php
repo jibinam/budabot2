@@ -115,9 +115,9 @@ if (preg_match("/^limits$/i", $message)) {
 	$channel = strtolower($arr[1]);
 	
 	if($channel == "priv")
-		$this->savesetting("priv_req_faction", $faction);
+		Settings::save("priv_req_faction", $faction);
 	else
-		$this->savesetting("tell_req_faction", $faction);
+		Settings::save("tell_req_faction", $faction);
 	
 	if($channel == "priv" && $faction == "all") {
 		$msg = "Faction limit removed from privategroup invites.";
@@ -134,9 +134,9 @@ if (preg_match("/^limits$/i", $message)) {
 	$channel = strtolower($arr[1]);
 	
 	if($channel == "priv")
-		$this->savesetting("priv_req_faction", "not ".$faction);
+		Settings::save("priv_req_faction", "not ".$faction);
 	else
-		$this->savesetting("tell_req_faction", "not ".$faction);
+		Settings::save("tell_req_faction", "not ".$faction);
 	
 	if($channel == "priv") {
 		$msg = "Privategroup invites are accepted only from player that are not $faction.";
@@ -176,9 +176,9 @@ if (preg_match("/^limits$/i", $message)) {
 	}
 	
 	if($channel == "priv")
-		$this->savesetting("priv_req_lvl", $minlvl);
+		Settings::save("priv_req_lvl", $minlvl);
 	else
-		$this->savesetting("tell_req_lvl", $minlvl);
+		Settings::save("tell_req_lvl", $minlvl);
 	
 	if($channel == "priv" && $minlvl == 0) {
 		$msg = "Player min level limit has been removed from private group invites.";
@@ -220,9 +220,9 @@ if (preg_match("/^limits$/i", $message)) {
 	$channel = strtolower($arr[1]);
 	
 	if($channel == "priv")
-		$this->savesetting("priv_req_open", $open);
+		Settings::save("priv_req_open", $open);
 	else
-		$this->savesetting("tell_req_open", $open);
+		Settings::save("tell_req_open", $open);
 	
 	if($channel == "priv" && $open == "all") {
 		$msg = "General restrictions for privategroup invites has been removed.";
@@ -262,7 +262,7 @@ if (preg_match("/^limits$/i", $message)) {
 		return;
 	}
 	
-	$this->savesetting("priv_req_maxplayers", $maxplayers);
+	Settings::save("priv_req_maxplayers", $maxplayers);
 	
 	if($maxplayers == 0) {
 		$msg = "The Limit of the Amount of players in the privategroup has been removed.";

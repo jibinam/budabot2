@@ -73,5 +73,5 @@ set_time_limit(0);
 		$this->send("Finished connecting to IRC",$sender);
 	}
 	newLine("IRC"," ","Finished connecting to IRC",0);
-	$this->savesetting("irc_status", "1");
+	Settings::save("irc_status", "1");
 ?>

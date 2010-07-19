@@ -1167,53 +1167,6 @@ class Budabot extends AOChat {
 	  	$db->query("INSERT INTO cmdcfg_<myname> (`module`, `type`, `cmdevent`, `verify`, `description`) VALUES ('none', '$group', 'group', '1', '$desc')");
 	}
 
-
-/*===============================
-** Name: addsetting
-** Adds a setting to the list
-*/	function addsetting($name, $module, $description = 'none', $mode = 'hide', $setting = 'none', $options = 'none', $intoptions = '0', $access_level = MODERATOR, $help = '') {
-		global $db;
-		$name = strtolower($name);
-
-		if ($this->existing_settings[$name] != true) {
-			$db->query("INSERT INTO settings_<myname> (`name`, `module`, `mode`, `setting`, `options`, `intoptions`, `description`, `source`, `access_level`, `help`) VALUES ('$name', '$module', '$mode', '" . str_replace("'", "''", $setting) . "', '$options', '$intoptions', '" . str_replace("'", "''", $description) . "', 'db', $access_level, '$help')");
-		  	$this->settings[$name] = $setting;
-	  	} else {
-			$db->query("UPDATE settings_<myname> SET `module` = '$module', `mode` = '$mode', `options` = '$options', `intoptions` = '$intoptions', `description` = '" . str_replace("'", "''", $description) . "', `access_level` = $access_level, `help` = '$help' WHERE `name` = '$name'");
-		}
-	}
-
-/*===============================
-** Name: getsetting
-** Gets an loaded setting
-*/	function getsetting($name) {
-		$name = strtolower($name);
-		if (isset($this->settings[$name])) {
-	  		return $this->settings[$name];
-	  	} else {
-	  		return false;
-		}
-	}
-
-/*===============================
-** Name: savesetting
-** Saves a setting to the db
-*/	function savesetting($name, $newsetting = null) {
-		global $db;
-		$name = strtolower($name);
-		if ($newsetting === null) {
-			return false;
-		}
-
-		if (isset($this->settings[$name])) {
-			$db->query("UPDATE settings_<myname> SET `setting` = '" . str_replace("'", "''", $newsetting) . "' WHERE `name` = '$name'");
-			$this->settings[$name] = $newsetting;
-		} else {
-			return false;
-		}
-	}
-
-
 /*===============================
 ** Name: help
 ** Add a help command and display text file in a link.
@@ -1799,7 +1752,7 @@ class Budabot extends AOChat {
 			$dir = $core_dir;
 		}
 		
-		$currentVersion = $this->getsetting($settingName);
+		$currentVersion = Settings::get($settingName);
 		if ($currentVersion === false) {
 			$currentVersion = 0;
 		}
@@ -1848,8 +1801,8 @@ class Budabot extends AOChat {
 			//$db->Commit();
 			echo "Finished!\n";
 		
-			if (!$this->savesetting($settingName, $maxFileVersion)) {
-				$this->addsetting($settingName, $settingName, 'noedit', $maxFileVersion);
+			if (!Settings::save($settingName, $maxFileVersion)) {
+				Settings::add($settingName, $module, 'noedit', $maxFileVersion);
 			}
 		} else {
 			echo "Updating '$name' database...already up to date! version: '$currentVersion'\n";

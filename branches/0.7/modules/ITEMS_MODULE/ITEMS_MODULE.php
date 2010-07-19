@@ -9,7 +9,7 @@
 	$this->command("", $MODULE_NAME, "items.php", "items", ALL, "Searches for an item in the Database");
 
 	//Settings
-    $this->addsetting('maxitems', $MODULE_NAME, 'Number of Items shown on the list', 'edit', '40', '30;40;50;60', "0", MODERATOR, "aodb_maxitems_help.txt");
+    Settings::add('maxitems', $MODULE_NAME, 'Number of Items shown on the list', 'edit', '40', '30;40;50;60', "0", MODERATOR, "aodb_maxitems_help.txt");
 
 	//Help files
     $this->help("items", $MODULE_NAME, "items.txt", ALL, "How to search for an item."); 

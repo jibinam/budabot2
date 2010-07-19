@@ -30,10 +30,10 @@
    */
    
 if(preg_match("/^leaderecho on$/i", $message)) {
-	$this->savesetting("leaderecho", "1");
+	Settings::save("leaderecho", "1");
 	$this->send("Raidleader echo has been <green>enabled<end>");
 } elseif(preg_match("/^leaderecho off$/i", $message)) {
-	$this->savesetting("leaderecho", "0");
+	Settings::save("leaderecho", "0");
 	$this->send("Raidleader echo has been <green>disabled<end>");	
 } elseif(preg_match("/^leaderecho$/i", $message)) {
 	if($this->settings["leaderecho"] == 1)

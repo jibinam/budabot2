@@ -47,14 +47,14 @@
 	$this->regcommand("priv", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
 
 	//Settings
-	$this->addsetting("priv_req_lvl", $MODULE_NAME, "Private Channel Min Level Limit", "noedit", "0", "none", "0", MODERATOR, "help_minlvl.txt");
-	$this->addsetting("priv_req_faction", $MODULE_NAME, "Private Channel Faction Limit", "noedit", "all", "none", "0", MODERATOR, "help_faction.txt");
-	$this->addsetting("priv_req_open", $MODULE_NAME, "Private Channel General Limit", "noedit", "all", "none", "0", MODERATOR, "help_open.txt");
-	$this->addsetting("priv_req_maxplayers", $MODULE_NAME, "Maximum Players in the PrivGroup", "noedit", "0", "none", "0", MODERATOR, "help_maxplayers.txt");
+	Settings::add("priv_req_lvl", $MODULE_NAME, "Private Channel Min Level Limit", "noedit", "0", "none", "0", MODERATOR, "help_minlvl.txt");
+	Settings::add("priv_req_faction", $MODULE_NAME, "Private Channel Faction Limit", "noedit", "all", "none", "0", MODERATOR, "help_faction.txt");
+	Settings::add("priv_req_open", $MODULE_NAME, "Private Channel General Limit", "noedit", "all", "none", "0", MODERATOR, "help_open.txt");
+	Settings::add("priv_req_maxplayers", $MODULE_NAME, "Maximum Players in the PrivGroup", "noedit", "0", "none", "0", MODERATOR, "help_maxplayers.txt");
 
-	$this->addsetting("tell_req_lvl", $MODULE_NAME, "Tells Min Level", "noedit", "0", "none", "0", MODERATOR, "help_tminlvl.txt");
-	$this->addsetting("tell_req_faction", $MODULE_NAME, "Tell Faction Limit", "noedit", "all", "none", "0", MODERATOR, "help_tfaction.txt");
-	$this->addsetting("tell_req_open", $MODULE_NAME, "Tell General Limit", "noedit", "all", "none", "0", MODERATOR, "help_topen.txt");
+	Settings::add("tell_req_lvl", $MODULE_NAME, "Tells Min Level", "noedit", "0", "none", "0", MODERATOR, "help_tminlvl.txt");
+	Settings::add("tell_req_faction", $MODULE_NAME, "Tell Faction Limit", "noedit", "all", "none", "0", MODERATOR, "help_tfaction.txt");
+	Settings::add("tell_req_open", $MODULE_NAME, "Tell General Limit", "noedit", "all", "none", "0", MODERATOR, "help_topen.txt");
 
 	//Help File
 	$this->help("priv_tell_limits", $MODULE_NAME, "help.txt", MODERATOR, "Set Limits for tells and PrivGroup.");

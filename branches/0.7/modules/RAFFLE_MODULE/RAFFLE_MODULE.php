@@ -18,6 +18,6 @@
 	$this->help("Raffle", $MODULE_NAME, "raffle.txt", GUILDMEMBER, "Start/Join/Leave Raffles");
 
 	//Settings
-	$this->addsetting("defaultraffletime", $MODULE_NAME, "Sets how long the raffle should go for in minutes.", "edit", 3, "number");
+	Settings::add("defaultraffletime", $MODULE_NAME, "Sets how long the raffle should go for in minutes.", "edit", 3, "number");
 
 ?>

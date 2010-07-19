@@ -47,15 +47,15 @@ if($this->settings["topic"] != "" && $type == "joinPriv") {
 	$msg = "<highlight>Topic:<end> {$this->settings["topic"]} [set by <highlight>{$this->settings["topic_setby"]}<end>][<highlight>{$days}days, {$hours}hrs and {$mins}mins ago<end>]";
     $this->send($msg, $sendto);
 } elseif(preg_match("/^topic clear$/i", $message, $arr)) {
-  	$this->savesetting("topic_time", time());
-  	$this->savesetting("topic_setby", $sender);
-  	$this->savesetting("topic", "No Topic set atm.");
+  	Settings::save("topic_time", time());
+  	Settings::save("topic_setby", $sender);
+  	Settings::save("topic", "No Topic set atm.");
 	$msg = "Topic has been cleared.";
     $this->send($msg, $sendto);
 } elseif(preg_match("/^topic (.+)$/i", $message, $arr)) {
-  	$this->savesetting("topic_time", time());
-  	$this->savesetting("topic_setby", $sender);
-  	$this->savesetting("topic", $arr[1]);
+  	Settings::save("topic_time", time());
+  	Settings::save("topic_setby", $sender);
+  	Settings::save("topic", $arr[1]);
 	$msg = "Topic has been updated.";
     $this->send($msg, $sendto);
 }

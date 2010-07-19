@@ -14,7 +14,7 @@
 	$this->command("msg", $MODULE_NAME, "notify.php", "notify", MODERATOR, "Adding a member man. to the notify list");
 	$this->command("priv", $MODULE_NAME, "notify.php", "notify", MODERATOR, "Adding a member man. to the notify list");
 
-	$this->addsetting("bot_notify", $MODULE_NAME, "Show/Hide Logoffs in Org Chat (Spam Prevention)", "edit", "1", "Show Logoffs;Hide Logoffs", '1;0', MODERATOR, "botnotify.txt");
+	Settings::add("bot_notify", $MODULE_NAME, "Show/Hide Logoffs in Org Chat (Spam Prevention)", "edit", "1", "Show Logoffs;Hide Logoffs", '1;0', MODERATOR, "botnotify.txt");
 	
 	//Helpfile
     $this->help("notify", $MODULE_NAME, "notify.txt", MODERATOR, "Add or remove a player from the notify list.");

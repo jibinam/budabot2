@@ -25,7 +25,7 @@ require_once('functions.php');
 if (preg_match("/^premadeupdate$/i", $message)) {
 	
 	$msg = '';
-	$currentVersion = $this->getsetting('premade_implant_db_version');
+	$currentVersion = Settings::get('premade_implant_db_version');
 	$newVersion = checkForUpdate($currentVersion, true);
 	
 	if ($newVersion > $currentVersion) {

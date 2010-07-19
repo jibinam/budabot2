@@ -53,15 +53,15 @@
 	$this->event("logOff", $MODULE_NAME, "bbin_relay_left.php", "none", "Shows a logoff from a member");
 	
 	//Settings
-	$this->addsetting("bbin_status", $MODULE_NAME, "Status of BBIN uplink", "noedit", "0", "Offline;Online", "0;1", MODERATOR, "bbin_help.txt");
-	$this->addsetting("bbin_server", $MODULE_NAME, "IRC server to connect to", "noedit", "irc.funcom.com", "none", "0", MODERATOR, "bbin_help.txt");
-	$this->addsetting("bbin_port", $MODULE_NAME, "IRC server port to use", "noedit", "6667", "none", "0", MODERATOR, "bbin_help.txt");
-	$this->addsetting("bbin_nickname", $MODULE_NAME, "Nickname to use while in IRC", "noedit", "{$this->vars['name']}", "none", "0", MODERATOR, "bbin_help.txt");
-	$this->addsetting("bbin_channel", $MODULE_NAME, "Channel to join", "noedit", "$channel", "none", "0", MODERATOR, "bbin_help.txt");
-	$this->addsetting("bbin_autoconnect", $MODULE_NAME, "Connect to IRC at bootup", "edit", "0", "No;Yes", "0;1", MODERATOR, "bbin_help.txt");
-	$this->addsetting("bbin_debug_ping", $MODULE_NAME, "IRC Debug Option: Show pings in console", "edit", "0", "Off;On", "0;1", MODERATOR, "bbin_help.txt");
-	$this->addsetting("bbin_debug_messages", $MODULE_NAME, "IRC Debug Option: Show events in console", "edit", "0", "Off;On", "0;1", MODERATOR, "bbin_help.txt");
-	$this->addsetting("bbin_debug_all", $MODULE_NAME, "IRC Debug Option: Log everything", "edit", "0", "Off;On", "0;1", MODERATOR, "bbin_help.txt");
+	Settings::add("bbin_status", $MODULE_NAME, "Status of BBIN uplink", "noedit", "0", "Offline;Online", "0;1", MODERATOR, "bbin_help.txt");
+	Settings::add("bbin_server", $MODULE_NAME, "IRC server to connect to", "noedit", "irc.funcom.com", "none", "0", MODERATOR, "bbin_help.txt");
+	Settings::add("bbin_port", $MODULE_NAME, "IRC server port to use", "noedit", "6667", "none", "0", MODERATOR, "bbin_help.txt");
+	Settings::add("bbin_nickname", $MODULE_NAME, "Nickname to use while in IRC", "noedit", "{$this->vars['name']}", "none", "0", MODERATOR, "bbin_help.txt");
+	Settings::add("bbin_channel", $MODULE_NAME, "Channel to join", "noedit", "$channel", "none", "0", MODERATOR, "bbin_help.txt");
+	Settings::add("bbin_autoconnect", $MODULE_NAME, "Connect to IRC at bootup", "edit", "0", "No;Yes", "0;1", MODERATOR, "bbin_help.txt");
+	Settings::add("bbin_debug_ping", $MODULE_NAME, "IRC Debug Option: Show pings in console", "edit", "0", "Off;On", "0;1", MODERATOR, "bbin_help.txt");
+	Settings::add("bbin_debug_messages", $MODULE_NAME, "IRC Debug Option: Show events in console", "edit", "0", "Off;On", "0;1", MODERATOR, "bbin_help.txt");
+	Settings::add("bbin_debug_all", $MODULE_NAME, "IRC Debug Option: Log everything", "edit", "0", "Off;On", "0;1", MODERATOR, "bbin_help.txt");
 	
 	//Help files
 	$this->help("bbin", $MODULE_NAME, "bbin_help.txt", ALL, "How to use the BBIN plugin", "BBIN");

@@ -47,5 +47,5 @@
 	$this->help("Nanolines", $MODULE_NAME, "nanolines.txt", ALL, "Nanolines help");
 
 	//Settings
-	$this->addsetting("shownanolineicons", $MODULE_NAME, "Show icons for the nanolines", "edit", "0", "true;false", "1;0");
+	Settings::add("shownanolineicons", $MODULE_NAME, "Show icons for the nanolines", "edit", "0", "true;false", "1;0");
 ?>

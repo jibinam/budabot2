@@ -8,8 +8,8 @@
    **
    */
    
-$this->savesetting("bbin_status", 0);
-if($this->settings['bbin_autoconnect'] == 1) {
+Settings::save("bbin_status", 0);
+if ($this->settings['bbin_autoconnect'] == 1) {
 	include 'bbin_connect.php';
 }
 ?>

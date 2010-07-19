@@ -18,13 +18,13 @@
 	$this->command("", $MODULE_NAME, "add.php", "adduser", ALL, "Enables Privatechat Join");
 	$this->command("", $MODULE_NAME, "rem.php", "remuser", ALL, "Enables Privatechat Join");
 	
-	$this->addsetting("guest_man_join", $MODULE_NAME, "Mode of manual guestchannel join", "edit", "1", "Only for members of guestlist;Everyone", "1;0");
-	$this->addsetting("guest_color_channel", $MODULE_NAME, "Color for Guestchannelrelay(ChannelName)", "edit", "<font color=#C3C3C3>", "color");
-	$this->addsetting("guest_color_username", $MODULE_NAME, "Color for Guestchannelrelay(UserName)", "edit", "<font color=#C3C3C3>", "color");
-	$this->addsetting("guest_color_guild", $MODULE_NAME, "Color for Guestchannelrelay(Text in Guild)", "edit", "<font color=#C3C3C3>", "color");
-	$this->addsetting("guest_color_guest", $MODULE_NAME, "Color for Guestchannelrelay(Text in Guestchannel)", "edit", "<font color=#C3C3C3>", "color");
-	$this->addsetting("guest_relay", $MODULE_NAME, "Relay of the Guestchannel", "edit", "1", "ON;OFF", "1;0");
-	$this->addsetting("guest_relay_commands", $MODULE_NAME, "Relay commands and results from/to guestchannel", "edit", "0", "ON;OFF", "1;0");
+	Settings::add("guest_man_join", $MODULE_NAME, "Mode of manual guestchannel join", "edit", "1", "Only for members of guestlist;Everyone", "1;0");
+	Settings::add("guest_color_channel", $MODULE_NAME, "Color for Guestchannelrelay(ChannelName)", "edit", "<font color=#C3C3C3>", "color");
+	Settings::add("guest_color_username", $MODULE_NAME, "Color for Guestchannelrelay(UserName)", "edit", "<font color=#C3C3C3>", "color");
+	Settings::add("guest_color_guild", $MODULE_NAME, "Color for Guestchannelrelay(Text in Guild)", "edit", "<font color=#C3C3C3>", "color");
+	Settings::add("guest_color_guest", $MODULE_NAME, "Color for Guestchannelrelay(Text in Guestchannel)", "edit", "<font color=#C3C3C3>", "color");
+	Settings::add("guest_relay", $MODULE_NAME, "Relay of the Guestchannel", "edit", "1", "ON;OFF", "1;0");
+	Settings::add("guest_relay_commands", $MODULE_NAME, "Relay commands and results from/to guestchannel", "edit", "0", "ON;OFF", "1;0");
 	
 	//Autoreinvite Players after a botrestart or crash
 	$this->event("setup", $MODULE_NAME, "autoreinvite.php", "none", "Reinvites the players that were in the privgrp before restart/crash");

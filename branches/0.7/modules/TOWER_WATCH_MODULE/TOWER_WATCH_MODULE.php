@@ -38,7 +38,7 @@
 	$this->help("Tower Watch", $MODULE_NAME, "tower_watch.txt", GUILDMEMBER, "Tower Watch Help");
 	
 	//Settings for this module	
-	$this->addsetting("alarmpreview", $MODULE_NAME, "Sets how early alarm should sound for gas change in minutes.", "edit", 5, "number");
+	Settings::add("alarmpreview", $MODULE_NAME, "Sets how early alarm should sound for gas change in minutes.", "edit", 5, "number");
 	
 	$this->event("2sec", $MODULE_NAME, "show_gas_change.php", "scout", "Shows gas changes for tower sites on watch list in org chat");
 	$this->event("logOn", $MODULE_NAME, "logon.php", "scout", "Displays summary of tower sites and gas levels on logon.");

@@ -4,6 +4,6 @@
 
 	$this->command("", $MODULE_NAME, "svn.php", "svn", ADMIN, "Updates your bot from svn repository");
 	
-	$this->addsetting("svnconflict", $MODULE_NAME, "How to handle conflicts", "edit", "theirs-conflict", "theirs-conflict;mine-conflict;theirs-full;mine-full;postpone", '0', ADMIN);
+	Settings::add("svnconflict", $MODULE_NAME, "How to handle conflicts", "edit", "theirs-conflict", "theirs-conflict;mine-conflict;theirs-full;mine-full;postpone", '0', ADMIN);
 
 ?>

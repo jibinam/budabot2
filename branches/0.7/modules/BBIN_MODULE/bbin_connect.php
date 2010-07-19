@@ -76,5 +76,5 @@ if(preg_match("/^startbbin$/i", $message)) {
 }
 newLine("BBIN"," ","Finished connecting to bbin",0);
 
-$this->savesetting("bbin_status", "1");
+Settings::save("bbin_status", "1");
 ?>

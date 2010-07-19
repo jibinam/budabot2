@@ -25,7 +25,7 @@
 	$this->command("", $MODULE_NAME, "rem.php", "rem", ALL, "Let a player removing from a slot");
 	
 	//Settings
-	$this->addsetting("add_on_loot", $MODULE_NAME, "Adding to loot show on", "edit", "1", "tells;privatechat;privatechat and tells", '1;2;3', MODERATOR);
+	Settings::add("add_on_loot", $MODULE_NAME, "Adding to loot show on", "edit", "1", "tells;privatechat;privatechat and tells", '1;2;3', MODERATOR);
 	
 	$this->regGroup("basic_loot", $MODULE_NAME, "Handles a basic flatrolled loot system", "loot", "add", "clear", "list", "flatroll");
 

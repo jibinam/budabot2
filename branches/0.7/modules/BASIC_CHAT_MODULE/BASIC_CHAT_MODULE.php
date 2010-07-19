@@ -3,9 +3,9 @@
 	$PLUGIN_VERSION = 0.1;
 
 	//Invite/Leave/lock commands
-	$this->addsetting("topic_guild_join", $MODULE_NAME, "Show Topic in guild on join", "edit", "0", "ON;OFF", "1;0", MODERATOR, $MODULE_NAME, "topic_show_guild.txt");
-	$this->addsetting("priv_status", "no", $MODULE_NAME, "hide", "open");
-	$this->addsetting("priv_status_reason", $MODULE_NAME, "no", "hide", "not set");	
+	Settings::add("topic_guild_join", $MODULE_NAME, "Show Topic in guild on join", "edit", "0", "ON;OFF", "1;0", MODERATOR, $MODULE_NAME, "topic_show_guild.txt");
+	Settings::add("priv_status", "no", $MODULE_NAME, "hide", "open");
+	Settings::add("priv_status_reason", $MODULE_NAME, "no", "hide", "not set");	
 
 	//Check macros
 	$this->command("priv", $MODULE_NAME, "check.php", "check", RAIDLEADER, "Checks who of the raidgroup is in the area");	
@@ -15,9 +15,9 @@
 	$this->event("logOn", $MODULE_NAME, "topic_logon.php", "none", "Show Topic on logon of members");
 	$this->command("", $MODULE_NAME, "topic.php", "topic", ALL, "Show Topic");
 	$this->subcommand("", $MODULE_NAME, "topic.php", "topic (.+)", LEADER, "topic", "Change Topic");
-	$this->addsetting("topic", $MODULE_NAME, "Topic for Priv Channel", "noedit", "No Topic set.");	
-	$this->addsetting("topic_setby", $MODULE_NAME, "no", "hide", "none");
-	$this->addsetting("topic_time", $MODULE_NAME, "no", "hide", time());
+	Settings::add("topic", $MODULE_NAME, "Topic for Priv Channel", "noedit", "No Topic set.");	
+	Settings::add("topic_setby", $MODULE_NAME, "no", "hide", "none");
+	Settings::add("topic_time", $MODULE_NAME, "no", "hide", time());
 
     //Afk Check
 	$this->event("priv", $MODULE_NAME, "afk_check.php", "afk");
@@ -28,8 +28,8 @@
 	$this->subcommand("priv", $MODULE_NAME, "leader.php", "leader (.+)", LEADER, "leader", "Set a specific Leader");
 	$this->command("priv", $MODULE_NAME, "leaderecho_cmd.php", "leaderecho", LEADER, "Set if the text of the leader will be repeated");
 	$this->event("priv", $MODULE_NAME, "leaderecho.php", "leader");
-	$this->addsetting("leaderecho", $MODULE_NAME, "Repeat the text of the raidleader", "edit", "1", "ON;OFF", "1;0");
-	$this->addsetting("leaderecho_color", $MODULE_NAME, "Color for Raidleader echo", "edit", "<font color=#FFFF00>", "color");
+	Settings::add("leaderecho", $MODULE_NAME, "Repeat the text of the raidleader", "edit", "1", "ON;OFF", "1;0");
+	Settings::add("leaderecho_color", $MODULE_NAME, "Color for Raidleader echo", "edit", "<font color=#FFFF00>", "color");
 
 	//Assist
 	$this->command("", $MODULE_NAME, "assist.php", "assist", ALL, "Creates/shows an Assist macro");
@@ -46,8 +46,8 @@
 	//Set admin and user news
 	$this->command("", $MODULE_NAME, "set_news.php", "privnews", RAIDLEADER, "Set news that are shown on privjoin");
 	$this->command("", $MODULE_NAME, "set_news.php", "adminnews", MODERATOR, "Set adminnews that are shown on privjoin");
-	$this->addsetting("news", $MODULE_NAME, "no", "hide", "Not set.");
-	$this->addsetting("adminnews", $MODULE_NAME, "no", "hide", "Not set.");	
+	Settings::add("news", $MODULE_NAME, "no", "hide", "Not set.");
+	Settings::add("adminnews", $MODULE_NAME, "no", "hide", "Not set.");	
 	
 	//Help files
 	$this->help("afk_priv", $MODULE_NAME, "afk.txt", ALL, "Going AFK");

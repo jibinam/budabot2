@@ -22,7 +22,7 @@
 	$this->event("orgmsg", $MODULE_NAME, "org_messages.php", "none", "Relay Org Messages");
 	
 	// Settings
-	$this->addsetting("relaytype", $MODULE_NAME, "Type of relay", "edit", "1", "tell;pgroup", '1;2', MODERATOR);
-	$this->addsetting("relaysymbol", $MODULE_NAME, "Symbol for external relay", "edit", "@", "!;#;*;@;$;+;-;Always relay", '0', MODERATOR);
-	$this->addsetting("relaybot", $MODULE_NAME, "Bot for Guildrelay", "edit", "Off", "text", '0', MODERATOR);
+	Settings::add("relaytype", $MODULE_NAME, "Type of relay", "edit", "1", "tell;pgroup", '1;2', MODERATOR);
+	Settings::add("relaysymbol", $MODULE_NAME, "Symbol for external relay", "edit", "@", "!;#;*;@;$;+;-;Always relay", '0', MODERATOR);
+	Settings::add("relaybot", $MODULE_NAME, "Bot for Guildrelay", "edit", "Off", "text", '0', MODERATOR);
 ?>

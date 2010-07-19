@@ -12,7 +12,7 @@
 	
 	$this->regGroup("bior", $MODULE_NAME, "Create a Bio Regrowth List", "bior", "b");
 	
-	$this->addsetting("bior_max", $MODULE_NAME, "Max Persons that are shown on BioR list", "edit", "10", "10;15;20;25;30", '0', MODERATOR, "bior_help.txt");
+	Settings::add("bior_max", $MODULE_NAME, "Max Persons that are shown on BioR list", "edit", "10", "10;15;20;25;30", '0', MODERATOR, "bior_help.txt");
 
 	//Help files
 	$this->help("bior", $MODULE_NAME, "bior.txt", ALL, "Bio Regrowth Macro and List");

@@ -44,7 +44,7 @@ if (preg_match("/^minlvl$/i", $message)) {
 		return;
 	}
 	
-	$this->savesetting("priv_req_lvl", $minlvl);
+	Settings::save("priv_req_lvl", $minlvl);
 	
 	if($minlvl == 0)
 		$msg = "Player min level limit has been removed from privategroup Invites.";
@@ -71,7 +71,7 @@ if (preg_match("/^minlvl$/i", $message)) {
 	} else
 		$msg = "Privategroup Invites will be accepted only from Members of this Bot";
 	
-	$this->savesetting("priv_req_open", $open);
+	Settings::save("priv_req_open", $open);
 
     $this->send($msg, $sendto);
 } else if (preg_match("/^faction/i", $message)) {
@@ -83,7 +83,7 @@ if (preg_match("/^minlvl$/i", $message)) {
     $this->send($msg, $sendto); 	
 } else if (preg_match("/^faction (omni|clan|neutral|all)$/i", $message, $arr)) {
 	$faction = ucfirst(strtolower($arr[1]));
-	$this->savesetting("priv_req_faction", $faction);
+	Settings::save("priv_req_faction", $faction);
 	
 	if($faction == "all") {
 		$msg = "Faction limit removed from privategroup invites.";
@@ -94,7 +94,7 @@ if (preg_match("/^minlvl$/i", $message)) {
     $this->send($msg, $sendto);
 } else if (preg_match("/^faction not (omni|clan|neutral)$/i", $message, $arr)) {
 	$faction = "not ".ucfirst(strtolower($arr[1]));
-	$this->savesetting("priv_req_faction", $faction);
+	Settings::save("priv_req_faction", $faction);
 	$msg = "Invites are limited to <highlight>$faction<end> only now.";
 
     $this->send($msg, $sendto);
@@ -114,7 +114,7 @@ if (preg_match("/^minlvl$/i", $message)) {
 		return;
 	}
 	
-	$this->savesetting("priv_req_maxplayers", $maxplayers);
+	Settings::save("priv_req_maxplayers", $maxplayers);
 	
 	if($maxplayers == 0) {
 		$msg = "The Limit of the Amount of players in the privategroup has been removed.";

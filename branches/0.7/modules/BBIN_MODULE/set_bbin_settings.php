@@ -9,12 +9,12 @@
    */
    
 if(preg_match("/^setbbin server (.+)$/i", $message, $arr)) {
-	$this->savesetting("bbin_server", trim($arr[1]));
+	Settings::save("bbin_server", trim($arr[1]));
 	$this->send("Setting saved.  Bot will connect to IRC server: {$arr[1]}.", $sender);
 }
 elseif(preg_match("/^setbbin port (.+)$/i", $message, $arr)) {
 	if(is_numeric($arr[1])) {
-		$this->savesetting("bbin_port", trim($arr[1]));
+		Settings::save("bbin_port", trim($arr[1]));
 		$this->send("Setting saved.  Bot will use port {$arr[1]} to connect to the IRC server.", $sender);
 	}
 	else {
@@ -22,7 +22,7 @@ elseif(preg_match("/^setbbin port (.+)$/i", $message, $arr)) {
 	}
 }
 elseif(preg_match("/^setbbin nickname (.+)$/i", $message, $arr)) {
-	$this->savesetting("bbin_nickname", trim($arr[1]));
+	Settings::save("bbin_nickname", trim($arr[1]));
 	$this->send("Setting saved.  Bot will use {$arr[1]} as its nickname while in IRC.", $sender);
 }
 elseif(preg_match("/^setbbin channel (.+)$/i", $message, $arr)) {
@@ -39,7 +39,7 @@ elseif(preg_match("/^setbbin channel (.+)$/i", $message, $arr)) {
 	if(strpos($channel,"#") !== 0) {
 		$channel = "#".$channel;
 	}
-	$this->savesetting("bbin_channel", trim($channel));
+	Settings::save("bbin_channel", trim($channel));
 	$this->send("Setting saved.  Bot will join $channel when it connects to IRC.", $sender);
 }
 else {

@@ -28,13 +28,13 @@
 	$this->regGroup("online", $MODULE_NAME, "Show who is online(guild or privatechat)", "adv", "agent", "crat", "doc", "enf", "eng", "fix", "keep", "ma", "mp", "nt", "sol", "shade", "trader", "sm", "chatlist", "online", "count");
 
 	//Settings
-	$this->addsetting("relaydb", $MODULE_NAME, "Database for merging online lists", "edit", "0", "text", '0', MODERATOR);
-	$this->addsetting("online_tell", $MODULE_NAME, "Mode for Online Cmd in tells", "edit", "0", "Shows online privatechat members;Shows online guild members", "1;0", MODERATOR);
-	$this->addsetting("count_tell", $MODULE_NAME, "Mode for Count Cmd in tells", "edit", "1", "Shows online privatechat members;Shows online guild members", "1;0", MODERATOR);
-	$this->addsetting("chatlist_tell", $MODULE_NAME, "Mode for Chatlist Cmd in tells", "edit", "1", "Shows online privatechat members;Shows online guild members", "1;0", MODERATOR);
-	$this->addsetting("logonline_tell", $MODULE_NAME, "Enables the Online tell on logon", "edit", "0", "On;Off", "1;0", MODERATOR);
-	$this->addsetting("fancy_online", $MODULE_NAME, "Enables the fancy delimiters for the online display", "edit", "1", "On;Off", "1;0", MODERATOR);
-	$this->addsetting("icon_fancy_online", $MODULE_NAME, "Enables the use of icons in fancy delimiter mode", "edit", "1", "On;Off", "1;0", MODERATOR);
+	Settings::add("relaydb", $MODULE_NAME, "Database for merging online lists", "edit", "0", "text", '0', MODERATOR);
+	Settings::add("online_tell", $MODULE_NAME, "Mode for Online Cmd in tells", "edit", "0", "Shows online privatechat members;Shows online guild members", "1;0", MODERATOR);
+	Settings::add("count_tell", $MODULE_NAME, "Mode for Count Cmd in tells", "edit", "1", "Shows online privatechat members;Shows online guild members", "1;0", MODERATOR);
+	Settings::add("chatlist_tell", $MODULE_NAME, "Mode for Chatlist Cmd in tells", "edit", "1", "Shows online privatechat members;Shows online guild members", "1;0", MODERATOR);
+	Settings::add("logonline_tell", $MODULE_NAME, "Enables the Online tell on logon", "edit", "0", "On;Off", "1;0", MODERATOR);
+	Settings::add("fancy_online", $MODULE_NAME, "Enables the fancy delimiters for the online display", "edit", "1", "On;Off", "1;0", MODERATOR);
+	Settings::add("icon_fancy_online", $MODULE_NAME, "Enables the use of icons in fancy delimiter mode", "edit", "1", "On;Off", "1;0", MODERATOR);
 
 	$this->event("logOn", $MODULE_NAME, "logonline.php", "none", "Sends a tell to players on logon showing who is online in org");
 	$this->event("logOn", $MODULE_NAME, "logon_guild.php", "none", "Shows a logon from a member");
