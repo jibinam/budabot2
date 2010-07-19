@@ -3,9 +3,9 @@
 class Settings {
 
 /*===============================
-** Name: addsetting
+** Name: add
 ** Adds a setting to the list
-*/	public static function addsetting($name, $module, $description = 'none', $mode = 'hide', $setting = 'none', $options = 'none', $intoptions = '0', $access_level = MODERATOR, $help = '') {
+*/	public static function add($name, $module, $description = 'none', $mode = 'hide', $setting = 'none', $options = 'none', $intoptions = '0', $access_level = MODERATOR, $help = '') {
 		global $db;
 		global $chatBot;
 		$name = strtolower($name);
@@ -19,9 +19,9 @@ class Settings {
 	}
 
 /*===============================
-** Name: getsetting
+** Name: get
 ** Gets an loaded setting
-*/	public static function getsetting($name) {
+*/	public static function get($name) {
 		global $chatBot;
 		$name = strtolower($name);
 
@@ -33,9 +33,9 @@ class Settings {
 	}
 
 /*===============================
-** Name: savesetting
+** Name: save
 ** Saves a setting to the db
-*/	public static function savesetting($name, $newsetting = null) {
+*/	public static function save($name, $newsetting = null) {
 		global $db;
 		global $chatBot;
 		$name = strtolower($name);

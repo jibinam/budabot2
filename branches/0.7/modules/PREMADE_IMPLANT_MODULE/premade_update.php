@@ -29,7 +29,7 @@ if (preg_match("/^premadeupdate$/i", $message)) {
 	$newVersion = checkForUpdate($currentVersion, true);
 	
 	if ($newVersion > $currentVersion) {
-		//$chatBot->savesetting('premade_implant_db_version', $version);
+		Settings::save('premade_implant_db_version', $version);
 		$msg = "Premade Implant Database has been updated. New version: $newVersion.";
 	} else {
 		$msg = "Premade Implant Database is already up to date. Version: $newVersion.";
