@@ -43,7 +43,7 @@ class Budabot extends AOChat {
 
 		$this->settings = $settings;
 		$this->vars = $vars;
-        $this->vars["name"] = ucfirst(strtolower($this->vars["name"]));
+        $this->name = ucfirst(strtolower($this->vars["name"]));
 
 		//Set startuptime
 		$this->vars["startup"] = time();
@@ -287,11 +287,11 @@ class Budabot extends AOChat {
 			die();
 		}
 
-		echo "Logging in {$this->vars["name"]}...\n";
-		$this->login($this->vars["name"]);
+		echo "Logging in $this->name...\n";
+		$this->login($this->name);
 		sleep(2);
 		if ($this->state != "ok") {
-			echo "Logging in of {$this->vars["name"]} failed! Please check the character name and dimension.\n";
+			echo "Logging in of $this->name failed! Please check the character name and dimension.\n";
 			sleep(10);
 			die();
 		}
@@ -412,8 +412,8 @@ class Budabot extends AOChat {
 		$header .= "</font>:::</font>:::</font>:::</font>\n";
 
 		if ($links == TRUE) {
-			$links = array( 'Help' => "chatcmd:///tell ".$this->vars["name"]." help",
-					'About' => "chatcmd:///tell ".$this->vars["name"]." about",
+			$links = array( 'Help' => "chatcmd:///tell $this->name help",
+					'About' => "chatcmd:///tell $this->name about",
 					'Download' => "chatcmd:///start http://budabot.aodevs.com/index.php?page=14");
 		}
 		if (strtolower($links) != "none") {
@@ -502,7 +502,7 @@ class Budabot extends AOChat {
 		$message = str_replace("<grey>", "<font color='#C3C3C3'>", $message);
 		$message = str_replace("<cyan>", "<font color='#00FFFF'>", $message);
 
-		$message = str_replace("<myname>", $this->vars["name"], $message);
+		$message = str_replace("<myname>", $this->name, $message);
 		$message = str_replace("<tab>", "    ", $message);
 		$message = str_replace("<end>", "</font>", $message);
 		$message = str_replace("<symbol>", Settings::get("symbol") , $message);
@@ -527,7 +527,7 @@ class Budabot extends AOChat {
 		$message = $this->formatMessage($message);
 		$this->send_privgroup($group,Settings::get("default_priv_color").$message);
 		if ((Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay)) {
-			$this->send_group($group, "</font>" . Settings::get("guest_color_channel") . "[Guest]<end> " . Settings::get("guest_color_username") . "{$this->vars["name"]}</font>: " . Settings::get("default_priv_color") . "$message</font>");
+			$this->send_group($group, "</font>" . Settings::get("guest_color_channel") . "[Guest]<end> " . Settings::get("guest_color_username") . "$this->name</font>: " . Settings::get("default_priv_color") . "$message</font>");
 		}
 	}
 
@@ -553,14 +553,14 @@ class Budabot extends AOChat {
 
 		// Send
 		if ($who == 'prv') { // Target is private chat by defult.
-			$this->send_privgroup($this->vars["name"],Settings::get("default_priv_color").$message);
+			$this->send_privgroup($this->name, Settings::get("default_priv_color").$message);
 			if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
-				$this->send_group($this->vars["my guild"], "</font>" . Settings::get("guest_color_channel"] . "[Guest]<end> " . Settings::get("guest_color_username") . $this->makeLink($this->vars["name"],$this->vars["name"],"user")."</font>: " . Settings::get("default_priv_color") . "$message</font>");
+				$this->send_group($this->vars["my guild"], "</font>" . Settings::get("guest_color_channel"] . "[Guest]<end> " . Settings::get("guest_color_username") . $this->makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_priv_color") . "$message</font>");
 			}
 		} else if ($who == $this->vars["my guild"] || $who == 'org') {// Target is guild chat.
     		$this->send_group($this->vars["my guild"],Settings::get("default_guild_color").$message);
 			if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
-				$this->send_privgroup($this->vars["name"], "</font>" . Settings::get("guest_color_channel") . "[{$this->vars["my guild"]}]<end> " . Settings::get("guest_color_username") . $this->makeLink($this->vars["name"], $this->vars["name"], "user")."</font>: " . Settings::get("default_guild_color") . "$message</font>");
+				$this->send_privgroup($this->name, "</font>" . Settings::get("guest_color_channel") . "[{$this->vars["my guild"]}]<end> " . Settings::get("guest_color_username") . $this->makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_guild_color") . "$message</font>");
 			}
 		} else if ($this->get_uid($who) != NULL) {// Target is a player.
     		$this->send_tell($who, Settings::get("default_tell_color").$message);
@@ -1332,7 +1332,7 @@ class Budabot extends AOChat {
 				$channel = $this->lookup_user($args[0]);
 				$message = $args[2];
 				$restricted = false;
-				if ($sender == $this->vars["name"]) {
+				if ($sender == $this->name) {
 					if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, $message, Settings::get('echo'));
 					return;
 				}
@@ -1439,7 +1439,7 @@ class Budabot extends AOChat {
 
 				if ($sender) {
 					//Ignore Message that are sent from the bot self
-					if ($sender == $this->vars["name"]) {
+					if ($sender == $this->name) {
 						return;
 					}
 

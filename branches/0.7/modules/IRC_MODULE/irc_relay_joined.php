@@ -15,7 +15,7 @@ if("1" == Settings::get('irc_status')) {
 	$msg = "$sender ({$whois->level}/{$whois->ai_level}, {$whois->prof}, {$whois->org})";
 	
 	if($type == "joinPriv") {
-		$msg .= " has joined {$this->vars["name"]}.";
+		$msg .= " has joined $this->name.";
 	}
 	else {
 		$msg .= " has logged on.";

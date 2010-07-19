@@ -123,7 +123,7 @@ foreach($this->vars["Vote"] as $key => $value) {
 			else {$msg .= "$val% ";}
 			
 			if ($timeleft > 0) {
-				$msg .= "<a href='chatcmd:///tell ".$this->vars["name"]." vote $question";
+				$msg .= "<a href='chatcmd:///tell <myname> vote $question";
 				$msg .= "$delimiter".$key."'>$key</a> (Votes: $value)\n";
 			} else {
 				$msg .= "<highlight>$key<end> (Votes: $value)\n";
@@ -131,16 +131,16 @@ foreach($this->vars["Vote"] as $key => $value) {
 		}
 		
 		if ($timeleft > 0) {
-			$msg .= "\n<black>___%<end> <a href='chatcmd:///tell ".$this->vars["name"]." vote remove$delimiter$question'>Remove yourself from this vote</a>.\n";
+			$msg .= "\n<black>___%<end> <a href='chatcmd:///tell <myname> vote remove$delimiter$question'>Remove yourself from this vote</a>.\n";
 		}
 		if ($timeleft > 0 && Settings::get("vote_add_new_choices") == 1 && $status == 0) {
-			$msg .="\n<highlight>Don't like these choices?  Add your own:<end>\n<tab>/tell ".$this->vars['name']." <symbol>vote $question$delimiter"."<highlight>your choice<end>\n"; 
+			$msg .="\n<highlight>Don't like these choices?  Add your own:<end>\n<tab>/tell <myname> <symbol>vote $question$delimiter"."<highlight>your choice<end>\n"; 
 		}
 		
 		$msg .="\n<highlight>If you started this vote, you can:<end>\n";
-		$msg .="<tab><a href='chatcmd:///tell ".$this->vars["name"]." vote kill$delimiter$question'>Kill</a> the vote completely.\n";
+		$msg .="<tab><a href='chatcmd:///tell <myname> vote kill$delimiter$question'>Kill</a> the vote completely.\n";
 		if ($timeleft > 0) {
-			$msg .="<tab><a href='chatcmd:///tell ".$this->vars["name"]." vote end$delimiter$question'>End</a> the vote early.";
+			$msg .="<tab><a href='chatcmd:///tell <myname> vote end$delimiter$question'>End</a> the vote early.";
 		}
 		
 		$msg = $this->makeLink($title, $msg);

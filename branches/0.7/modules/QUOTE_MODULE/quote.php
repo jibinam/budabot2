@@ -121,7 +121,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	$list = "";
 	$db->query("SELECT * FROM quote WHERE `Who` LIKE '".str_replace("'", "''", $search)."'");
 	while($row = $db->fObject()) {
-		$list .= "<a href='chatcmd:///tell ".$this->vars["name"]." quote $row->IDNumber'>$row->IDNumber</a>, ";
+		$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber'>$row->IDNumber</a>, ";
 	}
 	if ($list) {
 		$msg .="<tab>Quotes posted by <highlight>$search<end>: ";
@@ -132,7 +132,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	$list = "";
 	$db->query("SELECT * FROM quote WHERE `OfWho` LIKE '".str_replace("'", "''", $search)."'");
 	while($row = $db->fObject()) {
-		$list .= "<a href='chatcmd:///tell ".$this->vars["name"]." quote $row->IDNumber'>$row->IDNumber</a>, ";
+		$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber'>$row->IDNumber</a>, ";
 	}
 	if ($list) {
 		if ($msg) {$msg .="<br><br>";}
@@ -144,10 +144,10 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	$list = "";
 	$db->query("SELECT * FROM quote WHERE `OfWho` NOT LIKE '$search' AND `What` LIKE '%".str_replace("'", "''", $search)."%'");
 	while($row = $db->fObject()) {
-		$list .= "<a href='chatcmd:///tell ".$this->vars["name"]." quote $row->IDNumber'>$row->IDNumber</a>, ";
+		$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber'>$row->IDNumber</a>, ";
 	}
 	if ($list) {
-		if ($msg) {$msg .="<br><br>";}
+		if ($msg) {$msg .="\n\n";}
 		$msg .="<tab>Quotes that contain '<highlight>$search<end>': ";
 		$msg .= substr($list,0,strlen($list)-2);
 	}
@@ -196,7 +196,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		$db->query("SELECT * FROM quote WHERE `Who` = '$quoteWHO'");
 		$list = "";
 		while($row = $db->fObject()) {
-			$list .= "<a href='chatcmd:///tell ".$this->vars["name"]." quote $row->IDNumber>$row->IDNumber</a>, ";
+			$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber>$row->IDNumber</a>, ";
 		}
 		$msg .= substr($list,0,strlen($list)-2)."<br><br>";
 		
@@ -204,7 +204,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		$db->query("SELECT * FROM quote WHERE `OfWho` = '".str_replace("'", "''", $quoteOfWHO)."'");
 		$list = "";
 		while($row = $db->fObject()) {
-			$list .= "<a href='chatcmd:///tell ".$this->vars["name"]." quote $row->IDNumber>$row->IDNumber</a>, ";
+			$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber>$row->IDNumber</a>, ";
 		}
 		$msg .= substr($list,0,strlen($list)-2);
 
@@ -255,7 +255,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		$db->query("SELECT * FROM quote WHERE `Who` = '".str_replace("'", "''", $quoteWHO)."'");
 		$list = "";
 		while($row = $db->fObject()) {
-			$list .= "<a href='chatcmd:///tell ".$this->vars["name"]." quote $row->IDNumber>$row->IDNumber</a>, ";
+			$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber>$row->IDNumber</a>, ";
 		}
 		$msg .= substr($list,0,strlen($list)-2)."<br><br>";
 		
@@ -263,7 +263,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		$db->query("SELECT * FROM quote WHERE `OfWho` = '".str_replace("'", "''", $quoteOfWHO)."'");
 		$list = "";
 		while($row = $db->fObject()) {
-			$list .= "<a href='chatcmd:///tell ".$this->vars["name"]." quote $row->IDNumber>$row->IDNumber</a>, ";
+			$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber>$row->IDNumber</a>, ";
 		}
 		$msg .= substr($list,0,strlen($list)-2);
 		
@@ -273,8 +273,6 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		$msg = "I dont have any quotes to show!";
 	}
 }
-
-
 
 // Send info back
 

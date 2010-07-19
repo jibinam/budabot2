@@ -36,7 +36,7 @@
    foreach ($quoters as $key => $val) {
 	   $listnum++;
 	   $msg .= "<tab>$listnum) ".
-	   "<a href='chatcmd:///tell ".$this->vars["name"]." quote search $key>$key</a>".
+	   "<a href='chatcmd:///tell <myname> quote search $key>$key</a>".
 	   ": <highlight>$val<end> ".number_format((100*($val/$count)),0)."%\n";
 	   if ($listnum >= $top)
 	   	break;
@@ -47,7 +47,7 @@
    foreach ($victims as $key => $val) {
 	   $listnum++;
 	   $msg .= "<tab>$listnum) ".
-	   "<a href='chatcmd:///tell ".$this->vars["name"]." quote search $key>$key</a>".
+	   "<a href='chatcmd:///tell <myname> quote search $key>$key</a>".
 	   ": <highlight>$val<end> ".number_format((100*($val/$count)),0)."%\n";
 	   if ($listnum >= $top)
 	   	break;

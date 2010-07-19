@@ -208,7 +208,7 @@ if (preg_match("/^(orglist|onlineorg) end$/i", $message, $arr)) {
 		$buddy_online_status = $this->buddy_online($amember);
 		if ($buddy_online_status !== null) {
 			$this->data["ORGLIST_MODULE"]["result"][$amember]["online"] = $buddy_online_status;
-		} elseif ($this->vars["name"] != $amember) { // If the name being checked ISNT the bot.
+		} elseif ($this->name != $amember) { // If the name being checked ISNT the bot.
 			// check if they exist, (They might be deleted)
 			if ($this->get_uid($amember)) {
 				if ($buddy_list_full) {
@@ -224,7 +224,7 @@ if (preg_match("/^(orglist|onlineorg) end$/i", $message, $arr)) {
 				// wait 1 millisecond so the buddy list doesn't fill up too quickly
 				usleep(10000);
 			}
-		} elseif ($this->vars["name"] == $amember) { // Yes, this bot is online. Don't need a buddylist to tell me.
+		} elseif ($this->name == $amember) { // Yes, this bot is online. Don't need a buddylist to tell me.
 			$this->data["ORGLIST_MODULE"]["result"][$amember]["online"] = 1;
 		}
 	}

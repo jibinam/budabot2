@@ -36,7 +36,7 @@ if (preg_match("/^inviteuser (.+)$/i", $message, $arr)) {
       	$msg = "Invited <highlight>$name<end> to this channel.";      	
 	  	$this->privategroup_kick($name);
 	  	$this->privategroup_invite($name);
-		$msg2 = "You have been invited to the Privategroup <highlight>{$this->vars["name"]}<end> by <highlight>$sender<end>";
+		$msg2 = "You have been invited to the Privategroup <highlight>$this->name<end> by <highlight>$sender<end>";
 		$this->send($msg2, $name);
     } else {
 		$msg = "Player <highlight>".$name."<end> does not exist.";

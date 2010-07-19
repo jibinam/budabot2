@@ -58,10 +58,10 @@ if (preg_match("/^addadmin (.+)$/i", $message, $arr)){
 	if ($user_access_level <= RAIDLEADER) {
 		if ($user_access_level < ADMIN) {
 			$this->send("<highlight>$who<end> has been demoted to the rank of Administrator.", $sendto);
-			$this->send("You have been demoted to the rank of a Administrator on {$this->vars["name"]}", $who);
+			$this->send("You have been demoted to the rank of a Administrator on $this->name", $who);
 		} else {
 			$this->send("<highlight>$who<end> has been promoted to the rank of Administrator.", $sendto);
-			$this->send("You have been promoted to the rank of a Administrator on {$this->vars["name"]}", $who);
+			$this->send("You have been promoted to the rank of a Administrator on $this->name", $who);
 		}
 		$db->query("UPDATE admin_<myname> SET `adminlevel` = ". ADMIN . " WHERE `uid` = $uid");
 	} else {

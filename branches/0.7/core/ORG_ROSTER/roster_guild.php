@@ -72,7 +72,7 @@ if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
 		// Going through each member of the org and add his data's
 		forEach ($org->member as $amember) {
 			// don't do anything if $amember is the bot itself
-			if (strtolower($amember) == strtolower($this->vars["name"])) {
+			if ($amember == $this->name) {
 				continue;
 			}
 		
