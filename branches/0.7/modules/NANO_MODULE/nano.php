@@ -42,7 +42,7 @@ foreach($tmp as $key => $value) {
 if($ql)
 	$query .= " AND `lowql` <= $ql AND `highql` >= $ql";
 
-$db->query("SELECT * FROM nanos WHERE $query ORDER BY lowql, name LIMIT 0, {$this->settings["maxnano"]}");
+$db->query("SELECT * FROM nanos WHERE $query ORDER BY lowql, name LIMIT 0, {Settings::get("maxnano")}");
 $num = $db->numrows();
 if($num == 0) {
   	if($ql)
@@ -112,8 +112,8 @@ if($countitems > 1) {
     $this->send($link, $sendto);
       	
 	//Show a warning if the maxnano are reached
-	if($countitems == $this->settings["maxnano"]) {
-	    $msg = "The output has been limited to <highlight>{$this->settings["maxnano"]}<end> items. Specify your search more if your item isn't listed.";
+	if($countitems == Settings::get("maxnano")) {
+	    $msg = "The output has been limited to <highlight>{Settings::get("maxnano")}<end> items. Specify your search more if your item isn't listed.";
 	    $this->send($msg, $sendto);
 	}
 } 

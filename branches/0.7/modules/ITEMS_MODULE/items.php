@@ -65,7 +65,7 @@ if($ql) {
 	$query .= " AND `lowql` <= $ql AND `highql` >= $ql";
 }
 
-$db->query("SELECT * FROM aodb WHERE $query ORDER BY `name` LIMIT 0, {$this->settings["maxitems"]}");
+$db->query("SELECT * FROM aodb WHERE $query ORDER BY `name` LIMIT 0, {Settings::get("maxitems")}");
 $num = $db->numrows();
 if ($num == 0) {
   	if ($ql) {
@@ -131,8 +131,8 @@ if ($countitems > 3) {
     $this->send($link, $sendto);
 
 	//Show a warning if the maxitems are reached
-	if ($countitems == $this->settings["maxitems"]) {
-	    $msg = "The output has been limited to <highlight>{$this->settings["maxitems"]}<end> items. Specify your search more if your item isn't listed.";
+	if ($countitems == Settings::get("maxitems")) {
+	    $msg = "The output has been limited to <highlight>{Settings::get("maxitems")}<end> items. Specify your search more if your item isn't listed.";
 	    $this->send($msg, $sendto);
 	}
 } else {

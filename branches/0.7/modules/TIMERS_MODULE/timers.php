@@ -137,7 +137,7 @@ if (preg_match("/^timer ([0-9]+)$/i", $message, $arr) ) {
 					
 			  	$msg = "Removed timer <highlight>$name<end>.";
 			  	break;
-			} elseif(($this->guildmembers[$sender] <= $this->settings['guild admin level']) || isset($this->admins[$sender])) {
+			} elseif(($this->guildmembers[$sender] <= Settings::get('guild admin level']) || isset($this->admins[$sender))) {
 				unset($this->vars["Timers"][$key]);
 				$db->query("DELETE FROM timers_<myname> WHERE `name` = '".str_replace("'", "''", $name)."'");
 
@@ -331,7 +331,7 @@ if (preg_match("/^timer ([0-9]+)$/i", $message, $arr) ) {
 	    return;
 	}
 
-  	if($this->settings["timers_window"] == 2 || ($this->settings["timers_window"] >= 3 && $num_timers <= $this->settings["timers_window"])) {
+  	if(Settings::get("timers_window") == 2 || (Settings::get("timers_window") >= 3 && $num_timers <= Settings::get("timers_window"))) {
 		foreach($this->vars["Timers"] as $key => $value) {
 			$timer = "";
 			$tleft = $this->vars["Timers"][$key]["timer"] - time();

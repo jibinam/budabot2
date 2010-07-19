@@ -133,7 +133,7 @@ foreach($this->vars["Vote"] as $key => $value) {
 		if ($timeleft > 0) {
 			$msg .= "\n<black>___%<end> <a href='chatcmd:///tell ".$this->vars["name"]." vote remove$delimiter$question'>Remove yourself from this vote</a>.\n";
 		}
-		if ($timeleft > 0 && $this->settings["vote_add_new_choices"] == 1 && $status == 0) {
+		if ($timeleft > 0 && Settings::get("vote_add_new_choices") == 1 && $status == 0) {
 			$msg .="\n<highlight>Don't like these choices?  Add your own:<end>\n<tab>/tell ".$this->vars['name']." <symbol>vote $question$delimiter"."<highlight>your choice<end>\n"; 
 		}
 		
@@ -145,8 +145,8 @@ foreach($this->vars["Vote"] as $key => $value) {
 		
 		$msg = $this->makeLink($title, $msg);
 		
-		if ($this->settings["vote_channel_spam"] == 0 || $this->settings["vote_channel_spam"] == 2) {$this->send($msg, "guild");}
-	   	if ($this->settings["vote_channel_spam"] == 1 || $this->settings["vote_channel_spam"] == 2) {$this->send($msg);}
+		if (Settings::get("vote_channel_spam") == 0 || Settings::get("vote_channel_spam") == 2) {$this->send($msg, "guild");}
+	   	if (Settings::get("vote_channel_spam") == 1 || Settings::get("vote_channel_spam") == 2) {$this->send($msg);}
 	}
 }
 ?>

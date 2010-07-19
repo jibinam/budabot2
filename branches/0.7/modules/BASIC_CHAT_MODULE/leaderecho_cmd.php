@@ -36,7 +36,7 @@ if(preg_match("/^leaderecho on$/i", $message)) {
 	Settings::save("leaderecho", "0");
 	$this->send("Raidleader echo has been <green>disabled<end>");	
 } elseif(preg_match("/^leaderecho$/i", $message)) {
-	if($this->settings["leaderecho"] == 1)
+	if(Settings::get("leaderecho") == 1)
 		$msg = "Leaderecho is currently <green>enabled<end>";
 	else
 		$msg = "Leaderecho is currently <red>disabled<end>";

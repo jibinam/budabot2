@@ -8,7 +8,7 @@
    */
    
 global $socket;
-if("1" == $this->settings['irc_status']) {
+if("1" == Settings::get('irc_status')) {
 	$whois = new WhoisXML($sender);
 	if($whois->org == "")
 		$whois->org = "Not in a guild";
@@ -47,14 +47,14 @@ if("1" == $this->settings['irc_status']) {
 	}
 	
 	if($type == "joinPriv") {
-		fputs($socket, "PRIVMSG ".$this->settings['irc_channel']." :$msg\n");
-		if($this->settings['irc_debug_messages'] == 1) {
+		fputs($socket, "PRIVMSG ".Settings::get('irc_channel')." :$msg\n");
+		if(Settings::get('irc_debug_messages') == 1) {
 			newLine("IRC"," ","[Out. IRC Msg.] $sender has joined the private chat",0);
 		}
 	}
 	elseif($type == "logOn" && isset($this->guildmembers[$sender])) {
-		fputs($socket, "PRIVMSG ".$this->settings['irc_channel']." :$msg\n");
-		if($this->settings['irc_debug_messages'] == 1) {
+		fputs($socket, "PRIVMSG ".Settings::get('irc_channel')." :$msg\n");
+		if(Settings::get('irc_debug_messages') == 1) {
 			newLine("IRC"," ","[Out. IRC Msg.] $sender has logged on",0);
 		}
 	}

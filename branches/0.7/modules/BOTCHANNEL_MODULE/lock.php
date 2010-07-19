@@ -30,7 +30,7 @@
    */
    
 if (preg_match("/^lock$/i", $message)) {
-  	if($this->settings["priv_status"] == "closed") {
+  	if(Settings::get("priv_status") == "closed") {
 	    $msg = "Privategroup is already locked.";
 	    if($type == "msg")
 	    	$this->send($msg, $sender);
@@ -47,7 +47,7 @@ if (preg_match("/^lock$/i", $message)) {
 	Settings::save("priv_status", "closed");
 } else if (preg_match("/^lock (.+)$/i", $message, $arr)) {
   	$reason = $arr[1];
-	if($this->settings["priv_status"] == "closed") {
+	if(Settings::get("priv_status") == "closed") {
 	    $msg = "Privategroup is already locked.";
 	    if($type == "msg")
 	    	$this->send($msg, $sender);
@@ -64,7 +64,7 @@ if (preg_match("/^lock$/i", $message)) {
 	Settings::save("priv_status", "closed");
 	Settings::save("priv_status_reason", $reason);
 } else if (preg_match("/^unlock$/i", $message)) {
-  	if($this->settings["priv_status"] == "open") {
+  	if(Settings::get("priv_status") == "open") {
 	    $msg = "Privategroup is already opened.";
 	    if($type == "msg")
 	    	$this->send($msg, $sender);

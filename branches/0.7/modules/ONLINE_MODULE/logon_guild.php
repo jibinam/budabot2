@@ -121,7 +121,7 @@ if($org_member->mode != "del" && $numrows == 1) {
        	$this->send($msg, "guild", true);
 
 		//Guestchannel part
-		if ($this->settings["guest_relay"] == 1) {
+		if (Settings::get("guest_relay") == 1) {
 			$this->send($msg, "priv", true);
 		}
     }

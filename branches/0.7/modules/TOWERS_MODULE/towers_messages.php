@@ -180,7 +180,7 @@ if ($def_guild) {
 
 
 	// tower_attack_spam >= 2 (normal) includes attacker stats
-	if ($this->settings["tower_attack_spam"] >= 2) {
+	if (Settings::get("tower_attack_spam") >= 2) {
 
 		if ($whois->prof == "Unknown") {$msg .= "<".strtolower($att_side).">$att_player<end> (Unknown";}
 		else {
@@ -203,16 +203,16 @@ if ($def_guild) {
 	$msg .= " attacked ".$targetorg."] ";
 
 	// tower_attack_spam >= 3 (full) includes location.
-	if ($this->settings["tower_attack_spam"] >= 3) {
+	if (Settings::get("tower_attack_spam") >= 3) {
 		if ($data[$key]["hugemaploc"]) {$hugemaploc = "<font color=#AAAAAA>#".$data[$key]["hugemaploc"]."<end>";}
 		$msg .= "[".$zone." $hugemaploc (".$coordx." x ".$coordy.")] ";
 	}
 
 	$msg .= "$more<end>";
 
-	$d = $this->settings["tower_faction_def"];
-	$a = $this->settings["tower_faction_atk"];
-	$s = $this->settings["tower_attack_spam"];
+	$d = Settings::get("tower_faction_def");
+	$a = Settings::get("tower_faction_atk");
+	$s = Settings::get("tower_attack_spam");
 
 	if ($wedefend || ($s > 0 && (
         (strtolower($def_side) == "clan"    && ($d & 1)) ||

@@ -32,7 +32,7 @@
 // include online_func.php for the actual working functions
 require_once("online_func.php");
 
-if($this->settings["logonline_tell"] && (isset($this->guildmembers[$sender]) || isset($this->vars["Guest"][$sender])))
+if(Settings::get("logonline_tell"] && (isset($this->guildmembers[$sender]) || isset($this->vars["Guest"][$sender))))
 {
 	$msg = "";
 	$type = "msg";

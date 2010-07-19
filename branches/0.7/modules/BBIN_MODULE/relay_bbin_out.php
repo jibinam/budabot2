@@ -9,14 +9,14 @@
    */
    
 global $bbin_socket;
-if("1" == $this->settings['bbin_status']) {
+if ("1" == Settings::get('bbin_status')) {
 	// do not relay commands and ignored chars
-	if($args[2][0] != $this->settings["symbol"] && !$this->settings["Ignore"][$sender]) {
+	if ($args[2][0] != Settings::get("symbol") && !Settings::get("Ignore")[$sender]) {
 		
 		$outmsg = htmlspecialchars($message);
 		
-		fputs($bbin_socket, "PRIVMSG ".$this->settings['bbin_channel']." :$sender: $message\n");
-		if($this->settings['bbin_debug_messages'] == 1) {
+		fputs($bbin_socket, "PRIVMSG ".Settings::get('bbin_channel')." :$sender: $message\n");
+		if (Settings::get('bbin_debug_messages') == 1) {
 			newLine("BBIN"," ","[Out. BBIN Msg.] $sender: $message",0);
 		}
 	}

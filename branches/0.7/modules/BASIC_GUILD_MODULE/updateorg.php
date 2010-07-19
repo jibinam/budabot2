@@ -32,7 +32,7 @@
 if(preg_match("/^updateorg$/i", $message)) {
  	$force_update = true;
  	$this->send("Starting updating Organisation roster. Please Standby.", $sender);
-	$this->vars["onlinedelay"] = time() + $this->settings["CronDelay"] + 60;
+	$this->vars["onlinedelay"] = time() + Settings::get("CronDelay") + 60;
 	include("./core/ORG_ROSTER/roster_guild.php");
 	$this->send("Done", $sender);
 } else

@@ -205,7 +205,7 @@ if (preg_match("/^settings$/i", $message)) {
 	}
 	if($new_setting != "") {
 		$db->query("UPDATE settings_<myname> SET `setting` = '".str_replace("'", "''", $new_setting)."' WHERE `name` = '$name_setting'");	  	
-		$this->settings[$name_setting] = $new_setting;
+		Settings::get($name_setting) = $new_setting;
 		$msg = "Setting successfull saved.";
 		//If the source is the config file renew it
 		if($row->source == "cfg") {
@@ -216,9 +216,9 @@ if (preg_match("/^settings$/i", $message)) {
 				elseif(preg_match("/^(.+)vars\[('|\")(.+)('|\")](.*)=(.*)([0-9]+)(.*);(.*)$/i", $line, $arr) && ($arr[3] == $name_setting))
   					$lines[$key] = "$arr[1]vars['$arr[3]']$arr[5]=$arr[6]{$this->vars[$arr[3]]}; $arr[9]";
 			  	elseif(preg_match("/^(.+)settings\[('|\")(.+)('|\")](.*)=(.*)\"(.*)\";(.*)$/i", $line, $arr)  && ($arr[3] == $name_setting))
-					$lines[$key] = "$arr[1]settings['$arr[3]']$arr[5]=$arr[6]\"{$this->settings[$arr[3]]}\"; $arr[8]";
+					$lines[$key] = "$arr[1]settings['$arr[3]']$arr[5]=$arr[6]\"{Settings::get($arr[3]]}\"; $arr[8)";
 				elseif(preg_match("/^(.+)settings\[('|\")(.+)('|\")](.*)=([ 	]+)([0-9]+);(.*)$/i", $line, $arr)  && ($arr[3] == $name_setting))
-					$lines[$key] = "$arr[1]settings['$arr[3]']$arr[5]=$arr[6]{$this->settings[$arr[3]]}; $arr[8]";
+					$lines[$key] = "$arr[1]settings['$arr[3]']$arr[5]=$arr[6]{Settings::get($arr[3]]}; $arr[8)";
 			}
 			file_put_contents("config.php", $lines);
 		}

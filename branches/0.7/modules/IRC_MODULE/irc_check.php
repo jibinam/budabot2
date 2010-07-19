@@ -10,7 +10,7 @@
 global $socket;
 
 stream_set_blocking($socket, 0);
-if(($data = fgets($socket)) && ("1" == $this->settings['irc_status'])) {
+if(($data = fgets($socket)) && ("1" == Settings::get('irc_status'))) {
 	$ex = explode(' ', $data);
 	$ex[3] = substr($ex[3],1,strlen($ex[3]));
 	$rawcmd = rtrim(htmlspecialchars($ex[3]));
@@ -19,7 +19,7 @@ if(($data = fgets($socket)) && ("1" == $this->settings['irc_status'])) {
 	$nicka = explode('@', $ex[0]);
 	$nickb = explode('!', $nicka[0]);
 	$nickc = explode(':', $nickb[0]);
-	if($this->settings['irc_debug_all'] == 1)
+	if(Settings::get('irc_debug_all') == 1)
 	{
 		newLine("IRC"," ",trim($data),0);
 	}
@@ -27,7 +27,7 @@ if(($data = fgets($socket)) && ("1" == $this->settings['irc_status'])) {
 	$nick = $nickc[1];
 	if($ex[0] == "PING"){
 		fputs($socket, "PONG ".$ex[1]."\n");
-		if($this->settings['irc_debug_ping'] == 1) {
+		if(Settings::get('irc_debug_ping') == 1) {
 			newLine("IRC"," ","PING received. PONG sent",0);
 		}
 	}
@@ -35,11 +35,11 @@ if(($data = fgets($socket)) && ("1" == $this->settings['irc_status'])) {
 		if($this->vars['my guild'] != "") {
 			$this->send("<yellow>[IRC]<end><green> $nick quit IRC.<end>","guild",true);
 		}
-		if($this->vars['my guild'] == "" ||$this->settings["guest_relay"] == 1) {
+		if($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
 			$this->send("<yellow>[IRC]<end><white> $nick quit IRC.<end>","priv",true);
 		}
 	}
-	elseif($channel == trim(strtolower($this->settings['irc_channel']))) {
+	elseif($channel == trim(strtolower(Settings::get('irc_channel')))) {
 		$args = NULL; for ($i = 4; $i < count($ex); $i++) { $args .= rtrim(htmlspecialchars($ex[$i])) . ' '; }
 		for ($i = 3; $i < count($ex); $i++) {
 			$ircmessage .= rtrim(htmlspecialchars($ex[$i]))." ";
@@ -110,7 +110,7 @@ if(($data = fgets($socket)) && ("1" == $this->settings['irc_status'])) {
 			if($this->vars['my guild'] != "") {
 				$this->send("<yellow>[IRC]<end><green> $nick joined the channel.<end>","guild",true);
 			}
-			if($this->vars['my guild'] == "" ||$this->settings["guest_relay"] == 1) {
+			if($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
 				$this->send("<yellow>[IRC]<end><white> $nick joined the channel.<end>","priv",true);
 			}
 		}
@@ -118,18 +118,18 @@ if(($data = fgets($socket)) && ("1" == $this->settings['irc_status'])) {
 			if($this->vars['my guild'] != "") {
 				$this->send("<yellow>[IRC]<end><green> $nick left the channel.<end>","guild",true);
 			}
-			if($this->vars['my guild'] == "" ||$this->settings["guest_relay"] == 1) {
+			if($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
 				$this->send("<yellow>[IRC]<end><white> $nick left the channel.<end>","priv",true);
 			}
 		}
 		else {
-			if($this->settings['irc_debug_messages'] == 1) {
+			if(Settings::get('irc_debug_messages') == 1) {
 				newLine("IRC"," ","[Inc. IRC Msg.] $nick: $ircmessage",0);
 			}
 			if($this->vars['my guild'] != "") {
 				$this->send("<yellow>[IRC]<end><green> $nick: $ircmessage<end>","guild",true);
 			}
-			if($this->vars['my guild'] == "" ||$this->settings["guest_relay"] == 1) {
+			if($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
 				$this->send("<yellow>[IRC]<end><white> $nick: $ircmessage<end>","priv",true);
 			}
 			flush();

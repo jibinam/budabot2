@@ -54,7 +54,7 @@ if (isset($this->guildmembers[$sender])) {
 			$msg = "<highlight>Unknown status on city cloak!<end>";
 			$case = 2;
 		}
-		if ($case <= $this->settings["showcloakstatus"]) {
+		if ($case <= Settings::get("showcloakstatus")) {
 			$this->send($msg, $sender);
 		}
     }

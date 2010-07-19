@@ -33,7 +33,7 @@
    */
 
 $db->query("SELECT * FROM tower_watch");
-$minutes = $this->settings["alarmpreview"];
+$minutes = Settings::get("alarmpreview");
 $seconds = $minutes * 60;
 
 $secondsPastMidnight = time() % 86400;

@@ -34,11 +34,11 @@ if (isset($this->guildmembers[$sender])) {
     if (time() >= $this->vars["onlinedelay"]) {
         $db->query("UPDATE org_members_<myname> SET `logged_off` = '".time()."' WHERE `name` = '$sender'");
 		
-		if ($this->settings["bot_notify"] != 0) {
+		if (Settings::get("bot_notify") != 0) {
 			$this->send("<highlight>$sender<end> logged off", "guild", true);
 			
 			//Guestchannel part
-			if($this->settings["guest_relay"] == 1) {
+			if(Settings::get("guest_relay") == 1) {
 				$this->send("<highlight>$sender<end> logged off", "priv", true);
 			}
 		}

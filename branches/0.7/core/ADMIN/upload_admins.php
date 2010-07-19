@@ -31,7 +31,7 @@
 
 $db->query("CREATE TABLE IF NOT EXISTS admin_<myname> (uid INT NOT NULL PRIMARY KEY, `adminlevel` INT NOT NULL)");
 
-$superAdmin = ucfirst(strtolower($this->settings["Super Admin"]));
+$superAdmin = ucfirst(strtolower(Settings::get("Super Admin")));
 $uid = $this->get_uid($superAdmin);
 
 if ($uid === FALSE) {

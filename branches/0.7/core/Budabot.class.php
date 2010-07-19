@@ -54,7 +54,7 @@ class Budabot extends AOChat {
 		$db->query("CREATE TABLE IF NOT EXISTS hlpcfg_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `description` VARCHAR(50), `file` VARCHAR(255), `access_level` INT DEFAULT 0, `verify` INT Default '0')");
 
 		// Load the Core Modules -- SETINGS must be first in case the other modules have settings
-		if ($this->settings['debug'] > 0) print("\n:::::::CORE MODULES::::::::\n");
+		if (Settings::get('debug') > 0) print("\n:::::::CORE MODULES::::::::\n");
 		$this->loadCoreModule("SETTINGS");
 		$this->loadCoreModule("SYSTEM");
 		$this->loadCoreModule("ADMIN");
@@ -74,7 +74,7 @@ class Budabot extends AOChat {
 ** Name: loadCoreModule
 ** Loads a core module
 */	function loadCoreModule($module_name) {
-		if ($this->settings['debug'] > 0) {
+		if (Settings::get('debug') > 0) {
 			print("CORE_MODULE_NAME:($module_name)\n");
 		}
 		include "./core/$module_name/$module_name.php";
@@ -143,21 +143,21 @@ class Budabot extends AOChat {
 		}
 
 		// Load User Modules
-		if ($this->settings['debug'] > 0) print("\n:::::::User MODULES::::::::\n");	
+		if (Settings::get('debug') > 0) print("\n:::::::User MODULES::::::::\n");	
 
 		//Load modules
 		$this->loadModules();
 
 		//Load active commands
-		if ($this->settings['debug'] > 0) print("\nSetting up commands.\n");
+		if (Settings::get('debug') > 0) print("\nSetting up commands.\n");
 		$this->loadCommands();
 
 		//Load active subcommands
-		if ($this->settings['debug'] > 0) print("\nSetting up subcommands.\n");
+		if (Settings::get('debug') > 0) print("\nSetting up subcommands.\n");
 		$this->loadSubcommands();
 
 		//Load active events
-		if ($this->settings['debug'] > 0) print("\nSetting up events.\n");
+		if (Settings::get('debug') > 0) print("\nSetting up events.\n");
 		$this->loadEvents();
 
 		//kill unused vars
@@ -300,14 +300,14 @@ class Budabot extends AOChat {
 		sleep(2);
 
 		// Set cron timers
-		$this->vars["2sec"] 			= time() + $this->settings["CronDelay"];
-		$this->vars["1min"] 			= time() + $this->settings["CronDelay"];
-		$this->vars["10mins"] 			= time() + $this->settings["CronDelay"];
-		$this->vars["15mins"] 			= time() + $this->settings["CronDelay"];
-		$this->vars["30mins"] 			= time() + $this->settings["CronDelay"];
-		$this->vars["1hour"] 			= time() + $this->settings["CronDelay"];
-		$this->vars["24hours"]			= time() + $this->settings["CronDelay"];
-		$this->vars["15min"] 			= time() + $this->settings["CronDelay"];
+		$this->vars["2sec"] 			= time() + Settings::get("CronDelay");
+		$this->vars["1min"] 			= time() + Settings::get("CronDelay");
+		$this->vars["10mins"] 			= time() + Settings::get("CronDelay");
+		$this->vars["15mins"] 			= time() + Settings::get("CronDelay");
+		$this->vars["30mins"] 			= time() + Settings::get("CronDelay");
+		$this->vars["1hour"] 			= time() + Settings::get("CronDelay");
+		$this->vars["24hours"]			= time() + Settings::get("CronDelay");
+		$this->vars["15min"] 			= time() + Settings::get("CronDelay");
 	}
 	
 	function get_buddy($name) {
@@ -331,13 +331,13 @@ class Budabot extends AOChat {
 			return false;
 		} else {
 			if (!isset($this->buddyList[$uid])) {
-				if ($this->settings['echo'] >= 1) newLine("Buddy", $name, "buddy added", $this->settings['echo']);
+				if (Settings::get('echo') >= 1) newLine("Buddy", $name, "buddy added", Settings::get('echo'));
 				$this->buddy_add($uid);
 			}
 			
 			if (!isset($this->buddyList[$uid]['types'][$type])) {
 				$this->buddyList[$uid]['types'][$type] = 1;
-				if ($this->settings['echo'] >= 1) newLine("Buddy", $name, "buddy type added (type: $type)", $this->settings['echo']);
+				if (Settings::get('echo') >= 1) newLine("Buddy", $name, "buddy type added (type: $type)", Settings::get('echo'));
 			}
 			
 			return true;
@@ -350,12 +350,12 @@ class Budabot extends AOChat {
 		} else if (isset($this->buddyList[$uid])) {
 			if (isset($this->buddyList[$uid]['types'][$type])) {
 				unset($this->buddyList[$uid]['types'][$type]);
-				if ($this->settings['echo'] >= 1) newLine("Buddy", $name, "buddy type removed (type: $type)", $this->settings['echo']);
+				if (Settings::get('echo') >= 1) newLine("Buddy", $name, "buddy type removed (type: $type)", Settings::get('echo'));
 			}
 
 			if (count($this->buddyList[$uid]['types']) == 0) {
 				unset($this->buddyList[$uid]);
-				if ($this->settings['echo'] >= 1) newLine("Buddy", $name, "buddy removed", $this->settings['echo']);
+				if (Settings::get('echo') >= 1) newLine("Buddy", $name, "buddy removed", Settings::get('echo'));
 				$this->buddy_remove($uid);
 			}
 			
@@ -400,7 +400,7 @@ class Budabot extends AOChat {
 ** Name: makeHeader
 ** Make header.
 */	function makeHeader($title, $links = null) {
-		$color = $this->settings['default_header_color'];
+		$color = Settings::get('default_header_color');
 		$baseR = hexdec(substr($color,14,2)); $baseG = hexdec(substr($color,16,2)); $baseB = hexdec(substr($color,18,2));
 		$color2 = "<font color='#".strtoupper(substr("00".dechex($baseR*.75),-2).substr("00".dechex($baseG*.75),-2).substr("00".dechex($baseB*.75),-2))."'>";
 		$color3 = "<font color='#".strtoupper(substr("00".dechex($baseR*.50),-2).substr("00".dechex($baseG*.50),-2).substr("00".dechex($baseB*.50),-2))."'>";
@@ -424,7 +424,7 @@ class Budabot extends AOChat {
 			}
 		}
 
-		$header .= $this->settings["default_window_color"]."\n\n";
+		$header .= Settings::get("default_window_color")."\n\n";
 
 		return $header;
 	}
@@ -438,16 +438,16 @@ class Budabot extends AOChat {
 		$page = 1;
 		forEach ($content as $line) {
 			$result[$page] .= $line."\n";
-			if (strlen($result[$page]) >= $this->settings["max_blob_size"]) {
+			if (strlen($result[$page]) >= Settings::get("max_blob_size")) {
 				$page++;
 			}
 		}
 		$pages = count($result);
 		if ($pages == 1) {
-			$result[$page] = "<a href=\"text://".$this->makeHeader($name, $links).$this->settings["default_window_color"].$result[$page]."\">$name</a>";
+			$result[$page] = "<a href=\"text://".$this->makeHeader($name, $links).Settings::get("default_window_color"].$result[$page)."\">$name</a>";
 		} else {
 			forEach ($result as $page => $content) {
-				$result[$page] = "<a href=\"text://".$this->makeHeader("$name Page $page / $pages", $links).$this->settings["default_window_color"].$result[$page]."\">$name</a> (Page <highlight>$page / $pages<end>)";
+				$result[$page] = "<a href=\"text://".$this->makeHeader("$name Page $page / $pages", $links).Settings::get("default_window_color"].$result[$page)."\">$name</a> (Page <highlight>$page / $pages<end>)";
 			}
 		}
 		return $result;
@@ -488,9 +488,9 @@ class Budabot extends AOChat {
 ** Formats an outgoing message with correct colors, replaces values, etc
 */	function formatMessage($message) {
 		// Color
-		$message = str_replace("<header>", $this->settings['default_header_color'], $message);
-		$message = str_replace("<error>", $this->settings['default_error_color'], $message);
-		$message = str_replace("<highlight>", $this->settings['default_highlight_color'], $message);
+		$message = str_replace("<header>", Settings::get('default_header_color'), $message);
+		$message = str_replace("<error>", Settings::get('default_error_color'), $message);
+		$message = str_replace("<highlight>", Settings::get('default_highlight_color'), $message);
 		$message = str_replace("<black>", "<font color='#000000'>", $message);
 		$message = str_replace("<white>", "<font color='#FFFFFF'>", $message);
 		$message = str_replace("<yellow>", "<font color='#FFFF00'>", $message);
@@ -505,7 +505,7 @@ class Budabot extends AOChat {
 		$message = str_replace("<myname>", $this->vars["name"], $message);
 		$message = str_replace("<tab>", "    ", $message);
 		$message = str_replace("<end>", "</font>", $message);
-		$message = str_replace("<symbol>", $this->settings["symbol"] , $message);
+		$message = str_replace("<symbol>", Settings::get("symbol") , $message);
 		
 		$message = str_replace("<neutral>", "<font color='#EEEEEE'>", $message);
 		$message = str_replace("<omni>", "<font color='#00FFFF'>", $message);
@@ -525,9 +525,9 @@ class Budabot extends AOChat {
 		}
 	
 		$message = $this->formatMessage($message);
-		$this->send_privgroup($group,$this->settings["default_priv_color"].$message);
-		if (($this->settings["guest_relay"] == 1 && $this->settings["guest_relay_commands"] == 1 && !$disable_relay)) {
-			$this->send_group($group, "</font>{$this->settings["guest_color_channel"]}[Guest]<end> {$this->settings["guest_color_username"]}{$this->vars["name"]}</font>: {$this->settings["default_priv_color"]}$message</font>");
+		$this->send_privgroup($group,Settings::get("default_priv_color").$message);
+		if ((Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay)) {
+			$this->send_group($group, "</font>" . Settings::get("guest_color_channel") . "[Guest]<end> " . Settings::get("guest_color_username") . "{$this->vars["name"]}</font>: " . Settings::get("default_priv_color") . "$message</font>");
 		}
 	}
 
@@ -553,21 +553,21 @@ class Budabot extends AOChat {
 
 		// Send
 		if ($who == 'prv') { // Target is private chat by defult.
-			$this->send_privgroup($this->vars["name"],$this->settings["default_priv_color"].$message);
-			if ($this->settings["guest_relay"] == 1 && $this->settings["guest_relay_commands"] == 1 && !$disable_relay) {
-				$this->send_group($this->vars["my guild"], "</font>{$this->settings["guest_color_channel"]}[Guest]<end> {$this->settings["guest_color_username"]}".$this->makeLink($this->vars["name"],$this->vars["name"],"user")."</font>: {$this->settings["default_priv_color"]}$message</font>");
+			$this->send_privgroup($this->vars["name"],Settings::get("default_priv_color").$message);
+			if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
+				$this->send_group($this->vars["my guild"], "</font>" . Settings::get("guest_color_channel"] . "[Guest]<end> " . Settings::get("guest_color_username") . $this->makeLink($this->vars["name"],$this->vars["name"],"user")."</font>: " . Settings::get("default_priv_color") . "$message</font>");
 			}
 		} else if ($who == $this->vars["my guild"] || $who == 'org') {// Target is guild chat.
-    		$this->send_group($this->vars["my guild"],$this->settings["default_guild_color"].$message);
-			if ($this->settings["guest_relay"] == 1 && $this->settings["guest_relay_commands"] == 1 && !$disable_relay) {
-				$this->send_privgroup($this->vars["name"], "</font>{$this->settings["guest_color_channel"]}[{$this->vars["my guild"]}]<end> {$this->settings["guest_color_username"]}".$this->makeLink($this->vars["name"],$this->vars["name"],"user")."</font>: {$this->settings["default_guild_color"]}$message</font>");
+    		$this->send_group($this->vars["my guild"],Settings::get("default_guild_color").$message);
+			if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
+				$this->send_privgroup($this->vars["name"], "</font>" . Settings::get("guest_color_channel") . "[{$this->vars["my guild"]}]<end> " . Settings::get("guest_color_username") . $this->makeLink($this->vars["name"], $this->vars["name"], "user")."</font>: " . Settings::get("default_guild_color") . "$message</font>");
 			}
 		} else if ($this->get_uid($who) != NULL) {// Target is a player.
-    		$this->send_tell($who,$this->settings["default_tell_color"].$message);
+    		$this->send_tell($who, Settings::get("default_tell_color").$message);
 			// Echo
-			if ($this->settings['echo'] >= 1) newLine("Out. Msg.", $who, $message, $this->settings['echo']);
+			if (Settings::get('echo') >= 1) newLine("Out. Msg.", $who, $message, Settings::get('echo'));
 		} else { // Public channels that are not myguild.
-	    	$this->send_group($who,$this->settings["default_guild_color"].$message);
+	    	$this->send_group($who, Settings::get("default_guild_color").$message);
 		}
 	}
 
@@ -586,14 +586,14 @@ class Budabot extends AOChat {
 		$description = str_replace("'", "''", $description);
 
 		for ($i = 0; $i < count($type); $i++) {
-			if ($this->settings['debug'] > 1) print("Adding Command to list:($command) File:($filename)\n");
-			if ($this->settings['debug'] > 1) print("                 Admin:({$access_level[$i]}) Type:({$type[$i]})\n");
-			if ($this->settings['debug'] > 2) sleep(1);
+			if (Settings::get('debug') > 1) print("Adding Command to list:($command) File:($filename)\n");
+			if (Settings::get('debug'] > 1) print("                 Admin:({$access_level[$i]}) Type:({$type[$i)})\n");
+			if (Settings::get('debug') > 2) sleep(1);
 			
 			if ($this->existing_commands[$type[$i]][$command] == true) {
 				$db->query("UPDATE cmdcfg_<myname> SET `module` = '$module', `verify` = 1, `file` = '$filename', `description` = '$description' WHERE `cmd` = '$command' AND `type` = '{$type[$i]}'");
 			} else {
-				$db->query("INSERT INTO cmdcfg_<myname> (`module`, `type`, `file`, `cmd`, `access_level`, `description`, `verify`, `cmdevent`, `status`) VALUES ('$module', '{$type[$i]}', '$filename', '$command', $access_level, '$description', 1, 'cmd', '".$this->settings["default module status"]."')");
+				$db->query("INSERT INTO cmdcfg_<myname> (`module`, `type`, `file`, `cmd`, `access_level`, `description`, `verify`, `cmdevent`, `status`) VALUES ('$module', '{$type[$i]}', '$filename', '$command', $access_level, '$description', 1, 'cmd', '".Settings::get("default module status")."')");
 			}
 		}
 	}
@@ -606,9 +606,9 @@ class Budabot extends AOChat {
 		
 		$filename = $module . '/' . $filename;
 
-	  	if ($this->settings['debug'] > 1) print("Activate Command:($command) Admin Type:($access_level)\n");
-		if ($this->settings['debug'] > 1) print("            File:($filename) Type:($type)\n");
-		if ($this->settings['debug'] > 2) sleep(1);
+	  	if (Settings::get('debug') > 1) print("Activate Command:($command) Admin Type:($access_level)\n");
+		if (Settings::get('debug') > 1) print("            File:($filename) Type:($type)\n");
+		if (Settings::get('debug') > 2) sleep(1);
 
 		//Check if the file exists
 		if (($filename = $this->verifyFilename($filename)) === FALSE) {
@@ -667,9 +667,9 @@ class Budabot extends AOChat {
   		global $db;
 		$command = strtolower($command);
 
-	  	if ($this->settings['debug'] > 1) print("Deactivate Command:($command) File:($filename)\n");
-		if ($this->settings['debug'] > 1) print("              Type:($type)\n");
-		if ($this->settings['debug'] > 2) sleep(1);
+	  	if (Settings::get('debug') > 1) print("Deactivate Command:($command) File:($filename)\n");
+		if (Settings::get('debug') > 1) print("              Type:($type)\n");
+		if (Settings::get('debug') > 2) sleep(1);
 
 		switch ($type) {
 			case "msg":
@@ -729,14 +729,14 @@ class Budabot extends AOChat {
 			$command = strtolower($command);
 
 		for ($i = 0; $i < count($type); $i++) {
-			if ($this->settings['debug'] > 1) print("Adding Subcommand to list:($command) File:($filename)\n");
-			if ($this->settings['debug'] > 1) print("                    Admin:($access_level[$i]) Type:({$type[$i]})\n");
-			if ($this->settings['debug'] > 2) sleep(1);
+			if (Settings::get('debug') > 1) print("Adding Subcommand to list:($command) File:($filename)\n");
+			if (Settings::get('debug'] > 1) print("                    Admin:($access_level[$i]) Type:({$type[$i)})\n");
+			if (Settings::get('debug') > 2) sleep(1);
 			
 			if ($this->existing_subcmds[$type[$i]][$command] == true) {
 				$db->query("UPDATE cmdcfg_<myname> SET `module` = '$module', `verify` = 1, `file` = '$filename', `description` = '$description', `dependson` = '$dependson' WHERE `cmd` = '$command' AND `type` = '{$type[$i]}'");
 			} else {
-				$db->query("INSERT INTO cmdcfg_<myname> (`module`, `type`, `file`, `cmd`, `access_level`, `description`, `verify`, `cmdevent`, `dependson`, `status`) VALUES ('$module', '{$type[$i]}', '$filename', '$command', $access_level, '$description', 1, 'subcmd', '$dependson', '".$this->settings["default module status"]."')");
+				$db->query("INSERT INTO cmdcfg_<myname> (`module`, `type`, `file`, `cmd`, `access_level`, `description`, `verify`, `cmdevent`, `dependson`, `status`) VALUES ('$module', '{$type[$i]}', '$filename', '$command', $access_level, '$description', 1, 'subcmd', '$dependson', '".Settings::get("default module status")."')");
 			}
 		}
 	}
@@ -747,10 +747,10 @@ class Budabot extends AOChat {
 */	function event($type, $module, $filename, $dependson = 'none', $desc = 'none') {
 		global $db;
 
-	  	if ($this->settings['debug'] > 1) print("Adding Event to list:($type) File:($filename)\n");
-		if ($this->settings['debug'] > 2) sleep(1);
+	  	if (Settings::get('debug') > 1) print("Adding Event to list:($type) File:($filename)\n");
+		if (Settings::get('debug') > 2) sleep(1);
 
-		if ($dependson == "none" && $this->settings["default module status"] == 1) {
+		if ($dependson == "none" && Settings::get("default module status") == 1) {
 			$status = 1;
 		} else {
 			$status = 0;
@@ -771,8 +771,8 @@ class Budabot extends AOChat {
 		
 		$filename = $module . '/' . $filename;
 
-	  	if ($this->settings['debug'] > 1) print("Activating Event:($type) File:($filename)\n");
-		if ($this->settings['debug'] > 2) sleep(1);
+	  	if (Settings::get('debug') > 1) print("Activating Event:($type) File:($filename)\n");
+		if (Settings::get('debug') > 2) sleep(1);
 
 		//Check if the file exists
 		if (($filename = $this->verifyFilename($filename)) === FALSE) {
@@ -903,8 +903,8 @@ class Budabot extends AOChat {
 ** Name: unregevent
 **  Disables an event
 */	function unregevent($type, $module, $filename) {
-		if ($this->settings['debug'] > 1) print("Deactivating Event:($type) File:($filename)\n");
-		if ($this->settings['debug'] > 2) sleep(1);
+		if (Settings::get('debug') > 1) print("Deactivating Event:($type) File:($filename)\n");
+		if (Settings::get('debug') > 2) sleep(1);
 		
 		$filename = $module . '/' . $filename;
 
@@ -1089,8 +1089,8 @@ class Budabot extends AOChat {
 		
 		$command = strtolower($command);
 
-		if ($this->settings['debug'] > 1) print("Registering Helpfile:($filename) Cmd:($command)\n");
-		if ($this->settings['debug'] > 2) sleep(1);
+		if (Settings::get('debug') > 1) print("Registering Helpfile:($filename) Cmd:($command)\n");
+		if (Settings::get('debug') > 2) sleep(1);
 
 		$sql = "SELECT * FROM hlpcfg_<myname> WHERE name = '$command'";
 		$db->query($sql);
@@ -1143,10 +1143,10 @@ class Budabot extends AOChat {
 				$this->chatlist[$sender] = true;
 				
 				// Echo
-				if ($this->settings['echo'] >= 1) newLine("Priv Group", $sender, "joined the channel.", $this->settings['echo']);
+				if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, "joined the channel.", Settings::get('echo'));
 
 				// Remove sender if they are /ignored or /banned or They gone above spam filter
-                if ($this->settings["Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || $this->spam[$sender] > 100) {
+                if (Settings::get("Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || $this->spam[$sender) > 100) {
 					$this->privategroup_kick($sender);
 					return;
 				}
@@ -1168,13 +1168,13 @@ class Budabot extends AOChat {
 				$char_id = $args[1];
 
 				// Echo
-				if ($this->settings['echo'] >= 1) newLine("Priv Group", $sender, "left the channel.", $this->settings['echo']);
+				if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, "left the channel.", Settings::get('echo'));
 
 				// Remove from Chatlist array.
 				unset($this->chatlist[$sender]);
 				
 				// Remove sender if they are /ignored or /banned or They gone above spam filter
-				if ($this->settings["Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || $this->spam[$sender] > 100) {
+				if (Settings::get("Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || $this->spam[$sender) > 100) {
 					return;
 				}
 				
@@ -1197,7 +1197,7 @@ class Budabot extends AOChat {
 				$this->buddyList[$bid]['known'] = (ord($btype) ? 1 : 0);
 
 				//Ignore Logon/Logoff from other bots or phantom logon/offs
-                if ($this->settings["Ignore"][$sender] == true || $sender == "") {
+                if (Settings::get("Ignore"][$sender) == true || $sender == "") {
 					return;
 				}
 
@@ -1206,7 +1206,7 @@ class Budabot extends AOChat {
 					$type = "logOff"; // Set message type
 					
 					// Echo
-					//if ($this->settings['echo'] >= 1) newLine("Buddy", $sender, "logged off", $this->settings['echo']);
+					//if (Settings::get('echo') >= 1) newLine("Buddy", $sender, "logged off", Settings::get('echo'));
 
 					// Check files, for all 'player logged off events'
 					if ($this->logOff != NULL) {
@@ -1219,7 +1219,7 @@ class Budabot extends AOChat {
 					$type = "logOn"; // Set Message Type
 					
 					// Echo
-					if ($this->settings['echo'] >= 1) newLine("Buddy", $sender, "logged on", $this->settings['echo']);
+					if (Settings::get('echo') >= 1) newLine("Buddy", $sender, "logged on", Settings::get('echo'));
 
 					// Check files, for all 'player logged on events'.
 					if ($this->logOn != NULL) {
@@ -1246,7 +1246,7 @@ class Budabot extends AOChat {
 				$message = html_entity_decode($message, ENT_QUOTES);
 
 				// Echo
-				if ($this->settings['echo'] >= 1) newLine("Inc. Msg.", $sender, $message, $this->settings['echo']);
+				if (Settings::get('echo') >= 1) newLine("Inc. Msg.", $sender, $message, Settings::get('echo'));
 
 				// AFK/bot check
 				if (preg_match("/^$sender is AFK/si", $message, $arr)) {
@@ -1263,13 +1263,13 @@ class Budabot extends AOChat {
 					return;
 				}
 
-				if ($this->settings["Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || ($this->spam[$sender] > 100 && $this->vars['spam protection'] == 1)) {
+				if (Settings::get("Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || ($this->spam[$sender] > 100 && $this->vars['spam protection') == 1)) {
 					$this->spam[$sender] += 20;
 					return;
 				}
 
 				//Remove the prefix infront if there is one
-				if ($message[0] == $this->settings["symbol"] && strlen($message) > 1) {
+				if ($message[0] == Settings::get("symbol") && strlen($message) > 1) {
 					$message = substr($message, 1);
 				}
 
@@ -1333,7 +1333,7 @@ class Budabot extends AOChat {
 				$message = $args[2];
 				$restricted = false;
 				if ($sender == $this->vars["name"]) {
-					if ($this->settings['echo'] >= 1) newLine("Priv Group", $sender, $message, $this->settings['echo']);
+					if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, $message, Settings::get('echo'));
 					return;
 				}
 				if ($this->banlist["$sender"]["name"] == $sender) {
@@ -1355,7 +1355,7 @@ class Budabot extends AOChat {
 					$type = "priv";
 
 					// Echo
-					if ($this->settings['echo'] >= 1) newLine("Priv Group", $sender, $message, $this->settings['echo']);
+					if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, $message, Settings::get('echo'));
 
 					if ($this->privChat != NULL) {
 						forEach ($this->privChat as $file) {
@@ -1365,8 +1365,8 @@ class Budabot extends AOChat {
 					}
 
 					$msg = "";
-					if (!$restriced && (($message[0] == $this->settings["symbol"] && strlen($message) >= 2) || preg_match("/^(afk|brb)/i", $message, $arr))) {
-						if ($message[0] == $this->settings["symbol"]) {
+					if (!$restriced && (($message[0] == Settings::get("symbol") && strlen($message) >= 2) || preg_match("/^(afk|brb)/i", $message, $arr))) {
+						if ($message[0] == Settings::get("symbol")) {
 							$message 	= substr($message, 1);
 						}
 						$words		= split(' ', strtolower($message));
@@ -1397,7 +1397,7 @@ class Budabot extends AOChat {
 					
 					$type = "extPriv";
 					
-					if ($this->settings['echo'] >= 1) newLine("Ext Priv Group $channel", $sender, $message, $this->settings['echo']);
+					if (Settings::get('echo') >= 1) newLine("Ext Priv Group $channel", $sender, $message, Settings::get('echo'));
 					
 					if ($this->extPrivChat != NULL) {
 						forEach ($this->extPrivChat as $file) {
@@ -1435,7 +1435,7 @@ class Budabot extends AOChat {
 					}
 				}
 
-				if ($this->settings['echo'] >= 1) newLine($channel, $sender, $message, $this->settings['echo']);
+				if (Settings::get('echo') >= 1) newLine($channel, $sender, $message, Settings::get('echo'));
 
 				if ($sender) {
 					//Ignore Message that are sent from the bot self
@@ -1444,7 +1444,7 @@ class Budabot extends AOChat {
 					}
 
 					//Ignore tells from other bots
-	                if ($this->settings["Ignore"][$sender] == true)
+	                if (Settings::get("Ignore"][$sender) == true)
 						return;
 
 					if ($this->banlist["$sender"]["name"] == "$sender")
@@ -1479,8 +1479,8 @@ class Budabot extends AOChat {
 						}
 
 					$msg = "";
-					if (!$restriced && (($message[0] == $this->settings["symbol"] && strlen($message) >= 2) || preg_match("/^(afk|brb)/i", $message, $arr))) {
-						if ($message[0] == $this->settings["symbol"]) {
+					if (!$restriced && (($message[0] == Settings::get("symbol") && strlen($message) >= 2) || preg_match("/^(afk|brb)/i", $message, $arr))) {
+						if ($message[0] == Settings::get("symbol")) {
 							$message 	= substr($message, 1);
 						}
     					$words		= split(' ', strtolower($message));
@@ -1520,7 +1520,7 @@ class Budabot extends AOChat {
 				$char_id = $args[0];
 
 				// Echo
-				if ($this->settings['echo'] >= 1) newLine("Priv Group Invitation", $sender, " channel invited.", $this->settings['echo']);
+				if (Settings::get('echo') >= 1) newLine("Priv Group Invitation", $sender, " channel invited.", Settings::get('echo'));
 
 				if ($this->extJoinPrivRequest != NULL) {
 					forEach ($this->extJoinPrivRequest as $file) {

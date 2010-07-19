@@ -50,7 +50,7 @@ if (preg_match("/^nlprof (.*)$/i", $message, $arr)) {
 	while($row = $db->fObject()) {
 
 		$count++;
-		if ($this->settings["shownanolineicons"] == "1") {
+		if (Settings::get("shownanolineicons") == "1") {
 			$window .= "<img src='rdb://$row->image_id'><br>";
 		}
 		$window .= $this->makeLink("$row->name", "/tell <myname> <symbol>nlline $row->id", 'chatcmd');

@@ -1,7 +1,7 @@
 <?php
 
 if (preg_match("/^svn update/i", $message)) {
-	$command = "svn update --accept " . $this->settings['svnconflict'];
+	$command = "svn update --accept " . Settings::get('svnconflict');
 	$output = array();
 	$return_var = '';
 	exec($command, $output, $return_var);

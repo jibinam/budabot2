@@ -13,9 +13,9 @@ global $db;
 require_once("bbin_func.php");
 
 stream_set_blocking($bbin_socket, 0);
-if(($data = fgets($bbin_socket)) && ("1" == $this->settings['bbin_status'])) {
+if(($data = fgets($bbin_socket)) && ("1" == Settings::get('bbin_status'))) {
 	$ex = explode(' ', $data);
-	if($this->settings['bbin_debug_all'] == 1)
+	if(Settings::get('bbin_debug_all') == 1)
 	{
 		newLine("BBIN"," ",trim($data),0);
 	}
@@ -29,7 +29,7 @@ if(($data = fgets($bbin_socket)) && ("1" == $this->settings['bbin_status'])) {
 	if($ex[0] == "PING")
 	{
 		fputs($bbin_socket, "PONG ".$ex[1]."\n");
-		if($this->settings['bbin_debug_ping'] == 1)
+		if(Settings::get('bbin_debug_ping') == 1)
 		{
 			newLine("BBIN"," ","PING received. PONG sent.",0);
 		}
@@ -49,7 +49,7 @@ if(($data = fgets($bbin_socket)) && ("1" == $this->settings['bbin_status'])) {
 			{
 				$this->send("<yellow>[BBIN]<end> Lost connection with server:".$extendedinfo,"guild",true);
 			}
-			if($this->vars['my guild'] == "" ||$this->settings["guest_relay"] == 1)
+			if($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1)
 			{
 				$this->send("<yellow>[BBIN]<end> Lost connection with server:".$extendedinfo,"priv",true);
 			}
@@ -58,7 +58,7 @@ if(($data = fgets($bbin_socket)) && ("1" == $this->settings['bbin_status'])) {
 	elseif ("KICK" == $ex[1])
 	{
 		$extendedinfo = $this->makelink("Extended informations",$data);
-		if ($ex[3] == $this->settings['bbin_nickname'])
+		if ($ex[3] == Settings::get('bbin_nickname'))
 		{
 			// oh noez, I was kicked !
 			Settings::save("bbin_status","0");
@@ -66,7 +66,7 @@ if(($data = fgets($bbin_socket)) && ("1" == $this->settings['bbin_status'])) {
 			{
 				$this->send("<yellow>[BBIN]<end> Our uplink was kicked from the server:".$extendedinfo,"guild",true);
 			}
-			if($this->vars['my guild'] == "" ||$this->settings["guest_relay"] == 1)
+			if($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1)
 			{
 				$this->send("<yellow>[BBIN]<end> Our uplink was kicked from the server:".$extendedinfo,"priv",true);
 			}
@@ -79,7 +79,7 @@ if(($data = fgets($bbin_socket)) && ("1" == $this->settings['bbin_status'])) {
 			{
 				$this->send("<yellow>[BBIN]<end> The uplink ".$ex[3]." was kicked from the server:".$extendedinfo,"guild",true);
 			}
-			if($this->vars['my guild'] == "" ||$this->settings["guest_relay"] == 1)
+			if($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1)
 			{
 				$this->send("<yellow>[BBIN]<end> The uplink ".$ex[3]." was kicked from the server:".$extendedinfo,"priv",true);
 			}
@@ -92,7 +92,7 @@ if(($data = fgets($bbin_socket)) && ("1" == $this->settings['bbin_status'])) {
 		{
 			$this->send("<yellow>[BBIN]<end> Lost uplink with $nick","guild",true);
 		}
-		if($this->vars['my guild'] == "" ||$this->settings["guest_relay"] == 1)
+		if($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1)
 		{
 			$this->send("<yellow>[BBIN]<end> Lost uplink with $nick","priv",true);
 		}
@@ -103,12 +103,12 @@ if(($data = fgets($bbin_socket)) && ("1" == $this->settings['bbin_status'])) {
 		{
 			$this->send("<yellow>[BBIN]<end> Uplink established with $nick.","guild",true);
 		}
-		if($this->vars['my guild'] == "" || $this->settings["guest_relay"] == 1)
+		if($this->vars['my guild'] == "" || Settings::get("guest_relay") == 1)
 		{
 			$this->send("<yellow>[BBIN]<end> Uplink established with $nick.","priv",true);
 		}
 	}
-	elseif($channel == trim(strtolower($this->settings['bbin_channel'])))
+	elseif($channel == trim(strtolower(Settings::get('bbin_channel'))))
 	{
 		// tweak the third message a bit to remove beginning ":"
 		$ex[3] = substr($ex[3],1,strlen($ex[3]));
@@ -116,7 +116,7 @@ if(($data = fgets($bbin_socket)) && ("1" == $this->settings['bbin_status'])) {
 		{
 			$bbinmessage .= rtrim(htmlspecialchars_decode($ex[$i]))." ";
 		}
-		if($this->settings['bbin_debug_messages'] == 1)
+		if(Settings::get('bbin_debug_messages') == 1)
 		{
 			newLine("BBIN"," ","[Inc. IRC Msg.] $nick: $bbinmessage",0);
 		}

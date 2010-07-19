@@ -29,10 +29,10 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 if (preg_match("/^minlvl$/i", $message)) {
- 	if($this->settings["priv_req_lvl"] == 0)
+ 	if(Settings::get("priv_req_lvl") == 0)
  		$msg = "No Level Limit has been set for privategroup Invites.";
  	else
- 		$msg = "Level Limit for responding on tells has been set to Lvl {$this->settings["tell_req_lvl"]}";
+ 		$msg = "Level Limit for responding on tells has been set to Lvl {Settings::get("tell_req_lvl")}";
 
     $this->send($msg, $sendto);
 } else if (preg_match("/^minlvl ([0-9]+)$/i", $message, $arr)) {
@@ -53,9 +53,9 @@ if (preg_match("/^minlvl$/i", $message)) {
 
     $this->send($msg, $sendto);
 } else if (preg_match("/^open$/i", $message)) {
- 	if($this->settings["oriv_req_open"] == "all")
+ 	if(Settings::get("oriv_req_open") == "all")
  		$msg = "No General Limit is set for privategroup Invites.";
- 	elseif($this->settings["priv_req_open"] == "org")
+ 	elseif(Settings::get("priv_req_open") == "org")
  		$msg = "General Limit for privategroup Invites is set to Organisation members only.";
 	else
 		$msg = "General Limit for privategroup Invites is set to Bot members only.";
@@ -75,10 +75,10 @@ if (preg_match("/^minlvl$/i", $message)) {
 
     $this->send($msg, $sendto);
 } else if (preg_match("/^faction/i", $message)) {
- 	if($this->settings["pirv_req_faction"] == "all")
+ 	if(Settings::get("pirv_req_faction") == "all")
  		$msg = "No Faction Limit is set for privategroup Invites.";
 	else
-		$msg = "Faction Limit for privategroup Invits is set to {$this->settings["priv_req_faction"]}.";
+		$msg = "Faction Limit for privategroup Invits is set to {Settings::get("priv_req_faction")}.";
 		
     $this->send($msg, $sendto); 	
 } else if (preg_match("/^faction (omni|clan|neutral|all)$/i", $message, $arr)) {
@@ -99,10 +99,10 @@ if (preg_match("/^minlvl$/i", $message)) {
 
     $this->send($msg, $sendto);
 } else if (preg_match("/^maxplayers$/i", $message)) {
- 	if($this->settings["priv_req_faction"] == "all")
+ 	if(Settings::get("priv_req_faction") == "all")
  		$msg = "No Faction Limit is set for privategroup Invites.";
 	else
-		$msg = "Faction Limit for privategroup Invits is set to {$this->settings["priv_req_maxplayers"]}.";
+		$msg = "Faction Limit for privategroup Invits is set to {Settings::get("priv_req_maxplayers")}.";
 	
     $this->send($msg, $sendto); 	 
 } else if (preg_match("/^maxplayer ([0-9]+)$/i", $message, $arr)) {

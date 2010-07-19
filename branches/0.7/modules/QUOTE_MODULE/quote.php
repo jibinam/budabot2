@@ -14,7 +14,7 @@
 if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	
 	if (!isset($this->admins[$sender])) {
-		$requirement = $this->settings["quote_add_min"];
+		$requirement = Settings::get("quote_add_min");
 		if ($requirement >= 0) {
 			if (!$this->guildmembers[$sender]) {
 				$this->send("Only org members can add a new quote.", $sendto);

@@ -7,5 +7,5 @@ $db->query("CREATE TABLE IF NOT EXISTS guild_chatlist_<myname> (`name` CHAR(25) 
 $db->query("CREATE TABLE IF NOT EXISTS alts (`alt` VARCHAR(25) NOT NULL PRIMARY KEY, `main` VARCHAR(25))");
 
 // Set Delay for notify on/off(prevent spam from org roster module)
-$this->vars["onlinedelay"] = time() + $this->settings["CronDelay"] + 60;
+$this->vars["onlinedelay"] = time() + Settings::get("CronDelay") + 60;
 ?>

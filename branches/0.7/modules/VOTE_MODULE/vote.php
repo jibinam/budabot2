@@ -134,7 +134,7 @@ if (preg_match("/^vote$/i", $message)) {
 				$msg .= $this->makeLink('Remove yourself from this vote', "/tell <myname> vote remove$delimiter$question", 'chatcmd') . "\n";
 			}
 			
-			if ($timeleft > 0 && $this->settings["vote_add_new_choices"] == 1 && $status == 0) {
+			if ($timeleft > 0 && Settings::get("vote_add_new_choices") == 1 && $status == 0) {
 				$msg .="\n<highlight>Don't like these choices?  Add your own:<end>\n<tab>/tell <myname> <symbol>vote $question$delimiter"."<highlight>your choice<end>\n"; 
 			}
 			
@@ -208,7 +208,7 @@ if (preg_match("/^vote$/i", $message)) {
 	////////////////////////////////////////////////////////////////////////////////////
 	} elseif (count($sect) == 2) {		  			     // Adding vote
 
-		$requirement = $this->settings["vote_use_min"];
+		$requirement = Settings::get("vote_use_min");
 		if ($requirement >= 0) {
 			if (!$this->guildmembers[$sender]) {
 				$this->send("Only org members can start a new vote.", $sender);
@@ -229,7 +229,7 @@ if (preg_match("/^vote$/i", $message)) {
 		
 		if (!$duration) {$msg = "Couldn't find any votes with this topic.";} 
 		elseif ($timeleft <= 0) {$msg = "No longer accepting votes for this topic.";} 
-		elseif (($this->settings["vote_add_new_choices"] == 0 || ($this->settings["vote_add_new_choices"] == 1 && $status == 1)) && strpos($delimiter.$answer.$delimiter, $delimiter.$sect[1].$delimiter) === false){$msg = "Cannot accept this choice.  Please choose one from the menu.";}
+		elseif ((Settings::get("vote_add_new_choices") == 0 || (Settings::get("vote_add_new_choices") == 1 && $status == 1)) && strpos($delimiter.$answer.$delimiter, $delimiter.$sect[1).$delimiter) === false){$msg = "Cannot accept this choice.  Please choose one from the menu.";}
 		else {
 			$db->query("SELECT * FROM $table WHERE `question` = '".str_replace("'", "''", $sect[0])."' AND `duration` IS NULL AND `author` = '$sender'");
 			if ($db->numrows() > 0) {
@@ -248,7 +248,7 @@ if (preg_match("/^vote$/i", $message)) {
 		
 		$settime=trim($sect[0]); $question = trim($sect[1]); $answers = trim($sect[2]);
 		
-		$requirement = $this->settings["vote_create_min"];
+		$requirement = Settings::get("vote_create_min");
 		if ($requirement >= 0) {
 			if (!$this->guildmembers[$sender]) {
 				$this->send("Only org members can start a new vote.", $sender);

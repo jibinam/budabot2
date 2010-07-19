@@ -14,9 +14,9 @@ $stat->m_cmdprog	= '"' . getcwd() . '/modules/VENTRILO_MODULE/ventrilo_status.ex
 $stat->m_cmdcode	= "2";					// Detail mode. 1=General Status, 2=Detail
 
 // change config below this line only
-$stat->m_cmdhost	= $this->settings["ventaddress"];	// enter your vent server ip or hostname here
-$stat->m_cmdport	= $this->settings["ventport"];		// enter your vent server port number
-$stat->m_cmdpass	= $this->settings["ventpassword"];	// Status password if necessary.
+$stat->m_cmdhost	= Settings::get("ventaddress");	// enter your vent server ip or hostname here
+$stat->m_cmdport	= Settings::get("ventport");		// enter your vent server port number
+$stat->m_cmdpass	= Settings::get("ventpassword");	// Status password if necessary.
 
 $lobby = new CVentriloChannel;
 $lobby->m_cid = 0;			// Channel ID.
@@ -28,14 +28,14 @@ $stat->m_channellist[] = $lobby;
 
 $msg = '';
 $error = FALSE;
-if ($this->settings["ventimplementation"] == 1) {
+if (Settings::get("ventimplementation") == 1) {
 
 	$rc = $stat->Request();
 	if ($rc) {
 		$error =  "Could not get ventrilo info: $stat->m_error";
 	}
 
-} else if ($this->settings["ventimplementation"] == 2) {
+} else if (Settings::get("ventimplementation") == 2) {
 
 	$vent = new Vent;
 	$vent->setTimeout( 500000 );		// 300 ms timeout
@@ -82,14 +82,14 @@ if ($error === FALSE) {
     $page .= "Hostname: <white>{$stat->m_cmdhost}<end>\n";
     $page .= "Port Number: <white>{$stat->m_cmdport}<end>\n";
     
-    if ($this->settings["showventpassword"] == 1) {
+    if (Settings::get("showventpassword") == 1) {
     	$page .= "Password: <white>{$stat->m_cmdpass}<end>\n\n";
 	}
 
     $page .= "Server Name: <white>{$stat->m_name}<end>\n";
     $page .= "Users: <white>{$stat->m_clientcount} / {$stat->m_maxclients}<end>\n";
     
-    if ($this->settings["showextendedinfo"] == 1) {
+    if (Settings::get("showextendedinfo") == 1) {
 		$page .= "Voice Encoder: <white>{$stat->m_voicecodec_code}<end> - <grey>{$stat->m_voicecodec_desc}<end>\n";
 		$page .= "Voice Format: <white>{$stat->m_voiceformat_code}<end> - <grey>{$stat->m_voiceformat_desc}<end>\n";
 		$page .= "Server Uptime: $uptime\n";

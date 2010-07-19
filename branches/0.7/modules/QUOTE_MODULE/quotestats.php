@@ -10,7 +10,7 @@
    ** Date(last modified): 14.06.2007
    */
    
-   $top = $this->settings["quote_stat_count"];
+   $top = Settings::get("quote_stat_count");
 
    $db->query("SELECT * FROM quote");
    $count = $db->numrows();

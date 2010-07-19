@@ -9,7 +9,7 @@
    */
 
 	$MODULE_NAME = "IRC_MODULE";
-	if($this->settings['irc_channel'] == "") {
+	if(Settings::get('irc_channel') == "") {
 		if($this->vars['my guild'] == "") {
 			$channel = "#".strtolower($this->vars['name']);
 		}

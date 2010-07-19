@@ -10,7 +10,7 @@
    */
 
 	$MODULE_NAME = "BBIN_MODULE";
-	if($this->settings['bbin_channel'] == "") {
+	if(Settings::get('bbin_channel') == "") {
 		if($this->vars['my guild'] == "") {
 			$channel = "#".strtolower($this->vars['name']);
 		}

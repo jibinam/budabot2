@@ -1,10 +1,10 @@
 <?php
 
-if (($this->settings["relaybot"] != "Off") && ($args[2][0] != $this->settings["symbol"])) {
+if ((Settings::get("relaybot") != "Off") && ($args[2][0] != Settings::get("symbol"))) {
 	$relayMessage = '';
-	if ($this->settings['relaysymbol'] == 'Always relay') {
+	if (Settings::get('relaysymbol') == 'Always relay') {
 		$relayMessage = $message;
-	} else if ($args[2][0] == $this->settings['relaysymbol']) {
+	} else if ($args[2][0] == Settings::get('relaysymbol')) {
 		$relayMessage = substr($args[2], 1);
 	}
 

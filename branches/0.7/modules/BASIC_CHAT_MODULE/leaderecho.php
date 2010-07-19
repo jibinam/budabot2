@@ -29,8 +29,8 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if($this->settings["leaderecho"] == 1 && $this->vars["leader"] == $sender && $message[0] != $this->settings["symbol"]) {
-  	$msg = "{$this->settings["leaderecho_color"]}$message<end>";
+if (Settings::get("leaderecho") == 1 && $this->vars["leader"] == $sender && $message[0] != Settings::get("symbol")) {
+  	$msg = Settings::get("leaderecho_color") . $message . "<end>";
   	$this->send($msg);
 }
 ?>

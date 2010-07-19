@@ -33,10 +33,10 @@
    */
 
 // relay org messages between linked orgs
-if($this->settings["relaybot"] != "0") {
+if(Settings::get("relaybot") != "0") {
 
 	$orgName = $this->vars["my guild"];
-	$this->send("grc <grey>[$orgName] $message<end>", $this->settings["relaybot"]);
+	$this->send("grc <grey>[$orgName] $message<end>", Settings::get("relaybot"));
 }
 
 ?>
