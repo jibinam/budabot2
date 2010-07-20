@@ -4,14 +4,15 @@
 
 ==Preparation==
 If this is an official release you need to do these things first:
-  # Update "/patchnotes.txt" for this release
   # Open "/main.php" and update $version (ex: $version = "0.6.6_RC9")
   # Open "/core/HELP/about.txt" and update the version in there also (ex: `Version: <highlight>0.6.6_RC9<end>`)
-Make sure that these are committed.
+  # Update "/patchnotes.txt" for this release
+  # Commit these changes
+  # Tag this release
 
-On the other hand, if this is not an official release (ie. if this is a release candidate), then still do these things, but don't commit the changes to SVN.  Instead, just include the changed files in the release candidate when you create the zip file in step 6.
+On the other hand, if this is not an official release (ie. if this is a release candidate), then still do steps 1 and 2 of Preparation, but don't commit the changes to SVN or tag the release.  And you can skip updating patch notes for release candidates also if you wish.  However, do include the changed files from steps 1 and 2 of Preparation in the release candidate when you create the zip file in step 6 of Creating below.
 
-==Steps==
+==Creating==
   # "Checkout" or "Export" from /svn/branches/0.6 (or 0.7)
   # If you "Checked Out" you will need to search for and remove all the .svn folders
   # Remove the SVN_MODULE from /modules
