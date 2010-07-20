@@ -45,9 +45,9 @@ if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
 		$db->query("SELECT * FROM members_<myname>");
 		while ($row = $db->fObject()) {
 			if ($row->autoinv == 1) {
-				$this->add_buddy($row->name, "member");
+				Buddylist::add($row->uid, "member");
 			} else {
-				$this->remove_buddy($row->name, "member");
+				Buddylist::remove($row->uid, "member");
 			}
 		}
 		
@@ -83,10 +83,12 @@ if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
 		            $this->guildmembers[$amember] = $org->members[$amember]["rank_id"];
 					
 					// add org members who are on notify to buddy list
-					$this->add_buddy($amember, 'org');
+					$uid = $this->get_uid($amember);
+					Buddylist::add($uid, 'org');
 			  	} else {
 		            $mode = "del";
-					$this->remove_buddy($amember, 'org');
+					$uid = $this->get_uid($amember);
+					Buddylist::remove($uid, 'org');
 				}
 		
 		        $db->query("UPDATE org_members_<myname> SET `mode` = '".$mode."',
@@ -105,7 +107,8 @@ if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
 			//Else insert his data
 			} else {
 				// add new org members to buddy list
-				$this->add_buddy($amember, 'org');
+				$uid = $this->get_uid($amember);
+				Buddylist::add($uid, 'org');
 			
 			    $db->query("INSERT INTO org_members_<myname> (`name`, `mode`, `firstname`, `lastname`, `guild`, `rank_id`, `rank`, `level`, `profession`, `gender`, `breed`, `ai_level`, `ai_rank`)
 		                        VALUES ('".$org -> members[$amember]["name"]."', 'org',
@@ -127,7 +130,8 @@ if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
 		// remove buddies who used to be org members, but are no longer
 		forEach ($dbentrys as $buddy) {
 			$db->exec("DELETE FROM org_members_<myname> WHERE `name` = '".$buddy['name']."'");
-			$this->remove_buddy($buddy['name'], 'org');
+			$uid = $this->get_uid($buddy['name']);
+			Buddylist::remove($uid, 'org');
 		}
 
 		echo "Org Roster Update is done. \n";

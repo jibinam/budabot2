@@ -82,7 +82,7 @@ if($org_member->mode != "del" && $numrows == 1) {
             $list = "<header>::::: Alternative Character List :::::<end> \n \n";
             $list .= ":::::: Main Character\n";
             $list .= "<tab><tab>".bot::makeLink($main, "/tell <myname> whois $main", "chatcmd")." - ";
-			$online = $this->buddy_online($main);
+			$online = Buddylist::is_online($main);
             if ($online === null) {
                 $list .= "No status.\n";
             } else if ($online == 1) {
@@ -95,7 +95,7 @@ if($org_member->mode != "del" && $numrows == 1) {
             $db->query("SELECT * FROM alts WHERE `main` = '$main'");
             while ($row = $db->fObject()) {
                 $list .= "<tab><tab>".bot::makeLink($row->alt, "/tell <myname> whois $row->alt", "chatcmd")." - ";
-				$online = $this->buddy_online($row->alt);
+				$online = Buddylist::is_online($row->alt);
                 if ($online === null) {
                     $list .= "No status.\n";
                 } else if ($online == 1) {

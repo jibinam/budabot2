@@ -60,7 +60,7 @@
 	        if ($msg)
 	        {
 		        // send message to main if he/she is online
-		        if ($this->buddy_online($row->player))
+		        if (Buddylist::is_online($row->player))
 		        {
 					$this->send($msg, $row->player);
 				}
@@ -69,7 +69,7 @@
 		        $db->query("SELECT * FROM `alts` WHERE `main` = (SELECT `main` FROM `alts` WHERE `main` = '$row->player' or `alt` = '$row->player' LIMIT 1)");
 		        while ($nextAlt = $db->fObject())
 		        {
-			        if ($this->buddy_online($nextAlt->alt))
+			        if (Buddylist::is_online($nextAlt->alt))
 			        {
 						$this->send($msg, $nextAlt->alt);
 					}

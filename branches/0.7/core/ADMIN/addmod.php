@@ -70,7 +70,7 @@ if (preg_match("/^addmod (.+)$/i", $message, $arr)){
 		$this->send("You have been added as a Moderator to <myname>", $who);
 	}
 
-	$this->add_buddy($who, 'admin');
+	Buddylist::add($uid, 'admin');
 } else {
 	$syntax_error = true;
 }

@@ -57,7 +57,7 @@ if (preg_match("/^kickadmin (.+)$/i", $message, $arr)){
 	
 	$db->query("DELETE FROM admin_<myname> WHERE `uid` = $uid");
 	
-	$this->remove_buddy($who, 'admin');
+	Buddylist::remove($uid, 'admin');
 	
 	$this->send("<highlight>$who<end> has been removed as an Administrator.", $sendto);
 	$this->send("You have been removed as an Administrator of <myname>", $who);

@@ -31,7 +31,30 @@
 
 class Budabot extends AOChat {
 
-	var $buddyList = array();
+	private $buddyList = array();
+	
+	// Events
+	private $subcommands;
+	private $tellCmds;
+	private $privCmds;
+	private $guildCmds;
+	private $towers;
+	private $orgmsg;
+	private $privMsgs;
+	private $privChat;
+	private $guildChat;
+	private $joinPriv;
+	private $leavePriv;
+	private $logOn;
+	private $logOff;
+	private $_connect;
+	private $_2sec;
+	private $_1min;
+	private $_10mins;
+	private $_15mins;
+	private $_30mins;
+	private $_1hour;
+	private $_24hrs;
 
 /*===============================
 ** Name: __construct
@@ -49,45 +72,13 @@ class Budabot extends AOChat {
 		$this->vars["startup"] = time();
 		
 		//Create command/event settings table if not exists
-		$db->query("CREATE TABLE IF NOT EXISTS cmdcfg_<myname> (`module` VARCHAR(50), `cmdevent` VARCHAR(5), `type` VARCHAR(10), `file` VARCHAR(255), `cmd` VARCHAR(25), `access_level` INT DEFAULT 0, `description` VARCHAR(50) DEFAULT 'none', `verify` INT DEFAULT 0, `status` INT DEFAULT '0', `dependson` VARCHAR(25) DEFAULT 'none', `grp` VARCHAR(25) DEFAULT 'none')");
-		$db->query("CREATE TABLE IF NOT EXISTS settings_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `mode` VARCHAR(10), `setting` VARCHAR(50) Default '0', `options` VARCHAR(50) Default '0', `intoptions` VARCHAR(50) DEFAULT '0', `description` VARCHAR(50), `source` VARCHAR(5), `access_level` INT DEFAULT 0, `help` VARCHAR(60))");
-		$db->query("CREATE TABLE IF NOT EXISTS hlpcfg_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `description` VARCHAR(50), `file` VARCHAR(255), `access_level` INT DEFAULT 0, `verify` INT Default '0')");
-
-		// Load the Core Modules -- SETINGS must be first in case the other modules have settings
-		if (Settings::get('debug') > 0) print("\n:::::::CORE MODULES::::::::\n");
-		$this->loadCoreModule("SETTINGS");
-		$this->loadCoreModule("SYSTEM");
-		$this->loadCoreModule("ADMIN");
-		$this->loadCoreModule("BAN");
-		$this->loadCoreModule("HELP");
-		$this->loadCoreModule("CONFIG");
-		$this->loadCoreModule("ORG_ROSTER");
-		$this->loadCoreModule("BASIC_CONNECTED_EVENTS");
-		$this->loadCoreModule("PRIV_TELL_LIMIT");
-		$this->loadCoreModule("USER_MODULES");
+		$db->query("CREATE TABLE IF NOT EXISTS cmdcfg_<myname> (`module` VARCHAR(50), `regex` VARCHAR(255), `file` VARCHAR(255), `cmd` VARCHAR(25), `tell_status` INT DEFAULT 0, `tell_access_level` INT DEFAULT 0, `guild_status` INT DEFAULT 0, `guild_access_level` INT DEFAULT 0, `priv_status` INT DEFAULT 0, `priv_access_level` INT DEFAULT 0, `description` VARCHAR(50) DEFAULT 'none', `verify` INT DEFAULT 1)");
+		$db->query("CREATE TABLE IF NOT EXISTS eventcfg_<myname> (`module` VARCHAR(50), `type` VARCHAR(10), `file` VARCHAR(255), `description` VARCHAR(50) DEFAULT 'none', `verify` INT DEFAULT 0, `status` INT DEFAULT 1");
+		$db->query("CREATE TABLE IF NOT EXISTS settings_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `mode` VARCHAR(10), `setting` VARCHAR(50) Default '0', `options` VARCHAR(50) Default '0', `intoptions` VARCHAR(50) DEFAULT '0', `description` VARCHAR(50), `source` VARCHAR(5), `access_level` INT DEFAULT 0, `help` VARCHAR(60), `verify` INT DEFAULT 1)");
+		$db->query("CREATE TABLE IF NOT EXISTS hlpcfg_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `description` VARCHAR(50), `file` VARCHAR(255), `access_level` INT DEFAULT 0, `verify` INT Default 1)");
 		
-		// Load User Modules
-		$this->loadUserModules();
-	}
-
-/*===============================
-** Name: loadCoreModule
-** Loads a core module
-*/	function loadCoreModule($module_name) {
-		if (Settings::get('debug') > 0) {
-			print("CORE_MODULE_NAME:($module_name)\n");
-		}
-		include "./core/$module_name/$module_name.php";
-	}
-	
-/*===============================
-** Name: loadUserModules
-** Loads (or reloads) all the user modules
-*/	function loadUserModules() {
-		global $db;
-
-		//Delete old vars
-		unset($this->subcommands);
+		// Events
+		/*
 		unset($this->tellCmds);
 		unset($this->privCmds);
 		unset($this->guildCmds);
@@ -108,86 +99,86 @@ class Budabot extends AOChat {
 		unset($this->_1hour);
 		unset($this->_24hrs);
 		unset($this->_connect);
+		*/
+
+		// Load the Core Modules -- SETINGS must be first in case the other modules have settings
+		if (Settings::get('debug') > 0) print("\n:::::::CORE MODULES::::::::\n");
+		$this->load_core_module("SETTINGS");
+		$this->load_core_module("SYSTEM");
+		$this->load_core_module("ADMIN");
+		$this->load_core_module("BAN");
+		$this->load_core_module("HELP");
+		$this->load_core_module("CONFIG");
+		$this->load_core_module("ORG_ROSTER");
+		$this->load_core_module("BASIC_CONNECTED_EVENTS");
+		$this->load_core_module("PRIV_TELL_LIMIT");
+		$this->load_core_module("USER_MODULES");
+		
+		// Load User Modules
+		$this->load_user_modules();
+	}
+
+/*===============================
+** Name: load_core_module
+** Loads a core module
+*/	function load_core_module($module_name) {
+		if (Settings::get('debug') > 0) {
+			print("CORE_MODULE_NAME: $module_name \n");
+		}
+		include "./core/$module_name/$module_name.php";
+	}
+	
+/*===============================
+** Name: load_user_modules
+** Loads (or reloads) all the user modules
+*/	function load_user_modules() {
+		global $db;
 
 		//Prepare DB
 		$db->query("UPDATE hlpcfg_<myname> SET verify = 0");
 		$db->query("UPDATE cmdcfg_<myname> SET `verify` = 0");
-		$db->query("UPDATE cmdcfg_<myname> SET `status` = 1 WHERE `cmdevent` = 'event' AND `type` = 'setup'");
-		$db->query("UPDATE cmdcfg_<myname> SET `grp` = 'none'");
-		$db->query("DELETE FROM cmdcfg_<myname> WHERE `module` = 'none'");
+		$db->query("UPDATE eventcfg_<myname> SET `verify` = 0");
+		$db->query("UPDATE setting_<myname> SET `verify` = 0");
 
-		//Getting existing commands, events and so on
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'cmd'");
-		while ($row = $db->fObject()) {
-			$this->existing_commands[$row->type][$row->cmd] = true;
-		}
+		if ($this->settings['debug'] > 0) print("\n:::::::User MODULES::::::::\n");
 
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'subcmd'");
-		while ($row = $db->fObject()) {
-			$this->existing_subcmds[$row->type][$row->cmd] = true;
-		}
-
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'event'");
-		while ($row = $db->fObject()) {
-			$this->existing_events[$row->type][$row->file] = true;
-		}
-
-		$db->query("SELECT * FROM settings_<myname>");
-		while ($row = $db->fObject()) {
-			$this->existing_settings[$row->name] = true;
-		}
-			
-		$db->query("SELECT * FROM hlpcfg_<myname>");
-		while ($row = $db->fObject()) {
-			$this->existing_helps[$row->name] = true;
-		}
-
-		// Load User Modules
-		if (Settings::get('debug') > 0) print("\n:::::::User MODULES::::::::\n");	
-
-		//Load modules
-		$this->loadModules();
+		//Register modules
+		$this->register_modules();
+		
+		//Delete old entrys in the DB
+		$db->query("DELETE FROM hlpcfg_<myname> WHERE verify = 0");
+		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0");
+		$db->query("DELETE FROM eventcfg_<myname> WHERE `verify` = 0");
+		$db->query("DELETE FROM setting_<myname> WHERE `verify` = 0");
 
 		//Load active commands
 		if (Settings::get('debug') > 0) print("\nSetting up commands.\n");
-		$this->loadCommands();
-
-		//Load active subcommands
-		if (Settings::get('debug') > 0) print("\nSetting up subcommands.\n");
-		$this->loadSubcommands();
+		$this->load_commands();
 
 		//Load active events
 		if (Settings::get('debug') > 0) print("\nSetting up events.\n");
-		$this->loadEvents();
-
-		//kill unused vars
-		unset($this->existing_commands);
-		unset($this->existing_events);
-		unset($this->existing_subcmds);
-		unset($this->existing_settings);
-		unset($this->existing_helps);
-
-		//Delete old entrys in the DB
-		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0");
-		$db->query("DELETE FROM hlpcfg_<myname> WHERE `verify` = 0");
+		$this->load_events();
+		
+		//Load active events
+		if ($this->settings['debug'] > 0) print("\nLoading settings.\n");
+		$this->load_settings();
 	}
 	
 /*===============================
-** Name: loadModules
+** Name: register_modules
 ** Load all Modules
-*/	function loadModules(){
+*/	function register_modules() {
 		global $db;
-		global $chatBot;
-		if ($d = dir("./modules")){
-			while (false !== ($entry = $d->read())){
-				if (!is_dir("$entry")){
+		if ($d = dir("./modules")) {
+			while (false !== ($entry = $d->read())) {
+				if (!is_dir("$entry")) {
 					// Look for the plugin's ... setup file
 					if (file_exists("./modules/$entry/$entry.php")){
-						if($chatBot->settings['debug'] > 0) print("MODULE_NAME:($entry.php)\n");
+						if($this->settings['debug'] > 0) print("MODULE_NAME: $entry.php \n");
 						include "./modules/$entry/$entry.php";
+					} else {
+						echo "Error! missing module registration file: './modules/$entry/$entry.php'\n";
 					}
-					else // else add entry as a single file.
-						include "./modules/$entry";
 				}
 			}
 			$d->close();
@@ -195,48 +186,36 @@ class Budabot extends AOChat {
 	}
 
 /*===============================
-** Name: loadCommands
+** Name: load_commands
 **  Load the Commands that are set as active
-*/	function loadCommands() {
+*/	function load_commands() {
 	  	global $db;
-		global $chatBot;
-		//Delete commands that are not verified
-		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0 AND `cmdevent` = 'cmd'");
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `status` = '1' AND `cmdevent` = 'cmd'");
+
+		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `status` = 1");
 		$data = $db->fObject("all");
 		forEach ($data as $row) {
-			$chatBot->regcommand($row->type, $row->file, $row->cmd, $row->access_level);
+			if ($row->tell_status == 1) {
+				$this->tellCmds[$row->name] = $row;
+			}
+			if ($row->guild_status == 1) {
+				$this->guildCmds[$row->name] = $row;
+			}
+			if ($row->priv_status == 1) {
+				$this->privCmds[$row->name] = $row;
+			}
 		}
 	}
 
 /*===============================
-** Name: loadSubcommands
-**  Load the Commands that are set as active
-*/	function loadSubcommands() {
-	  	global $db;
-		global $chatBot;
-		//Delete subcommands that are not verified
-		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0 AND `cmdevent` = 'subcmd'");
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'subcmd'");
-		$data = $db->fObject("all");
-		forEach ($data as $row) {
-			$chatBot->subcommands[$row->file][$row->type]["cmd"] = $row->cmd;
-			$chatBot->subcommands[$row->file][$row->type]["access_level"] = $row->access_level;
-		}
-	}
-
-/*===============================
-** Name: loadEvents
+** Name: load_events
 **  Load the Events that are set as active
-*/	function loadEvents() {
+*/	function load_events() {
 	  	global $db;
-		global $chatBot;
-		//Delete events that are not verified
-		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0 AND `cmdevent` = 'event'");
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `status` = '1' AND `cmdevent` = 'event' AND `dependson` = 'none'");
+
+		$db->query("SELECT * FROM eventcfg_<myname> WHERE `status` = 1");
 		$data = $db->fObject("all");
 		forEach ($data as $row) {
-			$chatBot->regevent($row->type, $row->file);
+			$this->regevent($row->type, $row->file);
 		}
 	}
 
@@ -308,73 +287,6 @@ class Budabot extends AOChat {
 		$this->vars["1hour"] 			= time() + Settings::get("CronDelay");
 		$this->vars["24hours"]			= time() + Settings::get("CronDelay");
 		$this->vars["15min"] 			= time() + Settings::get("CronDelay");
-	}
-	
-	function get_buddy($name) {
-		if (($uid = $this->get_uid($name)) === false || !isset($this->buddyList[$uid])) {
-			return null;
-		} else {
-			return $this->buddyList[$uid];
-		}
-    }
-
-/*===============================
-** Name: buddy_online
-** Returns null when online status is unknown, 1 when buddy is online, 0 when buddy is offline
-*/	function buddy_online($name) {
-		$buddy = $this->get_buddy($name);
-		return ($buddy === null ? null : $buddy['online']);
-    }
-	
-	function add_buddy($name, $type) {
-		if (($uid = $this->get_uid($name)) === false || $type === null || $type == '') {
-			return false;
-		} else {
-			if (!isset($this->buddyList[$uid])) {
-				if (Settings::get('echo') >= 1) newLine("Buddy", $name, "buddy added", Settings::get('echo'));
-				$this->buddy_add($uid);
-			}
-			
-			if (!isset($this->buddyList[$uid]['types'][$type])) {
-				$this->buddyList[$uid]['types'][$type] = 1;
-				if (Settings::get('echo') >= 1) newLine("Buddy", $name, "buddy type added (type: $type)", Settings::get('echo'));
-			}
-			
-			return true;
-		}
-	}
-	
-	function remove_buddy($name, $type = '') {
-		if (($uid = $this->get_uid($name)) === false) {
-			return false;
-		} else if (isset($this->buddyList[$uid])) {
-			if (isset($this->buddyList[$uid]['types'][$type])) {
-				unset($this->buddyList[$uid]['types'][$type]);
-				if (Settings::get('echo') >= 1) newLine("Buddy", $name, "buddy type removed (type: $type)", Settings::get('echo'));
-			}
-
-			if (count($this->buddyList[$uid]['types']) == 0) {
-				unset($this->buddyList[$uid]);
-				if (Settings::get('echo') >= 1) newLine("Buddy", $name, "buddy removed", Settings::get('echo'));
-				$this->buddy_remove($uid);
-			}
-			
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	function is_buddy($name, $type) {
-		if (($uid = $this->get_uid($name)) === false) {
-			return false;
-		} else {
-			if ($type == null || $type == false) {
-				return isset($this->buddyList[$uid]);
-			} else {
-				return isset($this->buddyList[$uid]['types'][$type]);
-			}
-		}
 	}
 
 /*===============================
@@ -518,6 +430,7 @@ class Budabot extends AOChat {
 		global $db;
 		
 		$filename = $module . '/' . $filename;
+		$command = strtolower($command);
 
 	  	if (Settings::get('debug') > 1) print("Activate Command:($command) Admin Type:($access_level)\n");
 		if (Settings::get('debug') > 1) print("            File:($filename) Type:($type)\n");
@@ -527,10 +440,6 @@ class Budabot extends AOChat {
 		if (($filename = $this->verifyFilename($filename)) === FALSE) {
 			echo "Error in registering the file '$filename' for command '$command'. The file doesn't exists!\n";
 			return;
-		}
-
-		if ($command != NULL) { // Change commands to lower case.
-			$command = strtolower($command);
 		}
 
 		switch ($type) {
@@ -552,24 +461,6 @@ class Budabot extends AOChat {
 					$this->guildCmds[$command]["access_level"] = $access_level;
 				}
 			break;
-		}
-
-		//Activate Events that are needed for this command
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `dependson` = '$command' AND `cmdevent` = 'event' AND `type` != 'setup'");
-		$data = $db->fObject("all");
-  		forEach ($data as $row) {
-  		  	$this->regevent($row->type, $row->module, $row->file);
-		}
-
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `module` = '$module' AND `cmdevent` = 'event' AND `type` = 'setup'");
-		if ($db->numrows() != 0) {
-			$data = $db->fObject("all");
-	  		forEach ($data as $row) {
-			  	if ($row->status == 0) {
-				    $this->regevent($row->type, $row->module, $row->file);
-				    $db->query("UPDATE cmdcfg_<myname> SET `status` = 1 WHERE `module` = '$module' AND `cmdevent` = 'event' AND `type` = 'setup'");
-				}
-			}
 		}
 	}
 
@@ -955,43 +846,6 @@ class Budabot extends AOChat {
 				}
 				break;
 		}
-	}
-
-/*===============================
-** Name: reggroup
-**  Register a group of commands
-*/	function regGroup($group, $module, $desc) {
-		global $db;
-
-		$group = strtolower($group);
-		//Check if the module is correct
-		if ($module == "none") {
-			echo "Error in creating group $group. You need to specify a module for the group.\n";
-			return;
-		}
-		//Check if the group already exists
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `grp` = '$group'");
-		if ($db->numrows() != 0) {
-			echo "Error in creating group $group. This group already exists.\n";
-			return;
-		}
-    	$numargs = func_num_args();
-    	$arg_list = func_get_args();
-		//Check if enough commands are given for the group
-		if ($numargs < 5) {
-			echo "Not enough commands to build group $group(must be at least 2 commands)";
-			return;
-		}
-		//Go through the arg list and assign it to the group
-		for ($i = 3; $i < $numargs; $i++) {
-		  	$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '".$arg_list[$i]."' AND `module` = '$module'");
-		  	if ($db->numrows() != 0) {
-			    $db->query("UPDATE cmdcfg_<myname> SET `grp` = '$group' WHERE `cmd` = '".$arg_list[$i]."' AND `module` = '$module'");
-			} else {
-			  	echo "Error in creating group $group for module $module. Command ".$arg_list[$i]." doesn't exists.\n";
-			}
-		}
-	  	$db->query("INSERT INTO cmdcfg_<myname> (`module`, `type`, `cmdevent`, `verify`, `description`) VALUES ('none', '$group', 'group', '1', '$desc')");
 	}
 
 /*===============================

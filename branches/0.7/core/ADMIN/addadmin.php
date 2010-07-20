@@ -70,7 +70,7 @@ if (preg_match("/^addadmin (.+)$/i", $message, $arr)){
 		$this->send("You got Administrator access to <myname>", $who);
 	}
 
-	$this->add_buddy($who, 'admin');
+	Buddylist::add($uid, 'admin');
 } else {
 	$syntax_error = true;
 }

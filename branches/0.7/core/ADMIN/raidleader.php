@@ -70,7 +70,7 @@ if(preg_match("/^raidleader (.+)$/i", $message, $arr)){
 		$this->send("You have been added as a Raidleader to <myname>", $who);
 	}
 
-	$this->add_buddy($who, 'admin');
+	Buddylist::add($uid, 'admin');
 } else {
 	$syntax_error = true;
 }
