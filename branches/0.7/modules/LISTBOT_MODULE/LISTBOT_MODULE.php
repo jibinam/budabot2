@@ -8,5 +8,5 @@
 	$this->command("", $MODULE_NAME, "waitlist.php", "waitlist", ALL, "Show/Add the Waitlist");
 
 	//Helpfile
-    $this->help("waitlist", $MODULE_NAME, "waitlist.txt", ALL, "How to use the ListBot");
+    Help::register("waitlist", $MODULE_NAME, "waitlist.txt", ALL, "How to use the ListBot");
 ?>

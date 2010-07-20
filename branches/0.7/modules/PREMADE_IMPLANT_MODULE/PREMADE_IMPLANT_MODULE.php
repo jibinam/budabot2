@@ -30,6 +30,6 @@
 	$this->command("", $MODULE_NAME, "premade_update.php", "premadeupdate", ALL, "Checks the premade imp db for updates");
 	
 	//Help files
-	$this->help("Premade Implants", $MODULE_NAME, "premade_implant.txt", ALL, "Premade Implant Help");
+	Help::register("Premade Implants", $MODULE_NAME, "premade_implant.txt", ALL, "Premade Implant Help");
 	
 ?>

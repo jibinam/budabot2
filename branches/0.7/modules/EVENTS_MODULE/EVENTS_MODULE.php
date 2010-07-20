@@ -13,5 +13,5 @@
 	$this->command("", $MODULE_NAME, "eventlist.php", "eventlist", ALL, "View event attendees");
 	
 	//Helpfile
-	$this->help("events", $MODULE_NAME, "events.txt", ALL, "Adding/editing/removing events");
+	Help::register("events", $MODULE_NAME, "events.txt", ALL, "Adding/editing/removing events");
 ?>

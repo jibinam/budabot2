@@ -4,5 +4,5 @@
 
 	$this->command("", $MODULE_NAME, "weather.php", "weather", ALL, "View Weather");
 
-	$this->help("weather", $MODULE_NAME, "weather.txt", ALL, "Get weather info.");
+	Help::register("weather", $MODULE_NAME, "weather.txt", ALL, "Get weather info.");
 ?>

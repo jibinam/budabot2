@@ -15,5 +15,5 @@
 	Settings::add("timers_window", $MODULE_NAME, "Show running timers in a window or directly", "edit", "1", "window only;chat only;window after 3;window after 4;window after 5", '1;2;3;4;5', MODERATOR);
 
 	//Help files
-	$this->help("Timer", $MODULE_NAME, "timer.txt", GUILDMEMBER, "Set/Show Timers.");
+	Help::register("Timer", $MODULE_NAME, "timer.txt", GUILDMEMBER, "Set/Show Timers.");
 ?>

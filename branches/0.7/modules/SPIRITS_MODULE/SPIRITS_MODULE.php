@@ -8,6 +8,6 @@
 	$this->command("", $MODULE_NAME, "spirits.php", "spiritsagi", ALL, "Search for Spirits");
 	$this->command("", $MODULE_NAME, "spirits.php", "spiritssen", ALL, "Search for Spirits");
 	
-	$this->help("Spirits", $MODULE_NAME, "spirits.txt", ALL, "Search for Spirits");
+	Help::register("Spirits", $MODULE_NAME, "spirits.txt", ALL, "Search for Spirits");
 	
 ?>

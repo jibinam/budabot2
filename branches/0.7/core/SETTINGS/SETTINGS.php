@@ -13,5 +13,5 @@
 	$this->regevent("setup", $MODULE_NAME, "upload_settings.php");
 		
 	//Help Files
-	$this->help("settings", $MODULE_NAME, "settings.txt", MODERATOR, "Change Settings of the Bot.");
+	Help::register("settings", $MODULE_NAME, "settings.txt", MODERATOR, "Change Settings of the Bot.");
 ?>

@@ -22,6 +22,6 @@
 	$this->loadSQLFile($MODULE_NAME, "towerranges");
 	
 	//Help files
-	$this->help("towers", $MODULE_NAME, "towers.txt", ALL, "Show Tower messages");
-	$this->help("lca", $MODULE_NAME, "lca.txt", ALL, "Show Infos about Land Control Areas");
+	Help::register("towers", $MODULE_NAME, "towers.txt", ALL, "Show Tower messages");
+	Help::register("lca", $MODULE_NAME, "lca.txt", ALL, "Show Infos about Land Control Areas");
 ?>

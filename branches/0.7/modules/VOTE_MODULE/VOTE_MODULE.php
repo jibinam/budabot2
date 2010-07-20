@@ -12,5 +12,5 @@
 	
 	$this->event("2sec", $MODULE_NAME, "votes_check.php");
 	
-	$this->help("vote", $MODULE_NAME, "vote.txt", ALL, "Vote/Polling");
+	Help::register("vote", $MODULE_NAME, "vote.txt", ALL, "Vote/Polling");
 ?>

@@ -30,11 +30,11 @@
 	$this->regGroup("basic_loot", $MODULE_NAME, "Handles a basic flatrolled loot system", "loot", "add", "clear", "list", "flatroll");
 
 	//Help files
-	$this->help("add", $MODULE_NAME, "add_rem.txt", ALL, "Adding to a lootitem");
-	$this->help("rem", $MODULE_NAME, "add_rem.txt", ALL, "Removing your bid on a lootitem");
-	$this->help("loot", $MODULE_NAME, "flatroll.txt", LEADER, "Adding an item to be flatrolled");
-	$this->help("remloot", $MODULE_NAME, "flatroll.txt", LEADER, "Removing an item from a flatroll list");
-	$this->help("flatroll", $MODULE_NAME, "flatroll.txt", LEADER, "Flatroll an item");
-	$this->help("multiloot", $MODULE_NAME, "flatroll.txt", LEADER, "Adding multiple of an item to be rolled");
+	Help::register("add", $MODULE_NAME, "add_rem.txt", ALL, "Adding to a lootitem");
+	Help::register("rem", $MODULE_NAME, "add_rem.txt", ALL, "Removing your bid on a lootitem");
+	Help::register("loot", $MODULE_NAME, "flatroll.txt", LEADER, "Adding an item to be flatrolled");
+	Help::register("remloot", $MODULE_NAME, "flatroll.txt", LEADER, "Removing an item from a flatroll list");
+	Help::register("flatroll", $MODULE_NAME, "flatroll.txt", LEADER, "Flatroll an item");
+	Help::register("multiloot", $MODULE_NAME, "flatroll.txt", LEADER, "Adding multiple of an item to be rolled");
 
 ?>

@@ -17,6 +17,6 @@
 	$this->command("", $MODULE_NAME, "boss.php", "boss", ALL, "Bossloot Tables");
 	$this->command("", $MODULE_NAME, "bossloot.php", "bossloot", ALL, "Bossloot Search");
 	
-	$this->help("Boss", $MODULE_NAME, "boss.txt", ALL, "Bossloot Tables", "Boss");
+	Help::register("Boss", $MODULE_NAME, "boss.txt", ALL, "Bossloot Tables", "Boss");
 	
 ?>

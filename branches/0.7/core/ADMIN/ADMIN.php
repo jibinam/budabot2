@@ -41,5 +41,5 @@
 	$this->regevent("24hrs", $MODULE_NAME, "check_admins.php");
 
 	//Help Files
-	$this->help("adminhelp", $MODULE_NAME, "admin.txt", MODERATOR, "Mod/Admin Help file.");
+	Help::register("adminhelp", $MODULE_NAME, "admin.txt", MODERATOR, "Mod/Admin Help file.");
 ?>

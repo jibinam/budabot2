@@ -9,6 +9,6 @@
 	$this->command("", $MODULE_NAME, "notes.php", "notes", GUILDMEMBER, "displays notes in your list");
 
 	//Help files
-	$this->help("Notes", $MODULE_NAME, "notes.txt", GUILDMEMBER, "Notes Help");
+	Help::register("Notes", $MODULE_NAME, "notes.txt", GUILDMEMBER, "Notes Help");
 	
 ?>

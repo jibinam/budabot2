@@ -17,5 +17,5 @@
 	Settings::add("bot_notify", $MODULE_NAME, "Show/Hide Logoffs in Org Chat (Spam Prevention)", "edit", "1", "Show Logoffs;Hide Logoffs", '1;0', MODERATOR, "botnotify.txt");
 	
 	//Helpfile
-    $this->help("notify", $MODULE_NAME, "notify.txt", MODERATOR, "Add or remove a player from the notify list.");
+    Help::register("notify", $MODULE_NAME, "notify.txt", MODERATOR, "Add or remove a player from the notify list.");
 ?>

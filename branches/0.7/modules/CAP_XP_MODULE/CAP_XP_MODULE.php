@@ -7,6 +7,6 @@
 	$this->command("", $MODULE_NAME, "cap_xp.php", "capxp", ALL, "Max XP Calculator");
 
 	//Help files
-    $this->help("capxp", $MODULE_NAME, "max_experience.txt", ALL, "Set your reasearch bar for max xp/sk", "Cap XP Module");
+    Help::register("capxp", $MODULE_NAME, "max_experience.txt", ALL, "Set your reasearch bar for max xp/sk", "Cap XP Module");
  
 ?>

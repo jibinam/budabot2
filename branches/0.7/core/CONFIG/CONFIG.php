@@ -15,5 +15,5 @@
 	$this->regcommand("priv", $MODULE_NAME, "cmdlist.php", "cmdlist", MODERATOR);
 
 	//Help Files
-	$this->help("config", $MODULE_NAME, "config.txt", MODERATOR, "Configure Commands/Events of the Bot.");
+	Help::register("config", $MODULE_NAME, "config.txt", MODERATOR, "Configure Commands/Events of the Bot.");
 ?>

@@ -32,11 +32,11 @@
 	$this->command("guild msg", $MODULE_NAME, "tell.php", "tellall", LEADER, "Sends a tell to all online guildmembers");
 		
 	//Helpfile
-    $this->help("afk_kiting", $MODULE_NAME, "afk_kiting.txt", GUILDMEMBER, "Set yourself AFK/Kiting");
-    $this->help("alts", $MODULE_NAME, "alts.txt", GUILDMEMBER, "How to set alts");
-	$this->help("altsadmin", $MODULE_NAME, "altsadmin.txt", GUILDMEMBER, "How to set alts (admins)");
-    $this->help("LogOnMsg", $MODULE_NAME, "logonmsg.txt", GUILDMEMBER, "Changing your logon message");
-    $this->help("OrgMembers", $MODULE_NAME, "orgmembers_orgranks.txt", GUILDMEMBER, "Show current OrgMembers");
-    $this->help("tell_guild", $MODULE_NAME, "tell.txt", GUILDMEMBER, "Repeat a msg 3times/Send a tell to online members");
-    $this->help("updateorg", $MODULE_NAME, "updateorg.txt", MODERATOR, "Force an update of orgrooster");
+    Help::register("afk_kiting", $MODULE_NAME, "afk_kiting.txt", GUILDMEMBER, "Set yourself AFK/Kiting");
+    Help::register("alts", $MODULE_NAME, "alts.txt", GUILDMEMBER, "How to set alts");
+	Help::register("altsadmin", $MODULE_NAME, "altsadmin.txt", GUILDMEMBER, "How to set alts (admins)");
+    Help::register("LogOnMsg", $MODULE_NAME, "logonmsg.txt", GUILDMEMBER, "Changing your logon message");
+    Help::register("OrgMembers", $MODULE_NAME, "orgmembers_orgranks.txt", GUILDMEMBER, "Show current OrgMembers");
+    Help::register("tell_guild", $MODULE_NAME, "tell.txt", GUILDMEMBER, "Repeat a msg 3times/Send a tell to online members");
+    Help::register("updateorg", $MODULE_NAME, "updateorg.txt", MODERATOR, "Force an update of orgrooster");
 ?>

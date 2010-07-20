@@ -23,5 +23,5 @@
 	$this->regcommand("guild", $MODULE_NAME, "uptime.php", "uptime", MEMBER);
 
 	//Help Files
-	$this->help("systemhelp", $MODULE_NAME, "system.txt", ADMIN, "Admin System Help file.");
+	Help::register("systemhelp", $MODULE_NAME, "system.txt", ADMIN, "Admin System Help file.");
 ?>

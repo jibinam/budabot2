@@ -62,5 +62,5 @@
 	Settings::add("irc_debug_all", $MODULE_NAME, "IRC Debug Option: Log everything", "edit", "0", "Off;On", "0;1", MODERATOR, $MODULE_NAME, "irc_help.txt");
 	
 	//Help files
-	$this->help("irc", $MODULE_NAME, "irc_help.txt", ALL, "How to use the IRC plugin");
+	Help::register("irc", $MODULE_NAME, "irc_help.txt", ALL, "How to use the IRC plugin");
 ?>

@@ -50,13 +50,13 @@
 	Settings::add("adminnews", $MODULE_NAME, "no", "hide", "Not set.");	
 	
 	//Help files
-	$this->help("afk_priv", $MODULE_NAME, "afk.txt", ALL, "Going AFK");
-	$this->help("assist", $MODULE_NAME, "assist.txt", ALL, "Creating an Assist Macro");
-	$this->help("check", $MODULE_NAME, "check.txt", ALL, "See of the ppls are in the area");
-	$this->help("heal_assist", $MODULE_NAME, "healassist.txt", ALL, "Creating an Healassist Macro");
-	$this->help("leader", $MODULE_NAME, "leader.txt", ALL, "Set a Leader of a Raid/Echo on/off");
-	$this->help("priv_news", $MODULE_NAME, "priv_news.txt", RAIDLEADER, "Set Privategroup News");
-	$this->help("tell", $MODULE_NAME, "tell.txt", LEADER, "Repeating of a msg 3times");
-	$this->help("topic", $MODULE_NAME, "topic.txt", RAIDLEADER, "Set the Topic of the raid");
-	$this->help("updateme", $MODULE_NAME, "updateme.txt", ALL, "Update your character infos");
+	Help::register("afk_priv", $MODULE_NAME, "afk.txt", ALL, "Going AFK");
+	Help::register("assist", $MODULE_NAME, "assist.txt", ALL, "Creating an Assist Macro");
+	Help::register("check", $MODULE_NAME, "check.txt", ALL, "See of the ppls are in the area");
+	Help::register("heal_assist", $MODULE_NAME, "healassist.txt", ALL, "Creating an Healassist Macro");
+	Help::register("leader", $MODULE_NAME, "leader.txt", ALL, "Set a Leader of a Raid/Echo on/off");
+	Help::register("priv_news", $MODULE_NAME, "priv_news.txt", RAIDLEADER, "Set Privategroup News");
+	Help::register("tell", $MODULE_NAME, "tell.txt", LEADER, "Repeating of a msg 3times");
+	Help::register("topic", $MODULE_NAME, "topic.txt", RAIDLEADER, "Set the Topic of the raid");
+	Help::register("updateme", $MODULE_NAME, "updateme.txt", ALL, "Update your character infos");
 ?>

@@ -44,7 +44,7 @@
 	$this->command("", $MODULE_NAME, "nlline.php", "nlline", ALL, "Shows a list of nanos given a nanoline");
 
 	//Help
-	$this->help("Nanolines", $MODULE_NAME, "nanolines.txt", ALL, "Nanolines help");
+	Help::register("Nanolines", $MODULE_NAME, "nanolines.txt", ALL, "Nanolines help");
 
 	//Settings
 	Settings::add("shownanolineicons", $MODULE_NAME, "Show icons for the nanolines", "edit", "0", "true;false", "1;0");

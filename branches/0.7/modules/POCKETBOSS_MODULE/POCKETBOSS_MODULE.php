@@ -12,5 +12,5 @@
 	$this->regGroup("PB_SYMB", $MODULE_NAME, "PocketBoss List and Symb search", "symb", "pb");
 
 	//Helpiles
-    $this->help("pocketboss", $MODULE_NAME, "pocketboss.txt", ALL, "See what drops which Pocketboss");
+    Help::register("pocketboss", $MODULE_NAME, "pocketboss.txt", ALL, "See what drops which Pocketboss");
 ?>

@@ -35,7 +35,7 @@
 	$this->command("", $MODULE_NAME, "opentimes.php", "opentimes", GUILDMEMBER, "shows status of towers");
 	
 	//Help files
-	$this->help("Tower Watch", $MODULE_NAME, "tower_watch.txt", GUILDMEMBER, "Tower Watch Help");
+	Help::register("Tower Watch", $MODULE_NAME, "tower_watch.txt", GUILDMEMBER, "Tower Watch Help");
 	
 	//Settings for this module	
 	Settings::add("alarmpreview", $MODULE_NAME, "Sets how early alarm should sound for gas change in minutes.", "edit", 5, "number");

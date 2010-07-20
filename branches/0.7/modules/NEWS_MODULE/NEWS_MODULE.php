@@ -12,5 +12,5 @@
 	$this->subcommand("", $MODULE_NAME, "news.php", "news del (.+)", GUILDADMIN, "news", "Delete a Newsentry");
 
 	//Help files
-	$this->help("news", $MODULE_NAME, "news.txt", MEMBER, "News");
+	Help::register("news", $MODULE_NAME, "news.txt", MEMBER, "News");
 ?>

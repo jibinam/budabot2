@@ -13,6 +13,6 @@
 	$this->event("logOff", $MODULE_NAME, "is_online.php", "is");
 
 	// Help files
-	$this->help("orglist", $MODULE_NAME, "orglist.txt", MODERATOR, "See who is online from someones org.");
-	$this->help("IsOnline", $MODULE_NAME, "isonline.txt", ALL, "Checking if a player is online");
+	Help::register("orglist", $MODULE_NAME, "orglist.txt", MODERATOR, "See who is online from someones org.");
+	Help::register("IsOnline", $MODULE_NAME, "isonline.txt", ALL, "Checking if a player is online");
 ?>

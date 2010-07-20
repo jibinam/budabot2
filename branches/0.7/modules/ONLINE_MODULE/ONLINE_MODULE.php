@@ -41,7 +41,7 @@
 	$this->event("logOff", $MODULE_NAME, "logoff_guild.php", "none", "Shows a logoff from a member");
 
 	//Help files
-	$this->help("chatlist", $MODULE_NAME, "chatlist.txt", MEMBER, "Showing who is in the private group");
-	$this->help("online", $MODULE_NAME, "online.txt", MEMBER, "Show who is on from the guild");
-	$this->help("lastseen", $MODULE_NAME, "lastseen.txt", MEMBER, "Check when an orgmember was online");
+	Help::register("chatlist", $MODULE_NAME, "chatlist.txt", MEMBER, "Showing who is in the private group");
+	Help::register("online", $MODULE_NAME, "online.txt", MEMBER, "Show who is on from the guild");
+	Help::register("lastseen", $MODULE_NAME, "lastseen.txt", MEMBER, "Check when an orgmember was online");
 ?>

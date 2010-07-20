@@ -8,5 +8,5 @@
 	$this->command("", $MODULE_NAME, "server_status.php", "server", ALL, "Shows the Server status");	
 
 	//Help files
-    $this->help("serverstatus", $MODULE_NAME, "serverstatus.txt", ALL, "Show Serverstatus");
+    Help::register("serverstatus", $MODULE_NAME, "serverstatus.txt", ALL, "Show Serverstatus");
 ?>

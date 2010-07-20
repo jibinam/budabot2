@@ -8,5 +8,5 @@
 	$this->command("", $MODULE_NAME, "tradeskill_loot.php", "guide", ALL, "Shows what to make from apf items");
 
 	//Help files
-	$this->help("apf_loot", $MODULE_NAME, "apfloot.txt", GUILDMEMBER, "Show the Loots of the APF");
+	Help::register("apf_loot", $MODULE_NAME, "apfloot.txt", GUILDMEMBER, "Show the Loots of the APF");
 ?>

@@ -12,5 +12,5 @@
 	Settings::add("guard_max", $MODULE_NAME, "Max Persons that are shown on Guard list", "edit", "10", "10;15;20;25;30", '0', MODERATOR, "guard_help.txt");
 
 	//Help files
-	$this->help("guard", $MODULE_NAME, "guard.txt", ALL, "Guardian Macro and List", "Guardian and Bior R. Commands");
+	Help::register("guard", $MODULE_NAME, "guard.txt", ALL, "Guardian Macro and List", "Guardian and Bior R. Commands");
 ?>

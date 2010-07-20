@@ -44,7 +44,7 @@
 	Settings::add("showcloakstatus", $MODULE_NAME, "Show cloak status to players at logon", "edit", "1", "Never;When cloak is down;Always", "0;1;2");
 	
 	// Help files
-	$this->help("citycloak", $MODULE_NAME, "citycloak.txt", GUILDMEMBER, "Status of the citycloak");
+	Help::register("citycloak", $MODULE_NAME, "citycloak.txt", GUILDMEMBER, "Status of the citycloak");
 	
 	// Auto Wave
 	$this->command("guild",$MODULE_NAME, "start.php", "startraid");

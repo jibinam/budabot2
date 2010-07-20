@@ -19,5 +19,5 @@ $MODULE_NAME = "BAN";
 	$this->regevent("setup", $MODULE_NAME, "upload_banlist.php");
 	
 	//Help Files
-	$this->help("banhelp", $MODULE_NAME, "banhelp.txt", MODERATOR, "Ban a person from the bot.");
+	Help::register("banhelp", $MODULE_NAME, "banhelp.txt", MODERATOR, "Ban a person from the bot.");
 ?>

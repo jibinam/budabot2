@@ -43,5 +43,5 @@
 	$this->command("", $MODULE_NAME, "impreq.php", "impreq", ALL, "Shows the highest ql implant that can be worn given treatment and ability");
 
 	//Help
-	$this->help("Implant", $MODULE_NAME, "implant.txt", ALL, "Implant help");
+	Help::register("Implant", $MODULE_NAME, "implant.txt", ALL, "Implant help");
 ?>

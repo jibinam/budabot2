@@ -49,15 +49,15 @@
 	$this->event("setup", $MODULE_NAME, "setup.php");
 
 	//Help files
-	$this->help("whois", $MODULE_NAME, "whois.txt", ALL, "Show char stats at current and all dimensions");
-    $this->help("biomat", $MODULE_NAME, "biomat.txt", ALL, "Identify an Biomaterial");
-    $this->help("calculator", $MODULE_NAME, "calculator.txt", ALL, "Calculator");
-    $this->help("oe", $MODULE_NAME, "oe.txt", ALL, "Calculating the OE ranges");
-    $this->help("fliproll", $MODULE_NAME, "fliproll.txt", ALL, "How to use the flip and roll command");
-    $this->help("history", $MODULE_NAME, "history.txt", ALL, "History of a player");
-    $this->help("time", $MODULE_NAME, "time.txt", ALL, "Timezones");
-    $this->help("kos_list", $MODULE_NAME, "kos_list.txt", ALL, "Kill On Sight List");
-    $this->help("smiley_title_inspect", $MODULE_NAME, "smiley_title_inspect.txt", ALL, "Help for Smiley,Title Level and Inspect");
-    $this->help("alien_armor", $MODULE_NAME, "alien_armor.txt", ALL, "Alien armor Tradeskillprocess");
-	$this->help("alien_generals", $MODULE_NAME, "alien_generals.txt", ALL, "Alien City Generals Info");
+	Help::register("whois", $MODULE_NAME, "whois.txt", ALL, "Show char stats at current and all dimensions");
+    Help::register("biomat", $MODULE_NAME, "biomat.txt", ALL, "Identify an Biomaterial");
+    Help::register("calculator", $MODULE_NAME, "calculator.txt", ALL, "Calculator");
+    Help::register("oe", $MODULE_NAME, "oe.txt", ALL, "Calculating the OE ranges");
+    Help::register("fliproll", $MODULE_NAME, "fliproll.txt", ALL, "How to use the flip and roll command");
+    Help::register("history", $MODULE_NAME, "history.txt", ALL, "History of a player");
+    Help::register("time", $MODULE_NAME, "time.txt", ALL, "Timezones");
+    Help::register("kos_list", $MODULE_NAME, "kos_list.txt", ALL, "Kill On Sight List");
+    Help::register("smiley_title_inspect", $MODULE_NAME, "smiley_title_inspect.txt", ALL, "Help for Smiley,Title Level and Inspect");
+    Help::register("alien_armor", $MODULE_NAME, "alien_armor.txt", ALL, "Alien armor Tradeskillprocess");
+	Help::register("alien_generals", $MODULE_NAME, "alien_generals.txt", ALL, "Alien City Generals Info");
 ?>

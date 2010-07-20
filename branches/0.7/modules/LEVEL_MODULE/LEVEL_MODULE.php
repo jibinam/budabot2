@@ -27,8 +27,8 @@
 	$this->command("", $MODULE_NAME, "title.php", "title", ALL, "Show the Titlelevels and how much IP/Level");
 
 	//Help files
-    $this->help("level", $MODULE_NAME, "level.txt", ALL, "Levelinfos");
-    $this->help("title_level", $MODULE_NAME, "title.txt", ALL, "Infos about TitleLevels");
-    $this->help("missions", $MODULE_NAME, "missions.txt", ALL, "Who can roll a specific QL of a mission");
-	$this->help("experience", $MODULE_NAME, "experience.txt", ALL, "XP/SK/AXP Infos");
+    Help::register("level", $MODULE_NAME, "level.txt", ALL, "Levelinfos");
+    Help::register("title_level", $MODULE_NAME, "title.txt", ALL, "Infos about TitleLevels");
+    Help::register("missions", $MODULE_NAME, "missions.txt", ALL, "Who can roll a specific QL of a mission");
+	Help::register("experience", $MODULE_NAME, "experience.txt", ALL, "XP/SK/AXP Infos");
 ?>
