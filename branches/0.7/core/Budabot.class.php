@@ -72,10 +72,10 @@ class Budabot extends AOChat {
 		$this->vars["startup"] = time();
 		
 		//Create command/event settings table if not exists
-		$db->query("CREATE TABLE IF NOT EXISTS cmdcfg_<myname> (`module` VARCHAR(50), `regex` VARCHAR(255), `file` VARCHAR(255), `cmd` VARCHAR(25), `tell_status` INT DEFAULT 0, `tell_access_level` INT DEFAULT 0, `guild_status` INT DEFAULT 0, `guild_access_level` INT DEFAULT 0, `priv_status` INT DEFAULT 0, `priv_access_level` INT DEFAULT 0, `description` VARCHAR(50) DEFAULT 'none', `verify` INT DEFAULT 1)");
-		$db->query("CREATE TABLE IF NOT EXISTS eventcfg_<myname> (`module` VARCHAR(50), `type` VARCHAR(10), `file` VARCHAR(255), `description` VARCHAR(50) DEFAULT 'none', `verify` INT DEFAULT 0, `status` INT DEFAULT 1");
+		$db->query("CREATE TABLE IF NOT EXISTS cmdcfg_<myname> (`module` VARCHAR(50), `regex` VARCHAR(255), `file` VARCHAR(255), is_core TINYINT NOT NULL, `cmd` VARCHAR(25), `tell_status` INT DEFAULT 0, `tell_access_level` INT DEFAULT 0, `guild_status` INT DEFAULT 0, `guild_access_level` INT DEFAULT 0, `priv_status` INT DEFAULT 0, `priv_access_level` INT DEFAULT 0, `description` VARCHAR(50) DEFAULT 'none', `verify` INT DEFAULT 1)");
+		$db->query("CREATE TABLE IF NOT EXISTS eventcfg_<myname> (`module` VARCHAR(50), `type` VARCHAR(10), `file` VARCHAR(255), is_core TINYINT NOT NULL, `description` VARCHAR(50) DEFAULT 'none', `verify` INT DEFAULT 0, `status` INT DEFAULT 1");
 		$db->query("CREATE TABLE IF NOT EXISTS settings_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `mode` VARCHAR(10), `setting` VARCHAR(50) Default '0', `options` VARCHAR(50) Default '0', `intoptions` VARCHAR(50) DEFAULT '0', `description` VARCHAR(50), `source` VARCHAR(5), `access_level` INT DEFAULT 0, `help` VARCHAR(60), `verify` INT DEFAULT 1)");
-		$db->query("CREATE TABLE IF NOT EXISTS hlpcfg_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `description` VARCHAR(50), `file` VARCHAR(255), `access_level` INT DEFAULT 0, `verify` INT Default 1)");
+		$db->query("CREATE TABLE IF NOT EXISTS hlpcfg_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `description` VARCHAR(50), `file` VARCHAR(255), is_core TINYINT NOT NULL, `access_level` INT DEFAULT 0, `verify` INT Default 1)");
 		
 		// Events
 		/*
@@ -140,7 +140,7 @@ class Budabot extends AOChat {
 		$db->query("UPDATE eventcfg_<myname> SET `verify` = 0");
 		$db->query("UPDATE setting_<myname> SET `verify` = 0");
 
-		if ($this->settings['debug'] > 0) print("\n:::::::User MODULES::::::::\n");
+		if (Settings::get('debug') > 0) print("\n:::::::User MODULES::::::::\n");
 
 		//Register modules
 		$this->register_modules();
@@ -160,7 +160,7 @@ class Budabot extends AOChat {
 		$this->load_events();
 		
 		//Load active events
-		if ($this->settings['debug'] > 0) print("\nLoading settings.\n");
+		if (Settings::get('debug') > 0) print("\nLoading settings.\n");
 		$this->load_settings();
 	}
 	
@@ -174,7 +174,7 @@ class Budabot extends AOChat {
 				if (!is_dir("$entry")) {
 					// Look for the plugin's ... setup file
 					if (file_exists("./modules/$entry/$entry.php")){
-						if($this->settings['debug'] > 0) print("MODULE_NAME: $entry.php \n");
+						if(Settings::get('debug') > 0) print("MODULE_NAME: $entry.php \n");
 						include "./modules/$entry/$entry.php";
 					} else {
 						echo "Error! missing module registration file: './modules/$entry/$entry.php'\n";
