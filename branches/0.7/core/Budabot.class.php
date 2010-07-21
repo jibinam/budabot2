@@ -835,26 +835,23 @@ class Budabot extends AOChat {
 				$char_id = $args[1];
 
 				// Add sender to the chatlist.
-				$this->chatlist[$sender] = true;
+				$this->chatlist[$char_id] = new WhoisXML($sender);
 				
 				// Echo
 				if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, "joined the channel.", Settings::get('echo'));
 
 				// Remove sender if they are /ignored or /banned or They gone above spam filter
-                if (Settings::get("Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || $this->spam[$sender) > 100) {
+                if (Settings::get("Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == $sender || $this->spam[$sender) > 100) {
 					$this->privategroup_kick($sender);
 					return;
 				}
+
 				// Check files, for all 'player joined channel events'.
-				if ($this->joinPriv != NULL) {
-					forEach ($this->joinPriv as $filename) {
-						include $filename;
+				$events = Event::find_active_events($type);
+				if ($events != NULL) {
+					forEach ($events as $event) {
+						include $event->file;
 					}
-				}
-				
-				// Kick if there access is restricted.
-				if ($restricted === true) {
-					$this->privategroup_kick($sender);
 				}
 			break;
 			case AOCP_PRIVGRP_CLIPART: // 56, Incoming player left private chat
@@ -874,8 +871,11 @@ class Budabot extends AOChat {
 				}
 				
 				// Check files, for all 'player left channel events'.
-				forEach ($this->leavePriv as $filename) {
-					include $filename;
+				$events = Event::find_active_events($type);
+				if ($events != NULL) {
+					forEach ($events as $event) {
+						include $event->file;
+					}
 				}
 			break;
 			case AOCP_BUDDY_ADD: // 40, Incoming buddy logon or off
@@ -883,13 +883,13 @@ class Budabot extends AOChat {
 				$sender	= $this->lookup_user($args[0]);
 				$char_id = $args[0];
 				$status	= 0 + $args[1];
+				$btype = $args[2];
 				
 				// store buddy info
-				list($bid, $bonline, $btype) = $args;
-				$this->buddyList[$bid]['uid'] = $bid;
-				$this->buddyList[$bid]['name'] = $sender;
-				$this->buddyList[$bid]['online'] = ($bonline ? 1 : 0);
-				$this->buddyList[$bid]['known'] = (ord($btype) ? 1 : 0);
+				$this->buddyList[$char_id]['uid'] = $char_id;
+				$this->buddyList[$char_id]['name'] = $sender;
+				$this->buddyList[$char_id]['online'] = $status;
+				$this->buddyList[$char_id]['known'] = (ord($btype) ? 1 : 0);
 
 				//Ignore Logon/Logoff from other bots or phantom logon/offs
                 if (Settings::get("Ignore"][$sender) == true || $sender == "") {
@@ -904,10 +904,10 @@ class Budabot extends AOChat {
 					//if (Settings::get('echo') >= 1) newLine("Buddy", $sender, "logged off", Settings::get('echo'));
 
 					// Check files, for all 'player logged off events'
-					if ($this->logOff != NULL) {
-						forEach ($this->logOff as $filename) {
-							$msg = "";
-							include $filename;
+					$events = Event::find_active_events($type);
+					if ($events != NULL) {
+						forEach ($events as $event) {
+							include $event->file;
 						}
 					}
 				} else if ($status == 1) {
@@ -917,10 +917,10 @@ class Budabot extends AOChat {
 					if (Settings::get('echo') >= 1) newLine("Buddy", $sender, "logged on", Settings::get('echo'));
 
 					// Check files, for all 'player logged on events'.
-					if ($this->logOn != NULL) {
-						forEach ($this->logOn as $filename) {
-						  	$msg = "";
-						  	include $filename;
+					$events = Event::find_active_events($type);
+					if ($events != NULL) {
+						forEach ($events as $event) {
+							include $event->file;
 						}
 					}
 				}
@@ -958,7 +958,7 @@ class Budabot extends AOChat {
 					return;
 				}
 
-				if (Settings::get("Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || ($this->spam[$sender] > 100 && $this->vars['spam protection') == 1)) {
+				if (Settings::get("Ignore"][$sender] == true || $this->banlist[$sender]["name"] == $sender || ($this->spam[$sender] > 100 && $this->vars['spam protection') == 1)) {
 					$this->spam[$sender] += 20;
 					return;
 				}
@@ -974,10 +974,10 @@ class Budabot extends AOChat {
 				}
 
 				// Events
-				if ($this->privMsgs != NULL) {
-					forEach ($this->privMsgs as $file) {
-						$msg = "";
-						include $file;
+				$events = Event::find_active_events($type);
+				if ($events != NULL) {
+					forEach ($events as $event) {
+						include $event->file;
 					}
 				}
 
@@ -1052,10 +1052,10 @@ class Budabot extends AOChat {
 					// Echo
 					if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, $message, Settings::get('echo'));
 
-					if ($this->privChat != NULL) {
-						forEach ($this->privChat as $file) {
-						  	$msg = "";
-							include $file;
+					$events = Event::find_active_events($type);
+					if ($events != NULL) {
+						forEach ($events as $event) {
+							include $event->file;
 						}
 					}
 
@@ -1094,10 +1094,10 @@ class Budabot extends AOChat {
 					
 					if (Settings::get('echo') >= 1) newLine("Ext Priv Group $channel", $sender, $message, Settings::get('echo'));
 					
-					if ($this->extPrivChat != NULL) {
-						forEach ($this->extPrivChat as $file) {
-						  	$msg = "";
-							include $file;
+					$events = Event::find_active_events($type);
+					if ($events != NULL) {
+						forEach ($events as $event) {
+							include $event->file;
 						}
 					}
 				}
@@ -1148,31 +1148,31 @@ class Budabot extends AOChat {
 
 				if ($channel == "All Towers" || $channel == "Tower Battle Outcome") {
                     $type = "towers";
-    				if ($this->towers != NULL) {
-    					forEach ($this->towers as $file) {
-    						$msg = "";
-							include $file;
-    					}
+    				$events = Event::find_active_events($type);
+					if ($events != NULL) {
+						forEach ($events as $event) {
+							include $event->file;
+						}
 					}
                     return;
                 } else if ($channel == "Org Msg") {
                     $type = "orgmsg";
-    				if ($this->orgmsg != NULL) {
-						foreach($this->orgmsg as $file) {
-    						$msg = "";
-							include $file;
-    					}
+    				$events = Event::find_active_events($type);
+					if ($events != NULL) {
+						forEach ($events as $event) {
+							include $event->file;
+						}
 					}
                     return;
                 } else if ($channel == $this->vars["my guild"]) {
                     $type = "guild";
 					$sendto = 'org';
-					if ($this->guildChat != NULL)
-    					foreach($this->guildChat as $file) {
-							$msg = "";
-							include $file;
+					$events = Event::find_active_events($type);
+					if ($events != NULL) {
+						forEach ($events as $event) {
+							include $event->file;
 						}
-
+					}
 					$msg = "";
 					if (!$restriced && (($message[0] == Settings::get("symbol") && strlen($message) >= 2) || preg_match("/^(afk|brb)/i", $message, $arr))) {
 						if ($message[0] == Settings::get("symbol")) {
@@ -1217,10 +1217,10 @@ class Budabot extends AOChat {
 				// Echo
 				if (Settings::get('echo') >= 1) newLine("Priv Group Invitation", $sender, " channel invited.", Settings::get('echo'));
 
-				if ($this->extJoinPrivRequest != NULL) {
-					forEach ($this->extJoinPrivRequest as $file) {
-						$msg = "";
-						include $file;
+				$events = Event::find_active_events($type);
+				if ($events != NULL) {
+					forEach ($events as $event) {
+						include $event->file;
 					}
 				}
                 return;

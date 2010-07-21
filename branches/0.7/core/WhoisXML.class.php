@@ -53,20 +53,21 @@ class WhoisXML extends XML {
 	//construktor of the class
 	function __construct($name, $rk_num = 0, $cache = 0){
 		//if no server number is specified use the one on which the bot is logged in
-		if($rk_num == 0) {
+		if ($rk_num == 0) {
 			global $vars;
 			$rk_num = $vars["dimension"];
 		}
 
 		//if no specific cachefolder is defined use the one from config.php
-		if($cache == 0) {
+		if ($cache == 0) {
 			global $vars;
 			$cache = $vars["cachefolder"];
 		}
 
 		//Making sure that the cache folder exists
-		if(!dir($cache))
-		mkdir($cache, 0777);
+		if (!dir($cache)) {
+			mkdir($cache, 0777);
+		}
 
 		//Character lookup        		
 		$this->lookup($name, $rk_num, $cache);
@@ -79,14 +80,15 @@ class WhoisXML extends XML {
 		$name = ucfirst(strtolower($name));
 		
 		//Check if a xml file of the person exists, that it isn't older then 24hrs and correct
-		if(file_exists("$cache/$name.$rk_num.xml")) {
+		if (file_exists("$cache/$name.$rk_num.xml")) {
 			$mins = (time() - filemtime("$cache/$name.$rk_num.xml")) / 60;
 			$hours = floor($mins/60);
-			if($hours < 24 && $fp = fopen("$cache/$name.$rk_num.xml", "r")) {
-				while(!feof ($fp))
-				$playerbio .= fgets ($fp, 4096);
+			if ($hours < 24 && $fp = fopen("$cache/$name.$rk_num.xml", "r")) {
+				while (!feof ($fp)) {
+					$playerbio .= fgets ($fp, 4096);
+				}
 				fclose($fp);
-				if(xml::spliceData($playerbio, '<nick>', '</nick>') == $name) {
+				if (xml::spliceData($playerbio, '<nick>', '</nick>') == $name) {
 					$data_found = true;
 				} else {
 					$data_found = false;
@@ -97,9 +99,9 @@ class WhoisXML extends XML {
 		}
 		
 		//If no file was found or it is outdated try to update it from anarchyonline.com
-		if(!$data_found) {
+		if (!$data_found) {
 			$playerbio = xml::getUrl("http://people.anarchyonline.com/character/bio/d/$rk_num/name/$name/bio.xml");
-			if(xml::spliceData($playerbio, '<nick>', '</nick>') == $name) {
+			if (xml::spliceData($playerbio, '<nick>', '</nick>') == $name) {
 				$data_found = true;
 				$data_save = true;
 			} else {
@@ -109,9 +111,9 @@ class WhoisXML extends XML {
 		}
 		
 		//If ao.com was too slow to respond or got wrong data back try to update it from auno.org
-		if(!$data_found) {
+		if (!$data_found) {
 			$playerbio = xml::getUrl("http://auno.org/ao/char.php?output=xml&dimension=$rk_num&name=$name");
-			if(xml::spliceData($playerbio, '<nick>', '</nick>') == $name) {
+			if (xml::spliceData($playerbio, '<nick>', '</nick>') == $name) {
 				$data_found = true;
 				$data_save = true;
 			} else {
@@ -121,7 +123,7 @@ class WhoisXML extends XML {
 		}
 		
 		//If both site were not responding or the data was invalid and a xml file exists get that one
-		if(!$data_found && file_exists("$cache/$name.$rk_num.xml")) {
+		if (!$data_found && file_exists("$cache/$name.$rk_num.xml")) {
 			if ($fp = fopen("$cache/$name.$rk_num.xml", "r")) {
 				while(!feof ($fp))
 				$playerbio .= fgets ($fp, 4096);
@@ -138,7 +140,7 @@ class WhoisXML extends XML {
 		}
 		
 		//if there is still no valid data available give an error back
-		if(!$data_found) {
+		if (!$data_found) {
 			$this->firstname = "";
 			$this->lastname = "";
 			$this->rank_id = 6;
@@ -170,7 +172,7 @@ class WhoisXML extends XML {
 		$this->rank_id      = xml::spliceData($playerbio, '<rank_id>', '</rank_id>');
 
 		//if a new xml file is downloaded save it		
-		if($data_save) {
+		if ($data_save) {
 			$fp = fopen("$cache/$name.$rk_num.xml", "w");
 			fwrite($fp, $playerbio);
 			fclose($fp);
