@@ -107,10 +107,10 @@ if($org_member->mode != "del" && $numrows == 1) {
         }
 
 		if ($main != $sender && $main != false) {
-			$alts = Links::makeLink("Alts", $list);
+			$alts = Text::makeLink("Alts", $list);
 			$msg .= "Main: <highlight>$main<end> ($alts) ";
 		} else if ($main != false) {
-  			$alts = Links::makeLink("Alts of $main", $list);
+  			$alts = Text::makeLink("Alts of $main", $list);
 			$msg .= "$alts ";
 		}
 

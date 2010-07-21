@@ -43,7 +43,7 @@ Last updated on 03.13.2007
 Information originally provided by Jexai.co.uk/anarchy";
 
 
-$clothes_txt = Links::makeLink("Social Clothes", $clothes_txt); 
+$clothes_txt = Text::makeLink("Social Clothes", $clothes_txt); 
 if($type == "msg") 
 $this->send($clothes_txt, $sender); 
 elseif($type == "all") 

@@ -52,7 +52,7 @@ if (preg_match("/^banlist$/i", $message)){
 		}
 		$list.= "\n";	
 	}
-	$link = Links::makeLink('Banlist', $list);
+	$link = Text::makeLink('Banlist', $list);
 	$this->send($link, $sendto);
 } else {
 	$syntax_error = true;

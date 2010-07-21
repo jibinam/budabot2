@@ -689,7 +689,7 @@ else {
 	$spirits .= "<red>Invalid search criteria entered";
 }
 		
-$spirits = Links::makeLink("Spirits", $spirits);
+$spirits = Text::makeLink("Spirits", $spirits);
 		
 $this->send($spirits, $sendto);
 ?>

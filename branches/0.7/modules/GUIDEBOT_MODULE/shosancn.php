@@ -21,7 +21,7 @@ $shosancn_txt = "Scheol Sanctuary Nanos
 <a href='itemref://227662/227662/88'>LINK </a> Weaponsmithing Knowledge - Engie
 <a href='itemref://218101/218101/83'>LINK </a> Ziana's Energy Wave - NT</font> ";
 
-$shosancn_txt = Links::makeLink("Shoel Sanctuary Garden Nanos", $shosancn_txt); 
+$shosancn_txt = Text::makeLink("Shoel Sanctuary Garden Nanos", $shosancn_txt); 
 if($type == "msg") 
 $this->send($shosancn_txt, $sender); 
 elseif($type == "all") 

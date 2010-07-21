@@ -58,7 +58,7 @@ Information originally provided by tcollings, Roedran and stokeley to the SL Lib
 Guide courtesy of AO Universe
 "
 ;
-$adokeyclan_txt = Links::makeLink("Adonis: Garden Key Quest CLAN", $adokeyclan_txt);
+$adokeyclan_txt = Text::makeLink("Adonis: Garden Key Quest CLAN", $adokeyclan_txt);
 
 $this->send($adokeyclan_txt, $sendto);
 

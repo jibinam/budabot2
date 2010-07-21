@@ -98,7 +98,7 @@ Will of the Reposeful
 The visions and embryos drop in the Penumbra and higher zones (Catacombs under each Temple). 
  ";
 
-$tier2armor_txt = Links::makeLink("Making Tier2 Armor", $tier2armor_txt); 
+$tier2armor_txt = Text::makeLink("Making Tier2 Armor", $tier2armor_txt); 
 if($type == "msg") 
 $this->send($tier2armor_txt, $sender); 
 elseif($type == "all") 

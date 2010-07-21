@@ -81,14 +81,14 @@ if (!$syntax_error) {
 		
 		//echo $childNodes->item(1)->getElementsByTagName('a')->item(0)->getAttribute('href') . "\n\n";
 		
-		$lookup = Links::makeLink('Lookup', "/tell <myname> items $ql $item", 'chatcmd');
+		$lookup = Text::makeLink('Lookup', "/tell <myname> items $ql $item", 'chatcmd');
 
-		$items .= Links::makeLink($seller, "/tell $seller", 'chatcmd') . ": $item (ql $ql) [" . $time . "] $lookup \n";
+		$items .= Text::makeLink($seller, "/tell $seller", 'chatcmd') . ": $item (ql $ql) [" . $time . "] $lookup \n";
 	}
 	
 	if ($items != '') {
 		$items .= "\n\nSearch results provided by http://www.aojunkyard.com/";
-		$msg = Links::makeBlob($title, $items);
+		$msg = Text::makeBlob($title, $items);
 	} else {
 		$msg = 'No items found. Maybe try fewer keywords.';
 	}

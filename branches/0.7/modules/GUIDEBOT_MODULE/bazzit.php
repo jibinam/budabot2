@@ -104,7 +104,7 @@ Last updated on 03.13.2007
 Information originally provided by Jexai.co.uk/anarchy";
 
 
-$bazzit_txt = Links::makeLink("Uncle Bazzit's Quest", $bazzit_txt); 
+$bazzit_txt = Text::makeLink("Uncle Bazzit's Quest", $bazzit_txt); 
 if($type == "msg") 
 $this->send($bazzit_txt, $sender); 
 elseif($type == "all") 

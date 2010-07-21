@@ -61,7 +61,7 @@ $infgarn_txt = "Inferno Garden
 <a href='itemref://218065/218065/181'>LINK </a> Ward Blow - MA
 <a href='itemref://226418/226418/195'>LINK </a> Waves of Illness - Agent</FONT> ";
 
-$infgarn_txt = Links::makeLink("Inferno Garden Nanos", $infgarn_txt); 
+$infgarn_txt = Text::makeLink("Inferno Garden Nanos", $infgarn_txt); 
 if($type == "msg") 
 $this->send($infgarn_txt, $sender); 
 elseif($type == "all") 

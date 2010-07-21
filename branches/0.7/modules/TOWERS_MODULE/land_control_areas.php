@@ -67,7 +67,7 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 		$list .= "Location: <highlight>$row->location<end>\n\n";
 	}
 	
-	$msg = Links::makeLink("Land Control Areas", $list);
+	$msg = Text::makeLink("Land Control Areas", $list);
 	$this->send($msg, $sendto);
 } elseif(preg_match("/^lca ([a-z ]+)$/i", $message, $arr)) {
 	$name = $arr[1];
@@ -96,7 +96,7 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 		$list .= "Location: <highlight>$row->location<end>\n\n";
 	}
 	
-	$msg = Links::makeLink("Land Control Areas", $list);
+	$msg = Text::makeLink("Land Control Areas", $list);
 	$this->send($msg, $sendto);
 } elseif(preg_match("/^lca ([0-9]+) ([a-z ]+)$/i", $message, $arr)) {
 	$name = $arr[2];
@@ -132,7 +132,7 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 		$list .= "Location: <highlight>$row->location<end>\n\n";
 	}
 	
-	$msg = Links::makeLink("Land Control Areas", $list);
+	$msg = Text::makeLink("Land Control Areas", $list);
 	$this->send($msg, $sendto);
 
 } else {

@@ -45,7 +45,7 @@ Now back to your safe spot, jump back into the fixer grid go back to the middle 
 Now all kinds of chaos insues - three cyborg boss mobs spawn, unless you have serious back-up run away quickly with your new prize! I am unaware of anyone having tried to kill these mobs, and they appear to be on a timer as they do despawn. 
  ";
 
-$fgrid2_txt = Links::makeLink("Guide to Fixer Grid Part 2 aka Team FGrid", $fgrid2_txt); 
+$fgrid2_txt = Text::makeLink("Guide to Fixer Grid Part 2 aka Team FGrid", $fgrid2_txt); 
 if($type == "msg") 
 $this->send($fgrid2_txt, $sender); 
 elseif($type == "all") 

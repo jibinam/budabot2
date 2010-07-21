@@ -32,7 +32,7 @@ Information originally provided by Friregan to the SL Library Forums. Additional
 Courtesy of AO Universe
 "
 ;
-$shoelsancclan_txt = Links::makeLink("Shoel: Sanctuary Garden Key Quest CLAN", $shoelsancclan_txt); 
+$shoelsancclan_txt = Text::makeLink("Shoel: Sanctuary Garden Key Quest CLAN", $shoelsancclan_txt); 
 if($type == "msg") 
 $this->send($shoelsancclan_txt, $sender); 
 elseif($type == "all") 

@@ -30,7 +30,7 @@
 	$help .= "<a href='chatcmd:///tell <myname> <symbol>mafist shade 750'>/tell <myname> <symbol>mafist shade 750</a>\n\n";
 	$help .= $footer;
 
-	$helplink = Links::makeLink("::How to use MA::", $help);
+	$helplink = Text::makeLink("::How to use MA::", $help);
 
 	if (preg_match("/^mafist ([a-z]+) ([0-9]+)$/i", $message, $arr)) {
 		$MaSkill = trim($arr[2]);
@@ -87,7 +87,7 @@
 		$inside .= "Fist speed: <orange>".$speed."<end>s/<orange>".$speed."<end>s\n";
 		$inside .= $footer;
 		
-		$windowlink = Links::makeLink("::Your MA skill results::", $inside);
+		$windowlink = Text::makeLink("::Your MA skill results::", $inside);
 		$this->send($windowlink, $sendto);
 		
 	} else {

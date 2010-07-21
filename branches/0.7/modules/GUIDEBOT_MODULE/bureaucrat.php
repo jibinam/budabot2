@@ -157,7 +157,7 @@ Another bureaucrat of the problems with innate resistance is traders saying they
 Hope that helps shed some light and why crowd controllers such as bureaucrats have problems when the mobs are immune to mez/root/stun and the psychic checks on fears render the nano inoperative.
  ";
 
-$bureaucrat_txt = Links::makeLink("Guide To Bureaucrats", $bureaucrat_txt); 
+$bureaucrat_txt = Text::makeLink("Guide To Bureaucrats", $bureaucrat_txt); 
 if($type == "msg") 
 $this->send($bureaucrat_txt, $sender); 
 elseif($type == "all") 

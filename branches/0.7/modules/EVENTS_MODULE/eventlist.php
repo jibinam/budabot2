@@ -13,8 +13,8 @@ if(preg_match("/^eventlist ([0-9]+)$/i", $message, $arr)) {
 	$row = $db->fObject();
 	$link = "<header>::::: Player Signed Up :::::<end>\n\n";
 	
-	$link .= Links::makeLink("Join this event", "/tell <myname> joinEvent $arr[1]", "chatcmd")."\n";
-	$link .= Links::makeLink("Leave this event", "/tell <myname> leaveEvent $arr[1]", "chatcmd")."\n\n";
+	$link .= Text::makeLink("Join this event", "/tell <myname> joinEvent $arr[1]", "chatcmd")."\n";
+	$link .= Text::makeLink("Leave this event", "/tell <myname> leaveEvent $arr[1]", "chatcmd")."\n\n";
 	
 	
 		$eventlist = explode(",", $row->event_attendees);
@@ -42,7 +42,7 @@ if(preg_match("/^eventlist ([0-9]+)$/i", $message, $arr)) {
 		}
 		else
 			$link .= "Eventlist is empty\n";
-		$msg = Links::makeLink("Eventlist", $link);
+		$msg = Text::makeLink("Eventlist", $link);
 	}
 	else
 		$msg = "That event doesn't exist";

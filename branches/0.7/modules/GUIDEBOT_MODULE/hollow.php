@@ -93,7 +93,7 @@ The Brood Mother:
 <a href='itemref://216277/216277/150'>Lion's Leather Vest </a>
 <a href='itemref://216282/216282/150'>Professional Marksman's Kit </font> </a>  ";
 
-$hollow_txt = Links::makeLink("Guide to Hollow Island", $hollow_txt); 
+$hollow_txt = Text::makeLink("Guide to Hollow Island", $hollow_txt); 
 if($type == "msg") 
 $this->send($hollow_txt, $sender); 
 elseif($type == "all") 

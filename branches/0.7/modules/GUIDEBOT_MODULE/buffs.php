@@ -230,7 +230,7 @@ Here's a list of nanos you can seek to buff the base abilities. The list here do
 Again, keep in mind that many of the buffs here have lesser ones available in the same line. So you may be able to get something lower if there's a level-lock involved, or you contact a lower-level profession.
 </font>"
 ; 
-$Buffs_txt = Links::makeLink("Information On Buffs", $Buffs_txt); 
+$Buffs_txt = Text::makeLink("Information On Buffs", $Buffs_txt); 
 if($type == "msg") 
 $this->send($Buffs_txt, $sender); 
 elseif($type == "priv") 

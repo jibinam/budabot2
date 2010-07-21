@@ -281,7 +281,7 @@ Ring of Magpie Tail Feathers
 ";
 
  
-$jacksrings_txt = Links::makeLink("Jacks Professionals Rings Quest RK", $jacksrings_txt); 
+$jacksrings_txt = Text::makeLink("Jacks Professionals Rings Quest RK", $jacksrings_txt); 
 if($type == "msg") 
 $this->send($jacksrings_txt, $sender); 
 elseif($type == "priv") 

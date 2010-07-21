@@ -49,7 +49,7 @@ if (preg_match("/^onlineguests$/i", $message)) {
 	    }
 		
         $msg = "<highlight>".$numguest."<end> players in Guestchannel ";
-        $link = ":: ".Links::makeLink('Click here', $list);
+        $link = ":: ".Text::makeLink('Click here', $list);
         if($numguest != 0) {
            	$this->send($msg.$link, $sendto);
         } else {

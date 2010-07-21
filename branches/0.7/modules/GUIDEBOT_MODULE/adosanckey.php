@@ -18,7 +18,7 @@ Make this pattern into a Novictalized Notum Crystal (same process as with the pr
 Your get a mission update. Bring the item the Diviner dropped to Visionist Bhotaar-Hes Dal and he will reward you with the Sanctuary Key!
  ";
 
-$adosanckey_txt = Links::makeLink("Adonis: Dalja Sanctuary Garden Key Quest", $adosanckey_txt);
+$adosanckey_txt = Text::makeLink("Adonis: Dalja Sanctuary Garden Key Quest", $adosanckey_txt);
 
 $this->send($adosanckey_txt, $sendto);
  

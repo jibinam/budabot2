@@ -123,7 +123,7 @@ Need just a wee extra? Get some Carbonum Armor, which adds a small amount of NCU
 
 Well, nothing much else to say, other than knowing that there's another door of opportunity to go through in further leveling your character. Hey... what are you waiting for? Log on and get grafting!!! ";
 
-$implants_txt = Links::makeLink("Guide to Implants", $implants_txt); 
+$implants_txt = Text::makeLink("Guide to Implants", $implants_txt); 
 if($type == "msg") 
 $this->send($implants_txt, $sender); 
 elseif($type == "all") 

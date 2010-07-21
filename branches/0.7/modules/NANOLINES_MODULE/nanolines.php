@@ -40,13 +40,13 @@ if (preg_match("/^nanolines$/i", $message, $arr)) {
 
 	while($row = $db->fObject()) {
 
-		$window .= Links::makeLink($row->profession, "/tell <myname> <symbol>nlprof $row->profession", 'chatcmd');
+		$window .= Text::makeLink($row->profession, "/tell <myname> <symbol>nlprof $row->profession", 'chatcmd');
 		$window .= "\n";
 	}
 
 	$window .= "\n\nAO Nanos by Voriuste";
 
-	$msg = Links::makeBlob('Nanolines', $window);
+	$msg = Text::makeBlob('Nanolines', $window);
 
 	$this->send($msg, $sendto);
 }

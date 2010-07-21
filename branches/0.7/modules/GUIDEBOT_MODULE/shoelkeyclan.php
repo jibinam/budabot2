@@ -47,7 +47,7 @@ Information originally provided by Windguaerd.
 Courtesy of AO Universe
 "
 ;
-$shoelkeyclan_txt = Links::makeLink("Shoel: Garden Key Quest CLAN", $shoelkeyclan_txt); 
+$shoelkeyclan_txt = Text::makeLink("Shoel: Garden Key Quest CLAN", $shoelkeyclan_txt); 
 if($type == "msg") 
 $this->send($shoelkeyclan_txt, $sender); 
 elseif($type == "all") 

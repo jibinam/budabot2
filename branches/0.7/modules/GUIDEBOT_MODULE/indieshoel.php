@@ -115,7 +115,7 @@ Additional Information provided by Uragon and Ukblizzard.
 Do you have questions about this guide or are looking for help? Post in the <a href='chatcmd:///start http://www.ao-universe.com/viewforum.php?f=1>General Discussion forum</a> and ask the AOU Community."
 ;
 
-$indieshoel_txt = Links::makeLink("Shoel Quests : Independants", $indieshoel_txt); 
+$indieshoel_txt = Text::makeLink("Shoel Quests : Independants", $indieshoel_txt); 
 if($type == "msg") 
 $this->send($indieshoel_txt, $sender); 
 elseif($type == "all") 

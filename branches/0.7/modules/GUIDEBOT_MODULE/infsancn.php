@@ -73,7 +73,7 @@ $infsancn_txt = "Inferno Sanctuary
 <a href='itemref://218065/218065/181/'>LINK </a> Ward Blow - MA
 <a href='itemref://226418/226418/195/'>LINK </a> Waves of Illness - Agent</font> ";
 
-$infsancn_txt = Links::makeLink("Inferno Sanctuary Garden Nanos", $infsancn_txt); 
+$infsancn_txt = Text::makeLink("Inferno Sanctuary Garden Nanos", $infsancn_txt); 
 if($type == "msg") 
 $this->send($infsancn_txt, $sender); 
 elseif($type == "all") 

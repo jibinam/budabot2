@@ -308,38 +308,6 @@ class Budabot extends AOChat {
 		}
 	}
 
-/*===============================
-** Name: formatMessage
-** Formats an outgoing message with correct colors, replaces values, etc
-*/	function formatMessage($message) {
-		// Color
-		$message = str_replace("<header>", Settings::get('default_header_color'), $message);
-		$message = str_replace("<error>", Settings::get('default_error_color'), $message);
-		$message = str_replace("<highlight>", Settings::get('default_highlight_color'), $message);
-		$message = str_replace("<black>", "<font color='#000000'>", $message);
-		$message = str_replace("<white>", "<font color='#FFFFFF'>", $message);
-		$message = str_replace("<yellow>", "<font color='#FFFF00'>", $message);
-		$message = str_replace("<blue>", "<font color='#8CB5FF'>", $message);
-		$message = str_replace("<green>", "<font color='#00DE42'>", $message);
-		$message = str_replace("<white>", "<font color='#FFFFFF'>", $message);
-		$message = str_replace("<red>", "<font color='#ff0000'>", $message);
-		$message = str_replace("<orange>", "<font color='#FCA712'>", $message);
-		$message = str_replace("<grey>", "<font color='#C3C3C3'>", $message);
-		$message = str_replace("<cyan>", "<font color='#00FFFF'>", $message);
-
-		$message = str_replace("<myname>", $this->name, $message);
-		$message = str_replace("<tab>", "    ", $message);
-		$message = str_replace("<end>", "</font>", $message);
-		$message = str_replace("<symbol>", Settings::get("symbol") , $message);
-		
-		$message = str_replace("<neutral>", "<font color='#EEEEEE'>", $message);
-		$message = str_replace("<omni>", "<font color='#00FFFF'>", $message);
-		$message = str_replace("<clan>", "<font color='#F79410'>", $message);
-		$message = str_replace("<unknown>", "<font color='#FF0000'>", $message);
-
-		return $message;
-	}
-
 	function sendPrivate($message, $group, $disable_relay = false) {
 		// for when makeLink generates several pages
 		if (is_array($message)) {
@@ -349,7 +317,7 @@ class Budabot extends AOChat {
 			return;
 		}
 	
-		$message = $this->formatMessage($message);
+		$message = Text::formatMessage($message);
 		$this->send_privgroup($group,Settings::get("default_priv_color").$message);
 		if ((Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay)) {
 			$this->send_group($group, "</font>" . Settings::get("guest_color_channel") . "[Guest]<end> " . Settings::get("guest_color_username") . "$this->name</font>: " . Settings::get("default_priv_color") . "$message</font>");
@@ -374,18 +342,18 @@ class Budabot extends AOChat {
 			$who = 'prv';
 		}
 
-		$message = $this->formatMessage($message);
+		$message = Text::formatMessage($message);
 
 		// Send
 		if ($who == 'prv') { // Target is private chat by defult.
 			$this->send_privgroup($this->name, Settings::get("default_priv_color").$message);
 			if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
-				$this->send_group($this->vars["my guild"], "</font>" . Settings::get("guest_color_channel"] . "[Guest]<end> " . Settings::get("guest_color_username") . Links::makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_priv_color") . "$message</font>");
+				$this->send_group($this->vars["my guild"], "</font>" . Settings::get("guest_color_channel"] . "[Guest]<end> " . Settings::get("guest_color_username") . Text::makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_priv_color") . "$message</font>");
 			}
 		} else if ($who == $this->vars["my guild"] || $who == 'org') {// Target is guild chat.
     		$this->send_group($this->vars["my guild"],Settings::get("default_guild_color").$message);
 			if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
-				$this->send_privgroup($this->name, "</font>" . Settings::get("guest_color_channel") . "[{$this->vars["my guild"]}]<end> " . Settings::get("guest_color_username") . Links::makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_guild_color") . "$message</font>");
+				$this->send_privgroup($this->name, "</font>" . Settings::get("guest_color_channel") . "[{$this->vars["my guild"]}]<end> " . Settings::get("guest_color_username") . Text::makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_guild_color") . "$message</font>");
 			}
 		} else if ($this->get_uid($who) != NULL) {// Target is a player.
     		$this->send_tell($who, Settings::get("default_tell_color").$message);

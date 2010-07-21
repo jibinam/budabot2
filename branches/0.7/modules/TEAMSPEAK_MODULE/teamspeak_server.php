@@ -207,7 +207,7 @@ if(preg_match("/^ts$/i", $message)) {
 				$link .= "<tab>- <highlight>None<end>\n";
 		}
 
-		$msg = Links::makeLink("Teamspeak Server Status", $link);
+		$msg = Text::makeLink("Teamspeak Server Status", $link);
 	} else {
 		$msg = "Couldn't connect to Teamspeak Server. Try again later.";
 	}

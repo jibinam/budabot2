@@ -16,7 +16,7 @@ Please notify your bot developer of any changes, errors, or discrepencies.
 <a href='chatcmd:///tell <myname> infsancn'> - Inferno Sanctuary Garden Nanos.</a>
 <a href='chatcmd:///tell <myname> panven'> - Pandemonium Vendors Nanos.</font></a> ";
 
-$slnano_txt = Links::makeLink("Shadowlands Garden Nanos", $slnano_txt); 
+$slnano_txt = Text::makeLink("Shadowlands Garden Nanos", $slnano_txt); 
 if($type == "msg") 
 $this->send($slnano_txt, $sender); 
 elseif($type == "all") 

@@ -26,7 +26,7 @@ if (preg_match ("/^dyna ([0-2]?[0-9]?[0-9])$/i", $message, $arr)) {
 		$dynacamps .="<blue>Level:  $row->minQl<yellow>-<blue>$row->maxQl\n\n";
 	}
 	
-	$dynacamps = Links::makeBlob("Results Of Dynacamp Search For $search", $dynacamps);
+	$dynacamps = Text::makeBlob("Results Of Dynacamp Search For $search", $dynacamps);
 	$this->send($dynacamps, $sendto);
 } elseif (preg_match ("/^dyna (.+)$/i", $message, $arr)) {
 	$search = str_replace(" ", "%", $arr[1]);
@@ -42,7 +42,7 @@ if (preg_match ("/^dyna ([0-2]?[0-9]?[0-9])$/i", $message, $arr)) {
 		$dynacamps .="<blue>Level: $row->minQl<yellow>-<blue>$row->maxQl\n\n";
 	}
 	
-	$dynacamps = Links::makeBlob("Results Of Dynacamp Search For $search", $dynacamps);
+	$dynacamps = Text::makeBlob("Results Of Dynacamp Search For $search", $dynacamps);
 	$this->send($dynacamps, $sendto);
 } else {
 	$syntax_error = true;

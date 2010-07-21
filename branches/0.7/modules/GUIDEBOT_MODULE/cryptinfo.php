@@ -323,7 +323,7 @@ Last updated on 08.22.2006 by Stillian
 Information originally provided by Windguaerd.
 http://www.ao-universe.com/main.php?site=knowledge&link=0&id=153 ";
 
-$cryptinfo_txt = Links::makeLink("Guide to Crypt Of Home", $cryptinfo_txt); 
+$cryptinfo_txt = Text::makeLink("Guide to Crypt Of Home", $cryptinfo_txt); 
 if($type == "msg") 
 $this->send($cryptinfo_txt, $sender); 
 elseif($type == "all") 

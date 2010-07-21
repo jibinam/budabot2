@@ -117,7 +117,7 @@ Written by Tepamina
 Guide Courtesy of AO Universe
 ";
 
-$albtraum_txt = Links::makeLink("Guide to Albtraum", $albtraum_txt); 
+$albtraum_txt = Text::makeLink("Guide to Albtraum", $albtraum_txt); 
 if($type == "msg") 
 $this->send($albtraum_txt, $sender); 
 elseif($type == "all") 

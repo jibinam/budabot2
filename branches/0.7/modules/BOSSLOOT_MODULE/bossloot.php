@@ -47,7 +47,7 @@ if(preg_match ("/^bossloot (.+)$/i", $message, $arr)) {
 				}
 			}
 		}
-		$output = Links::makeBlob("Mobs that drop $search", $boss);
+		$output = Text::makeBlob("Mobs that drop $search", $boss);
 	} else {
 		$output .= "<yellow>There were no matches for your search.</end>";
 	}

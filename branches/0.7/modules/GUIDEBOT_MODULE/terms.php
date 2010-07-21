@@ -1223,7 +1223,7 @@ zone - to pass from one playfield to another
 75%: a supression gas ratio, means that mobs can attack you, you can attack mobs, but no PvP is possible
  ";
 
-$terms_txt = Links::makeLink("Guide to AO Terminology", $terms_txt); 
+$terms_txt = Text::makeLink("Guide to AO Terminology", $terms_txt); 
 if($type == "msg") 
 $this->send($terms_txt, $sender); 
 elseif($type == "all") 

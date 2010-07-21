@@ -59,14 +59,14 @@ if (preg_match("/^settings$/i", $message)) {
 			$link .= "  *";
 			
 			if ($row->help != "") {
-				$helpLink = Links::makeLink('Help', "/tell <myname> settings help $row->name", 'chatcmd');
+				$helpLink = Text::makeLink('Help', "/tell <myname> settings help $row->name", 'chatcmd');
 				$link .= "$row->description ($helpLink)";
 			} else {
 				$link .= $row->description;
 			}
 	
 			if ($row->mode == "edit") {
-				$editLink = Links::makeLink('Modify', "/tell <myname> settings change $row->name", 'chatcmd');
+				$editLink = Text::makeLink('Modify', "/tell <myname> settings change $row->name", 'chatcmd');
 				$link .= " ($editLink)";
 			}
 		
@@ -86,7 +86,7 @@ if (preg_match("/^settings$/i", $message)) {
 		}	
 	}
 
-  	$msg = Links::makeLink("Bot Settings", $link);
+  	$msg = Text::makeLink("Bot Settings", $link);
  	$this->send($msg, $sendto);
 } elseif(preg_match("/^settings change ($names)$/i", $message, $arr)) {
     $link = "<header>::::: Settings for $arr[1] :::::<end>\n\n";
@@ -149,7 +149,7 @@ if (preg_match("/^settings$/i", $message)) {
 		  		$link .= "<tab> <highlight>$char<end> (<a href='chatcmd:///tell <myname> settings save $row->name $char'>Save it</a>)\n";
 		}
 	}
-  	$msg = Links::makeLink("Settings Info for $arr[1]", $link);
+  	$msg = Text::makeLink("Settings Info for $arr[1]", $link);
  	$this->send($msg, $sendto);
 } elseif(preg_match("/^settings save ($names) (.+)$/i", $message, $arr)) {
   	$name_setting = strtolower($arr[1]);
@@ -230,7 +230,7 @@ if (preg_match("/^settings$/i", $message)) {
 	if($db->numrows() != 0) {
 	  	$row = $db->fObject();
 		$data = file_get_contents($row->help);
-		$msg = Links::makeLink("Help on setting $name", $data);
+		$msg = Text::makeLink("Help on setting $name", $data);
 	} else {
 		$msg = "No help for this setting found.";
 	}

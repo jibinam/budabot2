@@ -44,7 +44,7 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 				}
 				$msg .= "   - Backpack #".$backpack['id']."\n";
 				forEach ($backpack->children() as $item) {// Loops through items
-					$msg .= "<tab><tab>> ".Links::makeItem($item['lowid'], $item['highid'], $item['ql'], $item['name'])." Item ID: ".$item['id']."\n";
+					$msg .= "<tab><tab>> ".Text::makeItem($item['lowid'], $item['highid'], $item['ql'], $item['name'])." Item ID: ".$item['id']."\n";
 					$item_count++;
 				}
 				if ($location == "inventory") {
@@ -60,7 +60,7 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 			$link = "No items found in Backpack#".$arr." in ".ucwords($location);
 		} else {
 			$msg = $item_count." Items in Backpack#".$arr." in ".ucwords($location)."\n\n".$msg;
-			$link = Links::makeLink($item_count." items found in \"Backpack #".$arr."\" in ".ucwords($location), $msg);
+			$link = Text::makeLink($item_count." items found in \"Backpack #".$arr."\" in ".ucwords($location), $msg);
 		}
 		$this->send($link, $sendto);
 	} else {

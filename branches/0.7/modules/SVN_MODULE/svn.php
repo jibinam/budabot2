@@ -12,7 +12,7 @@ if (preg_match("/^svn update/i", $message)) {
 		$window .= $line . "\n";
 	}
 	
-	$msg = Links::makeLink('svn update output', $window);
+	$msg = Text::makeLink('svn update output', $window);
 	
 	$this->send($msg, $sendto);
 } else if (preg_match("/^svn info/i", $message)) {
@@ -26,7 +26,7 @@ if (preg_match("/^svn update/i", $message)) {
 		$window .= $line . "\n";
 	}
 	
-	$msg = Links::makeLink('svn info output', $window);
+	$msg = Text::makeLink('svn info output', $window);
 	
 	$this->send($msg, $sendto);
 } else {

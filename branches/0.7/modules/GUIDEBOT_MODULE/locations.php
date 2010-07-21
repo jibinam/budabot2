@@ -57,7 +57,7 @@ $locations_txt = "Locations Of Rubi Ka
 
 'Enjoy It While It Lasts' ";
 
-$locations_txt = Links::makeLink("Locations of Rubi Ka", $locations_txt); 
+$locations_txt = Text::makeLink("Locations of Rubi Ka", $locations_txt); 
 if($type == "msg") 
 $this->send($locations_txt, $sender); 
 elseif($type == "all") 

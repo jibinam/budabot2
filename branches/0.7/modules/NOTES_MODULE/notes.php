@@ -36,14 +36,14 @@ if (preg_match("/^notes$/i", $message)) {
 	$sql = "SELECT * FROM notes_<myname> WHERE name LIKE '$sender'";
   	$db->query($sql);
   	while($note = $db->fObject()) {
-	  	$remove = Links::makeLink('Remove', "/tell <myname> <symbol>note rem $note->id" , 'chatcmd');
+	  	$remove = Text::makeLink('Remove', "/tell <myname> <symbol>note rem $note->id" , 'chatcmd');
 	  	$moreInfoMsg .= "$remove $note->note\n\n";
 	}
 	
 	if ($moreInfoMsg == '') {
 		$msg = "No notes for $sender.";	
 	} else {
-		$msg = Links::makeBlob("Notes for $sender", $moreInfoMsg);
+		$msg = Text::makeBlob("Notes for $sender", $moreInfoMsg);
 	}
   	
 	$this->send($msg, $sendto);

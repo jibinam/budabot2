@@ -26,7 +26,7 @@ $shogar_txt = "Scheol Garden
 <a href='itemref://224407/2244707/75'>LINK </a> Summon Shadowweb Spinner MK II - Fixer
 <a href='itemref://218107/218107/75'>LINK </a> Vital Corruptor - NT</FONT> ";
 
-$shogar_txt = Links::makeLink("Shoel Garden Nanos", $shogar_txt); 
+$shogar_txt = Text::makeLink("Shoel Garden Nanos", $shogar_txt); 
 if($type == "msg") 
 $this->send($shogar_txt, $sender); 
 elseif($type == "all") 

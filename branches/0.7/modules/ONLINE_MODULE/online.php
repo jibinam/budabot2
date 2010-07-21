@@ -36,7 +36,7 @@ require_once("online_func.php");
 if (preg_match("/^online$/i", $message)){
 	$msg = "";
 	list($numonline, $msg, $list) = online($type, $sender, $sendto, $this);
-	$link = ":: ".Links::makeLink('Click here', $list);
+	$link = ":: ".Text::makeLink('Click here', $list);
 	if($numonline != 0) {
 		$this->send($msg.$link, $sendto);
 	} else {
@@ -97,7 +97,7 @@ if (preg_match("/^online$/i", $message)){
 		return;
 	}
 	list($numonline, $msg, $list) = online($type, $sender, $sendto, $this);
-	$link = ":: ".Links::makeLink('Click here', $list);
+	$link = ":: ".Text::makeLink('Click here', $list);
 	if($numonline != 0) {
 		$this->send($msg.$link, $sendto);
 	} else {

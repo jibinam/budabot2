@@ -94,7 +94,7 @@ if(preg_match("/^axp$/i", $message)) {
     $msg .= "29 - 5.475.604 - Vanquisher - 195\n";
     $msg .= "30 - 5.968.409 - Vindicator - 200\n";
 
-    $msg = Links::makeLink("AXP Table", $msg);
+    $msg = Text::makeLink("AXP Table", $msg);
 
     // Send info back
     $this->send($msg, $sendto);

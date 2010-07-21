@@ -50,7 +50,7 @@ if (preg_match ("/^boss (.+)$/i", $message, $arr)) {
 				}
 			}
 		}
-		$output = Links::makeLink("Boss", $boss);
+		$output = Text::makeLink("Boss", $boss);
 	} elseif ($name_found  == 1) { //If single match found, output full loot table
 		$db->query("SELECT * FROM boss_namedb WHERE bossname LIKE  '%".str_replace("'", "''", $search)."%' OR keyname LIKE '%".str_replace("'", "''", $search)."%'");
 		$data = $db->fobject("all");
@@ -80,7 +80,7 @@ if (preg_match ("/^boss (.+)$/i", $message, $arr)) {
 			$boss .= "<img src=rdb://".$icon.">\n";
 			$boss .= "<a href='itemref://$loid/$hiid/$ql.'>$loot_name</a>\n\n";
 		}
-		$output = Links::makeBlob("Results of Search for $search", $boss);
+		$output = Text::makeBlob("Results of Search for $search", $boss);
 	} else {
 		$output .= "<yellow>There were no matches for your search.</end>";
 	}

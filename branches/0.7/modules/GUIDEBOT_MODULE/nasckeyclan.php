@@ -46,7 +46,7 @@ Information originally provided by Silq at the Official AO Forums. Additional in
 Courtesy of AO Universe
 "
 ;
-$nasckeyclan_txt = Links::makeLink("Elysium: Garden Key Quest Clan", $nasckeyclan_txt); 
+$nasckeyclan_txt = Text::makeLink("Elysium: Garden Key Quest Clan", $nasckeyclan_txt); 
 if($type == "msg") 
 $this->send($nasckeyclan_txt, $sender); 
 elseif($type == "all") 

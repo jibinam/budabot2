@@ -14,7 +14,7 @@ $help .= "You have <orange>900<end> fast attack Skill.\n";
 $help .= "<a href='chatcmd:///tell <myname> <symbol>fast 1.2 900'>/tell <myname> <symbol>fast 1.2 900</a>\n\n";
 $help .= $footer;
 
-$helplink = Links::makeLink("::How to use fast attack::", $help);
+$helplink = Text::makeLink("::How to use fast attack::", $help);
 
 if (preg_match("/^(fast|fastattack) ([0-9]*\.?[0-9]+) ([0-9]+)$/i", $message, $arr)) {
 	$AttTim = trim($arr[1]);
@@ -37,7 +37,7 @@ if (preg_match("/^(fast|fastattack) ([0-9]*\.?[0-9]+) ([0-9]+)$/i", $message, $a
 	$inside	.= "You need <orange>".$fastskillcap."<end> Fast Atk Skill to cap your fast attack at: <orange>".$fasthardcap."<end>s";
 	$inside .= $footer;
 
-	$windowlink = Links::makeLink("::Your Fast Attack Results::", $inside);
+	$windowlink = Text::makeLink("::Your Fast Attack Results::", $inside);
 	$this->send($windowlink, $sendto);
 } else {
 	$this->send($helplink, $sendto);

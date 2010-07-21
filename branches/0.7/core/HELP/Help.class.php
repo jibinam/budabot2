@@ -35,7 +35,7 @@ class Help {
 			$row = $db->fObject();
 			$data = file_get_contents($row->file);
 			$helpcmd = ucfirst($helpcmd);
-			$msg = Links::makeLink("Help($helpcmd)", $data);
+			$msg = Text::makeLink("Help($helpcmd)", $data);
 			return $msg;
 		}
 	}

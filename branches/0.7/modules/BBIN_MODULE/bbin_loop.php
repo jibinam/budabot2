@@ -44,7 +44,7 @@ if(($data = fgets($bbin_socket)) && ("1" == Settings::get('bbin_status'))) {
 
 
 			// send notification to channel
-			$extendedinfo = Links::makeLink("Extended informations",$data);
+			$extendedinfo = Text::makeLink("Extended informations",$data);
 			if($this->vars['my guild'] != "")
 			{
 				$this->send("<yellow>[BBIN]<end> Lost connection with server:".$extendedinfo,"guild",true);
@@ -57,7 +57,7 @@ if(($data = fgets($bbin_socket)) && ("1" == Settings::get('bbin_status'))) {
 	}
 	elseif ("KICK" == $ex[1])
 	{
-		$extendedinfo = Links::makeLink("Extended informations",$data);
+		$extendedinfo = Text::makeLink("Extended informations",$data);
 		if ($ex[3] == Settings::get('bbin_nickname'))
 		{
 			// oh noez, I was kicked !

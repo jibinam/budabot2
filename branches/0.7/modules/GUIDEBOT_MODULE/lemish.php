@@ -96,7 +96,7 @@ Last updated on 01.03.2007 by Tepamina
 Written by Tepamina";
 
 
-$lemish_txt = Links::makeLink("Information On LE Alien Missions", $lemish_txt); 
+$lemish_txt = Text::makeLink("Information On LE Alien Missions", $lemish_txt); 
 if($type == "msg") 
 $this->send($lemish_txt, $sender); 
 elseif($type == "all") 

@@ -65,7 +65,7 @@ if(preg_match("/^fight (.+) vs (.+)$/i", $message, $arr)) {
 	else
 		$list .= "\nNo winner in this fight!";
 	
-	$msg = Links::makeLink("Result of the fight $player1 vs $player2.", $list);
+	$msg = Text::makeLink("Result of the fight $player1 vs $player2.", $list);
 
     if($type == "msg")
         $this->send($msg, $sender);

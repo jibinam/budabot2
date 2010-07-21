@@ -66,7 +66,7 @@ Last updated on 06.09.2006 by Windkeeper
 Information originally provided by Fixerben.
  ";
 
-$fgridone_txt = Links::makeLink("Guide to Fixer Grid Part 1", $fgridone_txt); 
+$fgridone_txt = Text::makeLink("Guide to Fixer Grid Part 1", $fgridone_txt); 
 if($type == "msg") 
 $this->send($fgridone_txt, $sender); 
 elseif($type == "all") 

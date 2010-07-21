@@ -30,12 +30,12 @@
    foreach ($xml->children() as $base_container) {// Loops through inventory and bank
 		foreach ($base_container->children() as $base_slot) {// Loops through items and backpacks
 			if($base_slot->getName() == "item" && preg_match("/\b".$base_slot['id']."\b/i", $arr)){
-				$msg .= Links::makeItem($base_slot['lowid'], $base_slot['highid'], $base_slot['ql'], $base_slot['name'])."\nItem ID: ".$base_slot['id']."\nLocation: ".ucwords($base_container->getName())."\n\n";
+				$msg .= Text::makeItem($base_slot['lowid'], $base_slot['highid'], $base_slot['ql'], $base_slot['name'])."\nItem ID: ".$base_slot['id']."\nLocation: ".ucwords($base_container->getName())."\n\n";
 				$item_count++;
 			}elseif($base_slot->getName() == "backpack"){
 				foreach ($base_slot->children() as $item) {// Loops through items in backpacks
 					if(preg_match("/\b".$item['id']."\b/i", $arr)){
-						$msg .= Links::makeItem($item['lowid'], $item['highid'], $item['ql'], $item['name'])."\nItem ID: ".$item['id']."\nLocation: ".ucwords($base_container->getName())." > Backpack #".$base_slot['id']."\n\n";
+						$msg .= Text::makeItem($item['lowid'], $item['highid'], $item['ql'], $item['name'])."\nItem ID: ".$item['id']."\nLocation: ".ucwords($base_container->getName())." > Backpack #".$base_slot['id']."\n\n";
 						$item_count++;
 					}
 				}
@@ -46,7 +46,7 @@
 	$link = "No items found.";
 	}else{
     $msg = $item_count." items found.\n\n".$msg;
-    $link = Links::makeLink($item_count." items found", $msg);
+    $link = Text::makeLink($item_count." items found", $msg);
 	}
        if($type == "msg")
         $this->send($link, $sender);

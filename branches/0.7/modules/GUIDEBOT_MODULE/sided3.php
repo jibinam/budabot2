@@ -42,7 +42,7 @@ Since the pads can go in each of the shoulderslots, you can also wear two of the
 In addition, there is now a tradeskill process to upgrade the pads once more. Just use an Omnifier on them, and BOOM! How easy could that be?
  ";
 
-$sided3_txt = Links::makeLink("Guide to Sided Pads Part 3", $sided3_txt); 
+$sided3_txt = Text::makeLink("Guide to Sided Pads Part 3", $sided3_txt); 
 if($type == "msg") 
 $this->send($sided3_txt, $sender); 
 elseif($type == "all") 

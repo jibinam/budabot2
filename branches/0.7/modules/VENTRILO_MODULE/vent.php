@@ -104,7 +104,7 @@ if ($error === FALSE) {
 	}
 	
 	$page .= "\n\n*Please note that sometimes the server will not return the right information, if this happens, please try again.\n";
-	$msg = Links::makeBlob("Vent Status", $page);
+	$msg = Text::makeBlob("Vent Status", $page);
 
 } else {
 

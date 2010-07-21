@@ -15,7 +15,7 @@ OT Advanced Vehicle shops can be found at:
 <font color = #31D6FF>1526x541  </font> Lush Fields
 <font color = #31D6FF>289x315   </font> Newland City (Shop right OTW to Newland Shops) 
 <font color = #31D6FF>1190.7, 2352.4</font> Pleasant Meadows (20K) east of the shops";
-$infoyalm_txt = Links::makeLink("Locations of Yalms", $infoyalm_txt); 
+$infoyalm_txt = Text::makeLink("Locations of Yalms", $infoyalm_txt); 
 if($type == "msg") 
 $this->send($infoyalm_txt, $sender); 
 elseif($type == "all") 

@@ -82,7 +82,7 @@ Ichor of the Immortal One
 Third Circle of the Inner Sanctum
  ";
 
-$sanctum_txt = Links::makeLink("Guide to Inner Sanctum", $sanctum_txt); 
+$sanctum_txt = Text::makeLink("Guide to Inner Sanctum", $sanctum_txt); 
 if($type == "msg") 
 $this->send($sanctum_txt, $sender); 
 elseif($type == "all") 

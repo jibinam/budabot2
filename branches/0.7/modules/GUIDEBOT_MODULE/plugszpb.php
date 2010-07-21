@@ -149,7 +149,7 @@ QL 240 Effective Left Arm Symbiant, Support Unit Aban
 QL 240 Effective Thigh Symbiant, Support Unit Aban  
 </FONT> ";
 
-$plugszpb_txt = Links::makeLink("PocketBosses to Pop", $plugszpb_txt); 
+$plugszpb_txt = Text::makeLink("PocketBosses to Pop", $plugszpb_txt); 
 if($type == "msg") 
 $this->send($plugszpb_txt, $sender); 
 elseif($type == "all") 

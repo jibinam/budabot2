@@ -93,7 +93,7 @@ if(preg_match("/^flatroll$/i", $message) || preg_match("/^rollloot$/i", $message
 	$arrolnum = "";
 	$loot = "";
 	//Show winner list
-	$msg = Links::makeLink("Winner List", $list);
+	$msg = Text::makeLink("Winner List", $list);
 	if(is_array($residual)){
 		$rerollmsg = " (There are item(s) left to be rolled. To re-add, type <symbol>reroll)";
 		}

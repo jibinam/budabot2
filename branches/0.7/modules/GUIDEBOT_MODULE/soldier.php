@@ -634,7 +634,7 @@ After that, you'll find that there are Proficiency (+10) and Expertise (+20) nan
 
  ";
 
-$soldier_txt = Links::makeLink("Guide to Soldiers", $soldier_txt);
+$soldier_txt = Text::makeLink("Guide to Soldiers", $soldier_txt);
 
 $this->send($soldier_txt, $sendto);
 

@@ -123,7 +123,7 @@ The Blind Eyemutant on the bridge after the Chemical Vindicators dorps the Medic
 To get the Borealis Recall Beacon, you need a SD Power Core, which drops from any robot mob. You need to take it into the section with the Lab Director and TIM, in the West round room <closer to T.I.M> there is a Data Collector type mob, give him the core and he will power up and start opening the containment areas there. Five mortiig type mobs and two scorpid type mobs are released. The scorpid mobs dropped the Recapture Beacon, which warps you from borealis to Biomare. <It's reported that the mortiigs didnt drop anything.> 
 "; 
 
-$msg = Links::makeLink("Guide to Foremans aka Biomare Quests", $biomare_txt); 
+$msg = Text::makeLink("Guide to Foremans aka Biomare Quests", $biomare_txt); 
 if($type == "msg") 
    $this->send($msg, $sender); 
 elseif($type == "all") 

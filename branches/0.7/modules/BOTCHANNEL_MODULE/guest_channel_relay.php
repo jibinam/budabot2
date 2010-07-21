@@ -34,7 +34,7 @@ if (Settings::get("guest_relay") == 1) {
  	//If the message comes from the privgroup(alias guest channel) and the message was not a command then
 	if ($type == "priv" && ($args[2][0] != Settings::get("symbol") || ($args[2][0] == Settings::get("symbol") && Settings::get("guest_relay_commands") == 1))) {
 		//Relay the message to the guild channel
-        $msg = "<end>".Settings::get("guest_color_channel"]."[Guest]<end> ".Settings::get("guest_color_username") . Links::makeLink($sender, $sender, "user")."<end>: " . Settings::get("guest_color_guild") . $message . "<end>";
+        $msg = "<end>".Settings::get("guest_color_channel"]."[Guest]<end> ".Settings::get("guest_color_username") . Text::makeLink($sender, $sender, "user")."<end>: " . Settings::get("guest_color_guild") . $message . "<end>";
         $this->send($msg, 'org', true);
         //If a guildrelay bot is set do
         if (Settings::get("relaybot") != "0") {
@@ -43,7 +43,7 @@ if (Settings::get("guest_relay") == 1) {
 	//If the message comes from the guild and the message is not a command and the player is not on ignore
 	} else if ($type == "guild" && ($args[2][0] != Settings::get("symbol") || ($args[2][0] == Settings::get("symbol") && Settings::get("guest_relay_commands") == 1))) {
 		//Relay the message to the guest channel
-        $msg = "<end>".Settings::get("guest_color_channel")."[{$this -> vars["my guild"]}]<end> ".Settings::get("guest_color_username").Links::makeLink($sender, $sender, "user")."<end>: " . Settings::get("guest_color_guest") . $message . "<end>";
+        $msg = "<end>".Settings::get("guest_color_channel")."[{$this -> vars["my guild"]}]<end> ".Settings::get("guest_color_username").Text::makeLink($sender, $sender, "user")."<end>: " . Settings::get("guest_color_guest") . $message . "<end>";
         $this->send($msg, 'prv', true);
 	}
 }

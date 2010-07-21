@@ -26,7 +26,7 @@ $pensancn_txt = "Penumbra Sanctuary (Vanya)
 <a href='itemref://235284/235284/170'>LINK </a> Umbral Wrangler (Advanced) - Trader
 <a href='itemref://226416/226416/170'>LINK </a> Waves of Numbing - Agent</FONT> ";
 
-$pensancn_txt = Links::makeLink("Penumbra Sanctuary Garden Nanos", $pensancn_txt); 
+$pensancn_txt = Text::makeLink("Penumbra Sanctuary Garden Nanos", $pensancn_txt); 
 if($type == "msg") 
 $this->send($pensancn_txt, $sender); 
 elseif($type == "all") 

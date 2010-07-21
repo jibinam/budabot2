@@ -52,8 +52,8 @@ if(preg_match("/^13$/i", $message)) {
 	  	if(is_array($loot)) {
 		  	$list = "<header>::::: Sector13 Loot List :::::<end>\n\nUse <symbol>flatroll or <symbol>roll to roll.\n\n";
 			foreach($loot as $key => $item) {
-				$add = Links::makeLink("Add", "/tell <myname> add $key", "chatcmd");
-				$rem = Links::makeLink("Remove", "/tell <myname> add 0", "chatcmd");
+				$add = Text::makeLink("Add", "/tell <myname> add $key", "chatcmd");
+				$rem = Text::makeLink("Remove", "/tell <myname> add 0", "chatcmd");
 				$added_players = count($item["users"]);
 	
 				$list .= "<u>Slot #<font color='#FF00AA'>$key</font></u>\n";
@@ -88,7 +88,7 @@ if(preg_match("/^13$/i", $message)) {
 				
 				$list .= "\n\n";
 			}
-			$msg = Links::makeLink("Sector13 loot List", $list);
+			$msg = Text::makeLink("Sector13 loot List", $list);
 		} else
 			$msg = "No List exists yet.";
 	

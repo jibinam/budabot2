@@ -441,7 +441,7 @@ if (preg_match("/^timer ([0-9]+)$/i", $message, $arr) ) {
 			$msg = "No Timers running atm.";
 		else {
 			$list = "<header>::::: Currently running Timers :::::<end>\n\n".$list;
-		  	$msg = Links::makeLink("Timers currently running", $list);
+		  	$msg = Text::makeLink("Timers currently running", $list);
 		}
 	}
 

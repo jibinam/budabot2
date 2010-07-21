@@ -148,7 +148,7 @@ $Armor_txt = " Information on Armor by stats and type
    * Pilgrim Seeker
    * Pilgrim Visionary"; 
 
-$Armor_txt = Links::makeLink("Armor Information: Froob Friendly List", $Armor_txt); 
+$Armor_txt = Text::makeLink("Armor Information: Froob Friendly List", $Armor_txt); 
 if($type == "msg") 
 $this->send($Armor_txt, $sender); 
 elseif($type == "all") 

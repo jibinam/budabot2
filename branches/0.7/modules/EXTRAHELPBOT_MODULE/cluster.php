@@ -15,7 +15,7 @@
 	$help .= "<a href='chatcmd:///tell <myname> <symbol>cluster comp lit'>/tell <myname> <symbol>cluster comp lit</a>\n\n";
 	$help .= $footer;
 
-	$helplink = Links::makeLink("::How to use cluster::", $help);
+	$helplink = Text::makeLink("::How to use cluster::", $help);
 
 	if (preg_match("/^cluster (.+)$/i", $message, $arr)) {
 		$name = trim($arr[1]);
@@ -40,7 +40,7 @@
 			$inside .= str_replace("--", "\n\n", $info);
 			$inside .= $footer;
 		
-			$windowlink = Links::makeLink("::Cluster search results::", $inside);
+			$windowlink = Text::makeLink("::Cluster search results::", $inside);
 		}
 		$this->send($windowlink, $sendto);
 		if ($found >= 10) { $this->send("<highlight>More than 10 matches found!<end>\n<tab>Please specify your key words for better results.", $sendto);}

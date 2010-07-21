@@ -45,7 +45,7 @@ Once Carlos is dead, kill all the mobs that spawned with him.  Once they are dea
 <font color = yellow>10. Unredeemed Vanya</font> 
    When Vanya dies, you get your key";
 
-$pensancclan_txt = Links::makeLink("Penumbra: Sanctuary Garden Key Quest CLAN", $pensancclan_txt); 
+$pensancclan_txt = Text::makeLink("Penumbra: Sanctuary Garden Key Quest CLAN", $pensancclan_txt); 
 if($type == "msg") 
 $this->send($pensancclan_txt, $sender); 
 elseif($type == "all") 

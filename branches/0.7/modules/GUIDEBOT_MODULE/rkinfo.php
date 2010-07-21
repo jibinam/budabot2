@@ -161,7 +161,7 @@ How fast you can run matters at times.
 
 At the end of a long tiring day, nothing is better than enjoying a nice sunset and a cup of ice cream with a close friend. ";
 
-$rkinfo_txt = Links::makeLink("Rubi-Ka's Little Instruction Book - Guide to AO", $rkinfo_txt);
+$rkinfo_txt = Text::makeLink("Rubi-Ka's Little Instruction Book - Guide to AO", $rkinfo_txt);
 
 $this->send($rkinfo_txt, $sendto);
 

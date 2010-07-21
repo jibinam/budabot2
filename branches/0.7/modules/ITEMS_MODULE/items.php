@@ -114,9 +114,9 @@ if ($countitems > 3) {
 	 	forEach ($item1 as $key => $item) {
 	        $list .= "<img src=rdb://".$item["icon"]."> \n";
 	        if ($ql) {
-		        $list .= "QL $ql ".Links::makeItem($item["lowid"], $item["highid"], $ql, $name);
+		        $list .= "QL $ql ".Text::makeItem($item["lowid"], $item["highid"], $ql, $name);
 			} else {
-		        $list .= Links::makeItem($item["lowid"], $item["highid"], $item["highql"], $name);		  
+		        $list .= Text::makeItem($item["lowid"], $item["highid"], $item["highql"], $name);		  
 			}
 	
 	        if ($item["lowql"] != $item["highql"]) {
@@ -127,7 +127,7 @@ if ($countitems > 3) {
 	    }
     }
     $list = "<header>::::: Item Search Result :::::<end>\n\n".$list;
-    $link = Links::makeLink("$countitems results in total", $list);
+    $link = Text::makeLink("$countitems results in total", $list);
     $this->send($link, $sendto);
 
 	//Show a warning if the maxitems are reached
@@ -139,9 +139,9 @@ if ($countitems > 3) {
     forEach ($itemlist as $name => $item1) {
    	 	forEach ($item1 as $key => $item) {
 	        if ($ql) {
-		        $link .= "\n QL $ql ".Links::makeItem($item["lowid"], $item["highid"], $ql, $name);
+		        $link .= "\n QL $ql ".Text::makeItem($item["lowid"], $item["highid"], $ql, $name);
 			} else {
-		        $link .= "\n".Links::makeItem($item["lowid"], $item["highid"], $item["highql"], $name);
+		        $link .= "\n".Text::makeItem($item["lowid"], $item["highid"], $item["highql"], $name);
 	        }
 			
 	        if ($item["lowql"] != $item["highql"]) {

@@ -189,7 +189,7 @@ Huge, huge thanks to Herodotus2 for allowing us to use the material and screensh
 Credit: AOVault.com
  ";
 
-$penguide_txt = Links::makeLink("Guide To Penumbra", $penguide_txt); 
+$penguide_txt = Text::makeLink("Guide To Penumbra", $penguide_txt); 
 if($type == "msg") 
 $this->send($penguide_txt, $sender); 
 elseif($type == "all") 

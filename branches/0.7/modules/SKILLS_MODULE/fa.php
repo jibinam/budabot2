@@ -19,7 +19,7 @@ $help .= "<a href='chatcmd:///tell <myname> <symbol>fa 1 1 5000 1200'>/tell <myn
 $help .= "* Your Full Auto recharge value (5000) can be found on <a href='chatcmd:///start http://www.auno.org'>auno.org</a> as FullAuto Cycle and <a href='chatcmd:///start http://aomainframe.net'>aomainframe.net</a> as FullAutoRecharge.";
 $help .= $footer;
 
-$helplink = Links::makeLink("::How to use Full Auto::", $help);
+$helplink = Text::makeLink("::How to use Full Auto::", $help);
 
 if((!$AttTim) || (!$RechT) || (!$FARecharge) || (!$FullAutoSkill)) {
 	$this->send($helplink, $sendto);
@@ -50,6 +50,6 @@ if((!$AttTim) || (!$RechT) || (!$FARecharge) || (!$FullAutoSkill)) {
 	$inside .= "<orange>15K<end> is the damage cap.\n\n";
 	$inside .= $footer;
 
-	$windowlink = Links::makeLink("::Your Full Auto Recharge Results::", $inside);
+	$windowlink = Text::makeLink("::Your Full Auto Recharge Results::", $inside);
 	$this->send($windowlink, $sendto);
 }

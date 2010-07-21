@@ -54,7 +54,7 @@ And Kaghelion told us that:
 
 So, there is the basics. Now all you have to do is Practice! Go out there and pull easy missions, even missions with all grey mobs, and start running. And remember, as Gene13 stated: You can have all the runspeed in the world, but if you don't know where the MOB is you're just some dude running around in a cave, waiting to get lucky.
 ";
-$blitzingg_txt = Links::makeLink("Guide to Blitzing", $blitzingg_txt);
+$blitzingg_txt = Text::makeLink("Guide to Blitzing", $blitzingg_txt);
 
 $this->send($blitzingg_txt, $sendto);
 

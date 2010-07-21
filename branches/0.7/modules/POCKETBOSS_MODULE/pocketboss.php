@@ -47,9 +47,9 @@ if(preg_match("/^pb (.+)$/i", $message, $arr)) {
 			$db->query("SELECT * FROM pbdb WHERE pb = '$row->pb' ORDER BY ql");
 			while($symb = $db->fObject()){
 			  	$name = "QL $symb->ql $symb->line $symb->slot Symbiant, $symb->type Unit Aban";
-			  	$link .= Links::makeItem($symb->itemid, $symb->itemid, $symb->ql, $name)."\n";
+			  	$link .= Text::makeItem($symb->itemid, $symb->itemid, $symb->ql, $name)."\n";
 			}
-			$msg .= "\n".Links::makeLink("Remains of $row->pb", $link);
+			$msg .= "\n".Text::makeLink("Remains of $row->pb", $link);
 		}
 	} elseif($pb_found > 5) {
 		$msg = "Too many results.";
@@ -114,10 +114,10 @@ if(preg_match("/^pb (.+)$/i", $message, $arr)) {
 	  	$link = "<header>::::: Result of your search :::::<end>";
 		foreach($data as $row) {
 		  	$name = "\n\nQL $row->ql $row->line $row->slot Symbiant, $row->type Unit Aban";
-		  	$link .= Links::makeItem($row->itemid, $row->itemid, $row->ql, $name)."\n";
-		  	$link .= "Found on ".Links::makeLink($row->pb, "/tell <myname> pb $row->pb", "chatcmd");
+		  	$link .= Text::makeItem($row->itemid, $row->itemid, $row->ql, $name)."\n";
+		  	$link .= "Found on ".Text::makeLink($row->pb, "/tell <myname> pb $row->pb", "chatcmd");
 		}
-		$msg .= Links::makeLink("Found $numrows matches", $link);
+		$msg .= Text::makeLink("Found $numrows matches", $link);
 	} else {
 		$msg = "Couldn't find any symbs";
 	}
@@ -181,10 +181,10 @@ if(preg_match("/^pb (.+)$/i", $message, $arr)) {
 	  	$link = "<header>::::: Result of your search :::::<end>";
 		foreach($data as $row) {
 		  	$name = "\n\nQL $row->ql $row->line $row->slot Symbiant, $row->type Unit Aban";
-		  	$link .= Links::makeItem($row->itemid, $row->itemid, $row->ql, $name)."\n";
-		  	$link .= "Found on ".Links::makeLink($row->pb, "/tell <myname> pb $row->pb", "chatcmd");
+		  	$link .= Text::makeItem($row->itemid, $row->itemid, $row->ql, $name)."\n";
+		  	$link .= "Found on ".Text::makeLink($row->pb, "/tell <myname> pb $row->pb", "chatcmd");
 		}
-		$msg .= Links::makeLink("Found $numrows matches", $link);
+		$msg .= Text::makeLink("Found $numrows matches", $link);
 	} else {
 		$msg = "Couldn't find any symbs";
 	}
