@@ -149,8 +149,9 @@ main(true, $chatBot);
 		// Create infinite loop
 		while($forever==true){					
 			$chatBot->ping();
-			$chatBot->crons();
+			Event::run_cron_jobs();
 			if($exec_connected_events == false && ((time() - $start) > 5))	{
+				// TODO
 			  	$chatBot->connectedEvents();
 			  	$exec_connected_events = true;
 			}
@@ -172,6 +173,7 @@ main(true, $chatBot);
 ** Record incoming info into the chatbot's log.
 */	function newLine($channel, $sender, $message, $target){
 		global $vars;
+
 		if ($channel == "")
 			return;
 			
