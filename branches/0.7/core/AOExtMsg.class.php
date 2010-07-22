@@ -72,85 +72,83 @@
 *
 */
 
-class AOExtMsg
-{
+class AOExtMsg {
 	private static $ref_cat = array(
-	509 => array(
-	0x00 => "Normal House",
-	0x02 => "Market",
-	0x03 => "Grid",
-	0x04 => "Guard House",
-	0x05 => "Radar Station",
-	0x06 => "Cloaking Device"
-	),
-	
-	2005 => array(
-	0x00 => "Neutral",
-	0x01 => "Clan",
-	0x02 => "Omni"
-	),
+		509 => array(
+			0x00 => "Normal House",
+			0x02 => "Market",
+			0x03 => "Grid",
+			0x04 => "Guard House",
+			0x05 => "Radar Station",
+			0x06 => "Cloaking Device"
+		),
+		
+		2005 => array(
+			0x00 => "neutral",
+			0x01 => "clan",
+			0x02 => "omni"
+		)
 	);
 	public $type, $args, $category, $instance;
 
-	function AOExtMsg($str=NULL)
-	{
+	function AOExtMsg($str = NULL) {
 		$this->type = AOEM_UNKNOWN;
 		if(!empty($str))
 		$this->read($str);
 	}
 	
-	function arg($n)
-	{
+	function arg($n) {
 		$key = "{".strtoupper($n)."}";
 		if(isset($this->args[$key]))
 		return $this->args[$key];
 		return NULL;
 	}
 
-	function read($msg)
-	{
-		if(substr($msg, 0, 2) !== "~&")
-		return false;
+	function read($msg) {
+		if (substr($msg, 0, 2) !== "~&") {
+			return false;
+		}
 		$msg = substr($msg, 2);
 		$this->category = $this->b85g($msg);
 		$this->instance = $this->b85g($msg);
 		
 		$args = array();
-		while($msg != '')
-		{
+		while ($msg != '') {
 			$data_type = $msg[0];
 			$msg = substr($msg, 1); // skip the data type id
-			switch($data_type)
-			{
-			case "s":
-				$len = ord($msg[0])-1;
-				$str = substr($msg, 1, $len);
-				$msg = substr($msg, $len +1);
-				$args[] = $str;
-				break;
+			switch($data_type) {
+				case "s":
+					$len = ord($msg[0])-1;
+					$str = substr($msg, 1, $len);
+					$msg = substr($msg, $len +1);
+					$args[] = $str;
+					break;
 
-			case "i":
-			case "u":
-				$num = $this->b85g($msg);
-				$args[] = $num;
-				break;
-				
-			case "R":
-				$cat = $this->b85g($msg);
-				$ins = $this->b85g($msg);
-				if(!isset(self::$ref_cat[$cat]) || !isset(self::$ref_cat[$cat][$ins]))
-				$str = "Unknown ($cat, $ins)";
-				else
-				$str = self::$ref_cat[$cat][$ins];
-				$args[] = $str;
-				break;
-			case "~":
-				// the last iteration is the closing tilde
-				// for which we need to do nothing
-				break;
-			default:
-				echo "Error! could not parse argument: '$data_type' for category: '$this->category' and instance: '$this->instance'\n";
-				break;
+				case "i":
+				case "u":
+					$num = $this->b85g($msg);
+					$args[] = $num;
+					break;
+					
+				case "R":
+					$cat = $this->b85g($msg);
+					$ins = $this->b85g($msg);
+					if (!isset(self::$ref_cat[$cat]) || !isset(self::$ref_cat[$cat][$ins])) {
+						$str = "Unknown ($cat, $ins)";
+					} else {
+						$str = self::$ref_cat[$cat][$ins];
+					}
+					$args[] = $str;
+					break;
+
+				case "~":
+					// the last iteration is the closing tilde
+					// for which we need to do nothing
+					break;
+
+				default:
+					echo "Error! could not parse argument: '$data_type' for category: '$this->category' and instance: '$this->instance'\n";
+					break;
 			}
 		}
 		
@@ -158,11 +156,11 @@ class AOExtMsg
 		$this->args = $args;
 	}
 
-	function b85g(&$str)
-	{
+	function b85g(&$str) {
 		$n = 0;
-		for($i=0; $i<5; $i++)
-		$n = $n*85 + ord($str[$i])-33;
+		for($i=0; $i<5; $i++) {
+			$n = $n*85 + ord($str[$i])-33;
+		}
 		$str = substr($str, 5);
 		return $n;
 	}
