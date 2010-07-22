@@ -249,5 +249,88 @@ class DB {
 	function getLastQuery() {
 		return $this->lastQuery;
 	}
+	
+/*===============================
+** Name: loadSQLFile
+** Loads an sql file if there is an update
+** Will load the sql file with name $namexx.xx.xx.xx.sql if xx.xx.xx.xx is greater
+** than settings[$name . "_sql_version"]
+*/	public static function loadSQLFile($module, $name, $forceUpdate = false) {
+		global $db;
+		$name = strtolower($name);
+		
+		// only letters, numbers, underscores are allowed
+		if (!preg_match('/^[a-z0-9_]+$/', $name)) {
+			echo "Invalid SQL file name: '$name' for module: '$module'!  Only numbers, letters, and underscores permitted!\n";
+			return;
+		}
+		
+		$settingName = $name . "_db_version";
+		
+		$core_dir = "./core/$module";
+		$modules_dir = "./modules/$module";
+		$dir = '';
+		if ($d = dir($modules_dir)) {
+			$dir = $modules_dir;
+		} else if ($d = dir($core_dir)) {
+			$dir = $core_dir;
+		}
+		
+		$currentVersion = Settings::get($settingName);
+		if ($currentVersion === false) {
+			$currentVersion = 0;
+		}
+
+		$file = false;
+		$maxFileVersion = 0;  // 0 indicates no version
+		if ($d) {
+			while (false !== ($entry = $d->read())) {
+				if (is_file("$dir/$entry") && preg_match("/^" . $name . "([0-9.]*)\\.sql$/i", $entry, $arr)) {
+					// if there is no version on the file, set the version to 0, and force update every time
+					if ($arr[1] == '') {
+						$file = $entry;
+						$maxFileVersion = 0;
+						$forceUpdate = true;
+						break;
+					}
+
+					if (compareVersionNumbers($arr[1], $maxFileVersion) >= 0) {
+						$maxFileVersion = $arr[1];
+						$file = $entry;
+					}
+				}
+			}
+		}
+		
+		if ($file === false) {
+			echo "No SQL file found with name '$name'!\n";
+		} else if ($forceUpdate || compareVersionNumbers($maxFileVersion, $currentVersion) > 0) {
+			// if the file had a version, tell them the start and end version
+			// otherwise, just tell them we're updating the database
+			if ($maxFileVersion != 0) {
+				echo "Updating '$name' database from '$currentVersion' to '$maxFileVersion'...";
+			} else {
+				echo "Updating '$name' database...";
+			}
+
+			$fileArray = file("$dir/$file");
+			//$db->beginTransaction();
+			forEach ($fileArray as $num => $line) {
+				$line = trim($line);
+				// don't process comment lines or blank lines
+				if ($line != '' && substr($line, 0, 1) != "#") {
+					$db->exec($line);
+				}
+			}
+			//$db->Commit();
+			echo "Finished!\n";
+		
+			if (!Settings::save($settingName, $maxFileVersion)) {
+				Settings::add($settingName, $module, 'noedit', $maxFileVersion);
+			}
+		} else {
+			echo "Updating '$name' database...already up to date! version: '$currentVersion'\n";
+		}
+	}
 }
 ?>

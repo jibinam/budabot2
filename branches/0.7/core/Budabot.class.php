@@ -146,7 +146,7 @@ class Budabot extends AOChat {
 		$this->register_modules();
 		
 		//Delete old entrys in the DB
-		$db->query("DELETE FROM hlpcfg_<myname> WHERE verify = 0");
+		$db->query("DELETE FROM hlpcfg_<myname> WHERE `verify` = 0");
 		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0");
 		$db->query("DELETE FROM eventcfg_<myname> WHERE `verify` = 0");
 		$db->query("DELETE FROM setting_<myname> WHERE `verify` = 0");
@@ -303,82 +303,6 @@ class Budabot extends AOChat {
 			if (Settings::get('echo') >= 1) newLine("Out. Msg.", $who, $message, Settings::get('echo'));
 		} else { // Public channels that are not myguild.
 	    	$this->send_group($who, Settings::get("default_guild_color").$message);
-		}
-	}
-
-/*===============================
-** Name: Command
-** 	Register a command
-*/	function command($type, $module, $filename, $command, $access_level = ALL, $description = '') {
-		global $db;
-
-		if (!$this->processCommandArgs($type, $access_level)) {
-			echo "invalid args for command '$command'!!\n";
-			return;
-		}
-
-		$command = strtolower($command);
-		$description = str_replace("'", "''", $description);
-
-		for ($i = 0; $i < count($type); $i++) {
-			if (Settings::get('debug') > 1) print("Adding Command to list:($command) File:($filename)\n");
-			if (Settings::get('debug'] > 1) print("                 Admin:({$access_level[$i]}) Type:({$type[$i)})\n");
-			if (Settings::get('debug') > 2) sleep(1);
-			
-			if ($this->existing_commands[$type[$i]][$command] == true) {
-				$db->query("UPDATE cmdcfg_<myname> SET `module` = '$module', `verify` = 1, `file` = '$filename', `description` = '$description' WHERE `cmd` = '$command' AND `type` = '{$type[$i]}'");
-			} else {
-				$db->query("INSERT INTO cmdcfg_<myname> (`module`, `type`, `file`, `cmd`, `access_level`, `description`, `verify`, `cmdevent`, `status`) VALUES ('$module', '{$type[$i]}', '$filename', '$command', $access_level, '$description', 1, 'cmd', '".Settings::get("default module status")."')");
-			}
-		}
-	}
-
-/*===============================
-** Name: processCommandType
-** 	Returns a command type in the proper format
-*/	function processCommandArgs(&$type, &$access_level) {
-		if ($type == "") {
-			$type = array("msg", "priv", "guild");
-		} else {
-			$type = explode(' ', $type);
-		}
-
-		$admin = explode(' ', $access_level);
-		if (count($admin) == 1) {
-			$admin = array_fill(0, count($type), $admin[0]);
-		} else if (count($admin) != count($type)) {
-			echo "ERROR! the number of type arguments does not equal the number of admin arguments for command/subcommand registration!";
-			return false;
-		}
-		return true;
-	}
-
-/*===============================
-** Name: Subcommand
-** 	Register a subcommand
-*/	function subcommand($type, $module, $filename, $command, $access_level = ALL, $dependson, $description = 'none') {
-		global $db;
-
-		if (!$this->processCommandArgs($type, $access_level)) {
-			echo "invalid args for subcommand '$command'!!\n";
-			return;
-		}
-
-		$command = strtolower($command);
-	  	
-		if ($command != NULL) // Change commands to lower case.
-			$command = strtolower($command);
-
-		for ($i = 0; $i < count($type); $i++) {
-			if (Settings::get('debug') > 1) print("Adding Subcommand to list:($command) File:($filename)\n");
-			if (Settings::get('debug'] > 1) print("                    Admin:($access_level[$i]) Type:({$type[$i)})\n");
-			if (Settings::get('debug') > 2) sleep(1);
-			
-			if ($this->existing_subcmds[$type[$i]][$command] == true) {
-				$db->query("UPDATE cmdcfg_<myname> SET `module` = '$module', `verify` = 1, `file` = '$filename', `description` = '$description', `dependson` = '$dependson' WHERE `cmd` = '$command' AND `type` = '{$type[$i]}'");
-			} else {
-				$db->query("INSERT INTO cmdcfg_<myname> (`module`, `type`, `file`, `cmd`, `access_level`, `description`, `verify`, `cmdevent`, `dependson`, `status`) VALUES ('$module', '{$type[$i]}', '$filename', '$command', $access_level, '$description', 1, 'subcmd', '$dependson', '".Settings::get("default module status")."')");
-			}
 		}
 	}
 
@@ -819,89 +743,6 @@ class Budabot extends AOChat {
 		} else {
 			echo "Warning: $filename does not match the nameconvention(All php files needs to be in lowercases except loading files)!\n";
 			return FALSE;
-		}
-	}
-
-	/*===============================
-** Name: loadSQLFile
-** Loads an sql file if there is an update
-** Will load the sql file with name $namexx.xx.xx.xx.sql if xx.xx.xx.xx is greater
-** than settings[$name . "_sql_version"]
-*/	function loadSQLFile($module, $name, $forceUpdate = false) {
-		global $db;
-		$name = strtolower($name);
-		
-		// only letters, numbers, underscores are allowed
-		if (!preg_match('/^[a-z0-9_]+$/', $name)) {
-			echo "Invalid SQL file name: '$name' for module: '$module'!  Only numbers, letters, and underscores permitted!\n";
-			return;
-		}
-		
-		$settingName = $name . "_db_version";
-		
-		$core_dir = "./core/$module";
-		$modules_dir = "./modules/$module";
-		$dir = '';
-		if ($d = dir($modules_dir)) {
-			$dir = $modules_dir;
-		} else if ($d = dir($core_dir)) {
-			$dir = $core_dir;
-		}
-		
-		$currentVersion = Settings::get($settingName);
-		if ($currentVersion === false) {
-			$currentVersion = 0;
-		}
-
-		$file = false;
-		$maxFileVersion = 0;  // 0 indicates no version
-		if ($d) {
-			while (false !== ($entry = $d->read())) {
-				if (is_file("$dir/$entry") && preg_match("/^" . $name . "([0-9.]*)\\.sql$/i", $entry, $arr)) {
-					// if there is no version on the file, set the version to 0, and force update every time
-					if ($arr[1] == '') {
-						$file = $entry;
-						$maxFileVersion = 0;
-						$forceUpdate = true;
-						break;
-					}
-
-					if (compareVersionNumbers($arr[1], $maxFileVersion) >= 0) {
-						$maxFileVersion = $arr[1];
-						$file = $entry;
-					}
-				}
-			}
-		}
-		
-		if ($file === false) {
-			echo "No SQL file found with name '$name'!\n";
-		} else if ($forceUpdate || compareVersionNumbers($maxFileVersion, $currentVersion) > 0) {
-			// if the file had a version, tell them the start and end version
-			// otherwise, just tell them we're updating the database
-			if ($maxFileVersion != 0) {
-				echo "Updating '$name' database from '$currentVersion' to '$maxFileVersion'...";
-			} else {
-				echo "Updating '$name' database...";
-			}
-
-			$fileArray = file("$dir/$file");
-			//$db->beginTransaction();
-			forEach ($fileArray as $num => $line) {
-				$line = trim($line);
-				// don't process comment lines or blank lines
-				if ($line != '' && substr($line, 0, 1) != "#") {
-					$db->exec($line);
-				}
-			}
-			//$db->Commit();
-			echo "Finished!\n";
-		
-			if (!Settings::save($settingName, $maxFileVersion)) {
-				Settings::add($settingName, $module, 'noedit', $maxFileVersion);
-			}
-		} else {
-			echo "Updating '$name' database...already up to date! version: '$currentVersion'\n";
 		}
 	}
 }
