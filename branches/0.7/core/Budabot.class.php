@@ -32,29 +32,6 @@
 class Budabot extends AOChat {
 
 	private $buddyList = array();
-	
-	// Events
-	private $subcommands;
-	private $tellCmds;
-	private $privCmds;
-	private $guildCmds;
-	private $towers;
-	private $orgmsg;
-	private $privMsgs;
-	private $privChat;
-	private $guildChat;
-	private $joinPriv;
-	private $leavePriv;
-	private $logOn;
-	private $logOff;
-	private $_connect;
-	private $_2sec;
-	private $_1min;
-	private $_10mins;
-	private $_15mins;
-	private $_30mins;
-	private $_1hour;
-	private $_24hrs;
 
 /*===============================
 ** Name: __construct
@@ -72,34 +49,10 @@ class Budabot extends AOChat {
 		$this->vars["startup"] = time();
 		
 		//Create command/event settings table if not exists
-		$db->query("CREATE TABLE IF NOT EXISTS cmdcfg_<myname> (`module` VARCHAR(50), `regex` VARCHAR(255), `file` VARCHAR(255), is_core TINYINT NOT NULL, `cmd` VARCHAR(25), `tell_status` INT DEFAULT 0, `tell_access_level` INT DEFAULT 0, `guild_status` INT DEFAULT 0, `guild_access_level` INT DEFAULT 0, `priv_status` INT DEFAULT 0, `priv_access_level` INT DEFAULT 0, `description` VARCHAR(50) NOT NULL DEFAULT '', `verify` INT DEFAULT 1)");
-		$db->query("CREATE TABLE IF NOT EXISTS eventcfg_<myname> (`module` VARCHAR(50), `type` VARCHAR(10), `file` VARCHAR(255), is_core TINYINT NOT NULL, `description` VARCHAR(50) NOT NULL DEFAULT '', `verify` INT DEFAULT 0, `status` INT DEFAULT 1");
-		$db->query("CREATE TABLE IF NOT EXISTS settings_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `mode` VARCHAR(10), `setting` VARCHAR(50) Default '0', `options` VARCHAR(50) Default '0', `intoptions` VARCHAR(50) DEFAULT '0', `description` VARCHAR(50) NOT NULL DEFAULT '', `source` VARCHAR(5), `access_level` INT DEFAULT 0, `help` VARCHAR(60), `verify` INT DEFAULT 1)");
-		$db->query("CREATE TABLE IF NOT EXISTS hlpcfg_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `description` VARCHAR(50) NOT NULL DEFAULT '', `file` VARCHAR(255), is_core TINYINT NOT NULL, `access_level` INT DEFAULT 0, `verify` INT Default 1)");
-		
-		// Events
-		/*
-		unset($this->tellCmds);
-		unset($this->privCmds);
-		unset($this->guildCmds);
-		unset($this->towers);
-		unset($this->orgmsg);
-		unset($this->privMsgs);
-		unset($this->privChat);
-		unset($this->guildChat);
-		unset($this->joinPriv);
-		unset($this->leavePriv);
-		unset($this->logOn);
-		unset($this->logOff);
-		unset($this->_2sec);
-		unset($this->_1min);
-		unset($this->_10mins);
-		unset($this->_15mins);
-		unset($this->_30mins);
-		unset($this->_1hour);
-		unset($this->_24hrs);
-		unset($this->_connect);
-		*/
+		$db->query("CREATE TABLE IF NOT EXISTS cmdcfg_<myname> (`module` VARCHAR(50), `regex` VARCHAR(255), `file` VARCHAR(255), `is_core` TINYINT NOT NULL, `cmd` VARCHAR(25), `tell_status` INT DEFAULT 0, `tell_access_level` INT DEFAULT 0, `guild_status` INT DEFAULT 0, `guild_access_level` INT DEFAULT 0, `priv_status` INT DEFAULT 0, `priv_access_level` INT DEFAULT 0, `description` VARCHAR(50) NOT NULL DEFAULT '', `verify` INT DEFAULT 1)");
+		$db->query("CREATE TABLE IF NOT EXISTS eventcfg_<myname> (`module` VARCHAR(50), `type` VARCHAR(10), `file` VARCHAR(255), `is_core` TINYINT NOT NULL, `description` VARCHAR(50) NOT NULL DEFAULT '', `verify` INT DEFAULT 0, `status` INT DEFAULT 1");
+		$db->query("CREATE TABLE IF NOT EXISTS settings_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `mode` VARCHAR(10), `is_core` TINYINT NOT NULL, `setting` VARCHAR(50) DEFAULT '0', `options` VARCHAR(50) Default '0', `intoptions` VARCHAR(50) DEFAULT '0', `description` VARCHAR(50) NOT NULL DEFAULT '', `source` VARCHAR(5), `access_level` INT DEFAULT 0, `help` VARCHAR(60), `verify` INT DEFAULT 1)");
+		$db->query("CREATE TABLE IF NOT EXISTS hlpcfg_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `description` VARCHAR(50) NOT NULL DEFAULT '', `file` VARCHAR(255), `is_core` TINYINT NOT NULL, `access_level` INT DEFAULT 0, `verify` INT Default 1)");
 
 		// Load the Core Modules -- SETINGS must be first in case the other modules have settings
 		if (Settings::get('debug') > 0) print("\n:::::::CORE MODULES::::::::\n");
@@ -135,10 +88,10 @@ class Budabot extends AOChat {
 		global $db;
 
 		//Prepare DB
-		$db->query("UPDATE hlpcfg_<myname> SET verify = 0");
-		$db->query("UPDATE cmdcfg_<myname> SET `verify` = 0");
-		$db->query("UPDATE eventcfg_<myname> SET `verify` = 0");
-		$db->query("UPDATE setting_<myname> SET `verify` = 0");
+		$db->query("UPDATE hlpcfg_<myname> SET verify = 0 WHERE `is_core` = 0");
+		$db->query("UPDATE cmdcfg_<myname> SET `verify` = 0 WHERE `is_core` = 0");
+		$db->query("UPDATE eventcfg_<myname> SET `verify` = 0 WHERE `is_core` = 0");
+		$db->query("UPDATE setting_<myname> SET `verify` = 0 WHERE `is_core` = 0");
 
 		if (Settings::get('debug') > 0) print("\n:::::::User MODULES::::::::\n");
 
@@ -146,10 +99,10 @@ class Budabot extends AOChat {
 		$this->register_modules();
 		
 		//Delete old entrys in the DB
-		$db->query("DELETE FROM hlpcfg_<myname> WHERE `verify` = 0");
-		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0");
-		$db->query("DELETE FROM eventcfg_<myname> WHERE `verify` = 0");
-		$db->query("DELETE FROM setting_<myname> WHERE `verify` = 0");
+		$db->query("DELETE FROM hlpcfg_<myname> WHERE verify = 0 AND `is_core` = 0");
+		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0 AND `is_core` = 0");
+		$db->query("DELETE FROM eventcfg_<myname> WHERE `verify` = 0 AND `is_core` = 0");
+		$db->query("DELETE FROM setting_<myname> WHERE `verify` = 0 AND `is_core` = 0");
 	}
 	
 /*===============================
@@ -159,7 +112,7 @@ class Budabot extends AOChat {
 		global $db;
 		if ($d = dir("./modules")) {
 			while (false !== ($entry = $d->read())) {
-				if (!is_dir("$entry")) {
+				if (!is_dir($entry)) {
 					// Look for the plugin's ... setup file
 					if (file_exists("./modules/$entry/$entry.php")){
 						if(Settings::get('debug') > 0) print("MODULE_NAME: $entry.php \n");
@@ -331,7 +284,7 @@ class Budabot extends AOChat {
 				if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, "joined the channel.", Settings::get('echo'));
 
 				// Remove sender if they are /ignored or /banned or They gone above spam filter
-                if (Settings::get("Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == $sender || $this->spam[$sender) > 100) {
+                if (Settings::get("Ignore"][$sender] == true || $this->banlist[$sender]["name"] == $sender || $this->spam[$sender) > 100) {
 					$this->privategroup_kick($sender);
 					return;
 				}
@@ -356,7 +309,7 @@ class Budabot extends AOChat {
 				unset($this->chatlist[$sender]);
 				
 				// Remove sender if they are /ignored or /banned or They gone above spam filter
-				if (Settings::get("Ignore"][$sender] == true || $this->banlist["$sender"]["name"] == "$sender" || $this->spam[$sender) > 100) {
+				if (Settings::get("Ignore"][$sender] == true || $this->banlist[$sender]["name"] == $sender || $this->spam[$sender) > 100) {
 					return;
 				}
 				
@@ -521,7 +474,7 @@ class Budabot extends AOChat {
 					if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, $message, Settings::get('echo'));
 					return;
 				}
-				if ($this->banlist["$sender"]["name"] == $sender) {
+				if ($this->banlist[$sender]["name"] == $sender) {
 					return;
 				}
 
@@ -632,7 +585,7 @@ class Budabot extends AOChat {
 	                if (Settings::get("Ignore"][$sender) == true)
 						return;
 
-					if ($this->banlist["$sender"]["name"] == "$sender")
+					if ($this->banlist[$sender]["name"] == $sender)
 						return;
 				}
 
