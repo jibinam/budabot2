@@ -31,6 +31,17 @@ class Settings {
 	  		return false;
 		}
 	}
+	
+	public static function is_ignored($name) {
+		global $chatBot;
+		$name = ucfirst(strtolower($name));
+	
+		if (isset($chatBot->settings['Ignored'][$name])) {
+	  		return true;
+	  	} else {
+	  		return false;
+		}
+	}
 
 /*===============================
 ** Name: save
