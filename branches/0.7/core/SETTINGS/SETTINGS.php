@@ -1,8 +1,6 @@
 <?php
 	$MODULE_NAME = "SETTINGS";
 	$PLUGIN_VERSION = 0.1;
-	
-	require_once 'Settings.class.php';
 
 	//Commands
 	$this->regcommand("msg", $MODULE_NAME, "bot_settings.php", "settings", MODERATOR);

@@ -1,11 +1,9 @@
 <?php
 
-$header = "<header>::::: Nano Delta :::::<end>\n\n"	;
-$footer = "<img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n\nby Imoutochan, RK1";
+$footer = "<tab><img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n\nby Imoutochan, RK1";
 	
 if (preg_match("/^nd$/i", $message)) {
-	$inside = $header;
-	$inside .= "Psychic  -> nd tick delay\n<img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n";
+	$inside = "Psychic  -> nd tick delay\n<img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n";
 	for ($i = 0; $i < 14; $i++) {
 		$inside .= "<font color=#".($i % 2 == 0 ? "339999>" : "66cccc>").(strlen($i * 60) < 2 ? "0" : "").(strlen($i * 60) < 3 ? "0" : "").($i * 60).
 				   "<tab><tab>-><tab>".(strlen(28 - 2 * $i) < 2 ? "0" : "").(28 - 2 * $i)."s</font>\n".

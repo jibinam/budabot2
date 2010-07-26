@@ -68,14 +68,7 @@ if (isWindows()) {
 //Load Required Files
 $config_file = $argv[1];
 require_once $config_file;
-require_once './core/AOChat.class.php';
-require_once "./core/Budabot.class.php";
-require_once "./core/DB.class.php";
-require_once "./core/XML.class.php";
-require_once "./core/OrgXML.class.php";
-require_once "./core/WhoisXML.class.php";
-require_once "./core/HistoryXML.class.php";
-require_once "./core/ServerXML.class.php";
+require_once './core/Budabot.class.php';
 
 //Set Error Level
 error_reporting(E_ERROR | E_PARSE);

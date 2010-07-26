@@ -29,6 +29,30 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
+require_once './core/AOChat.class.php';
+require_once './core/AOChatPacket.class.php';
+require_once './core/AOChatQueue.class.php';
+require_once './core/AOChat.class.php';
+require_once './core/AOExtMsg.class.php';
+
+require_once './core/DB.class.php';
+require_once './core/XML.class.php';
+require_once './core/OrgXML.class.php';
+require_once './core/WhoisXML.class.php';
+require_once './core/HistoryXML.class.php';
+require_once './core/ServerXML.class.php';
+
+require_once './core/Command.class.php';
+require_once './core/Event.class.php';
+require_once './core/Text.class.php';
+require_once './core/Settings.class.php';
+require_once './core/Whitelist.class.php';
+require_once './core/Help.class.php';
+require_once './core/Help.class.php';
+require_once './core/Buddylist.class.php';
+require_once './core/AccessLevel.class.php';
+
+
 class Budabot extends AOChat {
 
 	private $buddyList = array();
@@ -50,7 +74,7 @@ class Budabot extends AOChat {
 		
 		//Create command/event settings table if not exists
 		$db->query("CREATE TABLE IF NOT EXISTS cmdcfg_<myname> (`module` VARCHAR(50), `regex` VARCHAR(255), `file` VARCHAR(255), `is_core` TINYINT NOT NULL, `cmd` VARCHAR(25), `tell_status` INT DEFAULT 0, `tell_access_level` INT DEFAULT 0, `guild_status` INT DEFAULT 0, `guild_access_level` INT DEFAULT 0, `priv_status` INT DEFAULT 0, `priv_access_level` INT DEFAULT 0, `description` VARCHAR(50) NOT NULL DEFAULT '', `verify` INT DEFAULT 1)");
-		$db->query("CREATE TABLE IF NOT EXISTS eventcfg_<myname> (`module` VARCHAR(50), `type` VARCHAR(10), `file` VARCHAR(255), `is_core` TINYINT NOT NULL, `description` VARCHAR(50) NOT NULL DEFAULT '', `verify` INT DEFAULT 0, `status` INT DEFAULT 1");
+		$db->query("CREATE TABLE IF NOT EXISTS eventcfg_<myname> (`module` VARCHAR(50), `type` VARCHAR(10), `file` VARCHAR(255), `is_core` TINYINT NOT NULL, `description` VARCHAR(50) NOT NULL DEFAULT '', `verify` INT DEFAULT 0, `status` INT DEFAULT 1)");
 		$db->query("CREATE TABLE IF NOT EXISTS settings_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `mode` VARCHAR(10), `is_core` TINYINT NOT NULL, `setting` VARCHAR(50) DEFAULT '0', `options` VARCHAR(50) Default '0', `intoptions` VARCHAR(50) DEFAULT '0', `description` VARCHAR(50) NOT NULL DEFAULT '', `source` VARCHAR(5), `access_level` INT DEFAULT 0, `help` VARCHAR(60), `verify` INT DEFAULT 1)");
 		$db->query("CREATE TABLE IF NOT EXISTS hlpcfg_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `description` VARCHAR(50) NOT NULL DEFAULT '', `file` VARCHAR(255), `is_core` TINYINT NOT NULL, `access_level` INT DEFAULT 0, `verify` INT Default 1)");
 
@@ -243,7 +267,7 @@ class Budabot extends AOChat {
 		if ($who == 'prv') { // Target is private chat by defult.
 			$this->send_privgroup($this->name, Settings::get("default_priv_color").$message);
 			if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
-				$this->send_group($this->vars["my guild"], "</font>" . Settings::get("guest_color_channel"] . "[Guest]<end> " . Settings::get("guest_color_username") . Text::makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_priv_color") . "$message</font>");
+				$this->send_group($this->vars["my guild"], "</font>" . Settings::get("guest_color_channel") . "[Guest]<end> " . Settings::get("guest_color_username") . Text::makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_priv_color") . "$message</font>");
 			}
 		} else if ($who == $this->vars["my guild"] || $who == 'org') {// Target is guild chat.
     		$this->send_group($this->vars["my guild"],Settings::get("default_guild_color").$message);
@@ -284,7 +308,7 @@ class Budabot extends AOChat {
 				if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, "joined the channel.", Settings::get('echo'));
 
 				// Remove sender if they are /ignored or /banned or They gone above spam filter
-                if (Settings::get("Ignore"][$sender] == true || $this->banlist[$sender]["name"] == $sender || $this->spam[$sender) > 100) {
+                if (Settings::is_ignored($sender) || $this->banlist[$sender]["name"] == $sender || $this->spam[$sender] > 100) {
 					$this->privategroup_kick($sender);
 					return;
 				}
@@ -309,7 +333,7 @@ class Budabot extends AOChat {
 				unset($this->chatlist[$sender]);
 				
 				// Remove sender if they are /ignored or /banned or They gone above spam filter
-				if (Settings::get("Ignore"][$sender] == true || $this->banlist[$sender]["name"] == $sender || $this->spam[$sender) > 100) {
+				if (Settings::is_ignored($sender) || $this->banlist[$sender]["name"] == $sender || $this->spam[$sender] > 100) {
 					return;
 				}
 				
@@ -335,7 +359,7 @@ class Budabot extends AOChat {
 				$this->buddyList[$char_id]['known'] = (ord($btype) ? 1 : 0);
 
 				//Ignore Logon/Logoff from other bots or phantom logon/offs
-                if (Settings::get("Ignore"][$sender) == true || $sender == "") {
+                if (Settings::is_ignored($sender) || $sender == "") {
 					return;
 				}
 
@@ -401,7 +425,7 @@ class Budabot extends AOChat {
 					return;
 				}
 
-				if (Settings::get("Ignore"][$sender] == true || $this->banlist[$sender]["name"] == $sender || ($this->spam[$sender] > 100 && $this->vars['spam protection') == 1)) {
+				if (Settings::is_ignored($sender) || $this->banlist[$sender]["name"] == $sender || ($this->spam[$sender] > 100 && $this->vars['spam protection'] == 1)) {
 					$this->spam[$sender] += 20;
 					return;
 				}
@@ -582,11 +606,13 @@ class Budabot extends AOChat {
 					}
 
 					//Ignore tells from other bots
-	                if (Settings::get("Ignore"][$sender) == true)
+	                if (Settings::is_ignored($sender)) {
 						return;
+					}
 
-					if ($this->banlist[$sender]["name"] == $sender)
+					if ($this->banlist[$sender]["name"] == $sender) {
 						return;
+					}
 				}
 
 				if ($channel == "All Towers" || $channel == "Tower Battle Outcome") {

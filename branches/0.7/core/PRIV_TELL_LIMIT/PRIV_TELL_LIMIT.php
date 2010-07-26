@@ -1,8 +1,6 @@
 <?php
 	$MODULE_NAME = "PRIV_TELL_LIMIT";
 	
-	require_once 'Whitelist.class.php';
-	
 	$this->loadSqlFile($MODULE_NAME, 'whitelist');
 	
 	//Set/Show Limits
