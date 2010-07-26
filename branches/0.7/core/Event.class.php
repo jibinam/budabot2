@@ -1,19 +1,11 @@
 <?php
 
-`module` VARCHAR(50)
-`type` VARCHAR(10)
-`file` VARCHAR(255)
-is_core TINYINT NOT NULL
-`description` VARCHAR(50) DEFAULT ''
-`verify` INT DEFAULT 0
-`status` INT DEFAULT 1
-
 class Event {
 
 /*===============================
 ** Name: event
 **  Registers an event
-*/	public static function event($type, $module, $file, $dependson = '', $desc = '') {
+*/	public static function register_event($type, $module, $file, $dependson = '', $desc = '') {
 		global $db;
 
 	  	if (Settings::get('debug') > 1) print("Adding Event to list:($type) File:($file)\n");

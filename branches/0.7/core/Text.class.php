@@ -81,10 +81,10 @@ class Text {
 		}
 		$pages = count($result);
 		if ($pages == 1) {
-			$result[$page] = "<a href=\"text://".Text::makeHeader($name, $links).Settings::get("default_window_color"].$result[$page)."\">$name</a>";
+			$result[$page] = "<a href=\"text://".Text::makeHeader($name, $links).Settings::get("default_window_color").$result[$page]."\">$name</a>";
 		} else {
 			forEach ($result as $page => $content) {
-				$result[$page] = "<a href=\"text://".Text::makeHeader("$name Page $page / $pages", $links).Settings::get("default_window_color"].$result[$page)."\">$name</a> (Page <highlight>$page / $pages<end>)";
+				$result[$page] = "<a href=\"text://".Text::makeHeader("$name Page $page / $pages", $links).Settings::get("default_window_color").$result[$page]."\">$name</a> (Page <highlight>$page / $pages<end>)";
 			}
 		}
 		return $result;

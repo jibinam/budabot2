@@ -5,7 +5,7 @@ class Command {
 /*===============================
 ** Name: Command
 ** 	Register a command
-*/	public static function command($type, $module, $filename, $command, $access_level = ALL, $description = '') {
+*/	public static function register_command($type, $module, $filename, $command, $access_level = ALL, $description = '') {
 		global $db;
 
 		if (!Command::processCommandArgs($type, $access_level)) {
@@ -18,7 +18,7 @@ class Command {
 
 		for ($i = 0; $i < count($type); $i++) {
 			if (Settings::get('debug') > 1) print("Adding Command to list:($command) File:($filename)\n");
-			if (Settings::get('debug'] > 1) print("                 Admin:({$access_level[$i]}) Type:({$type[$i)})\n");
+			if (Settings::get('debug') > 1) print("                 Admin:({$access_level[$i]}) Type:({$type[$i]})\n");
 			if (Settings::get('debug') > 2) sleep(1);
 			
 			if (Command::find_command($command) != false) {
@@ -79,7 +79,7 @@ class Command {
 
 		for ($i = 0; $i < count($type); $i++) {
 			if (Settings::get('debug') > 1) print("Adding Subcommand to list:($command) File:($filename)\n");
-			if (Settings::get('debug'] > 1) print("                    Admin:($access_level[$i]) Type:({$type[$i)})\n");
+			if (Settings::get('debug') > 1) print("                    Admin:($access_level[$i]) Type:({$type[$i]})\n");
 			if (Settings::get('debug') > 2) sleep(1);
 			
 			if ($this->existing_subcmds[$type[$i]][$command] == true) {
