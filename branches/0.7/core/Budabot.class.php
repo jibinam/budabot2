@@ -442,7 +442,7 @@ class Budabot extends AOChat {
 
 				// Events
 				$events = Event::find_active_events($type);
-				if ($events != NULL) {
+				if ($restricted != true && $events != NULL) {
 					forEach ($events as $event) {
 						include $event->file;
 					}
