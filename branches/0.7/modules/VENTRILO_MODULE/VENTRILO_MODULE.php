@@ -1,7 +1,7 @@
 <?php
 	$MODULE_NAME = "VENTRILO_MODULE"; 
 
-	$this->command("", $MODULE_NAME, "vent.php", "vent", GUILDMEMBER, "Ventrilo Server Info");
+	Command::register("", $MODULE_NAME, "vent.php", "vent", GUILDMEMBER, "Ventrilo Server Info");
 	
 	Settings::add("ventaddress", $MODULE_NAME, "Ventrilo Server Address", "edit", "unknown", "text");
 	Settings::add("ventport", $MODULE_NAME, "Ventrilo Server Port", "edit", "unknown", "text");

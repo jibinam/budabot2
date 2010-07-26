@@ -31,7 +31,7 @@
 
 if (time() >= $this->vars["priv_kickall"]) {
 	$this->privategroup_kick_all();
-	$this->unregevent("2sec", "BOTCHANNEL_MODULE/kickall_event.php");
+	Event::disable("2sec", "BOTCHANNEL_MODULE/kickall_event.php");
 	unset($this->vars["priv_kickall"]);
 }
 ?>

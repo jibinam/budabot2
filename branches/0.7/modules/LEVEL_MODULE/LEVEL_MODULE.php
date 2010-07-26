@@ -1,30 +1,26 @@
 <?php
 	$MODULE_NAME = "LEVEL_MODULE";
-	$PLUGIN_VERSION = 0.1;
-	$FOLDER = $dir;
 	
-	$this->loadSQLFile($MODULE_NAME, 'levels');
+	DB::loadSQLFile($MODULE_NAME, 'levels');
 
     //Level Infos
-	$this->command("", $MODULE_NAME, "level.php", "pvp", ALL, "Show level ranges");
-	$this->command("", $MODULE_NAME, "level.php", "level", ALL, "Show level ranges");
-	$this->command("", $MODULE_NAME, "level.php", "lvl", ALL, "Show level ranges");
-	$this->regGroup("lvlrng", $MODULE_NAME, "Show level ranges", "lvl", "level");
+	Command::register("", $MODULE_NAME, "level.php", "pvp", ALL, "Show level ranges");
+	Command::register("", $MODULE_NAME, "level.php", "level", ALL, "Show level ranges");
+	Command::register("", $MODULE_NAME, "level.php", "lvl", ALL, "Show level ranges");
 
 	//Missions
-	$this->command("", $MODULE_NAME, "missions.php", "mission", ALL);
-	$this->command("", $MODULE_NAME, "missions.php", "missions", ALL);
+	Command::register("", $MODULE_NAME, "missions.php", "mission", ALL);
+	Command::register("", $MODULE_NAME, "missions.php", "missions", ALL);
 	
 	//XP/SK/AXP Calculator
-	$this->command("", $MODULE_NAME, "xp_sk_calc.php", "sk", ALL, "SK Calculator");
+	Command::register("", $MODULE_NAME, "xp_sk_calc.php", "sk", ALL, "SK Calculator");
 	
-	$this->command("", $MODULE_NAME, "xp_sk_calc.php", "xp", ALL, "XP Calculator");
+	Command::register("", $MODULE_NAME, "xp_sk_calc.php", "xp", ALL, "XP Calculator");
 
-	$this->command("", $MODULE_NAME, "axp.php", "axp", ALL, "AXP Calculator");
-	$this->regGroup("EXP", $MODULE_NAME, "Calculate needed XP/SK/AXP", "sk", "xp", "axp");
+	Command::register("", $MODULE_NAME, "axp.php", "axp", ALL, "AXP Calculator");
 
 	//Title Levels
-	$this->command("", $MODULE_NAME, "title.php", "title", ALL, "Show the Titlelevels and how much IP/Level");
+	Command::register("", $MODULE_NAME, "title.php", "title", ALL, "Show the Titlelevels and how much IP/Level");
 
 	//Help files
     Help::register("level", $MODULE_NAME, "level.txt", ALL, "Levelinfos");

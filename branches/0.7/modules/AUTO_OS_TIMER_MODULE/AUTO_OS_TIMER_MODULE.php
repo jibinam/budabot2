@@ -1,7 +1,7 @@
 <?php
    /*
    ** Author: Tyrence/Whiz (RK2)
-   ** Description: Relays org messages between linked orgs
+   ** Description: Automatically sets a timer when an AS/OS is launched from org
    ** Version: 1.0
    **
    ** Developed for: Budabot(http://sourceforge.net/projects/budabot)
@@ -33,9 +33,8 @@
    */
 
 	$MODULE_NAME = "AUTO_OS_TIMER_MODULE";
-	$PLUGIN_VERSION = 1.0;
 
 	//Org messages
-    $this->event("orgmsg", $MODULE_NAME, "os_timer.php", "none", "Sets a timer when an OS/AS is launched");
+    Event::register("orgmsg", $MODULE_NAME, "os_timer.php", "none", "Sets a timer when an OS/AS is launched");
 
 ?>

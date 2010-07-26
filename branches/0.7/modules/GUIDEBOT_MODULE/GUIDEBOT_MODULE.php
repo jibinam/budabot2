@@ -30,375 +30,359 @@
    */
    
 	$MODULE_NAME = "GUIDEBOT_MODULE";
-	$PLUGIN_VERSION = 1.0;
 
 	//A Message From Organization's Leader
-	$this->command("", $MODULE_NAME, "message4org.php", "MESSAGE4ORG", ALL, "A MESSAGE FROM PLUGSZ");
+	Command::register("", $MODULE_NAME, "message4org.php", "MESSAGE4ORG", ALL, "A MESSAGE FROM PLUGSZ");
 
 	//Org Depts 
-	$this->command("", $MODULE_NAME, "orgdepts.php",  "ORGDEPTS", ALL, "GUIDE TO ORGDEPTS");
+	Command::register("", $MODULE_NAME, "orgdepts.php",  "ORGDEPTS", ALL, "GUIDE TO ORGDEPTS");
 	
 	//Official Code Of Conduct 
-	$this->command("", $MODULE_NAME, "official.php",  "OFFICIAL", ALL, "OFFICIAL CODE OF CONDUCT");
+	Command::register("", $MODULE_NAME, "official.php",  "OFFICIAL", ALL, "OFFICIAL CODE OF CONDUCT");
 	
 	//Wrangles 
-	$this->command("", $MODULE_NAME, "wrangle.php",   "WRANGLE", ALL, "INFO ON WRANGLES");
+	Command::register("", $MODULE_NAME, "wrangle.php",   "WRANGLE", ALL, "INFO ON WRANGLES");
 
 	//Guide To Making Money 
-	$this->command("", $MODULE_NAME, "makemoney.php", "MAKEMONEY", ALL, "GUIDE TO MAKING MONEY");
+	Command::register("", $MODULE_NAME, "makemoney.php", "MAKEMONEY", ALL, "GUIDE TO MAKING MONEY");
 	
 	//Beginners FAQs
-	$this->command("", $MODULE_NAME, "beginnersg.php", "BEGINNERSG", ALL, "BEGINNERS FAQS");
+	Command::register("", $MODULE_NAME, "beginnersg.php", "BEGINNERSG", ALL, "BEGINNERS FAQS");
 	
 	//Blitzing 
-	$this->command("", $MODULE_NAME, "blitzingg.php", "BLITZINGG", ALL, "GUIDE TO BLITZING");
+	Command::register("", $MODULE_NAME, "blitzingg.php", "BLITZINGG", ALL, "GUIDE TO BLITZING");
 	
 	//Locations 
-	$this->command("", $MODULE_NAME, "locations.php", "LOCATIONS", ALL, "LOCATIONS LIST");
+	Command::register("", $MODULE_NAME, "locations.php", "LOCATIONS", ALL, "LOCATIONS LIST");
 	
 	//AO Terms 
-	$this->command("", $MODULE_NAME, "terms.php",     "TERMS", ALL, "GUIDE TO AO TERMINOLOGY");
+	Command::register("", $MODULE_NAME, "terms.php",     "TERMS", ALL, "GUIDE TO AO TERMINOLOGY");
 	
 	//The Grid 
-	$this->command("", $MODULE_NAME, "infogrid.php",  "INFOGRID", ALL, "GUIDE TO THE GRID");
+	Command::register("", $MODULE_NAME, "infogrid.php",  "INFOGRID", ALL, "GUIDE TO THE GRID");
 	
 	//Jacks Rings 
-	$this->command("", $MODULE_NAME, "jacksrings.php",  "jacksrings", ALL, "Jacks Professionals Rings RK");
+	Command::register("", $MODULE_NAME, "jacksrings.php",  "jacksrings", ALL, "Jacks Professionals Rings RK");
 	
 	//Halloween 
-	$this->command("", $MODULE_NAME, "halloween.php",  "halloween", ALL, "Ferrel_s Halloween Guide");
+	Command::register("", $MODULE_NAME, "halloween.php",  "halloween", ALL, "Ferrel_s Halloween Guide");
 	
 	//IP Reset 
-	$this->command("", $MODULE_NAME, "ipreset.php",   "IPRESET", ALL, "GUIDE TO IP RESET");
+	Command::register("", $MODULE_NAME, "ipreset.php",   "IPRESET", ALL, "GUIDE TO IP RESET");
 	
 	//Smugglers Den 
-	$this->command("", $MODULE_NAME, "smugden.php",   "SMUGDEN", ALL, "GUIDE TO SMUGGLER DEN");
+	Command::register("", $MODULE_NAME, "smugden.php",   "SMUGDEN", ALL, "GUIDE TO SMUGGLER DEN");
 	
 	//Guides 
-	$this->command("", $MODULE_NAME, "guides.php",    "GUIDES", ALL, "GUIDE TO AO");
+	Command::register("", $MODULE_NAME, "guides.php",    "GUIDES", ALL, "GUIDE TO AO");
 	
 	//Temple of Three Winds
-	$this->command("", $MODULE_NAME, "totw.php",      "TOTW", ALL, "GUIDE TO TEMPLE OF THREE WINDS");
+	Command::register("", $MODULE_NAME, "totw.php",      "TOTW", ALL, "GUIDE TO TEMPLE OF THREE WINDS");
 
 	//Buffs
-	$this->command("", $MODULE_NAME, "buffs.php",     "BUFFS", ALL, "INFORMATION ABOUT ALL THE IN GAME BUFFS");
+	Command::register("", $MODULE_NAME, "buffs.php",     "BUFFS", ALL, "INFORMATION ABOUT ALL THE IN GAME BUFFS");
 	
 	//Foremans Biomare
-	$this->command("", $MODULE_NAME, "biomare.php",   "BIOMARE", ALL, "GUIDE TO FOREMANS AKA BIOMARE QUESTS");
+	Command::register("", $MODULE_NAME, "biomare.php",   "BIOMARE", ALL, "GUIDE TO FOREMANS AKA BIOMARE QUESTS");
 	
 	//Armor
-	$this->command("", $MODULE_NAME, "armor.php",     "ARMOR", ALL, "INFORMATION ABOUT ARMORS BY STAT AND TYPES");
+	Command::register("", $MODULE_NAME, "armor.php",     "ARMOR", ALL, "INFORMATION ABOUT ARMORS BY STAT AND TYPES");
 	
 	//Advy Guide
-	$this->command("", $MODULE_NAME, "adventurer.php", "ADVYS", ALL, "GUIDE TO ADVENTURERS");
+	Command::register("", $MODULE_NAME, "adventurer.php", "ADVYS", ALL, "GUIDE TO ADVENTURERS");
 
 	//Agent Guide
-	$this->command("", $MODULE_NAME, "agent.php",     "AGENTS", ALL, "GUIDE TO AGENTS");
+	Command::register("", $MODULE_NAME, "agent.php",     "AGENTS", ALL, "GUIDE TO AGENTS");
 	
 	//Doctor Guide
-	$this->command("", $MODULE_NAME, "doctor.php",    "DOCTORS", ALL, "GUIDE TO DOCTORS");
+	Command::register("", $MODULE_NAME, "doctor.php",    "DOCTORS", ALL, "GUIDE TO DOCTORS");
 	
 	//Bureaucrat Guide
-	$this->command("", $MODULE_NAME, "bureaucrat.php", "BUREAUCRATS", ALL, "GUIDE TO BUREAUCRAT");
+	Command::register("", $MODULE_NAME, "bureaucrat.php", "BUREAUCRATS", ALL, "GUIDE TO BUREAUCRAT");
 	
 	//Enforcer Guide
-	$this->command("", $MODULE_NAME, "enforcer.php",  "ENFORCERS", ALL, "GUIDE TO ENFORCER");
+	Command::register("", $MODULE_NAME, "enforcer.php",  "ENFORCERS", ALL, "GUIDE TO ENFORCER");
 	
 	//ENGINEER Guide
-	$this->command("", $MODULE_NAME, "engineers.php",  "ENGINEERS", ALL, "GUIDE TO ENGINEERS");
+	Command::register("", $MODULE_NAME, "engineers.php",  "ENGINEERS", ALL, "GUIDE TO ENGINEERS");
 	
 	//FIXER Guide
-	$this->command("", $MODULE_NAME, "fixer.php",     "FIXERS", ALL, "GUIDE TO FIXER");
+	Command::register("", $MODULE_NAME, "fixer.php",     "FIXERS", ALL, "GUIDE TO FIXER");
 	
 	//MARTIAL ARTIST Guide
-	$this->command("", $MODULE_NAME, "martialartist.php", "MARTIALARTISTS", ALL, "GUIDE TO MARTIALARTIST");
+	Command::register("", $MODULE_NAME, "martialartist.php", "MARTIALARTISTS", ALL, "GUIDE TO MARTIALARTIST");
 	
 	//META PHYSICIST Guide
-	$this->command("", $MODULE_NAME, "metaphysicists.php", "METAPHYSICISTS", ALL, "GUIDE TO METAPHYSICIST");
+	Command::register("", $MODULE_NAME, "metaphysicists.php", "METAPHYSICISTS", ALL, "GUIDE TO METAPHYSICIST");
 	
 	//SOLDIER Guide
-	$this->command("", $MODULE_NAME, "soldier.php",   "SOLDIERS", ALL, "GUIDE TO SOLDIER");
+	Command::register("", $MODULE_NAME, "soldier.php",   "SOLDIERS", ALL, "GUIDE TO SOLDIER");
 	
 	//TRADER Guide
-	$this->command("", $MODULE_NAME, "traders.php",    "TRADERS", ALL, "GUIDE TO TRADER");
+	Command::register("", $MODULE_NAME, "traders.php",    "TRADERS", ALL, "GUIDE TO TRADER");
 	
 	//NANOTECH Guide
-	$this->command("", $MODULE_NAME, "nanotech.php",  "NANOTECHS", ALL, "GUIDE TO NANOTECHS");
+	Command::register("", $MODULE_NAME, "nanotech.php",  "NANOTECHS", ALL, "GUIDE TO NANOTECHS");
 	
 	//Professions Guide
-	$this->command("", $MODULE_NAME, "professions.php", "PROFESSIONS", ALL, "GUIDE TO ALL PROFESSIONS");
+	Command::register("", $MODULE_NAME, "professions.php", "PROFESSIONS", ALL, "GUIDE TO ALL PROFESSIONS");
 
 	//Guides 
-	$this->command("", $MODULE_NAME, "guides.php",    "GUIDES", ALL, "GUIDE TO AO");
+	Command::register("", $MODULE_NAME, "guides.php",    "GUIDES", ALL, "GUIDE TO AO");
 	
 	//Trade NPCs 
-	$this->command("", $MODULE_NAME, "tradenpc.php",   "TRADENPC", ALL, "GUIDE TO UNIQUE RK NPCS");
+	Command::register("", $MODULE_NAME, "tradenpc.php",   "TRADENPC", ALL, "GUIDE TO UNIQUE RK NPCS");
 	
 	//Fixer Shop 
-	$this->command("", $MODULE_NAME, "fshop.php",      "FSHOP", ALL, "GUIDE TO FIXER SHOP");
+	Command::register("", $MODULE_NAME, "fshop.php",      "FSHOP", ALL, "GUIDE TO FIXER SHOP");
 	
 	//Thin Bernice 
-	$this->command("", $MODULE_NAME, "bernice.php",    "BERNICE", ALL, "GUIDE TO THIN BERNICE");
+	Command::register("", $MODULE_NAME, "bernice.php",    "BERNICE", ALL, "GUIDE TO THIN BERNICE");
 	
 	//Trader Shop 
-	$this->command("", $MODULE_NAME, "tshop.php",      "TSHOP", ALL, "GUIDE TO TRADER SHOP");
+	Command::register("", $MODULE_NAME, "tshop.php",      "TSHOP", ALL, "GUIDE TO TRADER SHOP");
 	
 	//Zoftig Blimp 
-	$this->command("", $MODULE_NAME, "zoftig.php",     "ZOFTIG", ALL, "GUIDE TO ZOFTIG BLIMP");
+	Command::register("", $MODULE_NAME, "zoftig.php",     "ZOFTIG", ALL, "GUIDE TO ZOFTIG BLIMP");
 	
 	//MELEE SMITH 
-	$this->command("", $MODULE_NAME, "meleesmith.php", "MELEESMITH", ALL, "GUIDE TO MELEE SMITH");
+	Command::register("", $MODULE_NAME, "meleesmith.php", "MELEESMITH", ALL, "GUIDE TO MELEE SMITH");
 	
 	//TRADER SHOP 
-	$this->command("", $MODULE_NAME, "tshop.php",      "TSHOP", ALL, "GUIDE TO TRADER SHOP");
+	Command::register("", $MODULE_NAME, "tshop.php",      "TSHOP", ALL, "GUIDE TO TRADER SHOP");
 	
 	//YALM SHOP 
-	$this->command("", $MODULE_NAME, "infoyalm.php",      "INFOYALM", ALL, "Locations of Yalms");
+	Command::register("", $MODULE_NAME, "infoyalm.php",      "INFOYALM", ALL, "Locations of Yalms");
 	
 	//RK Info 
-	$this->command("", $MODULE_NAME, "rkinfo.php",     "RKINFO", ALL, "RUBI-KA LITTLE INSTRUCTION BOOK");
+	Command::register("", $MODULE_NAME, "rkinfo.php",     "RKINFO", ALL, "RUBI-KA LITTLE INSTRUCTION BOOK");
 	
 	//SL powerleveling guide 
-	$this->command("", $MODULE_NAME, "slpower.php",     "SLPOWER", ALL, "Solo Powerleveling guide for SL");
+	Command::register("", $MODULE_NAME, "slpower.php",     "SLPOWER", ALL, "Solo Powerleveling guide for SL");
 	
 	//Implants 
-	$this->command("", $MODULE_NAME, "implants.php",   "IMPLANTS", ALL, "BASIC GUIDE TO IMPLANTS");
+	Command::register("", $MODULE_NAME, "implants.php",   "IMPLANTS", ALL, "BASIC GUIDE TO IMPLANTS");
 	
 	//Hollow Island 
-	$this->command("", $MODULE_NAME, "hollow.php",     "HOLLOW", ALL, "GUIDE TO HOLLOW ISLAND");
+	Command::register("", $MODULE_NAME, "hollow.php",     "HOLLOW", ALL, "GUIDE TO HOLLOW ISLAND");
 	
 	//Rk Dungeon Guides 
-	$this->command("", $MODULE_NAME, "rkdung.php",     "RKDUNG", ALL, "RK DUNGEON GUIDES");
+	Command::register("", $MODULE_NAME, "rkdung.php",     "RKDUNG", ALL, "RK DUNGEON GUIDES");
 	
 	//Steps Of Madness 
-	$this->command("", $MODULE_NAME, "stepsm.php",     "STEPSM", ALL, "GUIDE TO STEPS OF MADNESS");
+	Command::register("", $MODULE_NAME, "stepsm.php",     "STEPSM", ALL, "GUIDE TO STEPS OF MADNESS");
 	
 	//Crypt Of Home 
-	$this->command("", $MODULE_NAME, "cryptinfo.php",  "CRYPTINFO", ALL, "GUIDE TO CRYPT OF HOME");
+	Command::register("", $MODULE_NAME, "cryptinfo.php",  "CRYPTINFO", ALL, "GUIDE TO CRYPT OF HOME");
 	
 	//Inner Sanctum 
-	$this->command("", $MODULE_NAME, "inners.php",     "INNERS", ALL, "GUIDE TO INNER SANCTUM");
+	Command::register("", $MODULE_NAME, "inners.php",     "INNERS", ALL, "GUIDE TO INNER SANCTUM");
 		
 	//NPC QUESTS 
-	$this->command("", $MODULE_NAME, "quests.php",     "QUESTS", ALL, "GUIDE TO NPC QUEST GUIDE");
+	Command::register("", $MODULE_NAME, "quests.php",     "QUESTS", ALL, "GUIDE TO NPC QUEST GUIDE");
 		
 	//Sided1 
-	$this->command("", $MODULE_NAME, "sided1.php",     "SIDED1", ALL, "GUIDE TO SIDED1");
+	Command::register("", $MODULE_NAME, "sided1.php",     "SIDED1", ALL, "GUIDE TO SIDED1");
 	
 	//Sided2 
-	$this->command("", $MODULE_NAME, "sided2.php",     "SIDED2", ALL, "GUIDE TO SIDED2");
+	Command::register("", $MODULE_NAME, "sided2.php",     "SIDED2", ALL, "GUIDE TO SIDED2");
 		
 	//Sided3 
-	$this->command("", $MODULE_NAME, "sided3.php",     "SIDED3", ALL, "GUIDE TO SIDED3");
+	Command::register("", $MODULE_NAME, "sided3.php",     "SIDED3", ALL, "GUIDE TO SIDED3");
 	
 	//Tailor Quest 
-	$this->command("", $MODULE_NAME, "atailor.php",      "ATAILOR", ALL, "GUIDE TO A TAILOR WOE");
+	Command::register("", $MODULE_NAME, "atailor.php",      "ATAILOR", ALL, "GUIDE TO A TAILOR WOE");
 	
 	//Cloak Quest 
-	$this->command("", $MODULE_NAME, "cloakr.php",    "cloakr", ALL, "GUIDE TO Cloak of The Reanimated Upgrades");
+	Command::register("", $MODULE_NAME, "cloakr.php",    "cloakr", ALL, "GUIDE TO Cloak of The Reanimated Upgrades");
 	
 	//Fixer Grid Part 1 
-	$this->command("", $MODULE_NAME, "fgridone.php",   "FGRIDONE", ALL, "GUIDE TO FIXER GRID PART 1");
+	Command::register("", $MODULE_NAME, "fgridone.php",   "FGRIDONE", ALL, "GUIDE TO FIXER GRID PART 1");
 		
 	//Fixer Grid Part 2 
-	$this->command("", $MODULE_NAME, "fgrid2.php",     "FGRID2", ALL, "GUIDE TO FIXER GRID PART 2");
+	Command::register("", $MODULE_NAME, "fgrid2.php",     "FGRID2", ALL, "GUIDE TO FIXER GRID PART 2");
 		
 	//Mission Settings 
-	$this->command("", $MODULE_NAME, "mishsets.php",   "MISHSETS", ALL, "GUIDE TO MISSION SETTINGS");
+	Command::register("", $MODULE_NAME, "mishsets.php",   "MISHSETS", ALL, "GUIDE TO MISSION SETTINGS");
 		
 	//SL Garden Nanos 
-	$this->command("", $MODULE_NAME, "slnano.php",      "SLNANO", ALL, "SHADOWLANDS GARDEN NANOS");
+	Command::register("", $MODULE_NAME, "slnano.php",      "SLNANO", ALL, "SHADOWLANDS GARDEN NANOS");
 	
 	//Compact DataDisc Guide 
-	$this->command("", $MODULE_NAME, "compact.php",     "COMPACT", ALL, "GUIDE TO COMPACT DATA DISC QUESTS");
+	Command::register("", $MODULE_NAME, "compact.php",     "COMPACT", ALL, "GUIDE TO COMPACT DATA DISC QUESTS");
 
 	//Shoel Quests Independants 
-	$this->command("", $MODULE_NAME, "indieshoel.php",     "indieshoel", ALL, "GUIDE TO Shoel Quests Independants");
+	Command::register("", $MODULE_NAME, "indieshoel.php",     "indieshoel", ALL, "GUIDE TO Shoel Quests Independants");
 	
 	//Shoel Quests Independants 
-	$this->command("", $MODULE_NAME, "shoelyutto.php",     "shoelyutto", ALL, "GUIDE TO Shoel Quests Yuttos");
+	Command::register("", $MODULE_NAME, "shoelyutto.php",     "shoelyutto", ALL, "GUIDE TO Shoel Quests Yuttos");
 	
 	//Shoel Quests Jobe 
-	$this->command("", $MODULE_NAME, "jobeshoel.php",     "jobeshoel", ALL, "GUIDE TO Shoel Quests Jobe Scientists");
+	Command::register("", $MODULE_NAME, "jobeshoel.php",     "jobeshoel", ALL, "GUIDE TO Shoel Quests Jobe Scientists");
 		
 	//Inferno Star Quest 
-	$this->command("", $MODULE_NAME, "infstar.php",     "infstar", ALL, "Inferno: Professions Star Quest");
+	Command::register("", $MODULE_NAME, "infstar.php",     "infstar", ALL, "Inferno: Professions Star Quest");
 			
 	//Nascense Garden Nanos 
-	$this->command("", $MODULE_NAME, "nascgar.php",     "NASCGAR", ALL, "NASCENSE GARDEN NANOS");
+	Command::register("", $MODULE_NAME, "nascgar.php",     "NASCGAR", ALL, "NASCENSE GARDEN NANOS");
 	
 	//Ely Garden Nanos 
-	$this->command("", $MODULE_NAME, "elygar.php",      "ELYGAR", ALL, "ELY GARDEN NANOS");
+	Command::register("", $MODULE_NAME, "elygar.php",      "ELYGAR", ALL, "ELY GARDEN NANOS");
 	
 	//Ely Sanc Garden Nanos 
-	$this->command("", $MODULE_NAME, "elysancn.php",    "ELYSANCN", ALL, "ELY SANC GARDEN NANOS");
+	Command::register("", $MODULE_NAME, "elysancn.php",    "ELYSANCN", ALL, "ELY SANC GARDEN NANOS");
 	
 	//Shoel Garden Nanos 
-	$this->command("", $MODULE_NAME, "shogar.php",      "SHOGAR", ALL, "SHOEL GARDEN NANOS");
+	Command::register("", $MODULE_NAME, "shogar.php",      "SHOGAR", ALL, "SHOEL GARDEN NANOS");
 	
 	//Shoel Sanc Garden Nanos 
-	$this->command("", $MODULE_NAME, "shosancn.php",    "SHOSANCN", ALL, "ELY SANC GARDEN NANOS");
+	Command::register("", $MODULE_NAME, "shosancn.php",    "SHOSANCN", ALL, "ELY SANC GARDEN NANOS");
 	
 	//ADONIS Quests 
-	$this->command("", $MODULE_NAME, "adoquest.php",     "ADOQUEST", ALL, "ADONIS Quests");
+	Command::register("", $MODULE_NAME, "adoquest.php",     "ADOQUEST", ALL, "ADONIS Quests");
 	
 	//ADO Garden Nanos 
-	$this->command("", $MODULE_NAME, "adogarn.php",     "ADOGARN", ALL, "ADONIS GARDEN NANOS");
+	Command::register("", $MODULE_NAME, "adogarn.php",     "ADOGARN", ALL, "ADONIS GARDEN NANOS");
 	
 	//ADO Sanc Garden Nanos 
-	$this->command("", $MODULE_NAME, "adosancn.php",    "ADOSANCN", ALL, "ADONIS SANC GARDEN NANOS");
+	Command::register("", $MODULE_NAME, "adosancn.php",    "ADOSANCN", ALL, "ADONIS SANC GARDEN NANOS");
 
 	//PENUMBRA Garden Nanos 
-	$this->command("", $MODULE_NAME, "pengarn.php",     "PENGARN", ALL, "PENUMBRA GARDEN NANOS");
+	Command::register("", $MODULE_NAME, "pengarn.php",     "PENGARN", ALL, "PENUMBRA GARDEN NANOS");
 	
 	//PENUMBRA Sanc Garden Nanos 
-	$this->command("", $MODULE_NAME, "pensancn.php",    "PENSANCN", ALL, "PENUMBRA SANC GARDEN NANOS");
+	Command::register("", $MODULE_NAME, "pensancn.php",    "PENSANCN", ALL, "PENUMBRA SANC GARDEN NANOS");
 
 	//INFERNO Garden Nanos 
-	$this->command("", $MODULE_NAME, "infgarn.php",     "INFGARN", ALL, "INFERNO GARDEN NANOS");
+	Command::register("", $MODULE_NAME, "infgarn.php",     "INFGARN", ALL, "INFERNO GARDEN NANOS");
 	
 	//INFERNO Sanc Garden Nanos 
-	$this->command("", $MODULE_NAME, "infsancn.php",    "INFSANCN", ALL, "INFERNO SANC GARDEN NANOS");
+	Command::register("", $MODULE_NAME, "infsancn.php",    "INFSANCN", ALL, "INFERNO SANC GARDEN NANOS");
 	
 	//Pandemonium Vendor Nanos 
-	$this->command("", $MODULE_NAME, "panven.php",      "PANVEN", ALL, "PANDEMONIUM VENDOR NANOS");
+	Command::register("", $MODULE_NAME, "panven.php",      "PANVEN", ALL, "PANDEMONIUM VENDOR NANOS");
 
 	//Nascence Garden Key Omni Quest
-	$this->command("", $MODULE_NAME, "nasckey.php",     "NASCKEY", ALL, "ELYSIUM GARDEN KEY OMNI QUEST");
+	Command::register("", $MODULE_NAME, "nasckey.php",     "NASCKEY", ALL, "ELYSIUM GARDEN KEY OMNI QUEST");
 
 	//Elysium Garden Key Omni Quest 
-	$this->command("", $MODULE_NAME, "elykey.php",      "ELYKEY", ALL, "ELYSIUM GARDEN KEY OMNI QUEST");
+	Command::register("", $MODULE_NAME, "elykey.php",      "ELYKEY", ALL, "ELYSIUM GARDEN KEY OMNI QUEST");
 
 	//Elysium Sanctuary Garden Key Omni quest 
-	$this->command("", $MODULE_NAME, "elysanckey.php",  "ELYSANCKEY", ALL, "ELYSIUM SANCTUARY GARDEN KEY OMNI QUEST");
+	Command::register("", $MODULE_NAME, "elysanckey.php",  "ELYSANCKEY", ALL, "ELYSIUM SANCTUARY GARDEN KEY OMNI QUEST");
 
 	//Shoel Garden Key Omni Quest 
-	$this->command("", $MODULE_NAME, "rochkey.php",     "ROCHKEY", ALL, "SHOEL GARDEN KEY OMNI QUEST");
+	Command::register("", $MODULE_NAME, "rochkey.php",     "ROCHKEY", ALL, "SHOEL GARDEN KEY OMNI QUEST");
 
 	//Shoel Sanctuary Garden Key Omni Quest 
-	$this->command("", $MODULE_NAME, "rochsanckey.php", "ROCHSANCKEY", ALL, "SHOEL SANCTUARY GARDEN KEY OMNI QUEST");
+	Command::register("", $MODULE_NAME, "rochsanckey.php", "ROCHSANCKEY", ALL, "SHOEL SANCTUARY GARDEN KEY OMNI QUEST");
 
 	//Adonis Garden Key Omni Quest 
-	$this->command("", $MODULE_NAME, "adokey.php",  "ADOKEY", ALL, "ADONIS GARDEN KEY OMNI QUEST");
+	Command::register("", $MODULE_NAME, "adokey.php",  "ADOKEY", ALL, "ADONIS GARDEN KEY OMNI QUEST");
 
 	//Adonis Sanctuary Garden Key Omni Quest 
-	$this->command("", $MODULE_NAME, "adosanckey.php", "ADOSANCKEY", ALL, "ADONIS SANCTUARY GARDEN KEY OMNI QUEST");
+	Command::register("", $MODULE_NAME, "adosanckey.php", "ADOSANCKEY", ALL, "ADONIS SANCTUARY GARDEN KEY OMNI QUEST");
   
 	//Adonis Sanctuary Garden Key Omni Quest 
-	$this->command("", $MODULE_NAME, "adosancclan.php", "ADOSANCCLAN", ALL, "ADONIS SANCTUARY GARDEN KEY CLAN QUEST");
+	Command::register("", $MODULE_NAME, "adosancclan.php", "ADOSANCCLAN", ALL, "ADONIS SANCTUARY GARDEN KEY CLAN QUEST");
 		
 	//Penumbra Sanctuary Garden Key Omni Quest 
-	$this->command("", $MODULE_NAME, "pensancg.php", "pensancg", ALL, "Penumbra Sanctuary Garden Key Omni Quest");
+	Command::register("", $MODULE_NAME, "pensancg.php", "pensancg", ALL, "Penumbra Sanctuary Garden Key Omni Quest");
 		
 	//Inferno Garden Key Omni Quest 
-	$this->command("", $MODULE_NAME, "infgarnkey.php", "infgarnkey", ALL, "Inferno Garden Key Omni Quest");
+	Command::register("", $MODULE_NAME, "infgarnkey.php", "infgarnkey", ALL, "Inferno Garden Key Omni Quest");
 		
 	//Inferno Spirit Quest 
-	$this->command("", $MODULE_NAME, "spiritquest.php", "spiritquest", ALL, "Inferno Spirits Quest");
+	Command::register("", $MODULE_NAME, "spiritquest.php", "spiritquest", ALL, "Inferno Spirits Quest");
 		
 	//Nascence Garden Key Clan Quest
-	$this->command("", $MODULE_NAME, "nasckeyclan.php",     "NASCKEYCLAN", ALL, "ELYSIUM GARDEN KEY Clan Quest");
+	Command::register("", $MODULE_NAME, "nasckeyclan.php",     "NASCKEYCLAN", ALL, "ELYSIUM GARDEN KEY Clan Quest");
 
 	//Elysium Garden Key Clan Quest 
-	$this->command("", $MODULE_NAME, "elykeyclan.php",      "ELYKEYCLAN", ALL, "ELYSIUM GARDEN KEY Clan Quest");
+	Command::register("", $MODULE_NAME, "elykeyclan.php",      "ELYKEYCLAN", ALL, "ELYSIUM GARDEN KEY Clan Quest");
 
 	//Elysium Sanctuary Garden Key Clan Quest 
-	$this->command("", $MODULE_NAME, "elysancclan.php",  "ELYSANCCLAN", ALL, "ELYSIUM SANCTUARY GARDEN KEY Clan Quest");
+	Command::register("", $MODULE_NAME, "elysancclan.php",  "ELYSANCCLAN", ALL, "ELYSIUM SANCTUARY GARDEN KEY Clan Quest");
 
 	//Shoel Garden Key Clan Quest 
-	$this->command("", $MODULE_NAME, "shoelkeyclan.php",     "SHOELKEYCLAN", ALL, "SHOEL GARDEN KEY Clan Quest");
+	Command::register("", $MODULE_NAME, "shoelkeyclan.php",     "SHOELKEYCLAN", ALL, "SHOEL GARDEN KEY Clan Quest");
 
 	//Shoel Sanctuary Garden Key Clan Quest 
-	$this->command("", $MODULE_NAME, "shoelsancclan.php", "SHOELSANCCLAN", ALL, "SHOEL SANCTUARY GARDEN KEY Clan Quest");
+	Command::register("", $MODULE_NAME, "shoelsancclan.php", "SHOELSANCCLAN", ALL, "SHOEL SANCTUARY GARDEN KEY Clan Quest");
 
 	//Adonis Garden Key Clan Quest 
-	$this->command("", $MODULE_NAME, "adokeyclan.php",  "ADOKEYCLAN", ALL, "ADONIS GARDEN KEY Clan Quest");
+	Command::register("", $MODULE_NAME, "adokeyclan.php",  "ADOKEYCLAN", ALL, "ADONIS GARDEN KEY Clan Quest");
 
 	//Adonis Sanctuary Garden Key Clan Quest 
-	$this->command("", $MODULE_NAME, "adosancclan.php", "ADOSANCCLAN", ALL, "ADONIS SANCTUARY GARDEN KEY Clan Quest");
+	Command::register("", $MODULE_NAME, "adosancclan.php", "ADOSANCCLAN", ALL, "ADONIS SANCTUARY GARDEN KEY Clan Quest");
   
 	//Penumbra Sanctuary Garden Key Clan Quest 
-	$this->command("", $MODULE_NAME, "pensancclan.php", "pensancclan", ALL, "Penumbra Sanctuary Garden Key CLAN Quest");
+	Command::register("", $MODULE_NAME, "pensancclan.php", "pensancclan", ALL, "Penumbra Sanctuary Garden Key CLAN Quest");
 	
 	//Inferno Sanctuary Garden Key Omni Quest 
-	$this->command("", $MODULE_NAME, "infsanckeyo.php", "infsanckeyo", ALL, "Inferno Sanctuary Garden Key OMNI Quest");
+	Command::register("", $MODULE_NAME, "infsanckeyo.php", "infsanckeyo", ALL, "Inferno Sanctuary Garden Key OMNI Quest");
 	
 	//Making Perennium Weapons 
-	$this->command("", $MODULE_NAME, "pernweps.php",  "PERNWEPS", ALL, "MAKING PERENNIUM WEAPONS ");
+	Command::register("", $MODULE_NAME, "pernweps.php",  "PERNWEPS", ALL, "MAKING PERENNIUM WEAPONS ");
 
 	//Making Jobe Armor 
-	$this->command("", $MODULE_NAME, "jobearmor.php",  "JOBEARMOR", ALL, "MAKING JOBE ARMOR ");
+	Command::register("", $MODULE_NAME, "jobearmor.php",  "JOBEARMOR", ALL, "MAKING JOBE ARMOR ");
 
 	//Making Tier 1 Armor 
-	$this->command("", $MODULE_NAME, "tier1armor.php", "TIER1ARMOR", ALL, "MAKING TIER 1 ARMOR ");
+	Command::register("", $MODULE_NAME, "tier1armor.php", "TIER1ARMOR", ALL, "MAKING TIER 1 ARMOR ");
 
 	//Making Tier 2 Armor 
-	$this->command("", $MODULE_NAME, "tier2armor.php", "TIER2ARMOR", ALL, "MAKING TIER 2 ARMOR ");
+	Command::register("", $MODULE_NAME, "tier2armor.php", "TIER2ARMOR", ALL, "MAKING TIER 2 ARMOR ");
 
 	//Making Tier 3 Armor 
-	$this->command("", $MODULE_NAME, "tier3armor.php", "TIER3ARMOR", ALL, "MAKING TIER 3 ARMOR ");
+	Command::register("", $MODULE_NAME, "tier3armor.php", "TIER3ARMOR", ALL, "MAKING TIER 3 ARMOR ");
 
 	//Websites 
-	$this->command("", $MODULE_NAME, "websites.php",   "WEBSITES", ALL, "WEBSITES ");
+	Command::register("", $MODULE_NAME, "websites.php",   "WEBSITES", ALL, "WEBSITES ");
 	
 	//Penumbra Guide 
-	$this->command("", $MODULE_NAME, "penguide.php",   "PENGUIDE", ALL, "Guide To Penumbra ");
+	Command::register("", $MODULE_NAME, "penguide.php",   "PENGUIDE", ALL, "Guide To Penumbra ");
 	
 	//Bazzit's Quest
-	$this->command("", $MODULE_NAME, "bazzit.php",   "BAZZIT", ALL, "Uncle Bazzit Quest");
+	Command::register("", $MODULE_NAME, "bazzit.php",   "BAZZIT", ALL, "Uncle Bazzit Quest");
 
 	//PVP Guide
-	$this->command("", $MODULE_NAME, "pvp.php",   "pvpguide", ALL, "PVP Guide");
+	Command::register("", $MODULE_NAME, "pvp.php",   "pvpguide", ALL, "PVP Guide");
 
 	//APF 13 Guide
-	$this->command("", $MODULE_NAME, "apf13.php",   "APF13GUIDE", ALL, "APF 13 Guide");
+	Command::register("", $MODULE_NAME, "apf13.php",   "APF13GUIDE", ALL, "APF 13 Guide");
 
 	//APF 28 Guide
-	$this->command("", $MODULE_NAME, "apf28.php",   "APF28GUIDE", ALL, "APF 28 Guide");
+	Command::register("", $MODULE_NAME, "apf28.php",   "APF28GUIDE", ALL, "APF 28 Guide");
 
 	//APF 35 Guide
-	$this->command("", $MODULE_NAME, "apf35.php",   "APF35GUIDE", ALL, "APF 35 Guide");
+	Command::register("", $MODULE_NAME, "apf35.php",   "APF35GUIDE", ALL, "APF 35 Guide");
 
 	//APF 42 Guide
-	$this->command("", $MODULE_NAME, "apf42.php",   "APF42GUIDE", ALL, "APF 42 Guide");
+	Command::register("", $MODULE_NAME, "apf42.php",   "APF42GUIDE", ALL, "APF 42 Guide");
 
-  //Social Clothes
-	$this->command("", $MODULE_NAME, "clothes.php",   "CLOTHES", ALL, "AI Social Clothing");
+	//Social Clothes
+	Command::register("", $MODULE_NAME, "clothes.php",   "CLOTHES", ALL, "AI Social Clothing");
 	
 	//Dreadloch Camps - Clan
-	$this->command("", $MODULE_NAME, "clandreadloch.php",   "clandreadloch", ALL, "Dreadloch Camps - Clan");
+	Command::register("", $MODULE_NAME, "clandreadloch.php",   "clandreadloch", ALL, "Dreadloch Camps - Clan");
 
 	//Dreadloch Camps - Omni
-	$this->command("", $MODULE_NAME, "omnidreadloch.php",   "omnidreadloch", ALL, "Dreadloch Camps - Omni");
+	Command::register("", $MODULE_NAME, "omnidreadloch.php",   "omnidreadloch", ALL, "Dreadloch Camps - Omni");
 	
-  //Battle Stations
-	$this->command("", $MODULE_NAME, "bsinfo.php",   "bsinfo", ALL, "Battle Stations");
+	//Battle Stations
+	Command::register("", $MODULE_NAME, "bsinfo.php",   "bsinfo", ALL, "Battle Stations");
 
-  //LE Alien Missions
-	$this->command("", $MODULE_NAME, "lemish.php",   "lemish", ALL, "LE Alien Missions");
+	//LE Alien Missions
+	Command::register("", $MODULE_NAME, "lemish.php",   "lemish", ALL, "LE Alien Missions");
 	
 	//Newcomers Alliance PvP Rules
-	$this->command("", $MODULE_NAME, "napvp.php",   "napvp", ALL, "Newcomers Alliance PvP Rules");
+	Command::register("", $MODULE_NAME, "napvp.php",   "napvp", ALL, "Newcomers Alliance PvP Rules");
 	
 	//Albtraum
-	$this->command("", $MODULE_NAME, "albainfo.php", "albainfo", ALL, "Guide to Albtraum");
+	Command::register("", $MODULE_NAME, "albainfo.php", "albainfo", ALL, "Guide to Albtraum");
 	
 	//Arid Rift
-	$this->command("", $MODULE_NAME, "aridrift.php", "aridrift", ALL, "Guide to aridrift");
-	
-	$this->regGroup("prof_guides", $MODULE_NAME, "Guides for all Professions", "advys", "agents", "doctors", "bureaucrats", "enforcers", "engineers", "fixers", "martialartists", "metaphysicists", "soldiers", "traders", "nanotechs", "professions");
-	$this->regGroup("slomni_guides", $MODULE_NAME, "Guides for various SL Garden Keys Omni", "nasckey", "elykey", "elysanckey", "rochkey", "rochsanckey", "adokey", "adosanckey", "penguide", "pensancg", "infgarnkey");
-	$this->regGroup("slclan_guides", $MODULE_NAME, "Guides for various SL Garden Keys Clan", "nasckeyclan", "elykeyclan", "elysancclan", "shoelkeyclan", "shoelsancclan", "adokeyclan", "adosancclan", "pensancclan");
-	$this->regGroup("slkey_guides", $MODULE_NAME, "Guides for various SL Garden Keys", "compact", "indieshoel", "shoelyutto", "jobeshoel", "slnano");
-	$this->regGroup("quests", $MODULE_NAME, "Guides for RK Quests", "quests", "sided1", "sided2", "sided3", "atailor", "fgridone", "fgrid2");
-	$this->regGroup("slts_guides", $MODULE_NAME, "Guides for SL Tradeskills","pernweps", "jobearmor", "tier1armor", "tier2armor", "tier3armor");
-	$this->regGroup("slnano_guides", $MODULE_NAME, "Guides for SL Nanos", "nascgar", "elygar", "elysancn", "shogar", "shosancn", "adogarn", "adosancn", "pengarn", "pensancn", "infgarn", "infsancn", "panven");
-	$this->regGroup("basicinfo_guides", $MODULE_NAME, "Basic AO Information Guides", "wrangle", "makemoney", "beginnersg", "blitzingg", "locations", "terms", "infogrid", "ipreset", "buffs", "armor", "rkinfo", "implants", "mishsets");
-	$this->regGroup("rkdung_guides", $MODULE_NAME, "RK Static Dungeon Guides", "smugden", "totw", "biomare", "hollow", "rkdung", "stepsm", "cryptinfo", "inners");
-	$this->regGroup("orgsinfo_guides", $MODULE_NAME, "Basic Org Information", "message4org", "orgdepts", "official");
-	$this->regGroup("rkinfo_guides", $MODULE_NAME, "RK NPC Information", "zoftig", "meleesmith", "tshop", "fshop", "bernice", "tradenpc", "websites", "infoyalm");
-	$this->regGroup("aiinfo_guides", $MODULE_NAME, "Alien Invasion Information", "bazzit", "clothes");
-	$this->regGroup("leinfo_guides", $MODULE_NAME, "Lost Eden Information", "clandreadloch", "omnidreadloch", "bsinfo", "lemish" );
-	$this->regGroup("alieninvasion_guides", $MODULE_NAME, "pvpguide", "apf13guide", "apf28guide", "apf35guide", "apf42guide", "aridrift"  );
-	$this->regGroup("slinfo_guides", $MODULE_NAME, "SL Quest Guides", "infstar", "albainfo", "penguide", "spiritquest", "adoquest", "jobeshoel", "shoelyutto", "compact");
+	Command::register("", $MODULE_NAME, "aridrift.php", "aridrift", ALL, "Guide to aridrift");
+
 ?>

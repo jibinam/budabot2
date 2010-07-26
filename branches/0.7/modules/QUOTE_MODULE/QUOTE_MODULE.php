@@ -2,12 +2,12 @@
 	$MODULE_NAME = "QUOTE_MODULE";
 
 	//Setup
-	$this->event("setup", $MODULE_NAME, "setup.php");
-	$this->event("24hrs", $MODULE_NAME, "quotestats.php", "none", "Update Quote Stats");
+	Event::register("setup", $MODULE_NAME, "setup.php");
+	Event::register("24hrs", $MODULE_NAME, "quotestats.php", "none", "Update Quote Stats");
 
 	//Commands
-	$this->command("", $MODULE_NAME, "quotestats.php", "quoteupdate", MODERATOR, "Update Quote Stats");
-	$this->command("", $MODULE_NAME, "quote.php", "quote", ALL, "Add/Remove/View Quotes");
+	Command::register("", $MODULE_NAME, "quotestats.php", "quoteupdate", MODERATOR, "Update Quote Stats");
+	Command::register("", $MODULE_NAME, "quote.php", "quote", ALL, "Add/Remove/View Quotes");
 
 	//Help files
 	Help::register("quote", $MODULE_NAME, "quote.txt", ALL, "Add/Remove/View Quotes");

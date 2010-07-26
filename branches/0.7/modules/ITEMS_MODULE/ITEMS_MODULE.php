@@ -3,10 +3,10 @@
 	$PLUGIN_VERSION = 1.0;
 
 	//Load items db
-	$this->loadSQLFile($MODULE_NAME, "aodb");
+	DB::loadSQLFile($MODULE_NAME, "aodb");
 	
     //Items Search
-	$this->command("", $MODULE_NAME, "items.php", "items", ALL, "Searches for an item in the Database");
+	Command::register("", $MODULE_NAME, "items.php", "items", ALL, "Searches for an item in the Database");
 
 	//Settings
     Settings::add('maxitems', $MODULE_NAME, 'Number of Items shown on the list', 'edit', '40', '30;40;50;60', "0", MODERATOR, "aodb_maxitems_help.txt");

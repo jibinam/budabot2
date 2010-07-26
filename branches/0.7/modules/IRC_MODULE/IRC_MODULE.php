@@ -28,27 +28,27 @@
 	}
 
 	//Auto start IRC connection, or turn it off
-	$this->event("connect", $MODULE_NAME, "set_irc_link.php", "none", "Sets IRC status at bootup.");
+	Event::register("connect", $MODULE_NAME, "set_irc_link.php", "none", "Sets IRC status at bootup.");
 	
 	//Commands
-	$this->command("msg", $MODULE_NAME, "irc_connect.php", "startirc", ADMIN, "Connect to IRC");
-	$this->command("", $MODULE_NAME, "online_irc.php", "onlineirc", ALL, "View who is in IRC chat");
+	Command::register("msg", $MODULE_NAME, "irc_connect.php", "startirc", ADMIN, "Connect to IRC");
+	Command::register("", $MODULE_NAME, "online_irc.php", "onlineirc", ALL, "View who is in IRC chat");
 	
 	//Command settings
-	$this->command("msg", $MODULE_NAME, "set_irc_settings.php", "setirc", ADMIN, "Manually set IRC settings");
+	Command::register("msg", $MODULE_NAME, "set_irc_settings.php", "setirc", ADMIN, "Manually set IRC settings");
 	
 	//IRC Relay
-  	$this->event("2sec", $MODULE_NAME, "irc_check.php", "none", "Receive messages from IRC");
+  	Event::register("2sec", $MODULE_NAME, "irc_check.php", "none", "Receive messages from IRC");
 	
 	//In-game relay
-	$this->event("priv", $MODULE_NAME, "relay_irc_out.php", "none", "Relay (priv) messages to IRC");
-	$this->event("guild", $MODULE_NAME, "relay_irc_out.php", "none", "Relay (guild) messages to IRC");
+	Event::register("priv", $MODULE_NAME, "relay_irc_out.php", "none", "Relay (priv) messages to IRC");
+	Event::register("guild", $MODULE_NAME, "relay_irc_out.php", "none", "Relay (guild) messages to IRC");
 	
 	//Notifications
-	$this->event("joinPriv", $MODULE_NAME, "irc_relay_joined.php", "none", "Sends joined channel messages");
-	$this->event("leavePriv", $MODULE_NAME, "irc_relay_left.php", "none", "Sends left channel messages");
-	$this->event("logOn", $MODULE_NAME, "irc_relay_joined.php", "none", "Shows a logon from a member");
-	$this->event("logOff", $MODULE_NAME, "irc_relay_left.php", "none", "Shows a logoff from a member");
+	Event::register("joinPriv", $MODULE_NAME, "irc_relay_joined.php", "none", "Sends joined channel messages");
+	Event::register("leavePriv", $MODULE_NAME, "irc_relay_left.php", "none", "Sends left channel messages");
+	Event::register("logOn", $MODULE_NAME, "irc_relay_joined.php", "none", "Shows a logon from a member");
+	Event::register("logOff", $MODULE_NAME, "irc_relay_left.php", "none", "Shows a logoff from a member");
 	
 	//Settings
 	Settings::add("irc_status", $MODULE_NAME, "Status of IRC uplink", "noedit", "0", "Offline;Online", "0;1", MODERATOR, $MODULE_NAME, "irc_help.txt");
