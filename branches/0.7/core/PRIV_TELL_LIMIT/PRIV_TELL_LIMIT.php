@@ -4,45 +4,45 @@
 	$this->loadSqlFile($MODULE_NAME, 'whitelist');
 	
 	//Set/Show Limits
-	$this->regcommand("msg", $MODULE_NAME, "config.php", "limits", MODERATOR);
-	$this->regcommand("msg", $MODULE_NAME, "config.php", "limit", MODERATOR);
-	$this->regcommand("msg", $MODULE_NAME, "whitelist.php", "whitelist", MODERATOR);
+	Command::register("msg", $MODULE_NAME, "config.php", "limits", MODERATOR);
+	Command::register("msg", $MODULE_NAME, "config.php", "limit", MODERATOR);
+	Command::register("msg", $MODULE_NAME, "whitelist.php", "whitelist", MODERATOR);
 	
-	$this->regcommand("priv", $MODULE_NAME, "config.php", "limits", MODERATOR);
-	$this->regcommand("priv", $MODULE_NAME, "config.php", "limit", MODERATOR);
-	$this->regcommand("msg", $MODULE_NAME, "whitelist.php", "whitelist", MODERATOR);
+	Command::register("priv", $MODULE_NAME, "config.php", "limits", MODERATOR);
+	Command::register("priv", $MODULE_NAME, "config.php", "limit", MODERATOR);
+	Command::register("msg", $MODULE_NAME, "whitelist.php", "whitelist", MODERATOR);
 	
-	$this->regcommand("guild", $MODULE_NAME, "config.php", "limits", MODERATOR);
-	$this->regcommand("guild", $MODULE_NAME, "config.php", "limit", MODERATOR);
-	$this->regcommand("msg", $MODULE_NAME, "whitelist.php", "whitelist", MODERATOR);
+	Command::register("guild", $MODULE_NAME, "config.php", "limits", MODERATOR);
+	Command::register("guild", $MODULE_NAME, "config.php", "limit", MODERATOR);
+	Command::register("msg", $MODULE_NAME, "whitelist.php", "whitelist", MODERATOR);
 
 	//Set/Show minlvl for Tells
-	$this->regcommand("msg", $MODULE_NAME, "set_limits_tells.php", "tminlvl", MODERATOR);
-	$this->regcommand("priv", $MODULE_NAME, "set_limits_tells.php", "tminlvl", MODERATOR);
+	Command::register("msg", $MODULE_NAME, "set_limits_tells.php", "tminlvl", MODERATOR);
+	Command::register("priv", $MODULE_NAME, "set_limits_tells.php", "tminlvl", MODERATOR);
 
 	//Set/Show general limit for Tells
-	$this->regcommand("msg", $MODULE_NAME, "set_limits_tells.php", "topen", MODERATOR);
-	$this->regcommand("priv", $MODULE_NAME, "set_limits_tells.php", "topen", MODERATOR);
+	Command::register("msg", $MODULE_NAME, "set_limits_tells.php", "topen", MODERATOR);
+	Command::register("priv", $MODULE_NAME, "set_limits_tells.php", "topen", MODERATOR);
 
 	//Set/Show faction limit for Tells
-	$this->regcommand("msg", $MODULE_NAME, "set_limits_tells.php", "tfaction", MODERATOR);
-	$this->regcommand("priv", $MODULE_NAME, "set_limits_tells.php", "tfaction", MODERATOR);
+	Command::register("msg", $MODULE_NAME, "set_limits_tells.php", "tfaction", MODERATOR);
+	Command::register("priv", $MODULE_NAME, "set_limits_tells.php", "tfaction", MODERATOR);
 
 	//Set/Show minlvl for privategroup
-	$this->regcommand("msg", $MODULE_NAME, "set_limits_priv.php", "minlvl", MODERATOR);
-	$this->regcommand("priv", $MODULE_NAME, "set_limits_priv.php", "minlvl", MODERATOR);
+	Command::register("msg", $MODULE_NAME, "set_limits_priv.php", "minlvl", MODERATOR);
+	Command::register("priv", $MODULE_NAME, "set_limits_priv.php", "minlvl", MODERATOR);
 
 	//Set/Show general limit for privategroup
-	$this->regcommand("msg", $MODULE_NAME, "set_limits_priv.php", "open", MODERATOR);
-	$this->regcommand("priv", $MODULE_NAME, "set_limits_priv.php", "open", MODERATOR);
+	Command::register("msg", $MODULE_NAME, "set_limits_priv.php", "open", MODERATOR);
+	Command::register("priv", $MODULE_NAME, "set_limits_priv.php", "open", MODERATOR);
 
 	//Set/Show faction limit for privategroup
-	$this->regcommand("msg", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
-	$this->regcommand("priv", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
+	Command::register("msg", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
+	Command::register("priv", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
 
 	//Set/Show faction limit for privategroup
-	$this->regcommand("msg", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
-	$this->regcommand("priv", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
+	Command::register("msg", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
+	Command::register("priv", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
 
 	//Settings
 	Settings::add("priv_req_lvl", $MODULE_NAME, "Private Channel Min Level Limit", "noedit", "0", "none", "0", MODERATOR, "help_minlvl.txt");

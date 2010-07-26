@@ -3,12 +3,12 @@
 	$PLUGIN_VERSION = 0.1;
 
 	//Commands
-	$this->regcommand("msg", $MODULE_NAME, "bot_settings.php", "settings", MODERATOR);
-	$this->regcommand("priv", $MODULE_NAME, "bot_settings.php", "settings", MODERATOR);
-	$this->regcommand("guild", $MODULE_NAME, "bot_settings.php", "settings", MODERATOR);
+	Command::register("msg", $MODULE_NAME, "bot_settings.php", "settings", MODERATOR);
+	Command::register("priv", $MODULE_NAME, "bot_settings.php", "settings", MODERATOR);
+	Command::register("guild", $MODULE_NAME, "bot_settings.php", "settings", MODERATOR);
 
 	//Setup
-	$this->regevent("setup", $MODULE_NAME, "upload_settings.php");
+	Event::register("setup", $MODULE_NAME, "upload_settings.php");
 		
 	//Help Files
 	Help::register("settings", $MODULE_NAME, "settings.txt", MODERATOR, "Change Settings of the Bot.");
