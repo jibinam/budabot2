@@ -21,6 +21,10 @@
 	Command::register("msg", $MODULE_NAME, "uptime.php", "uptime", MEMBER);
 	Command::register("priv", $MODULE_NAME, "uptime.php", "uptime", MEMBER);
 	Command::register("guild", $MODULE_NAME, "uptime.php", "uptime", MEMBER);
+	
+	Command::register("msg", $MODULE_NAME, "memory.php", "memory", MEMBER);
+	Command::register("priv", $MODULE_NAME, "memory.php", "memory", MEMBER);
+	Command::register("guild", $MODULE_NAME, "memory.php", "memory", MEMBER);
 
 	//Help Files
 	Help::register("systemhelp", $MODULE_NAME, "system.txt", ADMIN, "Admin System Help file.");
