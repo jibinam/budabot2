@@ -9,9 +9,8 @@
 	Event::register("orgmsg", $MODULE_NAME, "notify_auto.php");
     Event::register("logOn", $MODULE_NAME, "notify_auto.php");
     Event::register("logOff", $MODULE_NAME, "notify_auto.php");
-	Command::register("guild", $MODULE_NAME, "notify.php", "notify", MODERATOR, "Adding a member man. to the notify list");
-	Command::register("msg", $MODULE_NAME, "notify.php", "notify", MODERATOR, "Adding a member man. to the notify list");
-	Command::register("priv", $MODULE_NAME, "notify.php", "notify", MODERATOR, "Adding a member man. to the notify list");
+
+	Command::register("", $MODULE_NAME, "notify.php", "notify", MODERATOR, "Adding a member man. to the notify list");
 
 	Settings::add("bot_notify", $MODULE_NAME, "Show/Hide Logoffs in Org Chat (Spam Prevention)", "edit", "1", "Show Logoffs;Hide Logoffs", '1;0', MODERATOR, "botnotify.txt");
 	
