@@ -1,6 +1,5 @@
 <?php
 	$MODULE_NAME = "FUN_MODULE";
-	$PLUGIN_VERSION = 1.0;
 
 	// Ding
 	Command::register("", $MODULE_NAME, "ding.php", "ding", ALL, "Shows a random ding gratz message.");

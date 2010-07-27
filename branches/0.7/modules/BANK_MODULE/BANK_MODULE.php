@@ -1,6 +1,5 @@
 <?php
 	$MODULE_NAME = "BANK_MODULE";
-	$PLUGIN_VERSION = 0.1;
 
 	// Bank browse
 	Command::register("", $MODULE_NAME, "bankbrowse.php", "bank", ALL, "Browse the Org Bank.");
@@ -16,7 +15,6 @@
 	
 	// Help
 	Help::register("bank", $MODULE_NAME, "bank.txt", ALL, "How to search for an item.");
-
 
 	// Thanks to Xyphos (RK1) for helping me bugfix
 ?>

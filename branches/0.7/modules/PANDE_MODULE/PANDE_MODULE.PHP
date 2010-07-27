@@ -1,7 +1,5 @@
 <?php
-
 	$MODULE_NAME = "PANDE_MODULE";
-	$PLUGIN_VERSION = 1.0;
 	
 	// Pande loot manager
 	Command::register("", $MODULE_NAME, "pandeloot.php", "beastarmor", ALL, "Shows Possible Beast Armor Loot");
@@ -26,5 +24,4 @@
 
 	//Help files
 	Help::register("pande", $MODULE_NAME, "pande.txt", ALL, "Loot manager for Pandemonium Raid loot");
-
 ?>

@@ -1,6 +1,5 @@
 <?php
 	$MODULE_NAME = "HELPBOT_MODULE";
-	$PLUGIN_VERSION = 0.1;
 
 	//KOS-List Part
 	Command::register("", $MODULE_NAME, "kos_list.php", "kos", ALL, "Shows the Kill On Sight List");

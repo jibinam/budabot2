@@ -1,6 +1,5 @@
 <?php
 	$MODULE_NAME = "SETTINGS";
-	$PLUGIN_VERSION = 0.1;
 
 	//Commands
 	Command::register("msg", $MODULE_NAME, "bot_settings.php", "settings", MODERATOR);

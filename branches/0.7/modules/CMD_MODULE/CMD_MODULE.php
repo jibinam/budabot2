@@ -1,6 +1,5 @@
 <?php 
 	$MODULE_NAME = "CMD_MODULE";
-	$PLUGIN_VERSION = 1.0;
 
 	//Tell
 	Command::register("", $MODULE_NAME, "cmd.php", "cmd", LEADER, "Creates a highly visible messaage");

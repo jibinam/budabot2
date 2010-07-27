@@ -1,6 +1,5 @@
 <?php
 	$MODULE_NAME = "NEWS_MODULE";
-	$PLUGIN_VERSION = 1.0;
 	
 	//Setup
 	Event::register("setup", $MODULE_NAME, "setup.php");

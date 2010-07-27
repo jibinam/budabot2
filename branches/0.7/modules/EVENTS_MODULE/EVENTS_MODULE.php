@@ -1,6 +1,5 @@
 <?php 
 	$MODULE_NAME = "EVENTS_MODULE";
-	$PLUGIN_VERSION = 1.0;
 	
 	//Setup
 	Event::register("setup", $MODULE_NAME, "setup.php");

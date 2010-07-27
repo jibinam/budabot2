@@ -1,6 +1,5 @@
 <?php
 	$MODULE_NAME = "ITEMS_MODULE";
-	$PLUGIN_VERSION = 1.0;
 
 	//Load items db
 	DB::loadSQLFile($MODULE_NAME, "aodb");

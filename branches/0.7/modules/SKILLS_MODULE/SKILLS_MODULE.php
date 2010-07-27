@@ -1,8 +1,5 @@
 <?php
 	$MODULE_NAME = "SKILLS_MODULE";
-	$PLUGIN_VERSION = 1.0;
-
-	//Skills module
 
 	Command::register("", $MODULE_NAME, "aggdef.php", "aggdef", ALL, "Agg/Def: Calculates weapon inits for your Agg/Def bar.");
 	Command::register("", $MODULE_NAME, "as.php", "as", ALL, "AS: Calculates Aimed Shot.");
@@ -18,5 +15,4 @@
 
 	//Helpiles
 	Help::register("skills", $MODULE_NAME, "skills.txt", ALL, "Explains the various Skill commands");
-
 ?>

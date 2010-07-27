@@ -30,7 +30,6 @@
    */
    
 	$MODULE_NAME = "CITY_CLOAK_MODULE";
-	$PLUGIN_VERSION = 0.1;
 	
 	DB::loadSQLFile($MODULE_NAME, 'org_city');
 
