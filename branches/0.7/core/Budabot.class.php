@@ -431,13 +431,13 @@ class Budabot extends AOChat {
 				}
 
 				//Remove the prefix infront if there is one
-				if ($message[0] == Settings::get("symbol") && strlen($message) > 1) {
+				if ($message[0] == Settings::get('symbol') && strlen($message) > 1) {
 					$message = substr($message, 1);
 				}
 
 				// Check privatejoin and tell Limits
-				if (file_exists("./core/PRIV_TELL_LIMIT/check.php")) {
-					include("./core/PRIV_TELL_LIMIT/check.php");
+				if (file_exists('./core/PRIV_TELL_LIMIT/check.php')) {
+					include './core/PRIV_TELL_LIMIT/check.php';
 				}
 
 				// Events
@@ -452,13 +452,13 @@ class Budabot extends AOChat {
 				if ($restricted != true) {
 					// Break down in to words.
 					$words	= split(' ', strtolower($message));
-					$access_level = $this->tellCmds[$words[0]]["access_level"];
-					$filename = $this->tellCmds[$words[0]]["filename"];
+					$access_level = $this->tellCmds[$words[0]]['access_level'];
+					$filename = $this->tellCmds[$words[0]]['filename'];
 
 				  	//Check if a subcommands for this exists
 				  	if ($this->subcommands[$filename][$type]) {
 					    if (preg_match("/^{$this->subcommands[$filename][$type]["cmd"]}$/i", $message)) {
-							$access_level = $this->subcommands[$filename][$type]["access_level"];
+							$access_level = $this->subcommands[$filename][$type]['access_level'];
 						}
 					}
 

@@ -48,7 +48,6 @@
 	// Auto Wave
 	Command::register("guild",$MODULE_NAME, "start.php", "startraid");
 	Command::register("guild",$MODULE_NAME, "stopraid.php", "stopraid");
-	Event::register("setup", $MODULE_NAME, "setup.php");
 	Event::register("guild", $MODULE_NAME, "start.php");
 	Event::register("2sec", $MODULE_NAME, "counter.php");
 ?>
