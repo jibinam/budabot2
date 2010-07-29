@@ -56,7 +56,7 @@ function formatResults($implants) {
 	}
 		
 	if ($count > 3) {
-		
+		$msg .= "\n\nProvided by Demoder(RK2)";
 		$msg = $chatBot->makeLink('Results', $msg, 'text');
 	}
 	
