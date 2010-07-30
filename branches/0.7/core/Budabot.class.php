@@ -297,52 +297,64 @@ class Budabot extends AOChat {
 				}
 			break;
 			case AOCP_PRIVGRP_CLIJOIN: // 55, Incoming player joined private chat
-				$type = "joinPriv"; // Set message type.
 				$sender	= $this->lookup_user($args[1]);// Get Name
+				$channel = $this->lookup_user($args[0]);// Get Name
 				$char_id = $args[1];
-
-				// Add sender to the chatlist.
-				$this->chatlist[$char_id] = new WhoisXML($sender);
 				
-				// Echo
-				if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, "joined the channel.", Settings::get('echo'));
+				if ($channel == $this->vars['name']) {
+					$type = "joinPriv";
 
-				// Remove sender if they are /ignored or /banned or They gone above spam filter
-                if (Settings::is_ignored($sender) || $this->banlist[$sender]["name"] == $sender || $this->spam[$sender] > 100) {
-					$this->privategroup_kick($sender);
-					return;
-				}
+					// Add sender to the chatlist.
+					$this->chatlist[$char_id] = new WhoisXML($sender);
+					
+					// Echo
+					if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, "joined the channel.", Settings::get('echo'));
 
-				// Check files, for all 'player joined channel events'.
-				$events = Event::find_active_events($type);
-				if ($events != NULL) {
-					forEach ($events as $event) {
-						include $event->file;
+					// Remove sender if they are /ignored or /banned or They gone above spam filter
+					if (Settings::is_ignored($sender) || $this->banlist[$sender]["name"] == $sender || $this->spam[$sender] > 100) {
+						$this->privategroup_kick($sender);
+						return;
 					}
+
+					// Check files, for all 'player joined channel events'.
+					$events = Event::find_active_events($type);
+					if ($events != NULL) {
+						forEach ($events as $event) {
+							include $event->file;
+						}
+					}
+				} else {
+					$type = "extJoinPriv";
 				}
 			break;
 			case AOCP_PRIVGRP_CLIPART: // 56, Incoming player left private chat
-				$type = "leavePriv"; // Set message type.
 				$sender	= $this->lookup_user($args[1]); // Get Name
+				$channel = $this->lookup_user($args[0]);// Get Name
 				$char_id = $args[1];
 
-				// Echo
-				if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, "left the channel.", Settings::get('echo'));
+				if ($channel == $this->vars['name']) {
+					$type = "leavePriv";
 
-				// Remove from Chatlist array.
-				unset($this->chatlist[$sender]);
-				
-				// Remove sender if they are /ignored or /banned or They gone above spam filter
-				if (Settings::is_ignored($sender) || $this->banlist[$sender]["name"] == $sender || $this->spam[$sender] > 100) {
-					return;
-				}
-				
-				// Check files, for all 'player left channel events'.
-				$events = Event::find_active_events($type);
-				if ($events != NULL) {
-					forEach ($events as $event) {
-						include $event->file;
+					// Echo
+					if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, "left the channel.", Settings::get('echo'));
+
+					// Remove from Chatlist array.
+					unset($this->chatlist[$sender]);
+					
+					// Remove sender if they are /ignored or /banned or They gone above spam filter
+					if (Settings::is_ignored($sender) || $this->banlist[$sender]["name"] == $sender || $this->spam[$sender] > 100) {
+						return;
 					}
+					
+					// Check files, for all 'player left channel events'.
+					$events = Event::find_active_events($type);
+					if ($events != NULL) {
+						forEach ($events as $event) {
+							include $event->file;
+						}
+					}
+				} else {
+					$type = "extLeavePriv";
 				}
 			break;
 			case AOCP_BUDDY_ADD: // 40, Incoming buddy logon or off
