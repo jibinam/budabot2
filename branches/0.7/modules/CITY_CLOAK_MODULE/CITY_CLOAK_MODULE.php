@@ -35,8 +35,8 @@
 
     Command::register("guild", $MODULE_NAME, "city_guild.php", "city", ALL, "Shows the status of the Citycloak");
 
-    Event::register("guild", $MODULE_NAME, "city_guild.php", "city");
-    Event::register("1min", $MODULE_NAME, "city_guild_timer.php", "city");
+    Event::register("guild", $MODULE_NAME, "city_guild.php", "city", "Records when the cloak is raised or lowered");
+    Event::register("1min", $MODULE_NAME, "city_guild_timer.php", "city", "Checks timer to see if cloak can be raised or lowered");
 	Event::register("1min", $MODULE_NAME, "city_guild_raise_cloak.php", "city", "Reminds the player who lowered cloak to raise it when it can be raised.");
 	Event::register("logOn", $MODULE_NAME, "city_guild_logon.php", "city", "Displays summary of city status.");
 	
@@ -48,6 +48,6 @@
 	// Auto Wave
 	Command::register("guild",$MODULE_NAME, "start.php", "startraid");
 	Command::register("guild",$MODULE_NAME, "stopraid.php", "stopraid");
-	Event::register("guild", $MODULE_NAME, "start.php");
-	Event::register("2sec", $MODULE_NAME, "counter.php");
+	Event::register("guild", $MODULE_NAME, "start.php", "none", "Starts a wave counter when cloak is lowered");
+	Event::register("2sec", $MODULE_NAME, "counter.php", "none", "Checks timer to see when next wave should come");
 ?>
