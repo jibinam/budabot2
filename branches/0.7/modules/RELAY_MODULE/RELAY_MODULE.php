@@ -14,8 +14,8 @@
 	Event::register("extJoinPrivRequest", $MODULE_NAME, "invite.php", "none", "");
 	
 	// Logon and Logoff messages
-	Event::register("logOn", $MODULE_NAME, "relay_guild_logon.php", "grc", "Sends Logon messages");
-	Event::register("logOff", $MODULE_NAME, "relay_guild_logoff.php", "grc", "Sends Logoff messages");
+	Event::register("logOn", $MODULE_NAME, "relay_guild_logon.php", "none" "Sends Logon messages");
+	Event::register("logOff", $MODULE_NAME, "relay_guild_logoff.php", "none", "Sends Logoff messages");
 	
 	// Relay org messages between orgs
 	Event::register("orgmsg", $MODULE_NAME, "org_messages.php", "none", "Relay Org Messages");
