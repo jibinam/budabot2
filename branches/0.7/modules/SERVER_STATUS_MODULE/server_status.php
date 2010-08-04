@@ -38,8 +38,6 @@ if (preg_match("/^server(.*)$/i", $message, $arr)) {
 	  	if ($server->errorCode != 0) {
 	  		$msg = $server->errorInfo;
 	  	} else {
-		    $link  = "<header>::::: $server->name Server Status :::::<end>\n\n";
-
 			if ($server->servermanager == 1) {
 				$link .= "<highlight>Servermanager<end> is <green>UP<end>\n";
 			} else {
@@ -70,7 +68,7 @@ if (preg_match("/^server(.*)$/i", $message, $arr)) {
 		    	$link .= "<highlight>$zone<end>: {$proz["players"]} \n";
 			}
 			
-			$msg = Text::makeLink("Status of $server->name", $link);	    
+			$msg = Text::makeBlob("Status of $server->name", $link);	    
 		}
 	} else {
 		$msg = "Choose a server between 1 and 4";

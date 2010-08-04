@@ -29,7 +29,7 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if(Settings::get("topic") != "" && $type == "joinPriv") {
+if (Settings::get("topic") != "" && $type == "joinPriv") {
 	$time = time() - Settings::get("topic_time");
 	$mins = floor($time / 60);
 	$hours = floor($mins / 60);
@@ -37,7 +37,7 @@ if(Settings::get("topic") != "" && $type == "joinPriv") {
 	$days = floor($hours / 24);
 	$hours = floor($hours - ($days * 24));
   	$this->send("<highlight>Topic:<end> " . Settings::get("topic") . " [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$days}days, {$hours}hrs and {$mins}mins ago<end>)", $sendto);
-} elseif(preg_match("/^topic$/i", $message, $arr)) {
+} else if (preg_match("/^topic$/i", $message, $arr)) {
 	$time = time() - Settings::get("topic_time");
 	$mins = floor($time / 60);
 	$hours = floor($mins / 60);
@@ -46,13 +46,13 @@ if(Settings::get("topic") != "" && $type == "joinPriv") {
 	$hours = floor($hours - ($days * 24));
 	$msg = "<highlight>Topic:<end> " . Settings::get("topic") . " [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$days}days, {$hours}hrs and {$mins}mins ago<end>)";
     $this->send($msg, $sendto);
-} elseif(preg_match("/^topic clear$/i", $message, $arr)) {
+} else if (preg_match("/^topic clear$/i", $message, $arr)) {
   	Settings::save("topic_time", time());
   	Settings::save("topic_setby", $sender);
   	Settings::save("topic", "No Topic set atm.");
 	$msg = "Topic has been cleared.";
     $this->send($msg, $sendto);
-} elseif(preg_match("/^topic (.+)$/i", $message, $arr)) {
+} else if (preg_match("/^topic (.+)$/i", $message, $arr)) {
   	Settings::save("topic_time", time());
   	Settings::save("topic_setby", $sender);
   	Settings::save("topic", $arr[1]);

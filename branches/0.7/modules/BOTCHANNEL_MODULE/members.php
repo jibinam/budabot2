@@ -33,7 +33,6 @@ if (preg_match("/^members$/i", $message)) {
 	$db->query("SELECT * FROM members_<myname> ORDER BY `name`");
 	$autoguests = $db->numrows();
 	if ($autoguests != 0) {
-	  	$list .= "<header>::::: Users on Autoinvitelist :::::<end>\n\n";
 	  	while ($row = $db->fObject()) {
 	  	  	if (Buddylist::is_online($row->name)) {
 				$status = "<green>Online";
@@ -47,8 +46,7 @@ if (preg_match("/^members$/i", $message)) {
 	  		$list .= "<tab>- $row->name ($status<end>)\n";
 	  	}
 	  	
-	    $msg = "<highlight>".$autoguests."<end> players on the Autoinvitelist ";
-	    $link = ":: ".Text::makeLink('Click here', $list);
+	    $msg = Text::makeBlob("$autoguests players on the Autoinvitelist", $list);
 	    if ($autoguests != 0) {
            	$this->send($msg.$link, $sendto);
         } else {

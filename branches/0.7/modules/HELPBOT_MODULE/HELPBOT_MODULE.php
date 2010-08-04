@@ -57,6 +57,6 @@
     Help::register("time", $MODULE_NAME, "time.txt", ALL, "Timezones");
     Help::register("kos_list", $MODULE_NAME, "kos_list.txt", ALL, "Kill On Sight List");
     Help::register("smiley_title_inspect", $MODULE_NAME, "smiley_title_inspect.txt", ALL, "Help for Smiley,Title Level and Inspect");
-    Help::register("alien_armor", $MODULE_NAME, "alien_armor.txt", ALL, "Alien armor Tradeskillprocess");
+    Help::register("aiarmor", $MODULE_NAME, "aiarmor.txt", ALL, "Alien armor Tradeskillprocess");
 	Help::register("alien_generals", $MODULE_NAME, "alien_generals.txt", ALL, "Alien City Generals Info");
 ?>

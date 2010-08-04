@@ -29,45 +29,49 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
    
-if(preg_match("/^check (all|prof|org)$/i", $message, $arr)) {
-	if($arr[1] == "all") {
-	  	$list = "<header>::::: Check for all members :::::<end>\n\n";
+if (preg_match("/^check (all|prof|org)$/i", $message, $arr)) {
+	if ($arr[1] == "all") {
 	  	$db->query("SELECT * FROM priv_chatlist_<myname>");
-		while($row = $db->fObject())
+		while ($row = $db->fObject()) {
 			$content .= " \\n /assist $row->name";
+		}
 
 	  	$list .= "<a href='chatcmd:///text AssistAll: $content'>Click here to check who is here</a>";
-	  	$msg = Text::makeLink("Check on all", $list);
-	} elseif($arr[1] == "prof") {
-	  	$list = "<header>::::: Check for all professions :::::<end>\n\n";
+	  	$msg = Text::makeBlob("Check on all", $list);
+	} else if ($arr[1] == "prof") {
 	  	$db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `profession` DESC");
-		while($row = $db->fObject())
+		while ($row = $db->fObject()) {
 			$prof[$row->profession] .= " \\n /assist $row->name";
+		}
 
 		ksort($prof);
 		
-		foreach($prof as $key => $value)
+		forEach ($prof as $key => $value) {
 			$list .= "<a href='chatcmd:///text AssistProf: $value'>Click here to check $key</a>\n";
+		}
 
-	  	$msg = Text::makeLink("Check on professions", $list);
-	} elseif($arr[1] == "org") {
-	  	$list = "<header>::::: Check for all organisations :::::<end>\n\n";
+	  	$msg = Text::makeBlob("Check on professions", $list);
+	} else if ($arr[1] == "org") {
 	  	$db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `guild` DESC");
-		while($row = $db->fObject()) {
-		  	if($row->guild == "")
+		while ($row = $db->fObject()) {
+		  	if ($row->guild == "") {
 	  			$org["Non orged"] .= " \\n /assist $row->name";
-			else
-				$org[$row->guild] .= " \\n /assist $row->name";		  	
+			} else {
+				$org[$row->guild] .= " \\n /assist $row->name";
+			]
 		}
 		
 		ksort($org);
 		
-		foreach($org as $key => $value)
+		forEach ($org as $key => $value) {
 			$list .= "<a href='chatcmd:///text AssistOrg: $value'>Click here to check $key</a>\n";
+		}
 
-	  	$msg = Text::makeLink("Check on Organisations", $list);
+	  	$msg = Text::makeBlob("Check on Organisations", $list);
 	}
 	$this->send($msg);
-} else
+} else {
 	$syntax_error = true;
+}
+
 ?>

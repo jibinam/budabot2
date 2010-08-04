@@ -35,6 +35,8 @@
 	Subcommand::register("", $MODULE_NAME, "assist.php", "assist (.+)", LEADER, "assist", "Set a new assist");
 	Command::register("", $MODULE_NAME, "heal_assist.php", "heal", ALL, "Creates/showes an Doc Assist macro");
 	Subcommand::register("", $MODULE_NAME, "heal_assist.php", "heal (.+)", LEADER, "heal", "Set a new Doc assist");
+	Command::register("", $MODULE_NAME, "heal_assist.php", "healassist", ALL, "Creates/showes an Doc Assist macro");
+	Subcommand::register("", $MODULE_NAME, "heal_assist.php", "healassist (.+)", LEADER, "heal", "Set a new Doc assist");
 
 	//Tell
 	Command::register("priv", $MODULE_NAME, "tell.php", "tell", ALL, "Repeats a Message 3times");

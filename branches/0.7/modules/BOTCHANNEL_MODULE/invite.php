@@ -39,7 +39,7 @@ if (preg_match("/^inviteuser (.+)$/i", $message, $arr)) {
 		$msg2 = "You have been invited to the Privategroup <highlight>$this->name<end> by <highlight>$sender<end>";
 		$this->send($msg2, $name);
     } else {
-		$msg = "Player <highlight>".$name."<end> does not exist.";
+		$msg = "Player <highlight>$name<end> does not exist.";
 	}
 	
 	$this->send($msg, $sendto);

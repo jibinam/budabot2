@@ -5,13 +5,6 @@
 $info = explode(" ", $message);
 list($msg, $AttTim, $RechT, $InitS) = $info;
 
-if($type == "msg")
-    $sendto = $sender;
-elseif($type == "priv")
-	$sendto = "";
-elseif($type == "guild")
-	$sendto = "guild";
-
 $header = "\n<header>::::: Agg / Deff Calculator - Version 1.00 :::::<end>\n\n";
 $footer = "\n\nBased upon a RINGBOT module made by NoGoal(RK2).\n";
 $footer .= "Modified for Budabot by Healnjoo(RK2).\n";

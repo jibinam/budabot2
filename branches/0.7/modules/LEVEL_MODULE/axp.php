@@ -60,8 +60,8 @@ $axp[27] = 4608707;
 $axp[28] = 5023490;
 $axp[29] = 5475604;
 $axp[30] = 5968409;
-if(preg_match("/^axp$/i", $message)) {
-    $msg = "<header>::::: Alien Experience List :::::<end>\n\n";
+
+if (preg_match("/^axp$/i", $message)) {
     $msg .= "<u>AI Lvl - AXP   - Rank         - Lvl Req.</u>\n";
     $msg .= " 1 -      1.500 - Fledgling - 5\n";
     $msg .= " 2 -     9.000 - Amateur - 15\n";
@@ -94,24 +94,25 @@ if(preg_match("/^axp$/i", $message)) {
     $msg .= "29 - 5.475.604 - Vanquisher - 195\n";
     $msg .= "30 - 5.968.409 - Vindicator - 200\n";
 
-    $msg = Text::makeLink("AXP Table", $msg);
+    $msg = Text::makeBlob("AXP Table", $msg);
 
     // Send info back
     $this->send($msg, $sendto);
-} elseif(preg_match("/^axp ([0-9]+)$/i", $message, $arr)) {
-    if($arr[1] >= 1 && $arr[1] <= 30) {
+} else if (preg_match("/^axp ([0-9]+)$/i", $message, $arr)) {
+    if ($arr[1] >= 1 && $arr[1] <= 30) {
         $msg = "With ai lvl <highlight>".$arr[1]."<end> you need <highlight>".number_format($axp[$arr[1]])."<end> AXP to level up.";
-    } else
+    } else {
         $msg = "You need to specify a lvl between 1 and 30.";
+	}
 
     // Send info back
     $this->send($msg, $sendto);
-} elseif(preg_match("/^axp ([0-9]+) ([0-9]+)$/i", $message, $arr)) {
-    if($arr[1] >= 0 && $arr[1] <= 30 && $arr[2] >= 1 && $arr[2] <= 30) {
-        if($arr[1] < $arr[2]) {
-            for($i = $arr[1]+1; $i <= $arr[2]; $i++)
+} else if (preg_match("/^axp ([0-9]+) ([0-9]+)$/i", $message, $arr)) {
+    if ($arr[1] >= 0 && $arr[1] <= 30 && $arr[2] >= 1 && $arr[2] <= 30) {
+        if ($arr[1] < $arr[2]) {
+            for ($i = $arr[1]+1; $i <= $arr[2]; $i++) {
                 $axp_comp += $axp[$i];
-
+			}
             $msg = "From the beginning of ai lvl <highlight>".$arr[1]."<end> to ai lvl <highlight>".$arr[2]."<end> you need <highlight>".number_format($axp_comp)."<end> AXP to level up.";
         } else {
             $msg = "The startlevel can't be higher then the endlevel.";

@@ -6,6 +6,5 @@
 
 	$MODULE_NAME = "LAG_MODULE";
 
-	//Breedcap
 	Command::register("", $MODULE_NAME, "lag.php", "lag", ALL, "Shows options you can use to reduce lag");
 ?>

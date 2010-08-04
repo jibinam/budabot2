@@ -19,6 +19,9 @@
    ** This module may be obtained at: http://www.box.net/shared/bgl3cx1c3z
    **
    */
+   
+	require_once('Implant.class.php');
+	require_once('functions.php');
 
 	$MODULE_NAME = "PREMADE_IMPLANT_MODULE";
 	

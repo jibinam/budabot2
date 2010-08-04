@@ -41,7 +41,7 @@ if (preg_match("/^kickuser (.+)$/i", $message, $arr)) {
 		// we kick whether they are in the channel or not incase the channel list is bugged
 		$this->privategroup_kick($name);
     } else {
-		$msg = "Player <highlight>".$name."<end> does not exist.";
+		$msg = "Player <highlight>$name<end> does not exist.";
 	}
 	
 	$this->send($msg, $sendto);

@@ -30,7 +30,7 @@
    */
 
 global $guard;
-if($guard[$sender]["g"] == "ready") {
+if ($guard[$sender]["g"] == "ready") {
   	$msg = "<blue>$sender casted Guardian on tank. 40sec remaining.<end>";
   	$guard[$sender]["g"] = time() + 340;
   	$this->send($msg, $sendto);

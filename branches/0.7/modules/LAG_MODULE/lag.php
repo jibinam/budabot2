@@ -2,12 +2,9 @@
 /**
  * Based off the Client Lag Tweaks module for VhaBot by Jurosik (RK1) - Modded by Naturalistic
  * Ported to Budabot by Tyrence(RK2)
- * Can be downloaded from: http://www.box.net/shared/mkbu070y7f
  */
 
-$window = "::: Lag Tweaks :::
-
-<tab> ::: Environment and Visual (No Zoning Required) :::
+$window = "<tab> ::: Environment and Visual (No Zoning Required) :::
 <a href='chatcmd:///option ShowAllNames 1'>Enable</a> <a href='chatcmd:///option ShowAllNames 0'>Disable</a> Character names show over head
 <a href='chatcmd:///option SimpleClouds 1'>Enable</a> <a href='chatcmd:///option SimpleClouds 0'>Disable</a> Display Simple Clouds
 <a href='chatcmd:///option RealisticClouds 1'>Enable</a> <a href='chatcmd:///option RealisticClouds 0'>Disable</a> Display Realistic Clouds
@@ -36,7 +33,7 @@ $window = "::: Lag Tweaks :::
 <a href='chatcmd:///option CharDist 5'>Min</a> <a href='chatcmd:///option CharDist 30'>Low</a> <a href='chatcmd:///option CharDist 50'>Medium</a> <a href='chatcmd:///option CharDist 75'>High</a> <a href='chatcmd:///option CharDist 100'>Max</a> Character View Distance
 ";
 
-$msg = Text::makeLink("Lag Tweaks", $window);
+$msg = Text::makeBlob("Lag Tweaks", $window);
 
 $this->send($msg, $sendto);   
 

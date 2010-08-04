@@ -1,6 +1,4 @@
 <?php
-	include 'utils.php';
-	
     // MA templates
 	$skill_list = array(1,200,1000,1001,2000,2001,3000);
 	

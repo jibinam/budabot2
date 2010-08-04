@@ -42,7 +42,7 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
 	            $msg = $whois->firstname." ";
 			}
 	
-	        $msg .= "<highlight>\"".$whois->name."\"<end> ";
+	        $msg .= "<highlight>\"$whois->name\"<end> ";
 	
 	        if ($whois->lastname) {
 	            $msg .= $whois->lastname." ";
@@ -56,8 +56,6 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
 	            $msg .= " Not in a guild.) ";
 			}
 	
-	        $list = "<header>::::: Detailed infos :::::<end>\n\n";
-	        $list .= "<u>Options for ".$name."</u>\n \n";
 	        $list .= "<a href='chatcmd:///tell <myname> history ".$name."'>Check ".$name."'s History</a>\n";
 	        $list .= "<a href='chatcmd:///tell <myname> is ".$name."'>Check ".$name."'s online status</a>\n";
 	        if ($whois->org) {
@@ -65,7 +63,7 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
 			}
 	        $list .= "<a href='chatcmd:///cc addbuddy ".$name."'>Add to buddylist</a>\n";
 	        $list .= "<a href='chatcmd:///cc rembuddy ".$name."'>Remove from buddylist</a>\n";
-	        $msg .= " :: ".Text::makeLink("click for more options", $list);
+	        $msg .= " :: " . Text::makeBlob("Options for $whois->name", $list);
 	    }
     } else {
         $msg = "Player <highlight>".$name."<end> does not exist.";
@@ -90,7 +88,7 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
                 $msg = $whois->firstname." ";
 			}
 
-            $msg .= "<highlight>\"".$whois->name."\"<end> ";
+            $msg .= "<highlight>\"$whois->name\"<end> ";
 
             if ($whois->lastname) {
                 $msg .= $whois->lastname." ";
@@ -104,13 +102,11 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
                 $msg .= " Not in a guild.) ";
 			}
 
-            $list = "<header>::::: Detailed infos :::::<end>\n\n";
-            $list .= "<u>Options for ".$name."</u>\n \n";
             $list .= "<a href='chatcmd:///tell <myname> history ".$name."'>Check ".$name."'s History</a>\n";
             $list .= "<a href='chatcmd:///tell <myname> is ".$name."'>Check ".$name."'s online status</a>\n";
             $list .= "<a href='chatcmd:///cc addbuddy ".$name."'>Add to buddylist</a>\n";
             $list .= "<a href='chatcmd:///cc rembuddy ".$name."'>Remove from buddylist</a>\n";
-            $msg .= " :: ".Text::makeLink("click for more options", $list);
+            $msg .= " :: ".Text::makeBlob("Options for $whois->name", $list);
             $msg = "<highlight>Server $server:<end> ".$msg;
         } else {
             $msg = "Server $server: Player <highlight>".$name."<end> does not exist.";
@@ -144,7 +140,7 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
   		$lvl_max = 1;
 
 	  	$num_members = count($org->member);
-	  	foreach ($org->member as $amember) {
+	  	forEach ($org->member as $amember) {
 	  	  	if ($org->members[$amember]["rank_id"] == 0) {
 				$president_name = $org->members[$amember]["name"];
 				$president_prof = $org->members[$amember]["profession"];
@@ -166,50 +162,49 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
 			switch ($org->members[$amember]["profession"]) {
 			  	case "Adventurer":
 			  		$num_adv++;
-			  	break;
+					break;
 			  	case "Agent":
 			  		$num_agent++;
-			  	break;
+					break;
 			  	case "Bureaucrat":
 			  		$num_crat++;
-			  	break;
+					break;
 			  	case "Doctor":
 			  		$num_doc++;
-			  	break;
+					break;
 			  	case "Enforcer":
 			  		$num_enf++;
-			  	break;
+					break;
 			  	case "Engineer":
 			  		$num_eng++;
-			  	break;
+					break;
 			  	case "Fixer":
 			  		$num_fix++;
-			  	break;
+					break;
 			  	case "Keeper":
 			  		$num_keep++;
-			  	break;
+					break;
 			  	case "Martial Artist":
 			  		$num_ma++;
-			  	break;
+					break;
 			  	case "Meta-Physicist":
 			  		$num_mp++;
-			  	break;
+					break;
 			  	case "Nano-Technician":
 			  		$num_nt++;
-			  	break;
+					break;
 			  	case "Shade":
 			  		$num_shade++;
-			  	break;
+					break;
 			  	case "Soldier":
 			  		$num_sol++;
-			  	break;
+					break;
 			  	case "Trader":
 			  		$num_trad++;
-			  	break;
+					break;
 			}
 		}
 		$lvl_avg = round($lvl_tot/$num_members);
-	  	$link  = "<header>::::: Organization Info ($org->orgname) :::::<end>\n\n";
 		$link .= "<u>General Infos</u>\n";
 		$link .= "<highlight>Faction:<end> $faction\n";
 		$link .= "<highlight>Lowest lvl:<end> $lvl_min\n";
@@ -239,9 +234,9 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
 	  	$link .= "<highlight>Shades:<end> $num_shade (".round(($num_shade*100)/$num_members, 1)."% of total)\n";
 	  	$link .= "<highlight>Soldiers:<end> $num_sol (".round(($num_sol*100)/$num_members, 1)."% of total)\n";
 	  	$link .= "<highlight>Traders:<end> $num_trad (".round(($num_trad*100)/$num_members, 1)."% of total)\n";		  			  			  	
-	  	$msg = Text::makeLink("Org Info $org->orgname", $link);
+	  	$msg = Text::makeBlob("Org Info $org->orgname", $link);
 	} else {
-		$msg = "Error in getting the Org infos. Either that org doesn't exist or the AO server was too slow to responce.";
+		$msg = "Error in getting the Org info. Either that org doesn't exist or the AO server was too slow to responce.";
 	}
 
     $this->send($msg, $sendto);

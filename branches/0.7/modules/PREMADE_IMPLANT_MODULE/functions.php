@@ -20,8 +20,6 @@
    **
    */
    
-require_once('Implant.class.php');
-
 function searchByProfession($profession) {
 	
 	global $db;
@@ -50,14 +48,14 @@ function formatResults($implants) {
 	$msg = "\n";
 	
 	$count = 0;
-	foreach ($implants as $implant) {
+	forEach ($implants as $implant) {
 		$msg .= getFormattedLine($implant);
 		$count++;
 	}
 		
 	if ($count > 3) {
 		$msg .= "\n\nProvided by Demoder(RK2)";
-		$msg = $chatBot->makeLink('Results', $msg, 'text');
+		$msg = $chatBot->makeBlob('Results', $msg);
 	}
 	
 	return $msg;
@@ -84,7 +82,7 @@ function checkForUpdate($currentVersion, $forceUpdate) {
 		$csv = file_get_contents($downloadUrl);
 		$rows = explode("\r\n", $csv);
 		$count = 0;
-		foreach ($rows as $row) {
+		forEach ($rows as $row) {
 			
 			$count++;
 			

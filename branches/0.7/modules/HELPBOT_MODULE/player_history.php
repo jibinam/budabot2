@@ -29,19 +29,18 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if(preg_match("/^history (.+)$/i", $message, $arr)) {
+if (preg_match("/^history (.+)$/i", $message, $arr)) {
 	$name = ucfirst(strtolower($arr[1]));
-	if(!$this->get_uid($name)) {
+	if (!$this->get_uid($name)) {
 		$msg = "Player <highlight>$name<end> doesn't exist.";
 	} else {
 	  	$msg = "Getting History of player <highlight>$name<end>. Please standby.";
         $this->send($msg, $sendto);
 
 		$history = new HistoryXML($name);
-		if($history->errorCode != 0) {
+		if ($history->errorCode != 0) {
 			$msg = $history->errorInfo;
 		} else {
-			$link  = "<header>::::: History from $name ::::::<end>\n\n";
 			$link .= "<highlight>Options:<end>\n";
 			$link .= "<tab><tab><a href='chatcmd:///start $url_orig'>Show History in your browser</a>\n";
 			$link .= "<tab><tab><a href='chatcmd:///tell <myname> alts $name'>Show Alts</a> \n";
@@ -51,29 +50,32 @@ if(preg_match("/^history (.+)$/i", $message, $arr)) {
 			
 		    $link .= "Date           Level    AI     Faction      Guild(rank) \n";
 		    $link .= "________________________________________________ \n";
-		    foreach($history->data as $key => $data) {
+		    forEach ($history->data as $key => $data) {
 		      	$level = $data["level"];
 		      	
-				if($data["ailevel"] == "")
+				if ($data["ailevel"] == "") {
 			      	$ailevel = "<green>0<end>";
-			    else
+			    } else {
 			    	$ailevel = "<green>".$data["ailevel"]."<end>";
+				}
 				
-				if($data["faction"] == "Omni")
+				if ($data["faction"] == "Omni") {
 			      	$faction = "<blue>Omni<end>";
-			    elseif($data["faction"] == "Clan")
+			    } else if ($data["faction"] == "Clan") {
 			      	$faction = "<red>Clan<end>";
-			    else
+			    } else {
 			      	$faction = "<white>Neutral<end>";
+				}
 	
-				if($data["guild"] == "")
+				if ($data["guild"] == "") {
 				  	$guild = "Not in a guild";
-				else 
+				} else {
 		      		$guild = $data["guild"]."(".$data["rank"].")";
+				}
 	
 			  	$link .= "$key |  $level  | $ailevel | $faction | $guild\n";
 			}
-			$msg = Text::makeLink("History of $name", $link);
+			$msg = Text::makeBlob("History of $name", $link);
 		}
 	}
 

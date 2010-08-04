@@ -20,7 +20,6 @@
    **
    */
 
-require_once('functions.php');
 if (isset($this->guildmembers[$sender])) {
     $this->send(getTowerInfoMsg(), $sender);
 }

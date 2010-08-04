@@ -1,6 +1,4 @@
 <?php
-	include 'utils.php';
-
 	$skill_list 	= array(   1, 1000, 1001, 2000, 2001, 3000);
 	$gen_dmg_list	= array(   1, 2000, 2001, 2500, 2501, 2850);
 	$MA_rech_list 	= array(1800, 1800, 1188,  600,  600,  300);

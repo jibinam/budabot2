@@ -32,20 +32,20 @@
 $db->query("SELECT afk FROM guild_chatlist_<myname> WHERE `name` = '$sender'");
 $numrows = $db->numrows();
 $row = $db->fObject();
-if(preg_match("/^afk$/i", $message, $arr) && $numrows != 0) {
-    if($row->afk == '0') {
+if (preg_match("/^afk$/i", $message, $arr) && $numrows != 0) {
+    if ($row->afk == '0') {
         $db->query("UPDATE guild_chatlist_<myname> SET `afk` = 1 WHERE `name` = '$sender'");
         $msg = "<highlight>$sender<end> is now AFK";
-    } else if($row->afk != '0') {
+    } else if ($row->afk != '0') {
         $db->query("UPDATE guild_chatlist_<myname> SET `afk` = 0 WHERE `name` = '$sender'");
         $msg = "<highlight>$sender<end> is back";
     }
     $this->send($msg, "guild");
-} elseif(preg_match("/^afk (.*)$/i", $message, $arr) && $numrows != 0) {
-    if($row->afk == '0') {
+} else if (preg_match("/^afk (.*)$/i", $message, $arr) && $numrows != 0) {
+    if ($row->afk == '0') {
         $db->query("UPDATE guild_chatlist_<myname> SET `afk` = '$arr[1]' WHERE `name` = '$sender'");
         $msg = "<highlight>$sender<end> is now AFK";
-    } else if($row->afk != '0') {
+    } else if ($row->afk != '0') {
         $db->query("UPDATE guild_chatlist_<myname> SET `afk` = 0 WHERE `name` = '$sender'");
         $msg = "<highlight>$sender<end> is back";
     }

@@ -29,18 +29,21 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
    
-if(preg_match("/^leaderecho on$/i", $message)) {
-	Settings::save("leaderecho", "1");
+if (preg_match("/^leaderecho on$/i", $message)) {
+	Settings::save("leaderecho", 1);
 	$this->send("Raidleader echo has been <green>enabled<end>");
-} elseif(preg_match("/^leaderecho off$/i", $message)) {
-	Settings::save("leaderecho", "0");
+} else if (preg_match("/^leaderecho off$/i", $message)) {
+	Settings::save("leaderecho", 0);
 	$this->send("Raidleader echo has been <green>disabled<end>");	
-} elseif(preg_match("/^leaderecho$/i", $message)) {
-	if(Settings::get("leaderecho") == 1)
+} else if (preg_match("/^leaderecho$/i", $message)) {
+	if (Settings::get("leaderecho") == 1) {
 		$msg = "Leaderecho is currently <green>enabled<end>";
-	else
+	} else {
 		$msg = "Leaderecho is currently <red>disabled<end>";
+	}
 	$this->send($msg);
-} else
+} else {
 	$syntax_error = true;
+}
+
 ?>

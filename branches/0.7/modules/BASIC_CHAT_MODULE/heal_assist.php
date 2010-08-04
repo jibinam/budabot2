@@ -30,35 +30,34 @@
    */
 
 global $heal_assist;
-if(preg_match("/heal$/i", $message)) {
-  	if(isset($heal_assist)) {
-		$link = "<header>::::: Healassist Macro on $heal_assist :::::\n\n";
+if (preg_match("/heal(assist)?$/i", $message)) {
+  	if (isset($heal_assist)) {
 	  	$link .= "<a href='chatcmd:///macro $heal_assist /assist $heal_assist'>Click here to make an healassist on $heal_assist macro</a>";
-	  	$msg = Text::makeLink("Current Healassist is $heal_assist", $link);
-	} else
+	  	$msg = Text::makeBlob("HealAssist Macro on $heal_assist", $link);
+	} else {
 		$msg = "No Healassist set atm.";
+	}
 	$this->send($msg);
-} elseif(preg_match("/^heal (.+)$/i", $message, $arr)) {
-    $name = $arr[1];
+} else if (preg_match("/^heal(assist)? (.+)$/i", $message, $arr)) {
+    $name = $arr[2];
     $uid = $this->get_uid(ucfirst(strtolower($name)));
-    if($uid) {
+    if ($uid) {
       	$name = ucfirst(strtolower($name));
 	  	$heal_assist = $name;
-		$link = "<header>::::: HealAssist Macro on $name :::::\n\n";
 	  	$link .= "<a href='chatcmd:///macro $name /assist $name'>Click here to make an healassist on $name macro</a>";
-	  	$msg = Text::makeLink("Healassist on $name Macro", $link);
+	  	$msg = Text::makeBlob("HealAssist Macro on $name", $link);
 		$this->send($msg);
 		$this->send($msg);
 		$this->send($msg);
 	} else {
 	  	$heal_assist = $name;
-		$link = "<header>::::: HealAssist Macro on $name :::::\n\n";
 	  	$link .= "<a href='chatcmd:///macro $name /assist $name'>Click here to make an healassist on $name macro</a>";
-	  	$msg = Text::makeLink("Healassist on $name Macro", $link);
+	  	$msg = Text::makeBlob("HealAssist Macro on $name", $link);
 		$this->send($msg);
 		$this->send($msg);
 		$this->send($msg);
 	}
-} else
+} else {
 	$syntax_error = true;
+}
 ?>

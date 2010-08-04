@@ -10,19 +10,17 @@
    */
 
 	$MODULE_NAME = "BBIN_MODULE";
-	if(Settings::get('bbin_channel') == "") {
-		if($this->vars['my guild'] == "") {
+	if (Settings::get('bbin_channel') == "") {
+		if ($this->vars['my guild'] == "") {
 			$channel = "#".strtolower($this->name);
-		}
-		else {
-			if(strpos($this->vars['my guild']," ")) {
+		} else {
+			if (strpos($this->vars['my guild']," ")) {
 			$sandbox = explode(" ",$this->vars['my guild']);
 				for ($i = 0; $i < count($sandbox); $i++) {
 					$channel .= ucfirst(strtolower($sandbox[$i]));
 				}
 				$channel = "#".$channel;
-			}
-			else {
+			} else {
 				$channel = "#".$this->vars['my guild'];
 			}
 		}

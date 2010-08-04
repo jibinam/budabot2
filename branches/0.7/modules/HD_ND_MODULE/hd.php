@@ -1,7 +1,5 @@
 <?php
 
-$footer = "<tab><img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n\nby Imoutochan, RK1";
-	
 if (preg_match("/^hd$/i", $message)) {
 	$inside = "Stamina  -> HD tick standing/sitting\n<tab><img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n";
 	for ($i = 0; $i < 28; $i++) {
@@ -9,7 +7,8 @@ if (preg_match("/^hd$/i", $message)) {
 				   "<tab><tab>-><tab>".(strlen(29 - $i) < 2 ? "0" : "").(29 - $i)."s / ".(strlen(floor((29 - $i)/2)) < 2 ? "0" : "").floor((29 - $i)/2)."s</font>\n".
 				   ($i % 3 == 2 ? "<tab><img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n" : "");
 	}
-	$msg = Text::makeBlob("Heal delta tick info", $inside.$footer);
+	$inside =. "<tab><img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n\nby Imoutochan, RK1";
+	$msg = Text::makeBlob("Heal delta tick info", $inside);
 } elseif (preg_match("/^hd ([0-9]+)$/i", $message, $arr)) {
 	$tick = (29-floor($arr[1]/30)); 
 	if ($tick < 2) $tick = 2;

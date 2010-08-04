@@ -45,7 +45,6 @@ if(preg_match("/^orgranks$/i", $message)) {
 	$msg = "Processing orgmember list. This can take a few seconds.";
     $this->send($msg, $sendto);
        	
-	$list = "<header>::::: Members of the org {$this->vars["my guild"]}(Sorted by orgrank) :::::<end>\n\n";
 	while($row = $db->fObject()) {
         if($row->logged_off != "0")
 	        $logged_off = gmdate("l F d, Y - H:i", $row->logged_off)."(GMT)";
@@ -55,7 +54,7 @@ if(preg_match("/^orgranks$/i", $message)) {
 	  	$list .= "<tab><highlight>$row->name<end> (Lvl $row->level/<green>$row->ai_level<end> $row->profession) (<highlight>$row->rank<end>) <highlight>::<end> Last logoff: $logged_off\n";
 	}
 	
-	$msg = Text::makeLink("{$this->vars["my guild"]} has $members members currently.", $list);
+	$msg = Text::makeBlob("$members Members of {$this->vars["my guild"]} (Sorted by orgrank)", $list);
     $this->send($msg, $sendto);
 } else {
 	$syntax_error = true;

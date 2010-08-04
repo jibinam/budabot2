@@ -49,7 +49,7 @@ if (preg_match("/^battle(s?)$/i", $message) || preg_match("/^battle(s?) (.+)$/i"
     } else if ($db->numrows() == 0) {
 		$msg = "No Tower messages found within this search.";
 	} else {
-		$list = "<header>::::: The last $listcount Tower Attacks :::::<end>\n\n".$colorvalue;
+		$list = $colorvalue;
 
  		while($row = $db->fObject()) {
 			$list .= $colorlabel."Attacktime:<end> ".gmdate("M j, Y, G:i", $row->time)." (GMT)\n";
@@ -68,7 +68,7 @@ if (preg_match("/^battle(s?)$/i", $message) || preg_match("/^battle(s?) (.+)$/i"
 			$list .= $colorlabel."Defender:<end> <$def_side>".$row->def_guild."<end> (".ucfirst($def_side).")\n";
 			$list .= $colorlabel."Zone:<end> ".$row->zone." (".$row->x."x".$row->y.")\n\n";
  		}
-		$msg = Text::makeLink("Tower Battle: click to view", $list);
+		$msg = Text::makeBlob("The last $listcount Tower Attacks", $list);
 	}
 
 } else if (preg_match("/^victory$/i", $message) || preg_match("/^victory (.+)$/i", $message, $arr)) {
@@ -85,7 +85,7 @@ if (preg_match("/^battle(s?)$/i", $message) || preg_match("/^battle(s?) (.+)$/i"
 	} else if ($db->numrows() == 0) {
 		$msg = "No Tower results found within this search.";
 	} else {
-		$list = "<header>::::: The last $listcount Tower Results :::::<end>\n\n".$colorvalue;
+		$list = $colorvalue;
        	while ($row = $db->fObject()) {
  			$list .= $colorlabel."Time:<end> ".gmdate("M j, Y, G:i", $row->time)." (GMT)\n";
 
@@ -95,7 +95,7 @@ if (preg_match("/^battle(s?)$/i", $message) || preg_match("/^battle(s?) (.+)$/i"
 			$list .= $colorlabel."Winner:<end> <$win_side>".$row->win_guild."<end> (".ucfirst($win_side).")\n";
 			$list .= $colorlabel."Loser:<end> <$lose_side>".$row->lose_guild."<end> (".ucfirst($lose_side).")\n\n";
 		}
-		$msg = "Tower Battle Results: ".Text::makeLink("click to view", $list);
+		$msg = Text::makeBlob("The last $listcount Tower Results", $list);
 	}
  
 } else {

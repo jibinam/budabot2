@@ -29,27 +29,31 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-$db->query("SELECT name, logon_msg FROM org_members_<myname> WHERE `name` = '$sender'");
-$row = $db->fObject();
-if (preg_match("/^logon clear$/i", $message)) {
-    if ($row->name == $sender) {
-        $db->query("UPDATE org_members_<myname> SET `logon_msg` = 0 WHERE `name` = '$sender'");
-        $msg = "Logon message cleared.";
-    } else {
-        $msg = "You are not on the notify list of this bot.";
+$db->query("SELECT `name`, `logon_msg` FROM org_members_<myname> WHERE `name` = '$sender'");
+if ($db->numrows() == 0) {
+    $msg = "You are not on the notify list of this bot.";
+	$this->send($msg, $sendto);
+} else {
+	$row = $db->fObject();
+}
+
+if (preg_match("/^logon$/i", $message)) {
+	if ($row->logon_msg == 0 || $row->logon_msg == '') {
+		$this->send("Your logon message is currently blank.", $sendto);
+	} else {
+		$this->send($row->logon_msg, $sendto);
 	}
+} else if (preg_match("/^logon clear$/i", $message)) {
+    $db->query("UPDATE org_members_<myname> SET `logon_msg` = 0 WHERE `name` = '$sender'");
+    $msg = "Logon message cleared.";
     $this->send($msg, $sendto);
 } else if (preg_match("/^logon (.+)$/i", $message, $arr)) {
-    if ($row->name == $sender) {
-        $arr[1] = str_replace("'", "''", $arr[1]);
-        if (strlen($arr[1]) <= 200) {
-            $db->query("UPDATE org_members_<myname> SET `logon_msg` = '$arr[1]' WHERE `name` = '$sender'");
-            $msg = "Thank you $sender. Your logon message has been set.";
-        } else {
-            $msg = "Your logon message is too long. Please choose a shorter one.";
-		}
-    } else {
-        $msg = "You are not on the Notify list of this bot.";
+	$arr[1] = str_replace("'", "''", $arr[1]);
+	if (strlen($arr[1]) <= 200) {
+		$db->query("UPDATE org_members_<myname> SET `logon_msg` = '$arr[1]' WHERE `name` = '$sender'");
+		$msg = "Thank you $sender. Your logon message has been set.";
+	} else {
+		$msg = "Your logon message is too long. Please choose a shorter one.";
 	}
     $this->send($msg, $sendto);
 }

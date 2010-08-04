@@ -29,15 +29,15 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
    
-if(preg_match("/^orgmembers$/i", $message)) {
-	if($this->vars["my guild id"] == "") {
+if (preg_match("/^orgmembers$/i", $message)) {
+	if ($this->vars["my guild id"] == "") {
 	  	$msg = "The Bot needs to be in a org to show the orgmembers.";
 	    $this->send($msg, $sendto);
 	}
 	
 	$db->query("SELECT * FROM org_members_<myname> WHERE `mode` != 'del' ORDER BY name");  
 	$members = $db->numrows();
-  	if($members == 0) {
+  	if ($members == 0) {
 	  	$msg = "No members recorded.";
 	    $this->send($msg, $sendto);    
 	}
@@ -47,18 +47,18 @@ if(preg_match("/^orgmembers$/i", $message)) {
     $this->send($msg, $sendto);
     
     $first_char = "A";
-	$list = "<header>::::: Members of the org {$this->vars["my guild"]} :::::<end>";
 	$list .= "\n\n<highlight><u>$first_char</u><end>\n";
-	while($row = $db->fObject()) {
-        if($row->logged_off != "0")
+	while ($row = $db->fObject()) {
+        if ($row->logged_off != "0") {
 	        $logged_off = " :: <highlight>Last logoff:<end> ".gmdate("D F d, Y - H:i", $row->logged_off)."(GMT)";
+		}
 	    
-	    if($row->name[0] != $first_char) {
+	    if ($row->name[0] != $first_char) {
 	     	$first_char = $row->name[0];
 			$list .= "\n\n<highlight><u>$first_char</u><end>\n";
 		}
 		
-		switch($row->profession) {
+		switch ($row->profession) {
         case "Adventurer":
             $prof = "Advy";
             break;
@@ -106,9 +106,9 @@ if(preg_match("/^orgmembers$/i", $message)) {
 		$list .= "<tab><highlight>$row->name<end> (Lvl $row->level/<green>$row->ai_level<end>/$prof/<highlight>$row->rank<end>)$logged_off\n";	    
 	}
 	
-	$msg = Text::makeLink("{$this->vars["my guild"]} has $members members currently.", $list);
+	$msg = Text::makeBlob("$members Members of {$this->vars["my guild"]}", $list);
  	$this->send($msg, $sendto);
-} elseif(preg_match("/^orgmembers (.*)$/i", $message, $arr)) {
+} else if (preg_match("/^orgmembers (.*)$/i", $message, $arr)) {
 	if($this->vars["my guild id"] == "") {
 	  	$msg = "The Bot needs to be in a org to show the orgmembers.";
 	  	$this->send($msg, $sendto);
@@ -159,7 +159,7 @@ if(preg_match("/^orgmembers$/i", $message)) {
             break;
     }
     
-    if(!$prof) {
+    if (!$prof) {
         $msg = "Please choose one of these professions: adv, agent, crat, doc, enf, eng, fix, keep, ma, mp, nt, sol, shade or trad";
 	    $this->send($msg, $sendto);
 	    return;
@@ -168,8 +168,8 @@ if(preg_match("/^orgmembers$/i", $message)) {
 	$db->query("SELECT * FROM org_members_<myname> WHERE `mode` != 'del' AND `profession` = '$prof' ORDER BY name");
 
 	$members = $db->numrows();
-  	if($members == 0) {
-		$msg = "No <highlight>$prof<end>'s as member recorded";		
+  	if ($members == 0) {
+		$msg = "No <highlight>$prof<end>s as member recorded";		
 	  	$this->send($msg, $sendto);
 		return; 
 	}
@@ -178,17 +178,17 @@ if(preg_match("/^orgmembers$/i", $message)) {
 	$msg = "Processing orgmember list. This can take a few seconds.";
   	$this->send($msg, $sendto);
        	
-	$list = "<header>::::: Members of the org {$this->vars["my guild"]}:Profession: $prof :::::<end>\n\n";
-	while($row = $db->fObject()) {
-        if($row->logged_off != "0")
+	while ($row = $db->fObject()) {
+        if ($row->logged_off != "0") {
 	        $logged_off = gmdate("l F d, Y - H:i", $row->logged_off)."(GMT)";
-	    else
+	    } else {
 	    	$logged_off = "<red>Not set yet.<end>";
+		}
 	    	
 	  	$list .= "<tab><highlight>$row->name<end> (Lvl $row->level/<green>$row->ai_level<end> $row->profession) (<highlight>$row->rank<end>) <highlight>::<end> Last logoff: $logged_off\n";
 	}
 	
-	$msg = Text::makeLink("{$this->vars["my guild"]} has $members members currently.", $list);
+	$msg = Text::makeBlob("$members {$prof}s of {$this->vars["my guild"]}", $list);
  	$this->send($msg, $sendto);
 } else {
 	$syntax_error = true;

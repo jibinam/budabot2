@@ -9,22 +9,21 @@
    
 global $bbin_socket;
 stream_set_blocking($bbin_socket, 0);
-if(preg_match("/^onlineirc$/i", $message, $arr)) {
+if (preg_match("/^onlineirc$/i", $message, $arr)) {
 	fputs($bbin_socket, "NAMES :".Settings::get('irc_channel')."\n");
 	sleep(1);
-	while($data = fgets($bbin_socket)) {
-		if(preg_match("/(End of \/NAMES list)/", $data, $discard)) {
+	while ($data = fgets($bbin_socket)) {
+		if (preg_match("/(End of \/NAMES list)/", $data, $discard)) {
 			break;
-		}
-		else {
+		} else {
 			$start = strrpos($data,":")+1;
 			$names = explode(' ',substr($data,$start,strlen($data)));
 			$numusers = count($names);
-			foreach($names as $value) {
+			forEach ($names as $value) {
 				$list .= "$value<br>";
 			}
 			
-			$msg = Text::makeLink("$numusers online in IRC",$list);
+			$msg = Text::makeBlob("$numusers online in IRC", $list);
 			
 			$this->send($msg, $sendto);
 		}

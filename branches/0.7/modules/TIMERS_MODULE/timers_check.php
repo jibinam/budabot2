@@ -44,10 +44,11 @@ forEach ($this->vars["Timers"] as $key => $value) {
 	$mode = $this->vars["Timers"][$key]["mode"];
 
 	if ($tleft <= 0 && $tleft >= -600) {
-		if ($name == "PrimTimer")
+		if ($name == "PrimTimer") {
 			$msg = "<highlight>$owner<end> your timer has gone off";
-		else
+		} else {
 			$msg = "<highlight>$owner<end> your timer named <highlight>$name<end> has gone off";
+		}
 	
 		unset($this->vars["Timers"][$key]);
 		$db->query("DELETE FROM timers_<myname> WHERE `name` = '$name' AND `owner` = '$owner'");
@@ -55,20 +56,23 @@ forEach ($this->vars["Timers"] as $key => $value) {
 		unset($this->vars["Timers"][$key]);
 		$db->query("DELETE FROM timers_<myname> WHERE `name` = '$name' AND `owner` = '$owner'");
 	} else if ($tleft >= 3599 && $tleft < 3601 && ((time() - $set_time) >= 30)) {
-		if ($name == "PrimTimer")
+		if ($name == "PrimTimer") {
 			$msg = "Reminder: Timer has <highlight>1hour<end> left [set by <highlight>$owner<end>]";
-		else
+		} else {
 			$msg = "Reminder: Timer <highlight>$name<end> has <highlight>1hour<end> left [set by <highlight>$owner<end>]";
+		}
 	} else if ($tleft >= 899 && $tleft < 901 && ((time() - $set_time) >= 30)) {
-		if ($name == "PrimTimer")
+		if ($name == "PrimTimer") {
 			$msg = "Reminder: Timer has <highlight>15minutes<end> left [set by <highlight>$owner<end>]";
-		else
+		} else {
 			$msg = "Reminder: Timer <highlight>$name<end> has <highlight>15minutes<end> left [set by <highlight>$owner<end>]";
+		}
 	} else if ($tleft >= 59 && $tleft < 61 && ((time() - $set_time) >= 30)) {
-		if ($name == "PrimTimer")
+		if ($name == "PrimTimer") {
 			$msg = "Reminder: Timer has <highlight>1minute<end> left [set by <highlight>$owner<end>]";
-		else
+		} else {
 			$msg = "Reminder: Timer <highlight>$name<end> has <highlight>1minute<end> left [set by <highlight>$owner<end>]";
+		}
 	}
 	if ('' != $msg) {
 		if ('msg' == $mode) {

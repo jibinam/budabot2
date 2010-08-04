@@ -12,13 +12,11 @@
  * This is the main parse function for incoming messages other than
  * IRC related stuff
  */
-function parse_incoming_bbin($bbinmsg, $nick, &$bot)
-{
+function parse_incoming_bbin($bbinmsg, $nick, &$bot) {
 	global $db;
 	global $bbin_socket;
 
-	if (preg_match("/^\[BBIN:LOGON:(.*?),(.),(.)\]/",$bbinmsg,$arr))
-	{
+	if (preg_match("/^\[BBIN:LOGON:(.*?),(.),(.)\]/",$bbinmsg,$arr)) {
 		// a user logged on somewhere in the network
 		// first argument is name, second is dimension, third indicates a guest
 		$name = $arr[1];
@@ -34,27 +32,23 @@ function parse_incoming_bbin($bbinmsg, $nick, &$bot)
 
 		// send notification to channels
 		$msg = "<highlight>$name<end> (<highlight>{$character->level}<end>/<green>{$character->ai_level}<end>, <highlight>{$character->prof}<end>, $character->faction)";
-		if ($character->org != "")
-		{
+		if ($character->org != "") {
 			$msg .=	" {$character->rank} of {$character->org}";
 		}
 		$msg .= " has joined the network";
-		if ($guest == 1)
-		{
+		if ($guest == 1) {
 			$msg .= " as a guest";
 		}
 		$msg .= ".";
 
-		if($bot->vars['my guild'] != "") {
+		if ($bot->vars['my guild'] != "") {
 			$bot->send("<yellow>[BBIN]<end> $msg","guild",true);
 		}
-		if($bot->vars['my guild'] == "" || $bot->settings["guest_relay"] == 1) {
+		if ($bot->vars['my guild'] == "" || $bot->settings["guest_relay"] == 1) {
 			$bot->send("<yellow>[BBIN]<end> $msg","priv",true);
 		}
 
-	}
-	elseif (preg_match("/^\[BBIN:LOGOFF:(.*?),(.),(.)\]/",$bbinmsg,$arr))
-	{
+	} else if (preg_match("/^\[BBIN:LOGOFF:(.*?),(.),(.)\]/",$bbinmsg,$arr)) {
 		// a user logged off somewhere in the network
 		$name = $arr[1];
 		$servernum = $arr[2];
@@ -65,8 +59,7 @@ function parse_incoming_bbin($bbinmsg, $nick, &$bot)
 
 		// send notification to channels
 		$msg = "";
-		if ($guest == 1)
-		{
+		if ($guest == 1) {
 			$msg = "Our guest ";
 		}
 		$msg .= "<highlight>$name<end> has left the network.";
@@ -79,9 +72,7 @@ function parse_incoming_bbin($bbinmsg, $nick, &$bot)
 			$bot->send("<yellow>[BBIN]<end> $msg","priv",true);
 		}
 
-	}
-	elseif (preg_match("/^\[BBIN:SYNCHRONIZE\]/",$bbinmsg))
-	{
+	} else if (preg_match("/^\[BBIN:SYNCHRONIZE\]/",$bbinmsg)) {
 		// a new bot joined and requested a full online synchronization
 
 		// drop existing data
@@ -94,8 +85,7 @@ function parse_incoming_bbin($bbinmsg, $nick, &$bot)
 		$numrows = $db->numrows();
 		$data = $db->fObject("all");
 
-		foreach ($data as $row)
-		{
+		forEach ($data as $row) {
 			// add members
 			$msg .= $row->name . ",0,";
 		}
@@ -104,13 +94,11 @@ function parse_incoming_bbin($bbinmsg, $nick, &$bot)
 		$numrows += $db->numrows();
 		$data = $db->fObject("all");
 
-		foreach ($data as $row)
-		{
+		forEach ($data as $row) {
 			// add guests
 			$msg .= $row->name . ",1,";
 		}
-		if ($numrows != 0)
-		{
+		if ($numrows != 0) {
 			// remove trailing , if there is one
 			$msg = substr($msg,0,strlen($msg)-1);
 		}
@@ -120,9 +108,7 @@ function parse_incoming_bbin($bbinmsg, $nick, &$bot)
 		// send complete list back to bbin channel
 		fputs($bbin_socket, "PRIVMSG ".$bot->settings['bbin_channel']." :$msg\n");
 
-	}
-	elseif (preg_match("/^\[BBIN:ONLINELIST:(.):(.*?)\]/", $bbinmsg, $arr))
-	{
+	} else if (preg_match("/^\[BBIN:ONLINELIST:(.):(.*?)\]/", $bbinmsg, $arr)) {
 		// received a synchronization list
 		
 		// delete all buddies from that nick
@@ -133,8 +119,7 @@ function parse_incoming_bbin($bbinmsg, $nick, &$bot)
 		$listplode = explode(',', $arr[2]);
 
 		// listplode should be: {name,isguest,name,isguest ...}
-		while (true)
-		{
+		while (true) {
 			// as using array_pop will lead to null some time,
 			// this loop will exit when all chars are parsed
 				
@@ -144,8 +129,7 @@ function parse_incoming_bbin($bbinmsg, $nick, &$bot)
 			// pop next value off array (name of last member)
 			$name = array_pop($listplode);
 				
-			if ($isguest == null || $name == null)
-			{
+			if ($isguest == null || $name == null) {
 				// we popped all items of the array, break
 				break;
 			}
@@ -157,14 +141,12 @@ function parse_incoming_bbin($bbinmsg, $nick, &$bot)
 			$db->query("INSERT INTO bbin_chatlist_<myname> (`name`, `faction`, `profession`, `guild`, `breed`, `level`, `ai_level`, `guest`, `dimension`, `ircrelay`) ".
 				"VALUES ('$name', '$character->faction', '$character->prof', '$character->org', '$character->breed', '$character->level', '$character->ai_level', $isguest, $dimension, '$nick')");
 		}
-	}
-	else
-	{
+	} else {
 		// normal message
 		if($bot->vars['my guild'] != "") {
 			$bot->send("<yellow>[BBIN]<end> $bbinmsg","guild",true);
 		}
-		if($bot->vars['my guild'] == "" || $bot->settings["guest_relay"] == 1) {
+		if ($bot->vars['my guild'] == "" || $bot->settings["guest_relay"] == 1) {
 			$bot->send("<yellow>[BBIN]<end> $bbinmsg","priv",true);
 		}
 	}

@@ -9,28 +9,26 @@
    */
    
 global $bbin_socket;
-if("1" == Settings::get('bbin_status')) {
+if ("1" == Settings::get('bbin_status')) {
 	
 	$msg = "[BBIN:LOGOFF:".$sender.",".$this->vars["dimension"].",";
 	
 	if($type == "joinPriv") {
 		$msg .= "1]";
-	}
-	else {
+	} else {
 		$msg .= "0]";
 	}
 	
-	if($type == "leavePriv") {
+	if ($type == "leavePriv") {
 		flush();
 		fputs($bbin_socket, "PRIVMSG ".Settings::get('bbin_channel')." :$msg\n");
-		if(Settings::get('bbin_debug_messages') == 1) {
+		if (Settings::get('bbin_debug_messages') == 1) {
 			newLine("BBIN"," ","[Out. bbin Msg.] $msg",0);
 		}
-	}
-	elseif($type == "logOff" && isset($this->guildmembers[$sender])) {
+	} else if ($type == "logOff" && isset($this->guildmembers[$sender])) {
 		flush();
 		fputs($bbin_socket, "PRIVMSG ".Settings::get('bbin_channel')." :$msg\n");
-		if(Settings::get('bbin_debug_messages') == 1) {
+		if (Settings::get('bbin_debug_messages') == 1) {
 			newLine("BBIN"," ","[Out. bbin Msg.] $msg",0);
 		}
 	}

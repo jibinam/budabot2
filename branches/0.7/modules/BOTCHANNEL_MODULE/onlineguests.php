@@ -34,7 +34,6 @@ if (preg_match("/^onlineguests$/i", $message)) {
 		$db->query("SELECT * FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY `profession`, `level` DESC");
 		$numguest = $db->numrows();
 
-		$list = "<header>::::: $numguest User(s) in Guestchannel<end>\n";
 	    while ($row = $db->fObject()) {
             if ($oldprof != $row->profession) {
                 $list .= "\n<tab><highlight>$row->profession<end>\n";
@@ -48,8 +47,7 @@ if (preg_match("/^onlineguests$/i", $message)) {
 			$list .= "<tab><tab><highlight>$row->name<end> (Lvl $row->level/<green>$row->ai_level<end>) <highlight>::<end> ($row->guild) $afk\n";
 	    }
 		
-        $msg = "<highlight>".$numguest."<end> players in Guestchannel ";
-        $link = ":: ".Text::makeLink('Click here', $list);
+        $msg = Text::makeBlob("$numguest players in Guestchannel", $list);
         if($numguest != 0) {
            	$this->send($msg.$link, $sendto);
         } else {

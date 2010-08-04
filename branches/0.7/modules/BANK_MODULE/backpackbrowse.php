@@ -59,8 +59,7 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 		} elseif($item_count == 0) {
 			$link = "No items found in Backpack#".$arr." in ".ucwords($location);
 		} else {
-			$msg = $item_count." Items in Backpack#".$arr." in ".ucwords($location)."\n\n".$msg;
-			$link = Text::makeLink($item_count." items found in \"Backpack #".$arr."\" in ".ucwords($location), $msg);
+			$link = Text::makeBlob($item_count." items found in \"Backpack #".$arr."\" in ".ucwords($location), $msg);
 		}
 		$this->send($link, $sendto);
 	} else {

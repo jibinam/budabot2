@@ -97,8 +97,7 @@ $itemlink["HRPSAG"] = Text::makeItem(231236, 231236, 1, "Hyper-Radiation Protect
 $itemlink["VTS"] = Text::makeItem(251240, 251240, 250, "Viral Targeting Subunit");	
 $itemlink["SS"] = Text::makeItem(253235, 253235, 250, "Salabim Shotgun");	
 
-if(preg_match("/^guide Hacker ICE-Breaker Source$/i", $message)) {
-	$list .= "<header>::::: Guide for Hacker ICE-Breaker Source :::::<end>\n\n";
+if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<u>Process for 100% CRU</u>\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://99279>\n";
 	$list .= "<tab>{$itemlink["NPI"]}\n\n";
@@ -110,11 +109,10 @@ if(preg_match("/^guide Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab>{$itemlink["ICEU"]}\n\n";
 	$list .= "<highlight>Tradeskills needed for this process:<end> 1000Nano Programming.\n";
 
-	$msg = Text::makeLink("Guide for Hacker ICE-Breaker Source", $list);
+	$msg = Text::makeBlob("Guide for Hacker ICE-Breaker Source", $list);
 
     $this->send($msg, $sendto);
-} elseif(preg_match("/^guide KyrOzch Helmet$/i", $message)) {
-	$list = "<header>::::: Guide for Kyr'Ozch Helmet :::::<end>\n\n";
+} elseif(preg_match("/^apfloot KyrOzch Helmet$/i", $message)) {
 	$list .= "Handing this item to your faction Vendor at the Alien Playfield Bar it will give you one of these 2500Token Boards back:\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://82982>\n";
 	$list .= "<tab>{$itemlink["OTAE"]}\n\n";
@@ -122,12 +120,10 @@ if(preg_match("/^guide Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab><tab><tab><tab><img src=rdb://82981>\n";
 	$list .= "<tab>{$itemlink["CMP"]}\n\n";
 
-	$msg = Text::makeLink("Guide for Kyr'Ozch Helmet", $list);
+	$msg = Text::makeBlob("Guide for Kyr'Ozch Helmet", $list);
 
     $this->send($msg, $sendto);
-} elseif(preg_match("/^guide Action Probability Estimator$/i", $message)) {
-	$list = "<header>::::: Guide for Action Probability Estimator :::::<end>\n\n";
-
+} elseif(preg_match("/^apfloot Action Probability Estimator$/i", $message)) {
 	$list .= "<u>Extruder's Molybdenum Crash Helmet</u>\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://203502>\n";
 	$list .= "<tab>{$itemlink["APE"]}\n\n";
@@ -178,12 +174,10 @@ if(preg_match("/^guide Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab><tab><tab><tab><tab>OR\n\n";
 	$list .= "<tab>{$itemlink["YCSH"]}\n\n";
 
-	$msg = Text::makeLink("Guide for Action Probability Estimator", $list);
+	$msg = Text::makeBlob("Guide for Action Probability Estimator", $list);
 
     $this->send($msg, $sendto);
-} elseif(preg_match("/^guide Dynamic Gas Redistribution Valves$/i", $message)) {
-	$list = "<header>::::: Guide for Dynamic Gas Redistribution Valves :::::<end>\n\n";
-
+} elseif(preg_match("/^apfloot Dynamic Gas Redistribution Valves$/i", $message)) {
 	$list .= "<u>High Lord of Angst</u>\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://205508>\n";
 	$list .= "<tab>{$itemlink["DGRV"]}\n\n";
@@ -226,11 +220,10 @@ if(preg_match("/^guide Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab><tab><tab><tab><img src=rdb://13342>\n";
 	$list .= "<tab>{$itemlink["ASC"]}\n\n";
 		
-	$msg = Text::makeLink("Guide for Dynamic Gas Redistribution Valves", $list);
+	$msg = Text::makeBlob("Guide for Dynamic Gas Redistribution Valves", $list);
 
     $this->send($msg, $sendto);
-} elseif(preg_match("/^guide Inertial Adjustment Processing Unit$/i", $message)) {
-	$list = "<header>::::: Guide for Inertial Adjustment Processing Unit :::::<end>\n\n";
+} elseif(preg_match("/^apfloot Inertial Adjustment Processing Unit$/i", $message)) {
 	$list .= "<u>Hadrulf's Viral Belt Component Platform</u>\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://11618>\n";
 	$list .= "<tab>{$itemlink["IAPU"]}\n\n";
@@ -278,12 +271,10 @@ if(preg_match("/^guide Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab><tab><tab><tab><img src=rdb://218716>\n";
 	$list .= "<tab>{$itemlink["LMM"]}\n";
 			
-	$msg = Text::makeLink("Guide for Inertial Adjustment Processing Unit", $list);
+	$msg = Text::makeBlob("Guide for Inertial Adjustment Processing Unit", $list);
 
     $this->send($msg, $sendto);
-} elseif(preg_match("/^guide Notum Amplification Coil$/i", $message)) {
-	$list = "<header>::::: Guide for Notum Amplification Coil :::::<end>\n\n";
-
+} elseif(preg_match("/^apfloot Notum Amplification Coil$/i", $message)) {
 	$list .= "<u>Twice Augmented Hellspinner Shock Cannon</u>\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://257195>\n";
 	$list .= "<tab>{$itemlink["NAC"]}\n\n";
@@ -316,12 +307,10 @@ if(preg_match("/^guide Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab><tab><tab><tab><tab>OR\n\n";
 	$list .= "<tab>{$itemlink["AKC13"]}\n\n";
 		
-	$msg = Text::makeLink("Guide for Notum Amplification Coil", $list);
+	$msg = Text::makeBlob("Guide for Notum Amplification Coil", $list);
 
     $this->send($msg, $sendto);
-} elseif(preg_match("/^guide Energy Redistribution Unit$/i", $message)) {
-	$list = "<header>::::: Guide for Energy Redistribution Unit :::::<end>\n\n";
-
+} elseif(preg_match("/^apfloot Energy Redistribution Unit$/i", $message)) {
 	$list .= "<u>Blades of Boltar</u>\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://257197>\n";
 	$list .= "<tab>{$itemlink["ERU"]}\n\n";
@@ -353,12 +342,10 @@ if(preg_match("/^guide Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab><tab><tab><tab><img src=rdb://257711>\n";
 	$list .= "<tab>{$itemlink["VNGW"]}\n";
 			
-	$msg = Text::makeLink("Guide for Energy Redistribution Unit", $list);
+	$msg = Text::makeBlob("Guide for Energy Redistribution Unit", $list);
 
     $this->send($msg, $sendto);
-} elseif(preg_match("/^guide Visible Light Remodulation Device$/i", $message)) {
-	$list = "<header>::::: Guide for Visible Light Remodulation Device :::::<end>\n\n";
-
+} elseif(preg_match("/^apfloot Visible Light Remodulation Device$/i", $message)) {
 	$list .= "<u>Explosif's Polychromatic Pillows</u>\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://235270>\n";
 	$list .= "<tab>{$itemlink["VLRD"]}\n\n";
@@ -395,7 +382,7 @@ if(preg_match("/^guide Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab><tab><tab><tab><img src=rdb://257711>\n";
 	$list .= "<tab>{$itemlink["SSSS"]}\n";
 			
-	$msg = Text::makeLink("Guide for Visible Light Remodulation Device", $list);
+	$msg = Text::makeBlob("Guide for Visible Light Remodulation Device", $list);
 
     $this->send($msg, $sendto);
 } else {

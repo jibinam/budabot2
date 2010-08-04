@@ -18,7 +18,7 @@ if (isset($this->data["CITY_WAVE"])) {
 				unset($this->data["CITY_WAVE"]);
 			}
 		}
-	} elseif ($stime >= $now + 13 - 270 && $stime <= $now + 17 - 270) {
+	} else if ($stime >= $now + 13 - 270 && $stime <= $now + 17 - 270) {
 		$this->send("Wave $wave Incoming.", "guild");
 		$wave++;
 		$this->data["CITY_WAVE"]['wave'] = $wave;

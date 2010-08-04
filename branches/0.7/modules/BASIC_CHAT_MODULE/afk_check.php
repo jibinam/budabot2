@@ -29,11 +29,11 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if(!preg_match("/^afk(.*)$/i", $message, $arr)) {
+if (!preg_match("/^afk(.*)$/i", $message, $arr)) {
 	$db->query("SELECT afk FROM priv_chatlist_<myname> WHERE `name` = '$sender'");
-	if($db->numrows() != 0) {
+	if ($db->numrows() != 0) {
 	    $row = $db->fObject();
-	    if($row->afk != '0') {
+	    if ($row->afk != '0') {
 	        $db->query("UPDATE priv_chatlist_<myname> SET `afk` = 0 WHERE `name` = '$sender'");
 	        $msg = "<highlight>$sender<end> is back";
 	        $this->send($msg);
@@ -43,21 +43,24 @@ if(!preg_match("/^afk(.*)$/i", $message, $arr)) {
 	$name = $name[0];
 	$name = ucfirst(strtolower($name));
     $uid = $this->get_uid($name);
-   	if($uid) {
+   	if ($uid) {
 		$db->query("SELECT afk FROM priv_chatlist_<myname> WHERE `name` = '$name'");
-		if($db->numrows() == 0 && Settings::get("guest_relay") == 1)
+		if ($db->numrows() == 0 && Settings::get("guest_relay") == 1) {
 			$db->query("SELECT afk FROM guild_chatlist_<myname> WHERE `name` = '$name'");
+		}
 
-		if($db->numrows() != 0) {
+		if ($db->numrows() != 0) {
 			$row = $db->fObject();
-			if($row->afk == "1")
+			if ($row->afk == "1") {
 				$msg = "<highlight>$name<end> is currently AFK.";
-			elseif($row->afk == "kiting")
+			} else if ($row->afk == "kiting") {
 				$msg = "<highlight>$name<end> is currently Kiting.";
-			elseif($row->afk != "0")
+			} else if ($row->afk != "0") {
 				$msg = "<highlight>$name<end> is currently AFK: <highlight>$row->afk<end>";
-			if($msg != "")
+			}
+			if ($msg != "") {
 				$this->send($msg);
+			}
 		}
 	}
 }

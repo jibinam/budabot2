@@ -20,7 +20,6 @@
    **
    */
 
-require_once('functions.php');
 if (preg_match("/^opentimes$/i", $message)) {
 	
     $this->send(getTowerInfoMsg(), $sendto);

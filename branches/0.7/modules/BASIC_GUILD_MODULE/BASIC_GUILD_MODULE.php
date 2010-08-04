@@ -24,7 +24,7 @@
 	Command::register("", $MODULE_NAME, "orgranks.php", "orgranks", ALL, "Show the Members(sorted by rank) of the org");
 
 	//Force an update of the org roster
-	Command::register("msg", $MODULE_NAME, "updateorg.php", "updateorg", MODERATOR, "Forcing an update of the org roster");
+	Command::register("", $MODULE_NAME, "updateorg.php", "updateorg", MODERATOR, "Forcing an update of the org roster");
 	
 	//Tell and Tellall
 	Command::register("guild msg", $MODULE_NAME, "tell.php", "tell", LEADER, "Repeats an message 3 times in Orgchat");

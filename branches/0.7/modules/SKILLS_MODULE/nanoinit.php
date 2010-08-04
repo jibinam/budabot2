@@ -2,13 +2,6 @@
 $info = explode(" ", $message);
 list($msg, $AttTim, $RechT) = $info;
 
-if($type == "msg")
-    $sendto = $sender;
-elseif($type == "priv")
-	$sendto = "";
-elseif($type == "guild")
-	$sendto = "guild";
-
 $header = "\n<header>::::: Nano Init Calculator - Version 1.00 :::::<end>\n\n";
 $footer = "";
 

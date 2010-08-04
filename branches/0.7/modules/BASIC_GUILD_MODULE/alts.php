@@ -107,7 +107,6 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
 
         // If a main was found create the list
         if ($main) {
-            $list = "<header>::::: Alternative Character List :::::<end> \n \n";
             $list .= ":::::: Main Character\n";
             $list .= "<tab><tab>".Text::makeLink($main, "/tell <myname> whois $main", "chatcmd")." - ";
 			$online = Buddylist::is_online($main);
@@ -131,7 +130,7 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
                     $list .= "<red>Offline<end>\n";
 				}
             }
-            $msg = Text::makeLink($main."`s Alts", $list);
+            $msg = Text::makeBlob($main."'s Alts", $list);
         }
     }
 } else if (preg_match("/^alts$/i", $message)) {
@@ -154,7 +153,6 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
 
     // If a main was found create the list
     if ($main) {
-        $list = "<header>::::: Alternative Character List :::::<end> \n \n";
         $list .= ":::::: Main Character\n";
         $list .= "<tab><tab>".Text::makeLink($main, "/tell <myname> whois $main", "chatcmd")." - ";
 		$online = Buddylist::is_online($main);
@@ -179,7 +177,7 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
                 $list .= "<red>Offline<end>\n";
 			}
         }
-        $msg = Text::makeLink($sender."`s Alts", $list);
+        $msg = Text::makeBlob($sender."'s Alts", $list);
     }
 } else if (preg_match("/^altsadmin (.+)$/i", $message, $arr)) {
 	if (preg_match("/^add (.+) (.+)$/i", $arr[1], $names)) {

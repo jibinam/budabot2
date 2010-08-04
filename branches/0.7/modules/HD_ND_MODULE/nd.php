@@ -1,7 +1,5 @@
 <?php
 
-$footer = "<tab><img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n\nby Imoutochan, RK1";
-	
 if (preg_match("/^nd$/i", $message)) {
 	$inside = "Psychic  -> nd tick delay\n<img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n";
 	for ($i = 0; $i < 14; $i++) {
@@ -9,7 +7,8 @@ if (preg_match("/^nd$/i", $message)) {
 				   "<tab><tab>-><tab>".(strlen(28 - 2 * $i) < 2 ? "0" : "").(28 - 2 * $i)."s</font>\n".
 				   ($i % 3 == 2 ? "<img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n" : "");
 	}
-	$msg = Text::makeLink("Nano delta tick info", $inside.$footer);
+	$inside .= "<tab><img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n\nby Imoutochan, RK1";
+	$msg = Text::makeBlob("Nano delta tick info", $inside);
 } elseif (preg_match("/^nd ([0-9]+)$/i", $message, $arr)) {
 	$tick = (28-floor($arr[1]/30)); 
 	if ($tick < 2) $tick = 2;

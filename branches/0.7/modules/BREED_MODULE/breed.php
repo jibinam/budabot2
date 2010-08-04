@@ -1,48 +1,59 @@
 <?php
-$s="<header>".'     Solitus'."<end><red>".' 
-Ability    Rubi-ka  / Shadowlands'."<end>".'
+$blob = 
+"<header>Solitus<end><orange>
+Ability    Rubi-ka  / Shadowlands<end>
  
 Strength        472 / 772  
 Agility           480 / 780  
 Stamina         480 / 780  
 Intelligence    480 / 780  
 Sense           480 / 780  
-Psychic         480 / 780';
+Psychic         480 / 780
 
-$n="<header>".'    Nanomage'."<end><red>".'  
-Ability    Rubi-ka  / Shadowlands'."<end>".'
+3 max health per 1 point of hp
+3 max nano per 1 point of np
+
+<header>Nanomage<end><orange>
+Ability    Rubi-ka  / Shadowlands<end>
 
 Strength        464 / 664  
 Agility           464 / 664  
 Stamina         448 / 748  
 Intelligence    512 / 912  
 Sense           480 / 780  
-Psychic         512 / 912';
+Psychic         512 / 912
 
-$o="<header>".'    Opifex '."<end><red>".'
-Ability    Rubi-ka  / Shadowlands'."<end>".'
+2 max health per 1 point of hp
+4 max nano per 1 point of np
+
+<header>Opifex<end><orange>
+Ability    Rubi-ka  / Shadowlands<end>
 
 Strength       464 / 764  
 Agility          544 / 944  
 Stamina        480 / 680  
 Intelligence   464 / 764  
 Sense          512 / 912  
-Psychic        448 / 748';
+Psychic        448 / 748
 
-$a="<header><b>".'    Atrox '."<end><red>".'
-Ability    Rubi-ka  / Shadowlands'."<end>".'
+3 max health per 1 point of hp
+3 max nano per 1 point of np
+
+<header><b>Atrox<end><orange>
+Ability    Rubi-ka  / Shadowlands<end>
  
 Strength      512 / 912  
 Agility          480 / 780  
 Stamina       512 / 912  
 Intelligence  400 / 600  
 Sense         400 / 600  
-Psychic       400 / 600';
+Psychic       400 / 600
+
+4 max health per 1 point of hp
+2 max nano per 1 point of np";
 
 if (preg_match("/^breed/i", $message, $arr)) {
-	$list = "               .:| Breed Caps |:.\n\n";
-	$list.=" $s \n\n $n \n\n $o \n\n $a ";
-	$msg = Text::makeLink("Results of Breedcap Inquiry.", $list);
+	$msg = Text::blob("Results of Breedcap Inquiry.", $blob);
 }
 
 $this->send($msg, $sendto);

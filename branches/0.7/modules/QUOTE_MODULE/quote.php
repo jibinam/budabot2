@@ -24,7 +24,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 				$this->send("You need $rankdiff promotion(s) in order to add a quote.", $sendto);
 				return;
 			}
-		}else if (($requirement == -1 && !isset($this->chatlist[$sender])) && !$this->guildmembers[$sender]) {
+		} else if (($requirement == -1 && !isset($this->chatlist[$sender])) && !$this->guildmembers[$sender]) {
 			$this->send("You need to at least be in the private chat in order to add a quote.", $sendto);
 			return;
 		}
@@ -36,7 +36,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		$row = $db->fObject();
 		$msg = "This quote is already in as quote <highlight>$row->IDNumber<end>.";
 	} else {
-		if(strlen($arr[1]) <= 1000) {
+		if (strlen($arr[1]) <= 1000) {
 	
 			$quoteDATE = date("F j, Y, g:i a");
 			$quoteMSG = $arr[1];
@@ -120,7 +120,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	// Search for poster:
 	$list = "";
 	$db->query("SELECT * FROM quote WHERE `Who` LIKE '".str_replace("'", "''", $search)."'");
-	while($row = $db->fObject()) {
+	while ($row = $db->fObject()) {
 		$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber'>$row->IDNumber</a>, ";
 	}
 	if ($list) {
@@ -131,11 +131,13 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	// Search for victim:
 	$list = "";
 	$db->query("SELECT * FROM quote WHERE `OfWho` LIKE '".str_replace("'", "''", $search)."'");
-	while($row = $db->fObject()) {
+	while ($row = $db->fObject()) {
 		$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber'>$row->IDNumber</a>, ";
 	}
 	if ($list) {
-		if ($msg) {$msg .="<br><br>";}
+		if ($msg) {
+			$msg .="<br><br>";
+		}
 		$msg .="<tab>Quotes <highlight>$search<end> said: ";
 		$msg .= substr($list,0,strlen($list)-2);
 	}
@@ -147,15 +149,19 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber'>$row->IDNumber</a>, ";
 	}
 	if ($list) {
-		if ($msg) {$msg .="\n\n";}
+		if ($msg) {
+			$msg .="\n\n";
+		}
 		$msg .="<tab>Quotes that contain '<highlight>$search<end>': ";
 		$msg .= substr($list,0,strlen($list)-2);
 	}
 	
-	if ($msg) {$msg = Text::makeLink("Results for: '$search'", "<header>::::: Quote Info :::::<end><br><br>$msg");} 
-	else {$msg = "Couldn't find any matches for this search.";}
-	
-	
+	if ($msg) {
+		$msg = Text::makeBlob("Results for: '$search'", $msg);
+	} 
+	else {
+		$msg = "Couldn't find any matches for this search.";
+	}
 	
 //Show the top quoters/quoted
 } else if (preg_match("/^quote stats$/i", $message, $arr)) {
@@ -178,7 +184,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	$count = $row->IDNumber;
 	
 	$db->query("SELECT * FROM quote WHERE `IDNumber` = '$arr[1]'");
-        if ($db->numrows() > 0) {
+    if ($db->numrows() > 0) {
 		$row = $db->fObject();
 		$quoteID = $row->IDNumber;
 		$quoteWHO = $row->Who;
@@ -186,7 +192,6 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		$quoteDATE = $row->When;
 		$quoteMSG = $row->What;
 		
-		$msg = "<header>::::: Quote Info :::::<end><br><br>";
 		$msg .="<tab>ID: (<highlight>$quoteID<end> of $count)<br>";
 		$msg .="<tab>Poster: <highlight>$quoteWHO<end><br>";
 		$msg .="<tab>Quoting: <highlight>$quoteOfWHO<end><br>";
@@ -195,7 +200,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		$msg .="<tab>Quotes posted by <highlight>$quoteWHO<end>: ";
 		$db->query("SELECT * FROM quote WHERE `Who` = '$quoteWHO'");
 		$list = "";
-		while($row = $db->fObject()) {
+		while ($row = $db->fObject()) {
 			$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber>$row->IDNumber</a>, ";
 		}
 		$msg .= substr($list,0,strlen($list)-2)."<br><br>";
@@ -208,7 +213,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		}
 		$msg .= substr($list,0,strlen($list)-2);
 
-		$msg = Text::makeLink("Quote", $msg).': "'.$quoteMSG.'"';
+		$msg = Text::makeBlob("Quote", $msg).': "'.$quoteMSG.'"';
 		
 	} else {
 		$msg = "No quote found with that ID.";
@@ -218,9 +223,6 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 // if i didnt get a number, they messed up.
 } else if (preg_match("/^quote (.+)$/i", $message, $arr)) {	
 	$msg = "Its <symbol>quote for a random quote, or <symbol>quote # for a specific quote.";
-	
-	
-	
 //View a random quote
 } else if (preg_match("/^quote$/i", $message)) {
 	//get total number of entries for rand (and see if we even have any quotes to show)
@@ -245,7 +247,6 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 			}
 		} while(1);
 		
-		$msg = "<header>::::: Quote Info :::::<end><br><br>";
 		$msg .="<tab>ID: (<highlight>$quoteID<end> of $count)<br>";
 		$msg .="<tab>Poster: <highlight>$quoteWHO<end><br>";
 		$msg .="<tab>Quoting: <highlight>$quoteOfWHO<end><br>";
@@ -267,7 +268,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		}
 		$msg .= substr($list,0,strlen($list)-2);
 		
-		$msg = Text::makeLink("Quote", $msg).': "'.$quoteMSG.'"';
+		$msg = Text::makeBlob("Quote", $msg).': "'.$quoteMSG.'"';
 		
 	} else {
 		$msg = "I dont have any quotes to show!";

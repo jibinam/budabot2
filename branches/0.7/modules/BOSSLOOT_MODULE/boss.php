@@ -10,8 +10,6 @@
    Last Modified 5/14/07
    */
 
-    $links = array("Help;chatcmd:///tell <myname> help Boss");
-
 $output = '';
 if (preg_match ("/^boss (.+)$/i", $message, $arr)) {
 
@@ -50,11 +48,10 @@ if (preg_match ("/^boss (.+)$/i", $message, $arr)) {
 				}
 			}
 		}
-		$output = Text::makeLink("Boss", $boss);
-	} elseif ($name_found  == 1) { //If single match found, output full loot table
+		$output = Text::makeBlob("Boss", $boss);
+	} else if ($name_found  == 1) { //If single match found, output full loot table
 		$db->query("SELECT * FROM boss_namedb WHERE bossname LIKE  '%".str_replace("'", "''", $search)."%' OR keyname LIKE '%".str_replace("'", "''", $search)."%'");
-		$data = $db->fobject("all");
-		foreach ($data as $row)
+		$row = $db->fobject();
 		$name_id = $row->bossid;
 		$name = $row->bossname;
 		
@@ -62,15 +59,15 @@ if (preg_match ("/^boss (.+)$/i", $message, $arr)) {
 		
 		$db->query("SELECT answer FROM whereis WHERE name = '".str_replace("'", "''", $name)."'");
 		$data = $db->fobject("all");
-			foreach ($data as $row) {
-			$where = $row->answer;
-			
-			$boss .= "<green>Can be found $where<end>\n\n";
-			$boss .= "Loot:\n\n";
+			forEach ($data as $row) {
+				$where = $row->answer;
+				
+				$boss .= "<green>Can be found $where<end>\n\n";
+				$boss .= "Loot:\n\n";
 			}
 		$db->query("SELECT * FROM boss_lootdb, aodb WHERE boss_lootdb.bossid = $name_id AND boss_lootdb.itemid = aodb.lowid");
 		$data = $db->fobject("all");
-		foreach ($data as $row) {
+		forEach ($data as $row) {
 			$loid = $row->itemid;
 			$hiid = $row->highid;
 			$ql = $row->highql;

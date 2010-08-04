@@ -48,7 +48,7 @@ if (preg_match("/^orghistory$/i", $message, $arr) || preg_match("/^orghistory (\
 	
 	$sql = "SELECT actor, actee, action, organization, time FROM org_history ORDER BY time DESC LIMIT $startingRecord, $pageSize";
 	$db->query($sql);
-	while($row = $db->fObject()) {
+	while ($row = $db->fObject()) {
 
 		$window .= "$row->actor $row->action $row->actee in $row->organization at " . gmdate("M j, Y, G:i", $row->time)." (GMT)\n";
 	}
@@ -57,31 +57,30 @@ if (preg_match("/^orghistory$/i", $message, $arr) || preg_match("/^orghistory (\
 
 	$this->send($msg, $sendto);
 } else if (preg_match("/^orghistory (.+)$/i", $message, $arr)) {
-	
-	$character = $arr[1];
+
+	$character = ucfirst(strtolower($arr[1]));
 
 	$window = "";
 	
 	$window .= "\n  Actions on $character\n";
-	$sql = "SELECT actor, actee, action, organization, time FROM org_history WHERE actee LIKE '$character' ORDER BY time DESC";
+	$sql = "SELECT actor, actee, action, organization, time FROM org_history WHERE actee = '$character' ORDER BY time DESC";
 	$db->query($sql);
-	while($row = $db->fObject()) {
+	while ($row = $db->fObject()) {
 
 		$window .= "$row->actor $row->action $row->actee in $row->organization at " . gmdate("M j, Y, G:i", $row->time)." (GMT)\n";
 	}
 
 	$window .= "\n  Actions by $character\n";
-	$sql = "SELECT actor, actee, action, organization, time FROM org_history WHERE actor LIKE '$character' ORDER BY time DESC";
+	$sql = "SELECT actor, actee, action, organization, time FROM org_history WHERE actor = '$character' ORDER BY time DESC";
 	$db->query($sql);
-	while($row = $db->fObject()) {
+	while ($row = $db->fObject()) {
 
 		$window .= "$row->actor $row->action $row->actee in $row->organization at " . gmdate("M j, Y, G:i", $row->time)." (GMT)\n";
 	}
 
-	$msg = Text::makeBlob('Org History', $window);
+	$msg = Text::makeBlob('Org History for $character', $window);
 
 	$this->send($msg, $sendto);
-
 }
 
 ?>

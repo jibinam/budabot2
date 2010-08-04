@@ -29,26 +29,26 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
    
-if(preg_match("/^privnews clear$/i", $message)) {
+if (preg_match("/^privnews clear$/i", $message)) {
 	Settings::save("news", "Not set.");
 	$msg = "News has been cleared.";
 	$this->send($msg, $sendto);
-} elseif(preg_match("/^privnews (.+)$/i", $message, $arr)) {
+} else if (preg_match("/^privnews (.+)$/i", $message, $arr)) {
 	$news = $arr[1];
- 	if(strlen($news) > 300) {
+ 	if (strlen($news) > 300) {
 		$msg = "News can't be longer than 300chars.";
 	} else {
 		Settings::save("news", $news);	
 		$msg = "News has been set.";
 	}
 	$this->send($msg, $sendto);
-} elseif(preg_match("/^adminnews clear$/i", $message)) {
+} else if (preg_match("/^adminnews clear$/i", $message)) {
  	Settings::save("adminnews", "Not set.");
 	$msg = "Adminnews has been cleared.";
 	$this->send($msg, $sendto);
-} elseif(preg_match("/^adminnews (.+)$/i", $message, $arr)) {
+} else if (preg_match("/^adminnews (.+)$/i", $message, $arr)) {
 	$news = $arr[1];
- 	if(strlen($news) > 300) {
+ 	if (strlen($news) > 300) {
 		$msg = "News can't be longer than 300chars.";
 	} else {
 		Settings::save("adminnews", $news);	

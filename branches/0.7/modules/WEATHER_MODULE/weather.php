@@ -88,7 +88,7 @@ if  (preg_match("/^weather (.+)$/i", $message, $arr)) {
 			$blob .= Text::makeLink($spot, "/tell <myname> weather $spot", "chatcmd")."\n";
 		}
 
-		$msg = Text::makeLink('Multiple hits for '.$arr[1].'.', $blob);
+		$msg = Text::makeBlob('Multiple hits for '.$arr[1].'.', $blob);
 		$this->send($msg, $sendto);
 		return;
 	}
@@ -225,7 +225,7 @@ if  (preg_match("/^weather (.+)$/i", $message, $arr)) {
 		}
 	}
 
-	$msg = Text::makeLink('Weather: '.$arr[1].'.', $blob);
+	$msg = Text::makeBlob('Weather: '.$arr[1].'.', $blob);
 	
 	$this->send($msg, $sendto);
 

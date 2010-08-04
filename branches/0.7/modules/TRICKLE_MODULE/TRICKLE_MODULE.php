@@ -33,6 +33,8 @@
    **
    */
 
+	require_once 'trickle_functions.php';
+
 	$MODULE_NAME = "TRICKLE_MODULE";
 
 	Command::register("", $MODULE_NAME, "trickle.php", "trickle", ALL, "Shows how much skills you will gain by increasing an ability");

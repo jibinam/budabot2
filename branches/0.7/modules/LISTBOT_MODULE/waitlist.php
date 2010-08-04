@@ -30,18 +30,17 @@
    */
    
 global $listbot_waitlist;
-if(preg_match("/^waitlist next$/i", $message, $arr)) {
-	if(count($listbot_waitlist[$sender]) == 0) {
+if (preg_match("/^waitlist next$/i", $message, $arr)) {
+	if (count($listbot_waitlist[$sender]) == 0) {
 	  	$msg = "There is no one on your waitlist atm!";
-	  	// Send info back
 	    $this->send($msg, $sendto);
       	return;
 	}
 	
 	$db->beginTransaction();
 	//Resort the DB and the array
-	foreach($listbot_waitlist[$sender] as $key => $value) {
-	 	if($listbot_waitlist[$sender][$key]["position"] == 1) {
+	forEach ($listbot_waitlist[$sender] as $key => $value) {
+	 	if ($listbot_waitlist[$sender][$key]["position"] == 1) {
 			$db->query("DELETE FROM waitlist_<myname> WHERE `owner` = '$sender' AND `name` = '{$listbot_waitlist[$sender][$key]["name"]}'");
 			$name = $listbot_waitlist[$sender][$key]["name"];
 			$this->send("<highlight>$sender waitlist<end>: You can come now!", $name);
@@ -50,7 +49,7 @@ if(preg_match("/^waitlist next$/i", $message, $arr)) {
 		}
 	}
 	
-	foreach($listbot_waitlist[$sender] as $key => $value) {
+	forEach ($listbot_waitlist[$sender] as $key => $value) {
 	   	$listbot_waitlist[$sender][$key]["position"] -= 1;
 		$db->query("UPDATE waitlist_<myname> SET `position` = {$listbot_waitlist[$sender][$key]["position"]} WHERE `owner` = '$sender' AND `name` = '{$listbot_waitlist[$sender][$key]["name"]}'");
 		$this->send("Your Position on <highlight>$sender<end>'s waitlist has been changed to <highlight>{$listbot_waitlist[$sender][$key]["position"]}<end>", $listbot_waitlist[$sender][$key]["name"]);
@@ -59,35 +58,33 @@ if(preg_match("/^waitlist next$/i", $message, $arr)) {
 
 	$msg = "<highlight>$name<end> has been called to come now.";
 	$this->send($msg, $sendto);
-} elseif(preg_match("/^waitlist add (.+)$/i", $message, $arr)) {
+} else if (preg_match("/^waitlist add (.+)$/i", $message, $arr)) {
   	$uid = $this->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
-    if(!$uid) {
+    if (!$uid) {
       	$msg = "Player <highlight>".$name."<end> does not exist.";
    	    // Send info back
 		$this->send($msg, $sendto);
 	    return;
     }
 
-	if(count($listbot_waitlist[$sender]) > 10) {
+	if (count($listbot_waitlist[$sender]) > 10) {
 	  	$msg = "You can't have more then 10 users on your waitlist!";
-	  	// Send info back
         $this->send($msg, $sendto);
       	return;
 	}
 	
 	 //Search trough the array if the player is on the list
 	$found = false;
-	foreach($listbot_waitlist[$sender] as $key => $value) {
-	 	if($listbot_waitlist[$sender][$key]["name"] == $name) {
+	forEach ($listbot_waitlist[$sender] as $key => $value) {
+	 	if ($listbot_waitlist[$sender][$key]["name"] == $name) {
 		   	$found = true;
 		   	break;
 		}
 	}
 	
-	if($found == true) {
+	if ($found == true) {
 	  	$msg = "<highlight>$name<end> is already on your waitlist!";
-	  	// Send info back
 	    $this->send($msg, $sendto);
       	return;
 	}
@@ -99,10 +96,9 @@ if(preg_match("/^waitlist next$/i", $message, $arr)) {
 	$this->send($msg, $sendto);
 	  	
 	$this->send("You have been added to the waitlist of <highlight>$sender<end> at Pos. <highlight>$pos<end>. You will be notified everytime you get one position up.", $name);
-} elseif(preg_match("/^waitlist rem all$/i", $message, $arr)) {
-  	if(count($listbot_waitlist[$sender]) == 0) {
+} else if (preg_match("/^waitlist rem all$/i", $message, $arr)) {
+  	if (count($listbot_waitlist[$sender]) == 0) {
 	  	$msg = "There is no one on your waitlist atm!";
-	  	// Send info back
 	    $this->send($msg, $sendto);
       	return;
 	}
@@ -112,19 +108,18 @@ if(preg_match("/^waitlist next$/i", $message, $arr)) {
 	
 	$msg = "<highlight>$sender<end> your waitlist has been cleared.";
     $this->send($msg, $sendto);
-} elseif(preg_match("/^waitlist rem (.+)$/i", $message, $arr)) {
+} else if (preg_match("/^waitlist rem (.+)$/i", $message, $arr)) {
   	$uid = $this->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
-    if(!$uid) {
+    if (!$uid) {
       	$msg = "Player <highlight>".$name."<end> does not exist.";
-   	    // Send info back
 	    $this->send($msg, $sendto);
       	return;
     }
     //Search trough the array if the player is on the list
 	$found = false;
-	foreach($listbot_waitlist[$sender] as $key => $value) {
-	 	if($listbot_waitlist[$sender][$key]["name"] == $name) {
+	forEach ($listbot_waitlist[$sender] as $key => $value) {
+	 	if ($listbot_waitlist[$sender][$key]["name"] == $name) {
 		   	$found = true;
 		   	$position = $listbot_waitlist[$sender][$key]["position"];
 		   	$db->query("DELETE FROM waitlist_<myname> WHERE owner = '$sender' AND name = '{$listbot_waitlist[$sender][$key]["name"]}'");
@@ -133,17 +128,16 @@ if(preg_match("/^waitlist next$/i", $message, $arr)) {
 		}
 	}
 	
-	if($found == false) {
+	if ($found == false) {
 	  	$msg = "<highlight>$name<end> is not on your waitlist!";
-	  	// Send info back
 	    $this->send($msg, $sendto);
       	return;
 	}
 
 	$db->beginTransaction();
 	//Resort the DB and the array
-	foreach($listbot_waitlist[$sender] as $key => $value) {
-	 	if($listbot_waitlist[$sender][$key]["position"] > $position) {
+	forEach ($listbot_waitlist[$sender] as $key => $value) {
+	 	if ($listbot_waitlist[$sender][$key]["position"] > $position) {
 		   	$listbot_waitlist[$sender][$key]["position"] -= 1;
 			$db->query("UPDATE waitlist_<myname> SET position = {$listbot_waitlist[$sender][$key]["position"]} WHERE owner = '$sender' AND name = '{$listbot_waitlist[$sender][$key]["name"]}'");
 			$this->send("Your Position on <highlight>$sender<end>'s waitlist has been changed to <highlight>{$listbot_waitlist[$sender][$key]["position"]}<end>", $listbot_waitlist[$sender][$key]["name"]);
@@ -153,25 +147,24 @@ if(preg_match("/^waitlist next$/i", $message, $arr)) {
 	
 	$msg = "<highlight>$name<end> has been removed from your waitlist.";
     $this->send($msg, $sendto);
-} elseif(preg_match("/^waitlist$/i", $message)) {
-  	if(count($listbot_waitlist[$sender]) == 0) {
+} else if (preg_match("/^waitlist$/i", $message)) {
+  	if (count($listbot_waitlist[$sender]) == 0) {
 	 	$msg = "You don't have any waitlist created yet!";
-	  	// Send info back
 	    $this->send($msg, $sendto);
       	return;
 	}
 	
 	$msg = "Waitlist of $sender: ";
 	$first = true;
-	foreach($listbot_waitlist[$sender] as $key => $value) {
-	  	if($first){
+	forEach ($listbot_waitlist[$sender] as $key => $value) {
+	  	if ($first){
 		  	$msg .= "{$listbot_waitlist[$sender][$key]["position"]}: <highlight>{$listbot_waitlist[$sender][$key]["name"]}<end>";
 		  	$first = false;
-		} else
-		  	$msg .= ", {$listbot_waitlist[$sender][$key]["position"]}: <highlight>{$listbot_waitlist[$sender][$key]["name"]}<end>";		
+		} else {
+		  	$msg .= ", {$listbot_waitlist[$sender][$key]["position"]}: <highlight>{$listbot_waitlist[$sender][$key]["name"]}<end>";
+		}
 	}
 
-  	// Send info back
 	$this->send($msg, $sendto);
 }
 ?>

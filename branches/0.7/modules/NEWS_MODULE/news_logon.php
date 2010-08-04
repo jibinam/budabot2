@@ -29,19 +29,18 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if(isset($this->guildmembers[$sender]) && (time() >= $this->vars["newsdelay"])) {
+if (isset($this->guildmembers[$sender]) && (time() >= $this->vars["newsdelay"])) {
 	$db->query("SELECT * FROM news_<myname> ORDER BY `time` DESC LIMIT 0, 10");
-	if($db->numrows() != 0) {
-		$link = "<header>::::: News :::::<end>\n\n";
-		while($row = $db->fObject()) {
-		  	if(!$updated) {
+	if ($db->numrows() != 0) {
+		while ($row = $db->fObject()) {
+		  	if (!$updated) {
 				$updated = $row->time;
 			}
 		  	$link .= "<highlight>Date:<end> ".gmdate("dS M, H:i", $row->time)."\n";
 		  	$link .= "<highlight>Author:<end> $row->name\n";
 		  	$link .= "<highlight>Message:<end> $row->news\n\n";
 		}
-		$msg = Text::makeLink("Click to view the latest News", $link)." [Last updated at ".gmdate("dS M, H:i", $updated)."]";
+		$msg = Text::makeBlob("News", $link)." [Last updated at ".gmdate("dS M, H:i", $updated)."]";
         $this->send($msg, $sender);
 	}	
 }

@@ -6,13 +6,12 @@ if (preg_match("/^svn update/i", $message)) {
 	$return_var = '';
 	exec($command, $output, $return_var);
 	
-	$window = "::: SVN UPDATE output :::\n\n";
 	$window .= $command . "\n\n";
 	forEach ($output as $line) {
 		$window .= $line . "\n";
 	}
 	
-	$msg = Text::makeLink('svn update output', $window);
+	$msg = Text::makeBlob('SVN Update output', $window);
 	
 	$this->send($msg, $sendto);
 } else if (preg_match("/^svn info/i", $message)) {
@@ -21,12 +20,12 @@ if (preg_match("/^svn update/i", $message)) {
 	$return_var = '';
 	exec($command, $output, $return_var);
 	
-	$window = "::: SVN INFO output :::\n\n";
+	$window .= $command . "\n\n";
 	forEach ($output as $line) {
 		$window .= $line . "\n";
 	}
 	
-	$msg = Text::makeLink('svn info output', $window);
+	$msg = Text::makeBlob('SVN Info output', $window);
 	
 	$this->send($msg, $sendto);
 } else {

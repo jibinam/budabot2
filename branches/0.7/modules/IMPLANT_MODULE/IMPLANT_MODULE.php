@@ -32,6 +32,9 @@
    ** This module may be obtained at: http://www.box.net/shared/bgl3cx1c3z
    **
    */
+   
+	require_once('implant_functions.php');
+	require_once('Implant.class.php');
 
 	$MODULE_NAME = "IMPLANT_MODULE";
 	

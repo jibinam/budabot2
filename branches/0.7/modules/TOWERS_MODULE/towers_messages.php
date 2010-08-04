@@ -97,7 +97,6 @@ if ($def_guild) {
 		$key = key($dist);
 
 		// Beginning of the 'more' window
-		$link  = "<header>:::::: Advanced Tower Infos :::::<end>\n\n";
 		$link .= "Send msg to attacker: [<a href='chatcmd:///tell $att_player'>Empty</a>] ";
 		$link .= "[<a href='chatcmd:///tell $att_player You just made me your new enemy by attacking those towers.'>Aggressive</a>] ";
 		$link .= "[<a href='chatcmd:///tell $att_player Keep up the good work.  Let me know if you need some help with those towers.'>Supportive</a>]\n\n";
@@ -162,7 +161,7 @@ if ($def_guild) {
 		$link .= "<highlight>Playfield:<end> ".$colorvalue.$data[$key]["playfield"]." (<highlight>#".$data[$key]["hugemaploc"]."<end> : ".$data[$key]["level"].")<end>\n";
 		$link .= $colorlabel."Location:<end> ".$colorvalue.$data[$key]["location"]." (".$coordx." x ".$coordy.")<end>\n";
 
-		$more = "[".Text::makeLink("more", $link)."]";
+		$more = "[".Text::makeBlob("Advanced Tower Info", $link)."]";
 	}
 	
 	// Prep for if our org is being attacked.

@@ -1,6 +1,4 @@
 <?php
-	include 'utils.php';
-
 	$skill_list = array( 1, 1000, 1001, 2000, 2001, 3000);
 	$min_list 	= array( 1,  100,  101,  170,  171,  235);
 	$max_list 	= array( 2,  500,  501,  850,  851, 1145);
@@ -20,14 +18,6 @@
 
 	$helplink = Text::makeLink("::How to use brawl::", $help);
 	
-	if (!function_exists(interpolate)){
-		function interpolate($x1, $x2, $y1, $y2, $x) {
-			$result = ($y2 - $y1)/($x2 - $x1) * ($x - $x1) + $y1;
-			$result = round($result,0);
-			return $result;
-		}
-	}
-				
 	if (preg_match("/^brawl ([0-9]+)$/i", $message, $arr)) {
 		$brawl_skill = trim($arr[1]);
 
@@ -47,9 +37,7 @@
 		$crit = interpolate($skill_list[$i], $skill_list[($i+1)], $crit_list[$i], $crit_list[($i+1)], $brawl_skill);
 		$stunC = (($brawl_skill < 1000) ? "<orange>10<end>%, <font color=#cccccc>will become </font>20<font color=#cccccc>% above </font>1000<font color=#cccccc> brawl skill</font>" : "<orange>20<end>%");
 		$stunD = (($brawl_skill < 2001) ?  "<orange>3<end>s, <font color=#cccccc>will become </font>4<font color=#cccccc>s above </font>2001<font color=#cccccc> brawl skill</font>" :  "<orange>4<end>s");
-		
-		
-		
+
 		$inside = $header;
 		$inside .= "<u>Results</u>:\n";
 		$inside .= "Brawl Skill: <orange>".$brawl_skill."<end>\n";

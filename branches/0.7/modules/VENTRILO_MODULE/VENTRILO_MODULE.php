@@ -1,4 +1,7 @@
 <?php
+	require_once "vent.inc.php";
+	require_once "ventrilostatus.php";
+
 	$MODULE_NAME = "VENTRILO_MODULE"; 
 
 	Command::register("", $MODULE_NAME, "vent.php", "vent", GUILDMEMBER, "Ventrilo Server Info");

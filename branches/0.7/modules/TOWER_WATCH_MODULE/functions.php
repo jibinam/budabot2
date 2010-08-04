@@ -29,7 +29,7 @@ function getAllSitesInfo() {
 
 	$secondsPastMidnight = time() % 86400;
 	
-	while($site = $db->fObject()) {
+	while ($site = $db->fObject()) {
 
 		$time = $secondsPastMidnight;
 		if ($site->close_time > $secondsPastMidnight) {
@@ -88,7 +88,6 @@ function getTimeObj($input) {
 function getTowerInfoMsg() {
 
 	$displayMsg = '';
-	$moreInfoMsg = "<tab>::: Tower Watch List -- More Info :::\n";
 	$allSitesInfo = getAllSitesInfo();
 	$org = '';
 	forEach($allSitesInfo as $site)	{
@@ -123,7 +122,7 @@ function getTowerInfoMsg() {
 	} else {
 		// this is required
 		global $chatBot;
-		$link = $chatBot->makeLink('More info', $moreInfoMsg);
+		$link = $chatBot->makeBlob('Tower Watch List -- More info', $moreInfoMsg);
 		$displayMsg .= "$link";
 	}
 	

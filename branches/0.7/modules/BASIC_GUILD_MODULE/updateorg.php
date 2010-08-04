@@ -29,12 +29,14 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
    
-if(preg_match("/^updateorg$/i", $message)) {
+if (preg_match("/^updateorg$/i", $message)) {
  	$force_update = true;
- 	$this->send("Starting updating Organisation roster. Please Standby.", $sender);
+ 	$this->send("Starting updating Organisation roster. Please Standby.", $sendto);
 	$this->vars["onlinedelay"] = time() + Settings::get("CronDelay") + 60;
 	include("./core/ORG_ROSTER/roster_guild.php");
 	$this->send("Done", $sender);
-} else
+} else {
 	$syntax_error = true;
+}
+
 ?>

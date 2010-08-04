@@ -61,7 +61,7 @@ forEach ($tmp as $key => $value) {
 		$query .= " AND `name` LIKE '%$value%'";		
 }
 
-if($ql) {
+if ($ql) {
 	$query .= " AND `lowql` <= $ql AND `highql` >= $ql";
 }
 
@@ -126,8 +126,7 @@ if ($countitems > 3) {
 			}
 	    }
     }
-    $list = "<header>::::: Item Search Result :::::<end>\n\n".$list;
-    $link = Text::makeLink("$countitems results in total", $list);
+    $link = Text::makeLink("Item Search Result ($countitems)", $list);
     $this->send($link, $sendto);
 
 	//Show a warning if the maxitems are reached

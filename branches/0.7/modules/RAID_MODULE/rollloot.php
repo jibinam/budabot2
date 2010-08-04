@@ -33,23 +33,21 @@ global $loot;
 global $loot_winners;
 global $residual;
 
-
-if(preg_match("/^flatroll$/i", $message) || preg_match("/^rollloot$/i", $message) || preg_match("/^result$(i", $message) || preg_match("/^win$/i", $message)) {
+if (preg_match("/^flatroll$/i", $message) || preg_match("/^rollloot$/i", $message) || preg_match("/^result$(i", $message) || preg_match("/^win$/i", $message)) {
 	//Check if a loot list exits
-  	if(!is_array($loot)) {
+  	if (!is_array($loot)) {
 	    $msg = "There is nothing to roll atm.";
-	    $this->send($msg);
+	    $this->send($msg, $sendto);
 	    return;
 	}
   	
-  	$list = "<header>::::: Win List :::::<end>\n\n";
   	//Roll the loot
 	$resnum = 1;
-	foreach($loot as $key => $item) {
+	forEach ($loot as $key => $item) {
   	  	$list .= "Item: <orange>{$item["name"]}<end>\n";
   	  	$list .= "Winner(s): ";
 	    $users = count($item["users"]);
-	 	if($users == 0){
+	 	if ($users == 0){
 	 		$list .= "<highlight>None added.<end>\n\n";
 			$residual[$resnum]["name"] = $item["name"];
 			$residual[$resnum]["icon"] = $item["icon"];
@@ -57,33 +55,31 @@ if(preg_match("/^flatroll$/i", $message) || preg_match("/^rollloot$/i", $message
 			$residual[$resnum]["multiloot"] = $item["multiloot"];
 			$resnum++;
 	 	} else {
-			if($item["multiloot"]>1){
-				if($item["multiloot"] > sizeof($item["users"])){
+			if ($item["multiloot"]>1) {
+				if ($item["multiloot"] > sizeof($item["users"])){
 					$arrolnum = sizeof($item["users"]);
-					}
-				else{
+				} else {
 					$arrolnum = $item["multiloot"];
-					}
-				for($i=0;$i<$arrolnum;$i++){
+				}
+				
+				for ($i = 0; $i < $arrolnum; $i++) {
 					$winner = array_rand($item["users"], 1);
 					unset($item["users"][$winner]);
 					$list .= "<red>$winner<end> ";
-					}
+				}
 
-				if($arrolnum<$item["multiloot"]){
+				if ($arrolnum<$item["multiloot"]) {
 					$newmultiloot = $item["multiloot"]-$arrolnum;
 					$residual[$resnum]["name"] = $item["name"];
 					$residual[$resnum]["icon"] = $item["icon"];
 					$residual[$resnum]["linky"] = $item["linky"];
 					$residual[$resnum]["multiloot"] = $newmultiloot;
 					$resnum++;
-					}
 				}
-			else{
-            			$winner = array_rand($item["users"], 1);
+			} else {
+            	$winner = array_rand($item["users"], 1);
 				$list .= "<red>$winner<end>";
-				}
-
+			}
 			$list .= "\n\n";
 			
 		}
@@ -93,13 +89,12 @@ if(preg_match("/^flatroll$/i", $message) || preg_match("/^rollloot$/i", $message
 	$arrolnum = "";
 	$loot = "";
 	//Show winner list
-	$msg = Text::makeLink("Winner List", $list);
-	if(is_array($residual)){
+	$msg = Text::makeBlob("Winner List", $list);
+	if (is_array($residual)){
 		$rerollmsg = " (There are item(s) left to be rolled. To re-add, type <symbol>reroll)";
-		}
-	else{
+	} else {
 		$rerollmsg = "";
-		}
-	$this->send($msg.$rerollmsg);
+	}
+	$this->send($msg.$rerollmsg, $sendto);
 }
 ?>

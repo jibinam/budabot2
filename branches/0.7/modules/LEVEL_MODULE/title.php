@@ -11,8 +11,7 @@
    ** 
    */
 
-$title="<header>::::: Title Levels :::::<end>
-<red>1:<end> Level 1 (5K IP/level)
+$title = "<red>1:<end> Level 1 (5K IP/level)
 <red>2:<end> Level 15 (10K IP/level)
 <red>3:<end> Level 50 (20K IP/level)
 <red>4:<end> Level 100 (40K IP/level)
@@ -21,8 +20,7 @@ $title="<header>::::: Title Levels :::::<end>
 <red>7:<end> Level 205 (400K IP/level)";
 	
 if (preg_match("/^title$/i", $message)) {
-	$text = $title;
-	$windowlink = Text::makeLink("Title levels", $text);
+	$windowlink = Text::makeBlob("Title levels", $title);
 	$this->send($windowlink, $sendto);
 }
 ?>

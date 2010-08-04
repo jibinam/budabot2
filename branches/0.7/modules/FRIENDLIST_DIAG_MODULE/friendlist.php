@@ -14,36 +14,36 @@ if (preg_match("/^friendlist(.+)?$/i", $message, $arg)) {
 	if ($arg[1] == " clean") {
 		$cleanup = true;
 	}
-	
+
 	$this->send("One momment... (".count($this->buddyList)." names to check.)", $sendto);
-	
+
 	$orphanCount = 0;
 	if (count($this->buddyList) == 0) {
 		$this->send("Didn't find any names in the friendlist.", $sendto);
-	} else {
-		$blob = "Buddy List\n\n";
-		forEach ($this->buddyList as $key => $value) {
-			$removed = '';
-			if (count($value['types']) == 0) {
-				$orphanCount++;
-				if ($cleanup) {
-					Buddylist::remove($key);
-					$removed = "<red>REMOVED<end>";
-				}
-			}
-
-			$blob .= $value['name'] . " $removed " . implode(' ', array_keys($value['types'])) . "\n";
-		}
-
-		if ($cleanup) {
-			$blob .="\n\nRemoved: ($orphanCount)";
-		} else {
-			$blob .= "\n\nUnknown: ($orphanCount) ";
-			if ($orphanCount > 0) {
-				$blob .= Text::makeLink('Remove Orphans', '/tell <myname> <symbol>friendlist clean', 'chatcmd');
-			}
-		}
-		$this->send(Text::makeLink("Friendlist Details", $blob), $sendto);
+		return;
 	}
+
+	forEach ($this->buddyList as $key => $value) {
+		$removed = '';
+		if (count($value['types']) == 0) {
+			$orphanCount++;
+			if ($cleanup) {
+				Buddylist::remove($key);
+				$removed = "<red>REMOVED<end>";
+			}
+		}
+
+		$blob .= $value['name'] . " $removed " . implode(' ', array_keys($value['types'])) . "\n";
+	}
+
+	if ($cleanup) {
+		$blob .="\n\nRemoved: ($orphanCount)";
+	} else {
+		$blob .= "\n\nUnknown: ($orphanCount) ";
+		if ($orphanCount > 0) {
+			$blob .= Text::makeLink('Remove Orphans', '/tell <myname> <symbol>friendlist clean', 'chatcmd');
+		}
+	}
+	$this->send(Text::makeBlob("Friendlist Details", $blob), $sendto);
 }
 ?>

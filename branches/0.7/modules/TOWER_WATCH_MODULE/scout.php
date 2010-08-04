@@ -20,7 +20,7 @@
    **
    */
 
-if(preg_match("/^scout (.*)$/i", $message)) {
+if (preg_match("/^scout (.*)$/i", $message)) {
 
 	$msg = "";
 

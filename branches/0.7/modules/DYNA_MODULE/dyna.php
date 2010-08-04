@@ -9,8 +9,6 @@
    Last Modified 5/27/07
    */
 
-$links = array("Help;chatcmd:///tell <myname> help dyna");
-
 $dynacamps = '';
 if (preg_match ("/^dyna ([0-2]?[0-9]?[0-9])$/i", $message, $arr)) {
 	$search = str_replace(" ", "%", $arr[1]);
@@ -20,7 +18,7 @@ if (preg_match ("/^dyna ([0-2]?[0-9]?[0-9])$/i", $message, $arr)) {
 	$dyna_found = $db->numrows();
 	$dynacamps = "There are $dyna_found locations matching your query\n\n";
 	$data = $db->fObject("all");
-	foreach($data as $row) {
+	forEach ($data as $row) {
 		$dynacamps .="<yellow>$row->zone:  Co-ordinates <blue>$row->cX<yellow>x<blue>$row->cY<end>\n";
 		$dynacamps .="<green>Mob Type:  $row->mob\n";
 		$dynacamps .="<blue>Level:  $row->minQl<yellow>-<blue>$row->maxQl\n\n";
@@ -28,7 +26,7 @@ if (preg_match ("/^dyna ([0-2]?[0-9]?[0-9])$/i", $message, $arr)) {
 	
 	$dynacamps = Text::makeBlob("Results Of Dynacamp Search For $search", $dynacamps);
 	$this->send($dynacamps, $sendto);
-} elseif (preg_match ("/^dyna (.+)$/i", $message, $arr)) {
+} else if (preg_match ("/^dyna (.+)$/i", $message, $arr)) {
 	$search = str_replace(" ", "%", $arr[1]);
 	$search = ucfirst(strtolower($search));
 	$search = str_replace("'", "''", $arr[1]);
@@ -36,7 +34,7 @@ if (preg_match ("/^dyna ([0-2]?[0-9]?[0-9])$/i", $message, $arr)) {
 	$dyna_found = $db->numrows();
 	$dynacamps = "There are $dyna_found locations matching your query\n\n";
 	$data = $db->fObject("all");
-	foreach($data as $row) {
+	forEach($data as $row) {
 		$dynacamps .="<yellow>$row->zone:  Co-ordinates <blue>$row->cX<yellow>x<blue>$row->cY<end>\n";
 		$dynacamps .="<green>Mob Type:  $row->mob\n";
 		$dynacamps .="<blue>Level: $row->minQl<yellow>-<blue>$row->maxQl\n\n";

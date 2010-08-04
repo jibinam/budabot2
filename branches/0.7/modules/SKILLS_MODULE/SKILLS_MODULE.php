@@ -1,4 +1,6 @@
 <?php
+	require_once 'utils.php';
+
 	$MODULE_NAME = "SKILLS_MODULE";
 
 	Command::register("", $MODULE_NAME, "aggdef.php", "aggdef", ALL, "Agg/Def: Calculates weapon inits for your Agg/Def bar.");
