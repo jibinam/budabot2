@@ -127,6 +127,7 @@ if ($countitems > 3) {
 	    }
     }
     $link = Text::makeLink("Item Search Result ($countitems)", $list);
+	$list .= "\n\nItem DB Rips provided by MajorOutage";
     $this->send($link, $sendto);
 
 	//Show a warning if the maxitems are reached
