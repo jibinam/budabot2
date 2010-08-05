@@ -19,14 +19,14 @@
 	Settings::add("topic_time", $MODULE_NAME, "no", "hide", time());
 
     //Afk Check
-	Event::register("priv", $MODULE_NAME, "afk_check.php", "afk");
+	Event::register("priv", $MODULE_NAME, "afk_check.php", "afk", "Afk check");
 	Command::register("priv", $MODULE_NAME, "afk.php", "afk", ALL, "Sets a member afk");
 
 	//Leader
 	Command::register("priv", $MODULE_NAME, "leader.php", "leader", ALL, "Sets the Leader of the raid");
 	Subcommand::register("priv", $MODULE_NAME, "leader.php", "leader (.+)", LEADER, "leader", "Set a specific Leader");
 	Command::register("priv", $MODULE_NAME, "leaderecho_cmd.php", "leaderecho", LEADER, "Set if the text of the leader will be repeated");
-	Event::register("priv", $MODULE_NAME, "leaderecho.php", "leader");
+	Event::register("priv", $MODULE_NAME, "leaderecho.php", "leader", "leader echo");
 	Settings::add("leaderecho", $MODULE_NAME, "Repeat the text of the raidleader", "edit", "1", "ON;OFF", "1;0");
 	Settings::add("leaderecho_color", $MODULE_NAME, "Color for Raidleader echo", "edit", "<font color=#FFFF00>", "color");
 
