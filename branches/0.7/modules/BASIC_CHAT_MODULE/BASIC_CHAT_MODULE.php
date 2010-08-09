@@ -19,7 +19,7 @@
 	Settings::add("topic_time", $MODULE_NAME, "no", "hide", time());
 
     //Afk Check
-	Event::register("priv", $MODULE_NAME, "afk_check.php", "afk", "Afk check");
+	Event::register("priv", $MODULE_NAME, "afk_check.php", "none", "Afk check");
 	Command::register("priv", $MODULE_NAME, "afk.php", "afk", ALL, "Sets a member afk");
 
 	//Leader

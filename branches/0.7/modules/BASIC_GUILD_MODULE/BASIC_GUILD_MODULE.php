@@ -8,7 +8,7 @@
 	Command::register("", $MODULE_NAME, "logon_msg.php", "logon", ALL, "Sets a Logon Msg");
 
     // Afk Check
-	Event::register("guild", $MODULE_NAME, "afk_check.php", "afk", "Afk check");
+	Event::register("guild", $MODULE_NAME, "afk_check.php", "none", "Afk check");
 	Command::register("guild", $MODULE_NAME, "afk.php", "afk", ALL, "Sets a member afk");
 	Command::register("guild", $MODULE_NAME, "kiting.php", "kiting", ALL, "Sets a member afk kiting");
 
