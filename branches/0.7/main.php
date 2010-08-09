@@ -167,16 +167,19 @@ main(true, $chatBot);
 */	function newLine($channel, $sender, $message, $target){
 		global $vars;
 
-		if ($channel == "")
+		if ($channel == "") {
 			return;
+		}
 			
-		if ($sender == "")
+		if ($sender == "") {
 			return;
+		}
 		
-		if ($channel == "Buddy")
-			$line = "[".date("H:i", time())."] [$channel] $sender $message";
-		else
-			$line = "[".date("H:i", time())."] [$channel] $sender: $message";
+		if ($channel == "Buddy") {
+			$line = "[".date("Ymd H:i", time())."] [$channel] $sender $message";
+		} else {
+			$line = "[".date("Ymd H:i", time())."] [$channel] $sender: $message";
+		}
 
         $line = preg_replace("/<font(.+)>/U", "", $line);
         $line = preg_replace("/<\/font>/U", "", $line);
@@ -192,7 +195,7 @@ main(true, $chatBot);
 		if ($channel == "Inc. Msg." || $channel == "Out. Msg.")
 			$channel = "Tells";
 
-		$today =  date("m.d");
+		$today =  date("Ym");
 
         /*
         * Open and append to log-file. Complain on failure.
@@ -246,8 +249,7 @@ main(true, $chatBot);
 	}
 
 	// taken from http://www.php.net/manual/en/function.date-diff.php
-	function date_difference($sdate, $edate)
-	{
+	function date_difference($sdate, $edate) {
 		$time = $edate - $sdate;
 		if ($time>=0 && $time<=59) {
 			// Seconds
