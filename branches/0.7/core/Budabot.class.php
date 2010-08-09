@@ -297,8 +297,8 @@ class Budabot extends AOChat {
 				}
 			break;
 			case AOCP_PRIVGRP_CLIJOIN: // 55, Incoming player joined private chat
-				$sender	= $this->lookup_user($args[1]);// Get Name
-				$channel = $this->lookup_user($args[0]);// Get Name
+				$channel = $this->lookup_user($args[0]);
+				$sender	= $this->lookup_user($args[1]);
 				$char_id = $args[1];
 				
 				if ($channel == $this->vars['name']) {
@@ -310,7 +310,7 @@ class Budabot extends AOChat {
 					// Echo
 					if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, "joined the channel.", Settings::get('echo'));
 
-					// Remove sender if they are /ignored or /banned or They gone above spam filter
+					// Remove sender if they are /ignored or /banned or if spam filter is blocking them
 					if (Settings::is_ignored($sender) || $this->banlist[$sender]["name"] == $sender || $this->spam[$sender] > 100) {
 						$this->privategroup_kick($sender);
 						return;
@@ -325,11 +325,12 @@ class Budabot extends AOChat {
 					}
 				} else {
 					$type = "extJoinPriv";
+					// TODO
 				}
 			break;
 			case AOCP_PRIVGRP_CLIPART: // 56, Incoming player left private chat
-				$sender	= $this->lookup_user($args[1]); // Get Name
-				$channel = $this->lookup_user($args[0]);// Get Name
+				$channel = $this->lookup_user($args[0]);
+				$sender	= $this->lookup_user($args[1]);
 				$char_id = $args[1];
 
 				if ($channel == $this->vars['name']) {
@@ -341,11 +342,6 @@ class Budabot extends AOChat {
 					// Remove from Chatlist array.
 					unset($this->chatlist[$sender]);
 					
-					// Remove sender if they are /ignored or /banned or They gone above spam filter
-					if (Settings::is_ignored($sender) || $this->banlist[$sender]["name"] == $sender || $this->spam[$sender] > 100) {
-						return;
-					}
-					
 					// Check files, for all 'player left channel events'.
 					$events = Event::find_active_events($type);
 					if ($events != NULL) {
@@ -355,6 +351,7 @@ class Budabot extends AOChat {
 					}
 				} else {
 					$type = "extLeavePriv";
+					// TODO
 				}
 			break;
 			case AOCP_BUDDY_ADD: // 40, Incoming buddy logon or off
