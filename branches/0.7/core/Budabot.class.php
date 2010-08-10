@@ -360,12 +360,9 @@ class Budabot extends AOChat {
 				$char_id = $args[0];
 				$status	= 0 + $args[1];
 				$btype = $args[2];
-				
-				// store buddy info
-				$this->buddyList[$char_id]['uid'] = $char_id;
-				$this->buddyList[$char_id]['name'] = $sender;
-				$this->buddyList[$char_id]['online'] = $status;
-				$this->buddyList[$char_id]['known'] = (ord($btype) ? 1 : 0);
+
+				// store buddy info				
+				Buddylist::store_buddy($char_id, $sender, $status, (ord($btype) ? 1 : 0));
 
 				//Ignore Logon/Logoff from other bots or phantom logon/offs
                 if (Settings::is_ignored($sender) || $sender == "") {
@@ -375,7 +372,7 @@ class Budabot extends AOChat {
 				// If Status == 0(logoff) if Status == 1(logon)
 				if ($status == 0) {
 					$type = "logOff"; // Set message type
-					
+
 					// Echo
 					//if (Settings::get('echo') >= 1) newLine("Buddy", $sender, "logged off", Settings::get('echo'));
 
@@ -388,7 +385,7 @@ class Budabot extends AOChat {
 					}
 				} else if ($status == 1) {
 					$type = "logOn"; // Set Message Type
-					
+
 					// Echo
 					if (Settings::get('echo') >= 1) newLine("Buddy", $sender, "logged on", Settings::get('echo'));
 
@@ -598,11 +595,9 @@ class Budabot extends AOChat {
 				$em = null;
 				if (isset($args['extended_message'])) {
 					$em = $args['extended_message'];
-					$db->query("SELECT category, entry, message FROM mmdb_data WHERE category = $em->category AND entry = $em->instance");
-					if ($row = $db->fObject()) {
-						$message = vsprintf($row->message, $em->args);
-					} else {
-						echo "Error: cannot find extended message with category: '$em->category' and instance: '$em->instance'\n";
+					$message = AOExtMsg::get_extended_message($em);
+					if ($message == '') {
+						$message = $args[2];
 					}
 				}
 
@@ -703,34 +698,6 @@ class Budabot extends AOChat {
 				}
                 return;
 			break;
-		}
-	}
-
-	function verifyFilename($filename) {
-		//Replace all \ characters with /
-		$filename = str_replace("\\", "/", $filename);
-
-		if (!$this->verifyNameConvention($filename)) {
-			return FALSE;
-		}
-
-		//check if the file exists
-	    if (file_exists("./core/$filename")) {
-	        return "./core/$filename";
-    	} else if (file_exists("./modules/$filename")) {
-        	return "./modules/$filename";
-	    } else {
-	     	return FALSE;
-	    }
-	}
-
-	function verifyNameConvention($filename) {
-		preg_match("/^([0-9a-z_]+)\\/([0-9a-z_]+)\\.php$/i", $filename, $arr);
-		if ($arr[2] == strtolower($arr[2])) {
-			return TRUE;
-		} else {
-			echo "Warning: $filename does not match the nameconvention(All php files needs to be in lowercases except loading files)!\n";
-			return FALSE;
 		}
 	}
 }

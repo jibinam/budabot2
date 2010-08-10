@@ -77,6 +77,16 @@ class Buddylist {
 			}
 		}
 	}
+	
+	public static function store_buddy($char_id, $name, $status, $known) {
+		global $chatBot;
+	
+		// store buddy info
+		$chatBot->buddyList[$char_id]['uid'] = $char_id;
+		$chatBot->buddyList[$char_id]['name'] = $name;
+		$chatBot->buddyList[$char_id]['online'] = $status;
+		$chatBot->buddyList[$char_id]['known'] = $known;
+	}
 }
 
 ?>

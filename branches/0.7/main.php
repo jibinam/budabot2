@@ -29,7 +29,7 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */  
 
-$version = "0.6.6";
+$version = "0.6.7";
 
 echo "\n\n\n\n\n";
 echo "		**************************************************\n";
@@ -136,14 +136,14 @@ main(true, $chatBot);
 ** Main Loop
 ** Inputs: (bool)$forever
 ** Outputs: None
-*/	function main($forever = true,&$chatBot){
+*/	function main($forever = true,&$chatBot) {
 		$start = time();
 		
 		// Create infinite loop
-		while($forever==true){					
+		while ($forever==true) {					
 			$chatBot->ping();
 			Event::run_cron_jobs();
-			if($exec_connected_events == false && ((time() - $start) > 5))	{
+			if ($exec_connected_events == false && ((time() - $start) > 5))	{
 				// TODO
 			  	$chatBot->connectedEvents();
 			  	$exec_connected_events = true;
@@ -155,7 +155,7 @@ main(true, $chatBot);
 ** Function called by Aochat each time a incoming packet is received.
 ** Inputs: (int)$type, (array)$arguments, (object)&$incBot
 ** Outputs: None
-*/	function callback($type, $args){
+*/	function callback($type, $args) {
 		global $chatBot;
 		$chatBot->processCallback($type, $args);	
 	}// End function
@@ -164,7 +164,7 @@ main(true, $chatBot);
  /*===============================
 ** Name: log
 ** Record incoming info into the chatbot's log.
-*/	function newLine($channel, $sender, $message, $target){
+*/	function newLine($channel, $sender, $message, $target) {
 		global $vars;
 
 		if ($channel == "") {
@@ -296,5 +296,33 @@ main(true, $chatBot);
 
 		}
 		return $timeshift;
+	}
+	
+	function verifyFilename($filename) {
+		//Replace all \ characters with /
+		$filename = str_replace("\\", "/", $filename);
+
+		if (!verifyNameConvention($filename)) {
+			return FALSE;
+		}
+
+		//check if the file exists
+	    if (file_exists("./core/$filename")) {
+	        return "./core/$filename";
+    	} else if (file_exists("./modules/$filename")) {
+        	return "./modules/$filename";
+	    } else {
+	     	return FALSE;
+	    }
+	}
+
+	function verifyNameConvention($filename) {
+		preg_match("/^([0-9a-z_]+)\\/([0-9a-z_]+)\\.php$/i", $filename, $arr);
+		if ($arr[2] == strtolower($arr[2])) {
+			return TRUE;
+		} else {
+			echo "Warning: $filename does not match the nameconvention(All php files needs to be in lowercases except loading files)!\n";
+			return FALSE;
+		}
 	}
 ?>

@@ -42,20 +42,17 @@
 */
 
 
-if((float)phpversion() < 5.0)
-{
+if ((float)phpversion() < 5.0) {
 	die("AOChat class needs PHP version >= 5.0.0 to work.\n");
 }
 
-if(!extension_loaded("sockets"))
-{
+if (!extension_loaded("sockets")) {
 	die("AOChat class needs the Sockets extension to work.\n");
 }
 
 if(!extension_loaded("gmp") &&
 		!extension_loaded("bcmath") &&
-		!extension_loaded("aokex"))
-{
+		!extension_loaded("aokex")) {
 	die("AOChat class needs either AOkex, GMP or BCMath extension to work.\n");
 }
 
@@ -290,38 +287,38 @@ class AOChat
 
 		switch($type)
 		{
-		case AOCP_LOGIN_SEED :
-			$this->serverseed = $packet->args[0];
-			break;
+			case AOCP_LOGIN_SEED :
+				$this->serverseed = $packet->args[0];
+				break;
 
-		case AOCP_CLIENT_NAME :
-		case AOCP_CLIENT_LOOKUP :
-			list($id, $name) = $packet->args;
-			$id   = "" . $id;
-			$name = ucfirst(strtolower($name));
-			$this->id[$id]   = $name;
-			$this->id[$name] = $id;
-			break;
+			case AOCP_CLIENT_NAME :
+			case AOCP_CLIENT_LOOKUP :
+				list($id, $name) = $packet->args;
+				$id   = "" . $id;
+				$name = ucfirst(strtolower($name));
+				$this->id[$id]   = $name;
+				$this->id[$name] = $id;
+				break;
 
-		case AOCP_GROUP_ANNOUNCE :
-			list($gid, $name, $status) = $packet->args;
-			$this->grp[$gid] = $status;
-			$this->gid[$gid] = $name;
-			$this->gid[strtolower($name)] = $gid;
-			break;
+			case AOCP_GROUP_ANNOUNCE :
+				list($gid, $name, $status) = $packet->args;
+				$this->grp[$gid] = $status;
+				$this->gid[$gid] = $name;
+				$this->gid[strtolower($name)] = $gid;
+				break;
 
-		case AOCP_GROUP_MESSAGE :
-			/* Hack to support extended messages */
-			if($packet->args[1] === 0 && substr($packet->args[2], 0, 2) == "~&")
-			{
-				$em = new AOExtMsg($packet->args[2]);
-				if($em->type != AOEM_UNKNOWN)
+			case AOCP_GROUP_MESSAGE :
+				/* Hack to support extended messages */
+				if($packet->args[1] === 0 && substr($packet->args[2], 0, 2) == "~&")
 				{
-					$packet->args[2] = '';
-					$packet->args['extended_message'] = $em;
+					$em = new AOExtMsg($packet->args[2]);
+					if($em->type != AOEM_UNKNOWN)
+					{
+						$packet->args[2] = '';
+						$packet->args['extended_message'] = $em;
+					}
 				}
-			}
-			break;
+				break;
 		}
 
 		$this->last_packet = time();

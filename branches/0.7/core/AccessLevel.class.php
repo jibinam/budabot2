@@ -1,6 +1,7 @@
 <?php
 
 // Access levels
+define('NOACCESS', -1);
 define('SUPERADMIN', 0);
 define('ADMIN', 1);
 define('MODERATOR', 2);

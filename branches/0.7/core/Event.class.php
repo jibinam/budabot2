@@ -1,26 +1,36 @@
 <?php
 
+/*
+`module` VARCHAR(50) NOT NULL
+`type` VARCHAR(18)
+`file` VARCHAR(255)
+`is_core` TINYINT NOT NULL
+`description` VARCHAR(50) NOT NULL DEFAULT ''
+`verify` INT DEFAULT 0
+`status` INT DEFAULT 1
+*/
+
 class Event {
 
 /*===============================
 ** Name: event
 **  Registers an event
-*/	public static function register($type, $module, $file, $dependson = '', $desc = '') {
+*/	public static function register($type, $module, $file, $desc = '', $is_core = 0) {
 		global $db;
 
 	  	if (Settings::get('debug') > 1) print("Adding Event to list:($type) File:($file)\n");
 		if (Settings::get('debug') > 2) sleep(1);
 
-		if ($dependson == "none" && Settings::get("default module status") == 1) {
+		if (Settings::get("default module status") == 1) {
 			$status = 1;
 		} else {
 			$status = 0;
 		}
 
 		if (($event = EVENT::get($type, $module, $file)) != false) {
-		  	$db->query("UPDATE eventcfg_<myname> SET `dependson` = '$dependson', `verify` = 1, `description` = '$desc' WHERE `type` = '$type' AND `cmdevent` = 'event' AND `file` = '$filename' AND `module` = '$module'");
+		  	$db->query("UPDATE eventcfg_<myname> SET `verify` = 1, `description` = '$desc' WHERE `type` = '$type' `file` = '$filename' AND `module` = '$module'");
 		} else {
-		  	$db->query("INSERT INTO eventcfg_<myname> (`module`, `cmdevent`, `type`, `file`, `verify`, `dependson`, `description`, `status`) VALUES ('$module', 'event', '$type', '$filename', '1', '$dependson', '$desc', '$status')");
+		  	$db->query("INSERT INTO eventcfg_<myname> (`module`, `type`, `file`, `verify`, `description`, `status`, `is_core`) VALUES ('$module', '$type', '$filename', '1', '$desc', '$status', $is_core)");
 		}
 	}
 	
@@ -31,12 +41,19 @@ class Event {
 		$db->query($sql);
 		return $db->fObject();
 	}
+	
+	public static function find_by_type($type) {
+		global $db;
+		
+		$sql = "SELECT * FROM eventcfg_<myname> WHERE `type` = '$type' AND `status` = 1";
+		$db->query($sql);
+		return $db->fObject("all");
+	}
 
 /*===============================
 ** Name: run_cron_jobs()
 ** Call php-Scripts at certin time intervals. 2 sec, 1 min, 15 min, 1 hour, 24 hours
 */	public static function run_cron_jobs() {
-		global $db;
 		global $chatBot;
 
 		switch($chatBot->vars) {
@@ -49,10 +66,8 @@ class Event {
 						$chatBot->spam[$key] = 0;
 					}
 				}
-				if ($chatBot->_2sec != NULL) {
-					forEach ($chatBot->_2sec as $filename) {
-						include $filename;
-					}
+				forEach (Event::find_by_type('2sec') as $event) {
+					include $event->filename;
 				}
 				break;
 			case $chatBot->vars["1min"] < time():
@@ -64,50 +79,38 @@ class Event {
 					}
 				}
 				$chatBot->vars["1min"] = time() + 60;
-				if ($chatBot->_1min != NULL) {
-					forEach ($chatBot->_1min as $filename) {
-						include $filename;
-					}
+				forEach (Event::find_by_type('1min') as $event) {
+					include $event->filename;
 				}
 				break;
 			case $chatBot->vars["10mins"] < time():
 				$chatBot->vars["10mins"] = time() + (60 * 10);
-				if ($chatBot->_10mins != NULL) {
-					forEach ($chatBot->_10mins as $filename) {
-						include $filename;
-					}
+				forEach (Event::find_by_type('10mins') as $event) {
+					include $event->filename;
 				}
 				break;
 			case $chatBot->vars["15mins"] < time():
 				$chatBot->vars["15mins"] = time() + (60 * 15);
-				if ($chatBot->_15mins != NULL) {
-					forEach ($chatBot->_15mins as $filename) {
-						include $filename;
-					}
+				forEach (Event::find_by_type('15mins') as $event) {
+					include $event->filename;
 				}
 				break;
 			case $chatBot->vars["30mins"] < time():
 				$chatBot->vars["30mins"] = time() + (60 * 30);
-				if ($chatBot->_30mins != NULL) {
-					forEach ($chatBot->_30mins as $filename) {
-						include $filename;
-					}
+				forEach (Event::find_by_type('30mins') as $event) {
+					include $event->filename;
 				}
 				break;
 			case $chatBot->vars["1hour"] < time():
 				$chatBot->vars["1hour"] = time() + (60 * 60);
-				if ($chatBot->_1hour != NULL) {
-					forEach ($chatBot->_1hour as $filename) {
-						include $filename;
-					}
+				forEach (Event::find_by_type('1hour') as $event) {
+					include $event->filename;
 				}
 				break;
 			case $chatBot->vars["24hours"] < time():
 				$chatBot->vars["24hours"] = time() + ((60 * 60) * 24);
-				if ($chatBot->_24hrs != NULL) {
-					forEach ($chatBot->_24hrs as $filename) {
-						include $filename;
-					}
+				forEach (Event::find_by_type('24hrs') as $event) {
+					include $event->filename;
 				}
 				break;
 		}

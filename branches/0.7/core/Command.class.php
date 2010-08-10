@@ -1,21 +1,36 @@
 <?php
 
+/*
+`module` VARCHAR(50) NOT NULL
+`regex` VARCHAR(255)
+`file` VARCHAR(255) NOT NULL
+`is_core` TINYINT NOT NULL
+`cmd` VARCHAR(25) NOT NULL
+`tell_status` INT DEFAULT 0
+`tell_access_level` INT DEFAULT 0
+`guild_status` INT DEFAULT 0
+`guild_access_level` INT DEFAULT 0
+`priv_status` INT DEFAULT 0
+`priv_access_level` INT DEFAULT 0
+`description` VARCHAR(50) NOT NULL DEFAULT ''
+`verify` INT DEFAULT 1
+*/
+
 class Command {
 
 /*===============================
 ** Name: Command
 ** 	Register a command
-*/	public static function register($type, $module, $filename, $command, $access_level, $description = '', $is_core = false) {
+*/	public static function register($module, $filename, $command, $access_level, $description = '', $is_core = 0) {
 		global $db;
 
-		if (!Command::processCommandArgs($type, $access_level)) {
+		if (!Command::processCommandArgs($access_level)) {
 			echo "invalid args for command '$command'!!\n";
 			return;
 		}
 
 		$command = strtolower($command);
 		$description = str_replace("'", "''", $description);
-		$is_core = $is_core ? 1 : 0;
 
 		if (Settings::get('debug') > 1) print("Adding Command to list:($command) File:($filename)\n");
 		if (Settings::get('debug') > 2) sleep(1);
@@ -68,14 +83,10 @@ class Command {
 		$db->query($sql);
 	}
 	
-	public static function find_command($name, $type = null) {
+	public static function find_command($name) {
 		global $db;
 		
-		if ($type == null) {
-			$sql = "SELECT * from cmdcfg_<myname> WHERE `cmd` = '$name'";
-		} else {
-			$sql = "SELECT * from cmdcfg_<myname> WHERE `cmd` = '$name' AND $type = 1";
-		}
+		$sql = "SELECT * from cmdcfg_<myname> WHERE `cmd` = '$name'";
 		$db->query($sql);
 		return $db->fObject();
 	}
@@ -83,30 +94,32 @@ class Command {
 /*===============================
 ** Name: processCommandType
 ** 	Returns a command type in the proper format
-*/	public static function processCommandArgs(&$type, &$access_level) {
-		if ($type == "") {
-			$type = array("msg", "priv", "guild");
-		} else {
-			$type = explode(' ', $type);
-		}
+*/	public static function processCommandArgs(&$access_level) {
+		// tell, priv, guild
 
-		$admin = explode(' ', $access_level);
-		if (count($admin) == 1) {
-			$admin = array_fill(0, count($type), $admin[0]);
-		} else if (count($admin) != count($type)) {
-			echo "ERROR! the number of type arguments does not equal the number of admin arguments for command/subcommand registration!";
+		$access_level = explode(' ', $access_level);
+		if (count($access_level) == 1) {
+			$access_level['tell'] = $access_level[0];
+			$access_level['priv'] = $access_level[0];
+			$access_level['guild'] = $access_level[0];
+			return true;
+		} else if (count($access_level) == 3) {
+			$access_level['tell'] = $access_level[0];
+			$access_level['priv'] = $access_level[1];
+			$access_level['guild'] = $access_level[2];
+			return true;
+		} else {
 			return false;
 		}
-		return true;
 	}
 
 /*===============================
 ** Name: subcommand
 ** 	Register a subcommand
-*/	public static function subcommand($type, $module, $filename, $command, $access_level = ALL, $dependson, $description = 'none') {
+*/	public static function subcommand($module, $filename, $command, $access_level = ALL, $dependson, $description = 'none') {
 		global $db;
 
-		if (!$this->processCommandArgs($type, $access_level)) {
+		if (!$this->processCommandArgs($access_level)) {
 			echo "invalid args for subcommand '$command'!!\n";
 			return;
 		}
