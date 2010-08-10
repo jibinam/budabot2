@@ -48,7 +48,7 @@ class Whitelist {
 		}
 	}
 	
-	public static function all() {
+	public static function find_all() {
 		global $db;
 	
 		$db->query("SELECT * FROM whitelist ORDER BY name ASC");

@@ -34,9 +34,9 @@ class Text {
 	}
 
 /*===============================
-** Name: makeHeader
+** Name: make_header
 ** Make header.
-*/	public static function makeHeader($title, $links = null) {
+*/	public static function make_header($title, $links = null) {
 		$color = Settings::get('default_header_color');
 		$baseR = hexdec(substr($color,14,2)); $baseG = hexdec(substr($color,16,2)); $baseB = hexdec(substr($color,18,2));
 		$color2 = "<font color='#".strtoupper(substr("00".dechex($baseR*.75),-2).substr("00".dechex($baseG*.75),-2).substr("00".dechex($baseB*.75),-2))."'>";
@@ -81,10 +81,10 @@ class Text {
 		}
 		$pages = count($result);
 		if ($pages == 1) {
-			$result[$page] = "<a href=\"text://".Text::makeHeader($name, $links).Settings::get("default_window_color").$result[$page]."\">$name</a>";
+			$result[$page] = "<a href=\"text://".Text::make_header($name, $links).Settings::get("default_window_color").$result[$page]."\">$name</a>";
 		} else {
 			forEach ($result as $page => $content) {
-				$result[$page] = "<a href=\"text://".Text::makeHeader("$name Page $page / $pages", $links).Settings::get("default_window_color").$result[$page]."\">$name</a> (Page <highlight>$page / $pages<end>)";
+				$result[$page] = "<a href=\"text://".Text::make_header("$name Page $page / $pages", $links).Settings::get("default_window_color").$result[$page]."\">$name</a> (Page <highlight>$page / $pages<end>)";
 			}
 		}
 		return $result;
