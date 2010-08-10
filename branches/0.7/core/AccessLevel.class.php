@@ -57,6 +57,9 @@ class AccessLevel {
 */	public static function get_description($access_level) {
 		$desc = '';
 		switch ($access_level) {
+			case NOACCESS:
+				$desc = "No Access";
+				break;
 			case SUPERADMIN:
 				$desc = "SuperAdmin";
 				break;
@@ -85,7 +88,8 @@ class AccessLevel {
 				$desc = "All";
 				break;
 			default:
-				echo "Error! Invalid access_level value specified: '$access_level'\b";
+				$desc = "All";
+				newLine("Error", 'AccessLevel.class.php', "Invalid access_level value specified: '$access_level'", 2);
 		}
 		return $desc;
 	}

@@ -142,7 +142,7 @@ class Budabot extends AOChat {
 						if(Settings::get('debug') > 0) print("MODULE_NAME: $entry.php \n");
 						include "./modules/$entry/$entry.php";
 					} else {
-						echo "Error! missing module registration file: './modules/$entry/$entry.php'\n";
+						newLine("Error", 'Budabot.class.php', "missing module registration file: './modules/$entry/$entry.php'", 2);
 					}
 				}
 			}
@@ -173,7 +173,7 @@ class Budabot extends AOChat {
 			$server = "chat.dt.funcom.com";
 			$port = 7109;
 		} else {
-			echo "No valid Server to connect with! Available dimensions are 1, 2, 3 and 4.\n";
+			newLine("Error", 'Budabot.class.php', "No valid Server to connect with! Available dimensions are 1, 2, 3 and 4", 2);
 		  	sleep(10);
 		  	die();
 		}
@@ -183,7 +183,7 @@ class Budabot extends AOChat {
 		$this->connect($server, $port);
 		sleep(2);
 		if ($this->state != "auth") {
-			echo "Connection failed! Please check your Internet connection and firewall.\n";
+			newLine("Error", 'Budabot.class.php', "Connection failed! Please check your Internet connection and firewall", 2);
 			sleep(10);
 			die();
 		}
@@ -192,7 +192,7 @@ class Budabot extends AOChat {
 		$this->authenticate($login, $password);
 		sleep(2);
 		if ($this->state != "login") {
-			echo "Authentication failed! Please check your username and password.\n";
+			newLine("Error", 'Budabot.class.php', "Authentication failed! Please check your username and password", 2);
 			sleep(10);
 			die();
 		}
@@ -201,7 +201,7 @@ class Budabot extends AOChat {
 		$this->login($this->name);
 		sleep(2);
 		if ($this->state != "ok") {
-			echo "Logging in of $this->name failed! Please check the character name and dimension.\n";
+			newLine("Error", 'Budabot.class.php', "Logging in of $this->name failed! Please check the character name and dimension", 2);
 			sleep(10);
 			die();
 		}
@@ -276,7 +276,6 @@ class Budabot extends AOChat {
 			}
 		} else if ($this->get_uid($who) != NULL) {// Target is a player.
     		$this->send_tell($who, Settings::get("default_tell_color").$message);
-			// Echo
 			if (Settings::get('echo') >= 1) newLine("Out. Msg.", $who, $message, Settings::get('echo'));
 		} else { // Public channels that are not myguild.
 	    	$this->send_group($who, Settings::get("default_guild_color").$message);
@@ -307,7 +306,6 @@ class Budabot extends AOChat {
 					// Add sender to the chatlist.
 					$this->chatlist[$char_id] = new WhoisXML($sender);
 					
-					// Echo
 					if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, "joined the channel.", Settings::get('echo'));
 
 					// Remove sender if they are /ignored or /banned or if spam filter is blocking them
@@ -336,7 +334,6 @@ class Budabot extends AOChat {
 				if ($channel == $this->vars['name']) {
 					$type = "leavePriv";
 
-					// Echo
 					if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, "left the channel.", Settings::get('echo'));
 
 					// Remove from Chatlist array.
@@ -373,7 +370,6 @@ class Budabot extends AOChat {
 				if ($status == 0) {
 					$type = "logOff"; // Set message type
 
-					// Echo
 					//if (Settings::get('echo') >= 1) newLine("Buddy", $sender, "logged off", Settings::get('echo'));
 
 					// Check files, for all 'player logged off events'
@@ -386,7 +382,6 @@ class Budabot extends AOChat {
 				} else if ($status == 1) {
 					$type = "logOn"; // Set Message Type
 
-					// Echo
 					if (Settings::get('echo') >= 1) newLine("Buddy", $sender, "logged on", Settings::get('echo'));
 
 					// Check files, for all 'player logged on events'.
@@ -413,7 +408,6 @@ class Budabot extends AOChat {
 
 				$message = html_entity_decode($message, ENT_QUOTES);
 
-				// Echo
 				if (Settings::get('echo') >= 1) newLine("Inc. Msg.", $sender, $message, Settings::get('echo'));
 
 				// AFK/bot check
@@ -522,7 +516,6 @@ class Budabot extends AOChat {
 
 					$type = "priv";
 
-					// Echo
 					if (Settings::get('echo') >= 1) newLine("Priv Group", $sender, $message, Settings::get('echo'));
 
 					$events = Event::find_active_events($type);
@@ -687,7 +680,6 @@ class Budabot extends AOChat {
 				$sender = $this->lookup_user($args[0]);
 				$char_id = $args[0];
 
-				// Echo
 				if (Settings::get('echo') >= 1) newLine("Priv Group Invitation", $sender, " channel invited.", Settings::get('echo'));
 
 				$events = Event::find_active_events($type);

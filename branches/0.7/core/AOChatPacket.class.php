@@ -119,13 +119,13 @@ class AOChatPacket {
 		$pmap = self::$packet_map[$dir][$type];
 
 		if (!$pmap) {
-			echo "Unsupported packet type (". $dir . ", " . $type . ")\n";
+			newLine("Error", 'AOChatPacket.class.php', "Unsupported packet type ($dir, $type)", 2);
 			return false;
 		}
 
 		if ($dir == "in") {
 			if (!is_string($data)) {
-				echo "Incorrect argument for incoming packet, expecting a string.\n";
+				newLine("Error", 'AOChatPacket.class.php', "Incorrect argument for incoming packet, expecting a string", 2);
 				return false;
 			}
 
@@ -167,8 +167,8 @@ class AOChatPacket {
 						break;
 
 					default :
-						echo "Unknown argument type! (" . $sa . ")\n";
-						continue(2);
+						newLine("Error", 'AOChatPacket.class.php', "Unknown argument type! ($sa)", 2);
+						continue 2;
 				}
 				$this->args[] = $res;
 			}
@@ -185,7 +185,7 @@ class AOChatPacket {
 				$it = array_shift($args);
 
 				if (is_null($it)) {
-					echo "Missing argument for packet.\n";
+					newLine("Error", 'AOChatPacket.class.php', "Missing argument for packet", 2);
 					break;
 				}
 
@@ -209,7 +209,7 @@ class AOChatPacket {
 						break;
 
 					default :
-						echo "Unknown argument type! (" . $sa . ")\n";
+						newLine("Error", 'AOChatPacket.class.php', "Unknown argument type! ($sa)", 2);
 						continue(2);
 				}
 			}

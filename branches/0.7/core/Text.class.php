@@ -109,7 +109,7 @@ class Text {
 		} else if ($type == "user") { // Adds support for right clicking usernames in chat, providing you with a menu of options (ignore etc.) (see 18.1 AO patchnotes)
 			return "<a href='user://$content'>$name</a>";
 		} else {
-			echo "Invalid type: '$type' \n";
+			newLine("Error", 'Text.class.php', "Invalid type: '$type'", 2);
 		}
 	}
 	

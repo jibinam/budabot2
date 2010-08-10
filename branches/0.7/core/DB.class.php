@@ -106,10 +106,7 @@ class DB {
 
 		$error = $this->sql->errorInfo();
 		if($error[0] != "00000") {
-			echo "\nCould not run query: \n";
-			echo "Error msg: $error[2]\n";
-			echo "Query: $stmt\n\n";
-			newLine("SqlError", "", "Error in: $stmt", 0);
+			newLine("SqlError", "DB.class.php", "Error msg: $error[2] in: $stmt", 2);
 		}
 
 		return($result);				
@@ -132,10 +129,7 @@ class DB {
 
 		$error = $this->sql->errorInfo();
 		if($error[0] != "00000") {
-			echo "\nCould not run query: \n";
-			echo "Error msg: $error[2]\n";
-			echo "Query: $stmt\n\n";
-			newLine("SqlError", "", "Error in: $stmt", 0);
+			newLine("SqlError", "DB.class.php", "Error msg: $error[2] in: $stmt", 2);
 		}
 
 		return($aff_rows);		
@@ -155,10 +149,7 @@ class DB {
 
 		$error = $this->sql->errorInfo();
 		if($error[0] != "00000") {
-			echo "\nCould not run query: \n";
-			echo "Error msg: $error[2]\n";
-			echo "Query: $stmt\n\n";
-			newLine("SqlError", "", "Error in: $stmt", 0);
+			newLine("SqlError", "DB.class.php", "Error msg: $error[2] in: $stmt", 2);
 		}
 	}
 
@@ -262,7 +253,7 @@ class DB {
 		
 		// only letters, numbers, underscores are allowed
 		if (!preg_match('/^[a-z0-9_]+$/', $name)) {
-			echo "Invalid SQL file name: '$name' for module: '$module'!  Only numbers, letters, and underscores permitted!\n";
+			newLine("Error", "DB.class.php", "Invalid SQL file name: '$name' for module: '$module'.  Only numbers, letters, and underscores permitted.", 2);
 			return;
 		}
 		
@@ -304,7 +295,7 @@ class DB {
 		}
 		
 		if ($file === false) {
-			echo "No SQL file found with name '$name'!\n";
+			newLine("Error", "DB.class.php", "No SQL file found with name '$name'", 2);
 		} else if ($forceUpdate || compareVersionNumbers($maxFileVersion, $currentVersion) > 0) {
 			// if the file had a version, tell them the start and end version
 			// otherwise, just tell them we're updating the database

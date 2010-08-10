@@ -97,22 +97,22 @@ unset($vars['password']);
 
 //////////////////////////////////////////////////////////////
 // Create new objects
-	global $db;
-	$db = new DB($settings["DB Type"], $settings["DB Name"], $settings["DB Host"], $settings["DB username"], $settings["DB password"]);
-	if($db->errorCode != 0) {
-	  	echo "Error in creating Database Object\n";
-	  	echo "ErrorMsg: $db->errorInfo";
-	  	sleep(5);
-	  	die();
-	}
-	
-	$chatBot = new Budabot($vars, $settings);
-	if(!$chatBot)
-		die("No Chatbot.....");
+global $db;
+$db = new DB($settings["DB Type"], $settings["DB Name"], $settings["DB Host"], $settings["DB username"], $settings["DB password"]);
+if($db->errorCode != 0) {
+	newLine("Error", 'main.php', "Error in creating Database Object: $db->errorInfo", 2);
+	sleep(5);
+	die();
+}
+
+$chatBot = new Budabot($vars, $settings);
+if (!$chatBot) {
+	die("No Chatbot.....");
+}
 
 /////////////////////////////////////////////
 // log on aoChat, msnChat                  //
-	$chatBot->connectAO($login, $password);//		
+$chatBot->connectAO($login, $password);//		
 /////////////////////////////////////////////
 
 //Clear the login and the password	
