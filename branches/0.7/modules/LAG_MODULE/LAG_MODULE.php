@@ -6,5 +6,5 @@
 
 	$MODULE_NAME = "LAG_MODULE";
 
-	Command::register("", $MODULE_NAME, "lag.php", "lag", ALL, "Shows options you can use to reduce lag");
+	Command::register($MODULE_NAME, "lag.php", "lag", ALL, "Shows options you can use to reduce lag");
 ?>

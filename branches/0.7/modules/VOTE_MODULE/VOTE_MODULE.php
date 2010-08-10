@@ -3,7 +3,7 @@
 	
 	Event::register("setup", $MODULE_NAME, "setup.php");
 
-	Command::register("", $MODULE_NAME, "vote.php", "vote", ALL, "Vote/Polling");
+	Command::register($MODULE_NAME, "vote.php", "vote", ALL, "Vote/Polling");
 	
 	Settings::add("vote_channel_spam", $MODULE_NAME, "Showing Vote status messages in", "edit", "2", "PrivateGroup;Guild;PrivateGroup and Guild;Neither", "0;1;2;3", MODERATOR, "vote_settings.txt");
 	Settings::add("vote_add_new_choices", $MODULE_NAME, "Can users add in there own choices?", "edit", "1", "No;Yes", "0;1", MODERATOR, "vote_settings.txt");

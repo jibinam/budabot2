@@ -39,9 +39,9 @@
 	DB::loadSQLFile($MODULE_NAME, "nanolines");
 
 	//Private
-	Command::register("", $MODULE_NAME, "nanolines.php", "nanolines", ALL, "Shows a list of professions to choose from");
-	Command::register("", $MODULE_NAME, "nlprof.php", "nlprof", ALL, "Shows a list of nanolines given a profession");
-	Command::register("", $MODULE_NAME, "nlline.php", "nlline", ALL, "Shows a list of nanos given a nanoline");
+	Command::register($MODULE_NAME, "nanolines.php", "nanolines", ALL, "Shows a list of professions to choose from");
+	Command::register($MODULE_NAME, "nlprof.php", "nlprof", ALL, "Shows a list of nanolines given a profession");
+	Command::register($MODULE_NAME, "nlline.php", "nlline", ALL, "Shows a list of nanos given a nanoline");
 
 	//Help
 	Help::register("Nanolines", $MODULE_NAME, "nanolines.txt", ALL, "Nanolines help");

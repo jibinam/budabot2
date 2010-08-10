@@ -4,10 +4,10 @@
 	Event::register("setup", $MODULE_NAME, "setup.php");
 
 	// Timer Module
-	Command::register("", $MODULE_NAME, "timers.php", "timer", GUILDMEMBER, "Set Personal Timers");
-	Command::register("", $MODULE_NAME, "timers.php", "timers", GUILDMEMBER, "Shows running Timers");
-	Command::register("", $MODULE_NAME, "countdown.php", "countdown", GUILDMEMBER, "Set a countdown");
-	Command::register("", $MODULE_NAME, "countdown.php", "cd", GUILDMEMBER, "Set a countdown");
+	Command::register($MODULE_NAME, "timers.php", "timer", GUILDMEMBER, "Set Personal Timers");
+	Command::register($MODULE_NAME, "timers.php", "timers", GUILDMEMBER, "Shows running Timers");
+	Command::register($MODULE_NAME, "countdown.php", "countdown", GUILDMEMBER, "Set a countdown");
+	Command::register($MODULE_NAME, "countdown.php", "cd", GUILDMEMBER, "Set a countdown");
 
 	Event::register("2sec", $MODULE_NAME, "timers_check.php", "timer", "Checks timers and periodically updates chat with time left");
 	

@@ -28,13 +28,13 @@
 	DB::loadSQLFile($MODULE_NAME, "tower_watch");
 
 	//adds tower info to 'watch' list
-	Command::register("", $MODULE_NAME, "scout.php", "scout", GUILDMEMBER, "adds tower info to watch list");
+	Command::register($MODULE_NAME, "scout.php", "scout", GUILDMEMBER, "adds tower info to watch list");
 	
 	// removes tower info from 'watch' list
-	Command::register("", $MODULE_NAME, "remscout.php", "remscout", GUILDMEMBER, "removes tower info from watch list");
+	Command::register($MODULE_NAME, "remscout.php", "remscout", GUILDMEMBER, "removes tower info from watch list");
 	
 	//shows the open times for each tower site on the 'watch' list
-	Command::register("", $MODULE_NAME, "opentimes.php", "opentimes", GUILDMEMBER, "shows status of towers");
+	Command::register($MODULE_NAME, "opentimes.php", "opentimes", GUILDMEMBER, "shows status of towers");
 	
 	//Help files
 	Help::register("Tower Watch", $MODULE_NAME, "tower_watch.txt", GUILDMEMBER, "Tower Watch Help");

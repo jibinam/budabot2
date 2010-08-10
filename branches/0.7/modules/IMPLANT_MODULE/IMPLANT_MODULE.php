@@ -42,8 +42,8 @@
 	DB::loadSQLFile($MODULE_NAME, "implant");
 
 	//Private
-	Command::register("", $MODULE_NAME, "impql.php", "impql", ALL, "Shows stats for implant at given ql");
-	Command::register("", $MODULE_NAME, "impreq.php", "impreq", ALL, "Shows the highest ql implant that can be worn given treatment and ability");
+	Command::register($MODULE_NAME, "impql.php", "impql", ALL, "Shows stats for implant at given ql");
+	Command::register($MODULE_NAME, "impreq.php", "impreq", ALL, "Shows the highest ql implant that can be worn given treatment and ability");
 
 	//Help
 	Help::register("Implant", $MODULE_NAME, "implant.txt", ALL, "Implant help");

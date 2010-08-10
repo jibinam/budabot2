@@ -6,8 +6,8 @@
 	Event::register("24hrs", $MODULE_NAME, "quotestats.php", "none", "Update Quote Stats");
 
 	//Commands
-	Command::register("", $MODULE_NAME, "quotestats.php", "quoteupdate", MODERATOR, "Update Quote Stats");
-	Command::register("", $MODULE_NAME, "quote.php", "quote", ALL, "Add/Remove/View Quotes");
+	Command::register($MODULE_NAME, "quotestats.php", "quoteupdate", MODERATOR, "Update Quote Stats");
+	Command::register($MODULE_NAME, "quote.php", "quote", ALL, "Add/Remove/View Quotes");
 
 	//Help files
 	Help::register("quote", $MODULE_NAME, "quote.txt", ALL, "Add/Remove/View Quotes");

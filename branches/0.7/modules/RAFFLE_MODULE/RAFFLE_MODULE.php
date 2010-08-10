@@ -6,10 +6,10 @@
 	Event::register("setup", $MODULE_NAME, "setup.php");
 
 	//raffle message
-	Command::register("", $MODULE_NAME, "raffle.php", "raffle", GUILDMEMBER);
-	Command::register("", $MODULE_NAME, "status.php", "rafflestatus", GUILDMEMBER);
-	Command::register("", $MODULE_NAME, "join.php", "joinRaffle", GUILDMEMBER);
-	Command::register("", $MODULE_NAME, "leave.php", "leaveRaffle", GUILDMEMBER);
+	Command::register($MODULE_NAME, "raffle.php", "raffle", GUILDMEMBER);
+	Command::register($MODULE_NAME, "status.php", "rafflestatus", GUILDMEMBER);
+	Command::register($MODULE_NAME, "join.php", "joinRaffle", GUILDMEMBER);
+	Command::register($MODULE_NAME, "leave.php", "leaveRaffle", GUILDMEMBER);
 
 	//timer
 	Event::register("2sec", $MODULE_NAME, "check_winner.php", "", "Checks to see if raffle is over");

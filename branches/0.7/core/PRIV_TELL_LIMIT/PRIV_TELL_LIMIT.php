@@ -4,30 +4,30 @@
 	$this->loadSqlFile($MODULE_NAME, 'whitelist');
 	
 	//Set/Show Limits
-	Command::register("", $MODULE_NAME, "config.php", "limits", MODERATOR);
-	Command::register("", $MODULE_NAME, "config.php", "limit", MODERATOR);
-	Command::register("", $MODULE_NAME, "whitelist.php", "whitelist", MODERATOR);
+	Command::register($MODULE_NAME, "config.php", "limits", MODERATOR);
+	Command::register($MODULE_NAME, "config.php", "limit", MODERATOR);
+	Command::register($MODULE_NAME, "whitelist.php", "whitelist", MODERATOR);
 
 	//Set/Show minlvl for Tells
-	Command::register("", $MODULE_NAME, "set_limits_tells.php", "tminlvl", MODERATOR);
+	Command::register($MODULE_NAME, "set_limits_tells.php", "tminlvl", MODERATOR);
 
 	//Set/Show general limit for Tells
-	Command::register("", $MODULE_NAME, "set_limits_tells.php", "topen", MODERATOR);
+	Command::register($MODULE_NAME, "set_limits_tells.php", "topen", MODERATOR);
 
 	//Set/Show faction limit for Tells
-	Command::register("", $MODULE_NAME, "set_limits_tells.php", "tfaction", MODERATOR);
+	Command::register($MODULE_NAME, "set_limits_tells.php", "tfaction", MODERATOR);
 
 	//Set/Show minlvl for privategroup
-	Command::register("", $MODULE_NAME, "set_limits_priv.php", "minlvl", MODERATOR);
+	Command::register($MODULE_NAME, "set_limits_priv.php", "minlvl", MODERATOR);
 
 	//Set/Show general limit for privategroup
-	Command::register("", $MODULE_NAME, "set_limits_priv.php", "open", MODERATOR);
+	Command::register($MODULE_NAME, "set_limits_priv.php", "open", MODERATOR);
 
 	//Set/Show faction limit for privategroup
-	Command::register("", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
+	Command::register($MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
 
 	//Set/Show faction limit for privategroup
-	Command::register("", $MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
+	Command::register($MODULE_NAME, "set_limits_priv.php", "faction", MODERATOR);
 
 	//Settings
 	Settings::add("priv_req_lvl", $MODULE_NAME, "Private Channel Min Level Limit", "noedit", "0", "none", "0", MODERATOR, "help_minlvl.txt");

@@ -4,12 +4,12 @@
 	//Tower messages
     Event::register("towers", $MODULE_NAME, "towers_messages.php", "none", "Show Attack Messages in chat"); 
 	
-	Command::register("", $MODULE_NAME, "towers_result.php", "battle", ALL, "Shows the last Tower Attack messages");
-	Command::register("", $MODULE_NAME, "towers_result.php", "battles", ALL, "Shows the last Tower Attack messages");  // alias for !battle
-  	Command::register("", $MODULE_NAME, "towers_result.php", "victory", ALL, "Shows the last Tower Battle results");
+	Command::register($MODULE_NAME, "towers_result.php", "battle", ALL, "Shows the last Tower Attack messages");
+	Command::register($MODULE_NAME, "towers_result.php", "battles", ALL, "Shows the last Tower Attack messages");  // alias for !battle
+  	Command::register($MODULE_NAME, "towers_result.php", "victory", ALL, "Shows the last Tower Battle results");
 
 	//Land Control Areas
-  	Command::register("", $MODULE_NAME, "land_control_areas.php", "lca", ALL, "Shows Infos about Land Control Areas");
+  	Command::register($MODULE_NAME, "land_control_areas.php", "lca", ALL, "Shows Infos about Land Control Areas");
 
 	Settings::add("tower_attack_spam", $MODULE_NAME, "Layout types when displaying tower attacks", "edit", "1", "off;compact;normal;full", '0;1;2;3', MODERATOR);
 	Settings::add("tower_faction_def", $MODULE_NAME, "Display certain factions defending", "edit", "7", "none;clan;neutral;clan+neutral;omni;clan+omni;neutral+omni;all", '0;1;2;3;4;5;6;7', MODERATOR);

@@ -35,6 +35,6 @@
 
 	$MODULE_NAME = "STATS_MODULE";
 
-	Command::register("", $MODULE_NAME, "stats.php", "stats", ALL, "Shows links that you can click on to see your stats for certain, unseen skills");
+	Command::register($MODULE_NAME, "stats.php", "stats", ALL, "Shows links that you can click on to see your stats for certain, unseen skills");
 
 ?>

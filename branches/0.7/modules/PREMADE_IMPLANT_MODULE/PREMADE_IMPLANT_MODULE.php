@@ -29,8 +29,8 @@
 	Event::register("setup", $MODULE_NAME, "setup.php");
 
 	//adds tower info to 'watch' list
-	Command::register("", $MODULE_NAME, "premade.php", "premade", ALL, "Searches for implants out of the premade implants booths");
-	Command::register("", $MODULE_NAME, "premade_update.php", "premadeupdate", ALL, "Checks the premade imp db for updates");
+	Command::register($MODULE_NAME, "premade.php", "premade", ALL, "Searches for implants out of the premade implants booths");
+	Command::register($MODULE_NAME, "premade_update.php", "premadeupdate", ALL, "Checks the premade imp db for updates");
 	
 	//Help files
 	Help::register("Premade Implants", $MODULE_NAME, "premade_implant.txt", ALL, "Premade Implant Help");

@@ -32,7 +32,7 @@
 	
 	//Commands
 	Command::register("msg", $MODULE_NAME, "irc_connect.php", "startirc", ADMIN, "Connect to IRC");
-	Command::register("", $MODULE_NAME, "online_irc.php", "onlineirc", ALL, "View who is in IRC chat");
+	Command::register($MODULE_NAME, "online_irc.php", "onlineirc", ALL, "View who is in IRC chat");
 	
 	//Command settings
 	Command::register("msg", $MODULE_NAME, "set_irc_settings.php", "setirc", ADMIN, "Manually set IRC settings");

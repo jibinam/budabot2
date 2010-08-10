@@ -3,20 +3,20 @@
 	
 	DB::loadSQLFile($MODULE_NAME, "private_chat");
     
-    Command::register("", $MODULE_NAME, "members.php", "members", ALL, "Guest Channel Auto-Invitelist");
-    Command::register("", $MODULE_NAME, "onlineguests.php", "onlineguests", ALL, "Guest Channellist");
-	Command::register("", $MODULE_NAME, "autoinvite.php", "autoinvite", ALL, "Allows member to set whether he should be auto-invited to guest channel on logon or not");
+    Command::register($MODULE_NAME, "members.php", "members", ALL, "Guest Channel Auto-Invitelist");
+    Command::register($MODULE_NAME, "onlineguests.php", "onlineguests", ALL, "Guest Channellist");
+	Command::register($MODULE_NAME, "autoinvite.php", "autoinvite", ALL, "Allows member to set whether he should be auto-invited to guest channel on logon or not");
     Command::register("guild msg", $MODULE_NAME, "join.php", "join", ALL, "Join command for guests");
 	Command::register("priv msg", $MODULE_NAME, "leave.php", "leave", ALL, "Enables Privatechat Kick");
 
-	Command::register("", $MODULE_NAME, "kickall.php", "kickall", MODERATOR, "Kicks all from the privgroup");
-	Command::register("", $MODULE_NAME, "lock.php", "lock", RAIDLEADER, "Locks the privgroup");
-	Command::register("", $MODULE_NAME, "lock.php", "unlock", RAIDLEADER, "Unlocks the privgroup");
+	Command::register($MODULE_NAME, "kickall.php", "kickall", MODERATOR, "Kicks all from the privgroup");
+	Command::register($MODULE_NAME, "lock.php", "lock", RAIDLEADER, "Locks the privgroup");
+	Command::register($MODULE_NAME, "lock.php", "unlock", RAIDLEADER, "Unlocks the privgroup");
 	
-	Command::register("", $MODULE_NAME, "invite.php", "inviteuser", ALL, "Enables Privatechat Join");
-	Command::register("", $MODULE_NAME, "kick.php", "kickuser", ALL, "kick command for guests");
-	Command::register("", $MODULE_NAME, "add.php", "adduser", ALL, "Enables Privatechat Join");
-	Command::register("", $MODULE_NAME, "rem.php", "remuser", ALL, "Enables Privatechat Join");
+	Command::register($MODULE_NAME, "invite.php", "inviteuser", ALL, "Enables Privatechat Join");
+	Command::register($MODULE_NAME, "kick.php", "kickuser", ALL, "kick command for guests");
+	Command::register($MODULE_NAME, "add.php", "adduser", ALL, "Enables Privatechat Join");
+	Command::register($MODULE_NAME, "rem.php", "remuser", ALL, "Enables Privatechat Join");
 	
 	Settings::add("guest_man_join", $MODULE_NAME, "Mode of manual guestchannel join", "edit", "1", "Only for members of guestlist;Everyone", "1;0");
 	Settings::add("guest_color_channel", $MODULE_NAME, "Color for Guestchannelrelay(ChannelName)", "edit", "<font color=#C3C3C3>", "color");

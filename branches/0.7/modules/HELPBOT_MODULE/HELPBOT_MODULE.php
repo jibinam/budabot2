@@ -2,47 +2,47 @@
 	$MODULE_NAME = "HELPBOT_MODULE";
 
 	//KOS-List Part
-	Command::register("", $MODULE_NAME, "kos_list.php", "kos", ALL, "Shows the Kill On Sight List");
+	Command::register($MODULE_NAME, "kos_list.php", "kos", ALL, "Shows the Kill On Sight List");
 
 	//Time Part
-	Command::register("", $MODULE_NAME, "time.php", "time", ALL, "Shows the time in the different timezones");
+	Command::register($MODULE_NAME, "time.php", "time", ALL, "Shows the time in the different timezones");
 
     //Whois Part
-	Command::register("", $MODULE_NAME, "whois.php", "whois", ALL, "Char Infos (only current dim)");
+	Command::register($MODULE_NAME, "whois.php", "whois", ALL, "Char Infos (only current dim)");
 
     //Whoisall Part
-	Command::register("", $MODULE_NAME, "whois.php", "whoisall", ALL, "Char Infos (all dim)");
+	Command::register($MODULE_NAME, "whois.php", "whoisall", ALL, "Char Infos (all dim)");
 
 	//Whoisorg Part
-	Command::register("", $MODULE_NAME, "whois.php", "whoisorg", ALL, "Org Infos");
+	Command::register($MODULE_NAME, "whois.php", "whoisorg", ALL, "Org Infos");
 
 	//Biomaterial identification
-	Command::register("", $MODULE_NAME, "biomat_identify.php", "bio", ALL, "Biomaterial Identify");
+	Command::register($MODULE_NAME, "biomat_identify.php", "bio", ALL, "Biomaterial Identify");
 	
 	//Calculator
-	Command::register("", $MODULE_NAME, "calc.php", "calc", ALL, "Calculator");
+	Command::register($MODULE_NAME, "calc.php", "calc", ALL, "Calculator");
 
 	//OE Calculator
-	Command::register("", $MODULE_NAME, "oe.php", "oe", ALL, "OE");
+	Command::register($MODULE_NAME, "oe.php", "oe", ALL, "OE");
 
 	//Flip or Roll command
-	Command::register("", $MODULE_NAME, "roll.php", "flip", ALL, "Flip a coin");
-	Command::register("", $MODULE_NAME, "roll.php", "roll", ALL, "Roll a random number");
+	Command::register($MODULE_NAME, "roll.php", "flip", ALL, "Flip a coin");
+	Command::register($MODULE_NAME, "roll.php", "roll", ALL, "Roll a random number");
 
 	//Player History
-	Command::register("", $MODULE_NAME, "player_history.php", "history", ALL, "Show a history of a player");
+	Command::register($MODULE_NAME, "player_history.php", "history", ALL, "Show a history of a player");
 	
 	//Smileys
-	Command::register("", $MODULE_NAME, "smileys.php", "smileys", ALL, "The meaning of different Smileys");
+	Command::register($MODULE_NAME, "smileys.php", "smileys", ALL, "The meaning of different Smileys");
 	
 	//Inspect
-	Command::register("", $MODULE_NAME, "inspect.php", "inspect", ALL, "Inspects Christmas/Eart Gifts and Peren. Containers");
+	Command::register($MODULE_NAME, "inspect.php", "inspect", ALL, "Inspects Christmas/Eart Gifts and Peren. Containers");
 	
 	//Alien City Generals
-	Command::register("", $MODULE_NAME, "aigen.php", "aigen", ALL, "Info about Alien City Generals(which VBs they drop)");
+	Command::register($MODULE_NAME, "aigen.php", "aigen", ALL, "Info about Alien City Generals(which VBs they drop)");
 	
 	//Alien Armor
-	Command::register("", $MODULE_NAME, "aiarmor.php", "aiarmor", ALL, "Tradeskillprocess for Alien Armor");
+	Command::register($MODULE_NAME, "aiarmor.php", "aiarmor", ALL, "Tradeskillprocess for Alien Armor");
 
 	//Setup
 	Event::register("setup", $MODULE_NAME, "setup.php");

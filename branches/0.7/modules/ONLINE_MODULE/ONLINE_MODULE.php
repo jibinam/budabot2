@@ -2,27 +2,27 @@
 	$MODULE_NAME = "ONLINE_MODULE";
 
 	//Lastseen
-	Command::register("", $MODULE_NAME, "lastseen.php", "lastseen", GUILDMEMBER, "Shows the logoff time of a player");
+	Command::register($MODULE_NAME, "lastseen.php", "lastseen", GUILDMEMBER, "Shows the logoff time of a player");
 
 	//Online
-	Command::register("", $MODULE_NAME, "online.php", "online", MEMBER, "Shows who is the PrivChan");
-	Command::register("", $MODULE_NAME, "chatlist.php", "sm", MEMBER, "Shows who is the PrivChan");
-	Command::register("", $MODULE_NAME, "chatlist.php", "chatlist", MEMBER, "Shows who is the PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "count", MEMBER, "Shows who is the PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "adv", MEMBER, "Shows Adventurers in PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "agent", MEMBER, "Shows Agents in PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "crat", MEMBER, "Shows Bureaucrats in PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "doc", MEMBER, "Shows Doctors in PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "enf", MEMBER, "Shows Enforcers in PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "eng", MEMBER, "Shows Engineers in PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "fix", MEMBER, "Shows Fixers in PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "keep", MEMBER, "Shows Keepers in PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "ma", MEMBER, "Shows Martial-Artists in PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "mp", MEMBER, "Shows Meta-Physicists in PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "nt", MEMBER, "Shows Nano-Technicians in PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "sol", MEMBER, "Shows Soldiers in PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "shade", MEMBER, "Shows Shades in PrivChan");
-	Command::register("", $MODULE_NAME, "count.php", "trader", MEMBER, "Shows Traders in PrivChan");
+	Command::register($MODULE_NAME, "online.php", "online", MEMBER, "Shows who is the PrivChan");
+	Command::register($MODULE_NAME, "chatlist.php", "sm", MEMBER, "Shows who is the PrivChan");
+	Command::register($MODULE_NAME, "chatlist.php", "chatlist", MEMBER, "Shows who is the PrivChan");
+	Command::register($MODULE_NAME, "count.php", "count", MEMBER, "Shows who is the PrivChan");
+	Command::register($MODULE_NAME, "count.php", "adv", MEMBER, "Shows Adventurers in PrivChan");
+	Command::register($MODULE_NAME, "count.php", "agent", MEMBER, "Shows Agents in PrivChan");
+	Command::register($MODULE_NAME, "count.php", "crat", MEMBER, "Shows Bureaucrats in PrivChan");
+	Command::register($MODULE_NAME, "count.php", "doc", MEMBER, "Shows Doctors in PrivChan");
+	Command::register($MODULE_NAME, "count.php", "enf", MEMBER, "Shows Enforcers in PrivChan");
+	Command::register($MODULE_NAME, "count.php", "eng", MEMBER, "Shows Engineers in PrivChan");
+	Command::register($MODULE_NAME, "count.php", "fix", MEMBER, "Shows Fixers in PrivChan");
+	Command::register($MODULE_NAME, "count.php", "keep", MEMBER, "Shows Keepers in PrivChan");
+	Command::register($MODULE_NAME, "count.php", "ma", MEMBER, "Shows Martial-Artists in PrivChan");
+	Command::register($MODULE_NAME, "count.php", "mp", MEMBER, "Shows Meta-Physicists in PrivChan");
+	Command::register($MODULE_NAME, "count.php", "nt", MEMBER, "Shows Nano-Technicians in PrivChan");
+	Command::register($MODULE_NAME, "count.php", "sol", MEMBER, "Shows Soldiers in PrivChan");
+	Command::register($MODULE_NAME, "count.php", "shade", MEMBER, "Shows Shades in PrivChan");
+	Command::register($MODULE_NAME, "count.php", "trader", MEMBER, "Shows Traders in PrivChan");
 
 	//Settings
 	Settings::add("relaydb", $MODULE_NAME, "Database for merging online lists", "edit", "0", "text", '0', MODERATOR);

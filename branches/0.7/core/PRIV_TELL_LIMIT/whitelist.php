@@ -1,7 +1,7 @@
 <?php
 
 if (preg_match("/^whitelist$/", $message)) {
-	$list = Whitelist::all();
+	$list = Whitelist::find_all();
 	if (count($list) == 0) {
 		$this->send("No entries in whitelist", $sendto);
 	} else {

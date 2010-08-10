@@ -5,7 +5,7 @@
 	Event::register("setup", $MODULE_NAME, "setup.php");
     
 	// Logon Handling
-	Command::register("", $MODULE_NAME, "logon_msg.php", "logon", ALL, "Sets a Logon Msg");
+	Command::register($MODULE_NAME, "logon_msg.php", "logon", ALL, "Sets a Logon Msg");
 
     // Afk Check
 	Event::register("guild", $MODULE_NAME, "afk_check.php", "none", "Afk check");
@@ -16,15 +16,15 @@
 	Event::register("1hour", $MODULE_NAME, "online_check.php", "online", "Online check");
 
     // Alternative Characters
-	Command::register("", $MODULE_NAME, "alts.php", "alts", ALL, "Alt Char handling");
-	Command::register("", $MODULE_NAME, "alts.php", "altsadmin", MODERATOR, "Alt Char handling (admin)");
+	Command::register($MODULE_NAME, "alts.php", "alts", ALL, "Alt Char handling");
+	Command::register($MODULE_NAME, "alts.php", "altsadmin", MODERATOR, "Alt Char handling (admin)");
 
     // Show orgmembers
-	Command::register("", $MODULE_NAME, "orgmembers.php", "orgmembers", ALL, "Show the Members(sorted by name) of the org");
-	Command::register("", $MODULE_NAME, "orgranks.php", "orgranks", ALL, "Show the Members(sorted by rank) of the org");
+	Command::register($MODULE_NAME, "orgmembers.php", "orgmembers", ALL, "Show the Members(sorted by name) of the org");
+	Command::register($MODULE_NAME, "orgranks.php", "orgranks", ALL, "Show the Members(sorted by rank) of the org");
 
 	//Force an update of the org roster
-	Command::register("", $MODULE_NAME, "updateorg.php", "updateorg", MODERATOR, "Forcing an update of the org roster");
+	Command::register($MODULE_NAME, "updateorg.php", "updateorg", MODERATOR, "Forcing an update of the org roster");
 	
 	//Tell and Tellall
 	Command::register("guild msg", $MODULE_NAME, "tell.php", "tell", LEADER, "Repeats an message 3 times in Orgchat");

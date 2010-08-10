@@ -37,7 +37,7 @@
 
 	$MODULE_NAME = "TRICKLE_MODULE";
 
-	Command::register("", $MODULE_NAME, "trickle.php", "trickle", ALL, "Shows how much skills you will gain by increasing an ability");
+	Command::register($MODULE_NAME, "trickle.php", "trickle", ALL, "Shows how much skills you will gain by increasing an ability");
 
 	//Help
 	Help::register("Trickle", $MODULE_NAME, "trickle.txt", ALL, "Trickle help");
