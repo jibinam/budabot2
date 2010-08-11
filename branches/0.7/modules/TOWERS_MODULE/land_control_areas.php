@@ -52,7 +52,7 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 		$list .= "\n";
 	}
 
-	while($row = $db->fObject()) {
+	while ($row = $db->fObject()) {
 	 	if ($playfield != $row->playfield) {
 	 	 	$playfield = $row->playfield;
 	 		$list .= "<highlight><u>$row->playfield</u><end>\n";
