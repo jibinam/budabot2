@@ -1,4 +1,6 @@
 <?php
+	require_once 'Level.class.php';
+
 	$MODULE_NAME = "LEVEL_MODULE";
 	
 	DB::loadSQLFile($MODULE_NAME, 'levels');

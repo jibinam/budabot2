@@ -96,7 +96,6 @@ if (preg_match("/^axp$/i", $message)) {
 
     $msg = Text::makeBlob("AXP Table", $msg);
 
-    // Send info back
     $this->send($msg, $sendto);
 } else if (preg_match("/^axp ([0-9]+)$/i", $message, $arr)) {
     if ($arr[1] >= 1 && $arr[1] <= 30) {
@@ -105,7 +104,6 @@ if (preg_match("/^axp$/i", $message)) {
         $msg = "You need to specify a lvl between 1 and 30.";
 	}
 
-    // Send info back
     $this->send($msg, $sendto);
 } else if (preg_match("/^axp ([0-9]+) ([0-9]+)$/i", $message, $arr)) {
     if ($arr[1] >= 0 && $arr[1] <= 30 && $arr[2] >= 1 && $arr[2] <= 30) {
@@ -121,7 +119,6 @@ if (preg_match("/^axp$/i", $message)) {
         $msg = "You need to specify a lvl between 1 and 30.";
 	}
 
-    // Send info back
     $this->send($msg, $sendto);
 } else {
 	$syntax_error = true;
