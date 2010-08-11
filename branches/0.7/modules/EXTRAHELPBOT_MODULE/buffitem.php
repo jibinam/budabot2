@@ -1,7 +1,6 @@
 <?php
 	include 'buffstuffalias.php';
 	include 'buffstuffdb.php';
-	include 'db_utils.php';
 
 	$header = "<header>::::: Buff item info :::::<end>\n\n";
 	$footer = "by Imoutochan, RK1";
@@ -23,7 +22,7 @@
 		$results = array();
 		$found = 0;
 		// search item line database
-		foreach ($buffitems as $key => $value) {
+		forEach ($buffitems as $key => $value) {
 			unset($info);
 			if (matches($key, $name)) {
 				$found++;
@@ -32,7 +31,7 @@
 			}
 		}
 		// search  item alias database
-		foreach ($aliases as $key => $values) {
+		forEach ($aliases as $key => $values) {
 			unset($info);
 			if (contains($values, $name) && !(duplicate($key, $results))) {
 				$found++;

@@ -1,4 +1,6 @@
 <?php
+	require_once 'db_utils.php';
+
 	$MODULE_NAME = "EXTRAHELPBOT_MODULE";
  
 	Command::register($MODULE_NAME, "mobloot.php", "mobloot", ALL, "loot QL Infos ");

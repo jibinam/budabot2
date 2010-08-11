@@ -1,6 +1,5 @@
 <?php
 	include 'buffstuffdb.php';
-	include 'db_utils.php';
 	
 	// help screen
 	$header = "<header>::::: Buff item helper - Version 1.00 :::::<end>\n\n";
@@ -22,49 +21,57 @@
 		// check if key words are unambiguous
 		$skills = array();
 		$results = array();
-		foreach ($skill_list as $skill) {
+		forEach ($skill_list as $skill) {
 			if (matches($skill, $name)) {
 				array_unshift($skills, $skill);
 			}
 		}
 
 		switch (sizeof($skills)) {
-			case 0: $this->send("There is no such skill, or at least no twink relevant skill going by that name.", $sendto); 	// skill does not exist
-					return;
-			case 1: $info = "";										// exactly one matching skill
-					$found = 0;
-					foreach ($buffitems as $key => $item_info) {	
-						if (contains($item_info, $skills[0])) {
-							$found++;
-							$info .= "- <a href='chatcmd:///tell <myname> <symbol>buffitem $key'>$key</a>\n";
-	  					}
+			case 0:
+				// skill does not exist
+				$this->send("There is no such skill, or at least no twink relevant skill going by that name.", $sendto);
+				return;
+			case 1:
+				// exactly one matching skill
+				$info = "";
+				$found = 0;
+				forEach ($buffitems as $key => $item_info) {	
+					if (contains($item_info, $skills[0])) {
+						$found++;
+						$info .= "- <a href='chatcmd:///tell <myname> <symbol>buffitem $key'>$key</a>\n";
 					}
-					if ($found > 0) {								// found items that modify this skill
-						$inside = $header;
-						$inside .= "Your query of <yellow>$name<end> yielded the following results:\n\n";
-						$inside .= "Items that buff ".$skills[0].":\n\n";
-						$inside .= $info;
-						$inside .= "\n\nClick the item(s) for more info\n\n".$footer;
-						$windowlink = Text::makeLink(":: Your \"What buffs ...?\" results ::", $inside);
-						$this->send($windowlink, $sendto); 
-						$this->send("<highlight>$found<end> result(s) in total", $sendto);
-						return;
-					} else {
-						$this->send("Nothing that buffs ".$skills[0]." in my database, sorry.", $sendto); return; 
-					}
-			default: $info = ""; 									// found more than 1 matching skill
-					foreach ($skills as $skill) {
-						$info .= "- <a href='chatcmd:///tell <myname> <symbol>whatbuffs ".$skill."'>$skill</a>\n";
-					}
+				}
+
+				// found items that modify this skill
+				if ($found > 0) {
 					$inside = $header;
-					$inside .= "Your query of <yellow>$name<end> matches more than one skill:\n\n";
-					$inside .= $info."\n";
-					$inside .= "Which of those skills did you mean?\n\n";
-					$inside .= $footer;
+					$inside .= "Your query of <yellow>$name<end> yielded the following results:\n\n";
+					$inside .= "Items that buff ".$skills[0].":\n\n";
+					$inside .= $info;
+					$inside .= "\n\nClick the item(s) for more info\n\n".$footer;
 					$windowlink = Text::makeLink(":: Your \"What buffs ...?\" results ::", $inside);
 					$this->send($windowlink, $sendto); 
-					$this->send("Found several skills matching your key words.", $sendto);
+					$this->send("<highlight>$found<end> result(s) in total", $sendto);
 					return;
+				} else {
+					$this->send("Nothing that buffs ".$skills[0]." in my database, sorry.", $sendto); return; 
+				}
+			default:
+				// found more than 1 matching skill
+				$info = "";
+				forEach ($skills as $skill) {
+					$info .= "- <a href='chatcmd:///tell <myname> <symbol>whatbuffs ".$skill."'>$skill</a>\n";
+				}
+				$inside = $header;
+				$inside .= "Your query of <yellow>$name<end> matches more than one skill:\n\n";
+				$inside .= $info."\n";
+				$inside .= "Which of those skills did you mean?\n\n";
+				$inside .= $footer;
+				$windowlink = Text::makeLink(":: Your \"What buffs ...?\" results ::", $inside);
+				$this->send($windowlink, $sendto); 
+				$this->send("Found several skills matching your key words.", $sendto);
+				return;
 		}
 	} else {
 		$this->send($helplink, $sendto);

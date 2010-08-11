@@ -1,6 +1,5 @@
 <?php
 	include 'clusterdb.php';
-	include 'db_utils.php';
 
 	// help screen
 	$header = "<header>::::: Cluster location helper - Version 1.00 :::::<end>\n\n";
@@ -22,7 +21,7 @@
 		
 		$info = "";
 		$found = 0;
-		foreach ($cl_list as $key => $value) {
+		forEach ($cl_list as $key => $value) {
 			if ($found < 10 && matches($key, $name)) {
 				$found++;
 				$info .= "<u>$key Cluster</u>:\n<tab><font color=#ffcc33>Shiny</font>: ".$value[0].
@@ -31,8 +30,9 @@
 			}
 		}
 		if ($found == 0) { 
-			$this->send("No matches, sorry.", $sendto); return; 
-		} elseif ($found == 1) {
+			$this->send("No matches, sorry.", $sendto);
+			return; 
+		} else if ($found == 1) {
 			$windowlink = str_replace("--", "", $info);
 		} else {
 			$inside = $header;
@@ -43,8 +43,11 @@
 			$windowlink = Text::makeLink("::Cluster search results::", $inside);
 		}
 		$this->send($windowlink, $sendto);
-		if ($found >= 10) { $this->send("<highlight>More than 10 matches found!<end>\n<tab>Please specify your key words for better results.", $sendto);}
-		elseif ($found > 1) $this->send("<highlight>$found<end> matches in total.", $sendto);
+		if ($found >= 10) {
+			$this->send("<highlight>More than 10 matches found!<end>\n<tab>Please specify your key words for better results.", $sendto);
+		} else if ($found > 1) {
+			$this->send("<highlight>$found<end> matches in total.", $sendto);
+		}
 	} else {
 		$this->send($helplink, $sendto);
 	}
