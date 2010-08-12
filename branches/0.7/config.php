@@ -15,24 +15,21 @@
 	$vars['my guild']	= "";
 	$vars['dimension']	= 1;  // enter 1 for Atlantean, 2 for Rimor, 3 for Die Nueue Welt
 
-	//Insert the Administratorname here
+	// Insert the Administratorname here
 	$settings['Super Admin'] = "";
 
 	// What prefix should be used for private/Guild channel
 	$settings['symbol'] = "!";
 
-	// Debug Messages
-	// 0 = Show no message
-	// 1 = Show basic debug messages
-	// 2 = Show enhanced debug messages
-	// 3 = Show enhanced debug messages + 1sec delay
-	$settings['debug'] = 0;
-
-	// Log Messages
-	// 0 = Show nothing
-	// 1 = Show them only on the console
-	// 2 = Show them on the console and log them to files	
-	$settings['echo'] = 1;
+	// Logging level 
+	// TRACE = 0
+	// DEBUG = 1
+	// INFO = 2
+	// WARN = 3
+	// ERROR = 4
+	// FATAL = 5
+	$vars['console_log_level'] = 2;
+	$vars['file_log_level'] = 2;
 
 	// Default Delay for crons after bot is connected
 	$settings['CronDelay'] = 0;
@@ -49,24 +46,24 @@
 	// tells should be ignored by default
 	$settings['Ignore'] = "";
 
-	//Database Informations	
+	// Database Informations	
 	$settings['DB Type'] = "Sqlite";	// What type of Database should be used? (Sqlite or Mysql)
 	$settings['DB Name'] = "budabot.db";	// Database Name
 	$settings['DB Host'] = "./data/";	// Hostname or File location.
 	$settings['DB username'] = "";		// Mysql User name
 	$settings['DB password'] = "";		// Mysql Password
 
-	//Cache folder for storing char or org xml files
+	// Cache folder for storing char or org xml files
 	$vars['cachefolder'] = "./cache/";
 
-	//Set lowest needed rank for guild admin
-	//President		Director	= 0
-	//General		Board Member	= 1
-	//Squad Commander	Executive	= 2
-	//Unit Commander	Member		= 3
-	//Unit Leader		Applicant	= 4
-	//Unit Member				= 5
-	//Applicant				= 6
+	// Set lowest needed rank for guild admin
+	// President		Director	= 0
+	// General		Board Member	= 1
+	// Squad Commander	Executive	= 2
+	// Unit Commander	Member		= 3
+	// Unit Leader		Applicant	= 4
+	// Unit Member				= 5
+	// Applicant				= 6
 	$settings['guild admin level'] = 3;
 
 	// Spam Protection

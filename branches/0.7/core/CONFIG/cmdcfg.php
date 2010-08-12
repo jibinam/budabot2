@@ -102,7 +102,7 @@ if (preg_match("/^config$/i", $message)) {
 	$sql = "UPDATE cmdcfg_<myname> SET `status` = $status WHERE (`cmdevent` = 'cmd' OR `cmdevent` = 'subcmd') AND ($typeSql)";
 	$db->exec($sql);
 	
-	$this->send("Commands(s) updated successfully.", $sendto);	
+	$this->send("Command(s) updated successfully.", $sendto);	
 } else if (preg_match("/^config (mod|cmd|grp|event) (.+) (enable|disable) (priv|msg|guild|all)$/i", $message, $arr)) {
 	if($arr[1] == "event") {
 		$temp = explode(" ", $arr[2]);

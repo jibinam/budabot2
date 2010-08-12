@@ -56,10 +56,10 @@ if (isWindows()) {
     * Note: These are normally present in a
     * modern Linux system. This is a safeguard.
     */
-    if(!extension_loaded('pdo_sqlite')) {
+    if (!extension_loaded('pdo_sqlite')) {
         @dl('pdo_sqlite.so');
     }
-    if(!extension_loaded('pdo_mysql')) {
+    if !extension_loaded('pdo_mysql')) {
         @dl('pdo_mysql.so');
     }
     
@@ -76,7 +76,7 @@ error_reporting(E_ERROR | E_PARSE);
 
 //Show setup dialog
 if (!file_exists("delete me for new setup")) {
-	include("./core/SETUP/setup.php");
+	include "./core/SETUP/setup.php";
 }
 
 //Bring the ignore list to a bot readable format
@@ -99,16 +99,13 @@ unset($vars['password']);
 // Create new objects
 global $db;
 $db = new DB($settings["DB Type"], $settings["DB Name"], $settings["DB Host"], $settings["DB username"], $settings["DB password"]);
-if($db->errorCode != 0) {
+if ($db->errorCode != 0) {
 	newLine("Error", 'main.php', "Error in creating Database Object: $db->errorInfo", 2);
 	sleep(5);
 	die();
 }
 
 $chatBot = new Budabot($vars, $settings);
-if (!$chatBot) {
-	die("No Chatbot.....");
-}
 
 /////////////////////////////////////////////
 // log on aoChat, msnChat                  //
@@ -125,9 +122,6 @@ unset($settings["DB Name"]);
 unset($settings["DB Host"]);
 unset($settings["DB username"]);
 unset($settings["DB password"]);
-
-// make sure logging directory exists
-mkdir("./logs/{$vars['name']}.{$vars['dimension']}");
 
 // Call Main Loop
 main(true, $chatBot);
@@ -159,57 +153,7 @@ main(true, $chatBot);
 		global $chatBot;
 		$chatBot->processCallback($type, $args);	
 	}// End function
-  
-  
- /*===============================
-** Name: log
-** Record incoming info into the chatbot's log.
-*/	function newLine($channel, $sender, $message, $target) {
-		global $vars;
 
-		if ($channel == "") {
-			return;
-		}
-			
-		if ($sender == "") {
-			return;
-		}
-		
-		if ($channel == "Buddy") {
-			$line = "[".date("Ymd H:i", time())."] [$channel] $sender $message";
-		} else {
-			$line = "[".date("Ymd H:i", time())."] [$channel] $sender: $message";
-		}
-
-        $line = preg_replace("/<font(.+)>/U", "", $line);
-        $line = preg_replace("/<\/font>/U", "", $line);
-        $line = preg_replace("/<a(\\s+)href=\"(.+)\">/sU", "[link]", $line);
-        $line = preg_replace("/<a(\\s+)href='(.+)'>/sU", "[link]", $line);
-        $line = preg_replace("/<\/a>/U", "[/link]", $line);
-        
-		echo "$line\n";
-		
-		if ($target == 1 || $channel == "logOn" || $channel == "logOff" || $channel == "Buddy")
-			return;
-		
-		if ($channel == "Inc. Msg." || $channel == "Out. Msg.")
-			$channel = "Tells";
-
-		$today =  date("Ym");
-
-        /*
-        * Open and append to log-file. Complain on failure.
-        */
-        $filename = "./logs/{$vars['name']}.{$vars['dimension']}/$today.$channel.txt";
-        if (($fp = fopen($filename, "a")) === FALSE) {
-            echo "    *** Failed to open log-file $filename for writing ***\n";
-        } else {
-            fwrite($fp, $line . PHP_EOL);
-            fclose($fp);
-        }
-        
-	}
-    
     /**
     * isWindows is a little utility function to check
     * whether the bot is running Windows or something
