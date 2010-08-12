@@ -269,4 +269,13 @@ main(true, $chatBot);
 			return FALSE;
 		}
 	}
+	
+	function bytesConvert($bytes) {
+		$ext = array('B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+		$unitCount = 0;
+		for(; $bytes > 1024; $unitCount++) {
+			$bytes /= 1024;
+		}
+		return round($bytes, 2) ." ". $ext[$unitCount];
+	}
 ?>
