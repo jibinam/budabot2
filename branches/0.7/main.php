@@ -100,7 +100,7 @@ unset($vars['password']);
 global $db;
 $db = new DB($settings["DB Type"], $settings["DB Name"], $settings["DB Host"], $settings["DB username"], $settings["DB password"]);
 if ($db->errorCode != 0) {
-	newLine("Error", 'main.php', "Error in creating Database Object: $db->errorInfo", 2);
+	Logger::log(__FILE__, "Error in creating Database Object: $db->errorInfo", ERROR);
 	sleep(5);
 	die();
 }

@@ -35,7 +35,7 @@ $superAdmin = ucfirst(strtolower(Settings::get("Super Admin")));
 $uid = $this->get_uid($superAdmin);
 
 if ($uid === FALSE) {
-	newLine("Error", 'upload_admins.php', "could not get char_id for super admin: '$superAdmin'", 2);
+	Logger::log(__FILE__, "could not get char_id for super admin: '$superAdmin'", ERROR);
 } else {
 	$db->query("SELECT * FROM admin_<myname> WHERE `adminlevel` = " . SUPERADMIN);
 	if ($db->numrows() == 0) {

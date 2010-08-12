@@ -25,7 +25,7 @@ class Command {
 		global $db;
 
 		if (!Command::processCommandArgs($access_level)) {
-			newLine("Error", 'Command.class.php', "invalid args for command '$command'", 2);
+			Logger::log(__FILE__, "invalid args for command '$command'", ERROR);
 			return;
 		}
 
@@ -120,7 +120,7 @@ class Command {
 		global $db;
 
 		if (!$this->processCommandArgs($access_level)) {
-			newLine("Error", 'Command.class.php', "invalid args for subcommand '$command'", 2);
+			Logger::log(__FILE__, "invalid args for subcommand '$command'", ERROR);
 			return;
 		}
 

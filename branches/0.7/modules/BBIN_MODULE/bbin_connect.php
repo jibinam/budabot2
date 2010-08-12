@@ -48,7 +48,7 @@ while ($data = fgets($bbin_socket)) {
 		newLine("BBIN"," ",trim($data),0);
 	}
 	if (preg_match("/(ERROR)(.+)/", $data, $sandbox)) {
-		newLine("BBIN","bbin error",trim($data),0);
+		Logger::log(__FILE__, trim($data), ERROR);
 		if (preg_match("/^startbbin$/i", $message)) {
 			$this->send("[red]Could not connect to BBIN",$sender);
 		}

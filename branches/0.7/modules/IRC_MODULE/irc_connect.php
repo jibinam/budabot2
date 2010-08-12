@@ -58,7 +58,7 @@ while($data = fgets($socket)) {
 		if(preg_match("/^startirc$/i", $message)) {
 			$this->send("[red]Could not connect to IRC",$sender);
 		}
-		newLine("IRC","irc error",trim($data),0);
+		Logger::log(__FILE__, trim($data), ERROR);
 		return;
 	}
 	if($ex[0] == "PING") {

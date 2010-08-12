@@ -410,7 +410,7 @@ class AOChat
 
 		if(!is_array($char))
 		{
-			newLine("Error", 'AOChat.class.php', "no valid character to login", 2);
+			Logger::log(__FILE__, "no valid character to login", ERROR);
 			return false;
 		}
 

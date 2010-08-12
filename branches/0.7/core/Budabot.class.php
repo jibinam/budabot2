@@ -144,7 +144,7 @@ class Budabot extends AOChat {
 						if(Settings::get('debug') > 0) print("MODULE_NAME: $entry.php \n");
 						include "./modules/$entry/$entry.php";
 					} else {
-						newLine("Error", 'Budabot.class.php', "missing module registration file: './modules/$entry/$entry.php'", 2);
+						Logger::log(__FILE__, "missing module registration file: './modules/$entry/$entry.php'", ERROR);
 					}
 				}
 			}
@@ -175,7 +175,7 @@ class Budabot extends AOChat {
 			$server = "chat.dt.funcom.com";
 			$port = 7109;
 		} else {
-			newLine("Error", 'Budabot.class.php', "No valid Server to connect with! Available dimensions are 1, 2, 3 and 4", 2);
+			Logger::log(__FILE__, "No valid Server to connect with! Available dimensions are 1, 2, 3 and 4", ERROR);
 		  	sleep(10);
 		  	die();
 		}
@@ -185,7 +185,7 @@ class Budabot extends AOChat {
 		$this->connect($server, $port);
 		sleep(2);
 		if ($this->state != "auth") {
-			newLine("Error", 'Budabot.class.php', "Connection failed! Please check your Internet connection and firewall", 2);
+			Logger::log(__FILE__, "Connection failed! Please check your Internet connection and firewall", ERROR);
 			sleep(10);
 			die();
 		}
@@ -194,7 +194,7 @@ class Budabot extends AOChat {
 		$this->authenticate($login, $password);
 		sleep(2);
 		if ($this->state != "login") {
-			newLine("Error", 'Budabot.class.php', "Authentication failed! Please check your username and password", 2);
+			Logger::log(__FILE__, "Authentication failed! Please check your username and password", ERROR);
 			sleep(10);
 			die();
 		}
@@ -203,7 +203,7 @@ class Budabot extends AOChat {
 		$this->login($this->name);
 		sleep(2);
 		if ($this->state != "ok") {
-			newLine("Error", 'Budabot.class.php', "Logging in of $this->name failed! Please check the character name and dimension", 2);
+			Logger::log(__FILE__, "Logging in of $this->name failed! Please check the character name and dimension", ERROR);
 			sleep(10);
 			die();
 		}

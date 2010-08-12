@@ -147,7 +147,7 @@ class AOExtMsg {
 					break;
 
 				default:
-					newLine("Error", 'AOExtMsg.class.php', "could not parse argument: '$data_type' for category: '$this->category' and instance: '$this->instance'", 2);
+					Logger::log(__FILE__, "could not parse argument: '$data_type' for category: '$this->category' and instance: '$this->instance'", ERROR);
 					break;
 			}
 		}
@@ -172,7 +172,7 @@ class AOExtMsg {
 		if ($row = $db->fObject()) {
 			$message = vsprintf($row->message, $em->args);
 		} else {
-			newLine("Error", 'AOExtMsg.class.php', "cannot find extended message with category: '$em->category' and instance: '$em->instance", 2);
+			Logger::log(__FILE__, "cannot find extended message with category: '$em->category' and instance: '$em->instance", ERROR);
 		}
 		return $message;
 	}

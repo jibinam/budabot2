@@ -39,7 +39,7 @@ if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
 	
 	//Check if Orgxml file is correct if not abort
 	if($org->errorCode != 0) {
-		newLine("Error", 'roster_guild.php', "could not get the org roster xml file", 2);
+		Logger::log(__FILE__, "could not get the org roster xml file", ERROR);
 	} else {
 		// clear $this->members and reload from the database
 		$db->query("SELECT * FROM members_<myname>");

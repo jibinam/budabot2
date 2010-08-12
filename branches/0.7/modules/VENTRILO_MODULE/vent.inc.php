@@ -191,7 +191,7 @@ class Vent {
 		$sfh = fsockopen( "udp://$ip", $port, $errno, $errstr );
 
 		if ( !$sfh ) {
-			newLine("Error", 'vent.inc.php', "Socket Error: $errno - $errstr", 2);
+			Logger::log(__FILE__, "Socket Error: $errno - $errstr", ERROR);
 			return false;
 		}
 
@@ -203,7 +203,7 @@ class Vent {
 	*/
 		while( false != $pck = fread( $sfh, VENT_MAXPACKETSIZE ) ) {
 			if (  count( $this->packets ) >= VENT_MAXPACKETNO ) {
-				newLine("Error", 'vent.inc.php', "Received more packets than the maximum allowed in a response", 2);
+				Logger::log(__FILE__, "Received more packets than the maximum allowed in a response", ERROR);
 				fclose( $sfh );
 				return false;	
 			}
@@ -223,13 +223,13 @@ class Vent {
 
 		// check if we've got the right number of packets
 		if ( $this->packets[0]->totpck != count( $this->packets )) {
-			newLine("Error", 'vent.inc.php', "Received less packets than expected in the response", 2);
+			Logger::log(__FILE__, "Received less packets than expected in the response", ERROR);
 			return false;
 		}
 
 		// the order may not be correct. sort on the key.
 		if ( !ksort( $this->packets, SORT_NUMERIC )) {
-			newLine("Error", 'vent.inc.php', "Failed to sort the response packets in order", 2);
+			Logger::log(__FILE__, "Failed to sort the response packets in order", ERROR);
 			return false;
 		}
 
@@ -241,14 +241,14 @@ class Vent {
 
 		$rlen = strlen( $this->response );
 		if ( $rlen != $this->packets[0]->totlen ) {
-			newLine("Error", 'vent.inc.php', "Response data is $rlen bytes. Expected {$this->packets[0]->totlen} bytes", 2);
+			Logger::log(__FILE__, "Response data is $rlen bytes. Expected {$this->packets[0]->totlen} bytes", ERROR);
 			return false;
 		}
 
 		$crc = Vent::getCRC( $this->response );
 
 		if ( $crc != $this->packets[0]->crc ) {
-			newLine("Error", 'vent.inc.php', "response crc is $crc. Expected: {$this->packets[0]->crc}", 2);
+			Logger::log(__FILE__, "CRC failed: actual: '$crc' expected: '{$this->packets[0]->crc}'", ERROR);
 			return false;
 		}
 
@@ -457,7 +457,7 @@ class VentResponsePacket extends VentPacket {
 		$a2 = $key >> 8;
 
 		if ( $a1 == 0 ) {
-			newLine("Error", 'vent.inc.php', "Invalid packet. Header key is invalid", 2);
+			Logger::log(__FILE__, "Invalid packet. Header key is invalid", ERROR);
 			return false;
 		}
 
@@ -481,12 +481,12 @@ class VentResponsePacket extends VentPacket {
 
 		// simple sanity checks
 		if (( $this->zero != 0 ) || ( $this->cmd != 3 )) {
-			newLine("Error", 'vent.inc.php', "Invalid packet. Expected 0 & 3, found {$this->zero} & {$this->cmd}", 2);
+			Logger::log(__FILE__, "Invalid packet. Expected 0 & 3, found {$this->zero} & {$this->cmd}", ERROR);
 			return false;
 		}
 
 		if ( $this->len != strlen( $this->data )) {
-			newLine("Error", 'vent.inc.php', "Invalid packet. Data is ". strlen( $this->data ) ." bytes, expected {$this->len}", 2);
+			Logger::log(__FILE__, "Invalid packet. Data is ". strlen( $this->data ) ." bytes, expected {$this->len}", ERROR);
 			return false;
 		}
 
@@ -505,7 +505,7 @@ class VentResponsePacket extends VentPacket {
 		$a2 = $this->datakey >> 8;
 
 		if ( $a1 == 0 ) {
-			newLine("Error", 'vent.inc.php', "Invalid packet. Data key is invalid", 2);
+			Logger::log(__FILE__, "Invalid packet. Data key is invalid", ERROR);
 			return false;
 		}
 
@@ -528,7 +528,7 @@ class VentResponsePacket extends VentPacket {
 		$plen = strlen( $packet );
 
 		if (( $plen > VENT_MAXPACKETSIZE ) || ( $plen < VENT_HEADSIZE )) {
-			newLine("Error", 'vent.inc.php', "Response packet was $plen bytes. It should be between " . VENT_HEADSIZE ." and ". VENT_MAXPACKETSIZE ." bytes", 2);
+			Logger::log(__FILE__, "Response packet was $plen bytes. It should be between " . VENT_HEADSIZE ." and ". VENT_MAXPACKETSIZE ." bytes", ERROR);
 			return null;
 		}
 

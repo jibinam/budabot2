@@ -217,7 +217,7 @@ class CVentriloStatus
 
 	function Parse( $str )
 	{
-		// Remove trailing newline.
+		// Remove trailing new line.
 
 		$pos = strpos( $str, "\n" );
 		if ( $pos === false )

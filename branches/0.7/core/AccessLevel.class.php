@@ -89,7 +89,7 @@ class AccessLevel {
 				break;
 			default:
 				$desc = "All";
-				newLine("Error", 'AccessLevel.class.php', "Invalid access_level value specified: '$access_level'", 2);
+				Logger::log(__FILE__, "Invalid access_level value specified: '$access_level'", ERROR);
 		}
 		return $desc;
 	}
