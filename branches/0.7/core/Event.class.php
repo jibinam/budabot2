@@ -18,8 +18,7 @@ class Event {
 */	public static function register($type, $module, $file, $desc = '', $is_core = 0) {
 		global $db;
 
-	  	if (Settings::get('debug') > 1) print("Adding Event to list:($type) File:($file)\n");
-		if (Settings::get('debug') > 2) sleep(1);
+		Logger:log(__FILE__, "Adding Event to list:($type) File:($file)", DEBUG);
 
 		if (Settings::get("default module status") == 1) {
 			$status = 1;

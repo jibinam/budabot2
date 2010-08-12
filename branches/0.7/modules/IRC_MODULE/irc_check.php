@@ -19,16 +19,15 @@ if(($data = fgets($socket)) && ("1" == Settings::get('irc_status'))) {
 	$nicka = explode('@', $ex[0]);
 	$nickb = explode('!', $nicka[0]);
 	$nickc = explode(':', $nickb[0]);
-	if(Settings::get('irc_debug_all') == 1)
-	{
-		newLine("IRC"," ",trim($data),0);
+	if (Settings::get('irc_debug_all') == 1) {
+		Logger:log(__FILE__, trim($data), DEBUG);
 	}
 	$host = $nicka[1];
 	$nick = $nickc[1];
 	if($ex[0] == "PING"){
 		fputs($socket, "PONG ".$ex[1]."\n");
 		if(Settings::get('irc_debug_ping') == 1) {
-			newLine("IRC"," ","PING received. PONG sent",0);
+			Logger:log(__FILE__, "PING received. PONG sent.", DEBUG);
 		}
 	}
 	elseif($ex[1] == "QUIT") {
@@ -124,7 +123,7 @@ if(($data = fgets($socket)) && ("1" == Settings::get('irc_status'))) {
 		}
 		else {
 			if(Settings::get('irc_debug_messages') == 1) {
-				newLine("IRC"," ","[Inc. IRC Msg.] $nick: $ircmessage",0);
+				Logger:log_chat("IRC Inc. Msg.", $nick, $ircmessage);
 			}
 			if($this->vars['my guild'] != "") {
 				$this->send("<yellow>[IRC]<end><green> $nick: $ircmessage<end>","guild",true);

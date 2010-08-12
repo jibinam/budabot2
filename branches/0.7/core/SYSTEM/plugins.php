@@ -30,11 +30,11 @@
    */
 
 $this->send("Reloading all Modules. This can take a few seconds depending on your config.", $sendto);
-print("!!!Reloading all Modules!!!\n");
+Logger:log(__FILE__, "Reloading all Modules", INFO);
 
 $this->loadUserModules();
 
 $this->send("Reload of the Modules completed.", $sendto);
-print("!!!Reload of all Modules is done!!!\n");
+Logger:log(__FILE__, "Reload of all Modules is done", INFO);
 
 ?>

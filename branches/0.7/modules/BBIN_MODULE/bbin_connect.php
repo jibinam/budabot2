@@ -21,7 +21,7 @@ if (preg_match("/^startbbin$/i", $message)) {
 	$this->send("Intialized BBIN connection. Please wait...",$sender);
 }
 
-newLine("BBIN"," ","Intialized BBIN connection. Please wait...",0);
+Logger:log(__FILE__, "Intialized BBIN connection. Please wait...", INFO);
 $bbin_socket = fsockopen(Settings::get('bbin_server'), Settings::get('bbin_port'));
 fputs($bbin_socket,"USER $nick $nick $nick $nick :$nick\n");
 fputs($bbin_socket,"NICK $nick\n");
@@ -29,7 +29,7 @@ while ($logincount < 10) {
 	$logincount++;
 	$data = fgets($bbin_socket, 128);
 	if (Settings::get('bbin_debug_all') == 1) {
-		newLine("BBIN"," ",trim($data),0);
+		Logger:log(__FILE__, trim($data), DEBUG);
 	}
 	// Separate all data
 	$ex = explode(' ', $data);
@@ -45,7 +45,7 @@ fputs($bbin_socket,"JOIN ".Settings::get('bbin_channel')."\n");
 
 while ($data = fgets($bbin_socket)) {
 	if (Settings::get('bbin_debug_all') == 1) {
-		newLine("BBIN"," ",trim($data),0);
+		Logger:log(__FILE__, trim($data), DEBUG);
 	}
 	if (preg_match("/(ERROR)(.+)/", $data, $sandbox)) {
 		Logger::log(__FILE__, trim($data), ERROR);
@@ -72,7 +72,7 @@ parse_incoming_bbin("[BBIN:SYNCHRONIZE]", $nick, $this);
 if (preg_match("/^startbbin$/i", $message)) {
 	$this->send("Finished connecting to bbin",$sender);
 }
-newLine("BBIN"," ","Finished connecting to bbin",0);
+Logger:log(__FILE__, "Finished connecting to bbin", INFO);
 
 Settings::save("bbin_status", "1");
 ?>

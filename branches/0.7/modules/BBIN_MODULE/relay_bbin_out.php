@@ -17,7 +17,7 @@ if ("1" == Settings::get('bbin_status')) {
 		
 		fputs($bbin_socket, "PRIVMSG ".Settings::get('bbin_channel')." :$sender: $message\n");
 		if (Settings::get('bbin_debug_messages') == 1) {
-			newLine("BBIN"," ","[Out. BBIN Msg.] $sender: $message",0);
+			Logger:log_chat("BBIN Out. Msg.", $sender, $message);
 		}
 	}
 }

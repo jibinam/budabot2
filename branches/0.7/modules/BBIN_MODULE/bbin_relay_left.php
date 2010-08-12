@@ -23,13 +23,13 @@ if ("1" == Settings::get('bbin_status')) {
 		flush();
 		fputs($bbin_socket, "PRIVMSG ".Settings::get('bbin_channel')." :$msg\n");
 		if (Settings::get('bbin_debug_messages') == 1) {
-			newLine("BBIN"," ","[Out. bbin Msg.] $msg",0);
+			Logger:log_chat("BBIN Out. Msg.", $sender, $msg);
 		}
 	} else if ($type == "logOff" && isset($this->guildmembers[$sender])) {
 		flush();
 		fputs($bbin_socket, "PRIVMSG ".Settings::get('bbin_channel')." :$msg\n");
 		if (Settings::get('bbin_debug_messages') == 1) {
-			newLine("BBIN"," ","[Out. bbin Msg.] $msg",0);
+			Logger:log_chat("BBIN Out. Msg.", $sender, $msg);
 		}
 	}
 }

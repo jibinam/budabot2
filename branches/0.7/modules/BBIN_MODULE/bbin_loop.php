@@ -16,7 +16,7 @@ stream_set_blocking($bbin_socket, 0);
 if (($data = fgets($bbin_socket)) && ("1" == Settings::get('bbin_status'))) {
 	$ex = explode(' ', $data);
 	if (Settings::get('bbin_debug_all') == 1) {
-		newLine("BBIN", " ", trim($data),0);
+		Logger:log(__FILE__, trim($data), DEBUG);
 	}
 	$channel = rtrim(strtolower($ex[2]));
 	$nicka = explode('@', $ex[0]);
@@ -28,7 +28,7 @@ if (($data = fgets($bbin_socket)) && ("1" == Settings::get('bbin_status'))) {
 	if ($ex[0] == "PING") {
 		fputs($bbin_socket, "PONG ".$ex[1]."\n");
 		if (Settings::get('bbin_debug_ping') == 1) {
-			newLine("BBIN", " ", "PING received. PONG sent.",0);
+			Logger:log(__FILE__, "PING received. PONG sent.", DEBUG);
 		}
 	} else if ($ex[1] == "NOTICE") {
 		if (false != stripos($data, "exiting")) {
@@ -89,7 +89,7 @@ if (($data = fgets($bbin_socket)) && ("1" == Settings::get('bbin_status'))) {
 			$bbinmessage .= rtrim(htmlspecialchars_decode($ex[$i]))." ";
 		}
 		if (Settings::get('bbin_debug_messages') == 1) {
-			newLine("BBIN"," ","[Inc. IRC Msg.] $nick: $bbinmessage",0);
+			Logger:log_chat("BBIN Inc. Msg.", $nick, $bbinmessage);
 		}
 		parse_incoming_bbin($bbinmessage, $nick, $this);
 

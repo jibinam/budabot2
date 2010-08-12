@@ -27,13 +27,13 @@ class Buddylist {
 		} else {
 			$name = $chatBot->buddyList[$uid]['name'];
 			if (!isset($chatBot->buddyList[$uid])) {
-				if ($chatBot->settings['echo'] >= 1) newLine("Buddy", $name, "buddy added", $chatBot->settings['echo']);
+				Logger:log(__FILE__, "$name buddy added", DEBUG);
 				$chatBot->buddy_add($uid);
 			}
 			
 			if (!isset($chatBot->buddyList[$uid]['types'][$type])) {
 				$chatBot->buddyList[$uid]['types'][$type] = 1;
-				if ($chatBot->settings['echo'] >= 1) newLine("Buddy", $name, "buddy type added (type: $type)", $chatBot->settings['echo']);
+				Logger:log(__FILE__, "$name buddy type added (type: $type)", DEBUG);
 			}
 			
 			return true;
@@ -49,12 +49,12 @@ class Buddylist {
 			$name = $chatBot->buddyList[$uid]['name'];
 			if (isset($chatBot->buddyList[$uid]['types'][$type])) {
 				unset($chatBot->buddyList[$uid]['types'][$type]);
-				if ($chatBot->settings['echo'] >= 1) newLine("Buddy", $name, "buddy type removed (type: $type)", $chatBot->settings['echo']);
+				Logger:log(__FILE__, "$name buddy type removed (type: $type)", DEBUG);
 			}
 
 			if (count($chatBot->buddyList[$uid]['types']) == 0) {
 				unset($chatBot->buddyList[$uid]);
-				if ($chatBot->settings['echo'] >= 1) newLine("Buddy", $name, "buddy removed", $chatBot->settings['echo']);
+				Logger:log(__FILE__, "$name buddy removed", DEBUG);
 				$chatBot->buddy_remove($uid);
 			}
 			

@@ -32,8 +32,7 @@ class Command {
 		$command = strtolower($command);
 		$description = str_replace("'", "''", $description);
 
-		if (Settings::get('debug') > 1) print("Adding Command to list:($command) File:($filename)\n");
-		if (Settings::get('debug') > 2) sleep(1);
+		Logger:log(__FILE__, "Adding Command to list:($command) File:($filename)", DEBUG);
 
 		if (Command::find_command($command) != false) {
 			$sql = "
@@ -130,9 +129,7 @@ class Command {
 			$command = strtolower($command);
 
 		for ($i = 0; $i < count($type); $i++) {
-			if (Settings::get('debug') > 1) print("Adding Subcommand to list:($command) File:($filename)\n");
-			if (Settings::get('debug') > 1) print("                    Admin:($access_level[$i]) Type:({$type[$i]})\n");
-			if (Settings::get('debug') > 2) sleep(1);
+			Logger:log(__FILE__, "Adding Subcommand to list:($command) File:($filename) Admin:($access_level[$i]) Type:($type[$i])", DEBUG);
 			
 			if ($this->existing_subcmds[$type[$i]][$command] == true) {
 				$db->query("UPDATE cmdcfg_<myname> SET `module` = '$module', `verify` = 1, `file` = '$filename', `description` = '$description', `dependson` = '$dependson' WHERE `cmd` = '$command' AND `type` = '{$type[$i]}'");

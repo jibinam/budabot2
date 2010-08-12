@@ -19,8 +19,7 @@ class Help {
 		
 		$command = strtolower($command);
 
-		if (Settings::get('debug') > 1) print("Registering Helpfile:($filename) Cmd:($command)\n");
-		if (Settings::get('debug') > 2) sleep(1);
+		Logger:log(__FILE__, "Registering Helpfile:($filename) Cmd:($command)", DEBUG);
 
 		$sql = "SELECT * FROM hlpcfg_<myname> WHERE name = '$command'";
 		$db->query($sql);
