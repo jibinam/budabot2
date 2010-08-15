@@ -35,7 +35,7 @@ if (preg_match("/^assist$/i", $message)) {
 		$msg = "No assist set atm.";
 		$this->send($msg, $sendto);
 	}
-} else if (preg_match("/^assist (.+)$/i", $message, $arr)) {
+} else if (preg_match("/^setassist (.+)$/i", $message, $arr)) {
     $nameArray = explode(' ', $arr[1]);
 	
 	if (count($nameArray) == 1) {

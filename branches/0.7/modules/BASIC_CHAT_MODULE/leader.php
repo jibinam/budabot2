@@ -37,7 +37,7 @@ if (Settings::get("leaderecho") == 1) {
 	$cmd = "on";
 }
 
-if (preg_match("/^leader (.+)$/i", $message, $arr)) {
+if (preg_match("/^setleader (.+)$/i", $message, $arr)) {
     $uid = $this->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
 	if (!$uid) {

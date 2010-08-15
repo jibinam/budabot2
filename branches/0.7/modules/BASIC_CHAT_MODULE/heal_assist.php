@@ -38,7 +38,7 @@ if (preg_match("/heal(assist)?$/i", $message)) {
 		$msg = "No Healassist set atm.";
 	}
 	$this->send($msg);
-} else if (preg_match("/^heal(assist)? (.+)$/i", $message, $arr)) {
+} else if (preg_match("/^setheal(assist)? (.+)$/i", $message, $arr)) {
     $name = $arr[2];
     $uid = $this->get_uid(ucfirst(strtolower($name)));
     if ($uid) {
