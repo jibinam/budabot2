@@ -3,7 +3,7 @@
 global $vars;
 
 // make sure logging directory exists
-mkdir("./logs/{$vars['name']}.{$vars['dimension']}");
+@mkdir("./logs/{$vars['name']}.{$vars['dimension']}", 0777, true);
 
 // logging levels
 define('TRACE', 0);
@@ -78,7 +78,7 @@ class Logger {
 			case TRACE:
 				return "TRACE";
 			case DEBUG:
-				return "DEBUG":
+				return "DEBUG";
 			case INFO:
 				return "INFO";
 			case WARN:

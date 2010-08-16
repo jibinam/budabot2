@@ -5,13 +5,13 @@
 	Event::register("setup", $MODULE_NAME, "upload_admins.php", '', 1);
 
 	//Commands	
-	Command::register($MODULE_NAME, "addadmin.php", "addadmin", SUPERADMIN);
-	Command::register($MODULE_NAME, "kickadmin.php", "kickadmin", SUPERADMIN);
-	Command::register($MODULE_NAME, "addmod.php", "addmod", ADMIN);
-	Command::register($MODULE_NAME, "kickmod.php", "kickmod", ADMIN);
-	Command::register($MODULE_NAME, "raidleader.php", "raidleader", MODERATOR);
-	Command::register($MODULE_NAME, "kickraidleader.php", "kickraidleader", MODERATOR);
-	Command::register($MODULE_NAME, "adminlist.php", "adminlist");
+	Command::register($MODULE_NAME, "addadmin.php", "addadmin", SUPERADMIN, 'add admin', 1);
+	Command::register($MODULE_NAME, "kickadmin.php", "kickadmin", SUPERADMIN, 'remove admin', 1);
+	Command::register($MODULE_NAME, "addmod.php", "addmod", ADMIN, 'add moderator', 1);
+	Command::register($MODULE_NAME, "kickmod.php", "kickmod", ADMIN, 'remove moderator', 1);
+	Command::register($MODULE_NAME, "raidleader.php", "raidleader", MODERATOR, 'add raidleader', 1);
+	Command::register($MODULE_NAME, "kickraidleader.php", "kickraidleader", MODERATOR, 'remove raidleader', 1);
+	Command::register($MODULE_NAME, "adminlist.php", "adminlist", ALL, 'shows the admins, moderators, and raidleaders', 1);
 
 	//Events
 	Event::register("logOn", $MODULE_NAME, "admin_logon.php", 'Admin logon', 1);

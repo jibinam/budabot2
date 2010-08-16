@@ -55,10 +55,10 @@ class DB {
 		$this->dim = $vars["dimension"];
 			
 		if ($type == 'Sqlite') {
-			if ($host == NULL || $host == "" || $host == "localhost") {
+			if ($this->host == NULL || $this->host == "" || $this->host == "localhost") {
 				$this->dbName = "./data/$this->dbName";
 			} else {
-				$this->dbName = "$host/$this->dbName";
+				$this->dbName = "$this->host/$this->dbName";
 			}
 		}
 		
@@ -67,16 +67,17 @@ class DB {
 	
 	public function connect() {
 		try {
-			if ($type == 'Mysql') {
-				$this->sql = new PDO("mysql:host=$host", $user, $pass);
-				$this->query("CREATE DATABASE IF NOT EXISTS $dbName");
-				$this->selectDB($dbName);
+			if ($this->type == 'Mysql') {
+				$this->sql = new PDO("mysql:host=$this->host", $this->user, $this->pass);
+				$this->query("CREATE DATABASE IF NOT EXISTS $this->dbName");
+				$this->selectDB($this->dbName);
 				$this->exec("SET sql_mode='NO_BACKSLASH_ESCAPES'");
 				$this->exec("SET time_zone = '+00:00'");
-			} else if ($type == 'Sqlite') {
-				$this->sql = new PDO("sqlite:".$this->dbName); 
+			} else if ($this->type == 'Sqlite') {
+				$this->sql = new PDO("sqlite:".$this->dbName);
 			}
 		} catch (PDOException $e) {
+			echo "ERROR!";
 			$this->errorCode = 1;
 			$this->errorInfo = $e->getMessage();
 		}
@@ -318,9 +319,9 @@ class DB {
 			// if the file had a version, tell them the start and end version
 			// otherwise, just tell them we're updating the database
 			if ($maxFileVersion != 0) {
-				Logger:log(__FILE__, "Updating '$name' database from '$currentVersion' to '$maxFileVersion'...Finished!", INFO);
+				Logger::log(__FILE__, "Updating '$name' database from '$currentVersion' to '$maxFileVersion'...Finished!", INFO);
 			} else {
-				Logger:log(__FILE__, "Updating '$name' database...Finished!", INFO);
+				Logger::log(__FILE__, "Updating '$name' database...Finished!", INFO);
 			}
 
 		
@@ -328,7 +329,7 @@ class DB {
 				Settings::add($settingName, $module, 'noedit', $maxFileVersion);
 			}
 		} else {
-			Logger:log(__FILE__, "Updating '$name' database...already up to date! version: '$currentVersion'", INFO);
+			Logger::log(__FILE__, "Updating '$name' database...already up to date! version: '$currentVersion'", INFO);
 		}
 	}
 }

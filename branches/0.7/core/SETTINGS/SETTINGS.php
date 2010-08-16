@@ -2,7 +2,7 @@
 	$MODULE_NAME = "SETTINGS";
 
 	//Commands
-	Command::register($MODULE_NAME, "bot_settings.php", "settings", MODERATOR);
+	Command::register($MODULE_NAME, "bot_settings.php", "settings", MODERATOR, 'shows all the settings for the bot', 1);
 
 	//Setup
 	Event::register("setup", $MODULE_NAME, "upload_settings.php", '', 1);

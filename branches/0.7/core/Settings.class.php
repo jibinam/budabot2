@@ -1,17 +1,32 @@
 <?php
 
+/*
+`name` VARCHAR(30) NOT NULL
+`module` VARCHAR(50)
+`mode` VARCHAR(10)
+`is_core` TINYINT NOT NULL
+`setting` VARCHAR(50) DEFAULT '0'
+`options` VARCHAR(50) Default '0'
+`intoptions` VARCHAR(50) DEFAULT '0'
+`description` VARCHAR(50) NOT NULL DEFAULT ''
+`source` VARCHAR(5)
+`access_level` INT DEFAULT 0
+`help` VARCHAR(60)
+`verify` INT DEFAULT 1
+*/
+
 class Settings {
 
 /*===============================
 ** Name: add
 ** Adds a setting to the list
-*/	public static function add($name, $module, $description = 'none', $mode = 'hide', $setting = 'none', $options = 'none', $intoptions = '0', $access_level = MODERATOR, $help = '') {
+*/	public static function add($name, $module, $description = 'none', $mode = 'hide', $setting = 'none', $options = 'none', $intoptions = '0', $access_level = MODERATOR, $help = '', $is_core = 0) {
 		global $db;
 		global $chatBot;
 		$name = strtolower($name);
 
 		if ($chatBot->existing_settings[$name] != true) {
-			$db->query("INSERT INTO settings_<myname> (`name`, `module`, `mode`, `setting`, `options`, `intoptions`, `description`, `source`, `access_level`, `help`) VALUES ('$name', '$module', '$mode', '" . str_replace("'", "''", $setting) . "', '$options', '$intoptions', '" . str_replace("'", "''", $description) . "', 'db', $access_level, '$help')");
+			$db->query("INSERT INTO settings_<myname> (`name`, `module`, `mode`, `setting`, `options`, `intoptions`, `description`, `source`, `access_level`, `help`, `is_core`) VALUES ('$name', '$module', '$mode', '" . str_replace("'", "''", $setting) . "', '$options', '$intoptions', '" . str_replace("'", "''", $description) . "', 'db', $access_level, '$help', $is_core)");
 		  	$chatBot->settings[$name] = $setting;
 	  	} else {
 			$db->query("UPDATE settings_<myname> SET `module` = '$module', `mode` = '$mode', `options` = '$options', `intoptions` = '$intoptions', `description` = '" . str_replace("'", "''", $description) . "', `access_level` = $access_level, `help` = '$help' WHERE `name` = '$name'");

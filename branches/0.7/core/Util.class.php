@@ -99,7 +99,7 @@ class Util {
 		if ($arr[2] == strtolower($arr[2])) {
 			return TRUE;
 		} else {
-			Logger:log(__FILE__, "$filename does not match the nameconvention(All php files needs to be in lowercases except loading files)!", WARN);
+			Logger::log(__FILE__, "$filename does not match the nameconvention(All php files needs to be in lowercases except loading files)!", WARN);
 			return FALSE;
 		}
 	}

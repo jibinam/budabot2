@@ -29,14 +29,15 @@ class Command {
 			return;
 		}
 		
-		if (($filename = Util::verify_filename($filename)) == FALSE) {
-			Logger:log(__FILE__, "Invalid filename: '$filename'", WARN);
-		}
+		// TODO
+		//if (($filename = Util::verify_filename($filename)) == FALSE) {
+		//	Logger::log(__FILE__, "Invalid filename: '$filename'", WARN);
+		//}
 
 		$command = strtolower($command);
 		$description = str_replace("'", "''", $description);
 
-		Logger:log(__FILE__, "Adding Command to list:($command) File:($filename)", DEBUG);
+		Logger::log(__FILE__, "Adding Command to list:($command) File:($filename)", DEBUG);
 
 		if (Command::find_command($command) != false) {
 			$sql = "
@@ -52,6 +53,10 @@ class Command {
 				WHERE
 					`cmd` = '$command'";
 		} else {
+			// TODO
+			$status = Settings::get("default module status");
+			$status = 1;
+		
 			$sql = "
 				INSERT INTO cmdcfg_<myname> (
 					`module`,
@@ -72,12 +77,12 @@ class Command {
 					'',
 					'$filename',
 					$is_core,
-					'$command'
-					". Settings::get("default module status") .",
+					'$command',
+					$status,
 					{$access_level['tell']},
-					". Settings::get("default module status") .",
+					$status,
 					{$access_level['guild']},
-					". Settings::get("default module status") .",
+					$status,
 					{$access_level['priv']},
 					'$description',
 					1
@@ -133,7 +138,7 @@ class Command {
 			$command = strtolower($command);
 
 		for ($i = 0; $i < count($type); $i++) {
-			Logger:log(__FILE__, "Adding Subcommand to list:($command) File:($filename) Admin:($access_level[$i]) Type:($type[$i])", DEBUG);
+			Logger::log(__FILE__, "Adding Subcommand to list:($command) File:($filename) Admin:($access_level[$i]) Type:($type[$i])", DEBUG);
 			
 			if ($this->existing_subcmds[$type[$i]][$command] == true) {
 				$db->query("UPDATE cmdcfg_<myname> SET `module` = '$module', `verify` = 1, `file` = '$filename', `description` = '$description', `dependson` = '$dependson' WHERE `cmd` = '$command' AND `type` = '{$type[$i]}'");

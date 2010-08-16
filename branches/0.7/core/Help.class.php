@@ -18,11 +18,13 @@ class Help {
 	  	global $db;
 		
 		$command = strtolower($command);
-		if (($filename = Util::verify_filename($filename)) == FALSE) {
-			Logger:log(__FILE__, "Invalid filename: '$filename'", WARN);
-		}
+		
+		// TODO
+		//if (($filename = Util::verify_filename($filename)) == FALSE) {
+		//	Logger::log(__FILE__, "Invalid filename: '$filename'", WARN);
+		//}
 
-		Logger:log(__FILE__, "Registering Helpfile:($filename) Cmd:($command)", DEBUG);
+		Logger::log(__FILE__, "Registering Helpfile:($filename) Cmd:($command)", DEBUG);
 
 		$sql = "SELECT * FROM hlpcfg_<myname> WHERE name = '$command'";
 		$db->query($sql);

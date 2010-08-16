@@ -59,7 +59,7 @@ if (isWindows()) {
     if (!extension_loaded('pdo_sqlite')) {
         @dl('pdo_sqlite.so');
     }
-    if !extension_loaded('pdo_mysql')) {
+    if (!extension_loaded('pdo_mysql')) {
         @dl('pdo_mysql.so');
     }
     
@@ -130,11 +130,11 @@ main(true, $chatBot);
 ** Main Loop
 ** Inputs: (bool)$forever
 ** Outputs: None
-*/	function main($forever = true,&$chatBot) {
+*/	function main($forever, &$chatBot) {
 		$start = time();
 		
 		// Create infinite loop
-		while ($forever==true) {					
+		while ($forever == true) {					
 			$chatBot->ping();
 			Event::run_cron_jobs();
 			if ($exec_connected_events == false && ((time() - $start) > 5))	{

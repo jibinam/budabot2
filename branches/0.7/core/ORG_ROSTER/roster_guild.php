@@ -33,7 +33,7 @@ if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
 	// Set Delay for notify on/off(prevent spam from org roster module)
 	$this->vars["onlinedelay"] = time() + 60;
 	
-	Logger:log(__FILE__, "Starting Org Roster Update", INFO);
+	Logger::log(__FILE__, "Starting Org Roster Update", INFO);
 	//Get the org infos
 	$org = new OrgXML($this->vars["my guild id"], $this->vars["dimension"], $force_update);
 	
@@ -134,7 +134,7 @@ if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
 			Buddylist::remove($uid, 'org');
 		}
 
-		Logger:log(__FILE__, "Org Roster Update is done", INFO);
+		Logger::log(__FILE__, "Org Roster Update is done", INFO);
 		
 		if ($restart == true) {
 		  	$this->send("The bot needs to be restarted to be able to see who is online in your org. Automatically restarting in 10 seconds.", "org");
