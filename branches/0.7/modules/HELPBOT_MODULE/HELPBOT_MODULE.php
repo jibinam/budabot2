@@ -28,6 +28,7 @@
 	//Flip or Roll command
 	Command::register($MODULE_NAME, "roll.php", "flip", ALL, "Flip a coin");
 	Command::register($MODULE_NAME, "roll.php", "roll", ALL, "Roll a random number");
+	Command::register($MODULE_NAME, "roll.php", "verify", ALL, "Verifies a flip/roll");
 
 	//Player History
 	Command::register($MODULE_NAME, "player_history.php", "history", ALL, "Show a history of a player");
