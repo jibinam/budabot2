@@ -627,6 +627,6 @@ elseif( preg_match("/^scorpio$/i", $message)){
 	$msg = Text::makeBlob("Scorpio Loot", $list);
 }
 
-$this->send($msg, $sendto);
+$this->send($msg, 'priv');
 
 ?>
