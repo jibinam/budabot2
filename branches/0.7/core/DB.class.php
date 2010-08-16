@@ -44,7 +44,7 @@ class DB {
 	public $errorInfo;
 	
 	//Constructor(opens the connection to the Database)
-	function __construct($type, $dbName, $host = NULL, $user = NULL, $pass = NULL) {
+	public function __construct($type, $dbName, $host = NULL, $user = NULL, $pass = NULL) {
 		global $vars;
 		$this->type = $type;
 		$this->dbName = $dbName;
@@ -54,35 +54,36 @@ class DB {
 		$this->botname = strtolower($vars["name"]);
 		$this->dim = $vars["dimension"];
 			
-		if ($type == 'Mysql') {
-			try {
-				$this->sql = new PDO("mysql:host=$host", $user, $pass);
-				$this->query("CREATE DATABASE IF NOT EXISTS $dbName");
-				$this->selectDB($dbName);
-				$this->exec("SET sql_mode='NO_BACKSLASH_ESCAPES'");
-				$this->exec("SET time_zone = '+00:00'");
-			} catch(PDOException $e) {
-			  	$this->errorCode = 1;
-			  	$this->errorInfo = $e->getMessage();
-			}
-		} else if ($type == 'Sqlite') {
+		if ($type == 'Sqlite') {
 			if ($host == NULL || $host == "" || $host == "localhost") {
 				$this->dbName = "./data/$this->dbName";
 			} else {
 				$this->dbName = "$host/$this->dbName";
 			}
-
-			try {
-				$this->sql = new PDO("sqlite:".$this->dbName);  
-			} catch (PDOException $e) {
-			  	$this->errorCode = 1;
-			  	$this->errorInfo = $e->getMessage();
-			}			
+		}
+		
+		$this->connect();
+	}
+	
+	public function connect() {
+		try {
+			if ($type == 'Mysql') {
+				$this->sql = new PDO("mysql:host=$host", $user, $pass);
+				$this->query("CREATE DATABASE IF NOT EXISTS $dbName");
+				$this->selectDB($dbName);
+				$this->exec("SET sql_mode='NO_BACKSLASH_ESCAPES'");
+				$this->exec("SET time_zone = '+00:00'");
+			} else if ($type == 'Sqlite') {
+				$this->sql = new PDO("sqlite:".$this->dbName); 
+			}
+		} catch (PDOException $e) {
+			$this->errorCode = 1;
+			$this->errorInfo = $e->getMessage();
 		}
 	}
 	
 	//Sends a query to the Database and gives the result back
-	function query($stmt, $type = "object") {
+	public function query($stmt, $type = "object") {
 		$this->result = NULL;
 		$stmt = str_replace("<myname>", $this->botname, $stmt);
 		$stmt = str_replace("<dim>", $this->dim, $stmt);
@@ -100,7 +101,7 @@ class DB {
 	  			$this->result = $result->fetchALL(PDO::FETCH_OBJ);
 		  	} else if ($type == "assoc") {
 		  		$this->result = $result->fetchALL(PDO::FETCH_ASSOC);
-		  	} else if($type == "num") {
+		  	} else if ($type == "num") {
 		  		$this->result = $result->fetchALL(PDO::FETCH_NUM);
 			}
 		} else {
@@ -116,7 +117,7 @@ class DB {
 	}
 	
 	//Does Basicly the same thing just don't gives the result back(used for create table, Insert, delete etc), a bit faster as normal querys 
-	function exec($stmt) {
+	public function exec($stmt) {
 		$this->result = NULL;
 		
 		$stmt = str_replace("<myname>", $this->botname, $stmt);
@@ -139,7 +140,7 @@ class DB {
 	}
 
 	//Function for creating the table. Main reason is that some SQL commands are not compatible with sqlite for example the autoincrement field
-	function CreateTable($stmt) {
+	private function CreateTable($stmt) {
 		if ($this->type == "Mysql") {
             $stmt = str_ireplace("AUTOINCREMENT", "AUTO_INCREMENT", $stmt);
         } else if ($this->type == "Sqlite") {
@@ -157,7 +158,7 @@ class DB {
 	}
 
 	//Switch to another Database
-	function selectDB($dbName){
+	public function selectDB($dbName){
 		$this->sql = NULL;
 		$this->dbName = $dbName;			
 		
@@ -177,7 +178,7 @@ class DB {
 	}
 	
 	//Return the result of an Select statement
-	function fObject($mode = "single") {
+	public function fObject($mode = "single") {
 		if ($mode == "single") {
 	  		return array_shift($this->result);
 		} else if ($mode == "all") {
@@ -186,27 +187,27 @@ class DB {
 	}
 
 	//Give the affected rows back from an select statement
-	function numrows() {
+	public function numrows() {
 		return count($this->result);
 	}
 	
 	//Start of an transaction	
-	function beginTransaction() {
+	public function beginTransaction() {
 		$this->sql->beginTransaction();
 	}
 	
 	//Commit an transaction	
-	function Commit() {
+	public function Commit() {
 		$this->sql->Commit();
 	}
 
 	//Return the last inserted ID
-	function lastInsertId() {
+	public function lastInsertId() {
 		return $this->sql->lastInsertId();	
 	}
 
 	//Gives a list with all tablenames back
-	function getTables() {
+	public function getTables() {
 		if ($this->type == "Sqlite") {
 			$tables = array();
 			$this->query("SELECT tbl_name FROM sqlite_master WHERE type = 'table'");
@@ -222,7 +223,7 @@ class DB {
 	}
 
 	//Gives infos back about the tables	
-	function getTableInfos($tbl_name) {
+	public function getTableInfos($tbl_name) {
 		if ($this->type == "Sqlite") {
 		 	$table_info = array();
 			$this->query("SELECT tbl_name, sql FROM sqlite_master WHERE `type` = 'table' AND `tbl_name` = '$tbl_name'");
@@ -244,7 +245,7 @@ class DB {
 		}
 	}
 	
-	function getLastQuery() {
+	public function getLastQuery() {
 		return $this->lastQuery;
 	}
 	
@@ -292,7 +293,7 @@ class DB {
 						break;
 					}
 
-					if (compareVersionNumbers($arr[1], $maxFileVersion) >= 0) {
+					if (Util::compare_version_numbers($arr[1], $maxFileVersion) >= 0) {
 						$maxFileVersion = $arr[1];
 						$file = $entry;
 					}
@@ -302,7 +303,7 @@ class DB {
 		
 		if ($file === false) {
 			Logger::log(__FILE__, "No SQL file found with name '$name'", ERROR);
-		} else if ($forceUpdate || compareVersionNumbers($maxFileVersion, $currentVersion) > 0) {
+		} else if ($forceUpdate || Util::compare_version_numbers($maxFileVersion, $currentVersion) > 0) {
 			$fileArray = file("$dir/$file");
 			//$db->beginTransaction();
 			forEach ($fileArray as $num => $line) {

@@ -15,10 +15,14 @@ class Event {
 /*===============================
 ** Name: event
 **  Registers an event
-*/	public static function register($type, $module, $file, $desc = '', $is_core = 0) {
+*/	public static function register($type, $module, $filename, $desc = '', $is_core = 0) {
 		global $db;
 
-		Logger:log(__FILE__, "Adding Event to list:($type) File:($file)", DEBUG);
+		Logger:log(__FILE__, "Adding Event to list:($type) File:($filename)", DEBUG);
+		
+		if (($filename = Util::verify_filename($filename)) == FALSE) {
+			Logger:log(__FILE__, "Invalid filename: '$filename'", WARN);
+		}
 
 		if (Settings::get("default module status") == 1) {
 			$status = 1;
@@ -26,7 +30,7 @@ class Event {
 			$status = 0;
 		}
 
-		if (($event = EVENT::get($type, $module, $file)) != false) {
+		if (($event = EVENT::get($type, $module, $filename)) != false) {
 		  	$db->query("UPDATE eventcfg_<myname> SET `verify` = 1, `description` = '$desc' WHERE `type` = '$type' `file` = '$filename' AND `module` = '$module'");
 		} else {
 		  	$db->query("INSERT INTO eventcfg_<myname> (`module`, `type`, `file`, `verify`, `description`, `status`, `is_core`) VALUES ('$module', '$type', '$filename', '1', '$desc', '$status', $is_core)");
@@ -36,7 +40,7 @@ class Event {
 	public static function get($type, $module, $filename) {
 		global $db;
 		
-		$sql = "SELECT * FROM eventcfg_<myname> WHERE `module` = '$module' AND `type` = '$type' AND `file` = '$file'";
+		$sql = "SELECT * FROM eventcfg_<myname> WHERE `module` = '$module' AND `type` = '$type' AND `file` = '$filename'";
 		$db->query($sql);
 		return $db->fObject();
 	}

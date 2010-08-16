@@ -29,6 +29,7 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
+require_once './core/Util.class.php';
 require_once './core/Logger.class.php';
 
 require_once './core/AOChat.class.php';

@@ -28,6 +28,10 @@ class Command {
 			Logger::log(__FILE__, "invalid args for command '$command'", ERROR);
 			return;
 		}
+		
+		if (($filename = Util::verify_filename($filename)) == FALSE) {
+			Logger:log(__FILE__, "Invalid filename: '$filename'", WARN);
+		}
 
 		$command = strtolower($command);
 		$description = str_replace("'", "''", $description);
