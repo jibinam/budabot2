@@ -2,16 +2,16 @@
 	$MODULE_NAME = "BASIC_CHAT_MODULE";
 
 	//Invite/Leave/lock commands
-	Settings::add("topic_guild_join", $MODULE_NAME, "Show Topic in guild on join", "edit", "0", "ON;OFF", "1;0", MODERATOR, $MODULE_NAME, "topic_show_guild.txt");
+	Settings::add("topic_guild_join", $MODULE_NAME, "Show Topic in guild on join", "edit", "0", "ON;OFF", "1;0", MODERATOR, "topic_show_guild.txt");
 	Settings::add("priv_status", "no", $MODULE_NAME, "hide", "open");
 	Settings::add("priv_status_reason", $MODULE_NAME, "no", "hide", "not set");	
 
 	//Check macros
-	Command::register($MODULE_NAME, "check.php", "check", RAIDLEADER, "Checks who of the raidgroup is in the area");	
+	Command::register($MODULE_NAME, "check.php", "check", LEADER, "Checks who of the raidgroup is in the area");	
 	
 	//Topic set/show
-	Event::register("joinPriv", $MODULE_NAME, "topic.php", "topic", "Show Topic when someone joins PrivChat");
-	Event::register("logOn", $MODULE_NAME, "topic_logon.php", "none", "Show Topic on logon of members");
+	Event::register("joinPriv", $MODULE_NAME, "topic.php", "Show Topic when someone joins PrivChat");
+	Event::register("logOn", $MODULE_NAME, "topic_logon.php", "Show Topic on logon of members");
 	Command::register($MODULE_NAME, "topic.php", "topic", ALL, "Show Topic");
 	Command::register($MODULE_NAME, "topic.php", "settopic", LEADER, "Change Topic");
 	Command::register($MODULE_NAME, "topic.php", "cleartopic", LEADER, "Clear Topic");
@@ -20,14 +20,14 @@
 	Settings::add("topic_time", $MODULE_NAME, "no", "hide", time());
 
     //Afk Check
-	Event::register("priv", $MODULE_NAME, "afk_check.php", "none", "Afk check");
+	Event::register("priv", $MODULE_NAME, "afk_check.php", "Afk check");
 	Command::register($MODULE_NAME, "afk.php", "afk", ALL, "Sets a member afk");
 
 	//Leader
 	Command::register($MODULE_NAME, "leader.php", "leader", ALL, "Sets the Leader of the raid");
 	Command::register($MODULE_NAME, "leader.php", "setleader", LEADER, "Set a specific Leader");
 	Command::register($MODULE_NAME, "leaderecho_cmd.php", "leaderecho", LEADER, "Set if the text of the leader will be repeated");
-	Event::register("priv", $MODULE_NAME, "leaderecho.php", "leader", "leader echo");
+	Event::register("priv", $MODULE_NAME, "leaderecho.php", "leader echo");
 	Settings::add("leaderecho", $MODULE_NAME, "Repeat the text of the raidleader", "edit", "1", "ON;OFF", "1;0");
 	Settings::add("leaderecho_color", $MODULE_NAME, "Color for Raidleader echo", "edit", "<font color=#FFFF00>", "color");
 

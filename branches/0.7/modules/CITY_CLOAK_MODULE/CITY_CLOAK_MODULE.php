@@ -33,12 +33,12 @@
 	
 	DB::loadSQLFile($MODULE_NAME, 'org_city');
 
-    Command::register("guild", $MODULE_NAME, "city_guild.php", "city", ALL, "Shows the status of the Citycloak");
+    Command::register($MODULE_NAME, "city_guild.php", "city", ALL, "Shows the status of the Citycloak");
 
-    Event::register("guild", $MODULE_NAME, "city_guild.php", "city", "Records when the cloak is raised or lowered");
-    Event::register("1min", $MODULE_NAME, "city_guild_timer.php", "city", "Checks timer to see if cloak can be raised or lowered");
-	Event::register("1min", $MODULE_NAME, "city_guild_raise_cloak.php", "city", "Reminds the player who lowered cloak to raise it when it can be raised.");
-	Event::register("logOn", $MODULE_NAME, "city_guild_logon.php", "city", "Displays summary of city status.");
+    Event::register("guild", $MODULE_NAME, "city_guild.php", "Records when the cloak is raised or lowered");
+    Event::register("1min", $MODULE_NAME, "city_guild_timer.php", "Checks timer to see if cloak can be raised or lowered");
+	Event::register("1min", $MODULE_NAME, "city_guild_raise_cloak.php", "Reminds the player who lowered cloak to raise it when it can be raised.");
+	Event::register("logOn", $MODULE_NAME, "city_guild_logon.php", "Displays summary of city status.");
 	
 	Settings::add("showcloakstatus", $MODULE_NAME, "Show cloak status to players at logon", "edit", "1", "Never;When cloak is down;Always", "0;1;2");
 	
@@ -46,8 +46,8 @@
 	Help::register("citycloak", $MODULE_NAME, "citycloak.txt", GUILDMEMBER, "Status of the citycloak");
 	
 	// Auto Wave
-	Command::register("guild",$MODULE_NAME, "start.php", "startraid");
-	Command::register("guild",$MODULE_NAME, "stopraid.php", "stopraid");
-	Event::register("guild", $MODULE_NAME, "start.php", "none", "Starts a wave counter when cloak is lowered");
-	Event::register("2sec", $MODULE_NAME, "counter.php", "none", "Checks timer to see when next wave should come");
+	Command::register($MODULE_NAME, "start.php", "startraid");
+	Command::register($MODULE_NAME, "stopraid.php", "stopraid");
+	Event::register("guild", $MODULE_NAME, "start.php", "Starts a wave counter when cloak is lowered");
+	Event::register("2sec", $MODULE_NAME, "counter.php", "Checks timer to see when next wave should come");
 ?>

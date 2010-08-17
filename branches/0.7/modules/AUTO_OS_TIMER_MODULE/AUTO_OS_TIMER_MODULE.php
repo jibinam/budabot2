@@ -35,6 +35,6 @@
 	$MODULE_NAME = "AUTO_OS_TIMER_MODULE";
 
 	//Org messages
-    Event::register("orgmsg", $MODULE_NAME, "os_timer.php", "none", "Sets a timer when an OS/AS is launched");
+    Event::register("orgmsg", $MODULE_NAME, "os_timer.php", "Sets a timer when an OS/AS is launched");
 
 ?>

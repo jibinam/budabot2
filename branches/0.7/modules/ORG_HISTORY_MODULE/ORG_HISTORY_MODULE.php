@@ -38,8 +38,8 @@
 	//Setup
 	DB::loadSQLFile($MODULE_NAME, "org_history");
 
-	Command::register("msg guild", $MODULE_NAME, "org_history.php", "orghistory", GUILDMEMBER, "Shows the org history (invites and kicks and leaves) for a player");
+	Command::register($MODULE_NAME, "org_history.php", "orghistory", GUILDMEMBER, "Shows the org history (invites and kicks and leaves) for a player");
 	
 	// events
-	Event::register("orgmsg", $MODULE_NAME, "org_action_listener.php", "none", "Capture Org Invite/Kick/Leave messages");
+	Event::register("orgmsg", $MODULE_NAME, "org_action_listener.php", "Capture Org Invite/Kick/Leave messages");
 ?>

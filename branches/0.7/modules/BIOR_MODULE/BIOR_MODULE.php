@@ -2,9 +2,9 @@
 	$MODULE_NAME = "BIOR_MODULE";
 
 	//Bio Regrowth module
-	Event::register("leavePriv", $MODULE_NAME, "left_chat.php", "bior", "Remove player who leaves chat from bior list if he was on it");
-	Event::register("joinPriv", $MODULE_NAME, "joined_chat.php", "bior", "Add player to bior list when he joins chat if he should be on it (Keep,Adv,Enf,Eng)");
-	Event::register("2sec", $MODULE_NAME, "bior_check.php", "bior", "Timer check for bior list");
+	Event::register("leavePriv", $MODULE_NAME, "left_chat.php", "Remove player who leaves chat from bior list if he was on it");
+	Event::register("joinPriv", $MODULE_NAME, "joined_chat.php", "Add player to bior list when he joins chat if he should be on it (Keep,Adv,Enf,Eng)");
+	Event::register("2sec", $MODULE_NAME, "bior_check.php", "Timer check for bior list");
 	
 	Command::register($MODULE_NAME, "bior_order.php", "bior", LEADER, "Show Bio Regrowth Order");
 	Command::register($MODULE_NAME, "cast_bior.php", "b", ALL, "Show Bio Regrowth Cast");

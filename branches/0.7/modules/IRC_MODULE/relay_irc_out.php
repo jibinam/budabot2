@@ -25,7 +25,7 @@ if ("1" == Settings::get('irc_status')) {
 
 		fputs($socket, "PRIVMSG ".Settings::get('irc_channel')." :$sender: $msg\n");
 		if (Settings::get('irc_debug_messages') == 1) {
-			Logger:log_chat("IRC Out. Msg.", $sender, $msg);
+			Logger::log_chat("IRC Out. Msg.", $sender, $msg);
 		}
 	}
 }

@@ -10,7 +10,7 @@
 	Settings::add("vote_create_min", $MODULE_NAME, "Minimum org level needed to create votes.", "edit", "-1", "None;0;1;2;3;4;5;6", "-1;0;1;2;3;4;5;6", MODERATOR, "vote_settings.txt");
 	Settings::add("vote_use_min", $MODULE_NAME, "Minimum org level needed to vote.", "edit", "-1", "None;0;1;2;3;4;5;6", "-1;0;1;2;3;4;5;6", MODERATOR, "vote_settings.txt");
 	
-	Event::register("2sec", $MODULE_NAME, "votes_check.php", 'none', "Checks timer and periodically updates chat with time left on vote");
+	Event::register("2sec", $MODULE_NAME, "votes_check.php", "Checks timer and periodically updates chat with time left on vote");
 	
 	Help::register("vote", $MODULE_NAME, "vote.txt", ALL, "Vote/Polling");
 ?>

@@ -5,7 +5,7 @@
 	Event::register("setup", $MODULE_NAME, "setup.php");
 
 	//News
-    Event::register("logOn", $MODULE_NAME, "news_logon.php", "none", "Sends a tell with news to players logging in");
+    Event::register("logOn", $MODULE_NAME, "news_logon.php", "Sends a tell with news to players logging in");
 	Command::register($MODULE_NAME, "news.php", "news", MEMBER, "Show News");
 	Command::register($MODULE_NAME, "news.php", "addnews", GUILDADMIN, "Add a News entry");
 	Command::register($MODULE_NAME, "news.php", "delnews", GUILDADMIN, "Delete a News entry");

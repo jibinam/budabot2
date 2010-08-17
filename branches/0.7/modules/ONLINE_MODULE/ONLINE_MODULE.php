@@ -33,9 +33,9 @@
 	Settings::add("fancy_online", $MODULE_NAME, "Enables the fancy delimiters for the online display", "edit", "1", "On;Off", "1;0", MODERATOR);
 	Settings::add("icon_fancy_online", $MODULE_NAME, "Enables the use of icons in fancy delimiter mode", "edit", "1", "On;Off", "1;0", MODERATOR);
 
-	Event::register("logOn", $MODULE_NAME, "logonline.php", "none", "Sends a tell to players on logon showing who is online in org");
-	Event::register("logOn", $MODULE_NAME, "logon_guild.php", "none", "Shows a logon from a member in chat and records in db");
-	Event::register("logOff", $MODULE_NAME, "logoff_guild.php", "none", "Shows a logoff from a member in chat and records in db");
+	Event::register("logOn", $MODULE_NAME, "logonline.php", "Sends a tell to players on logon showing who is online in org");
+	Event::register("logOn", $MODULE_NAME, "logon_guild.php", "Shows a logon from a member in chat and records in db");
+	Event::register("logOff", $MODULE_NAME, "logoff_guild.php", "Shows a logoff from a member in chat and records in db");
 
 	//Help files
 	Help::register("chatlist", $MODULE_NAME, "chatlist.txt", MEMBER, "Showing who is in the private group");

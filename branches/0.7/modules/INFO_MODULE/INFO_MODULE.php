@@ -1,5 +1,5 @@
 <?php
-	require_once('info_functions.php');
+	require_once 'info_functions.php';
 
 	$MODULE_NAME = "INFO_MODULE";
 

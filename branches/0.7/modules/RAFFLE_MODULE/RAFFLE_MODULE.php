@@ -12,7 +12,7 @@
 	Command::register($MODULE_NAME, "leave.php", "leaveRaffle", GUILDMEMBER);
 
 	//timer
-	Event::register("2sec", $MODULE_NAME, "check_winner.php", "", "Checks to see if raffle is over");
+	Event::register("2sec", $MODULE_NAME, "check_winner.php", "Checks to see if raffle is over");
 
 	//Help files
 	Help::register("Raffle", $MODULE_NAME, "raffle.txt", GUILDMEMBER, "Start/Join/Leave Raffles");

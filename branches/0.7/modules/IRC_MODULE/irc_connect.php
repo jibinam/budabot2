@@ -26,7 +26,7 @@ $nick = Settings::get('irc_nickname');
 if (preg_match("/^startirc$/i", $message)) {
 	$this->send("Intialized IRC connection. Please wait...",$sender);
 }
-Logger:log(__FILE__, "Intialized IRC connection. Please wait...", INFO);
+Logger::log(__FILE__, "Intialized IRC connection. Please wait...", INFO);
 $socket = fsockopen(Settings::get('irc_server'), Settings::get('irc_port'));
 fputs($socket,"USER $nick $nick $nick $nick :$nick\n");
 fputs($socket,"NICK $nick\n");
@@ -34,7 +34,7 @@ while ($logincount < 10) {
 	$logincount++;
 	$data = fgets($socket, 128);
 	if (Settings::get('irc_debug_all') == 1) {
-		Logger:log(__FILE__, trim($data), DEBUG);
+		Logger::log(__FILE__, trim($data), DEBUG);
 	}
 	// Separate all data
 	$ex = explode(' ', $data);
@@ -50,7 +50,7 @@ fputs($socket,"JOIN ".Settings::get('irc_channel')."\n");
 
 while ($data = fgets($socket)) {
 	if (Settings::get('irc_debug_all') == 1) {
-		Logger:log(__FILE__, trim($data), DEBUG);
+		Logger::log(__FILE__, trim($data), DEBUG);
 	}
 	if (preg_match("/(ERROR)(.+)/", $data, $sandbox)) {
 		if (preg_match("/^startirc$/i", $message)) {
@@ -70,6 +70,6 @@ while ($data = fgets($socket)) {
 if (preg_match("/^startirc$/i", $message)) {
 	$this->send("Finished connecting to IRC",$sender);
 }
-Logger:log(__FILE__, "Finished connecting to IRC", INFO);
+Logger::log(__FILE__, "Finished connecting to IRC", INFO);
 Settings::save("irc_status", "1");
 ?>

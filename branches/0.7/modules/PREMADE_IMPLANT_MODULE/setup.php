@@ -38,9 +38,9 @@ $currentVersion = Settings::get($settingName);
 $newVersion = checkForUpdate($currentVersion, false);
 if ($newVersion > $currentVersion) {
 	Settings::save($settingName, $newVersion);
-	Logger:log(__FILE__, "Updating '$settingName' database from '$currentVersion' to '$newVersion'...Finished!", INFO);
+	Logger::log(__FILE__, "Updating '$settingName' database from '$currentVersion' to '$newVersion'...Finished!", INFO);
 } else {
-	Logger:log(__FILE__, "Updating '$settingName' database...already up to date! version: '$currentVersion'", INFO);
+	Logger::log(__FILE__, "Updating '$settingName' database...already up to date! version: '$currentVersion'", INFO);
 }
 
 $curMod = $tempCurMod;

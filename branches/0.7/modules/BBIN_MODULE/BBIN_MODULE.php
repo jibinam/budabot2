@@ -29,26 +29,26 @@
 	DB::loadSQLFile($MODULE_NAME, "bbin_chatlist");
 	
 	//Auto start BBIN connection, or turn it off
-	Event::register("connect", $MODULE_NAME, "set_bbin_link.php", "none", "Sets BBIN status at bootup.");
+	Event::register("connect", $MODULE_NAME, "set_bbin_link.php", "Sets BBIN status at bootup.");
 	
 	//Commands
-	Command::register("msg", $MODULE_NAME, "bbin_connect.php", "startbbin", ADMIN, "Connect to BBIN");
+	Command::register($MODULE_NAME, "bbin_connect.php", "startbbin", ADMIN, "Connect to BBIN");
 	
 	//Command settings
-	Command::register("msg", $MODULE_NAME, "set_bbin_settings.php", "setbbin", ADMIN, "Manually set BBIN settings");
+	Command::register($MODULE_NAME, "set_bbin_settings.php", "setbbin", ADMIN, "Manually set BBIN settings");
 	
 	//BBIN Relay
-	Event::register("2sec", $MODULE_NAME, "bbin_loop.php", "none", "The main BBIN message loop");
+	Event::register("2sec", $MODULE_NAME, "bbin_loop.php", "The main BBIN message loop");
 	
 	//In-game relay
-	Event::register("priv", $MODULE_NAME, "relay_bbin_out.php", "none", "Relay (priv) messages to BBIN");
-	Event::register("guild", $MODULE_NAME, "relay_bbin_out.php", "none", "Relay (guild) messages to BBIN");
+	Event::register("priv", $MODULE_NAME, "relay_bbin_out.php", "Relay (priv) messages to BBIN");
+	Event::register("guild", $MODULE_NAME, "relay_bbin_out.php", "Relay (guild) messages to BBIN");
 	
 	//Notifications
-	Event::register("joinPriv", $MODULE_NAME, "bbin_relay_joined.php", "none", "Sends joined channel messages");
-	Event::register("leavePriv", $MODULE_NAME, "bbin_relay_left.php", "none", "Sends left channel messages");
-	Event::register("logOn", $MODULE_NAME, "bbin_relay_joined.php", "none", "Shows a logon from a member");
-	Event::register("logOff", $MODULE_NAME, "bbin_relay_left.php", "none", "Shows a logoff from a member");
+	Event::register("joinPriv", $MODULE_NAME, "bbin_relay_joined.php", "Sends joined channel messages");
+	Event::register("leavePriv", $MODULE_NAME, "bbin_relay_left.php", "Sends left channel messages");
+	Event::register("logOn", $MODULE_NAME, "bbin_relay_joined.php", "Shows a logon from a member");
+	Event::register("logOff", $MODULE_NAME, "bbin_relay_left.php", "Shows a logoff from a member");
 	
 	//Settings
 	Settings::add("bbin_status", $MODULE_NAME, "Status of BBIN uplink", "noedit", "0", "Offline;Online", "0;1", MODERATOR, "bbin_help.txt");

@@ -3,7 +3,7 @@
 
 	//Setup
 	Event::register("setup", $MODULE_NAME, "setup.php");
-	Event::register("24hrs", $MODULE_NAME, "quotestats.php", "none", "Update Quote Stats");
+	Event::register("24hrs", $MODULE_NAME, "quotestats.php", "Update Quote Stats");
 
 	//Commands
 	Command::register($MODULE_NAME, "quotestats.php", "quoteupdate", MODERATOR, "Update Quote Stats");

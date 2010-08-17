@@ -42,7 +42,7 @@
 	//Settings for this module	
 	Settings::add("alarmpreview", $MODULE_NAME, "Sets how early alarm should sound for gas change in minutes.", "edit", 5, "number");
 	
-	Event::register("2sec", $MODULE_NAME, "show_gas_change.php", "scout", "Shows gas changes for tower sites on watch list in org chat");
-	Event::register("logOn", $MODULE_NAME, "logon.php", "scout", "Displays summary of tower sites and gas levels on logon.");
+	Event::register("2sec", $MODULE_NAME, "show_gas_change.php", "Shows gas changes for tower sites on watch list in org chat");
+	Event::register("logOn", $MODULE_NAME, "logon.php", "Displays summary of tower sites and gas levels on logon.");
 	
 ?>

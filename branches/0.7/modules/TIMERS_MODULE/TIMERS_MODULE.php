@@ -9,7 +9,7 @@
 	Command::register($MODULE_NAME, "countdown.php", "countdown", GUILDMEMBER, "Set a countdown");
 	Command::register($MODULE_NAME, "countdown.php", "cd", GUILDMEMBER, "Set a countdown");
 
-	Event::register("2sec", $MODULE_NAME, "timers_check.php", "timer", "Checks timers and periodically updates chat with time left");
+	Event::register("2sec", $MODULE_NAME, "timers_check.php", "Checks timers and periodically updates chat with time left");
 	
 	Settings::add("timers_window", $MODULE_NAME, "Show running timers in a window or directly", "edit", "1", "window only;chat only;window after 3;window after 4;window after 5", '1;2;3;4;5', MODERATOR);
 

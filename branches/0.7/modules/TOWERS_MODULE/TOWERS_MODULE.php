@@ -4,7 +4,7 @@
 	$MODULE_NAME = "TOWERS_MODULE";
 
 	//Tower messages
-    Event::register("towers", $MODULE_NAME, "towers_messages.php", "none", "Show Attack Messages in chat"); 
+    Event::register("towers", $MODULE_NAME, "towers_messages.php", "Show Attack Messages in chat"); 
 	
 	Command::register($MODULE_NAME, "towers_result.php", "battle", ALL, "Shows the last Tower Attack messages");
 	Command::register($MODULE_NAME, "towers_result.php", "battles", ALL, "Shows the last Tower Attack messages");  // alias for !battle

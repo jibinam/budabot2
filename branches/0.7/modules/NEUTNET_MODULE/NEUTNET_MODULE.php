@@ -8,7 +8,7 @@
 			Whitelist::add("Neutnet$i", $MODULE_NAME);
 		}
 
-		Event::register("msg", $MODULE_NAME, "neutnet.php", 'none', 'Relays neutnet shopping messages to a channel/player');
+		Event::register("msg", $MODULE_NAME, "neutnet.php", 'Relays neutnet shopping messages to a channel/player');
 		
 		Help::register("neutnet", $MODULE_NAME, "neutnet.txt", ALL, "Shows the commands needed to register a bot with Neutnet");
 	}
