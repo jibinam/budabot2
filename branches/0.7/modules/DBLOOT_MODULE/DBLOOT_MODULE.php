@@ -8,6 +8,6 @@
 	Command::register($MODULE_NAME, "dbloot.php", "db2", LEADER, "Shows Possible DB2 Armor");
 
 	//Helpfiles
-	Help::register("dbloot", $MODULE_NAME, "dbloot.txt", ALL, "Loot manager for DB1/DB2 Instance");
+	Help::register($MODULE_NAME, "dbloot.txt", "dbloot", ALL, "Loot manager for DB1/DB2 Instance");
 
 ?>

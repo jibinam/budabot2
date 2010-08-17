@@ -25,8 +25,8 @@
 	Command::register($MODULE_NAME, "title.php", "title", ALL, "Show the Titlelevels and how much IP/Level");
 
 	//Help files
-    Help::register("level", $MODULE_NAME, "level.txt", ALL, "Levelinfos");
-    Help::register("title_level", $MODULE_NAME, "title.txt", ALL, "Infos about TitleLevels");
-    Help::register("missions", $MODULE_NAME, "missions.txt", ALL, "Who can roll a specific QL of a mission");
-	Help::register("experience", $MODULE_NAME, "experience.txt", ALL, "XP/SK/AXP Infos");
+    Help::register($MODULE_NAME, "level.txt", "level", ALL, "Levelinfos");
+    Help::register($MODULE_NAME, "title.txt", "title_level", ALL, "Infos about TitleLevels");
+    Help::register($MODULE_NAME, "missions.txt", "missions", ALL, "Who can roll a specific QL of a mission");
+	Help::register($MODULE_NAME, "experience.txt", "experience", ALL, "XP/SK/AXP Infos");
 ?>

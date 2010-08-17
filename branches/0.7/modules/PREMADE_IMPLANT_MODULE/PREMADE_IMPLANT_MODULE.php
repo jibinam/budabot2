@@ -33,6 +33,6 @@
 	Command::register($MODULE_NAME, "premade_update.php", "premadeupdate", ALL, "Checks the premade imp db for updates");
 	
 	//Help files
-	Help::register("Premade Implants", $MODULE_NAME, "premade_implant.txt", ALL, "Premade Implant Help");
+	Help::register($MODULE_NAME, "premade_implant.txt", "Premade Implants", ALL, "Premade Implant Help");
 	
 ?>

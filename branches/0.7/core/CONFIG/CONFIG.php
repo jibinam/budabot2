@@ -6,5 +6,5 @@
 	Command::register($MODULE_NAME, "searchcmd.php", "searchcmd", MODERATOR, 'shows the module that contains a specified command', 1);
 
 	//Help Files
-	Help::register("config", $MODULE_NAME, "config.txt", MODERATOR, "Configure Commands/Events of the Bot.");
+	Help::register($MODULE_NAME, "config.txt", "config", MODERATOR, "Configure Commands/Events of the Bot.");
 ?>

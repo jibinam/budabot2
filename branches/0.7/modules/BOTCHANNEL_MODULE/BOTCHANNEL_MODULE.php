@@ -40,8 +40,8 @@
 	//Verifies the Guestchannellist every 1hour
 	Event::register("1hour", $MODULE_NAME, "guest_channel_check.php", "Guest channel check");
 
-    Help::register("GuestChannel", $MODULE_NAME, "guestchannel.txt", GUILDMEMBER, "Guestchannel", "Basic Guild Commands");
-	Help::register("join_leave", $MODULE_NAME, "joinleave.txt", ALL, "Joining and leaving the bot", "Raidbot");
-	Help::register("kickall", $MODULE_NAME, "kickall.txt", RAIDLEADER, "Kick all players from the Bot", "Raidbot");
-	Help::register("lock", $MODULE_NAME, "lock.txt", RAIDLEADER, "Lock the privategroup", "Raidbot");
+    Help::register($MODULE_NAME, "guestchannel.txt", "GuestChannel", GUILDMEMBER, "Guestchannel");
+	Help::register($MODULE_NAME, "joinleave.txt", "join_leave", ALL, "Joining and leaving the bot");
+	Help::register($MODULE_NAME, "kickall.txt", "kickall", RAIDLEADER, "Kick all players from the Bot");
+	Help::register($MODULE_NAME, "lock.txt", "lock", RAIDLEADER, "Lock the privategroup");
 ?>

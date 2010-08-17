@@ -14,7 +14,7 @@ class Help {
 /*===============================
 ** Name: help
 ** Add a help command and display text file in a link.
-*/	public static function register($command, $module, $filename, $access_level = ALL, $description = "", $is_core = 0) {
+*/	public static function register($module, $filename, $command, $access_level = ALL, $description = "", $is_core = 0) {
 	  	global $db;
 		
 		$command = strtolower($command);

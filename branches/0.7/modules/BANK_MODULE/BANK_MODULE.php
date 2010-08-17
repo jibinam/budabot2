@@ -14,7 +14,7 @@
 	Command::register($MODULE_NAME, "banksearch.php", "find", ALL, "Search the Org Bank for an item you need.");
 	
 	// Help
-	Help::register("bank", $MODULE_NAME, "bank.txt", ALL, "How to search for an item.");
+	Help::register($MODULE_NAME, "bank.txt", "bank", ALL, "How to search for an item.");
 
 	// Thanks to Xyphos (RK1) for helping me bugfix
 ?>

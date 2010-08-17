@@ -23,5 +23,5 @@
 	Command::register($MODULE_NAME, "pandeloot.php", "pande", ALL, "shows Initial list of pande bosses");
 
 	//Help files
-	Help::register("pande", $MODULE_NAME, "pande.txt", ALL, "Loot manager for Pandemonium Raid loot");
+	Help::register($MODULE_NAME, "pande.txt", "pande", ALL, "Loot manager for Pandemonium Raid loot");
 ?>

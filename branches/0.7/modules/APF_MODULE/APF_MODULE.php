@@ -8,5 +8,5 @@
 	Command::register($MODULE_NAME, "apfloot.php", "apfloot", ALL, "Shows what to make from apf items");
 
 	//Help files
-	Help::register("apfloot", $MODULE_NAME, "apfloot.txt", GUILDMEMBER, "Show the Loots of the APF");
+	Help::register($MODULE_NAME, "apfloot.txt", "apfloot", GUILDMEMBER, "Show the Loots of the APF");
 ?>

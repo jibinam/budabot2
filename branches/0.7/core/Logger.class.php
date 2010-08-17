@@ -15,16 +15,21 @@ define('FATAL', 5);
 
 class Logger {
 	public static function log($file, $message, $log_level) {
+		$file = array_pop(explode("\\", $file));
 		$timestamp = date("Ymd H:i");
 		$log_level_description = Logger::get_log_level_description($log_level);
 		
-		$line = "[$timestamp] [$log_level_description] [$file] [$message]";
+		$line = "[$timestamp]\t[$log_level_description]\t[$file]\t$message";
 
 		if ($log_level >= $vars['console_log_level']) {
 			echo "$line\n";
 		}
 		if ($log_level >= $vars['file_log_level']) {
 			Logger::append_to_log_file($log_level_description, $line);
+		}
+		
+		if ($log_level >= WARN) {
+			die('The bot is shutting down.');
 		}
 		
 		/*

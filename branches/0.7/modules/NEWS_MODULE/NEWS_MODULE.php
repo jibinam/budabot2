@@ -17,5 +17,5 @@
 	Settings::add("adminnews", $MODULE_NAME, "no", "hide", "Not set.");
 
 	//Help files
-	Help::register("news", $MODULE_NAME, "news.txt", MEMBER, "News");
+	Help::register($MODULE_NAME, "news.txt", "news", MEMBER, "News");
 ?>

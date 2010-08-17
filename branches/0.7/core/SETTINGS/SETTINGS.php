@@ -8,5 +8,5 @@
 	Event::register("setup", $MODULE_NAME, "upload_settings.php", '', 1);
 		
 	//Help Files
-	Help::register("settings", $MODULE_NAME, "settings.txt", MODERATOR, "Change Settings of the Bot.");
+	Help::register($MODULE_NAME, "settings.txt", "settings", MODERATOR, "Change Settings of the Bot.");
 ?>

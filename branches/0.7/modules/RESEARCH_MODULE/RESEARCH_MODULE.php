@@ -5,6 +5,6 @@
 	
 	Command::register($MODULE_NAME, "research.php", "research", ALL, "Info on Research");
 	
-	Help::register("Research", $MODULE_NAME, "research.txt", ALL, "Info on Research");
+	Help::register($MODULE_NAME, "research.txt", "Research", ALL, "Info on Research");
 
 ?>

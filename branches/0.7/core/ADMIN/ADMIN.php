@@ -19,5 +19,5 @@
 	Event::register("24hrs", $MODULE_NAME, "check_admins.php", 'Check admins', 1);
 
 	//Help Files
-	Help::register("adminhelp", $MODULE_NAME, "admin.txt", MODERATOR, "Mod/Admin Help file.");
+	Help::register($MODULE_NAME, "admin.txt", "adminhelp", MODERATOR, "Mod/Admin Help file.");
 ?>

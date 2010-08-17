@@ -17,6 +17,6 @@
 	Command::register($MODULE_NAME, "boss.php", "boss", ALL, "Bossloot Tables");
 	Command::register($MODULE_NAME, "bossloot.php", "bossloot", ALL, "Bossloot Search");
 	
-	Help::register("Boss", $MODULE_NAME, "boss.txt", ALL, "Bossloot Tables", "Boss");
+	Help::register($MODULE_NAME, "boss.txt", "Boss", ALL, "Bossloot Tables");
 	
 ?>

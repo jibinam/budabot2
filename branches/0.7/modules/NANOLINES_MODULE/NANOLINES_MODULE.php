@@ -43,9 +43,9 @@
 	Command::register($MODULE_NAME, "nlprof.php", "nlprof", ALL, "Shows a list of nanolines given a profession");
 	Command::register($MODULE_NAME, "nlline.php", "nlline", ALL, "Shows a list of nanos given a nanoline");
 
-	//Help
-	Help::register("Nanolines", $MODULE_NAME, "nanolines.txt", ALL, "Nanolines help");
-
 	//Settings
 	Settings::add("shownanolineicons", $MODULE_NAME, "Show icons for the nanolines", "edit", "0", "true;false", "1;0");
+	
+	//Help
+	Help::register($MODULE_NAME, "nanolines.txt", "Nanolines", ALL, "Nanolines help");
 ?>

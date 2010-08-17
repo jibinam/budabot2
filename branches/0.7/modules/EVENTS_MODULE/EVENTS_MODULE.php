@@ -12,5 +12,5 @@
 	Command::register($MODULE_NAME, "eventlist.php", "eventlist", ALL, "View event attendees");
 	
 	//Helpfile
-	Help::register("events", $MODULE_NAME, "events.txt", ALL, "Adding/editing/removing events");
+	Help::register($MODULE_NAME, "events.txt", "events", ALL, "Adding/editing/removing events");
 ?>

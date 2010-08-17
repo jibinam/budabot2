@@ -37,5 +37,5 @@
 	Settings::add("tell_req_open", $MODULE_NAME, "Tell General Limit", "noedit", "all", "none", "0", MODERATOR, "help_topen.txt", 1);
 
 	//Help File
-	Help::register("priv_tell_limits", $MODULE_NAME, "help.txt", MODERATOR, "Set Limits for tells and PrivGroup.");
+	Help::register($MODULE_NAME, "help.txt", "priv_tell_limits", MODERATOR, "Set Limits for tells and PrivGroup.");
 ?>

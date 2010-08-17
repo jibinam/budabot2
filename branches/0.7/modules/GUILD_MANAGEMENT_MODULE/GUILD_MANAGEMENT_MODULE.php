@@ -5,6 +5,6 @@
 	Command::register($MODULE_NAME, "inactive_mem.php", "inactivemem", ADMIN, "Check for inactive members");
 
 	//Help files
-    Help::register("inactivemem", $MODULE_NAME, "manage_guild.txt", ADMIN, "Help on Checking for Inactive Members");
+    Help::register($MODULE_NAME, "manage_guild.txt", "inactivemem", ADMIN, "Help on Checking for Inactive Members");
  
 ?>

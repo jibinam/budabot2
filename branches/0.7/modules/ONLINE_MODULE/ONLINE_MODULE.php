@@ -38,7 +38,7 @@
 	Event::register("logOff", $MODULE_NAME, "logoff_guild.php", "Shows a logoff from a member in chat and records in db");
 
 	//Help files
-	Help::register("chatlist", $MODULE_NAME, "chatlist.txt", MEMBER, "Showing who is in the private group");
-	Help::register("online", $MODULE_NAME, "online.txt", MEMBER, "Show who is on from the guild");
-	Help::register("lastseen", $MODULE_NAME, "lastseen.txt", MEMBER, "Check when an orgmember was online");
+	Help::register($MODULE_NAME, "chatlist.txt", "chatlist", MEMBER, "Showing who is in the private group");
+	Help::register($MODULE_NAME, "online.txt", "online", MEMBER, "Show who is on from the guild");
+	Help::register($MODULE_NAME, "lastseen.txt", "lastseen", MEMBER, "Check when an orgmember was online");
 ?>

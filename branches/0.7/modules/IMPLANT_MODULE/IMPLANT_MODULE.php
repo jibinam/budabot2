@@ -46,5 +46,5 @@
 	Command::register($MODULE_NAME, "impreq.php", "impreq", ALL, "Shows the highest ql implant that can be worn given treatment and ability");
 
 	//Help
-	Help::register("Implant", $MODULE_NAME, "implant.txt", ALL, "Implant help");
+	Help::register($MODULE_NAME, "implant.txt", "Implant", ALL, "Implant help");
 ?>

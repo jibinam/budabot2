@@ -16,5 +16,5 @@
 	Command::register($MODULE_NAME, "fast.php", "fastattack", ALL, "alias for: fast");
 
 	//Helpiles
-	Help::register("skills", $MODULE_NAME, "skills.txt", ALL, "Explains the various Skill commands");
+	Help::register($MODULE_NAME, "skills.txt", "skills", ALL, "Explains the various Skill commands");
 ?>

@@ -5,6 +5,6 @@
 	
 	Command::register($MODULE_NAME, "dyna.php", "dyna", ALL, "Search for RK Dynaboss");
 	
-	Help::register("dyna", $MODULE_NAME, "dyna.txt", ALL, "Search for RK Dynaboss");
+	Help::register($MODULE_NAME, "dyna.txt", "dyna", ALL, "Search for RK Dynaboss");
 	
 ?>

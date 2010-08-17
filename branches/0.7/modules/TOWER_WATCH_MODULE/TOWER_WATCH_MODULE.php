@@ -36,13 +36,13 @@
 	//shows the open times for each tower site on the 'watch' list
 	Command::register($MODULE_NAME, "opentimes.php", "opentimes", GUILDMEMBER, "shows status of towers");
 	
-	//Help files
-	Help::register("Tower Watch", $MODULE_NAME, "tower_watch.txt", GUILDMEMBER, "Tower Watch Help");
-	
 	//Settings for this module	
 	Settings::add("alarmpreview", $MODULE_NAME, "Sets how early alarm should sound for gas change in minutes.", "edit", 5, "number");
 	
 	Event::register("2sec", $MODULE_NAME, "show_gas_change.php", "Shows gas changes for tower sites on watch list in org chat");
 	Event::register("logOn", $MODULE_NAME, "logon.php", "Displays summary of tower sites and gas levels on logon.");
+	
+	//Help files
+	Help::register($MODULE_NAME, "tower_watch.txt", "towerwatch", GUILDMEMBER, "Tower Watch Help");
 	
 ?>

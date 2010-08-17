@@ -9,5 +9,5 @@
 	Settings::add("ts_servername", $MODULE_NAME, "Name of the TS Server", "edit", "Not set yet.", "text", '0', MODERATOR);
 
 	//Help files	
-    Help::register("teamspeak", $MODULE_NAME, "ts.txt", GUILDMEMBER, "Using the Teamspeak plugin");
+    Help::register($MODULE_NAME, "ts.txt", "teamspeak", GUILDMEMBER, "Using the Teamspeak plugin");
 ?>

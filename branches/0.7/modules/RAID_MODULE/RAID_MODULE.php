@@ -28,11 +28,11 @@
 	Settings::add("add_on_loot", $MODULE_NAME, "Adding to loot show on", "edit", "1", "tells;privatechat;privatechat and tells", '1;2;3', MODERATOR);
 
 	//Help files
-	Help::register("add", $MODULE_NAME, "add_rem.txt", ALL, "Adding to a lootitem");
-	Help::register("rem", $MODULE_NAME, "add_rem.txt", ALL, "Removing your bid on a lootitem");
-	Help::register("loot", $MODULE_NAME, "flatroll.txt", LEADER, "Adding an item to be flatrolled");
-	Help::register("remloot", $MODULE_NAME, "flatroll.txt", LEADER, "Removing an item from a flatroll list");
-	Help::register("flatroll", $MODULE_NAME, "flatroll.txt", LEADER, "Flatroll an item");
-	Help::register("multiloot", $MODULE_NAME, "flatroll.txt", LEADER, "Adding multiple of an item to be rolled");
+	Help::register($MODULE_NAME, "add_rem.txt", "add", ALL, "Adding to a lootitem");
+	Help::register($MODULE_NAME, "add_rem.txt", "rem", ALL, "Removing your bid on a lootitem");
+	Help::register($MODULE_NAME, "flatroll.txt", "loot", LEADER, "Adding an item to be flatrolled");
+	Help::register($MODULE_NAME, "flatroll.txt", "remloot", LEADER, "Removing an item from a flatroll list");
+	Help::register($MODULE_NAME, "flatroll.txt", "flatroll", LEADER, "Flatroll an item");
+	Help::register($MODULE_NAME, "flatroll.txt", "multiloot", LEADER, "Adding multiple of an item to be rolled");
 
 ?>

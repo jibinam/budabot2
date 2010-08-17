@@ -143,7 +143,7 @@ class Budabot extends AOChat {
 				if (!is_dir($entry)) {
 					// Look for the plugin's ... setup file
 					if (file_exists("./modules/$entry/$entry.php")){
-						Logger::log(__FILE__, "Loading CORE MODULE: $entry", INFO);
+						Logger::log(__FILE__, "Loading USER MODULE: $entry", INFO);
 						include "./modules/$entry/$entry.php";
 					} else {
 						Logger::log(__FILE__, "missing module registration file: './modules/$entry/$entry.php'", ERROR);

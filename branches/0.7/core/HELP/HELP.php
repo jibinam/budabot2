@@ -6,5 +6,5 @@
 	Command::register($MODULE_NAME, "general_help.php", "help", ALL, 'shows all help topics', 1);
 	
 	//Help Files
-	Help::register("about", $MODULE_NAME, "about.txt", ALL, "Some Basic infos about the bot.");
+	Help::register($MODULE_NAME, "about.txt", "about", ALL, "Some Basic infos about the bot.");
 ?>

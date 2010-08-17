@@ -13,5 +13,5 @@
 	Event::register("setup", $MODULE_NAME, "upload_banlist.php", '', 1);
 	
 	//Help Files
-	Help::register("banhelp", $MODULE_NAME, "banhelp.txt", MODERATOR, "Ban a person from the bot.");
+	Help::register($MODULE_NAME, "banhelp.txt", "banhelp", MODERATOR, "Ban a person from the bot.");
 ?>

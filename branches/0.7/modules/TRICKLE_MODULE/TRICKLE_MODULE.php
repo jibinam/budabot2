@@ -40,7 +40,7 @@
 	Command::register($MODULE_NAME, "trickle.php", "trickle", ALL, "Shows how much skills you will gain by increasing an ability");
 
 	//Help
-	Help::register("Trickle", $MODULE_NAME, "trickle.txt", ALL, "Trickle help");
+	Help::register($MODULE_NAME, "trickle.txt", "Trickle", ALL, "Trickle help");
 
 	//Setup
 	DB::loadSQLFile($MODULE_NAME, "trickle");

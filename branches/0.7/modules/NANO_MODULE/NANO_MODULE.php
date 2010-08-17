@@ -11,5 +11,5 @@
     Settings::add('maxnano', $MODULE_NAME, 'Number of Nanos shown on the list', 'edit', '40', '30;40;50;60', "0", MODERATOR, "maxnano_help.txt");
 
 	//Help files
-    Help::register("nano", $MODULE_NAME, "nano.txt", ALL, "How to search for a nano."); 
+    Help::register($MODULE_NAME, "nano.txt", "nano", ALL, "How to search for a nano."); 
 ?>

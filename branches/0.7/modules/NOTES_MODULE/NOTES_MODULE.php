@@ -9,6 +9,6 @@
 	Command::register($MODULE_NAME, "notes.php", "notes", GUILDMEMBER, "displays, adds, or removes a note from your list");
 
 	//Help files
-	Help::register("notes", $MODULE_NAME, "notes.txt", GUILDMEMBER, "Notes Help");
+	Help::register($MODULE_NAME, "notes.txt", "notes", GUILDMEMBER, "Notes Help");
 	
 ?>

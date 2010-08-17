@@ -26,5 +26,5 @@
 	Command::register($MODULE_NAME, "fight.php", "fight", ALL, "Let two persons fight against each other.");
 
 	//Help files
-	Help::register("fun_module", $MODULE_NAME, "fun_module.txt", ALL, 'Fun commands', "Fun Module");
+	Help::register($MODULE_NAME, "fun_module.txt", "fun_module", ALL, 'Fun commands');
 ?>

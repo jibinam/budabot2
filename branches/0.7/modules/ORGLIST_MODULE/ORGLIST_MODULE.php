@@ -13,6 +13,6 @@
 	Event::register("logOff", $MODULE_NAME, "is_online.php", "Gets offline status of player");
 
 	// Help files
-	Help::register("orglist", $MODULE_NAME, "orglist.txt", MODERATOR, "See who is online from someones org.");
-	Help::register("IsOnline", $MODULE_NAME, "isonline.txt", ALL, "Checking if a player is online");
+	Help::register($MODULE_NAME, "orglist.txt", "orglist", MODERATOR, "See who is online from someones org.");
+	Help::register($MODULE_NAME, "isonline.txt", "IsOnline", ALL, "Checking if a player is online");
 ?>

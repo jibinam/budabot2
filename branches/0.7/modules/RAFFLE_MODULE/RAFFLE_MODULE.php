@@ -14,10 +14,10 @@
 	//timer
 	Event::register("2sec", $MODULE_NAME, "check_winner.php", "Checks to see if raffle is over");
 
-	//Help files
-	Help::register("Raffle", $MODULE_NAME, "raffle.txt", GUILDMEMBER, "Start/Join/Leave Raffles");
-
 	//Settings
 	Settings::add("defaultraffletime", $MODULE_NAME, "Sets how long the raffle should go for in minutes.", "edit", 3, "number");
+	
+	//Help files
+	Help::register($MODULE_NAME, "raffle.txt", "Raffle", GUILDMEMBER, "Start/Join/Leave Raffles");
 
 ?>

@@ -14,5 +14,5 @@
 	Command::register($MODULE_NAME, "eventlist.php", "eventlist", MEMBER, 'shows the list of events', 1);
 
 	//Help Files
-	Help::register("systemhelp", $MODULE_NAME, "system.txt", ADMIN, "Admin System Help file.");
+	Help::register($MODULE_NAME, "system.txt", "system", ADMIN, "Admin System Help file.");
 ?>

@@ -11,5 +11,5 @@
     Settings::add('maxitems', $MODULE_NAME, 'Number of Items shown on the list', 'edit', '40', '30;40;50;60', "0", MODERATOR, "aodb_maxitems_help.txt");
 
 	//Help files
-    Help::register("items", $MODULE_NAME, "items.txt", ALL, "How to search for an item."); 
+    Help::register($MODULE_NAME, "items.txt", "items", ALL, "How to search for an item."); 
 ?>

@@ -62,5 +62,5 @@
 	Settings::add("bbin_debug_all", $MODULE_NAME, "IRC Debug Option: Log everything", "edit", "0", "Off;On", "0;1", MODERATOR, "bbin_help.txt");
 	
 	//Help files
-	Help::register("bbin", $MODULE_NAME, "bbin_help.txt", ALL, "How to use the BBIN plugin", "BBIN");
+	Help::register($MODULE_NAME, "bbin_help.txt", "bbin", ALL, "How to use the BBIN plugin");
 ?>
