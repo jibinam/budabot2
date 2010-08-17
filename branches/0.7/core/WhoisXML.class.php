@@ -89,6 +89,7 @@ class WhoisXML extends XML {
 				}
 				fclose($fp);
 				if (xml::spliceData($playerbio, '<nick>', '</nick>') == $name) {
+					$this->source = 'cache-current';
 					$data_found = true;
 				} else {
 					$data_found = false;
@@ -102,6 +103,7 @@ class WhoisXML extends XML {
 		if (!$data_found) {
 			$playerbio = xml::getUrl("http://people.anarchy-online.com/character/bio/d/$rk_num/name/$name/bio.xml");
 			if (xml::spliceData($playerbio, '<nick>', '</nick>') == $name) {
+				$this->source = 'people.anarchy-online.com';
 				$data_found = true;
 				$data_save = true;
 			} else {
@@ -114,6 +116,7 @@ class WhoisXML extends XML {
 		if (!$data_found) {
 			$playerbio = xml::getUrl("http://auno.org/ao/char.php?output=xml&dimension=$rk_num&name=$name");
 			if (xml::spliceData($playerbio, '<nick>', '</nick>') == $name) {
+				$this->source = 'auno.org';
 				$data_found = true;
 				$data_save = true;
 			} else {
@@ -129,9 +132,10 @@ class WhoisXML extends XML {
 				$playerbio .= fgets ($fp, 4096);
 				fclose($fp);
 
-				if(xml::spliceData($playerbio, '<nickname>', '</nickname>') == $name)
-				$data_found = true;
-				else {
+				if(xml::spliceData($playerbio, '<nickname>', '</nickname>') == $name) {
+					$this->source = 'cache-old';
+					$data_found = true;
+				} else {
 					$data_found = false;
 					unset($playerbio);
 					@unlink("$cache/$name.$rk_num.xml");
@@ -151,6 +155,7 @@ class WhoisXML extends XML {
 			$this->breed = "Unknown";
 			$this->errorCode = 1;
 			$this->errorInfo = "Couldn't get Character infos for $name";
+			$this->source = 'none';
 			return;
 		}
 

@@ -48,7 +48,7 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
 	            $msg .= $whois->lastname." ";
 			}
 	
-	        $msg .= "(Level <highlight>$whois->level<end>/<green>$whois->ai_level - $whois->ai_rank<end>, $whois->gender $whois->breed <highlight>$whois->prof<end>, $whois->faction,";
+	        $msg .= "(Level <highlight>$whois->level<end>/<green>$whois->ai_level<end>, $whois->gender $whois->breed <highlight>$whois->prof<end>, $whois->faction,";
 	
 	        if ($whois->org) {
 	            $msg .= " $whois->rank of <highlight>$whois->org<end>) ";
@@ -56,18 +56,19 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
 	            $msg .= " Not in a guild.) ";
 			}
 	
-	        $list .= "<a href='chatcmd:///tell <myname> history ".$name."'>Check ".$name."'s History</a>\n";
-	        $list .= "<a href='chatcmd:///tell <myname> is ".$name."'>Check ".$name."'s online status</a>\n";
+	        $list .= "<a href='chatcmd:///tell <myname> history $name'>Check $name's History</a>\n";
+	        $list .= "<a href='chatcmd:///tell <myname> is $name'>Check $name's online status</a>\n";
 	        if ($whois->org) {
-		        $list .= "<a href='chatcmd:///tell <myname> whoisorg ".$whois->org_id."'>Show infos about $whois->org</a>\n";
-				$list .= "<a href='chatcmd:///tell <myname> orglist ".$whois->org_id."'>Orglist for $whois->org</a>\n";
+		        $list .= "<a href='chatcmd:///tell <myname> whoisorg $whois->org_id'>Show infos about $whois->org</a>\n";
+				$list .= "<a href='chatcmd:///tell <myname> orglist $whois->org_id'>Orglist for $whois->org</a>\n";
 			}
-	        $list .= "<a href='chatcmd:///cc addbuddy ".$name."'>Add to buddylist</a>\n";
-	        $list .= "<a href='chatcmd:///cc rembuddy ".$name."'>Remove from buddylist</a>\n";
+	        $list .= "<a href='chatcmd:///cc addbuddy $name'>Add to buddylist</a>\n";
+	        $list .= "<a href='chatcmd:///cc rembuddy $name'>Remove from buddylist</a>\n";
+			$list .= "\nSource: $whois->source\n";
 	        $msg .= " :: " . Text::makeBlob("Options for $whois->name", $list);
 	    }
     } else {
-        $msg = "Player <highlight>".$name."<end> does not exist.";
+        $msg = "Player <highlight>$name<end> does not exist.";
 	}
 
     // Send info back
@@ -95,7 +96,7 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
                 $msg .= $whois->lastname." ";
 			}
 
-            $msg .= "(Level <highlight>$whois->level<end>/<green>$whois->ai_level - $whois->ai_rank<end>, <highlight>$whois->prof<end>, $whois->faction,";
+            $msg .= "(Level <highlight>$whois->level<end>/<green>$whois->ai_level<end>, <highlight>$whois->prof<end>, $whois->faction,";
 
             if ($whois->org) {
                 $msg .= " $whois->rank of <highlight>$whois->org<end>) ";
@@ -103,14 +104,15 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
                 $msg .= " Not in a guild.) ";
 			}
 
-            $list .= "<a href='chatcmd:///tell <myname> history ".$name."'>Check ".$name."'s History</a>\n";
-            $list .= "<a href='chatcmd:///tell <myname> is ".$name."'>Check ".$name."'s online status</a>\n";
-            $list .= "<a href='chatcmd:///cc addbuddy ".$name."'>Add to buddylist</a>\n";
-            $list .= "<a href='chatcmd:///cc rembuddy ".$name."'>Remove from buddylist</a>\n";
+            $list = "<a href='chatcmd:///tell <myname> history $name'>Check $name's History</a>\n";
+            $list .= "<a href='chatcmd:///tell <myname> is $name'>Check $name's online status</a>\n";
+            $list .= "<a href='chatcmd:///cc addbuddy $name'>Add to buddylist</a>\n";
+            $list .= "<a href='chatcmd:///cc rembuddy $name'>Remove from buddylist</a>\n";
+			$list .= "\nSource: $whois->source\n";
             $msg .= " :: ".Text::makeBlob("Options for $whois->name", $list);
             $msg = "<highlight>Server $server:<end> ".$msg;
         } else {
-            $msg = "Server $server: Player <highlight>".$name."<end> does not exist.";
+            $msg = "Server $server: Player <highlight>$name<end> does not exist.";
 		}
         // Send info back
         $this->send($msg, $sendto);
