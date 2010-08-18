@@ -15,11 +15,13 @@ define('FATAL', 5);
 
 class Logger {
 	public static function log($file, $message, $log_level) {
+		global $vars;
+	
 		$file = array_pop(explode("\\", $file));
 		$timestamp = date("Ymd H:i");
 		$log_level_description = Logger::get_log_level_description($log_level);
 		
-		$line = "[$timestamp]\t[$log_level_description]\t[$file]\t$message";
+		$line = str_pad("$timestamp", 14) . ' ' .  str_pad("$log_level_description", 5) . ' ' . str_pad("[$file]", 21) . ' ' . $message;
 
 		if ($log_level >= $vars['console_log_level']) {
 			echo "$line\n";
@@ -33,15 +35,15 @@ class Logger {
 		}
 		
 		/*
-			[00:00] [DEBUG] [/modules/TOWER_MODULE/towers.php] [timer check]
-			[00:00] [INFO] [/modules/TOWER_MODULE/towers.php] [tower site added]
-			[00:00] [WARN] [/modules/TOWER_MODULE/towers.php] [could not connect to twinknet]
-			[00:00] [ERROR] [/modules/TOWER_MODULE/towers.php] [sql error]
+			00:00 DEBUG [/modules/TOWER_MODULE/towers.php] [timer check]
+			00:00 INFO  [/modules/TOWER_MODULE/towers.php] [tower site added]
+			00:00 WARN  [/modules/TOWER_MODULE/towers.php] [could not connect to twinknet]
+			00:00 ERROR [/modules/TOWER_MODULE/towers.php] [sql error]
 			
-			201008.debug.txt
-			201008.info.txt
-			201008.warn.txt
-			201008.error.txt
+			201008.DEBUG.txt
+			201008.INFO.txt
+			201008.WARN.txt
+			201008.ERROR.txt
 		*/
 	}
 	
