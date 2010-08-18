@@ -32,7 +32,9 @@
 if (preg_match("/^inviteuser (.+)$/i", $message, $arr)) {
     $uid = $this->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
-    if ($uid) {
+    if ($this->vars["name"] == $name) {
+		$msg = "You cannot invite the bot to its own private group.";
+	} else if ($uid) {
       	$msg = "Invited <highlight>$name<end> to this channel.";      	
 	  	$this->privategroup_kick($name);
 	  	$this->privategroup_invite($name);
