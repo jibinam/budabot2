@@ -306,7 +306,8 @@ class DB {
 			Logger::log(__FILE__, "No SQL file found with name '$name'", ERROR);
 		} else if ($forceUpdate || Util::compare_version_numbers($maxFileVersion, $currentVersion) > 0) {
 			$fileArray = file("$dir/$file");
-			//$db->beginTransaction();
+			
+			$db->beginTransaction();
 			forEach ($fileArray as $num => $line) {
 				$line = trim($line);
 				// don't process comment lines or blank lines
@@ -314,14 +315,14 @@ class DB {
 					$db->exec($line);
 				}
 			}
-			//$db->Commit();
+			$db->Commit();
 			
 			// if the file had a version, tell them the start and end version
 			// otherwise, just tell them we're updating the database
 			if ($maxFileVersion != 0) {
-				Logger::log(__FILE__, "Updating '$name' database from '$currentVersion' to '$maxFileVersion'...Finished!", INFO);
+				Logger::log(__FILE__, "Updating '$name' database from '$currentVersion' to '$maxFileVersion'...Finished!", DEBUG);
 			} else {
-				Logger::log(__FILE__, "Updating '$name' database...Finished!", INFO);
+				Logger::log(__FILE__, "Updating '$name' database...Finished!", DEBUG);
 			}
 
 		
@@ -329,7 +330,7 @@ class DB {
 				Settings::add($settingName, $module, 'noedit', $maxFileVersion);
 			}
 		} else {
-			Logger::log(__FILE__, "Updating '$name' database...already up to date! version: '$currentVersion'", INFO);
+			Logger::log(__FILE__, "Updating '$name' database...already up to date! version: '$currentVersion'", DEBUG);
 		}
 	}
 }
