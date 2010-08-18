@@ -103,7 +103,7 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
 	$tl5 = 0;
 	$tl6 = 0;
 	$tl7 = 0;
-	if($type == "guild" || (Settings::get("count_tell"] == 0 && $type == "msg") || ($type == "priv" && $this->vars["Guest"][$sender) == true)) {							
+	if($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $this->vars["Guest"][$sender] == true)) {							
 	    if(Settings::get("relaydb"))
 		    $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY level");
 	    else
@@ -212,7 +212,7 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
 	    $this->send($msg, $sendto);
 	    return;
 	}
-	if($type == "guild" || (Settings::get("count_tell"] == 0 && $type == "msg") || ($type == "priv" && $this->vars["Guest"][$sender) == true)) {
+	if($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $this->vars["Guest"][$sender] == true)) {
 	    if(Settings::get("relaydb")) {
 	        if($prof == "all") {
 				$db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY profession");

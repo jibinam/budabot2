@@ -40,7 +40,7 @@ if (count($guard) == 0) {
 	forEach ($list as $player) {
 	  	if ($guard[$player]["g"] == "ready") {
 	  		$status = "<green>*Ready*<end>";
-	  	else if (($guard[$player]["g"] - time()) > 300) {
+	  	} else if (($guard[$player]["g"] - time()) > 300) {
 	  		$status = "<red>Running<end>";
 	  	} else {
 		    $rem = $guard[$player]["g"] - time();

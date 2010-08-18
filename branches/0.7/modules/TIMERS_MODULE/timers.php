@@ -380,6 +380,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 				$days = floor($tleft/86400);
 				if ($days != 0) {
 					$timer .= $days."day(s) ";
+				}
 
 				$hours = floor(($tleft-($days*86400))/3600);
 				if ($hours != 0) {
