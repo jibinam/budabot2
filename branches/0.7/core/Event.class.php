@@ -32,7 +32,7 @@ class Event {
 		}
 
 		if (($event = EVENT::get($type, $module, $filename)) != false) {
-		  	$db->query("UPDATE eventcfg_<myname> SET `verify` = 1, `description` = '$description' WHERE `type` = '$type' AND `file` = '$filename' AND `module` = '$module'");
+		  	$db->query("UPDATE eventcfg_<myname> SET `verify` = 1, `description` = '". str_replace("'", "''", $description) ."' WHERE `type` = '$type' AND `file` = '$filename' AND `module` = '$module'");
 		} else {
 		  	$db->query("INSERT INTO eventcfg_<myname> (`module`, `type`, `file`, `verify`, `description`, `status`, `is_core`) VALUES ('$module', '$type', '$filename', 1, '". str_replace("'", "''", $description) ."', '$status', $is_core)");
 		}
@@ -46,7 +46,7 @@ class Event {
 		return $db->fObject();
 	}
 	
-	public static function find_by_type($type) {
+	public static function find_active_events_by_type($type) {
 		global $db;
 		
 		$sql = "SELECT * FROM eventcfg_<myname> WHERE `type` = '$type' AND `status` = 1";
@@ -60,63 +60,61 @@ class Event {
 */	public static function run_cron_jobs() {
 		global $chatBot;
 
-		switch($chatBot->vars) {
-			case $chatBot->vars["2sec"] < time():
-				$chatBot->vars["2sec"] = time() + 2;
-				forEach ($chatBot->spam as $key => $value) {
-					if ($value > 0) {
-						$chatBot->spam[$key] = $value - 10;
-					} else {
-						$chatBot->spam[$key] = 0;
-					}
+		if ($chatBot->vars["2sec"] < time()) {
+			$chatBot->vars["2sec"] = time() + 2;
+			forEach ($chatBot->spam as $key => $value) {
+				if ($value > 0) {
+					$chatBot->spam[$key] = $value - 10;
+				} else {
+					$chatBot->spam[$key] = 0;
 				}
-				forEach (Event::find_by_type('2sec') as $event) {
-					include $event->filename;
+			}
+			forEach (Event::find_active_events_by_type('2sec') as $event) {
+				include $event->filename;
+			}
+		}
+		if ($chatBot->vars["1min"] < time()) {
+			forEach ($chatBot->largespam as $key => $value) {
+				if ($value > 0) {
+					$chatBot->largespam[$key] = $value - 1;
+				} else {
+					$chatBot->largespam[$key] = 0;
 				}
-				break;
-			case $chatBot->vars["1min"] < time():
-				forEach ($chatBot->largespam as $key => $value) {
-					if ($value > 0) {
-						$chatBot->largespam[$key] = $value - 1;
-					} else {
-						$chatBot->largespam[$key] = 0;
-					}
-				}
-				$chatBot->vars["1min"] = time() + 60;
-				forEach (Event::find_by_type('1min') as $event) {
-					include $event->filename;
-				}
-				break;
-			case $chatBot->vars["10mins"] < time():
-				$chatBot->vars["10mins"] = time() + (60 * 10);
-				forEach (Event::find_by_type('10mins') as $event) {
-					include $event->filename;
-				}
-				break;
-			case $chatBot->vars["15mins"] < time():
-				$chatBot->vars["15mins"] = time() + (60 * 15);
-				forEach (Event::find_by_type('15mins') as $event) {
-					include $event->filename;
-				}
-				break;
-			case $chatBot->vars["30mins"] < time():
-				$chatBot->vars["30mins"] = time() + (60 * 30);
-				forEach (Event::find_by_type('30mins') as $event) {
-					include $event->filename;
-				}
-				break;
-			case $chatBot->vars["1hour"] < time():
-				$chatBot->vars["1hour"] = time() + (60 * 60);
-				forEach (Event::find_by_type('1hour') as $event) {
-					include $event->filename;
-				}
-				break;
-			case $chatBot->vars["24hours"] < time():
-				$chatBot->vars["24hours"] = time() + ((60 * 60) * 24);
-				forEach (Event::find_by_type('24hrs') as $event) {
-					include $event->filename;
-				}
-				break;
+			}
+			$chatBot->vars["1min"] = time() + 60;
+			forEach (Event::find_active_events_by_type('1min') as $event) {
+				include $event->filename;
+			}
+		}
+		if ($chatBot->vars["10mins"] < time()) {
+			$chatBot->vars["10mins"] = time() + (60 * 10);
+			forEach (Event::find_active_events_by_type('10mins') as $event) {
+				include $event->filename;
+			}
+		}
+		if ($chatBot->vars["15mins"] < time()) {
+			$chatBot->vars["15mins"] = time() + (60 * 15);
+			forEach (Event::find_active_events_by_type('15mins') as $event) {
+				include $event->filename;
+			}
+		}
+		if ($chatBot->vars["30mins"] < time()) {
+			$chatBot->vars["30mins"] = time() + (60 * 30);
+			forEach (Event::find_active_events_by_type('30mins') as $event) {
+				include $event->filename;
+			}
+		}
+		if ($chatBot->vars["1hour"] < time()) {
+			$chatBot->vars["1hour"] = time() + (60 * 60);
+			forEach (Event::find_active_events_by_type('1hour') as $event) {
+				include $event->filename;
+			}
+		}
+		if ($chatBot->vars["24hours"] < time()) {
+			$chatBot->vars["24hours"] = time() + ((60 * 60) * 24);
+			forEach (Event::find_active_events_by_type('24hrs') as $event) {
+				include $event->filename;
+			}
 		}
 	}
 }

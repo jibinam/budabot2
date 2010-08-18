@@ -138,7 +138,6 @@ main(true, $chatBot);
 			$chatBot->ping();
 			Event::run_cron_jobs();
 			if ($exec_connected_events == false && ((time() - $start) > 5))	{
-				// TODO
 			  	$chatBot->connectedEvents();
 			  	$exec_connected_events = true;
 			}

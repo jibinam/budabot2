@@ -58,7 +58,7 @@ require_once './core/AccessLevel.class.php';
 
 class Budabot extends AOChat {
 
-	private $buddyList = array();
+	public $buddyList = array();
 
 /*===============================
 ** Name: __construct
@@ -81,9 +81,9 @@ class Budabot extends AOChat {
 		$db->query("CREATE TABLE IF NOT EXISTS settings_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `mode` VARCHAR(10), `is_core` TINYINT NOT NULL, `setting` VARCHAR(50) DEFAULT '0', `options` VARCHAR(50) Default '0', `intoptions` VARCHAR(50) DEFAULT '0', `description` VARCHAR(50) NOT NULL DEFAULT '', `source` VARCHAR(5), `access_level` INT DEFAULT 0, `help` VARCHAR(60), `verify` INT DEFAULT 1)");
 		$db->query("CREATE TABLE IF NOT EXISTS hlpcfg_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50) NOT NULL, `description` VARCHAR(50) NOT NULL DEFAULT '', `file` VARCHAR(255) NOT NULL, `is_core` TINYINT NOT NULL, `access_level` INT DEFAULT 0, `verify` INT Default 1)");
 
-		// Load the Core Modules -- SETINGS must be first in case the other modules have settings
-		Logger::log(__FILE__, "Loading CORE MODULES", INFO);
+		Logger::log(__FILE__, "Start: Loading CORE MODULES", DEBUG);
 
+		// Load the Core Modules -- SETINGS must be first in case the other modules have settings
 		$this->load_core_module("SETTINGS");
 		$this->load_core_module("SYSTEM");
 		$this->load_core_module("ADMIN");
@@ -95,8 +95,22 @@ class Budabot extends AOChat {
 		$this->load_core_module("PRIV_TELL_LIMIT");
 		$this->load_core_module("USER_MODULES");
 		
+		Logger::log(__FILE__, "End: Loading CORE MODULES", DEBUG);
+		
 		// Load User Modules
 		$this->load_user_modules();
+	}
+	
+	public function connectedEvents() {
+		$type = "connected";
+		Logger::log(__FILE__, "Executing connected events...", DEBUG);
+
+		$events = Event::find_active_events_by_type($type);
+		if ($events != NULL) {
+			forEach ($events as $event) {
+				include $event->file;
+			}
+		}
 	}
 
 /*===============================
@@ -114,6 +128,8 @@ class Budabot extends AOChat {
 ** Loads (or reloads) all the user modules
 */	function load_user_modules() {
 		global $db;
+		
+		Logger::log(__FILE__, "Start: Loading USER MODULES", DEBUG);
 
 		//Prepare DB
 		$db->query("UPDATE hlpcfg_<myname> SET verify = 0 WHERE `is_core` = 0");
@@ -121,7 +137,6 @@ class Budabot extends AOChat {
 		$db->query("UPDATE eventcfg_<myname> SET `verify` = 0 WHERE `is_core` = 0");
 		$db->query("UPDATE settings_<myname> SET `verify` = 0 WHERE `is_core` = 0");
 
-		Logger::log(__FILE__, "Loading USER MODULES", INFO);
 
 		//Register modules
 		$this->register_modules();
@@ -131,6 +146,8 @@ class Budabot extends AOChat {
 		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0 AND `is_core` = 0");
 		$db->query("DELETE FROM eventcfg_<myname> WHERE `verify` = 0 AND `is_core` = 0");
 		$db->query("DELETE FROM settings_<myname> WHERE `verify` = 0 AND `is_core` = 0");
+		
+		Logger::log(__FILE__, "End: Loading USER MODULES", DEBUG);
 	}
 	
 /*===============================
@@ -320,7 +337,7 @@ class Budabot extends AOChat {
 					}
 
 					// Check files, for all 'player joined channel events'.
-					$events = Event::find_active_events($type);
+					$events = Event::find_active_events_by_type($type);
 					if ($events != NULL) {
 						forEach ($events as $event) {
 							include $event->file;
@@ -345,7 +362,7 @@ class Budabot extends AOChat {
 					unset($this->chatlist[$sender]);
 					
 					// Check files, for all 'player left channel events'.
-					$events = Event::find_active_events($type);
+					$events = Event::find_active_events_by_type($type);
 					if ($events != NULL) {
 						forEach ($events as $event) {
 							include $event->file;
@@ -378,7 +395,7 @@ class Budabot extends AOChat {
 					//Logger::log_chat("Buddy", $sender, "logged off");
 
 					// Check files, for all 'player logged off events'
-					$events = Event::find_active_events($type);
+					$events = Event::find_active_events_by_type($type);
 					if ($events != NULL) {
 						forEach ($events as $event) {
 							include $event->file;
@@ -390,7 +407,7 @@ class Budabot extends AOChat {
 					Logger::log_chat("Buddy", $sender, "logged on");
 
 					// Check files, for all 'player logged on events'.
-					$events = Event::find_active_events($type);
+					$events = Event::find_active_events_by_type($type);
 					if ($events != NULL) {
 						forEach ($events as $event) {
 							include $event->file;
@@ -446,7 +463,7 @@ class Budabot extends AOChat {
 				}
 
 				// Events
-				$events = Event::find_active_events($type);
+				$events = Event::find_active_events_by_type($type);
 				if ($restricted != true && $events != NULL) {
 					forEach ($events as $event) {
 						include $event->file;
@@ -523,7 +540,7 @@ class Budabot extends AOChat {
 
 					Logger::log_chat("Priv Group", $sender, $message);
 
-					$events = Event::find_active_events($type);
+					$events = Event::find_active_events_by_type($type);
 					if ($events != NULL) {
 						forEach ($events as $event) {
 							include $event->file;
@@ -565,7 +582,7 @@ class Budabot extends AOChat {
 					
 					Logger::log_chat("Ext Priv Group $channel", $sender);
 					
-					$events = Event::find_active_events($type);
+					$events = Event::find_active_events_by_type($type);
 					if ($events != NULL) {
 						forEach ($events as $event) {
 							include $event->file;
@@ -619,7 +636,7 @@ class Budabot extends AOChat {
 
 				if ($channel == "All Towers" || $channel == "Tower Battle Outcome") {
                     $type = "towers";
-    				$events = Event::find_active_events($type);
+    				$events = Event::find_active_events_by_type($type);
 					if ($events != NULL) {
 						forEach ($events as $event) {
 							include $event->file;
@@ -628,7 +645,7 @@ class Budabot extends AOChat {
                     return;
                 } else if ($channel == "Org Msg") {
                     $type = "orgmsg";
-    				$events = Event::find_active_events($type);
+    				$events = Event::find_active_events_by_type($type);
 					if ($events != NULL) {
 						forEach ($events as $event) {
 							include $event->file;
@@ -638,7 +655,7 @@ class Budabot extends AOChat {
                 } else if ($channel == $this->vars["my guild"]) {
                     $type = "guild";
 					$sendto = 'org';
-					$events = Event::find_active_events($type);
+					$events = Event::find_active_events_by_type($type);
 					if ($events != NULL) {
 						forEach ($events as $event) {
 							include $event->file;
@@ -687,7 +704,7 @@ class Budabot extends AOChat {
 
 				Logger::log_chat("Priv Group Invitation", $sender, " channel invited.");
 
-				$events = Event::find_active_events($type);
+				$events = Event::find_active_events_by_type($type);
 				if ($events != NULL) {
 					forEach ($events as $event) {
 						include $event->file;
