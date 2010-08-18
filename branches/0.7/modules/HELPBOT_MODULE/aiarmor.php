@@ -3,7 +3,7 @@ if (preg_match("/^aiarmor (cc|cm|co|cp|cs|css|ss)$/i", $message, $arr) || preg_m
 	$armortype = strtolower($arr[1]);
 	if ($arr[2] >= 1 && $arr[2] <= 300) {
 		$ql = $arr[2];
-	else {
+	} else {
 		$ql = 300;
 	}
 		

@@ -58,7 +58,7 @@ if (preg_match("/^check (all|prof|org)$/i", $message, $arr)) {
 	  			$org["Non orged"] .= " \\n /assist $row->name";
 			} else {
 				$org[$row->guild] .= " \\n /assist $row->name";
-			]
+			}
 		}
 		
 		ksort($org);

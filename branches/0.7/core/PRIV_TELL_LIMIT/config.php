@@ -57,8 +57,8 @@ if (preg_match("/^limits$/i", $message)) {
 	$list .= Text::makeLink("Change this", "/tell <myname> limit tell open", "chatcmd").")\n";
 
 	$list .= "\n<u>Privatgroup Invites</u>\n";
-	$list .= "Faction: <highlight>{Settings::get("priv_req_faction")}<end> (";
-	$list .= Text::makeLink("Change this", "/tell <myname> limit priv faction", "chatcmd").")\n";
+	$list .= "Faction: <highlight>" . Settings::get("priv_req_faction") . "<end> (";
+	$list .= Text::makeLink("Change this", "/tell <myname> limit priv faction", "chatcmd") . ")\n";
 	$list .= "Level: <highlight>";
 	if(Settings::get("priv_req_lvl") == 0)
 		$list .= "No Limit";

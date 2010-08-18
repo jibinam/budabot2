@@ -64,7 +64,7 @@ while ($data = fgets($bbin_socket)) {
 }
 
 // send a synchronize request to network
-fputs($bbin_socket, "PRIVMSG ".Settings::get('bbin_channel']." :[BBIN:SYNCHRONIZE)\n");
+fputs($bbin_socket, "PRIVMSG ".Settings::get('bbin_channel')." :[BBIN:SYNCHRONIZE]\n");
 
 // call the synchronize function ourselves, to send our online list to the network
 parse_incoming_bbin("[BBIN:SYNCHRONIZE]", $nick, $this);

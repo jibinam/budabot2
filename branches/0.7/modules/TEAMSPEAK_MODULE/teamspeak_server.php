@@ -203,15 +203,19 @@ if (preg_match("/^ts$/i", $message)) {
 			        $minutes = floor(($time%3600)/60);
 			        $seconds = floor(($time%3600)%60);
 			
-			        if($hours>0) $time = $hours."h ".$minutes."m ".$seconds."s";
-			        else if($minutes>0) $time = $minutes."m ".$seconds."s";
-			        else $time = $seconds."s";
+			        if ($hours>0) {
+						$time = $hours."h ".$minutes."m ".$seconds."s";
+					} else if ($minutes>0) {
+						$time = $minutes."m ".$seconds."s";
+					} else {
+						$time = $seconds."s";
+					}
 	                $link .= "<tab>- <highlight>$name<end>($time)\n";
 				}
 			}
 			if ($num_players == 0) {
 				$link .= "<tab>- <highlight>None<end>\n";
-			]
+			}
 		}
 
 		$msg = Text::makeBlob("Teamspeak Server Status", $link);

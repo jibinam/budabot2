@@ -74,12 +74,12 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
             $prof = "Shade";
             break;
     }
-    if($type == "guild" || (Settings::get("count_tell"] == 0 && $type == "msg") || ($type == "priv" && $this->vars["Guest"][$sender) == true)) {
-	    if(Settings::get("relaydb"))
+    if ($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $this->vars["Guest"][$sender] == true)) {
+	    if (Settings::get("relaydb"))
 			$db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `profession` = '$prof' AND `guest` = 1 ORDER BY level");
 	    else
 		    $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `profession` = '$prof' AND `guest` = 1 ORDER BY level"); 
-	} elseif($type == "priv" || (Settings::get("count_tell") == 1 && $type == "msg")) {
+	} elseif ($type == "priv" || (Settings::get("count_tell") == 1 && $type == "msg")) {
 	  	$db->query("SELECT * FROM priv_chatlist_<myname> WHERE `profession` = '$prof' ORDER BY `level`");
 	}
     $numonline = $db->numrows();

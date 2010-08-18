@@ -26,7 +26,7 @@ if (count($guard) == 0) {
 	forEach ($guard as $key => $value) {
 	  	if ($caller == $key) {
 			$list[(sprintf("%03d", "300").$key)] = $key;
-	  	} else if ($guard[$key]["g"] == "ready")
+	  	} else if ($guard[$key]["g"] == "ready") {
 			$list[(sprintf("%03d", (220 - $guard[$key]["lvl"])).$key)] = $key;
 		} else {
 			$list[(sprintf("%03d", "250").$key)] = $key;

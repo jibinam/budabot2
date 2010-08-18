@@ -31,19 +31,7 @@
    
 if (!function_exists("save_setting_to_db")) {
 	function save_setting_to_db($name, $value, $options, $intoptions, $description, $help) {
-		global $db;
-	
-		$name = str_replace("'", "''", $name);
-		$value = str_replace("'", "''", $value);
-		$options = str_replace("'", "''", $options);
-		$intoptions = str_replace("'", "''", $intoptions);
-		$description = str_replace("'", "''", $description);
-		$help = str_replace("'", "''", $help);
-		$db->query("SELECT * FROM settings_<myname> WHERE `name` = '$name'");
-		if ($db->numrows() == 0) {
-			$db->query("INSERT INTO settings_<myname> (`name`, `module`, `mode`, `setting`, `options`, `intoptions`, `description`, `source`, `access_level`, `help`)
-				VALUES ('$name', 'Basic Settings', 'edit', '$value', '$options', '$intoptions', '$description', 'cfg', " . MODERATOR . ", '$help')");
-		}
+		Settings::add($name, 'Basic Settings', $description, 'edit', $value, $options, $intoptions, MODERATOR, $help, 1);
 	}
 }
 
@@ -61,11 +49,5 @@ save_setting_to_db('default_error_color', Settings::get("default_error_color"), 
 save_setting_to_db('spam protection', Settings::get("spam protection"), 'ON;OFF', '1;0', 'Spam Protection for Private Chat', './core/SETTINGS/spam_help.txt');
 save_setting_to_db('default module status', Settings::get("default module status"), 'ON;OFF', '1;0', 'Default Status for new Modules', './core/SETTINGS/module_status_help.txt');
 save_setting_to_db('max_blob_size', Settings::get("max_blob_size"), 'number', null, 'Max chars for a window', './core/SETTINGS/max_blob_size_help.txt');
-
-//Upload Settings from the db that are set by modules
-$db->query("SELECT * FROM settings_<myname>");
-while ($row = $db->fObject()) {
-	Settings::get($row->name) = $row->setting;
-}
 
 ?>

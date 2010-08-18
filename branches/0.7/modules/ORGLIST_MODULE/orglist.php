@@ -210,7 +210,7 @@ if (preg_match("/^(orglist|onlineorg) end$/i", $message, $arr)) {
 			$this->data["ORGLIST_MODULE"]["result"][$amember]["online"] = $buddy_online_status;
 		} elseif ($this->name != $amember) { // If the name being checked ISNT the bot.
 			// check if they exist, (They might be deleted)
-			$uid = $this->get_uid($amember)
+			$uid = $this->get_uid($amember);
 			if ($uid) {
 				if ($buddy_list_full) {
 					$msg = "No room on the buddy-list!";

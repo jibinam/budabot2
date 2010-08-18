@@ -9,7 +9,8 @@
    
 global $socket;
 if ("1" == Settings::get('irc_status')) {
-	if ($args[2][0] != Settings::get("symbol"] && !Settings::get("Ignore")[$sender] && $irc = "active") {
+	$ignore = Settings::get("Ignore");
+	if ($args[2][0] != Settings::get("symbol") && !$ignore[$sender] && $irc == "active") {
 		
 		$patterns = array(
 		  '/<a href="itemref:\/\/(\d+)\/\1\/(\d+)">([^<]+)<\/a>/',

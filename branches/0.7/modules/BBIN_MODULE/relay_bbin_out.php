@@ -11,7 +11,8 @@
 global $bbin_socket;
 if ("1" == Settings::get('bbin_status')) {
 	// do not relay commands and ignored chars
-	if ($args[2][0] != Settings::get("symbol") && !Settings::get("Ignore")[$sender]) {
+	$ignore = Settings::get("Ignore");
+	if ($args[2][0] != Settings::get("symbol") && !$ignore[$sender]) {
 		
 		$outmsg = htmlspecialchars($message);
 		

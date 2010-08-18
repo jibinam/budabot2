@@ -84,7 +84,7 @@ if (preg_match("/^adminlist$/i", $message)) {
 					$list.="(<green>Online<end>)";
 				} else {
 					$list.="(<red>Offline<end>)";
-				]
+				}
 
 				$list.= "\n";
 			}

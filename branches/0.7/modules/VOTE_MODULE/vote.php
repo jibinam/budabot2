@@ -227,10 +227,13 @@ if (preg_match("/^vote$/i", $message)) {
 		$duration = $row->duration; $status = $row->status; $answer = $row->answer;
 		$timeleft = $started+$duration-time();	
 		
-		if (!$duration) {$msg = "Couldn't find any votes with this topic.";} 
-		elseif ($timeleft <= 0) {$msg = "No longer accepting votes for this topic.";} 
-		elseif ((Settings::get("vote_add_new_choices") == 0 || (Settings::get("vote_add_new_choices") == 1 && $status == 1)) && strpos($delimiter.$answer.$delimiter, $delimiter.$sect[1).$delimiter) === false){$msg = "Cannot accept this choice.  Please choose one from the menu.";}
-		else {
+		if (!$duration) {
+			$msg = "Couldn't find any votes with this topic.";
+		} elseif ($timeleft <= 0) {
+			$msg = "No longer accepting votes for this topic.";
+		} elseif ((Settings::get("vote_add_new_choices") == 0 || (Settings::get("vote_add_new_choices") == 1 && $status == 1)) && strpos($delimiter.$answer.$delimiter, $delimiter.$sect[1].$delimiter) === false){
+			$msg = "Cannot accept this choice.  Please choose one from the menu.";
+		} else {
 			$db->query("SELECT * FROM $table WHERE `question` = '".str_replace("'", "''", $sect[0])."' AND `duration` IS NULL AND `author` = '$sender'");
 			if ($db->numrows() > 0) {
 				$db->query("UPDATE $table SET `answer` = '".str_replace("'", "''", $sect[1])."' WHERE `author` = '$sender' AND `duration` IS NULL AND `question` = '".str_replace("'", "''", $sect[0])."'");

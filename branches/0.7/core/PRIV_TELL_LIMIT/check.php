@@ -111,7 +111,7 @@ if (Whitelist::check($sender) || isset($this->admins[$sender]) || $sender == Set
 	}
 
 	//Check if he is a org Member
-	if (Settings::get("tell_req_open"] == "org" && !isset($this->guildmembers[$sender))) {
+	if (Settings::get("tell_req_open") == "org" && !isset($this->guildmembers[$sender])) {
 	  	$msg = "<orange>Error! I am only respondling to members of the org {$this->vars["my guild"]}.<end>";
 	  	$this->send($msg, $sender);
 	  	$restricted = true;

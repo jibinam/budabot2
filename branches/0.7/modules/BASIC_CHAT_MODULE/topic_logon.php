@@ -36,7 +36,7 @@ if (isset($this->guildmembers[$sender]) && (time() >= $this->vars["topicdelay"])
 	$mins = floor($mins - ($hours * 60));
 	$days = floor($hours / 24);
 	$hours = floor($hours - ($days * 24));
-	$msg = "<highlight>Topic:<end> " . Settings::get("topic"] ." [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$days}days, {$hours}hrs and {$mins}mins ago<end>)";
+	$msg = "<highlight>Topic:<end> " . Settings::get("topic") ." [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$days}days, {$hours}hrs and {$mins}mins ago<end>]";
     $this->send($msg, $sender);
 }
 ?>

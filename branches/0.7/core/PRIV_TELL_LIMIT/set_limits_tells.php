@@ -30,11 +30,12 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if(preg_match("/^tminlvl$/i", $message)) {
- 	if(Settings::get("tell_req_lvl") == 0)
+if (preg_match("/^tminlvl$/i", $message)) {
+ 	if (Settings::get("tell_req_lvl") == 0) {
  		$msg = "No Level Limit has been set for responding on tells.";
- 	else
- 		$msg = "Level Limit for responding on tells is set to Lvl {Settings::get("tell_req_lvl")}";
+ 	} else {
+ 		$msg = "Level Limit for responding on tells is set to Lvl " . Settings::get("tell_req_lvl") . ".";
+	}
 
     $this->send($msg, $sendto);
 } elseif(preg_match("/^tminlvl ([0-9]+)$/i", $message, $arr)) {
@@ -82,7 +83,7 @@ if(preg_match("/^tminlvl$/i", $message)) {
  	if(Settings::get("tell_req_faction") == "all")
  		$msg = "No Faction Limit is set for responding on tells.";
 	else
-		$msg = "Faction Limit for responding on tells is set to {Settings::get("tell_req_faction")}.";
+		$msg = "Faction Limit for responding on tells is set to " . Settings::get("tell_req_faction") . ".";
 		
     $this->send($msg, $sendto);	
 } elseif(preg_match("/^tfaction (omni|clan|neutral|all)$/i", $message, $arr)) {

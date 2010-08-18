@@ -7,7 +7,7 @@ if (preg_match("/^hd$/i", $message)) {
 				   "<tab><tab>-><tab>".(strlen(29 - $i) < 2 ? "0" : "").(29 - $i)."s / ".(strlen(floor((29 - $i)/2)) < 2 ? "0" : "").floor((29 - $i)/2)."s</font>\n".
 				   ($i % 3 == 2 ? "<tab><img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n" : "");
 	}
-	$inside =. "<tab><img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n\nby Imoutochan, RK1";
+	$inside .= "<tab><img src=tdb://id:GFX_GUI_FRIENDLIST_SPLITTER>\n\nby Imoutochan, RK1";
 	$msg = Text::makeBlob("Heal delta tick info", $inside);
 } elseif (preg_match("/^hd ([0-9]+)$/i", $message, $arr)) {
 	$tick = (29-floor($arr[1]/30)); 
