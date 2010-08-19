@@ -258,7 +258,7 @@ class Budabot extends AOChat {
 			return;
 		}
 	
-		$message = Text::formatMessage($message);
+		$message = Text::format_message($message);
 		$this->send_privgroup($group,Settings::get("default_priv_color").$message);
 		if ((Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay)) {
 			$this->send_group($group, "</font>" . Settings::get("guest_color_channel") . "[Guest]<end> " . Settings::get("guest_color_username") . "$this->name</font>: " . Settings::get("default_priv_color") . "$message</font>");
@@ -283,7 +283,7 @@ class Budabot extends AOChat {
 			$who = 'prv';
 		}
 
-		$message = Text::formatMessage($message);
+		$message = Text::format_message($message);
 
 		// Send
 		if ($who == 'prv') { // Target is private chat by defult.
@@ -466,7 +466,8 @@ class Budabot extends AOChat {
 				$events = Event::find_active_events_by_type($type);
 				if ($restricted != true && $events != NULL) {
 					forEach ($events as $event) {
-						include $event->file;
+						Logger::log(__FILE__, "Event: '$type' File: './$event->module/$event->file'", DEBUG);
+						include "./$event->module/$event->file";
 					}
 				}
 
@@ -474,31 +475,25 @@ class Budabot extends AOChat {
 				if ($restricted != true) {
 					// Break down in to words.
 					$words	= split(' ', strtolower($message));
-					$access_level = $this->tellCmds[$words[0]]['access_level'];
-					$filename = $this->tellCmds[$words[0]]['filename'];
 
-				  	//Check if a subcommands for this exists
-				  	if ($this->subcommands[$filename][$type]) {
-					    if (preg_match("/^{$this->subcommands[$filename][$type]["cmd"]}$/i", $message)) {
-							$access_level = $this->subcommands[$filename][$type]['access_level'];
-						}
-					}
-
-					$user_access_level = AccessLevel::get_user_access_level($sender);
-					if ($user_access_level > $access_level) {
-						$restricted = true;
-					}
+					$command = Command::find_command_for_user($sender, $words[0], 'tell');
 				}
 
 				// Upload Command File or return error message
-				if ($restricted == true || $filename == "") {
+				if ($restricted == true || $command == false) {
 					$this->send("Error! Unknown command or Access denied! for more info try /tell <myname> help", $sendto);
 					$this->spam[$sender] = $this->spam[$sender] + 20;
-					return;
 				} else {
  				    $syntax_error = false;
  				    $msg = "";
-					include $filename;
+					if ($command->is_core == 1) {
+						$file = "./core/$command->module/$command->file";
+					} else {
+						$file = "./modules/$command->module/$command->file";
+					}
+					
+					Logger::log(__FILE__, "Command: '$type' File: '$file'", DEBUG);
+					require $file;
 					if ($syntax_error == true) {
 						if (($output = Help::find($sender, $words[0])) !== FALSE) {
 							$this->send("Error! Check your syntax " . $output, $sendto);
