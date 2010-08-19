@@ -336,4 +336,5 @@ if($answer == "yes") {
 //Create file
 $fp = fopen("delete me for new setup", "w");
 fclose($fp);
+die("Restarting bot");
 ?>
