@@ -25,6 +25,14 @@ class Util {
 			return 0;
 		}
 	}
+	
+	public static function get_full_path(&$obj) {
+		if ($obj->is_core == 1) {
+			return "./core/$obj->module/$obj->file";
+		} else {
+			return "./modules/$obj->module/$obj->file";
+		}
+	}
 
 	// taken from http://www.php.net/manual/en/function.date-diff.php
 	public static function date_difference($sdate, $edate) {

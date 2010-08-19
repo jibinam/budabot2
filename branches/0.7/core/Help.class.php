@@ -46,8 +46,9 @@ class Help {
 		if ($db->numrows() == 0) {
 			return FALSE;
 		} else {
-			$row = $db->fObject();
-			$data = file_get_contents($row->file);
+			$help = $db->fObject();
+			$path = Util::get_full_path($help);;
+			$data = file_get_contents($path);
 			$helpcmd = ucfirst($helpcmd);
 			$msg = Text::makeLink("Help($helpcmd)", $data);
 			return $msg;

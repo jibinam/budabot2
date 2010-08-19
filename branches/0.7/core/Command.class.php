@@ -102,11 +102,47 @@ class Command {
 	public static function find_command_for_user($user, $cmd, $type) {
 		global $db;
 		
+		if ($type == 'msg') {
+			$type = 'tell';
+		}
+		
 		$user_access_level = AccessLevel::get_user_access_level($user);
 		
 		$sql = "SELECT * from cmdcfg_<myname> WHERE `cmd` = '$cmd' AND {$type}_status = 1 AND {$type}_access_level >= $user_access_level";
 		$db->query($sql);
 		return $db->fObject();
+	}
+	
+	public static function fire_command(&$params) {
+		global $chatBot;
+	
+		forEach ($params as $key => $value) {
+			$$key = &$params[$key];
+		}
+		
+		// Break down in to words.
+		$words	= explode(' ', $message, 2);
+		$command = Command::find_command_for_user($sender, $words[0], $type);
+
+		// Upload Command File or return error message
+		if ($command == false) {
+			$this->send("Error! Unknown command or Access denied! for more info try /tell <myname> help", $sendto);
+			$this->spam[$sender] = $this->spam[$sender] + 20;
+		} else {
+			$syntax_error = false;
+			$msg = "";
+			$path = Util::get_full_path($command);
+			Logger::log(__FILE__, "Command: '$type' File: '$path'", DEBUG);
+			require $path;
+			if ($syntax_error == true) {
+				if (($output = Help::find($sender, $words[0])) !== FALSE) {
+					$this->send("Error! Check your syntax " . $output, $sendto);
+				} else {
+					$this->send("Error! Check your syntax or for more info try /tell <myname> help", $sendto);
+				}
+			}
+			$this->spam[$sender] = $this->spam[$sender] + 10;
+		}
 	}
 
 /*===============================
@@ -128,33 +164,6 @@ class Command {
 			return true;
 		} else {
 			return false;
-		}
-	}
-
-/*===============================
-** Name: subcommand
-** 	Register a subcommand
-*/	public static function subcommand($module, $filename, $command, $access_level = ALL, $dependson, $description = 'none') {
-		global $db;
-
-		if (!$this->processCommandArgs($access_level)) {
-			Logger::log(__FILE__, "invalid args for subcommand '$command'", ERROR);
-			return;
-		}
-
-		$command = strtolower($command);
-	  	
-		if ($command != NULL) // Change commands to lower case.
-			$command = strtolower($command);
-
-		for ($i = 0; $i < count($type); $i++) {
-			Logger::log(__FILE__, "Adding Subcommand to list:($command) File:($filename) Admin:($access_level[$i]) Type:($type[$i])", DEBUG);
-			
-			if ($this->existing_subcmds[$type[$i]][$command] == true) {
-				$db->query("UPDATE cmdcfg_<myname> SET `module` = '$module', `verify` = 1, `file` = '$filename', `description` = '$description', `dependson` = '$dependson' WHERE `cmd` = '$command' AND `type` = '{$type[$i]}'");
-			} else {
-				$db->query("INSERT INTO cmdcfg_<myname> (`module`, `type`, `file`, `cmd`, `access_level`, `description`, `verify`, `cmdevent`, `dependson`, `status`) VALUES ('$module', '{$type[$i]}', '$filename', '$command', $access_level, '$description', 1, 'subcmd', '$dependson', '".Settings::get("default module status")."')");
-			}
 		}
 	}
 }

@@ -59,6 +59,11 @@ require_once './core/AccessLevel.class.php';
 class Budabot extends AOChat {
 
 	public $buddyList = array();
+	public $public_channels = array(
+		"", 'IRRK News Wire', 'OT OOC', 'OT Newbie OOC', 'OT Jpn OOC', 'OT shopping 11-50',
+		'Tour Announcements', 'Neu. Newbie OOC', 'Neu. Jpn OOC', 'Neu. shopping 11-50', 'Neu. OOC', 'Clan OOC',
+		'Clan Newbie OOC', 'Clan Jpn OOC', 'Clan shopping 11-50', 'OT German OOC', 'Clan German OOC', 'Neu. German OOC'
+	);
 
 /*===============================
 ** Name: __construct
@@ -318,12 +323,14 @@ class Budabot extends AOChat {
 				}
 			break;
 			case AOCP_PRIVGRP_CLIJOIN: // 55, Incoming player joined private chat
-				$channel = $this->lookup_user($args[0]);
+				$params = array();
+				$params['channel'] = $this->lookup_user($args[0]);
 				$sender	= $this->lookup_user($args[1]);
-				$char_id = $args[1];
+				$params['sender'] = $sender;
+				$params['char_id'] = $args[1];
 				
-				if ($channel == $this->vars['name']) {
-					$type = "joinPriv";
+				if ($params['channel'] == $this->vars['name']) {
+					$params['type'] = "joinPriv";
 
 					// Add sender to the chatlist.
 					$this->chatlist[$char_id] = new WhoisXML($sender);
@@ -336,41 +343,31 @@ class Budabot extends AOChat {
 						return;
 					}
 
-					// Check files, for all 'player joined channel events'.
-					$events = Event::find_active_events_by_type($type);
-					if ($events != NULL) {
-						forEach ($events as $event) {
-							include $event->file;
-						}
-					}
+					Event::fire_event($params);
 				} else {
-					$type = "extJoinPriv";
-					// TODO
+					$params['type'] = "extJoinPriv";
+					Logger::log_chat("Ext Priv", $params['sender'], "joined chat");
+					Event::fire_event($params);
 				}
 			break;
 			case AOCP_PRIVGRP_CLIPART: // 56, Incoming player left private chat
-				$channel = $this->lookup_user($args[0]);
-				$sender	= $this->lookup_user($args[1]);
-				$char_id = $args[1];
+				$params = array();
+				$params['channel'] = $this->lookup_user($args[0]);
+				$params['sender'] = $this->lookup_user($args[1]);
+				$params['char_id'] = $args[1];
 
-				if ($channel == $this->vars['name']) {
-					$type = "leavePriv";
-
-					Logger::log_chat("Priv Group", $sender, "left the channel.");
+				if ($params['channel'] == $this->vars['name']) {
+					$params['type'] = "leavePriv";
+					Logger::log_chat("Priv Group", $params['sender'], "left the channel.");
 
 					// Remove from Chatlist array.
-					unset($this->chatlist[$sender]);
+					unset($this->chatlist[$params['sender']]);
 					
-					// Check files, for all 'player left channel events'.
-					$events = Event::find_active_events_by_type($type);
-					if ($events != NULL) {
-						forEach ($events as $event) {
-							include $event->file;
-						}
-					}
+					Event::fire_event($params);
 				} else {
-					$type = "extLeavePriv";
-					// TODO
+					$params['type'] = "extLeavePriv";
+					Logger::log_chat("Ext Priv", $params['sender'], "left chat");
+					Event::fire_event($params);
 				}
 			break;
 			case AOCP_BUDDY_ADD: // 40, Incoming buddy logon or off
@@ -387,32 +384,20 @@ class Budabot extends AOChat {
                 if (Settings::is_ignored($sender) || $sender == "") {
 					return;
 				}
+				
+				$params = array();
+				$params['sender'] = $sender;
+				$params['char_id'] = $char_id;
 
 				// If Status == 0(logoff) if Status == 1(logon)
 				if ($status == 0) {
-					$type = "logOff"; // Set message type
-
+					$params['type'] = "logOff";
 					//Logger::log_chat("Buddy", $sender, "logged off");
-
-					// Check files, for all 'player logged off events'
-					$events = Event::find_active_events_by_type($type);
-					if ($events != NULL) {
-						forEach ($events as $event) {
-							include $event->file;
-						}
-					}
+					Event::fire_event($params);
 				} else if ($status == 1) {
-					$type = "logOn"; // Set Message Type
-
+					$params['type'] = "logOn";
 					Logger::log_chat("Buddy", $sender, "logged on");
-
-					// Check files, for all 'player logged on events'.
-					$events = Event::find_active_events_by_type($type);
-					if ($events != NULL) {
-						forEach ($events as $event) {
-							include $event->file;
-						}
-					}
+					Event::fire_event($params);
 				}
 			break;
 			case AOCP_MSG_PRIVATE: // 30, Incoming Msg
@@ -459,58 +444,29 @@ class Budabot extends AOChat {
 
 				// Check privatejoin and tell Limits
 				if (file_exists('./core/PRIV_TELL_LIMIT/check.php')) {
-					include './core/PRIV_TELL_LIMIT/check.php';
+					require './core/PRIV_TELL_LIMIT/check.php';
 				}
 
+				$params = array();
+				$params['type'] = $type;
+				$params['sender'] = $sender;
+				$params['char_id'] = $char_id;
+				$params['sendto'] = $sendto;
+				
 				// Events
-				$events = Event::find_active_events_by_type($type);
-				if ($restricted != true && $events != NULL) {
-					forEach ($events as $event) {
-						Logger::log(__FILE__, "Event: '$type' File: './$event->module/$event->file'", DEBUG);
-						include "./$event->module/$event->file";
-					}
-				}
+				Event::fire_event($params);
 
-				// Admin Code
+				// Commands
 				if ($restricted != true) {
-					// Break down in to words.
-					$words	= split(' ', strtolower($message));
-
-					$command = Command::find_command_for_user($sender, $words[0], 'tell');
-				}
-
-				// Upload Command File or return error message
-				if ($restricted == true || $command == false) {
-					$this->send("Error! Unknown command or Access denied! for more info try /tell <myname> help", $sendto);
-					$this->spam[$sender] = $this->spam[$sender] + 20;
-				} else {
- 				    $syntax_error = false;
- 				    $msg = "";
-					if ($command->is_core == 1) {
-						$file = "./core/$command->module/$command->file";
-					} else {
-						$file = "./modules/$command->module/$command->file";
-					}
-					
-					Logger::log(__FILE__, "Command: '$type' File: '$file'", DEBUG);
-					require $file;
-					if ($syntax_error == true) {
-						if (($output = Help::find($sender, $words[0])) !== FALSE) {
-							$this->send("Error! Check your syntax " . $output, $sendto);
-						} else {
-							$this->send("Error! Check your syntax or for more info try /tell <myname> help", $sendto);
-						}
-					}
-					$this->spam[$sender] = $this->spam[$sender] + 10;
+					Command::fire_event($params);
 				}
 			break;
 			case AOCP_PRIVGRP_MESSAGE: // 57, Incoming priv message
 				$sender	= $this->lookup_user($args[1]);
-				$char_id = $args[1];
-				$sendto = 'prv';
 				$channel = $this->lookup_user($args[0]);
 				$message = $args[2];
 				$restricted = false;
+				
 				if ($sender == $this->name) {
 					Logger::log_chat("Priv Group", $sender, $message);
 					return;
@@ -528,61 +484,36 @@ class Budabot extends AOChat {
 						if ($this->largespam[$sender] > 0) $this->send("Error! Your client is sending large chat messages. Stop or be kicked.", $sender);
 					}
 				}
+				
+				//Remove the prefix infront if there is one
+				if ($message[0] == Settings::get('symbol') && strlen($message) > 1) {
+					$message = substr($message, 1);
+				}
+				
+				$params = array();
+				$params['sender'] = $sender;
+				$params['char_id'] = $args[1];
+				$params['channel'] = $channel;
+				$params['message'] = $message;
+				$params['restricted'] = $restricted;
 
 				if ($channel == $this->vars['name']) {
-
-					$type = "priv";
-
+					$params['type'] = "priv";
+					$params['sendto'] = 'prv';
 					Logger::log_chat("Priv Group", $sender, $message);
-
-					$events = Event::find_active_events_by_type($type);
-					if ($events != NULL) {
-						forEach ($events as $event) {
-							include $event->file;
-						}
-					}
+					Event::fire_event($params);
 
 					$msg = "";
-					if (!$restriced && (($message[0] == Settings::get("symbol") && strlen($message) >= 2) || preg_match("/^(afk|brb)/i", $message, $arr))) {
-						if ($message[0] == Settings::get("symbol")) {
-							$message 	= substr($message, 1);
-						}
-						$words		= split(' ', strtolower($message));
-						$access_level= $this->privCmds[$words[0]]["access_level"];
-						$filename 	= $this->privCmds[$words[0]]["filename"];
-
-						//Check if a subcommands for this exists
-						if ($this->subcommands[$filename][$type]) {
-							if (preg_match("/^{$this->subcommands[$filename][$type]["cmd"]}$/i", $message)) {
-								$access_level = $this->subcommands[$filename][$type]["access_level"];
-							}
-						}
-
-
-						$user_access_level = AccessLevel::get_user_access_level($sender);
-						if ($user_access_level > $access_level) {
-							$restricted = true;
-						} else {
-							if ($filename != "") {
-								include $filename;
-							}
-						}
+					if (!$restricted && ($message[0] == Settings::get("symbol") && strlen($message) > 1)) {
+						Command::fire_event($params);
 					} else {
-						$this->spam[$sender] = $this->spam[$sender] + 10;
+						$this->send("Error! Unknown command or Access denied! for more info try /tell <myname> help", $sendto);
+						$this->spam[$sender] = $this->spam[$sender] + 20;
 					}
-				
 				} else {  // ext priv group message
-					
-					$type = "extPriv";
-					
-					Logger::log_chat("Ext Priv Group $channel", $sender);
-					
-					$events = Event::find_active_events_by_type($type);
-					if ($events != NULL) {
-						forEach ($events as $event) {
-							include $event->file;
-						}
-					}
+					$params['type'] = "extPriv";
+					Logger::log_chat("Ext Priv Group $channel", $sender, $message);
+					Event::fire_event($params);
 				}
 			break;
 			case AOCP_GROUP_MESSAGE: // 65, Public and guild channels
@@ -593,11 +524,7 @@ class Budabot extends AOChat {
 				$channel = $this->get_gname($args[0]);
 
 				//Ignore Messages from Vicinity/IRRK New Wire/OT OOC/OT Newbie OOC...
-				$channelsToIgnore = array("", 'IRRK News Wire', 'OT OOC', 'OT Newbie OOC', 'OT Jpn OOC', 'OT shopping 11-50',
-					'Tour Announcements', 'Neu. Newbie OOC', 'Neu. Jpn OOC', 'Neu. shopping 11-50', 'Neu. OOC', 'Clan OOC',
-					'Clan Newbie OOC', 'Clan Jpn OOC', 'Clan shopping 11-50', 'OT German OOC', 'Clan German OOC', 'Neu. German OOC');
-
-				if (in_array($channel, $channelsToIgnore)) {
+				if (in_array($channel, $this->public_channels)) {
 					return;
 				}
 
@@ -628,49 +555,32 @@ class Budabot extends AOChat {
 						return;
 					}
 				}
+				
+				$params = array();
+				$params['sender'] = $sender;
+				$params['char_id'] = $char_id;
+				$params['message'] = $message;
+				$params['channel'] = $channel;
 
 				if ($channel == "All Towers" || $channel == "Tower Battle Outcome") {
-                    $type = "towers";
-    				$events = Event::find_active_events_by_type($type);
-					if ($events != NULL) {
-						forEach ($events as $event) {
-							include $event->file;
-						}
-					}
-                    return;
+                    $params['type'] = "towers";
+    				Event::fire_event($params);
                 } else if ($channel == "Org Msg") {
-                    $type = "orgmsg";
-    				$events = Event::find_active_events_by_type($type);
-					if ($events != NULL) {
-						forEach ($events as $event) {
-							include $event->file;
-						}
-					}
-                    return;
+                    $params['type'] = "orgmsg";
+    				Event::fire_event($params);
                 } else if ($channel == $this->vars["my guild"]) {
-                    $type = "guild";
-					$sendto = 'org';
-					$events = Event::find_active_events_by_type($type);
-					if ($events != NULL) {
-						forEach ($events as $event) {
-							include $event->file;
-						}
-					}
+                    $params['type'] = 'guild';
+					$params['sendto'] = 'org';
+					
+					Event::fire_event($params);
 					$msg = "";
-					if (!$restriced && (($message[0] == Settings::get("symbol") && strlen($message) >= 2) || preg_match("/^(afk|brb)/i", $message, $arr))) {
+					if (!$restricted && (($message[0] == Settings::get("symbol") && strlen($message) >= 2) || preg_match("/^(afk|brb)/i", $message, $arr))) {
 						if ($message[0] == Settings::get("symbol")) {
 							$message 	= substr($message, 1);
 						}
     					$words		= split(' ', strtolower($message));
 						$access_level= $this->guildCmds[$words[0]]["access_level"];
 						$filename 	= $this->guildCmds[$words[0]]["filename"];
-
-					  	//Check if a subcommands for this exists
-					  	if ($this->subcommands[$filename][$type]) {
-						    if (preg_match("/^{$this->subcommands[$filename][$type]["cmd"]}$/i", $message)) {
-								$access_level = $this->subcommands[$filename][$type]["access_level"];
-							}
-						}
 
 						$user_access_level = AccessLevel::get_user_access_level($sender);
 						if ($user_access_level > $access_level) {
@@ -684,28 +594,23 @@ class Budabot extends AOChat {
 						//Shows syntax errors to the user
 						if ($syntax_error == true) {
 							if (($output = Help::find($sender, $words[0])) !== FALSE) {
-								$this->send("Error! " . $output, $sendto);
+								$this->send("Error! " . $output, $params['sendto']);
 							} else {
-								$this->send("Error! Check your syntax or for more info try /tell <myname> help", $sendto);
+								$this->send("Error! Check your syntax or for more info try /tell <myname> help", $params['sendto']);
 							}
 						}
 					}
 				}
 			break;
 			case AOCP_PRIVGRP_INVITE:  // 50, private group invite
-				$type = "extJoinPrivRequest"; // Set message type.
-				$sender = $this->lookup_user($args[0]);
-				$char_id = $args[0];
+				$params = array();
+				$params['type'] = "extJoinPrivRequest"; // Set message type.
+				$params['sender'] = $this->lookup_user($args[0]);
+				$params['char_id'] = $args[0];
 
-				Logger::log_chat("Priv Group Invitation", $sender, " channel invited.");
+				Logger::log_chat("Priv Group Invitation", $params['sender'], " channel invited.");
 
-				$events = Event::find_active_events_by_type($type);
-				if ($events != NULL) {
-					forEach ($events as $event) {
-						include $event->file;
-					}
-				}
-                return;
+				Event::fire_event($params);
 			break;
 		}
 	}

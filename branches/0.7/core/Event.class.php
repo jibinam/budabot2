@@ -53,6 +53,23 @@ class Event {
 		$db->query($sql);
 		return $db->fObject("all");
 	}
+	
+	public static function fire_event(&$params) {
+		global $chatBot;
+	
+		forEach ($params as $key => $value) {
+			$$key = &$params[$key];
+		}
+		
+		$events = Event::find_active_events_by_type($type);
+		if ($events != NULL) {
+			forEach ($events as $event) {
+				$path = Util::get_full_path($event);
+				Logger::log(__FILE__, "Event: '$type' File: '$path'", DEBUG);
+				require $path;
+			}
+		}
+	}
 
 /*===============================
 ** Name: run_cron_jobs()
