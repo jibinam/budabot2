@@ -95,6 +95,7 @@ class DB {
 		}
 
 		$this->lastQuery = $stmt;
+		Logger:log(__FILE__, "Query: $stmt", DEBUG);
       	$result = $this->sql->query($stmt);
       	
 		if (is_object($result)) {
@@ -130,6 +131,7 @@ class DB {
 		}
 		
 		$this->lastQuery = $stmt;
+		Logger:log(__FILE__, "Exec: $stmt", DEBUG);
       	$aff_rows = $this->sql->exec($stmt);
 
 		$error = $this->sql->errorInfo();
@@ -150,6 +152,7 @@ class DB {
         }
 		
 		$this->lastQuery = $stmt;
+		Logger:log(__FILE__, "CreateTable: $stmt", DEBUG);
 		$this->sql->exec($stmt);
 
 		$error = $this->sql->errorInfo();
@@ -261,7 +264,7 @@ class DB {
 		
 		// only letters, numbers, underscores are allowed
 		if (!preg_match('/^[a-z0-9_]+$/', $name)) {
-			Logger::log(__FILE__, "Invalid SQL file name: '$name' for module: '$module'.  Only numbers, letters, and underscores permitted.", ERROR);
+			Logger::log(__FILE__, "$module Invalid SQL file name: '$name'.  Only numbers, letters, and underscores permitted.", ERROR);
 			return;
 		}
 		

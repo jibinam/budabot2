@@ -25,7 +25,7 @@ class Command {
 		global $db;
 
 		if (!Command::processCommandArgs($access_level)) {
-			Logger::log(__FILE__, "invalid args for command '$command'", ERROR);
+			Logger::log(__FILE__, "$module/$filename Invalid args for command '$command'", ERROR);
 			return;
 		}
 		
@@ -37,7 +37,7 @@ class Command {
 		$command = strtolower($command);
 		$description = str_replace("'", "''", $description);
 
-		Logger::log(__FILE__, "Adding Command to list:($command) File:($filename)", DEBUG);
+		Logger::log(__FILE__, "$module/$filename Adding Command '$command'", DEBUG);
 
 		if (Command::find_command($command) != false) {
 			$sql = "
@@ -95,6 +95,16 @@ class Command {
 		global $db;
 		
 		$sql = "SELECT * from cmdcfg_<myname> WHERE `cmd` = '$name'";
+		$db->query($sql);
+		return $db->fObject();
+	}
+	
+	public static function find_command_for_user($user, $cmd, $type) {
+		global $db;
+		
+		$user_access_level = AccessLevel::get_user_access_level($user);
+		
+		$sql = "SELECT * from cmdcfg_<myname> WHERE `cmd` = '$cmd' AND {$type}_status = 1 AND {$type}_access_level >= $user_access_level";
 		$db->query($sql);
 		return $db->fObject();
 	}

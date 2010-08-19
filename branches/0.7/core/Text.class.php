@@ -5,6 +5,8 @@ class Text {
 ** Name: format_message
 ** Formats an outgoing message with correct colors, replaces values, etc
 */	public static function format_message($message) {
+		global $chatBot;
+
 		// Color
 		$message = str_replace("<header>", Settings::get('default_header_color'), $message);
 		$message = str_replace("<error>", Settings::get('default_error_color'), $message);
@@ -20,7 +22,7 @@ class Text {
 		$message = str_replace("<grey>", "<font color='#C3C3C3'>", $message);
 		$message = str_replace("<cyan>", "<font color='#00FFFF'>", $message);
 
-		$message = str_replace("<myname>", $this->name, $message);
+		$message = str_replace("<myname>", $chatBot->name, $message);
 		$message = str_replace("<tab>", "    ", $message);
 		$message = str_replace("<end>", "</font>", $message);
 		$message = str_replace("<symbol>", Settings::get("symbol") , $message);

@@ -30,10 +30,6 @@ class Logger {
 			Logger::append_to_log_file($log_level_description, $line);
 		}
 		
-		if ($log_level >= WARN) {
-			die('The bot is shutting down.');
-		}
-		
 		/*
 			00:00 DEBUG [/modules/TOWER_MODULE/towers.php] [timer check]
 			00:00 INFO  [/modules/TOWER_MODULE/towers.php] [tower site added]
@@ -61,11 +57,11 @@ class Logger {
         $message = preg_replace("/<\/a>/U", "[/link]", $message);
 
 		if ($channel == "Buddy") {
-			$line = "[$timestamp] [$channel] $sender $message";
+			$line = "$timestamp INFO  [$channel] $sender $message";
 		} else if ($sender == -1) {
-			$line = "[$timestamp] [$channel] $message";
+			$line = "$timestamp INFO  [$channel] $message";
 		} else {
-			$line = "[$timestamp] [$channel] $sender: $message";
+			$line = "$timestamp INFO  [$channel] $sender: $message";
 		}
 
 		if ($channel == "Inc. Msg." || $channel == "Out. Msg.") {
