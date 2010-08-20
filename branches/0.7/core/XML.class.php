@@ -56,7 +56,7 @@ class XML {
 	}
 	
 	//Trys to download a file from a URL
-	public function getUrl($url, $timeout = '10') {
+	public function getUrl($url, $timeout = '5') {
 		$url = strtolower($url);
 		
 		//Remove any http tags
