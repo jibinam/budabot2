@@ -69,7 +69,7 @@ if (preg_match("/^check (all|prof|org)$/i", $message, $arr)) {
 
 	  	$msg = Text::makeBlob("Check on Organisations", $list);
 	}
-	$this->send($msg);
+	$chatBot->send($msg);
 } else {
 	$syntax_error = true;
 }

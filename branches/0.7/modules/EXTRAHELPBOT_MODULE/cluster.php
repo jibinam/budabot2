@@ -30,7 +30,7 @@
 			}
 		}
 		if ($found == 0) { 
-			$this->send("No matches, sorry.", $sendto);
+			$chatBot->send("No matches, sorry.", $sendto);
 			return; 
 		} else if ($found == 1) {
 			$windowlink = str_replace("--", "", $info);
@@ -42,13 +42,13 @@
 		
 			$windowlink = Text::makeLink("::Cluster search results::", $inside);
 		}
-		$this->send($windowlink, $sendto);
+		$chatBot->send($windowlink, $sendto);
 		if ($found >= 10) {
-			$this->send("<highlight>More than 10 matches found!<end>\n<tab>Please specify your key words for better results.", $sendto);
+			$chatBot->send("<highlight>More than 10 matches found!<end>\n<tab>Please specify your key words for better results.", $sendto);
 		} else if ($found > 1) {
-			$this->send("<highlight>$found<end> matches in total.", $sendto);
+			$chatBot->send("<highlight>$found<end> matches in total.", $sendto);
 		}
 	} else {
-		$this->send($helplink, $sendto);
+		$chatBot->send($helplink, $sendto);
 	}
 ?>

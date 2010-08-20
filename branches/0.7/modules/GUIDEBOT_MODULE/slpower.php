@@ -69,9 +69,9 @@ Yet another spawn area with occasional contention from higher toons for pb's, yo
 
 $slpower_txt = Text::makeLink("Shadowlands Powerleveling Solo Guide", $slpower_txt); 
 if($type == "msg") 
-$this->send($slpower_txt, $sender); 
+$chatBot->send($slpower_txt, $sender); 
 elseif($type == "all") 
-$this->send($slpower_txt); 
+$chatBot->send($slpower_txt); 
 else 
-$this->send($slpower_txt, "guild"); 
+$chatBot->send($slpower_txt, "guild"); 
 ?>

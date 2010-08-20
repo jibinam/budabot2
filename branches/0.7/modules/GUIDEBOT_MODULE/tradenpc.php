@@ -10,9 +10,9 @@ $tradenpc_txt = "These NPCs may not be the easiest to find, but their wares are 
 ";
 $tradenpc_txt = Text::makeLink("Guide to Unique NPCs", $tradenpc_txt); 
 if($type == "msg") 
-$this->send($tradenpc_txt, $sender); 
+$chatBot->send($tradenpc_txt, $sender); 
 elseif($type == "all") 
-$this->send($tradenpc_txt); 
+$chatBot->send($tradenpc_txt); 
 else 
-$this->send($tradenpc_txt, "guild"); 
+$chatBot->send($tradenpc_txt, "guild"); 
 ?>

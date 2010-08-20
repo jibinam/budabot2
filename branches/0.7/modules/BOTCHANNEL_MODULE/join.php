@@ -33,12 +33,12 @@ if (preg_match("/^join$/i", $message)) {
  	$db->query("SELECT name FROM members_<myname> WHERE `name` = '$sender' UNION SELECT name FROM org_members_<myname> WHERE `name` = '$sender'");
 	
 	// if user is an admin, member, or org member, or if manual join mode is open for everyone, then invite them
-	if (isset($this->admins[$sender]) || $db->numrows() > 0 || Settings::get("guest_man_join") == 0) {
-		$this->vars["Guest"][$sender] = false;
-		$this->privategroup_kick($sender);
-		$this->privategroup_invite($sender);
+	if (isset($chatBot->admins[$sender]) || $db->numrows() > 0 || Settings::get("guest_man_join") == 0) {
+		$chatBot->vars["Guest"][$sender] = false;
+		$chatBot->privategroup_kick($sender);
+		$chatBot->privategroup_invite($sender);
 	} else {
-		$this->send("You are not allowed to join the guest channel, ask a member of the bot for an invite.", $sender);
+		$chatBot->send("You are not allowed to join the guest channel, ask a member of the bot for an invite.", $sender);
 	}
 } else {
 	$syntax_error = true;

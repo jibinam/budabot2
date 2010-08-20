@@ -36,7 +36,7 @@ if (preg_match("/^members$/i", $message)) {
 	  	while ($row = $db->fObject()) {
 	  	  	if (Buddylist::is_online($row->name)) {
 				$status = "<green>Online";
-				if ($this->vars["Guest"][$row->name] == true) {
+				if ($chatBot->vars["Guest"][$row->name] == true) {
 			    	$status .= " and in Guestchannel";
 				}
 			} else {
@@ -48,12 +48,12 @@ if (preg_match("/^members$/i", $message)) {
 	  	
 	    $msg = Text::makeBlob("$autoguests players on the Autoinvitelist", $list);
 	    if ($autoguests != 0) {
-           	$this->send($msg.$link, $sendto);
+           	$chatBot->send($msg.$link, $sendto);
         } else {
-           	$this->send($msg, $sendto);
+           	$chatBot->send($msg, $sendto);
 		}
 	} else {
-       	$this->send("No player is on this list.", $sendto);
+       	$chatBot->send("No player is on this list.", $sendto);
 	}
 } else {
 	$syntax_error = true;

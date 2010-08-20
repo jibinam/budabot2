@@ -47,9 +47,9 @@ Now all kinds of chaos insues - three cyborg boss mobs spawn, unless you have se
 
 $fgrid2_txt = Text::makeLink("Guide to Fixer Grid Part 2 aka Team FGrid", $fgrid2_txt); 
 if($type == "msg") 
-$this->send($fgrid2_txt, $sender); 
+$chatBot->send($fgrid2_txt, $sender); 
 elseif($type == "all") 
-$this->send($fgrid2_txt); 
+$chatBot->send($fgrid2_txt); 
 else 
-$this->send($fgrid2_txt, "guild"); 
+$chatBot->send($fgrid2_txt, "guild"); 
 ?>

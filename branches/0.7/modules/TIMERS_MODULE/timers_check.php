@@ -30,18 +30,18 @@
    */
 
 //Check if at least one timer is running
-if (count($this->vars["Timers"]) == 0) {
+if (count($chatBot->vars["Timers"]) == 0) {
 	return;
 }
 
-forEach ($this->vars["Timers"] as $key => $value) {
+forEach ($chatBot->vars["Timers"] as $key => $value) {
 	$msg = "";
 
-	$tleft = $this->vars["Timers"][$key]["timer"] - time();
-	$set_time = $this->vars["Timers"][$key]["settime"];
-	$name = $this->vars["Timers"][$key]["name"];
-	$owner = $this->vars["Timers"][$key]["owner"];
-	$mode = $this->vars["Timers"][$key]["mode"];
+	$tleft = $chatBot->vars["Timers"][$key]["timer"] - time();
+	$set_time = $chatBot->vars["Timers"][$key]["settime"];
+	$name = $chatBot->vars["Timers"][$key]["name"];
+	$owner = $chatBot->vars["Timers"][$key]["owner"];
+	$mode = $chatBot->vars["Timers"][$key]["mode"];
 
 	if ($tleft <= 0 && $tleft >= -600) {
 		if ($name == "PrimTimer") {
@@ -50,10 +50,10 @@ forEach ($this->vars["Timers"] as $key => $value) {
 			$msg = "<highlight>$owner<end> your timer named <highlight>$name<end> has gone off";
 		}
 	
-		unset($this->vars["Timers"][$key]);
+		unset($chatBot->vars["Timers"][$key]);
 		$db->query("DELETE FROM timers_<myname> WHERE `name` = '$name' AND `owner` = '$owner'");
 	} else if ($tleft <= 0) {
-		unset($this->vars["Timers"][$key]);
+		unset($chatBot->vars["Timers"][$key]);
 		$db->query("DELETE FROM timers_<myname> WHERE `name` = '$name' AND `owner` = '$owner'");
 	} else if ($tleft >= 3599 && $tleft < 3601 && ((time() - $set_time) >= 30)) {
 		if ($name == "PrimTimer") {
@@ -76,9 +76,9 @@ forEach ($this->vars["Timers"] as $key => $value) {
 	}
 	if ('' != $msg) {
 		if ('msg' == $mode) {
-			$this->send($msg, $owner);
+			$chatBot->send($msg, $owner);
 		} else {
-			$this->send($msg, $mode);
+			$chatBot->send($msg, $mode);
 		}
 	}
 }

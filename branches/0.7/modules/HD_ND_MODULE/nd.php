@@ -19,6 +19,6 @@ if (preg_match("/^nd$/i", $message)) {
 	$msg = "Correct !nd usage:\n <highlight>!nd &lt;your psychic><end>, e.g. <highlight>!nd 350<end>.";
 }
 
-$this->send($msg, $sendto);
+$chatBot->send($msg, $sendto);
 
 ?>

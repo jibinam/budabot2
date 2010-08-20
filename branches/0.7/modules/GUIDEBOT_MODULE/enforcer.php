@@ -174,6 +174,6 @@ On the positive side.. as an enforcer, you have more HP than god, bigger hammers
 ;
 $enforcer_txt = Text::makeLink("Guide To Enforcers", $enforcer_txt);
 
-$this->send($enforcer_txt, $sendto);
+$chatBot->send($enforcer_txt, $sendto);
 
 ?>

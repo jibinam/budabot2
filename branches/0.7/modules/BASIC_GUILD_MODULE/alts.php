@@ -31,7 +31,7 @@
 
 if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
     $name = ucfirst(strtolower($arr[1]));
-    $uid = $this->get_uid($arr[1]);
+    $uid = $chatBot->get_uid($arr[1]);
     if (!$uid) {
         $msg = "Player <highlight>$name<end> does not exist.";
     } else {
@@ -59,7 +59,7 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
     }
 } else if (preg_match("/^alts (rem|del|remove|delete) (.+)$/i", $message, $arr)) {
     $name = ucfirst(strtolower($arr[2]));
-    $uid = $this->get_uid($arr[2]);
+    $uid = $chatBot->get_uid($arr[2]);
     if (!$uid) {
         $msg = "Player <highlight>".$name."<end> does not exist.";
     } else {
@@ -85,7 +85,7 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
     }
 } else if (preg_match("/^alts (.+)$/i", $message, $arr)) {
     $name = ucfirst(strtolower($arr[1]));
-    $uid = $this->get_uid($arr[1]);
+    $uid = $chatBot->get_uid($arr[1]);
     if (!$uid) {
         $msg = "Player <highlight>".$name."<end> does not exist.";
     } else {
@@ -184,8 +184,8 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
 		if ($names[1] != '' && $names[2] != '') {
 			$name_alt = ucfirst(strtolower($names[1]));
 			$name_main = ucfirst(strtolower($names[2]));
-			$uid1 = $this->get_uid($names[1]);
-			$uid2 = $this->get_uid($names[2]);
+			$uid1 = $chatBot->get_uid($names[1]);
+			$uid2 = $chatBot->get_uid($names[2]);
 			if (!$uid1) {
 				$msg = "Player <highlight>$name_alt<end> does not exist.";
 			}
@@ -212,8 +212,8 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
 		if ($names[1] != '' && $names[2] != '') {
 			$name_alt = ucfirst(strtolower($names[1]));
 			$name_main = ucfirst(strtolower($names[2]));
-			$uid1 = $this->get_uid($names[1]);
-			$uid2 = $this->get_uid($names[2]);
+			$uid1 = $chatBot->get_uid($names[1]);
+			$uid2 = $chatBot->get_uid($names[2]);
 			if (!$uid1) {
 				$msg = "Player <highlight>$name_alt<end> does not exist.";
 			}
@@ -237,6 +237,6 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
 	}
 }
 
-$this->send($msg, $sendto);
+$chatBot->send($msg, $sendto);
 
 ?>

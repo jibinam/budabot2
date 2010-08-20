@@ -163,9 +163,9 @@ AO Universe";
 
 $compact_txt = Text::makeLink("Guide to SL Compact Discs Quests", $compact_txt); 
 if($type == "msg") 
-$this->send($compact_txt, $sender); 
+$chatBot->send($compact_txt, $sender); 
 elseif($type == "all") 
-$this->send($compact_txt); 
+$chatBot->send($compact_txt); 
 else 
-$this->send($compact_txt, "guild"); 
+$chatBot->send($compact_txt, "guild"); 
 ?>

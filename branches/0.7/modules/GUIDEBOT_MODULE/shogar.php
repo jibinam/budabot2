@@ -28,9 +28,9 @@ $shogar_txt = "Scheol Garden
 
 $shogar_txt = Text::makeLink("Shoel Garden Nanos", $shogar_txt); 
 if($type == "msg") 
-$this->send($shogar_txt, $sender); 
+$chatBot->send($shogar_txt, $sender); 
 elseif($type == "all") 
-$this->send($shogar_txt); 
+$chatBot->send($shogar_txt); 
 else 
-$this->send($shogar_txt, "guild"); 
+$chatBot->send($shogar_txt, "guild"); 
 ?>

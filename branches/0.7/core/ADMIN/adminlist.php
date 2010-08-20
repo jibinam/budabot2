@@ -30,69 +30,76 @@
    */
 
 if (preg_match("/^adminlist$/i", $message)) {
-	$list.=	"<header>::::: Adminlist :::::<end>\n\n";
 
-	$list.= "<highlight>Administrators<end>\n";	
-	forEach ($this->admins as $who => $data) {
-		if ($this->admins[$who]["level"] == ADMIN || $this->admins[$who]["level"] == SUPERADMIN) {
-			if ($who != "") {
-				$list.= "<tab>$who ";
-				
-				if (Settings::get("Super Admin") == $who) {
-					$list .= "(<orange>Super Administrator<end>) ";
-				}
+	$list.= "<highlight>Administrators<end>\n";
+	$admins = Admin::find_by_access_level(SUPERADMIN);
+	forEach ($admins as $admin) {
+		$admin_player = new Player($admin->uid);
+		$list.= "<tab>$admin_player->name (<orange>Super Administrator<end>) ";
 
-				if ($this->admins[$who]["online"] == "online" && isset($this->chatlist[$who])) {
-					$list.="(<green>Online and in chat<end>)";
-				} else if ($this->admins[$who]["online"] == "online") {
-					$list.="(<green>Online<end>)";
-				} else {
-					$list.="(<red>Offline<end>)";
-				}
-
-				$list.= "\n";
-			}
+		$is_online = $admin_player->is_online;
+		if ($is_online === true) {
+			$list .= "(<green>Online<end>)";
+		} else if ($is_online === false) {
+			$list .= "(<orange>Offline<end>)";
+		} else {
+			$list .= "(<red>Offline<end>)";
 		}
+		$list.= "\n";
+	}
+	forEach (Admin::find_by_access_level(ADMIN) as $admin) {
+		$admin_player = new Player($admin->uid);
+		$list.= "<tab>$admin_player->name ";
+		
+		$is_online = $admin_player->is_online;
+		if ($is_online === true) {
+			$list .= "(<green>Online<end>)";
+		} else if ($is_online === false) {
+			$list .= "(<orange>Offline<end>)";
+		} else {
+			$list .= "(<red>Offline<end>)";
+		}
+
+		$list.= "\n";
 	}
 
 	$list.="<highlight>Moderators<end>\n";	
-	forEach ($this->admins as $who => $data) {
-		if ($this->admins[$who]["level"] == MODERATOR) {
-			if ($who != ""){ 
-				$list.= "<tab>$who ";
-				if ($this->admins[$who]["online"] == "online" && isset($this->chatlist[$who])) {
-					$list.="(<green>Online and in chat<end>)";
-				} else if ($this->admins[$who]["online"] == "online") {
-					$list.="(<green>Online<end>)";
-				} else {
-					$list.="(<red>Offline<end>)";
-				}
-
-				$list.= "\n";
-			}
+	forEach (Admin::find_by_access_level(MODERATOR) as $admin) {
+		$admin_player = new Player($admin->uid);
+		$list.= "<tab>$admin_player->name ";
+		
+		$is_online = $admin_player->is_online;
+		if ($is_online === true) {
+			$list .= "(<green>Online<end>)";
+		} else if ($is_online === false) {
+			$list .= "(<orange>Offline<end>)";
+		} else {
+			$list .= "(<red>Offline<end>)";
 		}
+
+		$list.= "\n";
 	}
 
 	$list.=	"<highlight>Raidleaders<end>\n";	
-	forEach ($this->admins as $who => $data){
-		if ($this->admins[$who]["level"] == RAIDLEADER){
-			if ($who != ""){ 
-				$list.= "<tab>$who ";
-				if ($this->admins[$who]["online"] == "online" && isset($this->chatlist[$who])) {
-					$list.="(<green>Online and in chat<end>)";
-				} else if ($this->admins[$who]["online"] == "online") {
-					$list.="(<green>Online<end>)";
-				} else {
-					$list.="(<red>Offline<end>)";
-				}
-
-				$list.= "\n";
-			}
+	forEach (Admin::find_by_access_level(RAIDLEADER) as $admin) {
+		$admin_player = new Player($admin->uid);
+		$list.= "<tab>$admin_player->name ";
+		
+		$is_online = $admin_player->is_online;
+		if ($is_online === true) {
+			$list .= "(<green>Online<end>)";
+		} else if ($is_online === false) {
+			$list .= "(<orange>Offline<end>)";
+		} else {
+			$list .= "(<red>Offline<end>)";
 		}
+
+		$list.= "\n";
 	}
 	
+	//require './core/ADMIN/upload_admins.php';
 	$link = Text::makeLink('Adminlist', $list);	
-	$this->send($link, $sendto);
+	$chatBot->send($link, $sendto);
 } else {
 	$syntax_error = true;
 }

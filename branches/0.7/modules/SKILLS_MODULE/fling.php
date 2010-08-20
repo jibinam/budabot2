@@ -38,7 +38,7 @@ if (preg_match("/^fling ([0-9]*\.?[0-9]+) ([0-9]+)$/i", $message, $arr)) {
 	$inside .= $footer;
 
 	$windowlink = Text::makeLink("::Your Fling Results::", $inside);
-	$this->send($windowlink, $sendto);
+	$chatBot->send($windowlink, $sendto);
 } else {
-	$this->send($helplink, $sendto);
+	$chatBot->send($helplink, $sendto);
 }

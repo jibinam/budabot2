@@ -26,9 +26,9 @@ The Map Navigation skill cannot be reset. ";
 
 $ipreset_txt = Text::makeLink("Guide to IP Reset Points", $ipreset_txt); 
 if($type == "msg") 
-$this->send($ipreset_txt, $sender); 
+$chatBot->send($ipreset_txt, $sender); 
 elseif($type == "all") 
-$this->send($ipreset_txt); 
+$chatBot->send($ipreset_txt); 
 else 
-$this->send($ipreset_txt, "guild"); 
+$chatBot->send($ipreset_txt, "guild"); 
 ?>

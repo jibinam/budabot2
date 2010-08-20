@@ -18,7 +18,7 @@
 		$lvl = trim($arr[1]);
 		
 		if ($lvl > 300 || $lvl < 1) {
-			$this->send("Level entered is out of range... please enter a number between <highlight>1 and 300<end>.",$sendto);
+			$chatBot->send("Level entered is out of range... please enter a number between <highlight>1 and 300<end>.",$sendto);
 		} else {
 			$high = floor($lvl * 1.25); $low = ceil($lvl * 0.75);
 			
@@ -29,11 +29,11 @@
 			$inside .= $footer;
 			
 			$windowlink = Text::makeLink("::Your loot QL results::", $inside);
-			$this->send($windowlink, $sendto);
+			$chatBot->send($windowlink, $sendto);
 		}
 	
 	} else {
-		$this->send($helplink, $sendto);
+		$chatBot->send($helplink, $sendto);
 	}
 
 ?>

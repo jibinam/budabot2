@@ -29,17 +29,17 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if (isset($this->guildmembers[$sender])) {
+if (isset($chatBot->guildmembers[$sender])) {
     $db->query("DELETE FROM guild_chatlist_<myname> WHERE `name` = '$sender'");
-    if (time() >= $this->vars["onlinedelay"]) {
+    if (time() >= $chatBot->vars["onlinedelay"]) {
         $db->query("UPDATE org_members_<myname> SET `logged_off` = '".time()."' WHERE `name` = '$sender'");
 		
 		if (Settings::get("bot_notify") != 0) {
-			$this->send("<highlight>$sender<end> logged off", "guild", true);
+			$chatBot->send("<highlight>$sender<end> logged off", "guild", true);
 			
 			//Guestchannel part
 			if(Settings::get("guest_relay") == 1) {
-				$this->send("<highlight>$sender<end> logged off", "priv", true);
+				$chatBot->send("<highlight>$sender<end> logged off", "priv", true);
 			}
 		}
     }

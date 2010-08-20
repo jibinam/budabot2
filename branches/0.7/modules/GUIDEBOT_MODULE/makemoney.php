@@ -203,6 +203,6 @@ So there you go, what are you waiting for? Get out there and shop! ";
 
 $money_txt = Text::makeLink("Guide to Making Money", $money_txt);
 
-$this->send($money_txt, $sendto);
+$chatBot->send($money_txt, $sendto);
 
 ?>

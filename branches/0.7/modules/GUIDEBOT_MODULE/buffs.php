@@ -232,9 +232,9 @@ Again, keep in mind that many of the buffs here have lesser ones available in th
 ; 
 $Buffs_txt = Text::makeLink("Information On Buffs", $Buffs_txt); 
 if($type == "msg") 
-$this->send($Buffs_txt, $sender); 
+$chatBot->send($Buffs_txt, $sender); 
 elseif($type == "priv") 
-$this->send($Buffs_text); 
+$chatBot->send($Buffs_text); 
 else 
-$this->send($Buffs_txt, "guild");
+$chatBot->send($Buffs_txt, "guild");
 ?>

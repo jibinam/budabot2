@@ -29,8 +29,8 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if (Settings::get("leaderecho") == 1 && $this->vars["leader"] == $sender && $message[0] != Settings::get("symbol")) {
+if (Settings::get("leaderecho") == 1 && $chatBot->vars["leader"] == $sender && $message[0] != Settings::get("symbol")) {
   	$msg = Settings::get("leaderecho_color") . $message . "<end>";
-  	$this->send($msg);
+  	$chatBot->send($msg);
 }
 ?>

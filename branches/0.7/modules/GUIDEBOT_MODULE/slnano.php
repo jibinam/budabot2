@@ -18,9 +18,9 @@ Please notify your bot developer of any changes, errors, or discrepencies.
 
 $slnano_txt = Text::makeLink("Shadowlands Garden Nanos", $slnano_txt); 
 if($type == "msg") 
-$this->send($slnano_txt, $sender); 
+$chatBot->send($slnano_txt, $sender); 
 elseif($type == "all") 
-$this->send($slnano_txt); 
+$chatBot->send($slnano_txt); 
 else 
-$this->send($slnano_txt, "guild"); 
+$chatBot->send($slnano_txt, "guild"); 
 ?>

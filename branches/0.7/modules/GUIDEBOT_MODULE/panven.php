@@ -137,9 +137,9 @@ $panven_txt = "Pandemonium Vendors
 
 $panven_txt = Text::makeLink("Pandemonium Vendor Nanos", $panven_txt); 
 if($type == "msg") 
-$this->send($panven_txt, $sender); 
+$chatBot->send($panven_txt, $sender); 
 elseif($type == "all") 
-$this->send($panven_txt); 
+$chatBot->send($panven_txt); 
 else 
-$this->send($panven_txt, "guild"); 
+$chatBot->send($panven_txt, "guild"); 
 ?>

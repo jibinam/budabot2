@@ -61,5 +61,5 @@ forEach ($victims as $key => $val) {
 
 $msg = Text::makeBlob("Quote stats from (".date("F j, Y, g:i a").")", $msg);
 
-$this->vars["quotestats"]= $msg;
+$chatBot->vars["quotestats"]= $msg;
 ?>

@@ -11,7 +11,7 @@
 global $bbin_socket;
 if ("1" == Settings::get('bbin_status')) {
 	
-	$msg = "[BBIN:LOGOFF:".$sender.",".$this->vars["dimension"].",";
+	$msg = "[BBIN:LOGOFF:".$sender.",".$chatBot->vars["dimension"].",";
 	
 	if($type == "joinPriv") {
 		$msg .= "1]";
@@ -25,7 +25,7 @@ if ("1" == Settings::get('bbin_status')) {
 		if (Settings::get('bbin_debug_messages') == 1) {
 			Logger::log_chat("BBIN Out. Msg.", $sender, $msg);
 		}
-	} else if ($type == "logOff" && isset($this->guildmembers[$sender])) {
+	} else if ($type == "logOff" && isset($chatBot->guildmembers[$sender])) {
 		flush();
 		fputs($bbin_socket, "PRIVMSG ".Settings::get('bbin_channel')." :$msg\n");
 		if (Settings::get('bbin_debug_messages') == 1) {

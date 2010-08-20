@@ -45,6 +45,8 @@ require_once './core/WhoisXML.class.php';
 require_once './core/HistoryXML.class.php';
 require_once './core/ServerXML.class.php';
 
+require_once './core/Player.class.php';
+
 require_once './core/Command.class.php';
 require_once './core/Event.class.php';
 require_once './core/Text.class.php';
@@ -68,10 +70,8 @@ class Budabot extends AOChat {
 /*===============================
 ** Name: __construct
 ** Constructor of this class.
-*/	function __construct($vars, $settings) {
+*/	function __construct($vars, &$settings) {
 		parent::__construct("callback");
-
-		global $db;
 
 		$this->settings = $settings;
 		$this->vars = $vars;
@@ -79,7 +79,11 @@ class Budabot extends AOChat {
 
 		//Set startuptime
 		$this->vars["startup"] = time();
-		
+	}
+	
+	public function init() {
+		global $db;
+	
 		//Create command/event settings table if not exists
 		$db->query("CREATE TABLE IF NOT EXISTS cmdcfg_<myname> (`module` VARCHAR(50) NOT NULL, `regex` VARCHAR(255), `file` VARCHAR(255) NOT NULL, `is_core` TINYINT NOT NULL, `cmd` VARCHAR(25) NOT NULL, `tell_status` INT DEFAULT 0, `tell_access_level` INT DEFAULT 0, `guild_status` INT DEFAULT 0, `guild_access_level` INT DEFAULT 0, `priv_status` INT DEFAULT 0, `priv_access_level` INT DEFAULT 0, `description` VARCHAR(50) NOT NULL DEFAULT '', `verify` INT DEFAULT 1)");
 		$db->query("CREATE TABLE IF NOT EXISTS eventcfg_<myname> (`module` VARCHAR(50) NOT NULL, `type` VARCHAR(18), `file` VARCHAR(255), `is_core` TINYINT NOT NULL, `description` VARCHAR(50) NOT NULL DEFAULT '', `verify` INT DEFAULT 0, `status` INT DEFAULT 1)");
@@ -92,30 +96,25 @@ class Budabot extends AOChat {
 		$this->load_core_module("SETTINGS");
 		$this->load_core_module("SYSTEM");
 		$this->load_core_module("ADMIN");
-		$this->load_core_module("BAN");
-		$this->load_core_module("HELP");
-		$this->load_core_module("CONFIG");
-		$this->load_core_module("ORG_ROSTER");
-		$this->load_core_module("BASIC_CONNECTED_EVENTS");
-		$this->load_core_module("PRIV_TELL_LIMIT");
-		$this->load_core_module("USER_MODULES");
+		//$this->load_core_module("BAN");
+		//$this->load_core_module("HELP");
+		//$this->load_core_module("CONFIG");
+		//$this->load_core_module("ORG_ROSTER");
+		//$this->load_core_module("BASIC_CONNECTED_EVENTS");
+		//$this->load_core_module("PRIV_TELL_LIMIT");
+		//$this->load_core_module("USER_MODULES");
 		
 		Logger::log(__FILE__, "End: Loading CORE MODULES", DEBUG);
 		
 		// Load User Modules
-		$this->load_user_modules();
+		//$this->load_user_modules();
 	}
 	
 	public function connectedEvents() {
-		$type = "connected";
+		$params = array();
+		$params['type'] = "connect";
 		Logger::log(__FILE__, "Executing connected events...", DEBUG);
-
-		$events = Event::find_active_events_by_type($type);
-		if ($events != NULL) {
-			forEach ($events as $event) {
-				include $event->file;
-			}
-		}
+		Event::fire_event($params);
 	}
 
 /*===============================
@@ -273,7 +272,7 @@ class Budabot extends AOChat {
 /*===============================
 ** Name: send
 ** Send chat messages back to aochat servers thru aochat.
-*/	function send($message, $who = 'prv', $disable_relay = false) {
+*/	function send($message, &$who, $disable_relay = false) {
 		// for when makeLink generates several pages
 		if (is_array($message)) {
 			forEach ($message as $page) {
@@ -282,28 +281,22 @@ class Budabot extends AOChat {
 			return;
 		}
 
-		if ($who == 'guild') {
-			$who = 'org';
-		} else if ($who == 'priv') {
-			$who = 'prv';
-		}
-
 		$message = Text::format_message($message);
 
 		// Send
-		if ($who == 'prv') { // Target is private chat by defult.
+		if ($who instanceof Player) {
+			Logger::log_chat("Out. Msg.", $who->name, $message);
+			$this->send_tell($who->uid, Settings::get("default_tell_color").$message);
+		} else if ($who == 'prv' || $who == 'priv') { // Target is private chat by defult.
 			$this->send_privgroup($this->name, Settings::get("default_priv_color").$message);
 			if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
 				$this->send_group($this->vars["my guild"], "</font>" . Settings::get("guest_color_channel") . "[Guest]<end> " . Settings::get("guest_color_username") . Text::makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_priv_color") . "$message</font>");
 			}
-		} else if ($who == $this->vars["my guild"] || $who == 'org') {// Target is guild chat.
+		} else if ($who == $this->vars["my guild"] || $who == 'org' || $who == 'guild') {// Target is guild chat.
     		$this->send_group($this->vars["my guild"],Settings::get("default_guild_color").$message);
 			if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
 				$this->send_privgroup($this->name, "</font>" . Settings::get("guest_color_channel") . "[{$this->vars["my guild"]}]<end> " . Settings::get("guest_color_username") . Text::makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_guild_color") . "$message</font>");
 			}
-		} else if ($this->get_uid($who) != NULL) {// Target is a player.
-    		$this->send_tell($who, Settings::get("default_tell_color").$message);
-			Logger::log_chat("Out. Msg.", $who, $message);
 		} else { // Public channels that are not myguild.
 	    	$this->send_group($who, Settings::get("default_guild_color").$message);
 		}
@@ -325,86 +318,88 @@ class Budabot extends AOChat {
 			case AOCP_PRIVGRP_CLIJOIN: // 55, Incoming player joined private chat
 				$params = array();
 				$params['channel'] = $this->lookup_user($args[0]);
-				$sender	= $this->lookup_user($args[1]);
-				$params['sender'] = $sender;
-				$params['char_id'] = $args[1];
-				
+
+				$player = new Player($args[1]);
+				$params['player'] = &$player;
+
 				if ($params['channel'] == $this->vars['name']) {
 					$params['type'] = "joinPriv";
 
 					// Add sender to the chatlist.
-					$this->chatlist[$char_id] = new WhoisXML($sender);
+					Chatlist::joined_chat($player);
 					
-					Logger::log_chat("Priv Group", $sender, "joined the channel.");
+					Logger::log_chat("Priv Group", $player->name, "joined the channel.");
 
 					// Remove sender if they are /ignored or /banned or if spam filter is blocking them
-					if (Settings::is_ignored($sender) || $this->banlist[$sender]["name"] == $sender || $this->spam[$sender] > 100) {
-						$this->privategroup_kick($sender);
+					if (Settings::is_ignored($player) || Settings::is_banned($player) || Settings::is_spammer($player)) {
+						$this->privategroup_kick($player->name);
 						return;
 					}
 
 					Event::fire_event($params);
 				} else {
 					$params['type'] = "extJoinPriv";
-					Logger::log_chat("Ext Priv", $params['sender'], "joined chat");
+					Logger::log_chat("Ext Priv", $player->name, "joined chat");
 					Event::fire_event($params);
 				}
 			break;
 			case AOCP_PRIVGRP_CLIPART: // 56, Incoming player left private chat
 				$params = array();
 				$params['channel'] = $this->lookup_user($args[0]);
-				$params['sender'] = $this->lookup_user($args[1]);
-				$params['char_id'] = $args[1];
+				
+				$player = new Player($args[1]);
+				$params['player'] = &$player;
 
 				if ($params['channel'] == $this->vars['name']) {
 					$params['type'] = "leavePriv";
-					Logger::log_chat("Priv Group", $params['sender'], "left the channel.");
+					Logger::log_chat("Priv Group", $player->name, "left the channel.");
 
 					// Remove from Chatlist array.
-					unset($this->chatlist[$params['sender']]);
+					Chatlist::left_chat($player);
 					
 					Event::fire_event($params);
 				} else {
 					$params['type'] = "extLeavePriv";
-					Logger::log_chat("Ext Priv", $params['sender'], "left chat");
+					Logger::log_chat("Ext Priv", $player->name, "left chat");
 					Event::fire_event($params);
 				}
 			break;
 			case AOCP_BUDDY_ADD: // 40, Incoming buddy logon or off
-				// Basic packet data
-				$sender	= $this->lookup_user($args[0]);
-				$char_id = $args[0];
+				$params = array();
+				$player = new Player($args[0]);
+				$params['player'] = &$player;
+
 				$status	= 0 + $args[1];
 				$btype = $args[2];
 
 				// store buddy info				
-				Buddylist::store_buddy($char_id, $sender, $status, (ord($btype) ? 1 : 0));
+				Buddylist::store_buddy($player, $status, (ord($btype) ? 1 : 0));
 
 				//Ignore Logon/Logoff from other bots or phantom logon/offs
-                if (Settings::is_ignored($sender) || $sender == "") {
+                if (Settings::is_ignored($player)) {
 					return;
 				}
-				
-				$params = array();
-				$params['sender'] = $sender;
-				$params['char_id'] = $char_id;
 
 				// If Status == 0(logoff) if Status == 1(logon)
 				if ($status == 0) {
 					$params['type'] = "logOff";
-					//Logger::log_chat("Buddy", $sender, "logged off");
+					//Logger::log_chat("Buddy", $player->name, "logged off");
 					Event::fire_event($params);
 				} else if ($status == 1) {
 					$params['type'] = "logOn";
-					Logger::log_chat("Buddy", $sender, "logged on");
+					Logger::log_chat("Buddy", $player->name, "logged on");
 					Event::fire_event($params);
 				}
 			break;
 			case AOCP_MSG_PRIVATE: // 30, Incoming Msg
-				$type = "msg"; // Set message type.
-				$sender	= $this->lookup_user($args[0]);
-				$char_id = $args[0];
-				$sendto = $sender;
+				$params = array();
+				$params['type'] = 'msg';
+				$params['restricted'] = false;
+
+				$player = new Player($args[0]);
+				$params['player'] = &$player;
+
+				$params['sendto'] = &$player;
 				
 				// Removing tell color
 				if (preg_match("/^<font color='#([0-9a-f]+)'>(.+)$/i", $args[1], $arr)) {
@@ -432,14 +427,9 @@ class Budabot extends AOChat {
 					return;
 				}
 
-				if (Settings::is_ignored($sender) || $this->banlist[$sender]["name"] == $sender || ($this->spam[$sender] > 100 && $this->vars['spam protection'] == 1)) {
-					$this->spam[$sender] += 20;
+				if (Settings::is_ignored($player) || Settings::is_banned($player) || Settings::is_spammer($player)) {
+					Settings::add_spam($player, 20);
 					return;
-				}
-
-				//Remove the prefix infront if there is one
-				if ($message[0] == Settings::get('symbol') && strlen($message) > 1) {
-					$message = substr($message, 1);
 				}
 
 				// Check privatejoin and tell Limits
@@ -447,81 +437,88 @@ class Budabot extends AOChat {
 					require './core/PRIV_TELL_LIMIT/check.php';
 				}
 
-				$params = array();
-				$params['type'] = $type;
-				$params['sender'] = $sender;
-				$params['char_id'] = $char_id;
-				$params['sendto'] = $sendto;
-				
 				// Events
-				Event::fire_event($params);
+				if ($params['restricted'] != true) {
+					$params['message'] = $message;
+					Event::fire_event($params);
+				}
 
 				// Commands
-				if ($restricted != true) {
-					Command::fire_event($params);
+				if ($params['restricted'] != true) {
+					//Remove the prefix infront if there is one
+					if ($message[0] == Settings::get('symbol') && strlen($message) > 1) {
+						$message = substr($message, 1);
+					}
+					
+					$params['message'] = $message;
+					Command::fire_command($params);
 				}
 			break;
 			case AOCP_PRIVGRP_MESSAGE: // 57, Incoming priv message
-				$sender	= $this->lookup_user($args[1]);
 				$channel = $this->lookup_user($args[0]);
 				$message = $args[2];
-				$restricted = false;
+
+				$params = array();
+				$player = new Player($args[1]);
+				$params['player'] = &$player;
+				$params['channel'] = $channel;
+				$params['message'] = $message;
+				$params['restricted'] = false;
 				
-				if ($sender == $this->name) {
-					Logger::log_chat("Priv Group", $sender, $message);
+				if ($player->name == $this->name) {
+					Logger::log_chat("Priv Group", $player->name, $message);
 					return;
 				}
-				if ($this->banlist[$sender]["name"] == $sender) {
+				if (Settings::is_spammer($player)) {
 					return;
 				}
 
+				// TODO
+				/*
 				if ($this->vars['spam protection'] == 1) {
-					if ($this->spam[$sender] == 40) $this->send("Error! Your client is sending a high frequency of chat messages. Stop or be kicked.", $sender);
-					if ($this->spam[$sender] > 60) $this->privategroup_kick($sender);
+					if ($this->spam[$sender] == 40) $this->send("Error! Your client is sending a high frequency of chat messages. Stop or be kicked.", $player);
+					if ($this->spam[$sender] > 60) $this->privategroup_kick($player->uid);
 					if (strlen($args[1]) > 400) {
 						$this->largespam[$sender] = $this->largespam[$sender] + 1;
-						if ($this->largespam[$sender] > 1) $this->privategroup_kick($sender);
-						if ($this->largespam[$sender] > 0) $this->send("Error! Your client is sending large chat messages. Stop or be kicked.", $sender);
+						if ($this->largespam[$sender] > 1) $this->privategroup_kick($player->uid);
+						if ($this->largespam[$sender] > 0) $this->send("Error! Your client is sending large chat messages. Stop or be kicked.", $player);
 					}
 				}
-				
-				//Remove the prefix infront if there is one
-				if ($message[0] == Settings::get('symbol') && strlen($message) > 1) {
-					$message = substr($message, 1);
-				}
-				
-				$params = array();
-				$params['sender'] = $sender;
-				$params['char_id'] = $args[1];
-				$params['channel'] = $channel;
-				$params['message'] = $message;
-				$params['restricted'] = $restricted;
+				*/
 
 				if ($channel == $this->vars['name']) {
 					$params['type'] = "priv";
 					$params['sendto'] = 'prv';
-					Logger::log_chat("Priv Group", $sender, $message);
+					Logger::log_chat("Priv Group", $player->name, $message);
 					Event::fire_event($params);
 
 					$msg = "";
-					if (!$restricted && ($message[0] == Settings::get("symbol") && strlen($message) > 1)) {
-						Command::fire_event($params);
+					if (!$params['restricted'] && ($message[0] == Settings::get("symbol") && strlen($message) > 1)) {
+						//Remove the prefix infront
+						$message = substr($message, 1);
+
+						Command::fire_command($params);
 					} else {
 						$this->send("Error! Unknown command or Access denied! for more info try /tell <myname> help", $sendto);
-						$this->spam[$sender] = $this->spam[$sender] + 20;
+						Settings::add_spam($player, 20);
 					}
 				} else {  // ext priv group message
 					$params['type'] = "extPriv";
-					Logger::log_chat("Ext Priv Group $channel", $sender, $message);
+					Logger::log_chat("Ext Priv Group $channel", $player->name, $message);
 					Event::fire_event($params);
 				}
 			break;
 			case AOCP_GROUP_MESSAGE: // 65, Public and guild channels
-				$syntax_error = false;
-				$sender	 = $this->lookup_user($args[1]);
-				$char_id = $args[1];
 				$message = $args[2];
 				$channel = $this->get_gname($args[0]);
+			
+				$params = array();
+				$params['channel'] = $channel;
+				$params['restricted'] = false;
+
+				$syntax_error = false;
+				$player = new Player($args[1]);
+				$params['player'] = &$player;
 
 				//Ignore Messages from Vicinity/IRRK New Wire/OT OOC/OT Newbie OOC...
 				if (in_array($channel, $this->public_channels)) {
@@ -538,29 +535,19 @@ class Budabot extends AOChat {
 					}
 				}
 
-				Logger::log_chat($channel, $sender, $message);
+				Logger::log_chat($channel, $player->name, $message);
 
 				if ($sender) {
 					//Ignore Message that are sent from the bot self
-					if ($sender == $this->name) {
+					if ($player->name == $this->name) {
 						return;
 					}
 
-					//Ignore tells from other bots
-	                if (Settings::is_ignored($sender)) {
-						return;
-					}
-
-					if ($this->banlist[$sender]["name"] == $sender) {
+					//Ignore tells from other bots and banned players
+	                if (Settings::is_ignored($player) || Settings::is_banned($player)) {
 						return;
 					}
 				}
-				
-				$params = array();
-				$params['sender'] = $sender;
-				$params['char_id'] = $char_id;
-				$params['message'] = $message;
-				$params['channel'] = $channel;
 
 				if ($channel == "All Towers" || $channel == "Tower Battle Outcome") {
                     $params['type'] = "towers";
@@ -571,44 +558,27 @@ class Budabot extends AOChat {
                 } else if ($channel == $this->vars["my guild"]) {
                     $params['type'] = 'guild';
 					$params['sendto'] = 'org';
-					
+
 					Event::fire_event($params);
 					$msg = "";
-					if (!$restricted && (($message[0] == Settings::get("symbol") && strlen($message) >= 2) || preg_match("/^(afk|brb)/i", $message, $arr))) {
-						if ($message[0] == Settings::get("symbol")) {
-							$message 	= substr($message, 1);
-						}
-    					$words		= split(' ', strtolower($message));
-						$access_level= $this->guildCmds[$words[0]]["access_level"];
-						$filename 	= $this->guildCmds[$words[0]]["filename"];
-
-						$user_access_level = AccessLevel::get_user_access_level($sender);
-						if ($user_access_level > $access_level) {
-							$this->send("Error! You do not have access to this command.", "guild");
-						} else {
-							if ($filename != "") {
-								include $filename;
-							}
-						}
-
-						//Shows syntax errors to the user
-						if ($syntax_error == true) {
-							if (($output = Help::find($sender, $words[0])) !== FALSE) {
-								$this->send("Error! " . $output, $params['sendto']);
-							} else {
-								$this->send("Error! Check your syntax or for more info try /tell <myname> help", $params['sendto']);
-							}
-						}
+					if (!$param['restricted'] && ($message[0] == Settings::get("symbol") && strlen($message) >= 2)) {
+						//Remove the prefix infront
+						$message = substr($message, 1);
+						
+						$params['message'] = $message;
+						
+    					Command::fire_command($params);
 					}
 				}
 			break;
 			case AOCP_PRIVGRP_INVITE:  // 50, private group invite
 				$params = array();
 				$params['type'] = "extJoinPrivRequest"; // Set message type.
-				$params['sender'] = $this->lookup_user($args[0]);
-				$params['char_id'] = $args[0];
+				
+				$player = new Player($args[1]);
+				$params['player'] = &$player;
 
-				Logger::log_chat("Priv Group Invitation", $params['sender'], " channel invited.");
+				Logger::log_chat("Priv Group Invitation", $player->name, " channel invited.");
 
 				Event::fire_event($params);
 			break;

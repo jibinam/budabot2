@@ -32,7 +32,7 @@
 $db->query("SELECT * FROM priv_chatlist_<myname> WHERE `guest` = 1");
 $data = $db->fObject("all");
 forEach ($data as $row) {
-  	if (!isset($this->chatlist[$row->name])) {
+  	if (!isset($chatBot->chatlist[$row->name])) {
   		$db->query("DELETE FROM priv_chatlist_<myname> WHERE `name` = '$row->name'");
 	}
 }

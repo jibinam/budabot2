@@ -74,9 +74,9 @@ The Money-XP slider should be obvious. In general, the bonus XP seems to ammount
 
 $mishset_txt = Text::makeLink("Guide to Mission Settings", $mishset_txt); 
 if($type == "msg") 
-$this->send($mishset_txt, $sender); 
+$chatBot->send($mishset_txt, $sender); 
 elseif($type == "all") 
-$this->send($mishset_txt); 
+$chatBot->send($mishset_txt); 
 else 
-$this->send($mishset_txt, "guild"); 
+$chatBot->send($mishset_txt, "guild"); 
 ?>

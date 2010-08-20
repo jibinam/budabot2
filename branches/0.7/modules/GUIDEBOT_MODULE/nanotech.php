@@ -250,6 +250,6 @@ These peps have got a very odd reputation, some love em, some loath em. Might be
 
 $nanotech_txt = Text::makeLink("Guide to Nano Technicians", $nanotech_txt);
 
-$this->send($nanotech_txt, $sendto);
+$chatBot->send($nanotech_txt, $sendto);
 
 ?>

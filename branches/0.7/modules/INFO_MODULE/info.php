@@ -61,6 +61,6 @@ if (preg_match("/^info$/i", $message)) {
 	}
 }
 
-$this->send($msg, $sendto);
+$chatBot->send($msg, $sendto);
 
 ?>

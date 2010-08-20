@@ -30,21 +30,21 @@
    */
 
 if (preg_match("/^kickuser (.+)$/i", $message, $arr)) {
-    $uid = $this->get_uid($arr[1]);
+    $uid = $chatBot->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
     if ($uid) {
-        if ($this->chatlist[$name] == true) {
+        if ($chatBot->chatlist[$name] == true) {
 			$msg = "<highlight>$name<end> has been kicked.";
 		} else {
 			$msg = "<highlight>$name<end> is not in private channel.";
 		}
 		// we kick whether they are in the channel or not incase the channel list is bugged
-		$this->privategroup_kick($name);
+		$chatBot->privategroup_kick($name);
     } else {
 		$msg = "Player <highlight>$name<end> does not exist.";
 	}
 	
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

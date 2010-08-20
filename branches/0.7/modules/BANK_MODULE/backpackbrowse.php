@@ -61,13 +61,13 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 		} else {
 			$link = Text::makeBlob($item_count." items found in \"Backpack #".$arr."\" in ".ucwords($location), $msg);
 		}
-		$this->send($link, $sendto);
+		$chatBot->send($link, $sendto);
 	} else {
 		$msg = "Incorrect syntax! For more information /tell <myname> help.";
-		$this->send($msg, $sendto);
+		$chatBot->send($msg, $sendto);
 	}
 } else {
 	$msg = "File not found! Please contact an administrator.";
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 }
 ?>

@@ -115,9 +115,9 @@ Modifiers
 
 $atailor_txt = Text::makeLink("Guide to A Tailor's Woe", $atailor_txt); 
 if($type == "msg") 
-$this->send($atailor_txt, $sender); 
+$chatBot->send($atailor_txt, $sender); 
 elseif($type == "all") 
-$this->send($atailor_txt); 
+$chatBot->send($atailor_txt); 
 else 
-$this->send($atailor_txt, "guild"); 
+$chatBot->send($atailor_txt, "guild"); 
 ?>

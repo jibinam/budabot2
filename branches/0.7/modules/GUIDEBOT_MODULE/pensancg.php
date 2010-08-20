@@ -46,9 +46,9 @@ The leaders:
 
 $pensancg_txt = Text::makeLink("Penumbra: Sanctuary Garden Key Quest OMNI", $pensancg_txt); 
 if($type == "msg") 
-$this->send($pensancg_txt, $sender); 
+$chatBot->send($pensancg_txt, $sender); 
 elseif($type == "all") 
-$this->send($pensancg_txt); 
+$chatBot->send($pensancg_txt); 
 else 
-$this->send($pensancg_txt, "guild"); 
+$chatBot->send($pensancg_txt, "guild"); 
 ?>

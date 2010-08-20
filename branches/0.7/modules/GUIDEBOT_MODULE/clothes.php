@@ -45,9 +45,9 @@ Information originally provided by Jexai.co.uk/anarchy";
 
 $clothes_txt = Text::makeLink("Social Clothes", $clothes_txt); 
 if($type == "msg") 
-$this->send($clothes_txt, $sender); 
+$chatBot->send($clothes_txt, $sender); 
 elseif($type == "all") 
-$this->send($clothes_txt); 
+$chatBot->send($clothes_txt); 
 else 
-$this->send($clothes_txt, "guild"); 
+$chatBot->send($clothes_txt, "guild"); 
 ?>

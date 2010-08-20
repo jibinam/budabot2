@@ -33,6 +33,6 @@ if (preg_match("/^premadeupdate$/i", $message)) {
 		$msg = "Premade Implant Database is already up to date. Version: $newVersion.";
 	}
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 }
 ?>

@@ -38,9 +38,9 @@ The Key to the Garden of Thrak ";
 
 $nasckey_txt = Text::makeLink("Guide to Nascence Garden Key", $nasckey_txt); 
 if($type == "msg") 
-$this->send($nasckey_txt, $sender); 
+$chatBot->send($nasckey_txt, $sender); 
 elseif($type == "all") 
-$this->send($nasckey_txt); 
+$chatBot->send($nasckey_txt); 
 else 
-$this->send($nasckey_txt, "guild"); 
+$chatBot->send($nasckey_txt, "guild"); 
 ?>

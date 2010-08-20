@@ -29,19 +29,19 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
+if($chatBot->vars["my guild"] != "" && $chatBot->vars["my guild id"] != "") {
 	// Set Delay for notify on/off(prevent spam from org roster module)
-	$this->vars["onlinedelay"] = time() + 60;
+	$chatBot->vars["onlinedelay"] = time() + 60;
 	
 	Logger::log(__FILE__, "Starting Org Roster Update", INFO);
 	//Get the org infos
-	$org = new OrgXML($this->vars["my guild id"], $this->vars["dimension"], $force_update);
+	$org = new OrgXML($chatBot->vars["my guild id"], $chatBot->vars["dimension"], $force_update);
 	
 	//Check if Orgxml file is correct if not abort
 	if($org->errorCode != 0) {
 		Logger::log(__FILE__, "could not get the org roster xml file", ERROR);
 	} else {
-		// clear $this->members and reload from the database
+		// clear $chatBot->members and reload from the database
 		$db->query("SELECT * FROM members_<myname>");
 		while ($row = $db->fObject()) {
 			if ($row->autoinv == 1) {
@@ -52,7 +52,7 @@ if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
 		}
 		
 		//Delete old Memberslist
-		unset($this->guildmembers);
+		unset($chatBot->guildmembers);
 		
 		//Save the current org_members table in a var
 		$db->query("SELECT * FROM org_members_<myname>");
@@ -72,7 +72,7 @@ if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
 		// Going through each member of the org and add his data's
 		forEach ($org->member as $amember) {
 			// don't do anything if $amember is the bot itself
-			if ($amember == $this->name) {
+			if ($amember == $chatBot->name) {
 				continue;
 			}
 		
@@ -80,14 +80,14 @@ if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
 			if (isset($dbentrys[$amember])) {
 			  	if ($dbentrys[$amember]["mode"] == "man" || $dbentrys[$amember]["mode"] == "org") {
 			        $mode = "org";
-		            $this->guildmembers[$amember] = $org->members[$amember]["rank_id"];
+		            $chatBot->guildmembers[$amember] = $org->members[$amember]["rank_id"];
 					
 					// add org members who are on notify to buddy list
-					$uid = $this->get_uid($amember);
+					$uid = $chatBot->get_uid($amember);
 					Buddylist::add($uid, 'org');
 			  	} else {
 		            $mode = "del";
-					$uid = $this->get_uid($amember);
+					$uid = $chatBot->get_uid($amember);
 					Buddylist::remove($uid, 'org');
 				}
 		
@@ -107,7 +107,7 @@ if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
 			//Else insert his data
 			} else {
 				// add new org members to buddy list
-				$uid = $this->get_uid($amember);
+				$uid = $chatBot->get_uid($amember);
 				Buddylist::add($uid, 'org');
 			
 			    $db->query("INSERT INTO org_members_<myname> (`name`, `mode`, `firstname`, `lastname`, `guild`, `rank_id`, `rank`, `level`, `profession`, `gender`, `breed`, `ai_level`, `ai_rank`)
@@ -119,7 +119,7 @@ if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
 		                        '".$org -> members[$amember]["gender"]."', '".$org->members[$amember]["breed"]."',
 		                        '".$org -> members[$amember]["ai_level"]."',
 		                        '".$org -> members[$amember]["ai_rank"]."')");
-				$this->guildmembers[$amember] = $org->members[$amember]["rank_id"];
+				$chatBot->guildmembers[$amember] = $org->members[$amember]["rank_id"];
 		    }
 		    unset($dbentrys[$amember]);    
 		}
@@ -130,14 +130,14 @@ if($this->vars["my guild"] != "" && $this->vars["my guild id"] != "") {
 		// remove buddies who used to be org members, but are no longer
 		forEach ($dbentrys as $buddy) {
 			$db->exec("DELETE FROM org_members_<myname> WHERE `name` = '".$buddy['name']."'");
-			$uid = $this->get_uid($buddy['name']);
+			$uid = $chatBot->get_uid($buddy['name']);
 			Buddylist::remove($uid, 'org');
 		}
 
 		Logger::log(__FILE__, "Org Roster Update is done", INFO);
 		
 		if ($restart == true) {
-		  	$this->send("The bot needs to be restarted to be able to see who is online in your org. Automatically restarting in 10 seconds.", "org");
+		  	$chatBot->send("The bot needs to be restarted to be able to see who is online in your org. Automatically restarting in 10 seconds.", "org");
 			echo "The bot needs to be restarted to be able to see who is online in your org. Automatically restarting in 10 seconds.\n";
 		  	sleep(10);
 		  	die("The bot is restarting");

@@ -30,10 +30,10 @@
    */
 
 $msg = "The Bot is shutting down.";
-$this->send($msg, $sender);
-$this->send($msg, "prv", true);
-$this->send($msg, "guild", true);
+$chatBot->send($msg, $sender);
+$chatBot->send($msg, "prv", true);
+$chatBot->send($msg, "guild", true);
 
-$this->disconnect();
+$chatBot->disconnect();
 die("The Bot is shutting down.");
 ?>

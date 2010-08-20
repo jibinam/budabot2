@@ -66,7 +66,7 @@ if (preg_match("/^cmdlist$/i", $message, $arr) || preg_match("/^cmdlist (.*)$/i"
 	}
 
 	$msg = Text::makeLink("Bot Settings -- Command List", $list);
- 	$this->send($msg, $sendto);
+ 	$chatBot->send($msg, $sendto);
 }
 
 ?>

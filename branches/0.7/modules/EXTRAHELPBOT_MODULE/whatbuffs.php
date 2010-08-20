@@ -30,7 +30,7 @@
 		switch (sizeof($skills)) {
 			case 0:
 				// skill does not exist
-				$this->send("There is no such skill, or at least no twink relevant skill going by that name.", $sendto);
+				$chatBot->send("There is no such skill, or at least no twink relevant skill going by that name.", $sendto);
 				return;
 			case 1:
 				// exactly one matching skill
@@ -51,11 +51,11 @@
 					$inside .= $info;
 					$inside .= "\n\nClick the item(s) for more info\n\n".$footer;
 					$windowlink = Text::makeLink(":: Your \"What buffs ...?\" results ::", $inside);
-					$this->send($windowlink, $sendto); 
-					$this->send("<highlight>$found<end> result(s) in total", $sendto);
+					$chatBot->send($windowlink, $sendto); 
+					$chatBot->send("<highlight>$found<end> result(s) in total", $sendto);
 					return;
 				} else {
-					$this->send("Nothing that buffs ".$skills[0]." in my database, sorry.", $sendto); return; 
+					$chatBot->send("Nothing that buffs ".$skills[0]." in my database, sorry.", $sendto); return; 
 				}
 			default:
 				// found more than 1 matching skill
@@ -69,11 +69,11 @@
 				$inside .= "Which of those skills did you mean?\n\n";
 				$inside .= $footer;
 				$windowlink = Text::makeLink(":: Your \"What buffs ...?\" results ::", $inside);
-				$this->send($windowlink, $sendto); 
-				$this->send("Found several skills matching your key words.", $sendto);
+				$chatBot->send($windowlink, $sendto); 
+				$chatBot->send("Found several skills matching your key words.", $sendto);
 				return;
 		}
 	} else {
-		$this->send($helplink, $sendto);
+		$chatBot->send($helplink, $sendto);
 	}
 ?>

@@ -58,8 +58,8 @@ if (count($guard) == 0) {
 
   	//Send Glist to all soldiers
   	forEach ($glist as $player) {
-		$this->send($msg, $player);
+		$chatBot->send($msg, $player);
   	}
 }
-$this->send($msg, $sendto);
+$chatBot->send($msg, $sendto);
 ?>

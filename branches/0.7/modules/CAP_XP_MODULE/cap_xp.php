@@ -29,12 +29,12 @@
 
 if (preg_match("/^(capxp|capsk) ([0-9]+)/i$", $message, $arr)) {
 	//get player lvl
-	$rk_num = $this->vars["dimension"];
+	$rk_num = $chatBot->vars["dimension"];
 	$info = new WhoisXML($sender);
 	$reward = $arr[2];
 	
 	if ($info->errorCode != 0) {
-		$this->send("An Error occurred while trying to get your level. Please input it manually via <highlight><symbol>capxp 'mission reward' 'your lvl'<end> or try again later.", $sendto);
+		$chatBot->send("An Error occurred while trying to get your level. Please input it manually via <highlight><symbol>capxp 'mission reward' 'your lvl'<end> or try again later.", $sendto);
 		return;
 	} else {
 		$lvl = $info->level;
@@ -43,7 +43,7 @@ if (preg_match("/^(capxp|capsk) ([0-9]+)/i$", $message, $arr)) {
 	$reward = $arr[2];
 	
 	if (($arr[3] > 219) || ($arr[3] < 1)) {
-		$this->send("Your level cannot be greater than 219 or less than 1.", $sendto);
+		$chatBot->send("Your level cannot be greater than 219 or less than 1.", $sendto);
 		return;
 	} else {
 		$lvl = $arr[3];
@@ -77,6 +77,6 @@ if ($reward >= 300) {
 	 $msg = "Usage: <highlight><symbol>capxp 'mission reward amount' 'custom level'<end><br><tab>ex: !capxp 165000 215<br>If no level is specified, it will use your current level.";
 }
 	
-$this->send($msg, $sendto);
+$chatBot->send($msg, $sendto);
 
 ?>

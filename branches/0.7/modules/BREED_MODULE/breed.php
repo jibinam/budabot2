@@ -56,6 +56,6 @@ if (preg_match("/^breed/i", $message, $arr)) {
 	$msg = Text::blob("Results of Breedcap Inquiry.", $blob);
 }
 
-$this->send($msg, $sendto);
+$chatBot->send($msg, $sendto);
 
 ?>

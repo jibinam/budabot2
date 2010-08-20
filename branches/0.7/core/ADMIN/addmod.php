@@ -30,47 +30,10 @@
    */
 
 if (preg_match("/^addmod (.+)$/i", $message, $arr)){
-	$who = ucfirst(strtolower($arr[1]));
-	$uid = $this->get_uid($who);
+	$uid = $chatBot->get_uid($arr[1]);
+	$who = new Player($uid);
 
-	if ($uid == NULL){
-		$this->send("<red>Error! Player '$who' does not exist.", $sendto);
-		return;
-	}
-	
-	if ($uid == $char_id) {
-		$this->send("<red>Error! You can't kick yourself.<end>", $sendto);
-		return;
-	}
-
-	$user_access_level = AccessLevel::get_user_access_level($who);
-	if ($user_access_level == MODERATOR) {
-		$this->send("<red>Error! $who is already a moderator.<end>", $sendto);
-		return;
-	}
-	
-	$sender_access_level = AccessLevel::get_user_access_level($sender);
-	if ($sender_access_level >= $user_access_level) {
-		$this->send("<red>Error! You must have a higher access level than '$who' to modify his/her access.<end>", $sendto);
-		return;
-	}
-
-	if ($user_access_level <= RAIDLEADER) {
-		if ($user_access_level < MODERATOR) {
-			$this->send("<highlight>$who<end> has been demoted to Moderator.", $sendto);
-			$this->send("You have been demoted to Moderator on <myname>", $who);
-		} else {
-			$this->send("<highlight>$who<end> has been promoted to Moderator.", $sendto);
-			$this->send("You have been promoted to Moderator on <myname>", $who);
-		}
-		$db->query("UPDATE admin_<myname> SET `adminlevel` = ". MODERATOR . " WHERE `uid` = $uid");
-	} else {
-		$db->query("INSERT INTO admin_<myname> (`adminlevel`, `uid`) VALUES (" . MODERATOR . ", '$uid')");
-		$this->send("<highlight>$who<end> has been added as a Moderator", $sendto);
-		$this->send("You have been added as a Moderator to <myname>", $who);
-	}
-
-	Buddylist::add($uid, 'admin');
+	Admin::add_or_update_admin($sendto, $player, $who, MODERATOR);
 } else {
 	$syntax_error = true;
 }

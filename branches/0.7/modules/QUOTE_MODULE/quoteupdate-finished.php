@@ -1,5 +1,5 @@
 <?php
-	// Guess I can't use $this->send in here, or else I get an error when logging in.
+	// Guess I can't use $chatBot->send in here, or else I get an error when logging in.
 
 	Logger::log(__FILE__, "One momment, updating quote table now", INFO);
 	

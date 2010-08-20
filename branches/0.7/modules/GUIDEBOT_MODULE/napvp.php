@@ -89,9 +89,9 @@ And remember : <font color=#ff0000>TURN AUTO ATTACK : OFF and Pet on /follow !</
 
 $napvp_txt = Text::makeLink("Newcomers Alliance PvP Rules", $napvp_txt);
 if($type == "msg")
-$this->send($napvp_txt, $sender);
+$chatBot->send($napvp_txt, $sender);
 elseif($type == "all")
-$this->send($napvp_txt);
+$chatBot->send($napvp_txt);
 else
-$this->send($napvp_txt, "guild");
+$chatBot->send($napvp_txt, "guild");
 ?>

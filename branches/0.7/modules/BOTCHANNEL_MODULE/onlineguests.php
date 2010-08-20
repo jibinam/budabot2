@@ -30,7 +30,7 @@
    */
 
 if (preg_match("/^onlineguests$/i", $message)) {
-	if (count($this->vars["Guest"]) > 0) {
+	if (count($chatBot->vars["Guest"]) > 0) {
 		$db->query("SELECT * FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY `profession`, `level` DESC");
 		$numguest = $db->numrows();
 
@@ -49,12 +49,12 @@ if (preg_match("/^onlineguests$/i", $message)) {
 		
         $msg = Text::makeBlob("$numguest players in Guestchannel", $list);
         if($numguest != 0) {
-           	$this->send($msg.$link, $sendto);
+           	$chatBot->send($msg.$link, $sendto);
         } else {
-           	$this->send($msg, $sendto);
+           	$chatBot->send($msg, $sendto);
 		}
 	} else {
-		$this->send("No player is in the guestchannel.", $sendto);
+		$chatBot->send("No player is in the guestchannel.", $sendto);
 	}
 } else {
 	$syntax_error = true;

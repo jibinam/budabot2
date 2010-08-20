@@ -29,7 +29,7 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if (isset($this->guildmembers[$sender]) && (time() >= $this->vars["topicdelay"])) {
+if (isset($chatBot->guildmembers[$sender]) && (time() >= $chatBot->vars["topicdelay"])) {
 	$time = time() - Settings::get("topic_time");
 	$mins = floor($time / 60);
 	$hours = floor($mins / 60);
@@ -37,6 +37,6 @@ if (isset($this->guildmembers[$sender]) && (time() >= $this->vars["topicdelay"])
 	$days = floor($hours / 24);
 	$hours = floor($hours - ($days * 24));
 	$msg = "<highlight>Topic:<end> " . Settings::get("topic") ." [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$days}days, {$hours}hrs and {$mins}mins ago<end>]";
-    $this->send($msg, $sender);
+    $chatBot->send($msg, $sender);
 }
 ?>

@@ -68,9 +68,9 @@ Information originally provided by Fixerben.
 
 $fgridone_txt = Text::makeLink("Guide to Fixer Grid Part 1", $fgridone_txt); 
 if($type == "msg") 
-$this->send($fgridone_txt, $sender); 
+$chatBot->send($fgridone_txt, $sender); 
 elseif($type == "all") 
-$this->send($fgridone_txt); 
+$chatBot->send($fgridone_txt); 
 else 
-$this->send($fgridone_txt, "guild"); 
+$chatBot->send($fgridone_txt, "guild"); 
 ?>

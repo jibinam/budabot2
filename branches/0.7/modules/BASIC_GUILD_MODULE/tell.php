@@ -30,15 +30,15 @@
    */
 
 if (preg_match("/^tell (.+)$/i", $message, $arr)) {
-  	$this->send("<yellow>".$arr[1]."<end>", "guild");
-  	$this->send("<yellow>".$arr[1]."<end>", "guild");
-  	$this->send("<yellow>".$arr[1]."<end>", "guild");
+  	$chatBot->send("<yellow>".$arr[1]."<end>", "guild");
+  	$chatBot->send("<yellow>".$arr[1]."<end>", "guild");
+  	$chatBot->send("<yellow>".$arr[1]."<end>", "guild");
 } else if (preg_match("/^tellall (.+)$/i", $message, $arr)) {
 	$db->query("SELECT * FROM guild_chatlist_<myname>");
 	while ($row = $db->fObject()) {
-		$this->send("Tell from $sender: <yellow>".$arr[1]."<end>", $row->name);
+		$chatBot->send("Tell from $sender: <yellow>".$arr[1]."<end>", $row->name);
 	}
 	
-	$this->send("A tell has been send to all online Orgmembers.", "guild");
+	$chatBot->send("A tell has been send to all online Orgmembers.", "guild");
 }
 ?>

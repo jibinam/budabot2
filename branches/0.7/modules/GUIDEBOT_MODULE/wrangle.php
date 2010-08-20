@@ -93,9 +93,9 @@ Team wrangles are in <font color = white>WHITE</font> (requires teaming with Tra
 
 $wrangle_txt = Text::makeLink("Guide to Wrangles", $wrangle_txt); 
 if($type == "msg") 
-$this->send($wrangle_txt, $sender); 
+$chatBot->send($wrangle_txt, $sender); 
 elseif($type == "all") 
-$this->send($wrangle_txt); 
+$chatBot->send($wrangle_txt); 
 else 
-$this->send($wrangle_txt, "guild"); 
+$chatBot->send($wrangle_txt, "guild"); 
 ?>

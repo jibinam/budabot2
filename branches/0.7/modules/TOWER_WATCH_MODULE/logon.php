@@ -20,7 +20,7 @@
    **
    */
 
-if (isset($this->guildmembers[$sender])) {
-    $this->send(getTowerInfoMsg(), $sender);
+if (isset($chatBot->guildmembers[$sender])) {
+    $chatBot->send(getTowerInfoMsg(), $sender);
 }
 ?>

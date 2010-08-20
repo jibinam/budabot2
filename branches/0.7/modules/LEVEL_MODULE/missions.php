@@ -45,7 +45,7 @@ if (preg_match("/^(mission|missions) ([0-9]+)$/i", $message, $arr)) {
 		$msg = "Missions are only available between QL1 and QL250";
 	}
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

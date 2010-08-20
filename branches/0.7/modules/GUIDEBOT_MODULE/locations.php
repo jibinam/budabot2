@@ -59,9 +59,9 @@ $locations_txt = "Locations Of Rubi Ka
 
 $locations_txt = Text::makeLink("Locations of Rubi Ka", $locations_txt); 
 if($type == "msg") 
-$this->send($locations_txt, $sender); 
+$chatBot->send($locations_txt, $sender); 
 elseif($type == "all") 
-$this->send($locations_txt); 
+$chatBot->send($locations_txt); 
 else 
-$this->send($locations_txt, "guild"); 
+$chatBot->send($locations_txt, "guild"); 
 ?>

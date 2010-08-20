@@ -12,9 +12,9 @@ $quests_txt = " NPC Quest Guide
 ";
 $quests_txt = Text::makeLink("NPC Quest Guides", $quests_txt); 
 if($type == "msg") 
-$this->send($quests_txt, $sender); 
+$chatBot->send($quests_txt, $sender); 
 elseif($type == "all") 
-$this->send($quests_txt); 
+$chatBot->send($quests_txt); 
 else 
-$this->send($quests_txt, "guild"); 
+$chatBot->send($quests_txt, "guild"); 
 ?>

@@ -8,7 +8,7 @@ if (preg_match("/^reroll$/i", $message)) {
 	//Check if a residual list exits
   	if (!is_array($residual)) {
 	    $msg = "There are no remaining items to re-add.";
-	    $this->send($msg);
+	    $chatBot->send($msg);
 	    return;
 	}
   	
@@ -25,7 +25,7 @@ if (preg_match("/^reroll$/i", $message)) {
 	$residual = "";
 	//Show winner list
 	$msg = "All remaining items have been re-added by <highlight>$sender<end>. Check <symbol>list.";
-	$this->send($msg);
+	$chatBot->send($msg);
 	if (is_array($loot)) {
 		$list = "<header>::::: Loot List :::::<end>\n\nUse <symbol>flatroll or <symbol>roll to roll.\n\n";
 		forEach ($loot as $key => $item) {
@@ -72,7 +72,7 @@ if (preg_match("/^reroll$/i", $message)) {
 	} else {
 		$msg2 = "No List exists yet.";
 	}
-	$this->send($msg2, $sendto);
+	$chatBot->send($msg2, $sendto);
 } else {
 	$syntax_error = true;
 }

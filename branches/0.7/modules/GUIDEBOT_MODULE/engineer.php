@@ -822,9 +822,9 @@ Most of this is taken from Lyricia's guide at the Tir School of Engineering
 
 $engineers_txt = Text::makeLink("Guide to Engineers", $engineers_txt); 
 if($type == "msg") 
-$this->send($engineers_txt, $sender); 
+$chatBot->send($engineers_txt, $sender); 
 elseif($type == "all") 
-$this->send($engineers_txt); 
+$chatBot->send($engineers_txt); 
 else 
-$this->send($engineers_txt, "guild"); 
+$chatBot->send($engineers_txt, "guild"); 
 ?>

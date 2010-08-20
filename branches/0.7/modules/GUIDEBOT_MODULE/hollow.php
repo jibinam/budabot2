@@ -95,9 +95,9 @@ The Brood Mother:
 
 $hollow_txt = Text::makeLink("Guide to Hollow Island", $hollow_txt); 
 if($type == "msg") 
-$this->send($hollow_txt, $sender); 
+$chatBot->send($hollow_txt, $sender); 
 elseif($type == "all") 
-$this->send($hollow_txt); 
+$chatBot->send($hollow_txt); 
 else 
-$this->send($hollow_txt, "guild"); 
+$chatBot->send($hollow_txt, "guild"); 
 ?>

@@ -12,9 +12,9 @@ $rkdung_txt = "<font color = red> Guide To Rubi-Ka Static Dungeons </font>
 
 $rkdung_txt = Text::makeLink("Guide To Rubi-Ka Static Dungeons", $rkdung_txt); 
 if($type == "msg") 
-$this->send($rkdung_txt, $sender); 
+$chatBot->send($rkdung_txt, $sender); 
 elseif($type == "all") 
-$this->send($rkdung_txt); 
+$chatBot->send($rkdung_txt); 
 else 
-$this->send($rkdung_txt, "guild"); 
+$chatBot->send($rkdung_txt, "guild"); 
 ?>

@@ -111,7 +111,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 
 	$msg = Text::makeBlob("Guide for Hacker ICE-Breaker Source", $list);
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } elseif(preg_match("/^apfloot KyrOzch Helmet$/i", $message)) {
 	$list .= "Handing this item to your faction Vendor at the Alien Playfield Bar it will give you one of these 2500Token Boards back:\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://82982>\n";
@@ -122,7 +122,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 
 	$msg = Text::makeBlob("Guide for Kyr'Ozch Helmet", $list);
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } elseif(preg_match("/^apfloot Action Probability Estimator$/i", $message)) {
 	$list .= "<u>Extruder's Molybdenum Crash Helmet</u>\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://203502>\n";
@@ -176,7 +176,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 
 	$msg = Text::makeBlob("Guide for Action Probability Estimator", $list);
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } elseif(preg_match("/^apfloot Dynamic Gas Redistribution Valves$/i", $message)) {
 	$list .= "<u>High Lord of Angst</u>\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://205508>\n";
@@ -222,7 +222,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 		
 	$msg = Text::makeBlob("Guide for Dynamic Gas Redistribution Valves", $list);
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } elseif(preg_match("/^apfloot Inertial Adjustment Processing Unit$/i", $message)) {
 	$list .= "<u>Hadrulf's Viral Belt Component Platform</u>\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://11618>\n";
@@ -273,7 +273,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 			
 	$msg = Text::makeBlob("Guide for Inertial Adjustment Processing Unit", $list);
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } elseif(preg_match("/^apfloot Notum Amplification Coil$/i", $message)) {
 	$list .= "<u>Twice Augmented Hellspinner Shock Cannon</u>\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://257195>\n";
@@ -309,7 +309,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 		
 	$msg = Text::makeBlob("Guide for Notum Amplification Coil", $list);
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } elseif(preg_match("/^apfloot Energy Redistribution Unit$/i", $message)) {
 	$list .= "<u>Blades of Boltar</u>\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://257197>\n";
@@ -344,7 +344,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 			
 	$msg = Text::makeBlob("Guide for Energy Redistribution Unit", $list);
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } elseif(preg_match("/^apfloot Visible Light Remodulation Device$/i", $message)) {
 	$list .= "<u>Explosif's Polychromatic Pillows</u>\n\n";
 	$list .= "<tab><tab><tab><tab><img src=rdb://235270>\n";
@@ -384,7 +384,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 			
 	$msg = Text::makeBlob("Guide for Visible Light Remodulation Device", $list);
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

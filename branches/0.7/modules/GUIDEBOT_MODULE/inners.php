@@ -84,9 +84,9 @@ Third Circle of the Inner Sanctum
 
 $sanctum_txt = Text::makeLink("Guide to Inner Sanctum", $sanctum_txt); 
 if($type == "msg") 
-$this->send($sanctum_txt, $sender); 
+$chatBot->send($sanctum_txt, $sender); 
 elseif($type == "all") 
-$this->send($sanctum_txt); 
+$chatBot->send($sanctum_txt); 
 else 
-$this->send($sanctum_txt, "guild"); 
+$chatBot->send($sanctum_txt, "guild"); 
 ?>

@@ -75,9 +75,9 @@ $infsancn_txt = "Inferno Sanctuary
 
 $infsancn_txt = Text::makeLink("Inferno Sanctuary Garden Nanos", $infsancn_txt); 
 if($type == "msg") 
-$this->send($infsancn_txt, $sender); 
+$chatBot->send($infsancn_txt, $sender); 
 elseif($type == "all") 
-$this->send($infsancn_txt); 
+$chatBot->send($infsancn_txt); 
 else 
-$this->send($infsancn_txt, "guild"); 
+$chatBot->send($infsancn_txt, "guild"); 
 ?>

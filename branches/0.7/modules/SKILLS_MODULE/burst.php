@@ -22,7 +22,7 @@ $help .= $footer;
 $helplink = Text::makeLink("::How to use Burst::", $help);
 
 if((!$AttTim) || (!$RechT) || (!$BurstDelay) || (!$BurstSkill))
-	$this->send($helplink, $sendto);
+	$chatBot->send($helplink, $sendto);
 else{
 	$cap = round($AttTim+8,0);
 	$burstrech = floor(($RechT*20) + ($BurstDelay/100) - ($BurstSkill/25) + $AttTim);
@@ -43,5 +43,5 @@ else{
 	$inside .= $footer;
 
 	$windowlink = Text::makeLink("::Your Burst Results::", $inside);
-	$this->send($windowlink, $sendto);
+	$chatBot->send($windowlink, $sendto);
 }

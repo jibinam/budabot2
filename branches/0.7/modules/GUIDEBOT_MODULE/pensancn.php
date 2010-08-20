@@ -28,9 +28,9 @@ $pensancn_txt = "Penumbra Sanctuary (Vanya)
 
 $pensancn_txt = Text::makeLink("Penumbra Sanctuary Garden Nanos", $pensancn_txt); 
 if($type == "msg") 
-$this->send($pensancn_txt, $sender); 
+$chatBot->send($pensancn_txt, $sender); 
 elseif($type == "all") 
-$this->send($pensancn_txt); 
+$chatBot->send($pensancn_txt); 
 else 
-$this->send($pensancn_txt, "guild"); 
+$chatBot->send($pensancn_txt, "guild"); 
 ?>

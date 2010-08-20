@@ -30,20 +30,20 @@
    */
    
 if(preg_match("/^orgranks$/i", $message)) {
-	if($this->vars["my guild id"] == "") {
+	if($chatBot->vars["my guild id"] == "") {
 	  	$msg = "The Bot needs to be in a org to show the orgmembers.";
-        $this->send($msg, $sendto);
+        $chatBot->send($msg, $sendto);
 	}
 	
 	$db->query("SELECT * FROM org_members_<myname> WHERE `mode` != 'del' ORDER BY `rank_id`");  
 	$members = $db->numrows();
   	if($members == 0) {
 	  	$msg = "No members recorded.";
-        $this->send($msg, $sendto);
+        $chatBot->send($msg, $sendto);
 	}
 
 	$msg = "Processing orgmember list. This can take a few seconds.";
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
        	
 	while($row = $db->fObject()) {
         if($row->logged_off != "0")
@@ -54,8 +54,8 @@ if(preg_match("/^orgranks$/i", $message)) {
 	  	$list .= "<tab><highlight>$row->name<end> (Lvl $row->level/<green>$row->ai_level<end> $row->profession) (<highlight>$row->rank<end>) <highlight>::<end> Last logoff: $logged_off\n";
 	}
 	
-	$msg = Text::makeBlob("$members Members of {$this->vars["my guild"]} (Sorted by orgrank)", $list);
-    $this->send($msg, $sendto);
+	$msg = Text::makeBlob("$members Members of {$chatBot->vars["my guild"]} (Sorted by orgrank)", $list);
+    $chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

@@ -41,7 +41,7 @@ if($org_member->mode != "del" && $numrows == 1) {
 	    $db->exec("INSERT INTO guild_chatlist_<myname> (`name`, `profession`, `guild`, `rank`, `breed`, `level`, `ai_level`) VALUES ('$org_member->name', '$org_member->profession', '$org_member->guild', '$org_member->rank', '$org_member->breed', '$org_member->level', '$org_member->ai_level')");
 	}
 
-    if (time() >= $this->vars["onlinedelay"]) {
+    if (time() >= $chatBot->vars["onlinedelay"]) {
         if ($org_member->firstname) {
             $msg = $org_member->firstname." ";
 		}
@@ -118,11 +118,11 @@ if($org_member->mode != "del" && $numrows == 1) {
             $msg .= " - " . $org_member->logon_msg;
 		}
 
-       	$this->send($msg, "guild", true);
+       	$chatBot->send($msg, "guild", true);
 
 		//Guestchannel part
 		if (Settings::get("guest_relay") == 1) {
-			$this->send($msg, "priv", true);
+			$chatBot->send($msg, "priv", true);
 		}
     }
 }

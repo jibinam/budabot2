@@ -23,7 +23,7 @@ $help .= "<a href='chatcmd:///tell <myname> <symbol>aggdef 1.2 1.5 1200'>/tell <
 $helplink = Text::makeLink("::How to use Agg/Def::", $help);
 
 if((!$AttTim) || (!$RechT) || (!$InitS))
-	$this->send($helplink, $sendto);
+	$chatBot->send($helplink, $sendto);
 else{
 	if( $InitS < 1200 ) 
 		{
@@ -75,6 +75,6 @@ else{
 	$inside .= $footer;
 
 	$windowlink = Text::makeLink("::Your Agg/Def Settings::", $inside);
-	$this->send($windowlink, $sendto); 
+	$chatBot->send($windowlink, $sendto); 
 	}
 ?>

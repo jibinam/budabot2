@@ -29,7 +29,7 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if (Settings::get("relaybot") != "Off" && isset($this->guildmembers[$sender]) && time() >= $this->vars["onlinedelay"]) {
+if (Settings::get("relaybot") != "Off" && isset($chatBot->guildmembers[$sender]) && time() >= $chatBot->vars["onlinedelay"]) {
 	send_message_to_relay("grc <highlight>$sender<end> logged off");
 }
 ?>

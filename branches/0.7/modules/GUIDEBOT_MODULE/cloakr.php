@@ -75,6 +75,6 @@ Guide courtesy of AO Universe 18 June 2008
 ";
 $cloakr_txt = Text::makeLink("Cloak Of The Reanimated Upgrade Process", $cloakr_txt);
 
-$this->send($cloakr_txt, $sendto);
+$chatBot->send($cloakr_txt, $sendto);
 
 ?>

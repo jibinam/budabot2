@@ -68,9 +68,9 @@ Mechdogs are typically around level 40, Probes around 30, Buzzsaws around level 
 
 $sided1_txt = Text::makeLink("Guide to Sided Pads Part 1", $sided1_txt); 
 if($type == "msg") 
-$this->send($sided1_txt, $sender); 
+$chatBot->send($sided1_txt, $sender); 
 elseif($type == "all") 
-$this->send($sided1_txt); 
+$chatBot->send($sided1_txt); 
 else 
-$this->send($sided1_txt, "guild"); 
+$chatBot->send($sided1_txt, "guild"); 
 ?>

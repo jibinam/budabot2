@@ -35,6 +35,6 @@ $window = "<tab> ::: Environment and Visual (No Zoning Required) :::
 
 $msg = Text::makeBlob("Lag Tweaks", $window);
 
-$this->send($msg, $sendto);   
+$chatBot->send($msg, $sendto);   
 
 ?>

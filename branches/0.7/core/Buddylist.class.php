@@ -4,12 +4,18 @@ class Buddylist {
 	public static function find_by_name($name) {
 		global $chatBot;
 
-		if (($uid = $this->get_uid($name)) === false || !isset($this->buddyList[$uid])) {
+		if (($uid = $chatBot->get_uid($name)) === false || !isset($chatBot->buddyList[$uid])) {
 			return null;
 		} else {
-			return $this->buddyList[$uid];
+			return $chatBot->buddyList[$uid];
 		}
     }
+	
+	public static function get($uid) {
+		global $chatBot;
+
+		return $chatBot->buddyList[$uid];
+	}
 
 /*===============================
 ** Name: buddy_online
@@ -78,12 +84,12 @@ class Buddylist {
 		}
 	}
 	
-	public static function store_buddy($char_id, $name, $status, $known) {
+	public static function store_buddy(&$player, $status, $known) {
 		global $chatBot;
 	
 		// store buddy info
-		$chatBot->buddyList[$char_id]['uid'] = $char_id;
-		$chatBot->buddyList[$char_id]['name'] = $name;
+		$chatBot->buddyList[$char_id]['uid'] = $player->uid;
+		$chatBot->buddyList[$char_id]['name'] = $player->name;
 		$chatBot->buddyList[$char_id]['online'] = $status;
 		$chatBot->buddyList[$char_id]['known'] = $known;
 	}

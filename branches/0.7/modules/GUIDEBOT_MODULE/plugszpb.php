@@ -151,10 +151,10 @@ QL 240 Effective Thigh Symbiant, Support Unit Aban
 
 $plugszpb_txt = Text::makeLink("PocketBosses to Pop", $plugszpb_txt); 
 if($type == "msg") 
-$this->send($plugszpb_txt, $sender); 
+$chatBot->send($plugszpb_txt, $sender); 
 elseif($type == "all") 
-$this->send($plugszpb_txt); 
+$chatBot->send($plugszpb_txt); 
 else 
-$this->send($plugszpb_txt, "guild"); 
+$chatBot->send($plugszpb_txt, "guild"); 
 ?>
 

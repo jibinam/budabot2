@@ -1,16 +1,16 @@
 <?php
 if (preg_match("/^joinRaffle/i", $message, $arr)) {
 	//check inprog and check not already in raffle
-	if (!$this->vars["Raffles"]["inprog"]) {
+	if (!$chatBot->vars["Raffles"]["inprog"]) {
 		$msg = "No raffle in progress.";
-		$this->send($msg, $sendto);
-	} else if (array_search($sender, $this->vars["Raffles"]["rafflees"]) !== false) {
+		$chatBot->send($msg, $sendto);
+	} else if (array_search($sender, $chatBot->vars["Raffles"]["rafflees"]) !== false) {
 		$msg = "You are already in the raffle.";
-		$this->send($msg, $sendto);
+		$chatBot->send($msg, $sendto);
 	} else {
-		$this->vars["Raffles"]["rafflees"][] = $sender;
+		$chatBot->vars["Raffles"]["rafflees"][] = $sender;
 		$msg = "$sender has entered the raffle.";
-		$this->send($msg, "org");
+		$chatBot->send($msg, "org");
 	}
 }
 ?>

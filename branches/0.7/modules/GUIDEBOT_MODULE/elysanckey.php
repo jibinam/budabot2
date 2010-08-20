@@ -37,9 +37,9 @@ Talk to the prophet and select option: 'I completed my assignment and I am conce
 
 $elysanckey_txt = Text::makeLink("Elysium: Shere Sanctuary Garden Key Quest", $elysanckey_txt); 
 if($type == "msg") 
-$this->send($elysanckey_txt, $sender); 
+$chatBot->send($elysanckey_txt, $sender); 
 elseif($type == "all") 
-$this->send($elysanckey_txt); 
+$chatBot->send($elysanckey_txt); 
 else 
-$this->send($elysanckey_txt, "guild"); 
+$chatBot->send($elysanckey_txt, "guild"); 
 ?>

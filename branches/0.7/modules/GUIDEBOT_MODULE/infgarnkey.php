@@ -56,6 +56,6 @@ $infgarnkey_txt .= "
 ;
 $infgarnkey_txt = Text::makeLink("Inferno Garden Key - Omni", $infgarnkey_txt); 
 
-$this->send($infgarnkey_txt, $sendto);
+$chatBot->send($infgarnkey_txt, $sendto);
 
 ?>

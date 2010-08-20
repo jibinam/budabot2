@@ -44,7 +44,7 @@
 		}
 		
 		if ($found == 0) {
-			$this->send("No matches, sorry.", $sendto);
+			$chatBot->send("No matches, sorry.", $sendto);
 			return;
 		} else {
 			$inside = $header;
@@ -61,10 +61,10 @@
 			$inside .= $footer;
 			$windowlink = Text::makeLink("Buff item search results", $inside);
 		}
-		$this->send($windowlink, $sendto);
-		$this->send("<highlight>$found<end> result(s) in total", $sendto);
+		$chatBot->send($windowlink, $sendto);
+		$chatBot->send("<highlight>$found<end> result(s) in total", $sendto);
 	} else {
-		$this->send($helplink, $sendto);
+		$chatBot->send($helplink, $sendto);
 	}
 	
 ?>

@@ -19,6 +19,6 @@ if (preg_match("/^hd$/i", $message)) {
 	$msg = "Correct !hd usage:\n <highlight>!hd &lt;your stamina><end>, e.g. <highlight>!hd 350<end>.";
 }
 
-$this->send($msg, $sendto);
+$chatBot->send($msg, $sendto);
 
 ?>

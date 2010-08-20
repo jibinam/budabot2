@@ -29,13 +29,13 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if (Settings::get("relaybot") != "Off" && isset($this->guildmembers[$sender])) {
+if (Settings::get("relaybot") != "Off" && isset($chatBot->guildmembers[$sender])) {
     $msg = "";
     $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$sender'");
 	$numrows = $db->numrows();
 	$row = $db->fObject();
 	if ($row->mode != "del" && $numrows == 1) {
-        if (time() >= $this->vars["onlinedelay"]) {
+        if (time() >= $chatBot->vars["onlinedelay"]) {
             if ($row->firstname) {
                 $msg = $row->firstname." ";
 			}
@@ -77,7 +77,7 @@ if (Settings::get("relaybot") != "Off" && isset($this->guildmembers[$sender])) {
             if ($main) {
                 $list .= ":::::::: Main Character\n";
                 $list .= "<tab><tab>".Text::makeLink($row->main, "/tell <myname> whois $main", "chatcmd")." - ";
-				$online = $this->buddy_online($main);
+				$online = $chatBot->buddy_online($main);
 				if ($online === null) {
 				   $list .= "No status.\n";
 				} else if ($online == 1) {
@@ -90,7 +90,7 @@ if (Settings::get("relaybot") != "Off" && isset($this->guildmembers[$sender])) {
                 $db->query("SELECT * FROM alts WHERE `main` = '$main'");
                 while ($row = $db->fObject()) {
                     $list .= "<tab><tab>".Text::makeLink($row->alt, "/tell <myname> whois $row->alt", "chatcmd")." - ";
-					$online = $this->buddy_online($row->alt);
+					$online = $chatBot->buddy_online($row->alt);
                     if ($online === null) {
                        $list .= "No status.\n";
                     } else if ($online == 1) {

@@ -35,7 +35,7 @@ $postFields = array();
 $postFields['lowql'] = 'MinQL';
 $postFields['highql'] = 'MaxQL';
 $postFields['search'] = '';
-$postFields['dimension'] = 'rk' . $this->vars["dimension"];
+$postFields['dimension'] = 'rk' . $chatBot->vars["dimension"];
 $postFields['submit'] = 'Search';
 
 if (preg_match("/^wtb (\\d+) (\\d+) (.+)$/i", $message, $arr)) {
@@ -93,7 +93,7 @@ if (!$syntax_error) {
 		$msg = 'No items found. Maybe try fewer keywords.';
 	}
 	
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 }
 
 ?>

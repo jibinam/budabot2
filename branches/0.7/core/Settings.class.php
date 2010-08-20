@@ -38,7 +38,6 @@ class Settings {
 ** Gets an loaded setting
 */	public static function get($name) {
 		global $chatBot;
-		$name = strtolower($name);
 
 		if (isset($chatBot->settings[$name])) {
 	  		return $chatBot->settings[$name];
@@ -47,7 +46,7 @@ class Settings {
 		}
 	}
 	
-	public static function is_ignored($name) {
+	public static function is_ignored(&$player) {
 		global $chatBot;
 		$name = ucfirst(strtolower($name));
 	
@@ -56,6 +55,21 @@ class Settings {
 	  	} else {
 	  		return false;
 		}
+	}
+	
+	public static function is_banned(&$player) {
+		// TODO
+		return false;
+	}
+	
+	public static function is_spammer(&$player) {
+		// TODO
+		return false;
+	}
+	
+	public static function add_spam(&$player) {
+		// TODO
+		// check if spam control is enabled
 	}
 
 /*===============================

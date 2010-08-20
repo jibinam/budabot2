@@ -22,6 +22,6 @@ $adogarn_txt = "<header>::::: Adonis Garden Nanos  :::::<end>\n\n
 
 $adogarn_txt = Text::makeLink("Adonis Garden Nanos", $adogarn_txt);
  
-$this->send($adogarn_txt, $sendto);
+$chatBot->send($adogarn_txt, $sendto);
 
 ?>

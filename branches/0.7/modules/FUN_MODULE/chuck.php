@@ -186,6 +186,6 @@ if (preg_match("/^chuck/i", $message)) {
 	$randval = rand(1, sizeof($chuck) - 1);
 	$msg = $chuck[$randval];
 	
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 }
 ?>

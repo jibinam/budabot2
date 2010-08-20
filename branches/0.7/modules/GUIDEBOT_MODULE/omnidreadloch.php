@@ -115,9 +115,9 @@ Additional firepower provided by Omni-Pol."
 ;
 $omnidreadloch_txt = Text::makeLink("Omni Dreadloch Camps", $omnidreadloch_txt); 
 if($type == "msg") 
-$this->send($omnidreadloch_txt, $sender); 
+$chatBot->send($omnidreadloch_txt, $sender); 
 elseif($type == "priv") 
-$this->send($omnidreadloch_text); 
+$chatBot->send($omnidreadloch_text); 
 else 
-$this->send($omnidreadloch_txt, "guild");
+$chatBot->send($omnidreadloch_txt, "guild");
 ?>

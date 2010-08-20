@@ -126,7 +126,7 @@ if (preg_match("/^smileys$/i", $message)) {
 	$basiclink = Text::makeBlob("Basic Smileys", $basic) ;
 	$widelink = Text::makeBlob("Widely Used Smileys", $wide);
 
-	$this->send($basiclink, $sendto);
-	$this->send($widelink, $sendto);
+	$chatBot->send($basiclink, $sendto);
+	$chatBot->send($widelink, $sendto);
 }
 ?>

@@ -191,9 +191,9 @@ Credit: AOVault.com
 
 $penguide_txt = Text::makeLink("Guide To Penumbra", $penguide_txt); 
 if($type == "msg") 
-$this->send($penguide_txt, $sender); 
+$chatBot->send($penguide_txt, $sender); 
 elseif($type == "all") 
-$this->send($penguide_txt); 
+$chatBot->send($penguide_txt); 
 else 
-$this->send($penguide_txt, "guild"); 
+$chatBot->send($penguide_txt, "guild"); 
 ?>

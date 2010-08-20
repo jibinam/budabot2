@@ -32,11 +32,11 @@
 $msg = "";
 if (preg_match("/^is (.+)$/i", $message, $arr)) {
     // Get User id
-    $uid = $this->get_uid($arr[1]);
+    $uid = $chatBot->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
     if (!$uid) {
         $msg = "Player <highlight>$name<end> does not exist.";
-		$this->send($msg, $sendto);
+		$chatBot->send($msg, $sendto);
     } else {
         //if the player is a buddy then
         if (Buddylist::is_buddy($uid, NULL)) {
@@ -53,24 +53,24 @@ if (preg_match("/^is (.+)$/i", $message, $arr)) {
                 $status = "<red>offline<end>".$logged_off;
 			}
             $msg = "Player <highlight>$name<end> is $status";
-			$this->send($msg, $sendto);
+			$chatBot->send($msg, $sendto);
         // else add him
         } else {
-			$this->data["ONLINE_MODULE"]['playername'] = $name;
-			$this->data["ONLINE_MODULE"]['sendto'] = $sendto;
+			$chatBot->data["ONLINE_MODULE"]['playername'] = $name;
+			$chatBot->data["ONLINE_MODULE"]['sendto'] = $sendto;
 			Buddylist::add($uid, 'is_online');
         }
     }
-} elseif (($type == "logOn" || $type == "logOff") && $sender == $this->data["ONLINE_MODULE"]['playername']) {
+} elseif (($type == "logOn" || $type == "logOff") && $sender == $chatBot->data["ONLINE_MODULE"]['playername']) {
     if ($type == "logOn") {
 		$status = "<green>online<end>";
 	} else if ($type == "logOff") {
 		$status = "<red>offline<end>";
 	}
 	$msg = "Player <highlight>$sender<end> is $status";
-	$this->send($msg, $this->data["ONLINE_MODULE"]['sendto']);
+	$chatBot->send($msg, $chatBot->data["ONLINE_MODULE"]['sendto']);
 
 	Buddylist::remove($char_id, 'is_online');
-	unset($this->data["ONLINE_MODULE"]);
+	unset($chatBot->data["ONLINE_MODULE"]);
 }
 ?>

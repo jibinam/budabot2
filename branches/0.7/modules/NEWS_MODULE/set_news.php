@@ -32,7 +32,7 @@
 if (preg_match("/^privnews clear$/i", $message)) {
 	Settings::save("news", "Not set.");
 	$msg = "News has been cleared.";
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^privnews (.+)$/i", $message, $arr)) {
 	$news = $arr[1];
  	if (strlen($news) > 300) {
@@ -41,11 +41,11 @@ if (preg_match("/^privnews clear$/i", $message)) {
 		Settings::save("news", $news);	
 		$msg = "News has been set.";
 	}
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^adminnews clear$/i", $message)) {
  	Settings::save("adminnews", "Not set.");
 	$msg = "Adminnews has been cleared.";
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^adminnews (.+)$/i", $message, $arr)) {
 	$news = $arr[1];
  	if (strlen($news) > 300) {
@@ -54,6 +54,6 @@ if (preg_match("/^privnews clear$/i", $message)) {
 		Settings::save("adminnews", $news);	
 		$msg = "Adminnews has been set.";
 	}
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 }
 ?>

@@ -50,9 +50,9 @@ And there you are. Though a few of these weapons remain good, it has been a whil
 
 $tshop_txt = Text::makeLink("Guide to Trader Shops", $tshop_txt); 
 if($type == "msg") 
-$this->send($tshop_txt, $sender); 
+$chatBot->send($tshop_txt, $sender); 
 elseif($type == "all") 
-$this->send($tshop_txt); 
+$chatBot->send($tshop_txt); 
 else 
-$this->send($tshop_txt, "guild"); 
+$chatBot->send($tshop_txt, "guild"); 
 ?>

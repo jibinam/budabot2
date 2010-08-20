@@ -68,10 +68,10 @@ if(preg_match("/^fight (.+) vs (.+)$/i", $message, $arr)) {
 	$msg = Text::makeLink("Result of the fight $player1 vs $player2.", $list);
 
     if($type == "msg")
-        $this->send($msg, $sender);
+        $chatBot->send($msg, $sender);
     elseif($type == "priv")
-    	$this->send($msg);
+    	$chatBot->send($msg);
     elseif($type == "guild")
-    	$this->send($msg, "guild");  
+    	$chatBot->send($msg, "guild");  
 }
 ?>

@@ -20,9 +20,9 @@ Please note: all this information was taken from the official AO forums and shou
 ;
 $prof_txt = Text::makeLink("Guide to Professions", $prof_txt); 
 if($type == "msg") 
-$this->send($prof_txt, $sender); 
+$chatBot->send($prof_txt, $sender); 
 elseif($type == "all") 
-$this->send($prof_txt); 
+$chatBot->send($prof_txt); 
 else 
-$this->send($prof_txt, "guild"); 
+$chatBot->send($prof_txt, "guild"); 
 ?>

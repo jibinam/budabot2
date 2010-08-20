@@ -29,7 +29,7 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if (isset($this->guildmembers[$sender]) && (time() >= $this->vars["newsdelay"])) {
+if (isset($chatBot->guildmembers[$sender]) && (time() >= $chatBot->vars["newsdelay"])) {
 	$db->query("SELECT * FROM news_<myname> ORDER BY `time` DESC LIMIT 0, 10");
 	if ($db->numrows() != 0) {
 		while ($row = $db->fObject()) {
@@ -41,7 +41,7 @@ if (isset($this->guildmembers[$sender]) && (time() >= $this->vars["newsdelay"]))
 		  	$link .= "<highlight>Message:<end> $row->news\n\n";
 		}
 		$msg = Text::makeBlob("News", $link)." [Last updated at ".gmdate("dS M, H:i", $updated)."]";
-        $this->send($msg, $sender);
+        $chatBot->send($msg, $sender);
 	}	
 }
 ?>

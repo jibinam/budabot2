@@ -52,6 +52,6 @@ nce that's completed, just return to Ergo and you'll be awarded with :
 ;
 $infstar_txt = Text::makeLink("Inferno: Profession Star Quest", $infstar_txt); 
 
-$this->send($infstar_txt, $sendto);
+$chatBot->send($infstar_txt, $sendto);
 
 ?>

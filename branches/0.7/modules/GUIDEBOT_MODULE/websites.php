@@ -69,6 +69,6 @@ Shadowlands Related
 
 $websites_txt = Text::makeLink("Anarchy Online Websites", $websites_txt); 
 
-$this->send($websites_txt, $sendto);
+$chatBot->send($websites_txt, $sendto);
 
 ?>

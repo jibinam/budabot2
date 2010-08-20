@@ -32,21 +32,21 @@
 $db->query("SELECT `name`, `logon_msg` FROM org_members_<myname> WHERE `name` = '$sender'");
 if ($db->numrows() == 0) {
     $msg = "You are not on the notify list of this bot.";
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else {
 	$row = $db->fObject();
 }
 
 if (preg_match("/^logon$/i", $message)) {
 	if ($row->logon_msg == 0 || $row->logon_msg == '') {
-		$this->send("Your logon message is currently blank.", $sendto);
+		$chatBot->send("Your logon message is currently blank.", $sendto);
 	} else {
-		$this->send($row->logon_msg, $sendto);
+		$chatBot->send($row->logon_msg, $sendto);
 	}
 } else if (preg_match("/^logon clear$/i", $message)) {
     $db->query("UPDATE org_members_<myname> SET `logon_msg` = 0 WHERE `name` = '$sender'");
     $msg = "Logon message cleared.";
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^logon (.+)$/i", $message, $arr)) {
 	$arr[1] = str_replace("'", "''", $arr[1]);
 	if (strlen($arr[1]) <= 200) {
@@ -55,6 +55,6 @@ if (preg_match("/^logon$/i", $message)) {
 	} else {
 		$msg = "Your logon message is too long. Please choose a shorter one.";
 	}
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 }
 ?>

@@ -50,9 +50,9 @@ As far as weapon choice? Well since you haven't touched any of these skills you 
 
 $doctor_txt = Text::makeLink("Guide To Doctors", $doctor_txt); 
 if($type == "msg") 
-$this->send($doctor_txt, $sender); 
+$chatBot->send($doctor_txt, $sender); 
 elseif($type == "all") 
-$this->send($doctor_txt); 
+$chatBot->send($doctor_txt); 
 else 
-$this->send($doctor_txt, "guild"); 
+$chatBot->send($doctor_txt, "guild"); 
 ?>

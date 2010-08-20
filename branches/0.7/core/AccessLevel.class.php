@@ -16,10 +16,10 @@ class AccessLevel {
 /*===============================
 ** Name: getUserAccessLevel
 ** Returns the integer value that corresponds to an access level for the specified user
-*/	public static function get_user_access_level($user) {
+*/	public static function get_user_access_level($player) {
 		global $chatBot;
 		global $db;
-		$user = ucfirst(strtolower($user));
+		$user = ucfirst(strtolower($player->name));
 
 		// covers superadmin, admin, moderator, raidleader
 		if (isset($chatBot->admins[$user])) {

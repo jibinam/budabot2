@@ -31,11 +31,11 @@ if(($data = fgets($socket)) && ("1" == Settings::get('irc_status'))) {
 		}
 	}
 	elseif($ex[1] == "QUIT") {
-		if($this->vars['my guild'] != "") {
-			$this->send("<yellow>[IRC]<end><green> $nick quit IRC.<end>","guild",true);
+		if($chatBot->vars['my guild'] != "") {
+			$chatBot->send("<yellow>[IRC]<end><green> $nick quit IRC.<end>","guild",true);
 		}
-		if($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
-			$this->send("<yellow>[IRC]<end><white> $nick quit IRC.<end>","priv",true);
+		if($chatBot->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
+			$chatBot->send("<yellow>[IRC]<end><white> $nick quit IRC.<end>","priv",true);
 		}
 	}
 	elseif($channel == trim(strtolower(Settings::get('irc_channel')))) {
@@ -53,7 +53,7 @@ if(($data = fgets($socket)) && ("1" == Settings::get('irc_status'))) {
 			$numonline = 0;
 			$numguest = 0;
 			//guild listing
-			if($this->vars['my guild'] != "") {
+			if($chatBot->vars['my guild'] != "") {
 				$db->query("SELECT * FROM guild_chatlist_<myname>");
 				$numonline = $db->numrows();
 				if($numonline != 0) {
@@ -106,30 +106,30 @@ if(($data = fgets($socket)) && ("1" == Settings::get('irc_status'))) {
 			flush();
 		}
 		elseif($ex[1] == "JOIN") {
-			if($this->vars['my guild'] != "") {
-				$this->send("<yellow>[IRC]<end><green> $nick joined the channel.<end>","guild",true);
+			if($chatBot->vars['my guild'] != "") {
+				$chatBot->send("<yellow>[IRC]<end><green> $nick joined the channel.<end>","guild",true);
 			}
-			if($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
-				$this->send("<yellow>[IRC]<end><white> $nick joined the channel.<end>","priv",true);
+			if($chatBot->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
+				$chatBot->send("<yellow>[IRC]<end><white> $nick joined the channel.<end>","priv",true);
 			}
 		}
 		elseif($ex[1] == "PART") {
-			if($this->vars['my guild'] != "") {
-				$this->send("<yellow>[IRC]<end><green> $nick left the channel.<end>","guild",true);
+			if($chatBot->vars['my guild'] != "") {
+				$chatBot->send("<yellow>[IRC]<end><green> $nick left the channel.<end>","guild",true);
 			}
-			if($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
-				$this->send("<yellow>[IRC]<end><white> $nick left the channel.<end>","priv",true);
+			if($chatBot->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
+				$chatBot->send("<yellow>[IRC]<end><white> $nick left the channel.<end>","priv",true);
 			}
 		}
 		else {
 			if(Settings::get('irc_debug_messages') == 1) {
 				Logger::log_chat("IRC Inc. Msg.", $nick, $ircmessage);
 			}
-			if($this->vars['my guild'] != "") {
-				$this->send("<yellow>[IRC]<end><green> $nick: $ircmessage<end>","guild",true);
+			if($chatBot->vars['my guild'] != "") {
+				$chatBot->send("<yellow>[IRC]<end><green> $nick: $ircmessage<end>","guild",true);
 			}
-			if($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
-				$this->send("<yellow>[IRC]<end><white> $nick: $ircmessage<end>","priv",true);
+			if($chatBot->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
+				$chatBot->send("<yellow>[IRC]<end><white> $nick: $ircmessage<end>","priv",true);
 			}
 			flush();
 		}

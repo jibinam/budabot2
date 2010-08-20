@@ -105,7 +105,9 @@ if ($db->errorCode != 0) {
 	die();
 }
 
+global $chatBot;
 $chatBot = new Budabot($vars, $settings);
+$chatBot->init();
 
 /////////////////////////////////////////////
 // log on aoChat, msnChat                  //

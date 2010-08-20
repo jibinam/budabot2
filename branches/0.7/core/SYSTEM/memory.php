@@ -7,7 +7,7 @@ if (preg_match("/^memory$/i", $message, $arr)) {
 	$blob .= "Peak Memory Usage: " . Util::bytes_convert(memory_get_usage()) . "\n";
 	$blob .= "Peak Memory Usage (Real): " . Util::bytes_convert(memory_get_peak_usage(1)) . "\n";
 	$msg = Text::makeLink('Memory Usage', $blob);	
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 }
 
 ?>

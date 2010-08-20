@@ -19,7 +19,7 @@ $help .= $footer;
 $helplink = Text::makeLink("::How to use Nano Init::", $help);
 
 if((!$AttTim) || (!$RechT))
-	$this->send($helplink, $sendto);
+	$chatBot->send($helplink, $sendto);
 else{
 	if( $RechT < 1200 ) 
 		{
@@ -59,6 +59,6 @@ else{
 	$inside .= $footer;
 
 	$windowlink = Text::makeLink("::Nano Init Results::", $inside);
-	$this->send($windowlink, $sendto);
+	$chatBot->send($windowlink, $sendto);
 	}
 ?>

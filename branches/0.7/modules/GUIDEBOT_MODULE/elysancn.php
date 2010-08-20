@@ -22,9 +22,9 @@ $elysancn_txt = "Elysium Sanctuary Nanos
 
 $elysancn_txt = Text::makeLink("Elysium Sanctuary Garden Nanos", $elysancn_txt); 
 if($type == "msg") 
-$this->send($elysancn_txt, $sender); 
+$chatBot->send($elysancn_txt, $sender); 
 elseif($type == "all") 
-$this->send($elysancn_txt); 
+$chatBot->send($elysancn_txt); 
 else 
-$this->send($elysancn_txt, "guild"); 
+$chatBot->send($elysancn_txt, "guild"); 
 ?>

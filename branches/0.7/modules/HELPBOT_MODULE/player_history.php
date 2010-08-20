@@ -31,11 +31,11 @@
 
 if (preg_match("/^history (.+)$/i", $message, $arr)) {
 	$name = ucfirst(strtolower($arr[1]));
-	if (!$this->get_uid($name)) {
+	if (!$chatBot->get_uid($name)) {
 		$msg = "Player <highlight>$name<end> doesn't exist.";
 	} else {
 	  	$msg = "Getting History of player <highlight>$name<end>. Please standby.";
-        $this->send($msg, $sendto);
+        $chatBot->send($msg, $sendto);
 
 		$history = new HistoryXML($name);
 		if ($history->errorCode != 0) {
@@ -79,7 +79,7 @@ if (preg_match("/^history (.+)$/i", $message, $arr)) {
 		}
 	}
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

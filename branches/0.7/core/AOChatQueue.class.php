@@ -70,7 +70,7 @@ class AOChatQueue {
 			$this->queue[$priority] = array($args);
 			krsort($this->queue);
 		}
-		$this->qsize ++;
+		$this->qsize++;
 		return 2;
 	}
 

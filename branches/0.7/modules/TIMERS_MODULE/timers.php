@@ -35,7 +35,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 		$msg = "No valid time specified!";
 		
 	    // Send info back
-        $this->send($msg, $sendto);
+        $chatBot->send($msg, $sendto);
 	    return;
 	}
 
@@ -43,8 +43,8 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
     $timer = time() + $arr[1];
 
 	$found = false;
-	forEach ($this->vars["Timers"] as $key => $value) {
-	  	if ($this->vars["Timers"][$key]["owner"] == $sender && $this->vars["Timers"][$key]["name"] == "PrimTimer") {
+	forEach ($chatBot->vars["Timers"] as $key => $value) {
+	  	if ($chatBot->vars["Timers"][$key]["owner"] == $sender && $chatBot->vars["Timers"][$key]["name"] == "PrimTimer") {
 		    $found = true;
 		    break;
 		}
@@ -54,11 +54,11 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 	  	$msg = "<highlight>$sender<end> you have already a primary Timer running.";
 
   	    // Send info back
-	    $this->send($msg, $sendto);
+	    $chatBot->send($msg, $sendto);
 		return;
 	}
 
-	$this->vars["Timers"][] = array("name" => "PrimTimer", "owner" => $sender, "mode" => $type, "timer" => $timer, "settime" => time());
+	$chatBot->vars["Timers"][] = array("name" => "PrimTimer", "owner" => $sender, "mode" => $type, "timer" => $timer, "settime" => time());
     $db->query("INSERT INTO timers_<myname> (`name`, `owner`, `mode`, `timer`, `settime`) VALUES ('PrimTimer', '$sender', '$type', $timer, '".time()."')");
 	$days = floor($arr[1]/86400);
 	if ($days != 0) {
@@ -75,7 +75,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 	$msg = "Timer has been set for $timerset.";
 		
     // Send info back
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^timers? ([0-9]+) (.+)$/i", $message, $arr)) {
   	$timer_name = trim($arr[2]);
 	
@@ -83,7 +83,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 		$msg = "No valid time specified!";
 		
 	    // Send info back
-	    $this->send($msg, $sendto);
+	    $chatBot->send($msg, $sendto);
 	    return;
 	}
 
@@ -91,8 +91,8 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
     $timer = time() + $arr[1];
 
 	$found = false;
-	forEach ($this->vars["Timers"] as $key => $value) {
-	  	if ($this->vars["Timers"][$key]["name"] == $timer_name) {
+	forEach ($chatBot->vars["Timers"] as $key => $value) {
+	  	if ($chatBot->vars["Timers"][$key]["name"] == $timer_name) {
 		    $found = true;
 		    break;
 		}
@@ -102,7 +102,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 	  	$msg = "A Timer with the name <highlight>$timer_name<end> is already running.";
 
   	    // Send info back
-	    $this->send($msg, $sendto);
+	    $chatBot->send($msg, $sendto);
 		return;
 	}
 	
@@ -121,30 +121,30 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 		$timerset .= $mins."min(s)";
 	}
 
-  	$this->vars["Timers"][] = array("name" => $timer_name, "owner" => $sender, "mode" => $type, "timer" => $timer, "settime" => time());
+  	$chatBot->vars["Timers"][] = array("name" => $timer_name, "owner" => $sender, "mode" => $type, "timer" => $timer, "settime" => time());
 
     $db->query("INSERT INTO timers_<myname> (`name`, `owner`, `mode`, `timer`, `settime`) VALUES ('".str_replace("'", "''", $timer_name)."', '$sender', '$type', $timer, ".time().")");	
 
 	$msg = "Timer <highlight>$timer_name<end> has been set for $timerset.";
 		
     // Send info back
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^timers? (rem|del) (.+)$/i", $message, $arr)) {
 	$timer_name = strtolower($arr[2]);
 	
-	forEach ($this->vars["Timers"] as $key => $value) {
-		$name = $this->vars["Timers"][$key]["name"];
-		$owner = $this->vars["Timers"][$key]["owner"];
+	forEach ($chatBot->vars["Timers"] as $key => $value) {
+		$name = $chatBot->vars["Timers"][$key]["name"];
+		$owner = $chatBot->vars["Timers"][$key]["owner"];
 
 		if (strtolower($name) == $timer_name) {
 			if ($owner == $sender) {
-				unset($this->vars["Timers"][$key]);
+				unset($chatBot->vars["Timers"][$key]);
 				$db->query("DELETE FROM timers_<myname> WHERE `name` = '".str_replace("'", "''", $name)."' AND `owner` = '$sender'");
 					
 			  	$msg = "Removed timer <highlight>$name<end>.";
 			  	break;
-			} else if (($this->guildmembers[$sender] <= Settings::get('guild admin level')) || isset($this->admins[$sender])) {
-				unset($this->vars["Timers"][$key]);
+			} else if (($chatBot->guildmembers[$sender] <= Settings::get('guild admin level')) || isset($chatBot->admins[$sender])) {
+				unset($chatBot->vars["Timers"][$key]);
 				$db->query("DELETE FROM timers_<myname> WHERE `name` = '".str_replace("'", "''", $name)."'");
 
 			  	$msg = "Removed timer <highlight>$name<end>.";
@@ -160,14 +160,14 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 	}
 
     // Send info back
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^timers? (([0-9]*)[d|day|days]*).(([0-9]*)[h|hr|hrs]*).(([0-9]*)[m|min|mins]*)$/i", $message, $arr)) {
 	if (preg_match("/([0-9]+)(d|day|days)/i", $message, $day)) {
 		if ($day[1] < 1 || $day[1] > 10) {
 			$msg = "No valid time specified!";
 			
 		    // Send info back
-		    $this->send($msg, $sendto);
+		    $chatBot->send($msg, $sendto);
 		    return;		  	
 		}
 		$days = $day[1] * 86400;
@@ -180,7 +180,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 			$msg = "No valid time specified!";
 			
 		    // Send info back
-		    $this->send($msg, $sendto);
+		    $chatBot->send($msg, $sendto);
 		    return;		  	
 		}
 		$hours = $hours[1] * 3600;
@@ -193,7 +193,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 			$msg = "No valid time specified!";
 			
 		    // Send info back
-		    $this->send($msg, $sendto);
+		    $chatBot->send($msg, $sendto);
 		    return;		  	
 		}
 		$mins = $mins[1] * 60;
@@ -204,7 +204,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 	if ($days == 0 && $hours == 0 && $mins == 0) {
 	  	$msg = "No valid Time specified! Please check the help files how to use this command!";
 	    // Send info back
-	    $this->send($msg, $sendto);
+	    $chatBot->send($msg, $sendto);
 	    return;		  	
 	}
 
@@ -212,8 +212,8 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 	$run_time = $days + $hours + $mins;
 
 	$found = false;
-	forEach ($this->vars["Timers"] as $key => $value) {
-	  	if ($this->vars["Timers"][$key]["owner"] == $sender && $this->vars["Timers"][$key]["name"] == "PrimTimer") {
+	forEach ($chatBot->vars["Timers"] as $key => $value) {
+	  	if ($chatBot->vars["Timers"][$key]["owner"] == $sender && $chatBot->vars["Timers"][$key]["name"] == "PrimTimer") {
 		    $found = true;
 		    break;
 		}
@@ -223,11 +223,11 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 	  	$msg = "<highlight>$sender<end> you have already a primary Timer running.";
 
   	    // Send info back
-	    $this->send($msg, $sendto);
+	    $chatBot->send($msg, $sendto);
 		return;
 	}
 
-	$this->vars["Timers"][] = array("name" => "PrimTimer", "owner" => $sender, "mode" => $type, "timer" => $timer, "settime" => time());
+	$chatBot->vars["Timers"][] = array("name" => "PrimTimer", "owner" => $sender, "mode" => $type, "timer" => $timer, "settime" => time());
     $db->query("INSERT INTO timers_<myname> (`name`, `owner`, `mode`, `timer`, `settime`) VALUES ('PrimTimer', '$sender', '$type', $timer, '".time()."')");
 	$days = floor($run_time/86400);
 	if ($days != 0) {
@@ -244,7 +244,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 	$msg = "Timer has been set for $timerset.";
 		
     // Send info back
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^timers? (([0-9]*)[d|day|days]*).(([0-9]*)[h|hr|hrs]*).(([0-9]*)[m|min|mins]*) (.+)$/i", $message, $arr)) {
 	$last_item = count($arr);
 	$timer_name = trim($arr[$last_item - 1]);
@@ -254,7 +254,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 			$msg = "No valid time specified!";
 			
 		    // Send info back
-		    $this->send($msg, $sendto);
+		    $chatBot->send($msg, $sendto);
 		    return;		  	
 		}
 
@@ -268,7 +268,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 			$msg = "No valid time specified!";
 			
 		    // Send info back
-		    $this->send($msg, $sendto);
+		    $chatBot->send($msg, $sendto);
 		    return;		  	
 		}
 
@@ -282,7 +282,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 			$msg = "No valid time specified!";
 			
 		    // Send info back
-		    $this->send($msg, $sendto);
+		    $chatBot->send($msg, $sendto);
 		    return;		  	
 		}
 
@@ -294,15 +294,15 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 	if ($days == 0 && $hours == 0 && $mins == 0) {
 	  	$msg = "No valid Time specified! Please check the help files how to use this command!";
 	    // Send info back
-	    $this->send($msg, $sendto);
+	    $chatBot->send($msg, $sendto);
 	    return;		  	
 	}
 
     $timer = time() + ($days*86400) + ($hours*3600) + ($mins*60);
 
 	$found = false;
-	forEach ($this->vars["Timers"] as $key => $value) {
-	  	if ($this->vars["Timers"][$key]["name"] == $timer_name) {
+	forEach ($chatBot->vars["Timers"] as $key => $value) {
+	  	if ($chatBot->vars["Timers"][$key]["name"] == $timer_name) {
 		    $found = true;
 		    break;
 		}
@@ -312,7 +312,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 	  	$msg = "A Timer with the name <highlight>$timer_name<end> is already running.";
 
   	    // Send info back
-	    $this->send($msg, $sendto);
+	    $chatBot->send($msg, $sendto);
 		return;
 	}
 
@@ -327,28 +327,28 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 		$timerset .= $mins."min(s)";
 	}
 
-  	$this->vars["Timers"][] = array("name" => $timer_name, "owner" => $sender, "mode" => $type, "timer" => $timer, "settime" => time());
+  	$chatBot->vars["Timers"][] = array("name" => $timer_name, "owner" => $sender, "mode" => $type, "timer" => $timer, "settime" => time());
 	$db->query("INSERT INTO timers_<myname> (`name`, `owner`, `mode`, `timer`, `settime`) VALUES ('".str_replace("'", "''", $timer_name) ."', '$sender', '$type', $timer, ".time().")");
 
     
 	$msg = "Timer <highlight>$timer_name<end> has been set for $timerset.";
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^timers$/i", $message, $arr)) {
-	$num_timers = count($this->vars["Timers"]);
+	$num_timers = count($chatBot->vars["Timers"]);
 	if ($num_timers == 0) {
 		$msg = "No Timers running atm.";
 	    // Send info back
-	    $this->send($msg, $sendto);
+	    $chatBot->send($msg, $sendto);
 	    return;
 	}
 
   	if (Settings::get("timers_window") == 2 || (Settings::get("timers_window") >= 3 && $num_timers <= Settings::get("timers_window"))) {
-		forEach ($this->vars["Timers"] as $key => $value) {
+		forEach ($chatBot->vars["Timers"] as $key => $value) {
 			$timer = "";
-			$tleft = $this->vars["Timers"][$key]["timer"] - time();
-			$name = $this->vars["Timers"][$key]["name"];
-			$owner = $this->vars["Timers"][$key]["owner"];
-			$mode = $this->vars["Timers"][$key]["mode"];
+			$tleft = $chatBot->vars["Timers"][$key]["timer"] - time();
+			$name = $chatBot->vars["Timers"][$key]["name"];
+			$owner = $chatBot->vars["Timers"][$key]["owner"];
+			$mode = $chatBot->vars["Timers"][$key]["mode"];
 
 			if ($mode == "msg" && $type == "msg" && ($sender == $owner)) {
 				$days = floor($tleft/86400);
@@ -410,12 +410,12 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 		  	$msg = "Timers currently running:".$msg;
 		}
 	} else {
-		forEach ($this->vars["Timers"] as $key => $value) {
+		forEach ($chatBot->vars["Timers"] as $key => $value) {
 			$timer = "";
-			$tleft = $this->vars["Timers"][$key]["timer"] - time();
-			$name = $this->vars["Timers"][$key]["name"];
-			$owner = $this->vars["Timers"][$key]["owner"];
-			$mode = $this->vars["Timers"][$key]["mode"];
+			$tleft = $chatBot->vars["Timers"][$key]["timer"] - time();
+			$name = $chatBot->vars["Timers"][$key]["name"];
+			$owner = $chatBot->vars["Timers"][$key]["owner"];
+			$mode = $chatBot->vars["Timers"][$key]["mode"];
 
 			if ($mode == "msg" && $type == "msg" && ($sender == $owner)) {
 				$days = floor($tleft/86400);
@@ -475,7 +475,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 	}
 
     // Send info back
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

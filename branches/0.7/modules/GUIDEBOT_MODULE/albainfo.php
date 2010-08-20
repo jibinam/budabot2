@@ -198,6 +198,6 @@ Guide courtesy of AO Universe
 ;
 $albainfo_txt = Text::makeLink("Guide to Albtraum playfield", $albainfo_txt); 
 
-$this->send($albainfo_txt, $sendto);
+$chatBot->send($albainfo_txt, $sendto);
 
 ?>

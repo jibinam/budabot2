@@ -20,9 +20,9 @@ to talk about Newcomers Alliance! Signup for the forums and post a hello! .And r
 
 $message1_txt = Text::makeLink("A Message from Plugsz", $message1_txt); 
 if($type == "msg") 
-$this->send($message1_txt, $sender); 
+$chatBot->send($message1_txt, $sender); 
 elseif($type == "all") 
-$this->send($message1_txt); 
+$chatBot->send($message1_txt); 
 else 
-$this->send($message1_txt, "guild"); 
+$chatBot->send($message1_txt, "guild"); 
 ?>

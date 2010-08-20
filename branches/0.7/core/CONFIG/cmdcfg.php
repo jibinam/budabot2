@@ -83,7 +83,7 @@ if (preg_match("/^config$/i", $message)) {
 	}
 
 	$msg = Text::makeLink("Module Config", $list);
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^config cmd (enable|disable) (all|guild|priv|msg)$/i", $message, $arr)) {
 	$status = ($arr[1] == "enable" ? 1 : 0);
 	$typeSql = ($arr[2] == "all" ? "`type` = 'guild' OR `type` = 'priv' OR `type` = 'msg'" : "`type` = '{$arr[2]}'");
@@ -93,16 +93,16 @@ if (preg_match("/^config$/i", $message)) {
 	$data = $db->fObject('all');
 	forEach ($data as $row) {
 	  	if ($status == 1) {
-			$this->regcommand($row->type, $row->file, $row->cmd, $row->access_level);
+			$chatBot->regcommand($row->type, $row->file, $row->cmd, $row->access_level);
 		} else {
-			$this->unregcommand($row->type, $row->file, $row->cmd);
+			$chatBot->unregcommand($row->type, $row->file, $row->cmd);
 		}
 	}
 	
 	$sql = "UPDATE cmdcfg_<myname> SET `status` = $status WHERE (`cmdevent` = 'cmd' OR `cmdevent` = 'subcmd') AND ($typeSql)";
 	$db->exec($sql);
 	
-	$this->send("Command(s) updated successfully.", $sendto);	
+	$chatBot->send("Command(s) updated successfully.", $sendto);	
 } else if (preg_match("/^config (mod|cmd|grp|event) (.+) (enable|disable) (priv|msg|guild|all)$/i", $message, $arr)) {
 	if($arr[1] == "event") {
 		$temp = explode(" ", $arr[2]);
@@ -150,7 +150,7 @@ if (preg_match("/^config$/i", $message)) {
 			$msg = "Could not find the Group <highlight>$cmdmod<end>";
 		elseif($arr[1] == "event" && $file != "")
 			$msg = "Could not find the Event <highlight>$cmdmod<end> for File <highlight>$file<end>";
-		$this->send($msg, $sendto);
+		$chatBot->send($msg, $sendto);
 		return;
 	}
 
@@ -170,21 +170,21 @@ if (preg_match("/^config$/i", $message)) {
 		$msg = "Updated status of event <highlight>$cmdmod<end> to <highlight>".$arr[3]."d<end>";
 	}
 
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 
 	$data = $db->fObject("all");
 	forEach ($data as $row) {
 	  	if ($row->cmdevent != "event") {
 		  	if ($status == 1) {
-				$this->regcommand($row->type, $row->file, $row->cmd, $row->access_level);
+				$chatBot->regcommand($row->type, $row->file, $row->cmd, $row->access_level);
 			} else {
-				$this->unregcommand($row->type, $row->file, $row->cmd, $row->access_level);
+				$chatBot->unregcommand($row->type, $row->file, $row->cmd, $row->access_level);
 			}
 		} else {
 		  	if ($status == 1) {
-				$this->regevent($row->type, $row->file);
+				$chatBot->regevent($row->type, $row->file);
 			} else {
-				$this->unregevent($row->type, $row->file);
+				$chatBot->unregevent($row->type, $row->file);
 			}
 		}
 	}
@@ -223,27 +223,27 @@ if (preg_match("/^config$/i", $message)) {
 				$msg = "Could not find the command <highlight>$command<end>";
 			else
 				$msg = "Could not find the command <highlight>$command<end> for Channel <highlight>$type<end>";
-		  	$this->send($msg, $sendto);
+		  	$chatBot->send($msg, $sendto);
 		  	return;
 		}
 			
 		switch($type) {
 			case "all":
-				if($this->tellCmds[$command])
-					$this->tellCmds[$command]["access_level"] = $access_level;
-				if($this->privCmds[$command])
-					$this->privCmds[$command]["access_level"] = $access_level;
-				if($this->guildCmds[$command])
-					$this->guildCmds[$command]["access_level"] = $access_level;
+				if($chatBot->tellCmds[$command])
+					$chatBot->tellCmds[$command]["access_level"] = $access_level;
+				if($chatBot->privCmds[$command])
+					$chatBot->privCmds[$command]["access_level"] = $access_level;
+				if($chatBot->guildCmds[$command])
+					$chatBot->guildCmds[$command]["access_level"] = $access_level;
 			break;
 		  	case "msg":	
-				$this->tellCmds[$command]["access_level"] = $access_level;
+				$chatBot->tellCmds[$command]["access_level"] = $access_level;
 		  	break;
 		  	case "priv":
-				$this->privCmds[$command]["access_level"] = $access_level;
+				$chatBot->privCmds[$command]["access_level"] = $access_level;
 		  	break;
 		  	case "guild":
-				$this->guildCmds[$command]["access_level"] = $access_level;
+				$chatBot->guildCmds[$command]["access_level"] = $access_level;
 		  	break;
 		}
 		
@@ -265,27 +265,27 @@ if (preg_match("/^config$/i", $message)) {
 				$msg = "Could not find the group <highlight>$command<end>";
 			else
 				$msg = "Could not find the group <highlight>$command<end> for Channel <highlight>$type<end>";
-		  	$this->send($msg, $sendto);
+		  	$chatBot->send($msg, $sendto);
 		  	return;
 		}
 		while($row = $db->fObject()) {
 			switch($arr[3]) {
 				case "all":
-					if($this->tellCmds[$row->cmd])
-						$this->tellCmds[$row->cmd]["access_level"] = $access_level;
-					if($this->privCmds[$row->cmd])
-						$this->privCmds[$row->cmd]["access_level"] = $access_level;
-					if($this->guildCmds[$row->cmd])
-						$this->guildCmds[$row->cmd]["access_level"] = $access_level;
+					if($chatBot->tellCmds[$row->cmd])
+						$chatBot->tellCmds[$row->cmd]["access_level"] = $access_level;
+					if($chatBot->privCmds[$row->cmd])
+						$chatBot->privCmds[$row->cmd]["access_level"] = $access_level;
+					if($chatBot->guildCmds[$row->cmd])
+						$chatBot->guildCmds[$row->cmd]["access_level"] = $access_level;
 				break;
 			  	case "msg":	
-					$this->tellCmds[$row->cmd]["access_level"] = $access_level;
+					$chatBot->tellCmds[$row->cmd]["access_level"] = $access_level;
 			  	break;
 			  	case "priv":
-					$this->privCmds[$row->cmd]["access_level"] = $access_level;
+					$chatBot->privCmds[$row->cmd]["access_level"] = $access_level;
 			  	break;
 			  	case "guild":
-					$this->guildCmds[$row->cmd]["access_level"] = $access_level;
+					$chatBot->guildCmds[$row->cmd]["access_level"] = $access_level;
 			  	break;
 			}
 		}
@@ -301,15 +301,15 @@ if (preg_match("/^config$/i", $message)) {
 		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `type` = '$type' AND `cmdevent` = 'subcmd' AND `cmd` = '$command'");
 		if($db->numrows() == 0) {
 			$msg = "Could not find the subcmd <highlight>$command<end> for Channel <highlight>$type<end>";
-		  	$this->send($msg, $sendto);
+		  	$chatBot->send($msg, $sendto);
 		  	return;
 		}
 		$row = $db->fObject();
-		$this->subcommands[$row->file][$row->type]["access_level"] = $access_level;		
+		$chatBot->subcommands[$row->file][$row->type]["access_level"] = $access_level;		
 		$db->query("UPDATE cmdcfg_<myname> SET `access_level` = $access_level WHERE `type` = '$type' AND `cmdevent` = 'subcmd' AND `cmd` = '$command'");
 		$msg = "Updated access of sub command <highlight>$command<end> in Channel <highlight>$type<end> to <highlight>$arr[4]<end>";
 	}
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^config cmd ([a-z0-9_]+) (.+)$/i", $message, $arr)) {
 	$cmd = strtolower($arr[1]);
 	$module = strtoupper($arr[2]);
@@ -489,7 +489,7 @@ if (preg_match("/^config$/i", $message)) {
 		}		
 		$msg = Text::makeLink(ucfirst($cmd)." config", $list);
 	}
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^config grp (.+)$/i", $message, $arr)) {
 	$grp = strtolower($arr[1]);
 
@@ -554,7 +554,7 @@ if (preg_match("/^config$/i", $message)) {
 		
 		$msg = Text::makeLink(ucfirst($grp)." group config", $list);
 	} 
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^config mod (.+)$/i", $message, $arr)) {
   	$mod = strtolower($arr[1]);
 	$list = "<header>::::: Config for module $mod :::::<end>\n";
@@ -614,18 +614,18 @@ if (preg_match("/^config$/i", $message)) {
 	}
 
 	$msg = Text::makeLink("Configuration for module $mod", $list);
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^config help (.+) admin (\\d)$/i", $message, $arr)) {
   	$help = strtolower($arr[1]);
 	$access_level = $arr[2];
 	
 	$db->query("SELECT * FROM hlpcfg_<myname> WHERE `name` = '$help' ORDER BY `name`");
 	if ($db->numrows() == 0) {
-		$this->send("The helpfile <highlight>$help<end> doesn't exists!", $sendto);		  	
+		$chatBot->send("The helpfile <highlight>$help<end> doesn't exists!", $sendto);		  	
 		return;
 	} else {
 		$db->exec("UPDATE hlpcfg_<myname> SET `access_level` = $access_level WHERE `name` = '$help'");
-		$this->send("Updated access for helpfile <highlight>$help<end> to <highlight>".ucfirst(strtolower($arr[2]))."<end>.", $sendto);
+		$chatBot->send("Updated access for helpfile <highlight>$help<end> to <highlight>".ucfirst(strtolower($arr[2]))."<end>.", $sendto);
 	}
 } else if (preg_match("/^config help (.+)$/i", $message, $arr)) {
   	$mod = strtoupper($arr[1]);
@@ -650,7 +650,7 @@ if (preg_match("/^config$/i", $message)) {
 	}
 
 	$msg = Text::makeLink("Configurate help files for module $mod", $list);
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^config (.*)$/i", $message, $arr)) {
 	$module = $arr[1];
 	$list  = "<header>::::: Bot Settings :::::<end>\n\n";
@@ -765,7 +765,7 @@ if (preg_match("/^config$/i", $message)) {
 	}
 
   	$msg = Text::makeLink("Bot Settings", $list);
- 	$this->send($msg, $sendto);
+ 	$chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

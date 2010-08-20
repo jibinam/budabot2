@@ -44,7 +44,7 @@ if (preg_match("/^calc ([0-9\\.,+=*x%\\(\\)\\/\\ ]+)$/i", $message, $arr)) {
 		$msg = "Wrong syntax for the calc command!";
 	}
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

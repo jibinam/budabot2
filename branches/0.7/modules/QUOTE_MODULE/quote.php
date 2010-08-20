@@ -13,19 +13,19 @@
 // Adding a quote
 if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	
-	if (!isset($this->admins[$sender])) {
+	if (!isset($chatBot->admins[$sender])) {
 		$requirement = Settings::get("quote_add_min");
 		if ($requirement >= 0) {
-			if (!$this->guildmembers[$sender]) {
-				$this->send("Only org members can add a new quote.", $sendto);
+			if (!$chatBot->guildmembers[$sender]) {
+				$chatBot->send("Only org members can add a new quote.", $sendto);
 				return;
-			} else if ($requirement < $this->guildmembers[$sender]) {
-				$rankdiff = $this->guildmembers[$sender]-$requirement;
-				$this->send("You need $rankdiff promotion(s) in order to add a quote.", $sendto);
+			} else if ($requirement < $chatBot->guildmembers[$sender]) {
+				$rankdiff = $chatBot->guildmembers[$sender]-$requirement;
+				$chatBot->send("You need $rankdiff promotion(s) in order to add a quote.", $sendto);
 				return;
 			}
-		} else if (($requirement == -1 && !isset($this->chatlist[$sender])) && !$this->guildmembers[$sender]) {
-			$this->send("You need to at least be in the private chat in order to add a quote.", $sendto);
+		} else if (($requirement == -1 && !isset($chatBot->chatlist[$sender])) && !$chatBot->guildmembers[$sender]) {
+			$chatBot->send("You need to at least be in the private chat in order to add a quote.", $sendto);
 			return;
 		}
 	}
@@ -102,7 +102,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		$quoteMSG = $row->What;
 
 		//only author or superadmin can delete.
-		if (($quoteWHO == $sender) || ($this->admins[$sender]["level"] >= 4)) {
+		if (($quoteWHO == $sender) || ($chatBot->admins[$sender]["level"] >= 4)) {
 			$db->query("DELETE FROM quote WHERE `IDNumber` = $quoteID");
 			$msg = "This quote has been deleted.";
 		} else {
@@ -167,11 +167,11 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 } else if (preg_match("/^quote stats$/i", $message, $arr)) {
 	// might need to run it ourselves the first time. 
 	// cron will keep updating it later.
-	$msg = $this->vars["quotestats"];
+	$msg = $chatBot->vars["quotestats"];
 	if ($msg == "") {
 		include "quotestats.php";
 	}
-	$msg = $this->vars["quotestats"];
+	$msg = $chatBot->vars["quotestats"];
 	
 	
 	
@@ -278,6 +278,6 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 // Send info back
 
 if ($msg) {
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 }
 ?>

@@ -636,6 +636,6 @@ After that, you'll find that there are Proficiency (+10) and Expertise (+20) nan
 
 $soldier_txt = Text::makeLink("Guide to Soldiers", $soldier_txt);
 
-$this->send($soldier_txt, $sendto);
+$chatBot->send($soldier_txt, $sendto);
 
 ?>

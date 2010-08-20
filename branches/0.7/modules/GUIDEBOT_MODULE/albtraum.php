@@ -119,9 +119,9 @@ Guide Courtesy of AO Universe
 
 $albtraum_txt = Text::makeLink("Guide to Albtraum", $albtraum_txt); 
 if($type == "msg") 
-$this->send($albtraum_txt, $sender); 
+$chatBot->send($albtraum_txt, $sender); 
 elseif($type == "all") 
-$this->send($albtraum_txt); 
+$chatBot->send($albtraum_txt); 
 else 
-$this->send($albtraum_txt, "guild"); 
+$chatBot->send($albtraum_txt, "guild"); 
 ?>

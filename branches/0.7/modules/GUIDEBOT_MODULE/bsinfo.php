@@ -81,9 +81,9 @@ Written by Tepamina";
  
 $bsinfo_txt = Text::makeLink("Information On Battlestations", $bsinfo_txt); 
 if($type == "msg") 
-$this->send($bsinfo_txt, $sender); 
+$chatBot->send($bsinfo_txt, $sender); 
 elseif($type == "priv") 
-$this->send($bs_text); 
+$chatBot->send($bs_text); 
 else 
-$this->send($bsinfo_txt, "guild");
+$chatBot->send($bsinfo_txt, "guild");
 ?>

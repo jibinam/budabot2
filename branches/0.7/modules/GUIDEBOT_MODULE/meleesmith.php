@@ -27,9 +27,9 @@ The shop is really placed in the middle of nowhere and its use for the people no
 
 $meleesmith_txt = Text::makeLink("Guide to Melee Smith", $meleesmith_txt); 
 if($type == "msg") 
-$this->send($meleesmith_txt, $sender); 
+$chatBot->send($meleesmith_txt, $sender); 
 elseif($type == "all") 
-$this->send($meleesmith_txt); 
+$chatBot->send($meleesmith_txt); 
 else 
-$this->send($meleesmith_txt, "guild"); 
+$chatBot->send($meleesmith_txt, "guild"); 
 ?>

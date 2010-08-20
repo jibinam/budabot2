@@ -87,7 +87,7 @@ if (preg_match("/^settings$/i", $message)) {
 	}
 
   	$msg = Text::makeLink("Bot Settings", $link);
- 	$this->send($msg, $sendto);
+ 	$chatBot->send($msg, $sendto);
 } elseif(preg_match("/^settings change ($names)$/i", $message, $arr)) {
     $link = "<header>::::: Settings for $arr[1] :::::<end>\n\n";
  	$db->query("SELECT * FROM settings_<myname> WHERE `name` = '$arr[1]'");
@@ -150,7 +150,7 @@ if (preg_match("/^settings$/i", $message)) {
 		}
 	}
   	$msg = Text::makeLink("Settings Info for $arr[1]", $link);
- 	$this->send($msg, $sendto);
+ 	$chatBot->send($msg, $sendto);
 } elseif(preg_match("/^settings save ($names) (.+)$/i", $message, $arr)) {
   	$name_setting = strtolower($arr[1]);
   	$change_to_setting = $arr[2];
@@ -211,9 +211,9 @@ if (preg_match("/^settings$/i", $message)) {
 			$lines = file("config.php");
 			foreach($lines as $key => $line) {
 			  	if(preg_match("/^(.+)vars\[('|\")(.+)('|\")](.*)=(.*)\"(.*)\";(.*)$/i", $line, $arr) && ($arr[3] == $name_setting))
-  					$lines[$key] = "$arr[1]vars['$arr[3]']$arr[5]=$arr[6]\"{$this->vars[$arr[3]]}\"; $arr[8]";
+  					$lines[$key] = "$arr[1]vars['$arr[3]']$arr[5]=$arr[6]\"{$chatBot->vars[$arr[3]]}\"; $arr[8]";
 				elseif(preg_match("/^(.+)vars\[('|\")(.+)('|\")](.*)=(.*)([0-9]+)(.*);(.*)$/i", $line, $arr) && ($arr[3] == $name_setting))
-  					$lines[$key] = "$arr[1]vars['$arr[3]']$arr[5]=$arr[6]{$this->vars[$arr[3]]}; $arr[9]";
+  					$lines[$key] = "$arr[1]vars['$arr[3]']$arr[5]=$arr[6]{$chatBot->vars[$arr[3]]}; $arr[9]";
 			  	elseif(preg_match("/^(.+)settings\[('|\")(.+)('|\")](.*)=(.*)\"(.*)\";(.*)$/i", $line, $arr)  && ($arr[3] == $name_setting))
 					$lines[$key] = "$arr[1]settings['$arr[3]']$arr[5]=$arr[6]\"" . Settings::get($arr[3]) . "\"; $arr[8]";
 				elseif(preg_match("/^(.+)settings\[('|\")(.+)('|\")](.*)=([ 	]+)([0-9]+);(.*)$/i", $line, $arr)  && ($arr[3] == $name_setting))
@@ -222,7 +222,7 @@ if (preg_match("/^settings$/i", $message)) {
 			file_put_contents("config.php", $lines);
 		}
 	}
- 	$this->send($msg, $sendto);
+ 	$chatBot->send($msg, $sendto);
 } elseif(preg_match("/^settings help (.+)$/i", $message, $arr)) {
   	$name = $arr[1];
  	$db->query("SELECT * FROM settings_<myname> WHERE `name` = '$name'");  
@@ -234,7 +234,7 @@ if (preg_match("/^settings$/i", $message)) {
 		$msg = "No help for this setting found.";
 	}
 
- 	$this->send($msg, $sendto);
+ 	$chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

@@ -30,9 +30,9 @@ $pengarn_txt = "Penumbra Garden
 
 $pengarn_txt = Text::makeLink("Pennumbra Garden Nanos", $pengarn_txt); 
 if($type == "msg") 
-$this->send($pengarn_txt, $sender); 
+$chatBot->send($pengarn_txt, $sender); 
 elseif($type == "all") 
-$this->send($pengarn_txt); 
+$chatBot->send($pengarn_txt); 
 else 
-$this->send($pengarn_txt, "guild"); 
+$chatBot->send($pengarn_txt, "guild"); 
 ?>

@@ -100,9 +100,9 @@ The visions and embryos drop in the Penumbra and higher zones (Catacombs under e
 
 $tier2armor_txt = Text::makeLink("Making Tier2 Armor", $tier2armor_txt); 
 if($type == "msg") 
-$this->send($tier2armor_txt, $sender); 
+$chatBot->send($tier2armor_txt, $sender); 
 elseif($type == "all") 
-$this->send($tier2armor_txt); 
+$chatBot->send($tier2armor_txt); 
 else 
-$this->send($tier2armor_txt, "guild"); 
+$chatBot->send($tier2armor_txt, "guild"); 
 ?>

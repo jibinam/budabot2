@@ -140,7 +140,7 @@ if (preg_match("/^aiarmor (cc|cm|co|cp|cs|css|ss)$/i", $message, $arr) || preg_m
 	$list .= "<a href='itemref://$lowid_armor_trg/$highid_armor_trg/$trg_ql'>QL$trg_ql $name_armor_trg</a> (";
 	$list .= Text::makeLink("Tradeskill process for this item", "/tell <myname> aiarmor $name_armor_trg $trg_ql", "chatcmd").")";
 	$msg = Text::makeBlob("Building process for $ql $name_armor_result", $list);
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^aiarmor (strong|supple|enduring|observant|arithmetic|spiritual)$/i", $message, $arr) || preg_match("/^aiarmor (strong|supple|enduring|observant|arithmetic|spiritual) ([0-9]+)/i", $message, $arr)) {
 	$armortype = ucfirst(strtolower($arr[1]));
 	if ($arr[2] >= 1 && $arr[2] <= 300) {
@@ -269,7 +269,7 @@ if (preg_match("/^aiarmor (cc|cm|co|cp|cs|css|ss)$/i", $message, $arr) || preg_m
 	$list .= "- ".($ql * 6)." Psychology\n\n";
 		
 	$msg = Text::makeBlob("Building process for $ql $armortype", $list);
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else {
  	$syntax_error = true;
 }

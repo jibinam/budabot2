@@ -29,12 +29,12 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-$this->send("Reloading all Modules. This can take a few seconds depending on your config.", $sendto);
+$chatBot->send("Reloading all Modules. This can take a few seconds depending on your config.", $sendto);
 Logger::log(__FILE__, "Reloading all Modules", INFO);
 
-$this->loadUserModules();
+$chatBot->loadUserModules();
 
-$this->send("Reload of the Modules completed.", $sendto);
+$chatBot->send("Reload of the Modules completed.", $sendto);
 Logger::log(__FILE__, "Reload of all Modules is done", INFO);
 
 ?>

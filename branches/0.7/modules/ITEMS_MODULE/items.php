@@ -33,7 +33,7 @@ if (preg_match("/^items ([0-9]+) (.+)$/i", $message, $arr)) {
     $ql = $arr[1];
     if (!($ql >= 1 && $ql <= 500)) {
         $msg = "Invalid Ql specified(1-500)";
-        $this->send($msg, $sendto);
+        $chatBot->send($msg, $sendto);
         return;
     }
     $name = $arr[2];
@@ -42,7 +42,7 @@ if (preg_match("/^items ([0-9]+) (.+)$/i", $message, $arr)) {
     $ql = false;
 } else {
   	$msg = "You need to specify an item to be searched for!";
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 	return;  	
 }
 
@@ -73,7 +73,7 @@ if ($num == 0) {
 	} else {
 	    $msg = "No items found. Maybe try fewer keywords.";
 	}
-   	$this->send($msg, $sendto);
+   	$chatBot->send($msg, $sendto);
 	return;
 }
 
@@ -105,7 +105,7 @@ if ($countitems == 0) {
 	} else {
 	    $msg = "No items found. Maybe try fewer keywords.";
 	}
-   	$this->send($msg, $sendto);
+   	$chatBot->send($msg, $sendto);
 	return;
 }
 
@@ -128,12 +128,12 @@ if ($countitems > 3) {
     }
     $link = Text::makeLink("Item Search Result ($countitems)", $list);
 	$list .= "\n\nItem DB Rips provided by MajorOutage";
-    $this->send($link, $sendto);
+    $chatBot->send($link, $sendto);
 
 	//Show a warning if the maxitems are reached
 	if ($countitems == Settings::get("maxitems")) {
 	    $msg = "The output has been limited to <highlight>" . Settings::get("maxitems") . "<end> items. Specify your search more if your item isn't listed.";
-	    $this->send($msg, $sendto);
+	    $chatBot->send($msg, $sendto);
 	}
 } else {
     forEach ($itemlist as $name => $item1) {
@@ -153,6 +153,6 @@ if ($countitems > 3) {
     }
 
 	// Send info back
-    $this->send($link, $sendto);
+    $chatBot->send($link, $sendto);
 }
 ?>

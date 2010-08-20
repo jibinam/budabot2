@@ -63,9 +63,9 @@ $infgarn_txt = "Inferno Garden
 
 $infgarn_txt = Text::makeLink("Inferno Garden Nanos", $infgarn_txt); 
 if($type == "msg") 
-$this->send($infgarn_txt, $sender); 
+$chatBot->send($infgarn_txt, $sender); 
 elseif($type == "all") 
-$this->send($infgarn_txt); 
+$chatBot->send($infgarn_txt); 
 else 
-$this->send($infgarn_txt, "guild"); 
+$chatBot->send($infgarn_txt, "guild"); 
 ?>

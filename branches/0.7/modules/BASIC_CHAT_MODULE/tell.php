@@ -31,16 +31,16 @@
 
 if (preg_match("/^tell (.+)$/i", $message, $arr)) {
 	if ($type == "msg") {
-		$this->send("<yellow>".$arr[1]."<end>", "guild", true);
-		$this->send("<yellow>".$arr[1]."<end>", "guild", true);
-		$this->send("<yellow>".$arr[1]."<end>", "guild", true);
-		$this->send("<yellow>".$arr[1]."<end>", "priv", true);
-		$this->send("<yellow>".$arr[1]."<end>", "priv", true);
-		$this->send("<yellow>".$arr[1]."<end>", "priv", true);
+		$chatBot->send("<yellow>".$arr[1]."<end>", "guild", true);
+		$chatBot->send("<yellow>".$arr[1]."<end>", "guild", true);
+		$chatBot->send("<yellow>".$arr[1]."<end>", "guild", true);
+		$chatBot->send("<yellow>".$arr[1]."<end>", "priv", true);
+		$chatBot->send("<yellow>".$arr[1]."<end>", "priv", true);
+		$chatBot->send("<yellow>".$arr[1]."<end>", "priv", true);
 	} else {
-		$this->send("<yellow>".$arr[1]."<end>", $sendto, true);
-		$this->send("<yellow>".$arr[1]."<end>", $sendto, true);
-		$this->send("<yellow>".$arr[1]."<end>", $sendto, true);
+		$chatBot->send("<yellow>".$arr[1]."<end>", $sendto, true);
+		$chatBot->send("<yellow>".$arr[1]."<end>", $sendto, true);
+		$chatBot->send("<yellow>".$arr[1]."<end>", $sendto, true);
 	}
 }
 ?>

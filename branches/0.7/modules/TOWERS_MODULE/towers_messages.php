@@ -54,7 +54,7 @@ if (preg_match("/^The (Clan|Neutral|Omni) organization (.+) just entered a state
 
 if ($def_guild) {
 
-	$whois = new WhoisXML($att_player, $this->vars["dimension"]);
+	$whois = new WhoisXML($att_player, $chatBot->vars["dimension"]);
 	if (!$att_side) {
 		$att_side = $whois->faction;
 	}
@@ -135,7 +135,7 @@ if ($def_guild) {
 	}
 	
 	// Prep for if our org is being attacked.
-	if (strtolower($def_guild) == strtolower($this->vars["my guild"])) {
+	if (strtolower($def_guild) == strtolower($chatBot->vars["my guild"])) {
 		$wedefend = true;
 		$msg = "<red>We are under attack!<end> ";
 	} else {
@@ -204,8 +204,8 @@ if ($def_guild) {
 	    (strtolower($att_side) == "neutral" && ($a & 2)) ||
         (strtolower($att_side) == "omni"    && ($a & 4)) ))) {
 
-    	$this->send($msg, "guild", true);
-    	$this->send($msg, "priv", true);
+    	$chatBot->send($msg, "guild", true);
+    	$chatBot->send($msg, "priv", true);
 	}
 
 	$sql = "INSERT INTO tower_attack_<myname> (`time`, `att_guild`, `att_side`, `att_player`, `att_level`, `att_profession`,

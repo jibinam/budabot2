@@ -159,9 +159,9 @@ Hope that helps shed some light and why crowd controllers such as bureaucrats ha
 
 $bureaucrat_txt = Text::makeLink("Guide To Bureaucrats", $bureaucrat_txt); 
 if($type == "msg") 
-$this->send($bureaucrat_txt, $sender); 
+$chatBot->send($bureaucrat_txt, $sender); 
 elseif($type == "all") 
-$this->send($bureaucrat_txt); 
+$chatBot->send($bureaucrat_txt); 
 else 
-$this->send($bureaucrat_txt, "guild"); 
+$chatBot->send($bureaucrat_txt, "guild"); 
 ?>

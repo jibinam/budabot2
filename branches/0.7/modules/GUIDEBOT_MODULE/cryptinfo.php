@@ -325,9 +325,9 @@ http://www.ao-universe.com/main.php?site=knowledge&link=0&id=153 ";
 
 $cryptinfo_txt = Text::makeLink("Guide to Crypt Of Home", $cryptinfo_txt); 
 if($type == "msg") 
-$this->send($cryptinfo_txt, $sender); 
+$chatBot->send($cryptinfo_txt, $sender); 
 elseif($type == "all") 
-$this->send($cryptinfo_txt); 
+$chatBot->send($cryptinfo_txt); 
 else 
-$this->send($cryptinfo_txt, "guild"); 
+$chatBot->send($cryptinfo_txt, "guild"); 
 ?>

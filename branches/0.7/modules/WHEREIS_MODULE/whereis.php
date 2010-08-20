@@ -41,6 +41,6 @@ else {
 	$msg = "<yellow>You must enter valid search criteria.</end>\n";
 }
 
-$this->send($msg , $sendto);
+$chatBot->send($msg , $sendto);
 
 ?>

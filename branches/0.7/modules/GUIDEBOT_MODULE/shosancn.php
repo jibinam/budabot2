@@ -23,9 +23,9 @@ $shosancn_txt = "Scheol Sanctuary Nanos
 
 $shosancn_txt = Text::makeLink("Shoel Sanctuary Garden Nanos", $shosancn_txt); 
 if($type == "msg") 
-$this->send($shosancn_txt, $sender); 
+$chatBot->send($shosancn_txt, $sender); 
 elseif($type == "all") 
-$this->send($shosancn_txt); 
+$chatBot->send($shosancn_txt); 
 else 
-$this->send($shosancn_txt, "guild"); 
+$chatBot->send($shosancn_txt, "guild"); 
 ?>

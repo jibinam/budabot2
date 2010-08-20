@@ -37,6 +37,6 @@ Guide Courtesy of AO Universe
 ;
 $adosancclan_txt = Text::makeLink("Adonis: Sanctuary Garden Key Quest CLAN", $adosancclan_txt);
 
-$this->send($adosancclan_txt, $sendto);
+$chatBot->send($adosancclan_txt, $sendto);
 
 ?>

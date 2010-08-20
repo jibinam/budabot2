@@ -1225,9 +1225,9 @@ zone - to pass from one playfield to another
 
 $terms_txt = Text::makeLink("Guide to AO Terminology", $terms_txt); 
 if($type == "msg") 
-$this->send($terms_txt, $sender); 
+$chatBot->send($terms_txt, $sender); 
 elseif($type == "all") 
-$this->send($terms_txt); 
+$chatBot->send($terms_txt); 
 else 
-$this->send($terms_txt, "guild"); 
+$chatBot->send($terms_txt, "guild"); 
 ?>

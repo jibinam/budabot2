@@ -34,9 +34,9 @@ Courtesy of AO Universe
 ;
 $shoelsancclan_txt = Text::makeLink("Shoel: Sanctuary Garden Key Quest CLAN", $shoelsancclan_txt); 
 if($type == "msg") 
-$this->send($shoelsancclan_txt, $sender); 
+$chatBot->send($shoelsancclan_txt, $sender); 
 elseif($type == "all") 
-$this->send($shoelsancclan_txt); 
+$chatBot->send($shoelsancclan_txt); 
 else 
-$this->send($shoelsancclan_txt, "guild"); 
+$chatBot->send($shoelsancclan_txt, "guild"); 
 ?>

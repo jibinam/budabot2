@@ -39,11 +39,11 @@ if (($data = fgets($bbin_socket)) && ("1" == Settings::get('bbin_status'))) {
 
 			// send notification to channel
 			$extendedinfo = Text::makeBlob("Extended informations", $data);
-			if ($this->vars['my guild'] != "") {
-				$this->send("<yellow>[BBIN]<end> Lost connection with server:".$extendedinfo,"guild",true);
+			if ($chatBot->vars['my guild'] != "") {
+				$chatBot->send("<yellow>[BBIN]<end> Lost connection with server:".$extendedinfo,"guild",true);
 			}
-			if ($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
-				$this->send("<yellow>[BBIN]<end> Lost connection with server:".$extendedinfo,"priv",true);
+			if ($chatBot->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
+				$chatBot->send("<yellow>[BBIN]<end> Lost connection with server:".$extendedinfo,"priv",true);
 			}
 		}
 	} else if ("KICK" == $ex[1]) {
@@ -51,36 +51,36 @@ if (($data = fgets($bbin_socket)) && ("1" == Settings::get('bbin_status'))) {
 		if ($ex[3] == Settings::get('bbin_nickname')) {
 			// oh noez, I was kicked !
 			Settings::save("bbin_status","0");
-			if ($this->vars['my guild'] != "") {
-				$this->send("<yellow>[BBIN]<end> Our uplink was kicked from the server:".$extendedinfo,"guild",true);
+			if ($chatBot->vars['my guild'] != "") {
+				$chatBot->send("<yellow>[BBIN]<end> Our uplink was kicked from the server:".$extendedinfo,"guild",true);
 			}
-			if ($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
-				$this->send("<yellow>[BBIN]<end> Our uplink was kicked from the server:".$extendedinfo,"priv",true);
+			if ($chatBot->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
+				$chatBot->send("<yellow>[BBIN]<end> Our uplink was kicked from the server:".$extendedinfo,"priv",true);
 			}
 		} else {
 			// yay someone else was kicked
 			$db->query("DELETE FROM bbin_chatlist_<myname> WHERE `ircrelay` = '$ex[3]'");
-			if ($this->vars['my guild'] != "") {
-				$this->send("<yellow>[BBIN]<end> The uplink ".$ex[3]." was kicked from the server:".$extendedinfo,"guild",true);
+			if ($chatBot->vars['my guild'] != "") {
+				$chatBot->send("<yellow>[BBIN]<end> The uplink ".$ex[3]." was kicked from the server:".$extendedinfo,"guild",true);
 			}
-			if ($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
-				$this->send("<yellow>[BBIN]<end> The uplink ".$ex[3]." was kicked from the server:".$extendedinfo,"priv",true);
+			if ($chatBot->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
+				$chatBot->send("<yellow>[BBIN]<end> The uplink ".$ex[3]." was kicked from the server:".$extendedinfo,"priv",true);
 			}
 		}
 	} else if (($ex[1] == "QUIT") || ($ex[1] == "PART")) {
 		$db->query("DELETE FROM bbin_chatlist_<myname> WHERE `ircrelay` = '$nick'");
-		if ($this->vars['my guild'] != "") {
-			$this->send("<yellow>[BBIN]<end> Lost uplink with $nick","guild",true);
+		if ($chatBot->vars['my guild'] != "") {
+			$chatBot->send("<yellow>[BBIN]<end> Lost uplink with $nick","guild",true);
 		}
-		if ($this->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
-			$this->send("<yellow>[BBIN]<end> Lost uplink with $nick","priv",true);
+		if ($chatBot->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
+			$chatBot->send("<yellow>[BBIN]<end> Lost uplink with $nick","priv",true);
 		}
 	} else if ($ex[1] == "JOIN") {
-		if ($this->vars['my guild'] != "") {
-			$this->send("<yellow>[BBIN]<end> Uplink established with $nick.","guild",true);
+		if ($chatBot->vars['my guild'] != "") {
+			$chatBot->send("<yellow>[BBIN]<end> Uplink established with $nick.","guild",true);
 		}
-		if ($this->vars['my guild'] == "" || Settings::get("guest_relay") == 1) {
-			$this->send("<yellow>[BBIN]<end> Uplink established with $nick.","priv",true);
+		if ($chatBot->vars['my guild'] == "" || Settings::get("guest_relay") == 1) {
+			$chatBot->send("<yellow>[BBIN]<end> Uplink established with $nick.","priv",true);
 		}
 	} else if ($channel == trim(strtolower(Settings::get('bbin_channel')))) {
 		// tweak the third message a bit to remove beginning ":"

@@ -125,9 +125,9 @@ Well, nothing much else to say, other than knowing that there's another door of 
 
 $implants_txt = Text::makeLink("Guide to Implants", $implants_txt); 
 if($type == "msg") 
-$this->send($implants_txt, $sender); 
+$chatBot->send($implants_txt, $sender); 
 elseif($type == "all") 
-$this->send($implants_txt); 
+$chatBot->send($implants_txt); 
 else 
-$this->send($implants_txt, "guild"); 
+$chatBot->send($implants_txt, "guild"); 
 ?>

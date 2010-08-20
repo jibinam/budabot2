@@ -67,7 +67,7 @@ if (preg_match("/^nlprof (.*)$/i", $message, $arr)) {
 		$msg = "Profession not found.";
 	}
 
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 }
 
 ?>

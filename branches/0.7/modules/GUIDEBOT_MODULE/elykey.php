@@ -58,9 +58,9 @@ He'll ask for the sealed letter, hand it to him and he'll speak some more then y
 
 $elykey_txt = Text::makeLink("Elysium Shere Garden Key Quest", $elykey_txt); 
 if($type == "msg") 
-$this->send($elykey_txt, $sender); 
+$chatBot->send($elykey_txt, $sender); 
 elseif($type == "all") 
-$this->send($elykey_txt); 
+$chatBot->send($elykey_txt); 
 else 
-$this->send($elykey_txt, "guild"); 
+$chatBot->send($elykey_txt, "guild"); 
 ?>

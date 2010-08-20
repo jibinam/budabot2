@@ -32,7 +32,7 @@
 if (preg_match("/^about$/i", $message)) {
 	$data = file_get_contents("./core/HELP/about.txt");
 	$msg = Text::makeLink("About", $data);
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^help$/i", $message)) {
 	global $version;
 	$data .= "\nBudabot version: $version\n\n";
@@ -58,12 +58,12 @@ if (preg_match("/^about$/i", $message)) {
 	} else {
 		$msg = Text::makeLink("Help(main)", $data.$list);
 	}
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^help (.+)$/i", $message, $arr)) {
 	if (($output = Help::find($sender, $arr[1])) !== FALSE) {
-		$this->send($output, $sendto);
+		$chatBot->send($output, $sendto);
 	} else {
-		$this->send("No help found on this topic.", $sendto);
+		$chatBot->send("No help found on this topic.", $sendto);
 	}
 }
 

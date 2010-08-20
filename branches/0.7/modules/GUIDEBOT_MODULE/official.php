@@ -61,6 +61,6 @@ Note: We encourage role-playing in the game and on the role-playing conference, 
 
 $official_txt = Text::makeLink("Official Code Of Conduct per Funcom", $official_txt);
 
-$this->send($official_txt, $sendto);
+$chatBot->send($official_txt, $sendto);
 
 ?>

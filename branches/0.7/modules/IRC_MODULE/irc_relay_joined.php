@@ -15,7 +15,7 @@ if("1" == Settings::get('irc_status')) {
 	$msg = "$sender ({$whois->level}/{$whois->ai_level}, {$whois->prof}, {$whois->org})";
 	
 	if($type == "joinPriv") {
-		$msg .= " has joined $this->name.";
+		$msg .= " has joined $chatBot->name.";
 	}
 	else {
 		$msg .= " has logged on.";
@@ -52,7 +52,7 @@ if("1" == Settings::get('irc_status')) {
 			Logger::log_chat("IRC Out. Msg.", $sender, "has joined the private chat");
 		}
 	}
-	elseif($type == "logOn" && isset($this->guildmembers[$sender])) {
+	elseif($type == "logOn" && isset($chatBot->guildmembers[$sender])) {
 		fputs($socket, "PRIVMSG ".Settings::get('irc_channel')." :$msg\n");
 		if(Settings::get('irc_debug_messages') == 1) {
 			Logger::log_chat("IRC Out. Msg.", $sender, "has logged on");

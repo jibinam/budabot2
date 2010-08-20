@@ -219,7 +219,7 @@ if(preg_match("/^loottable (13|28|35)$/i", $message, $arr)) {
 
 	$msg = Text::makeBlob("Loottable for sector $sector", $blob);
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

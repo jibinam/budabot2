@@ -9,9 +9,9 @@ This guide is quite excellent in giving you information all about the MA class a
 
 $martialartists_txt = Text::makeLink("Guide to Martialartists", $martialartists_txt); 
 if($type == "msg") 
-$this->send($martialartists_txt, $sender); 
+$chatBot->send($martialartists_txt, $sender); 
 elseif($type == "all") 
-$this->send($martialartists_txt); 
+$chatBot->send($martialartists_txt); 
 else 
-$this->send($martialartists_txt, "guild"); 
+$chatBot->send($martialartists_txt, "guild"); 
 ?>

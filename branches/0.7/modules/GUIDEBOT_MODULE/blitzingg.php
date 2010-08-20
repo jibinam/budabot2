@@ -56,6 +56,6 @@ So, there is the basics. Now all you have to do is Practice! Go out there and pu
 ";
 $blitzingg_txt = Text::makeLink("Guide to Blitzing", $blitzingg_txt);
 
-$this->send($blitzingg_txt, $sendto);
+$chatBot->send($blitzingg_txt, $sendto);
 
 ?>

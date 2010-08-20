@@ -44,9 +44,9 @@ If you have any questions about these departments, or would like to contribute t
 
 $orgdepts_txt = Text::makeLink("Organizational Departments", $orgdepts_txt); 
 if($type == "msg") 
-$this->send($orgdepts_txt, $sender); 
+$chatBot->send($orgdepts_txt, $sender); 
 elseif($type == "all") 
-$this->send($orgdepts_txt); 
+$chatBot->send($orgdepts_txt); 
 else 
-$this->send($orgdepts_txt, "guild"); 
+$chatBot->send($orgdepts_txt, "guild"); 
 ?>

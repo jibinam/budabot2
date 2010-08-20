@@ -61,9 +61,9 @@ http://forums.anarchy-online.com/showthread.php?t=392937
 
 $apf13guide_txt = Text::makeLink("Guide to Apf Sector 13", $apf13guide_txt);
 if($type == "msg")
-$this->send($apf13guide_txt, $sender);
+$chatBot->send($apf13guide_txt, $sender);
 elseif($type == "all")
-$this->send($apf13guide_txt);
+$chatBot->send($apf13guide_txt);
 else
-$this->send($apf13guide_txt, "guild");
+$chatBot->send($apf13guide_txt, "guild");
 ?>

@@ -108,9 +108,9 @@ $adventurer_txt = "-= The Adventurer's Handbook =-
 
 $adventurer_txt = Text::makeLink("Guide To Adventurers", $adventurer_txt); 
 if($type == "msg") 
-$this->send($adventurer_txt, $sender); 
+$chatBot->send($adventurer_txt, $sender); 
 elseif($type == "all") 
-$this->send($adventurer_txt); 
+$chatBot->send($adventurer_txt); 
 else 
-$this->send($adventurer_txt, "guild"); 
+$chatBot->send($adventurer_txt, "guild"); 
 ?>

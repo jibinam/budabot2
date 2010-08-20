@@ -48,7 +48,7 @@ if (preg_match("/^nanolines$/i", $message, $arr)) {
 
 	$msg = Text::makeBlob('Nanolines', $window);
 
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 }
 
 ?>

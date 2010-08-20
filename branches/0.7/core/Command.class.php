@@ -99,35 +99,34 @@ class Command {
 		return $db->fObject();
 	}
 	
-	public static function find_command_for_user($user, $cmd, $type) {
+	public static function find_command_for_user($player, $cmd, $type) {
 		global $db;
 		
 		if ($type == 'msg') {
 			$type = 'tell';
 		}
 		
-		$user_access_level = AccessLevel::get_user_access_level($user);
-		
-		$sql = "SELECT * from cmdcfg_<myname> WHERE `cmd` = '$cmd' AND {$type}_status = 1 AND {$type}_access_level >= $user_access_level";
+		$sql = "SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '$cmd' AND {$type}_status = 1 AND {$type}_access_level >= $player->access_level";
 		$db->query($sql);
 		return $db->fObject();
 	}
 	
 	public static function fire_command(&$params) {
 		global $chatBot;
-	
+		global $db;
+
 		forEach ($params as $key => $value) {
 			$$key = &$params[$key];
 		}
 		
 		// Break down in to words.
 		$words	= explode(' ', $message, 2);
-		$command = Command::find_command_for_user($sender, $words[0], $type);
+		$command = Command::find_command_for_user($player, $words[0], $type);
 
 		// Upload Command File or return error message
 		if ($command == false) {
-			$this->send("Error! Unknown command or Access denied! for more info try /tell <myname> help", $sendto);
-			$this->spam[$sender] = $this->spam[$sender] + 20;
+			$chatBot->send("Error! Unknown command or Access denied! for more info try /tell <myname> help", $sendto);
+			Settings::add_spam($player, 20);
 		} else {
 			$syntax_error = false;
 			$msg = "";
@@ -135,13 +134,13 @@ class Command {
 			Logger::log(__FILE__, "Command: '$type' File: '$path'", DEBUG);
 			require $path;
 			if ($syntax_error == true) {
-				if (($output = Help::find($sender, $words[0])) !== FALSE) {
-					$this->send("Error! Check your syntax " . $output, $sendto);
+				if (($output = Help::find($player, $words[0])) !== FALSE) {
+					$chatBot->send("Error! Check your syntax " . $output, $sendto);
 				} else {
-					$this->send("Error! Check your syntax or for more info try /tell <myname> help", $sendto);
+					$chatBot->send("Error! Check your syntax or for more info try /tell <myname> help", $sendto);
 				}
 			}
-			$this->spam[$sender] = $this->spam[$sender] + 10;
+			Settings::add_spam($player, 10);
 		}
 	}
 

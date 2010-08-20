@@ -27,9 +27,9 @@ Kill the Empath and from her corpse loot the Old piece of cloth sparkling with n
 
 $rochkey_txt = Text::makeLink("Scheol: Roch Garden Key Quest", $rochkey_txt); 
 if($type == "msg") 
-$this->send($rochkey_txt, $sender); 
+$chatBot->send($rochkey_txt, $sender); 
 elseif($type == "all") 
-$this->send($rochkey_txt); 
+$chatBot->send($rochkey_txt); 
 else 
-$this->send($rochkey_txt, "guild"); 
+$chatBot->send($rochkey_txt, "guild"); 
 ?>

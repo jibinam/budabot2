@@ -44,9 +44,9 @@ In addition, there is now a tradeskill process to upgrade the pads once more. Ju
 
 $sided3_txt = Text::makeLink("Guide to Sided Pads Part 3", $sided3_txt); 
 if($type == "msg") 
-$this->send($sided3_txt, $sender); 
+$chatBot->send($sided3_txt, $sender); 
 elseif($type == "all") 
-$this->send($sided3_txt); 
+$chatBot->send($sided3_txt); 
 else 
-$this->send($sided3_txt, "guild"); 
+$chatBot->send($sided3_txt, "guild"); 
 ?>

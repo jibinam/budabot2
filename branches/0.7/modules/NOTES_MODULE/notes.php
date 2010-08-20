@@ -46,7 +46,7 @@ if (preg_match("/^notes?$/i", $message)) {
 		$msg = Text::makeBlob("Notes for $sender", $moreInfoMsg);
 	}
   	
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^notes? (rem|add) (.*)$/i", $message)) {
 	$action = strtolower($arr[1]);
 	$parm2 = $arr[2];
@@ -70,7 +70,7 @@ if (preg_match("/^notes?$/i", $message)) {
 		$msg = $usage;		
 	}
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 }
 
 ?>

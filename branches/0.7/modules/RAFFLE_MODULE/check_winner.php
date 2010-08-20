@@ -31,20 +31,20 @@
 //Generously hijacked and modified from Buddhabot's timers_check.php
 //Check if at least one timer is running
 
-	if ($this->vars["Raffles"]["inprog"] == 0) {
+	if ($chatBot->vars["Raffles"]["inprog"] == 0) {
 		return;
 	}
 
-	$tleft = $this->vars["Raffles"]["time"] - time();
-	$owner = $this->vars["Raffles"]["owner"];
-	$item = $this->vars["Raffles"]["item"];
-	$timesincelastmsg = time() - $this->vars["Raffles"]["lastmsgtime"];
+	$tleft = $chatBot->vars["Raffles"]["time"] - time();
+	$owner = $chatBot->vars["Raffles"]["owner"];
+	$item = $chatBot->vars["Raffles"]["item"];
+	$timesincelastmsg = time() - $chatBot->vars["Raffles"]["lastmsgtime"];
 
 	$linkMsg="<white>Current Members:<end>";
-    forEach ($this->vars["Raffles"]["rafflees"] as $tempName) {
+    forEach ($chatBot->vars["Raffles"]["rafflees"] as $tempName) {
        $linkMsg .= "\n$tempName";
     }
-    if (count($this->vars["Raffles"]["rafflees"]) == 0) {
+    if (count($chatBot->vars["Raffles"]["rafflees"]) == 0) {
        $linkMsg .= "No entrants yet.";
     }
     
@@ -58,15 +58,15 @@ Click <a href='chatcmd:///tell <myname> leaveRaffle'>here</a> if you wish to lea
     $link = Text::makeLink("here", $linkMsg);
         
 	if ($tleft < 0 && $timesincelastmsg > 15) {
-		$memNum = count($this->vars["Raffles"]["rafflees"]);
+		$memNum = count($chatBot->vars["Raffles"]["rafflees"]);
 		if($memNum > 0) {
 		    $winningnum = rand(0, $memNum-1);
-		    $winner = $this->vars["Raffles"]["rafflees"][$winningnum];
+		    $winner = $chatBot->vars["Raffles"]["rafflees"][$winningnum];
 		    $msg = "Winner of the raffle for $item is $winner. See $owner to collect your prize.";
 		} else {
 		    $msg = "No raffle entrants, no winner for $item.";
 		}
-		$this->vars["Raffles"]["inprog"] = 0;
+		$chatBot->vars["Raffles"]["inprog"] = 0;
 	} elseif ($tleft < 240 && $tleft > 60 && $timesincelastmsg > 60) {
 		$msg = "<yellow>Reminder:<end> Raffle for $item <highlight>JOIN NOW<end>. Click $link to join.";
 	} elseif ($tleft < 60 && $tleft > 30 && $timesincelastmsg > 30) {
@@ -78,7 +78,7 @@ Click <a href='chatcmd:///tell <myname> leaveRaffle'>here</a> if you wish to lea
 	}
 
 	if ($msg != "") {
-	    $this->vars["Raffles"]["lastmsgtime"] = time();
-	    $this->send($msg, "org");
+	    $chatBot->vars["Raffles"]["lastmsgtime"] = time();
+	    $chatBot->send($msg, "org");
 	}
 ?>

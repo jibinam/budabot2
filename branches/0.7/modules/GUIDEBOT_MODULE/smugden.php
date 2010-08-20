@@ -71,9 +71,9 @@ The DeCranum's armor drops rarely and getting a whole set is difficult. It has l
 
 $smugden_txt = Text::makeLink("Guide to Smuggler's Den", $smugden_txt); 
 if($type == "msg") 
-$this->send($smugden_txt, $sender); 
+$chatBot->send($smugden_txt, $sender); 
 elseif($type == "all") 
-$this->send($smugden_txt); 
+$chatBot->send($smugden_txt); 
 else 
-$this->send($smugden_txt, "guild"); 
+$chatBot->send($smugden_txt, "guild"); 
 ?>

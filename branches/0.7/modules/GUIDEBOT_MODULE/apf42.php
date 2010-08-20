@@ -24,9 +24,9 @@ The rest of this quest has not yet been added to the game. :)
 
 $apf42guide_txt = Text::makeLink("Guide to Apf Sector 42", $apf42guide_txt);
 if($type == "msg")
-$this->send($apf42guide_txt, $sender);
+$chatBot->send($apf42guide_txt, $sender);
 elseif($type == "all")
-$this->send($apf42guide_txt);
+$chatBot->send($apf42guide_txt);
 else
-$this->send($apf42guide_txt, "guild");
+$chatBot->send($apf42guide_txt, "guild");
 ?>

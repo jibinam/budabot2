@@ -17,9 +17,9 @@ OT Advanced Vehicle shops can be found at:
 <font color = #31D6FF>1190.7, 2352.4</font> Pleasant Meadows (20K) east of the shops";
 $infoyalm_txt = Text::makeLink("Locations of Yalms", $infoyalm_txt); 
 if($type == "msg") 
-$this->send($infoyalm_txt, $sender); 
+$chatBot->send($infoyalm_txt, $sender); 
 elseif($type == "all") 
-$this->send($infoyalm_txt); 
+$chatBot->send($infoyalm_txt); 
 else 
-$this->send($infoyalm_txt, "guild"); 
+$chatBot->send($infoyalm_txt, "guild"); 
 ?>

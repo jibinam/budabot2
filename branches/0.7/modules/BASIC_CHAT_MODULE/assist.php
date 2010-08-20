@@ -33,22 +33,22 @@ global $assist;
 if (preg_match("/^assist$/i", $message)) {
   	if(!isset($assist)) {
 		$msg = "No assist set atm.";
-		$this->send($msg, $sendto);
+		$chatBot->send($msg, $sendto);
 	}
 } else if (preg_match("/^setassist (.+)$/i", $message, $arr)) {
     $nameArray = explode(' ', $arr[1]);
 	
 	if (count($nameArray) == 1) {
 		$name = ucfirst(strtolower($arr[1]));
-		$uid = $this->get_uid($name);
-		if ($type == "priv" && !isset($this->chatlist[$name])) {
+		$uid = $chatBot->get_uid($name);
+		if ($type == "priv" && !isset($chatBot->chatlist[$name])) {
 			$msg = "Player <highlight>$name<end> isn't in this bot.";
-			$this->send($msg, $sendto);
+			$chatBot->send($msg, $sendto);
 		}
 		
 		if(!$uid) {
 			$msg = "Player <highlight>$name<end> does not exist.";
-			$this->send($msg, $sendto);
+			$chatBot->send($msg, $sendto);
 		}
 		
 		$link .= "<a href='chatcmd:///macro $name /assist $name'>Click here to make an assist $name macro</a>";
@@ -56,14 +56,14 @@ if (preg_match("/^assist$/i", $message)) {
 	} else {
 		forEach ($nameArray as $key => $name) {
 			$name = ucfirst(strtolower($name));
-			if ($type == "priv" && !isset($this->chatlist[$name])) {
+			if ($type == "priv" && !isset($chatBot->chatlist[$name])) {
 				$msg = "Player <highlight>$name<end> isn't in this bot.";
-				$this->send($msg, $sendto);
+				$chatBot->send($msg, $sendto);
 			}
 			
 			if (!$uid) {
 				$msg = "Player <highlight>$name<end> does not exist.";
-				$this->send($msg, $sendto);
+				$chatBot->send($msg, $sendto);
 			}
 			$nameArray[$key] = "/assist $name";
 		}
@@ -77,12 +77,12 @@ if (preg_match("/^assist$/i", $message)) {
 }
 
 if ($assist != '') {
-	$this->send($assist, $sendto);
+	$chatBot->send($assist, $sendto);
 	
 	// send message 2 more times (3 total) if used in private channel
 	if ($type == "priv") {
-		$this->send($assist, $sendto);
-		$this->send($assist, $sendto);
+		$chatBot->send($assist, $sendto);
+		$chatBot->send($assist, $sendto);
 	}
 }
 ?>

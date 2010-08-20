@@ -21,6 +21,6 @@ $title = "<red>1:<end> Level 1 (5K IP/level)
 	
 if (preg_match("/^title$/i", $message)) {
 	$windowlink = Text::makeBlob("Title levels", $title);
-	$this->send($windowlink, $sendto);
+	$chatBot->send($windowlink, $sendto);
 }
 ?>

@@ -116,9 +116,9 @@ Written by Tepamina. Additonal information provided by Windkeeper.ddreadloch";
  
 $clandreadloch_txt = Text::makeLink("Clan Dreadloch Camps", $clandreadloch_txt); 
 if($type == "msg") 
-$this->send($clandreadloch_txt, $sender); 
+$chatBot->send($clandreadloch_txt, $sender); 
 elseif($type == "priv") 
-$this->send($clandreadloch_text); 
+$chatBot->send($clandreadloch_text); 
 else 
-$this->send($clandreadloch_txt, "guild");
+$chatBot->send($clandreadloch_txt, "guild");
 ?>

@@ -31,9 +31,9 @@
 
 $db->query("SELECT * FROM members_<myname> WHERE name = '$sender' AND autoinv = 1");
 if ($db->numrows() != 0) {
- 	$this->vars["Guest"][$sender] = false;
-    $msg = "You have been autoinvited to the Guestchannel of {$this->vars["my guild"]}.";
-    $this->privategroup_invite($sender);
-    $this->send($msg, $sendto);
+ 	$chatBot->vars["Guest"][$sender] = false;
+    $msg = "You have been autoinvited to the Guestchannel of {$chatBot->vars["my guild"]}.";
+    $chatBot->privategroup_invite($sender);
+    $chatBot->send($msg, $sendto);
 }
 ?>

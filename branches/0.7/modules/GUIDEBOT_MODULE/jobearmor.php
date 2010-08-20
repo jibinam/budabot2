@@ -44,9 +44,9 @@ Jobe Armor can be upgraded to your specific profession, chat with your professio
 
 $jobearmor_txt = Text::makeLink("Making Jobe Armor", $jobearmor_txt); 
 if($type == "msg") 
-$this->send($jobearmor_txt, $sender); 
+$chatBot->send($jobearmor_txt, $sender); 
 elseif($type == "all") 
-$this->send($jobearmor_txt); 
+$chatBot->send($jobearmor_txt); 
 else 
-$this->send($jobearmor_txt, "guild"); 
+$chatBot->send($jobearmor_txt, "guild"); 
 ?>

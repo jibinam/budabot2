@@ -150,14 +150,14 @@ if (preg_match("/^vote$/i", $message)) {
 			elseif ($timeleft > 0){$privmsg = "You haven't voted on this one yet.";}
 			
 			$msg = Text::makeBlob("Vote: $question",$msg);
-			if ($privmsg) {$this->send($privmsg, $sender);}			
+			if ($privmsg) {$chatBot->send($privmsg, $sender);}			
 		}
 		
 		
 	////////////////////////////////////////////////////////////////////////////////////
 	} elseif (count($sect) == 2 && strtolower($sect[0]) == "remove") {   // Remove vote
 		
-		if (!isset($this->vars["Vote"][$sect[1]])) {
+		if (!isset($chatBot->vars["Vote"][$sect[1]])) {
 			$msg = "There is no such topic available.";
 		} else {
 			$db->query("SELECT * FROM $table WHERE `question` = '".str_replace("'", "''", $sect[1])."' AND `author` = '$sender' AND `duration` IS NULL");
@@ -171,7 +171,7 @@ if (preg_match("/^vote$/i", $message)) {
 	//////////////////////////////////////////////////////////////////////////////////
 	} elseif (count($sect) == 2 && strtolower($sect[0]) == "kill") {     // Kill vote
 		
-		if ($this->admins[$sender]["level"] >= 4) {
+		if ($chatBot->admins[$sender]["level"] >= 4) {
 			$db->query("SELECT * FROM $table WHERE `question` = '".str_replace("'", "''", $sect[1])."'");
 		} else {
 			$db->query("SELECT * FROM $table WHERE `question` = '".str_replace("'", "''", $sect[1])."' AND `author` = '$sender' AND `duration` IS NOT NULL");
@@ -179,7 +179,7 @@ if (preg_match("/^vote$/i", $message)) {
 		
 		if ($db->numrows() > 0) {
 			$db->query("DELETE FROM $table WHERE `question` = '".str_replace("'", "''", $sect[1])."'");
-			unset($this->vars["Vote"][$sect[1]]);
+			unset($chatBot->vars["Vote"][$sect[1]]);
 			$msg = "'$sect[1]' has been removed.";
 		} else {
 			$msg = "Either this vote doesn't exist, or you didn't create it.";
@@ -200,7 +200,7 @@ if (preg_match("/^vote$/i", $message)) {
 			if ($timeleft > 60) {
 				$duration = (time()-$started)+61;
 				$db->query("UPDATE $table SET `duration` = '$duration' WHERE `author` = '$sender' AND `duration` IS NOT NULL AND `question` = '".str_replace("'", "''", $sect[1])."'");
-				$this->vars["Vote"][$sect[1]]["duration"] = $duration;
+				$chatBot->vars["Vote"][$sect[1]]["duration"] = $duration;
 			} else {
 				$msg = "There is only $timeleft seconds left.";
 			}
@@ -210,12 +210,12 @@ if (preg_match("/^vote$/i", $message)) {
 
 		$requirement = Settings::get("vote_use_min");
 		if ($requirement >= 0) {
-			if (!$this->guildmembers[$sender]) {
-				$this->send("Only org members can start a new vote.", $sender);
+			if (!$chatBot->guildmembers[$sender]) {
+				$chatBot->send("Only org members can start a new vote.", $sender);
 				return;
-			}elseif ($requirement < $this->guildmembers[$sender]) {
-				$rankdiff = $this->guildmembers[$sender]-$requirement;
-				$this->send("You need $rankdiff promotion(s) in order to vote.", $sender);
+			}elseif ($requirement < $chatBot->guildmembers[$sender]) {
+				$rankdiff = $chatBot->guildmembers[$sender]-$requirement;
+				$chatBot->send("You need $rankdiff promotion(s) in order to vote.", $sender);
 				return;
 			}
 		}
@@ -253,12 +253,12 @@ if (preg_match("/^vote$/i", $message)) {
 		
 		$requirement = Settings::get("vote_create_min");
 		if ($requirement >= 0) {
-			if (!$this->guildmembers[$sender]) {
-				$this->send("Only org members can start a new vote.", $sender);
+			if (!$chatBot->guildmembers[$sender]) {
+				$chatBot->send("Only org members can start a new vote.", $sender);
 				return;
-			}elseif ($requirement < $this->guildmembers[$sender]) {
-				$rankdiff = $this->guildmembers[$sender]-$requirement;
-				$this->send("You need $rankdiff promotion(s) in order to start a new vote.", $sender);
+			}elseif ($requirement < $chatBot->guildmembers[$sender]) {
+				$rankdiff = $chatBot->guildmembers[$sender]-$requirement;
+				$chatBot->send("You need $rankdiff promotion(s) in order to start a new vote.", $sender);
 				return;
 			}
 		}
@@ -297,7 +297,7 @@ if (preg_match("/^vote$/i", $message)) {
 				if ($db->numrows() == 0) {
 
 					$db->query("INSERT INTO $table (`question`, `author`, `started`, `duration`, `answer`, `status`) VALUES ( '".str_replace("'", "''", $question)."', '$sender', '".time()."', '$newtime', '".str_replace("'", "''", $answers)."', '$status')");
-					$this->vars["Vote"][$question] = array("author" => $sender,  "started" => time(), "duration" => $newtime, "answer" => $answers, "status" => "0", "lockout" => $status);
+					$chatBot->vars["Vote"][$question] = array("author" => $sender,  "started" => time(), "duration" => $newtime, "answer" => $answers, "status" => "0", "lockout" => $status);
 
 				} else {
 					$msg = "There's already a vote with this topic.";
@@ -311,6 +311,6 @@ if (preg_match("/^vote$/i", $message)) {
 // we have a message after all that? post it
 /////////////////////////////////////////////////
 if ($msg){	// Send info back
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 }
 ?>

@@ -125,9 +125,9 @@ Bracers:
 
 $totw_txt = Text::makeLink("Information on The Temple of Three Winds", $totw_txt); 
 if($type == "msg") 
-$this->send($totw_txt, $sender); 
+$chatBot->send($totw_txt, $sender); 
 elseif($type == "all") 
-$this->send($totw_txt); 
+$chatBot->send($totw_txt); 
 else 
-$this->send($totw_txt, "guild"); 
+$chatBot->send($totw_txt, "guild"); 
 ?>

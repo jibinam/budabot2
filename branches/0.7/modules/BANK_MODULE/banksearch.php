@@ -61,9 +61,9 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 	} else {
 		$link = Text::makeBlob($item_count." bank items found", $msg);
 	}
-	$this->send($link, $sendto);
+	$chatBot->send($link, $sendto);
 } else {
 	$msg = "Error! Bank.xml file not found! Please contact an administrator.";
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 }
 ?>

@@ -34,14 +34,14 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 	if ($ql < 10 || $ql > 300) {
 		$msg = "Invalid QL. Please use a QL between 10 and 300.";
 		
-       	$this->send($msg, $sendto);
+       	$chatBot->send($msg, $sendto);
     	return;
 	}
 
 	$db->query("SELECT * FROM `towerranges` WHERE `low_level` <= $ql AND `high_level` >= $ql ORDER BY `playfield` LIMIT 0, 40");
 	if ($db->numrows() == 0) {
 		$msg = "No matches.";
-		$this->send($msg, $sendto);
+		$chatBot->send($msg, $sendto);
     	return;
 	}
 	
@@ -63,14 +63,14 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 	}
 	
 	$msg = Text::makeBlob("Land Control Areas with the QL$ql(Matches ".$db->numrows().")", $list);
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^lca ([a-z ]+)$/i", $message, $arr)) {
 	$name = $arr[1];
 
 	$db->query("SELECT * FROM `towerranges` WHERE `playfield` LIKE '$name' ORDER BY `low_level` LIMIT 0, 40");
 	if ($db->numrows() == 0) {
 		$msg = "No matches.";
-		$this->send($msg, $sendto);
+		$chatBot->send($msg, $sendto);
     	return;
 	}
 	
@@ -92,21 +92,21 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 	}
 	
 	$msg = Text::makeBlob("Land Control Areas with the name $name(Matches ".$db->numrows().")", $list);
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^lca ([0-9]+) ([a-z ]+)$/i", $message, $arr)) {
 	$name = $arr[2];
 	$ql = $arr[1];
 	if ($ql < 10 || $ql > 300) {
 		$msg = "Invalid QL. Please use a QL between 10 and 300.";
 		
-		$this->send($msg, $sendto);
+		$chatBot->send($msg, $sendto);
     	return;
 	}
 	
 	$db->query("SELECT * FROM `towerranges` WHERE `playfield` LIKE '$name' AND `low_level` <= $ql AND `high_level` >= $ql ORDER BY `low_level` LIMIT 0, 40");
 	if ($db->numrows() == 0) {
 		$msg = "No matches.";
-		$this->send($msg, $sendto);
+		$chatBot->send($msg, $sendto);
     	return;
 	}
 	
@@ -128,7 +128,7 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 	}
 	
 	$msg = Text::makeBlob("Land Control Areas with the name $name and ql$ql(Matches ".$db->numrows().")", $list);
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 
 } else {
 	$syntax_error = true;

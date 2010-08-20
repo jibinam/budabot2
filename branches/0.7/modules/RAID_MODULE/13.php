@@ -43,10 +43,10 @@ if(preg_match("/^13$/i", $message)) {
 
 	$msg = "Sector 13 loot table was added to the loot list by <highlight>$sender<end>.";
 
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 
 	// Displaying new list
-	if ($this->vars["raid_status"] == "") {
+	if ($chatBot->vars["raid_status"] == "") {
 		if (is_array($loot)) {
 			$list = "Use <symbol>flatroll or <symbol>roll to roll.\n\n";
 			forEach ($loot as $key => $item) {
@@ -94,10 +94,10 @@ if(preg_match("/^13$/i", $message)) {
 		}
 		
 	} else {
-		$this->send("No list available!", $sendto);
+		$chatBot->send("No list available!", $sendto);
 		return;
 	}
 
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 }
 ?>

@@ -63,9 +63,9 @@ At the moment there is no way to check how many PvP points you have. The ranks a
 
 $pvpguide_txt = Text::makeLink("Guide to PVP", $pvpguide_txt);
 if($type == "msg")
-$this->send($pvpguide_txt, $sender);
+$chatBot->send($pvpguide_txt, $sender);
 elseif($type == "all")
-$this->send($pvpguide_txt);
+$chatBot->send($pvpguide_txt);
 else
-$this->send($pvpguide_txt, "guild");
+$chatBot->send($pvpguide_txt, "guild");
 ?>

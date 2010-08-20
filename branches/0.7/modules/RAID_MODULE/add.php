@@ -35,33 +35,33 @@ global $raidloot;
 
 if (preg_match("/^add$/i", $message)) {
 	//Check if a flat(multiroll) or pts roll is going on
-	if ($this->vars["raid_pts"] > 0) {
+	if ($chatBot->vars["raid_pts"] > 0) {
 		$msg = "<red>This raid is pts rolled. Use instead bid.<end>";
-		$this->send($msg, $sender);
+		$chatBot->send($msg, $sender);
 		return;
 	}
 	
-	if ($this->vars["raid_pts"] == 0 && $this->vars["raid_flat_multiroll"] == 1) {
+	if ($chatBot->vars["raid_pts"] == 0 && $chatBot->vars["raid_flat_multiroll"] == 1) {
 		$msg = "<red>You need to specify a slot where you want to add!<end>";
-		$this->send($msg, $sender);
+		$chatBot->send($msg, $sender);
 		return;
 	}
 	
 	if (!isset($raidlist[$sender])) {
 		$msg = "<red>You need to be on the raidlist to be able to add to an item!<end>";
-		$this->send($msg, $sender);
+		$chatBot->send($msg, $sender);
 		return;		
 	}
 
-	$index = $this->vars["raid_loot_index"];
-	$cat = $this->vars["raid_loot_cat"];
+	$index = $chatBot->vars["raid_loot_index"];
+	$cat = $chatBot->vars["raid_loot_cat"];
 	
 	//Check if minlvl is set and if the player is higher then it
 	if (isset($raidloot[$cat][$index]["minlvl"])) {
 	  	$whois = new WhoisXML($sender);
 	  	if ($whois->level < $raidloot[$cat][$index]["minlvl"]) {
 		    $msg = "You need to be at least lvl<highlight>{$raidloot[$cat][$index]["minlvl"]}<end> to join this roll.";
-	  		$this->send($msg, $sender);
+	  		$chatBot->send($msg, $sender);
 	  		return;
 		}
 	}
@@ -70,7 +70,7 @@ if (preg_match("/^add$/i", $message)) {
 	
 	if ($raidloot[$cat][$index]["users"][$sender]) {
 		$msg = "<red>You are already assigned to this roll<end>";
-		$this->send($msg, $sender);
+		$chatBot->send($msg, $sender);
 		return;
 	}
 	
@@ -78,13 +78,13 @@ if (preg_match("/^add$/i", $message)) {
     $raidloot[$cat][$index]["users"][$sender] = true;
 	
     $msg = "You have been assigned to the roll of <highlight>\"{$raidloot[$cat][$index]["name"]}\"<end>.";
-	$this->send($msg, $sender);
+	$chatBot->send($msg, $sender);
 	
 	$msg = "<highlight>$sender<end> has been added for this roll.";
-	$this->send($msg);
+	$chatBot->send($msg);
 } else if (preg_match("/^add 0$/i", $message)) {
  	//Raid with flatrolls
-	if ($this->vars["raid_status"] != "" && $this->vars["raid_pts"] == 0) {
+	if ($chatBot->vars["raid_status"] != "" && $chatBot->vars["raid_pts"] == 0) {
 	  	forEach ($raidloot as $key => $value) {
 			forEach ($value as $key1 => $value1) {
 				if ($raidloot[$key][$key1]["users"][$sender] == true) {
@@ -94,7 +94,7 @@ if (preg_match("/^add$/i", $message)) {
 		}
 
 		$msg = "You have been removed from all rolls";
-	  	$this->send($msg, $sender);	  
+	  	$chatBot->send($msg, $sender);	  
 	} else if (count($loot) > 0) {
 	  	forEach ($loot as $key => $item)
 			if ($loot[$key]["users"][$sender] == true) {
@@ -102,26 +102,26 @@ if (preg_match("/^add$/i", $message)) {
 			}
 	
 		$msg = "You have been removed from all rolls";
-	  	$this->send($msg, $sender);	   
+	  	$chatBot->send($msg, $sender);	   
 	} else {
-		$this->send("There is nothing where you could add in.", $sender);
+		$chatBot->send("There is nothing where you could add in.", $sender);
 	}
 } else if (preg_match("/^add ([0-9]+)$/i", $message, $arr)) {
   	$slot = $arr[1];
   	$found = false;
   	//Raid with flatrolls
-	if ($this->vars["raid_status"] != "" && $this->vars["raid_pts"] == 0) {
+	if ($chatBot->vars["raid_status"] != "" && $chatBot->vars["raid_pts"] == 0) {
   	  	$slot = $arr[1];
 		
-		if ($this->vars["raid_pts"] == 0 && $this->vars["raid_flat_multiroll"] == 0) {
+		if ($chatBot->vars["raid_pts"] == 0 && $chatBot->vars["raid_flat_multiroll"] == 0) {
 			$msg = "<red>Use add alone only!<end>";
-			$this->send($msg, $sender);
+			$chatBot->send($msg, $sender);
 			return;
 		}
 		
 		if (!isset($raidlist[$sender])) {
 			$msg = "<red>You need to be on the raidlist to be able to add to an item!<end>";
-			$this->send($msg, $sender);
+			$chatBot->send($msg, $sender);
 			return;		
 		}
 	
@@ -143,7 +143,7 @@ if (preg_match("/^add$/i", $message)) {
 		
 	  	if (!$found) {
 	  		$msg = "The slot you trying to add in doesn't exists";
-		  	$this->send($msg, $sender);
+		  	$chatBot->send($msg, $sender);
 		  	return;
 	  	}
 	
@@ -152,7 +152,7 @@ if (preg_match("/^add$/i", $message)) {
 		  	$whois = new WhoisXML($sender);
 		  	if ($whois->level < $raidloot[$cat][$index]["minlvl"]) {
 			    $msg = "You need to be at least lvl<highlight>{$raidloot[$cat][$index]["minlvl"]}<end> to join this roll.";
-		  		$this->send($msg, $sender);
+		  		$chatBot->send($msg, $sender);
 		  		return;
 			}
 		}
@@ -181,14 +181,14 @@ if (preg_match("/^add$/i", $message)) {
 			$msg = "You have moved to the roll of <highlight>\"{$raidloot[$cat][$index]["name"]}\"<end>.";
 		}
 		
-	  	$this->send($msg, $sender);
+	  	$chatBot->send($msg, $sender);
 	} else if (count($loot) > 0) {
   	  	$slot = $arr[1];
 
 		//Check if the slot exists
 	  	if (!isset($loot[$slot])) {
 	  		$msg = "The slot you trying to add in doesn't exists";
-		  	$this->send($msg, $sender);
+		  	$chatBot->send($msg, $sender);
 		  	return;
 	  	}
 	
@@ -197,7 +197,7 @@ if (preg_match("/^add$/i", $message)) {
 		  	$whois = new WhoisXML($sender);
 		  	if ($whois->lvl < $loot[$slot]["minlvl"]) {
 			    $msg = "You need to be at least lvl<highlight>{$loot[$slot]["minlvl"]}<end> to join this roll.";
-		  		$this->send($msg, $sender);
+		  		$chatBot->send($msg, $sender);
 		  		return;
 			}
 		}
@@ -220,9 +220,9 @@ if (preg_match("/^add$/i", $message)) {
 			$msg = "You have moved to the roll of <highlight>\"{$loot[$slot]["name"]}\"<end>.";
 		}
 		
-	  	$this->send($msg, $sender);
+	  	$chatBot->send($msg, $sender);
 	} else {
-		$this->send("No list available where you can add in.", $sender);
+		$chatBot->send("No list available where you can add in.", $sender);
 	}
 } else {
 	$syntax_error = true;

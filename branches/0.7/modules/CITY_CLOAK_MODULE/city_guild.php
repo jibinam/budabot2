@@ -72,6 +72,6 @@ if (-1 == $sender) {
         $msg .= " " . Text::makeBlob("City History", $list);
 
     }
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 }
 ?>

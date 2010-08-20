@@ -206,7 +206,7 @@ Creative reposting and recomposition by Plugsz
 ;
 $adoquest_txt = Text::makeLink("Adonis Quests", $adoquest_txt);
 
-$this->send($adoquest_txt, $sendto);
+$chatBot->send($adoquest_txt, $sendto);
 
 ?>
   

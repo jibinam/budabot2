@@ -30,21 +30,21 @@
    */
 
 if (preg_match("/^inviteuser (.+)$/i", $message, $arr)) {
-    $uid = $this->get_uid($arr[1]);
+    $uid = $chatBot->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
-    if ($this->vars["name"] == $name) {
+    if ($chatBot->vars["name"] == $name) {
 		$msg = "You cannot invite the bot to its own private group.";
 	} else if ($uid) {
       	$msg = "Invited <highlight>$name<end> to this channel.";      	
-	  	$this->privategroup_kick($name);
-	  	$this->privategroup_invite($name);
-		$msg2 = "You have been invited to the Privategroup <highlight>$this->name<end> by <highlight>$sender<end>";
-		$this->send($msg2, $name);
+	  	$chatBot->privategroup_kick($name);
+	  	$chatBot->privategroup_invite($name);
+		$msg2 = "You have been invited to the Privategroup <highlight>$chatBot->name<end> by <highlight>$sender<end>";
+		$chatBot->send($msg2, $name);
     } else {
 		$msg = "Player <highlight>$name<end> does not exist.";
 	}
 	
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

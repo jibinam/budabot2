@@ -73,9 +73,9 @@ http://forums.anarchy-online.com/showthread.php?t=435953
 
 $apf35guide_txt = Text::makeLink("Guide to Apf Sector 35", $apf35guide_txt);
 if($type == "msg")
-$this->send($apf35guide_txt, $sender);
+$chatBot->send($apf35guide_txt, $sender);
 elseif($type == "all")
-$this->send($apf35guide_txt);
+$chatBot->send($apf35guide_txt);
 else
-$this->send($apf35guide_txt, "guild");
+$chatBot->send($apf35guide_txt, "guild");
 ?>

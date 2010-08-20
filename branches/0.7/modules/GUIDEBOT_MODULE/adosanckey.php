@@ -20,6 +20,6 @@ Your get a mission update. Bring the item the Diviner dropped to Visionist Bhota
 
 $adosanckey_txt = Text::makeLink("Adonis: Dalja Sanctuary Garden Key Quest", $adosanckey_txt);
 
-$this->send($adosanckey_txt, $sendto);
+$chatBot->send($adosanckey_txt, $sendto);
  
 ?>

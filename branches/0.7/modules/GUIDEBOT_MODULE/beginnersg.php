@@ -90,9 +90,9 @@ There are several nightclubs, bars and coffee shops available for each faction. 
 ";
 $beginners_txt = Text::makeLink("Beginner's FAQs", $beginners_txt); 
 if($type == "msg") 
-$this->send($beginners_txt, $sender); 
+$chatBot->send($beginners_txt, $sender); 
 elseif($type == "all") 
-$this->send($beginners_txt); 
+$chatBot->send($beginners_txt); 
 else 
-$this->send($beginners_txt, "guild"); 
+$chatBot->send($beginners_txt, "guild"); 
 ?>

@@ -49,9 +49,9 @@ Adonis Sanctuary Garden Nanos
 
 $adosancn_txt = Text::makeLink("Adonis Sanctuary Garden Nanos", $adosancn_txt); 
 if($type == "msg") 
-$this->send($adosancn_txt, $sender); 
+$chatBot->send($adosancn_txt, $sender); 
 elseif($type == "all") 
-$this->send($adosancn_txt); 
+$chatBot->send($adosancn_txt); 
 else 
-$this->send($adosancn_txt, "guild"); 
+$chatBot->send($adosancn_txt, "guild"); 
 ?>

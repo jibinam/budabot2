@@ -117,9 +117,9 @@ Do you have questions about this guide or are looking for help? Post in the <a h
 
 $indieshoel_txt = Text::makeLink("Shoel Quests : Independants", $indieshoel_txt); 
 if($type == "msg") 
-$this->send($indieshoel_txt, $sender); 
+$chatBot->send($indieshoel_txt, $sender); 
 elseif($type == "all") 
-$this->send($indieshoel_txt); 
+$chatBot->send($indieshoel_txt); 
 else 
-$this->send($indieshoel_txt, "guild"); 
+$chatBot->send($indieshoel_txt, "guild"); 
 ?>

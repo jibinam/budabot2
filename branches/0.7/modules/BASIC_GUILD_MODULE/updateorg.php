@@ -31,10 +31,10 @@
    
 if (preg_match("/^updateorg$/i", $message)) {
  	$force_update = true;
- 	$this->send("Starting updating Organisation roster. Please Standby.", $sendto);
-	$this->vars["onlinedelay"] = time() + Settings::get("CronDelay") + 60;
+ 	$chatBot->send("Starting updating Organisation roster. Please Standby.", $sendto);
+	$chatBot->vars["onlinedelay"] = time() + Settings::get("CronDelay") + 60;
 	include("./core/ORG_ROSTER/roster_guild.php");
-	$this->send("Done", $sender);
+	$chatBot->send("Done", $sender);
 } else {
 	$syntax_error = true;
 }

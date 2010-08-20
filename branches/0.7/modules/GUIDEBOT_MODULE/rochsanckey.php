@@ -23,9 +23,9 @@ IMPORTANT: You will have be the one doing the majority of damage on the Empath. 
 
 $rochsanckey_txt = Text::makeLink("Scheol: Roch Sanctuary Garden Key Quest", $rochsanckey_txt); 
 if($type == "msg") 
-$this->send($rochsanckey_txt, $sender); 
+$chatBot->send($rochsanckey_txt, $sender); 
 elseif($type == "all") 
-$this->send($rochsanckey_txt); 
+$chatBot->send($rochsanckey_txt); 
 else 
-$this->send($rochsanckey_txt, "guild"); 
+$chatBot->send($rochsanckey_txt, "guild"); 
 ?>

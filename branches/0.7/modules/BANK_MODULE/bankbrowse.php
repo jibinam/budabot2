@@ -50,12 +50,12 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 			}
 		}
 		$link = Text::makeBlob("$item_count Items in total, $backpack_count Backpacks in total", $msg);
-		$this->send($link, $sendto);
+		$chatBot->send($link, $sendto);
 	} else {
 		$syntax_error = true;
 	}
 } else {
 	$msg = "Error! Bank.xml file not found! Please contact an administrator.";
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 }
 ?>

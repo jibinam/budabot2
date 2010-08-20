@@ -31,42 +31,42 @@
    
 if (preg_match("/^lock$/i", $message)) {
   	if (Settings::get("priv_status") == "closed") {
-	    $this->send("Private group is already locked.", $sendto);
+	    $chatBot->send("Private group is already locked.", $sendto);
 		return;
 	}
 	$msg = "The private group has been locked by <highlight>$sender<end>.";
-	$this->send($msg, "priv");
+	$chatBot->send($msg, "priv");
 	
 	if ($type == "msg") {
-		$this->send("You have locked the private group.", $sender);
+		$chatBot->send("You have locked the private group.", $sender);
 	}
 	
 	Settings::save("priv_status", "closed");
 } else if (preg_match("/^lock (.+)$/i", $message, $arr)) {
   	$reason = $arr[1];
 	if (Settings::get("priv_status") == "closed") {
-	    $this->send("Private group is already locked.", $sendto);
+	    $chatBot->send("Private group is already locked.", $sendto);
 		return;
 	}
 	$msg = "The private group has been locked by <highlight>$sender<end>. Reason: <highlight>$reason<end> ";
-	$this->send($msg);
+	$chatBot->send($msg);
 	
 	if ($type == "msg") {
-		$this->send("You have locked the private group.", $sender);
+		$chatBot->send("You have locked the private group.", $sender);
 	}
 	
 	Settings::save("priv_status", "closed");
 	Settings::save("priv_status_reason", $reason);
 } else if (preg_match("/^unlock$/i", $message)) {
   	if (Settings::get("priv_status") == "open") {
-    	$this->send("Private group is already opened.", $sendto);
+    	$chatBot->send("Private group is already opened.", $sendto);
 		return;
 	}
 	$msg = "The private group has been opened by <highlight>$sender<end>.";
-	$this->send($msg);
+	$chatBot->send($msg);
 
 	if ($type == "msg") {
-		$this->send("You have opened the privategroup.", $sender);
+		$chatBot->send("You have opened the privategroup.", $sender);
 	}
 	
 	Settings::save("priv_status", "open");

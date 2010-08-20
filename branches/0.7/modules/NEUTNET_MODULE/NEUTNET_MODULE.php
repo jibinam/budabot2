@@ -1,5 +1,5 @@
 <?php
-	if ($this->vars['dimension'] == 2) {
+	if ($chatBot->vars['dimension'] == 2) {
 		$MODULE_NAME = "NEUTNET_MODULE";
 
 		// add neutnet bots to whitelist

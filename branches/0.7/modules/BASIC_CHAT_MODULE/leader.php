@@ -38,33 +38,33 @@ if (Settings::get("leaderecho") == 1) {
 }
 
 if (preg_match("/^setleader (.+)$/i", $message, $arr)) {
-    $uid = $this->get_uid($arr[1]);
+    $uid = $chatBot->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
 	if (!$uid) {
 		$msg = "Player <highlight>".$name."<end> does not exist.";
-	} else if (!isset($this->chatlist[$name])) {
+	} else if (!isset($chatBot->chatlist[$name])) {
 		$msg = "Player <highlight>".$name."<end> did't joined this channel.";
 	} else {
-		$this->vars["leader"] = $name;
+		$chatBot->vars["leader"] = $name;
 	  	$msg = "$name is now Raidleader. Raidleader echo is currently $status. You can change it with <symbol>leaderecho $cmd";	    	
 	}
-  	$this->send($msg);
+  	$chatBot->send($msg);
 } else if (preg_match("/^leader$/i", $message)) {
-  	if ($this->vars["leader"] == $sender) {
-		unset($this->vars["leader"]);
+  	if ($chatBot->vars["leader"] == $sender) {
+		unset($chatBot->vars["leader"]);
 	  	$msg = "Raidleader is cleared.";
-	} else if ($this->vars["leader"] != "") {
-		if ($this->admins[$sender]["level"] >= $this->admins[$this->vars["leader"]]["level"]){
-  			$this->vars["leader"] = $sender;
+	} else if ($chatBot->vars["leader"] != "") {
+		if ($chatBot->admins[$sender]["level"] >= $chatBot->admins[$chatBot->vars["leader"]]["level"]){
+  			$chatBot->vars["leader"] = $sender;
 		  	$msg = "$sender is now Raidleader. Raidleader echo is currently $status. You can change it with <symbol>leaderecho $cmd";
 		} else {
-			$msg = "You can't take leader from <highlight>{$this->vars["leader"]}<end>.";
+			$msg = "You can't take leader from <highlight>{$chatBot->vars["leader"]}<end>.";
 		}
 	} else {
-		$this->vars["leader"] = $sender;
+		$chatBot->vars["leader"] = $sender;
 	  	$msg = "$sender is now Raidleader. Raidleader echo is currently $status. You can change it with <symbol>leaderecho $cmd";
 	}
-  	$this->send($msg);
+  	$chatBot->send($msg);
 
 } else {
 	$syntax_error = true;

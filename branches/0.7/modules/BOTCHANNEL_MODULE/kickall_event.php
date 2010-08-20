@@ -29,9 +29,9 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if (time() >= $this->vars["priv_kickall"]) {
-	$this->privategroup_kick_all();
+if (time() >= $chatBot->vars["priv_kickall"]) {
+	$chatBot->privategroup_kick_all();
 	Event::disable("2sec", "BOTCHANNEL_MODULE/kickall_event.php");
-	unset($this->vars["priv_kickall"]);
+	unset($chatBot->vars["priv_kickall"]);
 }
 ?>

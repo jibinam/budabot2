@@ -33,9 +33,9 @@ Courtesy of AO Universe
 ;
 $elysancclan_txt = Text::makeLink("Elysium: Sanctuary Garden Key Quest Clan", $elysancclan_txt); 
 if($type == "msg") 
-$this->send($elysancclan_txt, $sender); 
+$chatBot->send($elysancclan_txt, $sender); 
 elseif($type == "all") 
-$this->send($elysancclan_txt); 
+$chatBot->send($elysancclan_txt); 
 else 
-$this->send($elysancclan_txt, "guild"); 
+$chatBot->send($elysancclan_txt, "guild"); 
 ?>

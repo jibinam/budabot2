@@ -31,7 +31,7 @@
 
 $msg = "";
 if (preg_match("/^whois (.+)$/i", $message, $arr)) {
-    $uid = $this->get_uid($arr[1]);
+    $uid = $chatBot->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
     if ($uid) {
         $whois = new WhoisXML($arr[1]);
@@ -72,7 +72,7 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
 	}
 
     // Send info back
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^whoisall (.+)$/i", $message, $arr)) {
     $name = ucfirst(strtolower($arr[1]));
     for ($i = 1; $i <= 3; $i ++) {
@@ -115,13 +115,13 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
             $msg = "Server $server: Player <highlight>$name<end> does not exist.";
 		}
         // Send info back
-        $this->send($msg, $sendto);
+        $chatBot->send($msg, $sendto);
     }
 } else if (preg_match("/^whoisorg ([0-9]+)$/i", $message, $arr)) {
 	$org_id = $arr[1];
 
   	$msg = "Getting Org info. Please standby.";
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 	
     $org = new OrgXML($org_id);
 	if ($org->errorCode == 0) {
@@ -242,6 +242,6 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
 		$msg = "Error in getting the Org info. Either that org doesn't exist or the AO server was too slow to responce.";
 	}
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 }
 ?>

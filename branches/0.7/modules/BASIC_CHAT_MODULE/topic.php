@@ -36,7 +36,7 @@ if (Settings::get("topic") != "" && $type == "joinPriv") {
 	$mins = floor($mins - ($hours * 60));
 	$days = floor($hours / 24);
 	$hours = floor($hours - ($days * 24));
-  	$this->send("<highlight>Topic:<end> " . Settings::get("topic") . " [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$days}days, {$hours}hrs and {$mins}mins ago<end>)", $sendto);
+  	$chatBot->send("<highlight>Topic:<end> " . Settings::get("topic") . " [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$days}days, {$hours}hrs and {$mins}mins ago<end>)", $sendto);
 } else if (preg_match("/^topic$/i", $message, $arr)) {
 	$time = time() - Settings::get("topic_time");
 	$mins = floor($time / 60);
@@ -45,18 +45,18 @@ if (Settings::get("topic") != "" && $type == "joinPriv") {
 	$days = floor($hours / 24);
 	$hours = floor($hours - ($days * 24));
 	$msg = "<highlight>Topic:<end> " . Settings::get("topic") . " [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$days}days, {$hours}hrs and {$mins}mins ago<end>)";
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^cleartopic$/i", $message, $arr)) {
   	Settings::save("topic_time", time());
   	Settings::save("topic_setby", $sender);
   	Settings::save("topic", "No Topic set atm.");
 	$msg = "Topic has been cleared.";
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^settopic (.+)$/i", $message, $arr)) {
   	Settings::save("topic_time", time());
   	Settings::save("topic_setby", $sender);
   	Settings::save("topic", $arr[1]);
 	$msg = "Topic has been updated.";
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 }
 ?>

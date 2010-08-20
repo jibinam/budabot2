@@ -435,9 +435,9 @@ After speaking with the Kyr'Ozch Envoy, a few things will start to fit together.
 
 $aridrift_txt = Text::makeLink("Guide to Arid Rift Quests", $aridrift_txt); 
 if($type == "msg") 
-$this->send($aridrift_txt, $sender); 
+$chatBot->send($aridrift_txt, $sender); 
 elseif($type == "all") 
-$this->send($aridrift_txt); 
+$chatBot->send($aridrift_txt); 
 else 
-$this->send($aridrift_txt, "guild"); 
+$chatBot->send($aridrift_txt, "guild"); 
 ?>

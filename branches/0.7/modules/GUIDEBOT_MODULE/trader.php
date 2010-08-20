@@ -321,9 +321,9 @@ A good tips for those who get caught wandering in public is to drain up, then ca
 
 $trader_txt = Text::makeLink("Guide to Traders", $trader_txt); 
 if($type == "msg") 
-$this->send($trader_txt, $sender); 
+$chatBot->send($trader_txt, $sender); 
 elseif($type == "all") 
-$this->send($trader_txt); 
+$chatBot->send($trader_txt); 
 else 
-$this->send($trader_txt, "guild"); 
+$chatBot->send($trader_txt, "guild"); 
 ?>

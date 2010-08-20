@@ -31,9 +31,9 @@ $elygar_txt = "Elysium Garden
 
 $elygar_txt = Text::makeLink("Elysium Garden Nanos", $elygar_txt); 
 if($type == "msg") 
-$this->send($elygar_txt, $sender); 
+$chatBot->send($elygar_txt, $sender); 
 elseif($type == "all") 
-$this->send($elygar_txt); 
+$chatBot->send($elygar_txt); 
 else 
-$this->send($elygar_txt, "guild"); 
+$chatBot->send($elygar_txt, "guild"); 
 ?>

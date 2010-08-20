@@ -76,9 +76,9 @@ And that was pretty much it. Some items from this shop have questionable usefuln
 
 $fshop_txt = Text::makeLink("Guide to The Fixer Shop", $fshop_txt); 
 if($type == "msg") 
-$this->send($fshop_txt, $sender); 
+$chatBot->send($fshop_txt, $sender); 
 elseif($type == "all") 
-$this->send($fshop_txt); 
+$chatBot->send($fshop_txt); 
 else 
-$this->send($fshop_txt, "guild"); 
+$chatBot->send($fshop_txt, "guild"); 
 ?>

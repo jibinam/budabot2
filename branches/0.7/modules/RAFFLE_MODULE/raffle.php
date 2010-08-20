@@ -1,14 +1,14 @@
 <?php
 //if (eregi ("^raffle (<a href=\"itemref:\/\/[0-9]+\/[0-9]+\/[0-9]+\">.+<\/a>)$", $message, $arr)) {
 if (preg_match("/^raffle (.+) ([0-9]+)$/i", $message, $arr) || preg_match("/^raffle (.+)$/i", $message, $arr)) {
-	if (!$this->vars["Raffles"]["inprog"]) {
+	if (!$chatBot->vars["Raffles"]["inprog"]) {
 		$item = $arr[1];
 	    $minutes = Settings::get("defaultraffletime");
 	    if ($arr[2]) {
 			$minutes = $arr[2];
 	    }
 	    
-        $this->vars["Raffles"] = array(
+        $chatBot->vars["Raffles"] = array(
             "inprog" => 1,
             "owner" => $sender,
             "item" => $item,
@@ -27,15 +27,15 @@ Click <a href='chatcmd:///tell <myname> leaveRaffle'>here</a> if you wish to lea
 A raffle for $item has been started by $sender!
 Click $link to join the raffle. Raffle will end in '$minutes Minutes'.
 -----------------------------------------------------------------------";
-        $this->send($msg, "org");
+        $chatBot->send($msg, "org");
     }
     else {
         $msg = "There is already a raffle in progress.";
-        $this->send($msg, $sendto);
+        $chatBot->send($msg, $sendto);
     }
 }
 else {
     $msg = "You need to specify an item to be raffled!";
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 }
 ?>

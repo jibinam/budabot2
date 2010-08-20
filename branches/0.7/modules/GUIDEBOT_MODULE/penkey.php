@@ -59,6 +59,6 @@ You have to fill 5 scanners with fragments. So you need 35 Fragment of the Sourc
 ;
 $infgarnkey_txt = Text::makeLink("Inferno Garden Key - Omni", $infgarnkey_txt); 
 
-$this->send($infgarnkey_txt, $sendto);
+$chatBot->send($infgarnkey_txt, $sendto);
 
 ?>

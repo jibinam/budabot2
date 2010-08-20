@@ -60,6 +60,6 @@ Guide courtesy of AO Universe
 ;
 $adokeyclan_txt = Text::makeLink("Adonis: Garden Key Quest CLAN", $adokeyclan_txt);
 
-$this->send($adokeyclan_txt, $sendto);
+$chatBot->send($adokeyclan_txt, $sendto);
 
 ?>

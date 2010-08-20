@@ -74,7 +74,7 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
             $prof = "Shade";
             break;
     }
-    if ($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $this->vars["Guest"][$sender] == true)) {
+    if ($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $chatBot->vars["Guest"][$sender] == true)) {
 	    if (Settings::get("relaydb"))
 			$db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `profession` = '$prof' AND `guest` = 1 ORDER BY level");
 	    else
@@ -94,7 +94,7 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
             $afk = "";
         $msg .= " [<highlight>$row->name<end> - ".$row->level.$afk."]";
     }
-    $this->send($msg, $sendto);  	
+    $chatBot->send($msg, $sendto);  	
 } elseif(preg_match("/^count (level|lvl)$/i", $message, $arr)) {
 	$tl1 = 0;
 	$tl2 = 0;
@@ -103,7 +103,7 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
 	$tl5 = 0;
 	$tl6 = 0;
 	$tl7 = 0;
-	if($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $this->vars["Guest"][$sender] == true)) {							
+	if($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $chatBot->vars["Guest"][$sender] == true)) {							
 	    if(Settings::get("relaydb"))
 		    $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY level");
 	    else
@@ -129,7 +129,7 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
       		$tl7++;
     }	
     $msg = "<highlight>$numonline<end> in total: TL1 <highlight>$tl1<end>, TL2 <highlight>$tl2<end>, TL3 <highlight>$tl3<end>, TL4 <highlight>$tl4<end>, TL5 <highlight>$tl5<end>, TL6 <highlight>$tl6<end>, TL7 <highlight>$tl7<end>";
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if(preg_match("/^count (.*)$/i", $message, $arr)) {
     switch(strtolower($arr[1])) {
         case "all":
@@ -209,10 +209,10 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
     }
     if(!$prof) {
         $msg = "Please choose one of these professions: adv, agent, crat, doc, enf, eng, fix, keep, ma, mp, nt, sol, shade, trader or all";
-	    $this->send($msg, $sendto);
+	    $chatBot->send($msg, $sendto);
 	    return;
 	}
-	if($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $this->vars["Guest"][$sender] == true)) {
+	if($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $chatBot->vars["Guest"][$sender] == true)) {
 	    if(Settings::get("relaydb")) {
 	        if($prof == "all") {
 				$db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY profession");
@@ -264,6 +264,6 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
 	    $msg .= "<highlight>".$online['Adventurer']."<end> Adv, <highlight>".$online['Agent']."<end> Agent, <highlight>".$online['Bureaucrat']."<end> Crat, <highlight>".$online['Doctor']."<end> Doc, <highlight>".$online['Enforcer']."<end> Enf, <highlight>".$online['Engineer']."<end> Eng, <highlight>".$online['Fixer']."<end> Fix, <highlight>".$online['Keeper']."<end> Keeper, <highlight>".$online['Martial Artist']."<end> MA, <highlight>".$online['Meta-Physicist']."<end> MP, <highlight>".$online['Nano-Technician']."<end> NT, <highlight>".$online['Soldier']."<end> Sol, <highlight>".$online['Shade']."<end> Shade, <highlight>".$online['Trader']."<end> Trader";
     }
 
-  	$this->send($msg, $sendto);
+  	$chatBot->send($msg, $sendto);
 }
 ?>

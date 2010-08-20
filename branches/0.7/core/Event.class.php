@@ -17,8 +17,22 @@ class Event {
 **  Registers an event
 */	public static function register($type, $module, $filename, $description = '', $is_core = 0) {
 		global $db;
+		global $chatBot;  // for setup events
+		
+		if ($type == 'setup') {
+			if ($is_core == 1) {
+				$path = "./core/$module/$filename";
+			} else {
+				$path = "./modules/$module/$filename";
+			}
+			
+			Logger::log(__FILE__, "$path $type: Running setup", DEBUG);
+			
+			require $path;
+			return;
+		}
 
-		Logger::log(__FILE__, "Adding Event to list:($type) File:($filename)", DEBUG);
+		Logger::log(__FILE__, "$module $file $type: Adding event", DEBUG);
 		
 		// TODO
 		//if (($filename = Util::verify_filename($filename)) == FALSE) {
@@ -56,6 +70,7 @@ class Event {
 	
 	public static function fire_event(&$params) {
 		global $chatBot;
+		global $db;
 	
 		forEach ($params as $key => $value) {
 			$$key = &$params[$key];
@@ -76,6 +91,7 @@ class Event {
 ** Call php-Scripts at certin time intervals. 2 sec, 1 min, 15 min, 1 hour, 24 hours
 */	public static function run_cron_jobs() {
 		global $chatBot;
+		return;
 
 		if ($chatBot->vars["2sec"] < time()) {
 			$chatBot->vars["2sec"] = time() + 2;

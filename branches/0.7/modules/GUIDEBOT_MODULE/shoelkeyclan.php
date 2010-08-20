@@ -49,9 +49,9 @@ Courtesy of AO Universe
 ;
 $shoelkeyclan_txt = Text::makeLink("Shoel: Garden Key Quest CLAN", $shoelkeyclan_txt); 
 if($type == "msg") 
-$this->send($shoelkeyclan_txt, $sender); 
+$chatBot->send($shoelkeyclan_txt, $sender); 
 elseif($type == "all") 
-$this->send($shoelkeyclan_txt); 
+$chatBot->send($shoelkeyclan_txt); 
 else 
-$this->send($shoelkeyclan_txt, "guild"); 
+$chatBot->send($shoelkeyclan_txt, "guild"); 
 ?>

@@ -405,7 +405,7 @@ else if ( preg_match("/^pandeloot ([0-9]+)$/i", $message, $arr)) {
 			if(count($loot) < 31)
 				$nextloot = count($loot) + 1;
 			else{
-				$this->send("You can only roll 30 items max at one time!", $sendto);
+				$chatBot->send("You can only roll 30 items max at one time!", $sendto);
 				return;
 			}
 		}
@@ -627,6 +627,6 @@ elseif( preg_match("/^scorpio$/i", $message)){
 	$msg = Text::makeBlob("Scorpio Loot", $list);
 }
 
-$this->send($msg, 'priv');
+$chatBot->send($msg, 'priv');
 
 ?>

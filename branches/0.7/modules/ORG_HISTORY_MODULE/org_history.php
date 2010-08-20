@@ -55,7 +55,7 @@ if (preg_match("/^orghistory$/i", $message, $arr) || preg_match("/^orghistory (\
 
 	$msg = Text::makeBlob('Org History', $window);
 
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^orghistory (.+)$/i", $message, $arr)) {
 
 	$character = ucfirst(strtolower($arr[1]));
@@ -80,7 +80,7 @@ if (preg_match("/^orghistory$/i", $message, $arr) || preg_match("/^orghistory (\
 
 	$msg = Text::makeBlob('Org History for $character', $window);
 
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 }
 
 ?>

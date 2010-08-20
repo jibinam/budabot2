@@ -38,7 +38,7 @@ if (preg_match("/^(fast|fastattack) ([0-9]*\.?[0-9]+) ([0-9]+)$/i", $message, $a
 	$inside .= $footer;
 
 	$windowlink = Text::makeLink("::Your Fast Attack Results::", $inside);
-	$this->send($windowlink, $sendto);
+	$chatBot->send($windowlink, $sendto);
 } else {
-	$this->send($helplink, $sendto);
+	$chatBot->send($helplink, $sendto);
 }

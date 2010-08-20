@@ -50,7 +50,7 @@ if (preg_match("/^kos$/i", $message)) {
 		$msg = Text::makeBlob("KOS-List", $link);
 	}
 
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^kos add (.+)$/i", $message, $arr)) {
 	$explodemsg = explode(' ', $arr[1], 3);
 	$name = ucfirst(strtolower($explodemsg[0]));
@@ -61,7 +61,7 @@ if (preg_match("/^kos$/i", $message)) {
 		// otherwise stitch the reason back together
 		$reason = $explodemsg[1] . ' ' . $explodemsg[2];
 	}
-	$uid = $this->get_uid($name);
+	$uid = $chatBot->get_uid($name);
 	if (strlen($reason) >= 50) {
 		$msg = "The reason can't be longer than 50 characters.";
 	} elseif($uid) {
@@ -76,14 +76,14 @@ if (preg_match("/^kos$/i", $message)) {
 		$msg = "The Player you want to add doesn't exists.";
 	}
 
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^kos rem (.+)$/i", $message, $arr)) {
 	$name = ucfirst(strtolower($arr[1]));
 	$db->query("SELECT * FROM koslist_<myname> WHERE `sender` = '$sender' AND `name` = '".str_replace("'", "''", $name)."'");
 	if ($db->numrows() == 1) {
 		$db->query("DELETE FROM koslist_<myname> WHERE `sender` = '$sender' AND `name` = '".str_replace("'", "''", $name)."'");
 		$msg = "You have successfull removed <highlight>$name<end> from the KOS List.";
-	} else if ($this->guildmembers[$sender] < $this->vars['guild admin level']) {
+	} else if ($chatBot->guildmembers[$sender] < $chatBot->vars['guild admin level']) {
 		$db->query("SELECT * FROM koslist_<myname> WHERE `name` = '".str_replace("'", "''", $name)."'");
 		if ($db->numrows() != 0) {
 			$db->query("DELETE FROM koslist_<myname> WHERE `name` = '$".str_replace("'", "''", $name)."'");
@@ -95,7 +95,7 @@ if (preg_match("/^kos$/i", $message)) {
 		$msg = "You don't have this player on your KOS List.";
 	}
 
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^kos (.+)$/i", $message, $arr)) {
 	$name = ucfirst(strtolower($arr[1]));
 	$db->query("SELECT * FROM koslist_<myname> WHERE `name` = '".str_replace("'", "''", $name)."' LIMIT 0, 40");
@@ -118,7 +118,7 @@ if (preg_match("/^kos$/i", $message)) {
 		$msg = "The player <highlight>$name<end> isn't on the KOS List.";
 	}
 
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

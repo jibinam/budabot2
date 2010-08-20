@@ -31,9 +31,9 @@ Of course, all of the Battle Suits suffer from the same drawback, namely the nan
 
 $bernice_txt = Text::makeLink("Guide to Thin Bernice", $bernice_txt); 
 if($type == "msg") 
-$this->send($bernice_txt, $sender); 
+$chatBot->send($bernice_txt, $sender); 
 elseif($type == "all") 
-$this->send($bernice_txt); 
+$chatBot->send($bernice_txt); 
 else 
-$this->send($bernice_txt, "guild"); 
+$chatBot->send($bernice_txt, "guild"); 
 ?>

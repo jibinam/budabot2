@@ -106,9 +106,9 @@ Information originally provided by Jexai.co.uk/anarchy";
 
 $bazzit_txt = Text::makeLink("Uncle Bazzit's Quest", $bazzit_txt); 
 if($type == "msg") 
-$this->send($bazzit_txt, $sender); 
+$chatBot->send($bazzit_txt, $sender); 
 elseif($type == "all") 
-$this->send($bazzit_txt); 
+$chatBot->send($bazzit_txt); 
 else 
-$this->send($bazzit_txt, "guild"); 
+$chatBot->send($bazzit_txt, "guild"); 
 ?>

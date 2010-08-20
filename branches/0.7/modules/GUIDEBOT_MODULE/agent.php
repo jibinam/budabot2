@@ -45,9 +45,9 @@ Agents are long-range assassins, with the ability to hide in the shadows and str
 
 $agent_txt = Text::makeLink("Guide To Agents", $agent_txt); 
 if($type == "msg") 
-$this->send($agent_txt, $sender); 
+$chatBot->send($agent_txt, $sender); 
 elseif($type == "all") 
-$this->send($agent_txt); 
+$chatBot->send($agent_txt); 
 else 
-$this->send($agent_txt, "guild"); 
+$chatBot->send($agent_txt, "guild"); 
 ?>

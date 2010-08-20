@@ -129,7 +129,7 @@ if (preg_match("/^stats$/i", $message, $arr)) {
 
 	$msg = Text::makeBlob('Stats', $window);
 
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 }
 
 ?>

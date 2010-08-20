@@ -35,13 +35,13 @@ if (preg_match("/^minlvl$/i", $message)) {
  		$msg = "Level Limit for responding on tells has been set to Lvl " . Settings::get("tell_req_lvl") . ".";
 	}
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^minlvl ([0-9]+)$/i", $message, $arr)) {
 	$minlvl = strtolower($arr[1]);
 	
 	if($minlvl > 220 || $minlvl < 0) {
 		$msg = "<red>Minimum Level can be only set between 1-220<end>";
-		$this->send($msg, $sender);
+		$chatBot->send($msg, $sender);
 		return;
 	}
 	
@@ -52,7 +52,7 @@ if (preg_match("/^minlvl$/i", $message)) {
 	else
  		$msg = "Privategroup Invites are accepted from the level $minlvl and above.";
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^open$/i", $message)) {
  	if(Settings::get("oriv_req_open") == "all")
  		$msg = "No General Limit is set for privategroup Invites.";
@@ -61,7 +61,7 @@ if (preg_match("/^minlvl$/i", $message)) {
 	else
 		$msg = "General Limit for privategroup Invites is set to Bot members only.";
 	
-    $this->send($msg, $sendto);	
+    $chatBot->send($msg, $sendto);	
 } else if (preg_match("/^open (org|all|members)$/i", $message, $arr)) {
 	$open = ucfirst(strtolower($arr[1]));
 	
@@ -74,14 +74,14 @@ if (preg_match("/^minlvl$/i", $message)) {
 	
 	Settings::save("priv_req_open", $open);
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^faction/i", $message)) {
  	if(Settings::get("pirv_req_faction") == "all")
  		$msg = "No Faction Limit is set for privategroup Invites.";
 	else
 		$msg = "Faction Limit for privategroup Invits is set to " . Settings::get("priv_req_faction") . ".";
 		
-    $this->send($msg, $sendto); 	
+    $chatBot->send($msg, $sendto); 	
 } else if (preg_match("/^faction (omni|clan|neutral|all)$/i", $message, $arr)) {
 	$faction = ucfirst(strtolower($arr[1]));
 	Settings::save("priv_req_faction", $faction);
@@ -92,26 +92,26 @@ if (preg_match("/^minlvl$/i", $message)) {
 		$msg = "Privategroup Invites are accepted only from the Faction $faction.";
 	}
 	
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^faction not (omni|clan|neutral)$/i", $message, $arr)) {
 	$faction = "not ".ucfirst(strtolower($arr[1]));
 	Settings::save("priv_req_faction", $faction);
 	$msg = "Invites are limited to <highlight>$faction<end> only now.";
 
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^maxplayers$/i", $message)) {
  	if(Settings::get("priv_req_faction") == "all")
  		$msg = "No Faction Limit is set for privategroup Invites.";
 	else
 		$msg = "Faction Limit for privategroup Invits is set to " . Settings::get("priv_req_maxplayers") . ".";
 	
-    $this->send($msg, $sendto); 	 
+    $chatBot->send($msg, $sendto); 	 
 } else if (preg_match("/^maxplayer ([0-9]+)$/i", $message, $arr)) {
 	$maxplayers = strtolower($arr[1]);
 	
 	if ($maxplayers > 120) {
 		$msg = "<red>Maximum allowed players can be set only to lower then 120<end>";
-	    $this->send($msg, $sendto);
+	    $chatBot->send($msg, $sendto);
 		return;
 	}
 	
@@ -122,7 +122,7 @@ if (preg_match("/^minlvl$/i", $message)) {
 	} else {
 		$msg = "The Limit of the Amount of players in the privategroup has been set to $maxplayers.";
 	}
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

@@ -427,6 +427,20 @@ class AOChat
 
 		return true;
 	}
+	
+	function get_uname($uid) {
+		if (isset($this->id[$uid])) {
+			return $this->id[$uid];
+		}
+
+		$this->buddy_add($uid);
+		for ($i = 0; $i < 100 && !isset($this->id[$uid]); $i++) {
+			$this->get_packet();
+		}
+		$this->buddy_remove($uid);
+
+		return isset($this->id[$uid]) ? $this->id[$uid] : false;
+	}
 
 	/* User and group lookup functions */
 	function lookup_user($u)
@@ -505,18 +519,14 @@ class AOChat
 		return $this->send_packet(new AOChatPacket("out", AOCP_PING, "AOChat.php"));
 	}
 
-	function dispatch_tell($tgt, $msg)
+	function dispatch_tell($uid, $msg)
 	{
-		if(($uid = $this->get_uid($tgt)) === false)
-		return false;
-
-		return $this->send_packet(new AOChatPacket("out", AOCP_MSG_PRIVATE,
-		array($uid, $msg, "\0")));
+		return $this->send_packet(new AOChatPacket("out", AOCP_MSG_PRIVATE, array($uid, $msg, "\0")));
 	}
 
-	function send_tell($user, $msg, $blob = "\0")
+	function send_tell($uid, $msg, $blob = "\0")
 	{
-		$this->tellqueue->push(AOC_PRIORITY_MED, $user, $msg);
+		$this->tellqueue->push(AOC_PRIORITY_MED, $uid, $msg);
 		return true;
 	}
 

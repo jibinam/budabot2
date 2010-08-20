@@ -20,7 +20,7 @@ $help .= $footer;
 $helplink = Text::makeLink("::How to use Aimed Shot::", $help);
 
 if ((!$AttTim) || (!$RechT) || (!$InitS)) {
-	$this->send($helplink, $sendto);
+	$chatBot->send($helplink, $sendto);
 } else {
 	$cap = floor($AttTim+10);
 	$ASRech	= ceil(($RechT*40) - ($InitS*3/100) + $AttTim - 1);
@@ -42,5 +42,5 @@ if ((!$AttTim) || (!$RechT) || (!$InitS)) {
 	$inside .= $footer;
 
 	$windowlink = Text::makeLink("::Your Aimed Shot Results::", $inside);
-	$this->send($windowlink, $sendto);
+	$chatBot->send($windowlink, $sendto);
 }

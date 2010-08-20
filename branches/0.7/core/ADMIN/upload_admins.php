@@ -29,21 +29,26 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-$db->query("CREATE TABLE IF NOT EXISTS admin_<myname> (uid INT NOT NULL PRIMARY KEY, `adminlevel` INT NOT NULL)");
-
+$db->query("CREATE TABLE IF NOT EXISTS admin_<myname> (uid INT NOT NULL PRIMARY KEY, `access_level` INT NOT NULL)");
 $superAdmin = ucfirst(strtolower(Settings::get("Super Admin")));
-$uid = $this->get_uid($superAdmin);
+$uid = $chatBot->get_uid($superAdmin);
 
 if ($uid === FALSE) {
 	Logger::log(__FILE__, "could not get char_id for super admin: '$superAdmin'", ERROR);
 } else {
-	$db->query("SELECT * FROM admin_<myname> WHERE `adminlevel` = " . SUPERADMIN);
-	if ($db->numrows() == 0) {
-		$db->query("DELETE FROM admin_<myname> WHERE `uid` = $uid");
-		$db->query("INSERT INTO admin_<myname> (`adminlevel`, `uid`) VALUES (" . SUPERADMIN . ", $uid)");
-	} else {
-		$db->query("UPDATE admin_<myname> SET `uid` = $uid WHERE `adminlevel` = " . SUPERADMIN);
+	// demote any current super admins to admins
+	forEach (Admin::find_by_access_level(SUPERADMIN) as $admin) {
+		if ($admin->uid != $uid) {
+			Admin::update($admin->uid, ADMIN);
+		}
 	}
+		
+	// remove the new super admin from any other admin levels
+	Admin::remove($uid);
+	
+	// add new super admin
+	Admin::add($uid, SUPERADMIN);
+	Buddylist::add($uid, 'admin');
 }
 
 ?>

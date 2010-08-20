@@ -25,7 +25,7 @@ if (preg_match("/^onlineirc$/i", $message, $arr)) {
 			
 			$msg = Text::makeBlob("$numusers online in IRC", $list);
 			
-			$this->send($msg, $sendto);
+			$chatBot->send($msg, $sendto);
 		}
 		flush();
 	}

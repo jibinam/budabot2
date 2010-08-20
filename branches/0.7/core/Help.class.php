@@ -38,10 +38,10 @@ class Help {
 /*===========================================================================================
 ** Name: help_lookup
 ** Find a help topic for a command if it exists
-*/	public static function find($sender, $helpcmd) {
+*/	public static function find($player, $helpcmd) {
 		$helpcmd = strtolower($helpcmd);
-		$user_access_level = AccessLevel::get_user_access_level($sender);
-		$sql = "SELECT name, module, description, file FROM hlpcfg_<myname> WHERE access_level >= $user_access_level AND name = '$helpcmd' ORDER BY module ASC";
+
+		$sql = "SELECT name, module, description, file FROM hlpcfg_<myname> WHERE access_level >= $player->access_level AND name = '$helpcmd' ORDER BY module ASC";
 		$db->query($sql);
 		if ($db->numrows() == 0) {
 			return FALSE;

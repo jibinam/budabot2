@@ -78,8 +78,8 @@ if(count($bior) == 0) {
 
   	//Send Blist
   	forEach ($blist as $player) {
-		$this->send($msg, $player);
+		$chatBot->send($msg, $player);
 	}
 }
-$this->send($msg, $sendto);
+$chatBot->send($msg, $sendto);
 ?>

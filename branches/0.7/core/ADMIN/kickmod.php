@@ -30,37 +30,10 @@
    */
 
 if (preg_match("/^kickmod (.+)$/i", $message, $arr)){
-	$who = ucfirst(strtolower($arr[1]));
-	$uid = $this->get_uid($who);
-
-	if($uid == NULL){
-		$this->send("<red>Error! Player '$who' does not exist.", $sendto);
-		return;
-	}
-
-	if ($uid == $char_id) {
-		$this->send("<red>Error! You can't kick yourself.<end>", $sendto);
-		return;
-	}
-
-	$user_access_level = AccessLevel::get_user_access_level($who);
-	if ($user_access_level != MODERATOR) {
-		$this->send("<red>Error! $who is not a moderator.<end>", $sendto);
-		return;
-	}
+	$uid = $chatBot->get_uid($arr[1]);
+	$who = new Player($uid);
 	
-	$sender_access_level = AccessLevel::get_user_access_level($sender);
-	if ($sender_access_level >= $user_access_level) {
-		$this->send("<red>Error! You must have a higher access level than '$who' to modify his/her access.<end>", $sendto);
-		return;
-	}
-	
-	$db->query("DELETE FROM admin_<myname> WHERE `uid` = $uid");
-	
-	Buddylist::remove($uid, 'admin');
-	
-	$this->send("<highlight>$who<end> has been removed as a Moderator.", $sendto);
-	$this->send("You have been removed as a Moderator of <myname>", $who);
+	Admin::remove_admin($sendto, $player, $who, RAIDLEADER);
 } else {
 	$syntax_error = true;
 }

@@ -125,9 +125,9 @@ To get the Borealis Recall Beacon, you need a SD Power Core, which drops from an
 
 $msg = Text::makeLink("Guide to Foremans aka Biomare Quests", $biomare_txt); 
 if($type == "msg") 
-   $this->send($msg, $sender); 
+   $chatBot->send($msg, $sender); 
 elseif($type == "all") 
-   $this->send($msg); 
+   $chatBot->send($msg); 
 else 
-   $this->send($msg, "guild"); 
+   $chatBot->send($msg, "guild"); 
 ?>

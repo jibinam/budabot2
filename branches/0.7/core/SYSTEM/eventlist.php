@@ -42,7 +42,7 @@ if (preg_match("/^eventlist$/i", $message, $arr) || preg_match("/^eventlist (tow
 	}
 
 	$msg = Text::makeLink("Bot Settings -- Command List", $list);
- 	$this->send($msg, $sendto);
+ 	$chatBot->send($msg, $sendto);
 }
 
 ?>

@@ -38,8 +38,8 @@
 // [Org Msg] Blammo! Player has launched an orbital attack!
 
 if(preg_match("/^Blammo! (.+) has launched an orbital attack!$/i", $message, $array)) {
-	$this->send("OS !timer was set for 15 minutes", "guild");
-	$orgName = $this->vars["my guild"];
+	$chatBot->send("OS !timer was set for 15 minutes", "guild");
+	$orgName = $chatBot->vars["my guild"];
 
 	$launcher = $array[1];
 
@@ -48,7 +48,7 @@ if(preg_match("/^Blammo! (.+) has launched an orbital attack!$/i", $message, $ar
 		$unique = true;
 
 		$newTimerName = "$orgName OS/AS $i";
-		foreach($this->vars["Timers"] as $key => $timer) {
+		foreach($chatBot->vars["Timers"] as $key => $timer) {
 		  	if($timer["name"] == $newTimerName) {
 			  	$unique = false;
 			    break;
@@ -61,7 +61,7 @@ if(preg_match("/^Blammo! (.+) has launched an orbital attack!$/i", $message, $ar
 	}
 
 	$timer = time() + (15*60); // set timer for 15 minutes
-	$this->vars["Timers"][] = array("name" => $newTimerName, "owner" => $launcher, "mode" => 'guild', "timer" => $timer, "settime" => time());
+	$chatBot->vars["Timers"][] = array("name" => $newTimerName, "owner" => $launcher, "mode" => 'guild', "timer" => $timer, "settime" => time());
 	$db->query("INSERT INTO timers_<myname> (`name`, `owner`, `mode`, `timer`, `settime`) VALUES ('$newTimerName', '$launcher', 'guild', $timer, ".time().")");
 }
 

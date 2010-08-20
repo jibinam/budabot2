@@ -16,11 +16,11 @@ define('FATAL', 5);
 class Logger {
 	public static function log($file, $message, $log_level) {
 		global $vars;
-	
+
 		$file = array_pop(explode("\\", $file));
 		$timestamp = date("Ymd H:i");
 		$log_level_description = Logger::get_log_level_description($log_level);
-		
+
 		$line = str_pad("$timestamp", 14) . ' ' .  str_pad("$log_level_description", 5) . ' ' . str_pad("[$file]", 21) . ' ' . $message;
 
 		if ($log_level >= $vars['console_log_level']) {
@@ -29,7 +29,7 @@ class Logger {
 		if ($log_level >= $vars['file_log_level']) {
 			Logger::append_to_log_file($log_level_description, $line);
 		}
-		
+
 		/*
 			00:00 DEBUG [/modules/TOWER_MODULE/towers.php] [timer check]
 			00:00 INFO  [/modules/TOWER_MODULE/towers.php] [tower site added]

@@ -41,9 +41,9 @@ Redeemed temple in Inferno.</font><font color='#00ff00'> When you kill </font><f
 
 $infsanckeyo_txt = Text::makeLink("Inferno Sanctuary Garden Key - Omni", $infsanckeyo_txt); 
 if($type == "msg") 
-$this->send($infsanckeyo_txt, $sender); 
+$chatBot->send($infsanckeyo_txt, $sender); 
 elseif($type == "all") 
-$this->send($infsanckeyo_txt); 
+$chatBot->send($infsanckeyo_txt); 
 else 
-$this->send($infsanckeyo_txt, "guild"); 
+$chatBot->send($infsanckeyo_txt, "guild"); 
 ?>

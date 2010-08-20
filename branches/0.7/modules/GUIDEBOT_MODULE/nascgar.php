@@ -14,9 +14,9 @@ $nascgar_txt = "Nascence Garden
 
 $nascgar_txt = Text::makeLink("Nascense Garden Nanos", $nascgar_txt); 
 if($type == "msg") 
-$this->send($nascgar_txt, $sender); 
+$chatBot->send($nascgar_txt, $sender); 
 elseif($type == "all") 
-$this->send($nascgar_txt); 
+$chatBot->send($nascgar_txt); 
 else 
-$this->send($nascgar_txt, "guild"); 
+$chatBot->send($nascgar_txt, "guild"); 
 ?>

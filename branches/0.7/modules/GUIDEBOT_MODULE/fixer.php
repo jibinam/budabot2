@@ -56,6 +56,6 @@ Updated Fixer Guide on the Ao forums (warning:will open your web browser) #L 'Cl
 
 $fixer_txt = Text::makeLink("Guide to Fixer", $fixer_txt);
 
-$this->send($fixer_txt, $sendto);
+$chatBot->send($fixer_txt, $sendto);
 
 ?>

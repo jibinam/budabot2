@@ -163,6 +163,6 @@ At the end of a long tiring day, nothing is better than enjoying a nice sunset a
 
 $rkinfo_txt = Text::makeLink("Rubi-Ka's Little Instruction Book - Guide to AO", $rkinfo_txt);
 
-$this->send($rkinfo_txt, $sendto);
+$chatBot->send($rkinfo_txt, $sendto);
 
 ?>

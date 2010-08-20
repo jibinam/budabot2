@@ -22,7 +22,7 @@ $help .= $footer;
 $helplink = Text::makeLink("::How to use Full Auto::", $help);
 
 if((!$AttTim) || (!$RechT) || (!$FARecharge) || (!$FullAutoSkill)) {
-	$this->send($helplink, $sendto);
+	$chatBot->send($helplink, $sendto);
 } else {
 	$FACap = floor(10+$AttTim);
 
@@ -51,5 +51,5 @@ if((!$AttTim) || (!$RechT) || (!$FARecharge) || (!$FullAutoSkill)) {
 	$inside .= $footer;
 
 	$windowlink = Text::makeLink("::Your Full Auto Recharge Results::", $inside);
-	$this->send($windowlink, $sendto);
+	$chatBot->send($windowlink, $sendto);
 }

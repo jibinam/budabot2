@@ -28,7 +28,7 @@
 		elseif ($brawl_skill < 3001)
 			$i = 4; 
 		else { 
-			$this->send("Skill entered is out of range... please enter a number between <highlight>1 and 3000<end>.",$sendto);
+			$chatBot->send("Skill entered is out of range... please enter a number between <highlight>1 and 3000<end>.",$sendto);
 			return;
 		}
 		
@@ -48,8 +48,8 @@
 		$inside .= $footer;
 		
 		$windowlink = Text::makeLink("::Your Brawl skill results::", $inside);
-		$this->send($windowlink, $sendto);
+		$chatBot->send($windowlink, $sendto);
 	} else {
-		$this->send($helplink, $sendto);
+		$chatBot->send($helplink, $sendto);
 	}
 ?>

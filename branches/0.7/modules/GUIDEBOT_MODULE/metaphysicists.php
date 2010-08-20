@@ -39,9 +39,9 @@ Guide is too large to load into the bot, so I have included the link on AOForums
 
 $Metaphysicists_txt = Text::makeLink("Guide to Meta Physicists", $Metaphysicists_txt); 
 if($type == "msg") 
-$this->send($Metaphysicists_txt, $sender); 
+$chatBot->send($Metaphysicists_txt, $sender); 
 elseif($type == "all") 
-$this->send($Metaphysicists_txt); 
+$chatBot->send($Metaphysicists_txt); 
 else 
-$this->send($Metaphysicists_txt, "guild"); 
+$chatBot->send($Metaphysicists_txt, "guild"); 
 ?>

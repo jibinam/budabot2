@@ -47,16 +47,18 @@ class Text {
 
 		//Title
 		$header = $color4.":::".$color3.":::".$color2.":::".$color;
-		$header .= "$title";
+		$header .= $title;
 		$header .= "</font>:::</font>:::</font>:::</font>\n";
 
 		if ($links == TRUE) {
-			$links = array( 'Help' => "chatcmd:///tell <myname> help",
-					'About' => "chatcmd:///tell <myname> about",
-					'Download' => "chatcmd:///start http://budabot.aodevs.com/index.php?page=14");
+			$links = array(
+				'Help' => "chatcmd:///tell <myname> help",
+				'About' => "chatcmd:///tell <myname> about",
+				'Download' => "chatcmd:///start http://budabot.com"
+			);
 		}
 		if ($links != null) {
-			foreach ($links as $key => $value) {
+			forEach ($links as $key => $value) {
 				$header .= "$color4:$color3:$color2:";
 				$header .= "<a style='text-decoration:none' href='$value'>$color$key</font></a>";
 				$header .= ":</font>:</font>:</font>";

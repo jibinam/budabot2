@@ -98,9 +98,9 @@ Written by Tepamina";
 
 $lemish_txt = Text::makeLink("Information On LE Alien Missions", $lemish_txt); 
 if($type == "msg") 
-$this->send($lemish_txt, $sender); 
+$chatBot->send($lemish_txt, $sender); 
 elseif($type == "all") 
-$this->send($lemish_txt); 
+$chatBot->send($lemish_txt); 
 else 
-$this->send($lemish_txt, "guild"); 
+$chatBot->send($lemish_txt, "guild"); 
 ?>

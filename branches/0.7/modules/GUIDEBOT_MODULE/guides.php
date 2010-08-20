@@ -154,9 +154,9 @@ Special Thanks to all the great AO websites, their creators, and the folks that 
 
 $guides_txt = Text::makeLink("Guides To Anarchy Online", $guides_txt); 
 if($type == "msg") 
-$this->send($guides_txt, $sender); 
+$chatBot->send($guides_txt, $sender); 
 elseif($type == "all") 
-$this->send($guides_txt); 
+$chatBot->send($guides_txt); 
 else 
-$this->send($guides_txt, "guild"); 
+$chatBot->send($guides_txt, "guild"); 
 ?>

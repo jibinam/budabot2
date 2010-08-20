@@ -160,9 +160,9 @@ You will use the set for a while before you'll need to upgrading your Tier 1 arm
 
 $tier1armor = Text::makeLink("Making Tier 1 Armor", $tier1armor); 
 if($type == "msg") 
-$this->send($tier1armor, $sender); 
+$chatBot->send($tier1armor, $sender); 
 elseif($type == "all") 
-$this->send($tier1armor); 
+$chatBot->send($tier1armor); 
 else 
-$this->send($tier1armor, "guild"); 
+$chatBot->send($tier1armor, "guild"); 
 ?>

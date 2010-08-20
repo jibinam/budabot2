@@ -24,6 +24,6 @@ Once completed, your mission will turn into a return item type mission where you
 
 $adokey_txt = Text::makeLink("Adonis: Dalja Garden Key Quest", $adokey_txt);
 
-$this->send($adokey_txt, $sendto);
+$chatBot->send($adokey_txt, $sendto);
 
 ?>

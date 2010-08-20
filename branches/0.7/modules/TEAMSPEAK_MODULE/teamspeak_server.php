@@ -40,7 +40,7 @@ if (preg_match("/^ts$/i", $message)) {
 	//If IP isn't set show error msg
 	if ($ip == "Not set yet.") {
 	  	$msg = "You need to configure your TS Server before you can use this!";
-	    $this->send($msg, $sendto);
+	    $chatBot->send($msg, $sendto);
 		return;
 	}
 
@@ -223,7 +223,7 @@ if (preg_match("/^ts$/i", $message)) {
 		$msg = "Couldn't connect to Teamspeak Server. Try again later.";
 	}
 	
-	$this->send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

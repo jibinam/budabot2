@@ -10,18 +10,18 @@
 
 	$MODULE_NAME = "IRC_MODULE";
 	if (Settings::get('irc_channel') == "") {
-		if($this->vars['my guild'] == "") {
-			$channel = "#".strtolower($this->name);
+		if($chatBot->vars['my guild'] == "") {
+			$channel = "#".strtolower($chatBot->name);
 		} else {
-			if(strpos($this->vars['my guild']," ")) {
-				$sandbox = explode(" ",$this->vars['my guild']);
+			if(strpos($chatBot->vars['my guild']," ")) {
+				$sandbox = explode(" ",$chatBot->vars['my guild']);
 				for ($i = 0; $i < count($sandbox); $i++) {
 					$channel .= ucfirst(strtolower($sandbox[$i]));
 				}
 				$channel = "#".$channel;
 			}
 			else {
-				$channel = "#".$this->vars['my guild'];
+				$channel = "#".$chatBot->vars['my guild'];
 			}
 		}
 	}
@@ -53,7 +53,7 @@
 	Settings::add("irc_status", $MODULE_NAME, "Status of IRC uplink", "noedit", "0", "Offline;Online", "0;1", MODERATOR, "irc_help.txt");
 	Settings::add("irc_server", $MODULE_NAME, "IRC server to connect to", "noedit", "irc.funcom.com", "none", "0", MODERATOR, "irc_help.txt");
 	Settings::add("irc_port", $MODULE_NAME, "IRC server port to use", "noedit", "6667", "none", "0", MODERATOR, "irc_help.txt");
-	Settings::add("irc_nickname", $MODULE_NAME, "Nickname to use while in IRC", "noedit", $this->name, "none", "0", MODERATOR, "irc_help.txt");
+	Settings::add("irc_nickname", $MODULE_NAME, "Nickname to use while in IRC", "noedit", $chatBot->name, "none", "0", MODERATOR, "irc_help.txt");
 	Settings::add("irc_channel", $MODULE_NAME, "Channel to join", "noedit", "$channel", "none", "0", MODERATOR, "irc_help.txt");
 	Settings::add("irc_autoconnect", $MODULE_NAME, "Connect to IRC at bootup", "edit", "0", "No;Yes", "0;1", MODERATOR, "irc_help.txt");
 	Settings::add("irc_debug_ping", $MODULE_NAME, "IRC Debug Option: Show pings in console", "edit", "0", "Off;On", "0;1", MODERATOR, "irc_help.txt");

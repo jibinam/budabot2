@@ -57,6 +57,6 @@ If (preg_match("/^research ([0-9]+)$/i",$message, $arr)) {
 	$research = "<orange> Invalid sreach criteria entered.  Please enter a required Level or Level Range.<end>";
 }	
 
-$this->send($research, $sendto);
+$chatBot->send($research, $sendto);
 
 ?>

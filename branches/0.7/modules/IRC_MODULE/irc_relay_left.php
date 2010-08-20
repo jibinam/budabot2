@@ -16,7 +16,7 @@ if("1" == Settings::get('irc_status')) {
 			Logger::log_chat("IRC Out. Msg.", $sender, "has left the channel");
 		}
 	}
-	elseif($type == "logOff" && isset($this->guildmembers[$sender])) {
+	elseif($type == "logOff" && isset($chatBot->guildmembers[$sender])) {
 		flush();
 		fputs($socket, "PRIVMSG ".Settings::get('irc_channel')." :$sender has logged off.\n");
 		if(Settings::get('irc_debug_messages') == 1) {

@@ -95,7 +95,7 @@ class DB {
 		}
 
 		$this->lastQuery = $stmt;
-		Logger:log(__FILE__, "Query: $stmt", DEBUG);
+		Logger::log(__FILE__, "Query: $stmt", DEBUG);
       	$result = $this->sql->query($stmt);
       	
 		if (is_object($result)) {
@@ -131,7 +131,7 @@ class DB {
 		}
 		
 		$this->lastQuery = $stmt;
-		Logger:log(__FILE__, "Exec: $stmt", DEBUG);
+		Logger::log(__FILE__, "Exec: $stmt", DEBUG);
       	$aff_rows = $this->sql->exec($stmt);
 
 		$error = $this->sql->errorInfo();
@@ -152,7 +152,7 @@ class DB {
         }
 		
 		$this->lastQuery = $stmt;
-		Logger:log(__FILE__, "CreateTable: $stmt", DEBUG);
+		Logger::log(__FILE__, "CreateTable: $stmt", DEBUG);
 		$this->sql->exec($stmt);
 
 		$error = $this->sql->errorInfo();

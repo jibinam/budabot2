@@ -106,8 +106,8 @@ Once that is achieved and you return to Yutto to report, it will reward you with
 ;
 $spiritquest_txt = Text::makeLink("Inferno - Spirits Quest", $spiritquest_txt);
 if($type == "msg") 
-$this->send($spiritquest_txt, $sender); 
+$chatBot->send($spiritquest_txt, $sender); 
 elseif($type == "all") 
-$this->send($spiritquest_txt); 
+$chatBot->send($spiritquest_txt); 
 else 
-$this->send($spiritquest_txt, "guild"); 
+$chatBot->send($spiritquest_txt, "guild"); 

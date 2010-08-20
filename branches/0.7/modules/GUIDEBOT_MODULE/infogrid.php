@@ -36,9 +36,9 @@ The grid is a fast way to teleport to other locations within Rubi-Ka.  Fixers ha
 
 $grid_txt = Text::makeLink("Guide to The Grid", $grid_txt); 
 if($type == "msg") 
-$this->send($grid_txt, $sender); 
+$chatBot->send($grid_txt, $sender); 
 elseif($type == "all") 
-$this->send($grid_txt); 
+$chatBot->send($grid_txt); 
 else 
-$this->send($grid_txt, "guild"); 
+$chatBot->send($grid_txt, "guild"); 
 ?>

@@ -58,9 +58,9 @@ Emotional Sponge
 
 $stepsm_txt = Text::makeLink("Guide to Steps Of Madness", $stepsm_txt); 
 if($type == "msg") 
-$this->send($stepsm_txt, $sender); 
+$chatBot->send($stepsm_txt, $sender); 
 elseif($type == "all") 
-$this->send($stepsm_txt); 
+$chatBot->send($stepsm_txt); 
 else 
-$this->send($stepsm_txt, "guild"); 
+$chatBot->send($stepsm_txt, "guild"); 
 ?>

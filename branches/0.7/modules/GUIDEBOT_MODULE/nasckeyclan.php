@@ -48,9 +48,9 @@ Courtesy of AO Universe
 ;
 $nasckeyclan_txt = Text::makeLink("Elysium: Garden Key Quest Clan", $nasckeyclan_txt); 
 if($type == "msg") 
-$this->send($nasckeyclan_txt, $sender); 
+$chatBot->send($nasckeyclan_txt, $sender); 
 elseif($type == "all") 
-$this->send($nasckeyclan_txt); 
+$chatBot->send($nasckeyclan_txt); 
 else 
-$this->send($nasckeyclan_txt, "guild"); 
+$chatBot->send($nasckeyclan_txt, "guild"); 
 ?>

@@ -166,6 +166,6 @@ Guide found at AO Universe"
 ;
 $shoelyutto_txt = Text::makeLink("Knowledge Of The Yuttos - Shoel", $shoelyutto_txt);
 
-$this->send($shoelyutto_txt, $sendto);
+$chatBot->send($shoelyutto_txt, $sendto);
 
 ?>

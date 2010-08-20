@@ -222,6 +222,6 @@ Guide Courtesy of AO Universe"
 ;
 $jobeshoel_txt = Text::makeLink("Shoel Quests : Jobe Scientists", $jobeshoel_txt);
 
-$this->send($jobeshoel_txt, $sendto);
+$chatBot->send($jobeshoel_txt, $sendto);
 
 ?>

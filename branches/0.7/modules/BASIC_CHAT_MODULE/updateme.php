@@ -30,17 +30,17 @@
    */
 
 if (preg_match("/^updateme$/i", $message)) {
-  	$rk_num = $this->vars["dimension"];
-  	$cache = $this->vars["cachefolder"];
+  	$rk_num = $chatBot->vars["dimension"];
+  	$cache = $chatBot->vars["cachefolder"];
   	if (file_exists("$cache/$sender.$rk_num.xml")) {
 	    if (!unlink("$cache/$sender.$rk_num.xml")) {
-		  	$this->send("An Error occurred while trying to update your infos. Please try again laters.", $sendto);
+		  	$chatBot->send("An Error occurred while trying to update your infos. Please try again laters.", $sendto);
 		  	return;
 		}
 	    
 	    $info = new WhoisXML($sender);
 	    if ($info->errorCode != 0) {
-		  	$this->send("An Error occurred while trying to update your infos. Please try again laters.", $sendto);
+		  	$chatBot->send("An Error occurred while trying to update your infos. Please try again laters.", $sendto);
 		  	return;
 		}
 		
@@ -50,9 +50,9 @@ if (preg_match("/^updateme$/i", $message)) {
 		    $db->query("UPDATE priv_chatlist_<myname> SET `faction` = '{$info->faction}', `profession` = '{$info->prof}', `guild` = '{$info->org}', `breed` = '{$info->breed}', `level` = {$info->level}, `ai_level` = {$info->ai_level} WHERE `name` = '$sender'");
 		}
 
-		$this->send("Update successfull.", $sendto);
+		$chatBot->send("Update successfull.", $sendto);
 	} else {
-		$this->send("No update needed.", $sendto);
+		$chatBot->send("No update needed.", $sendto);
 	}
 } else {
 	$syntax_error = true;

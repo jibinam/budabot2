@@ -76,6 +76,6 @@ if (preg_match("/^premade (.*)$/i", $message, $arr)) {
 	  	}
   	}
   
-    $this->send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 }
 ?>

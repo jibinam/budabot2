@@ -31,6 +31,6 @@ The sunglasses looks damn nice on those models they fit, like for the previously
 
 $zoftig_txt = Text::makeLink("Guide to Zoftig Blimp", $zoftig_txt);
 
-$this->send($zoftig_txt, $sendto);
+$chatBot->send($zoftig_txt, $sendto);
 
 ?>
