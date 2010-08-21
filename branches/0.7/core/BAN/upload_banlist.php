@@ -32,8 +32,8 @@
 $db->query("CREATE TABLE IF NOT EXISTS banlist_<myname> (name VARCHAR(25) NOT NULL PRIMARY KEY, banned_by VARCHAR(25), time VARCHAR(10), reason TEXT NOT NULL, banend INT)");
 
 unset($this->banlist);
-$db->query("SELECT name, banned_by, time, reason, banend FROM banlist_<myname>");
-while ($row = $db->fObject()) {
+$data = $db->query("SELECT name, banned_by, time, reason, banend FROM banlist_<myname>");
+forEach ($data as $row) {
 	$this->banlist[$row->name] = $row;
 }
 ?>

@@ -38,7 +38,7 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
     	return;
 	}
 
-	$db->query("SELECT * FROM `towerranges` WHERE `low_level` <= $ql AND `high_level` >= $ql ORDER BY `playfield` LIMIT 0, 40");
+	$data = $db->query("SELECT * FROM `towerranges` WHERE `low_level` <= $ql AND `high_level` >= $ql ORDER BY `playfield` LIMIT 0, 40");
 	if ($db->numrows() == 0) {
 		$msg = "No matches.";
 		$chatBot->send($msg, $sendto);
@@ -52,7 +52,7 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 		$list .= "\n";
 	}
 
-	while ($row = $db->fObject()) {
+	forEach ($data as $row) {
 	 	if ($playfield != $row->playfield) {
 	 	 	$playfield = $row->playfield;
 	 		$list .= "<highlight><u>$row->playfield</u><end>\n";
@@ -67,7 +67,7 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 } else if (preg_match("/^lca ([a-z ]+)$/i", $message, $arr)) {
 	$name = $arr[1];
 
-	$db->query("SELECT * FROM `towerranges` WHERE `playfield` LIKE '$name' ORDER BY `low_level` LIMIT 0, 40");
+	$data = $db->query("SELECT * FROM `towerranges` WHERE `playfield` LIKE '$name' ORDER BY `low_level` LIMIT 0, 40");
 	if ($db->numrows() == 0) {
 		$msg = "No matches.";
 		$chatBot->send($msg, $sendto);
@@ -81,7 +81,7 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 		$list .= "\n";
 	}
 
-	while ($row = $db->fObject()) {
+	forEach ($data as $row) {
 	 	if ($playfield != $row->playfield) {
 	 	 	$playfield = $row->playfield;
 	 		$list .= "<highlight><u>$row->playfield</u><end>\n";
@@ -103,7 +103,7 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
     	return;
 	}
 	
-	$db->query("SELECT * FROM `towerranges` WHERE `playfield` LIKE '$name' AND `low_level` <= $ql AND `high_level` >= $ql ORDER BY `low_level` LIMIT 0, 40");
+	$data = $db->query("SELECT * FROM `towerranges` WHERE `playfield` LIKE '$name' AND `low_level` <= $ql AND `high_level` >= $ql ORDER BY `low_level` LIMIT 0, 40");
 	if ($db->numrows() == 0) {
 		$msg = "No matches.";
 		$chatBot->send($msg, $sendto);
@@ -117,7 +117,7 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 		$list .= "\n";
 	}
 
-	while ($row = $db->fObject()) {
+	forEach ($data as $row) {
 	 	if ($playfield != $row->playfield) {
 	 	 	$playfield = $row->playfield;
 	 		$list .= "<highlight><u>$row->playfield</u><end>\n";

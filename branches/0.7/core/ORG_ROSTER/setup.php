@@ -5,9 +5,10 @@ $db->query("CREATE TABLE IF NOT EXISTS org_members_<myname> (`name` VARCHAR(25) 
 
 //Create the var that contains all members of the org
 unset($chatBot->guildmembers);
-$db->query("SELECT * FROM org_members_<myname>");
-if($db->numrows() != 0) {
-	while($row = $db->fObject())
+$data = $db->query("SELECT * FROM org_members_<myname>");
+if ($db->numrows() != 0) {
+	forEach ($data as $row) {
 		$chatBot->guildmembers[$row->name] = $row->rank_id;
+	}
 }
 ?>

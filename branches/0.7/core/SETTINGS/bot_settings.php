@@ -30,16 +30,16 @@
    */
 
 $names = "";
-$db->query("SELECT name FROM settings_<myname> WHERE `mode` != 'hide'");
-while($row = $db->fObject())
+$data = $db->query("SELECT name FROM settings_<myname> WHERE `mode` != 'hide'");
+forEach ($data as $row) {
 	$names .= $row->name."|";
+}
 	
 $names = substr($names, 0, -1);
 if (preg_match("/^settings$/i", $message)) {
   	$link  = "<header>::::: Bot Settings :::::<end>\n\n";
  	$link .= "<highlight>You can see here a list of all Settings that can be changed without a restart of the bot. Please note that not all can be changed only the ones that have a 'Change this' behind their name, on the rest you can see only the current setting but can't change it. When you click on 'Change it' a new poopup cames up and you see a list of allowed options for this setting. \n\n<end>";
- 	$db->query("SELECT * FROM settings_<myname> WHERE `mode` != 'hide' ORDER BY `module`");
-	$data	 = $db->fObject("all");
+ 	$data = $db->query("SELECT * FROM settings_<myname> WHERE `mode` != 'hide' ORDER BY `module`");
  	forEach ($data as $row) {
 		if ($row->module != "" && $row->module != "Basic Settings") {
 			$db->query("SELECT * FROM cmdcfg_<myname> WHERE `module` = '".strtoupper($row->module)."' AND `status` = 1");
@@ -90,11 +90,10 @@ if (preg_match("/^settings$/i", $message)) {
  	$chatBot->send($msg, $sendto);
 } elseif(preg_match("/^settings change ($names)$/i", $message, $arr)) {
     $link = "<header>::::: Settings for $arr[1] :::::<end>\n\n";
- 	$db->query("SELECT * FROM settings_<myname> WHERE `name` = '$arr[1]'");
+ 	$row = $db->query("SELECT * FROM settings_<myname> WHERE `name` = '$arr[1]'", true);
 	if($db->numrows() == 0)
 		$msg = "This setting doesn't exists.";
 	else {
-		$row = $db->fObject();
 		$options = explode(";", $row->options);
 		if($options[0] == "color") {
 		  	$link .= "For this setting you can set any Color in the HTML Hexadecimal Color Format.\n";
@@ -154,11 +153,10 @@ if (preg_match("/^settings$/i", $message)) {
 } elseif(preg_match("/^settings save ($names) (.+)$/i", $message, $arr)) {
   	$name_setting = strtolower($arr[1]);
   	$change_to_setting = $arr[2];
- 	$db->query("SELECT * FROM settings_<myname> WHERE `name` = '$name_setting'");
+ 	$row = $db->query("SELECT * FROM settings_<myname> WHERE `name` = '$name_setting'", true);
 	if($db->numrows() == 0)
 		$msg = "This setting doesn't exists.";
 	else {
-		$row = $db->fObject();
 		$options = explode(";", $row->options);
 		$new_setting = "";
 		if($options[0] == "color") {
@@ -225,9 +223,8 @@ if (preg_match("/^settings$/i", $message)) {
  	$chatBot->send($msg, $sendto);
 } elseif(preg_match("/^settings help (.+)$/i", $message, $arr)) {
   	$name = $arr[1];
- 	$db->query("SELECT * FROM settings_<myname> WHERE `name` = '$name'");  
-	if($db->numrows() != 0) {
-	  	$row = $db->fObject();
+ 	$row = $db->query("SELECT * FROM settings_<myname> WHERE `name` = '$name'", true);
+	if ($db->numrows() != 0) {
 		$data = file_get_contents($row->help);
 		$msg = Text::makeLink("Help on setting $name", $data);
 	} else {

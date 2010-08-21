@@ -42,11 +42,10 @@ class Help {
 		$helpcmd = strtolower($helpcmd);
 
 		$sql = "SELECT name, module, description, file FROM hlpcfg_<myname> WHERE access_level >= $player->access_level AND name = '$helpcmd' ORDER BY module ASC";
-		$db->query($sql);
+		$help = $db->query($sql, true);
 		if ($db->numrows() == 0) {
 			return FALSE;
 		} else {
-			$help = $db->fObject();
 			$path = Util::get_full_path($help);;
 			$data = file_get_contents($path);
 			$helpcmd = ucfirst($helpcmd);

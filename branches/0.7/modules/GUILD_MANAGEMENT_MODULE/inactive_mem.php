@@ -12,7 +12,7 @@ if (preg_match("/^inactivemem ([0-9]+)/i", $message, $arr)) {
 	}
 	
 	$inactive_deadline = time() - (2592000*$arr[1]);
-	$db->query("SELECT * FROM $table LEFT JOIN alts ON name=alt WHERE `mode` != 'del' AND `logged_off` != '0' AND `logged_off` < $inactive_deadline  ORDER BY name");  
+	$data = $db->query("SELECT * FROM $table LEFT JOIN alts ON name=alt WHERE `mode` != 'del' AND `logged_off` != '0' AND `logged_off` < $inactive_deadline  ORDER BY name");  
 	$members = $db->numrows();
   	if ($members == 0) {
 	    $chatBot->send("No members recorded.", $sendto);    
@@ -25,15 +25,14 @@ if (preg_match("/^inactivemem ([0-9]+)/i", $message, $arr)) {
 	$list .="<red>**Be careful with clicking the Org Kick links.  It will cause you to /org kick, and the bot can't help you undo that.<end>\n";
 	$list .="<u>Name [Main], Last seen, Options</u>\n";
 	
-	$data = $db->fObject("all");
 	forEach ($data as $row) {
 		$kick = 1;
 		$logged = 0;
 		$main = $row->main;
 		if ($row->main != "") {
-			$db->query("SELECT * FROM alts LEFT JOIN $table ON alt = name WHERE `main` = '{$row->main}'");
+			$data2 = $db->query("SELECT * FROM alts LEFT JOIN $table ON alt = name WHERE `main` = '{$row->main}'");
 	
-			while ($row1 = $db->fObject()) {
+			forEach ($data2 as $row) {
 				if ($row1->logged_off > $logged) {
 					$logged = $row1->logged_off;
 					$lasttoon = $row1->name;

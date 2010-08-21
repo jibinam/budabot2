@@ -81,18 +81,16 @@ function parse_incoming_bbin($bbinmsg, $nick, &$bot) {
 		// send actual online members
 
 		$msg = "[BBIN:ONLINELIST:".$bot->vars["dimension"].":";
-		$db->query("SELECT * FROM guild_chatlist_<myname>");
+		$data = $db->query("SELECT * FROM guild_chatlist_<myname>");
 		$numrows = $db->numrows();
-		$data = $db->fObject("all");
 
 		forEach ($data as $row) {
 			// add members
 			$msg .= $row->name . ",0,";
 		}
 
-		$db->query("SELECT * FROM priv_chatlist_<myname>");
+		$data = $db->query("SELECT * FROM priv_chatlist_<myname>");
 		$numrows += $db->numrows();
-		$data = $db->fObject("all");
 
 		forEach ($data as $row) {
 			// add guests

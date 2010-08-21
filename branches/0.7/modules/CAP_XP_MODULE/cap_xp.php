@@ -54,8 +54,7 @@ if (preg_match("/^(capxp|capsk) ([0-9]+)/i$", $message, $arr)) {
 }
 
 if ($reward >= 300) {
-	$db->query("SELECT * FROM levels WHERE `level` = $lvl");
-	$row = $db->fObject();
+	$row = $db->query("SELECT * FROM levels WHERE `level` = $lvl", true);
 
 	if ($lvl < 200) {
 		$xp = $row->xpsk;

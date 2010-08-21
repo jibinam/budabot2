@@ -32,19 +32,18 @@
 if (preg_match("/^pb (.+)$/i", $message, $arr)) {
 	$search = str_replace(" ", "%", $arr[1]);
 	$pb = ucfirst(strtolower($arr[1]));
-  	$db->query("SELECT * FROM pbdb WHERE `pb` LIKE '%$search%' GROUP BY `pb` ORDER BY `pb`");
+  	$data = $db->query("SELECT * FROM pbdb WHERE `pb` LIKE '%$search%' GROUP BY `pb` ORDER BY `pb`");
 	$pb_found = $db->numrows();
   	if ($pb_found >= 1 && $pb_found <= 5) {
 		$msg = "Pocketbosses matching: ";
-  	  	$data = $db->fObject("all");
 		forEach ($data as $row) {
 			$link .= "<highlight>Location:<end> $row->pb_location\n";
 			$link .= "<highlight>Found on:<end> $row->bp_mob\n";
 			$link .= "<highlight>Mob Level:<end> $row->bp_lvl\n";
 			$link .= "<highlight>General Location:<end> $row->bp_location\n";
 			$link .= "_____________________________\n";
-			$db->query("SELECT * FROM pbdb WHERE pb = '$row->pb' ORDER BY ql");
-			while ($symb = $db->fObject()){
+			$data2 = $db->query("SELECT * FROM pbdb WHERE pb = '$row->pb' ORDER BY ql");
+			forEach ($data2 as $row) {
 			  	$name = "QL $symb->ql $symb->line $symb->slot Symbiant, $symb->type Unit Aban";
 			  	$link .= Text::makeItem($symb->itemid, $symb->itemid, $symb->ql, $name)."\n";
 			}
@@ -106,8 +105,7 @@ if (preg_match("/^pb (.+)$/i", $message, $arr)) {
 	$arr[1] = ucfirst($arr[1]);
 	$arr[2] = ucfirst($arr[2]);
 
-  	$db->query("SELECT * FROM pbdb WHERE `slot` = '$arr[1]' AND `type` = '$arr[2]' ORDER BY `ql` DESC");
-  	$data = $db->fObject("all");
+  	$data = $db->query("SELECT * FROM pbdb WHERE `slot` = '$arr[1]' AND `type` = '$arr[2]' ORDER BY `ql` DESC");
 	$numrows = $db->numrows();
 	if ($numrows != 0) {
 		forEach ($data as $row) {
@@ -172,8 +170,7 @@ if (preg_match("/^pb (.+)$/i", $message, $arr)) {
 	$arr[1] = ucfirst($arr[1]);
 	$arr[$index] = ucfirst($arr[$index]);
 
-  	$db->query("SELECT * FROM pbdb WHERE `slot` = '{$arr[$index]}' AND `type` = '$arr[1]' ORDER BY `ql` DESC");
-  	$data = $db->fObject("all");
+  	$data = $db->query("SELECT * FROM pbdb WHERE `slot` = '{$arr[$index]}' AND `type` = '$arr[1]' ORDER BY `ql` DESC");
 	$numrows = $db->numrows();
 	if ($numrows != 0) {
 		forEach ($data as $row) {

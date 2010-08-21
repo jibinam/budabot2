@@ -8,9 +8,9 @@ $db->query("CREATE TABLE IF NOT EXISTS $table (`question` TEXT(500), `author` TE
 if (!isset($chatBot->vars["Vote"])) {
 	// Upload votes that are still running to global vars
 	
-	$db->query("SELECT * FROM $table WHERE `status` < '8' AND `duration` IS NOT NULL");
+	$data = $db->query("SELECT * FROM $table WHERE `status` < '8' AND `duration` IS NOT NULL");
 
-	while($row = $db->fObject()) {
+	forEach ($data as $row) {
 		$chatBot->vars["Vote"][$row->question] = array("author" => $row->author, "started" => $row->started, "duration" => $row->duration, "answer" => $row->answer, "lockout" => $row->status);
 	}
 }

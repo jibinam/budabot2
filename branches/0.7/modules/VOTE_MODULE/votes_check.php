@@ -85,10 +85,10 @@ foreach($chatBot->vars["Vote"] as $key => $value) {
 
 	if($title != "") { // Send current results to guest + org chat.
 
-		$db->query("SELECT * FROM $table WHERE `question` = '".str_replace("'", "''", $question)."'");
+		$data = $db->query("SELECT * FROM $table WHERE `question` = '".str_replace("'", "''", $question)."'");
 
 		$results = array();
-		while($row = $db->fObject()) {
+		forEach ($data as $row) {
 			if ($row->duration) {
 				$question = $row->question; $author = $row->author; $started = $row->started;
 				$duration = $row->duration; $status = $row->status;

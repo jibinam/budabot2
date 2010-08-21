@@ -38,10 +38,10 @@ if (preg_match("/^nlline ([0-9]*)$/i", $message, $arr)) {
 	$nanoline_id = $arr[1];
 
 	$sql = "SELECT * FROM aonanos_nanolines WHERE id = $nanoline_id";
-	$db->query($sql);
+	$row = $db->query($sql, true);
 
 	$msg = '';
-	if ($row = $db->fObject()) {
+	if ($row != null) {
 
 		$header = "$row->profession $row->name Nanos";
 
@@ -60,9 +60,9 @@ if (preg_match("/^nlline ([0-9]*)$/i", $message, $arr)) {
 				nanoline_id = $nanoline_id
 			ORDER BY
 				a.ql DESC, a.name ASC";
-		$db->query($sql);
+		$data = $db->query($sql);
 		$count = 0;
-		while($row = $db->fObject()) {
+		forEach ($data as $row) {
 
 			$count++;
 			$window .= "<a href='itemref://" . $row->low_id . "/" . $row->high_id . "/" . $row->ql . "'>" . $row->name . "</a>";

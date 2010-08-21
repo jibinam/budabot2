@@ -35,7 +35,7 @@ if(preg_match("/^orgranks$/i", $message)) {
         $chatBot->send($msg, $sendto);
 	}
 	
-	$db->query("SELECT * FROM org_members_<myname> WHERE `mode` != 'del' ORDER BY `rank_id`");  
+	$data = $db->query("SELECT * FROM org_members_<myname> WHERE `mode` != 'del' ORDER BY `rank_id`");  
 	$members = $db->numrows();
   	if($members == 0) {
 	  	$msg = "No members recorded.";
@@ -45,7 +45,7 @@ if(preg_match("/^orgranks$/i", $message)) {
 	$msg = "Processing orgmember list. This can take a few seconds.";
     $chatBot->send($msg, $sendto);
        	
-	while($row = $db->fObject()) {
+	forEach ($data as $row) {
         if($row->logged_off != "0")
 	        $logged_off = gmdate("l F d, Y - H:i", $row->logged_off)."(GMT)";
 	    else

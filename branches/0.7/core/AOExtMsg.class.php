@@ -168,8 +168,8 @@ class AOExtMsg {
 	public static function get_extended_message($em) {
 		global $db;
 	
-		$db->query("SELECT category, entry, message FROM mmdb_data WHERE category = $em->category AND entry = $em->instance");
-		if ($row = $db->fObject()) {
+		$row = $db->query("SELECT category, entry, message FROM mmdb_data WHERE category = $em->category AND entry = $em->instance", true);
+		if ($row) {
 			$message = vsprintf($row->message, $em->args);
 		} else {
 			Logger::log(__FILE__, "cannot find extended message with category: '$em->category' and instance: '$em->instance", ERROR);

@@ -28,7 +28,7 @@
    ** along with Budabot; if not, write to the Free Software
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
-   
+
 if (Whitelist::check($sender) || isset($chatBot->admins[$sender]) || $sender == Settings::get("relaybot")) {
 	// nothing to do
 	return;

@@ -95,8 +95,7 @@ class Command {
 		global $db;
 		
 		$sql = "SELECT * from cmdcfg_<myname> WHERE `cmd` = '$name'";
-		$db->query($sql);
-		return $db->fObject();
+		return $db->query($sql, true);
 	}
 	
 	public static function find_command_for_user($player, $cmd, $type) {
@@ -107,8 +106,7 @@ class Command {
 		}
 		
 		$sql = "SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '$cmd' AND {$type}_status = 1 AND {$type}_access_level >= $player->access_level";
-		$db->query($sql);
-		return $db->fObject();
+		return $db->query($sql, true);
 	}
 	
 	public static function fire_command(&$params) {

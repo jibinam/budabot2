@@ -31,9 +31,8 @@
 
 if (Settings::get("relaybot") != "Off" && isset($chatBot->guildmembers[$sender])) {
     $msg = "";
-    $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$sender'");
+    $row = $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$sender'", true);
 	$numrows = $db->numrows();
-	$row = $db->fObject();
 	if ($row->mode != "del" && $numrows == 1) {
         if (time() >= $chatBot->vars["onlinedelay"]) {
             if ($row->firstname) {
@@ -64,9 +63,8 @@ if (Settings::get("relaybot") != "Off" && isset($chatBot->guildmembers[$sender])
             $db->query("SELECT * FROM alts WHERE `main` = '$sender'");
             if ($db->numrows() == 0) {
                 // Check if $sender is an alt
-                $db->query("SELECT * FROM alts WHERE `alt` = '$sender'");
+                $row = $db->query("SELECT * FROM alts WHERE `alt` = '$sender'", true);
                 if ($db->numrows() != 0) {
-                    $row = $db->fObject();
                     $main = $row->main;
                 }
             } else {
@@ -87,8 +85,8 @@ if (Settings::get("relaybot") != "Off" && isset($chatBot->guildmembers[$sender])
 				}
 
                 $list .= ":::::::: Alt Character(s)\n";
-                $db->query("SELECT * FROM alts WHERE `main` = '$main'");
-                while ($row = $db->fObject()) {
+                $data = $db->query("SELECT * FROM alts WHERE `main` = '$main'");
+                forEach ($data as $row) {
                     $list .= "<tab><tab>".Text::makeLink($row->alt, "/tell <myname> whois $row->alt", "chatcmd")." - ";
 					$online = $chatBot->buddy_online($row->alt);
                     if ($online === null) {

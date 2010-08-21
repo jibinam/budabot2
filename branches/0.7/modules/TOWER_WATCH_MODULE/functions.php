@@ -24,12 +24,12 @@ function getAllSitesInfo() {
 
 	$array = array();
 	global $db;
-	$db->query("SELECT * FROM tower_watch ORDER BY org, ct_ql");
+	$data = $db->query("SELECT * FROM tower_watch ORDER BY org, ct_ql");
 	$i = 0;
 
 	$secondsPastMidnight = time() % 86400;
 	
-	while ($site = $db->fObject()) {
+	forEach ($data as $site) {
 
 		$time = $secondsPastMidnight;
 		if ($site->close_time > $secondsPastMidnight) {

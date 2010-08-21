@@ -15,7 +15,7 @@ if (preg_match("/^spirits ([^0-9,]+)$/i", $message, $arr)) {
 	$name = $arr[1];
 	$name = ucwords(strtolower($name));
 	$title = "Search Spirits Database for $name";
-	$db->query("SELECT * FROM spiritsdb WHERE name LIKE '%".str_replace("'", "''", $name)."%' OR spot LIKE '%".str_replace("'", "''", $name)."%' ORDER BY level");
+	$data = $db->query("SELECT * FROM spiritsdb WHERE name LIKE '%".str_replace("'", "''", $name)."%' OR spot LIKE '%".str_replace("'", "''", $name)."%' ORDER BY level");
 	$matches= $db->numrows();
 	if ($matches == 0) {
 		$spirits .="<red>There were no matches found for $name.\nTry putting a comma between search values.\n\n";
@@ -34,7 +34,6 @@ if (preg_match("/^spirits ([^0-9,]+)$/i", $message, $arr)) {
 		$spirits .="Rhand\n";
 		$spirits .="Feet\n";
 	} else {
-		$data = $db->fobject("all");
 		forEach ($data as $row) {
 			$name = $row->name;
 			$spot = $row->spot;
@@ -42,8 +41,7 @@ if (preg_match("/^spirits ([^0-9,]+)$/i", $message, $arr)) {
 			$loid = $row->id;
 			$agi = $row->agility;
 			
-			$db->query("SELECT * FROM aodb WHERE lowid = '$loid'");
-			$data = $db->fobject("all");
+			$data = $db->query("SELECT * FROM aodb WHERE lowid = '$loid'");
 			forEach ($data as $row); {
 				$hiid = $row->highid;
 				$icon = $row->icon;
@@ -88,12 +86,11 @@ else if (preg_match("/^spirits ([^0-9]+),([^0-9]+)$/i", $message, $arr)) {
 	$name = trim($name);
 	$slot = ucwords(strtolower($slot));
 	$slot = trim($slot);
-	$db->query("SELECT * FROM spiritsdb WHERE name LIKE '%".str_replace("'", "''", $name)."%' AND spot = '$slot' ORDER BY level");
+	$data = $db->query("SELECT * FROM spiritsdb WHERE name LIKE '%".str_replace("'", "''", $name)."%' AND spot = '$slot' ORDER BY level");
 	$matches= $db->numrows();
 	if ($matches == 0) {
 		$spirits .= "<red>No matches found for $name $slot";
 	}
-	$data = $db->fobject("all");
 	forEach ($data as $row) {
 		$name = $row->name;
 		$spot = $row->spot;
@@ -101,9 +98,8 @@ else if (preg_match("/^spirits ([^0-9]+),([^0-9]+)$/i", $message, $arr)) {
 		$loid = $row->id;
 		$agi = $row->agility;
 		
-		$db->query("SELECT * FROM aodb WHERE lowid = '$loid'");
-		$data = $db->fobject("all");
-		forEach ($data as $row); {
+		$data2 = $db->query("SELECT * FROM aodb WHERE lowid = '$loid'");
+		forEach ($data2 as $row); {
 			$hiid = $row->highid;
 			$icon = $row->icon;
 			$phat = $row->name;
@@ -123,8 +119,7 @@ else if (preg_match("/^spirits ([0-9]+)$/i", $message, $arr)) {
         return;
     }
 	$title = "Search for Spirits QL $ql";
-	$db->query("SELECT * FROM spiritsdb where ql = $ql ORDER BY ql");
-	$data = $db->fobject("all");
+	$data = $db->query("SELECT * FROM spiritsdb where ql = $ql ORDER BY ql");
 	forEach ($data as $row) {
 		$name = $row->name;
 		$spot = $row->spot;
@@ -132,9 +127,8 @@ else if (preg_match("/^spirits ([0-9]+)$/i", $message, $arr)) {
 		$loid = $row->id;
 		$agi = $row->agility;
 		
-		$db->query("SELECT * FROM aodb WHERE lowid = $loid");
-		$data = $db->fobject("all");
-		forEach ($data as $row); {
+		$data2 = $db->query("SELECT * FROM aodb WHERE lowid = $loid");
+		forEach ($data2 as $row); {
 			$hiid = $row->highid;
 			$icon = $row->icon;
 			$phat = $row->name;
@@ -155,8 +149,7 @@ else if (preg_match("/^spirits ([0-9]+)-([0-9]+)$/i", $message, $arr)) {
         return;
 	}
 	$title = "Search for Spirits QL $qllorange to $qlhirange";
-	$db->query("SELECT * FROM spiritsdb where ql >= $qllorange AND ql <= $qlhirange ORDER BY ql");
-	$data = $db->fobject("all");
+	$data = $db->query("SELECT * FROM spiritsdb where ql >= $qllorange AND ql <= $qlhirange ORDER BY ql");
 	forEach ($data as $row) {
 		$name = $row->name;
 		$spot = $row->spot;
@@ -164,9 +157,8 @@ else if (preg_match("/^spirits ([0-9]+)-([0-9]+)$/i", $message, $arr)) {
 		$loid = $row->id;
 		$agi = $row->agility;
 		
-		$db->query("SELECT * FROM aodb WHERE lowid = $loid");
-		$data = $db->fobject("all");
-		forEach ($data as $row); {
+		$data2 = $db->query("SELECT * FROM aodb WHERE lowid = $loid");
+		forEach ($data2 as $row); {
 			$hiid = $row->highid;
 			$icon = $row->icon;
 			$phat = $row->name;
@@ -205,12 +197,11 @@ else if (preg_match("/^spirits ([0-9]+) (.+)$/i", $message, $arr)) {
 		$spirits .="Feet\n";
 	} else  {
 		$title = "Search for $name Spirits QL $ql";
-		$db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND ql = $ql ORDER BY ql");
+		$data = $db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND ql = $ql ORDER BY ql");
 		$matches = $db->numrows();
 		if ($matches == 0) {
 			$spirits .="<red>There were no matches for Ql $ql $name";
 		}
-		$data = $db->fobject("all");
 		forEach ($data as $row) {
 			$name = $row->name;
 			$spot = $row->spot;
@@ -218,9 +209,8 @@ else if (preg_match("/^spirits ([0-9]+) (.+)$/i", $message, $arr)) {
 			$loid = $row->id;
 			$agi = $row->agility;
 			
-			$db->query("SELECT * FROM aodb WHERE lowid = $loid");
-			$data = $db->fobject("all");
-			forEach ($data as $row); {
+			$data2 = $db->query("SELECT * FROM aodb WHERE lowid = $loid");
+			forEach ($data2 as $row); {
 				$hiid = $row->highid;
 				$icon = $row->icon;
 				$phat = $row->name;
@@ -261,12 +251,11 @@ else if (preg_match("/^spirits ([0-9]+)-([0-9]+) (.+)$/i", $message, $arr)) {
 		$spirits .="Feet\n";
 	} else {
 		$title = "Search for $name Spirits QL $qllorange to $qlhirange";
-		$db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND ql >= $qllorange AND ql <= $qlhirange ORDER BY ql");
+		$data = $db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND ql >= $qllorange AND ql <= $qlhirange ORDER BY ql");
 		$matches = $db->numrows();
 		if ($matches == 0) {
 			$spirits .="<red>There were no matches for Ql $qllorange-$qlhirange $name";
 		}
-		$data = $db->fobject("all");
 		forEach ($data as $row) {
 			$name = $row->name;
 			$spot = $row->spot;
@@ -274,9 +263,8 @@ else if (preg_match("/^spirits ([0-9]+)-([0-9]+) (.+)$/i", $message, $arr)) {
 			$loid = $row->id;
 			$agi = $row->agility;
 			
-			$db->query("SELECT * FROM aodb WHERE lowid = $loid");
-			$data = $db->fobject("all");
-			forEach ($data as $row); {
+			$data2 = $db->query("SELECT * FROM aodb WHERE lowid = $loid");
+			forEach ($data2 as $row); {
 				$hiid = $row->highid;
 				$icon = $row->icon;
 				$phat = $row->name;
@@ -298,8 +286,7 @@ else if (preg_match ("/^spiritslvl ([0-9]+)$/i", $message, $arr)) {
     }
 	$title = "Search for Spirits Level $lvl";
 	$lolvl = $lvl-10;
-	$db->query("SELECT * FROM spiritsdb where level < $lvl AND level > $lolvl ORDER BY level");
-	$data = $db->fobject("all");
+	$data = $db->query("SELECT * FROM spiritsdb where level < $lvl AND level > $lolvl ORDER BY level");
 	forEach ($data as $row) {
 		$name = $row->name;
 		$spot = $row->spot;
@@ -307,9 +294,8 @@ else if (preg_match ("/^spiritslvl ([0-9]+)$/i", $message, $arr)) {
 		$loid = $row->id;
 		$agi = $row->agility;
 		
-		$db->query("SELECT * FROM aodb WHERE lowid = $loid");
-		$data = $db->fobject("all");
-		forEach ($data as $row); {
+		$data2 = $db->query("SELECT * FROM aodb WHERE lowid = $loid");
+		forEach ($data2 as $row); {
 			$hiid = $row->highid;
 			$icon = $row->icon;
 			$phat = $row->name;
@@ -330,8 +316,7 @@ else if (preg_match("/^spiritslvl ([0-9]+)-([0-9]+)$/i", $message, $arr)) {
         return;
 	}
 	$title = "Search for Spirits Level $lvllorange to $lvlhirange";
-	$db->query("SELECT * FROM spiritsdb where level >= $lvllorange AND level <= $lvlhirange ORDER BY level");
-	$data = $db->fobject("all");
+	$data = $db->query("SELECT * FROM spiritsdb where level >= $lvllorange AND level <= $lvlhirange ORDER BY level");
 	forEach ($data as $row) {
 		$name = $row->name;
 		$spot = $row->spot;
@@ -339,9 +324,8 @@ else if (preg_match("/^spiritslvl ([0-9]+)-([0-9]+)$/i", $message, $arr)) {
 		$loid = $row->id;
 		$agi = $row->agility;
 		
-		$db->query("SELECT * FROM aodb WHERE lowid = $loid");
-		$data = $db->fobject("all");
-		forEach ($data as $row); {
+		$data2 = $db->query("SELECT * FROM aodb WHERE lowid = $loid");
+		forEach ($data2 as $row); {
 			$hiid = $row->highid;
 			$icon = $row->icon;
 			$phat = $row->name;
@@ -381,12 +365,11 @@ else if (ereg ("/^spiritslvl ([0-9]+) (.+)$/i", $message, $arr)) {
 	} else {
 		$title = "Search for $name Spirits Level $lvl";
 		$lolvl = $lvl-10;
-		$db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND level < $lvl AND level > $lolvl ORDER BY level");
+		$data = $db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND level < $lvl AND level > $lolvl ORDER BY level");
 		$matches = $db->numrows();
 		if ($matches == 0) {
 			$spirits .="<red>There were no matches for Minimum Level $lvl $name";
 		}
-		$data = $db->fobject("all");
 		forEach ($data as $row) {
 			$name = $row->name;
 			$spot = $row->spot;
@@ -394,9 +377,8 @@ else if (ereg ("/^spiritslvl ([0-9]+) (.+)$/i", $message, $arr)) {
 			$loid = $row->id;
 			$agi = $row->agility;
 			
-			$db->query("SELECT * FROM aodb WHERE lowid = $loid");
-			$data = $db->fobject("all");
-			forEach ($data as $row); {
+			$data2 = $db->query("SELECT * FROM aodb WHERE lowid = $loid");
+			forEach ($data2 as $row); {
 				$hiid = $row->highid;
 				$icon = $row->icon;
 				$phat = $row->name;
@@ -437,12 +419,11 @@ else if (preg_match("/^spiritslvl ([0-9]+)-([0-9]+) (.+)$/i", $message, $arr)) {
 		$spirits .="Feet\n";
 	} else {
 		$title = "Search for $name Spirits Level $lvllorange to $lvlhirange";
-		$db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND level >= $lvllorange AND level <= $lvlhirange ORDER BY level");
+		$data = $db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND level >= $lvllorange AND level <= $lvlhirange ORDER BY level");
 		$matches = $db->numrows();
 		if ($matches == 0) {
 			$spirits .="<red>There were no matches for Minimum Level $lvllorange-$lvlhirange $name";
 		}
-		$data = $db->fobject("all");
 		forEach ($data as $row) {
 			$name = $row->name;
 			$spot = $row->spot;
@@ -450,9 +431,8 @@ else if (preg_match("/^spiritslvl ([0-9]+)-([0-9]+) (.+)$/i", $message, $arr)) {
 			$loid = $row->id;
 			$agi = $row->agility;
 			
-			$db->query("SELECT * FROM aodb WHERE lowid = $loid");
-			$data = $db->fobject("all");
-			forEach ($data as $row); {
+			$data2 = $db->query("SELECT * FROM aodb WHERE lowid = $loid");
+			forEach ($data2 as $row); {
 				$hiid = $row->highid;
 				$icon = $row->icon;
 				$phat = $row->name;
@@ -469,12 +449,11 @@ else if (preg_match ("/^spiritsagi ([0-9,]+)$/i", $message, $arr)) {
 	$agility = $arr[1];
 	$loagility = $agility - 10;
 	$title = "Search Spirits Database for Agility Requirement of $agility";
-	$db->query("SELECT * FROM spiritsdb WHERE agility < $agility AND agility > $loagility ORDER BY level");
+	$data = $db->query("SELECT * FROM spiritsdb WHERE agility < $agility AND agility > $loagility ORDER BY level");
 	$matches = $db->numrows();
 	if ($matches == 0) {
 		$spirits .="<red>There were no matches for Spirits with an Agility Requirement of $agility";
 	}
-	$data = $db->fobject("all");
 	forEach ($data as $row) {
 		$name = $row->name;
 		$spot = $row->spot;
@@ -482,9 +461,8 @@ else if (preg_match ("/^spiritsagi ([0-9,]+)$/i", $message, $arr)) {
 		$loid = $row->id;
 		$agi = $row->agility;
 		
-		$db->query("SELECT * FROM aodb WHERE lowid = '$loid'");
-		$data = $db->fobject("all");
-		forEach ($data as $row); {
+		$data2 = $db->query("SELECT * FROM aodb WHERE lowid = '$loid'");
+		forEach ($data2 as $row); {
 			$hiid = $row->highid;
 			$icon = $row->icon;
 			$phat = $row->name;
@@ -525,12 +503,11 @@ else if (preg_match ("/^spiritsagi ([0-9]+) (.+)$/i", $message, $arr)) {
 		$spirits .="Feet\n";
 	} else  {
 		$title = "Search for $name Spirits With Agility Req of $agility";
-		$db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND agility < $agility AND agility > $loagility ORDER BY ql");
+		$data = $db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND agility < $agility AND agility > $loagility ORDER BY ql");
 		$matches = $db->numrows();
 		if ($matches == 0) {
 			$spirits .="<red>There were no matches for $name with an Agility Requirement of $agility";
 		}
-		$data = $db->fobject("all");
 		forEach ($data as $row) {
 			$name = $row->name;
 			$spot = $row->spot;
@@ -538,9 +515,8 @@ else if (preg_match ("/^spiritsagi ([0-9]+) (.+)$/i", $message, $arr)) {
 			$loid = $row->id;
 			$agi = $row->agility;
 			
-			$db->query("SELECT * FROM aodb WHERE lowid = $loid");
-			$data = $db->fobject("all");
-			forEach ($data as $row); {
+			$data2 = $db->query("SELECT * FROM aodb WHERE lowid = $loid");
+			forEach ($data2 as $row); {
 				$hiid = $row->highid;
 				$icon = $row->icon;
 				$phat = $row->name;
@@ -557,12 +533,11 @@ else if (preg_match ("/^spiritssen ([0-9,]+)$/i", $message, $arr)) {
 	$sense = $arr[1];
 	$losense = $sense - 10;
 	$title = "Search Spirits Database for Sense Requirement of $sense";
-	$db->query("SELECT * FROM spiritsdb WHERE sense < $sense AND sense > $losense ORDER BY level");
+	$data = $db->query("SELECT * FROM spiritsdb WHERE sense < $sense AND sense > $losense ORDER BY level");
 	$matches = $db->numrows();
 	if ($matches == 0) {
 		$spirits .="<red>There were no matches for Spirits with a Sense Requirement of $sense";
 	}
-	$data = $db->fobject("all");
 	forEach ($data as $row) {
 		$name = $row->name;
 		$spot = $row->spot;
@@ -570,9 +545,8 @@ else if (preg_match ("/^spiritssen ([0-9,]+)$/i", $message, $arr)) {
 		$loid = $row->id;
 		$sen = $row->sense;
 		
-		$db->query("SELECT * FROM aodb WHERE lowid = '$loid'");
-		$data = $db->fobject("all");
-		forEach ($data as $row); {
+		$data2 = $db->query("SELECT * FROM aodb WHERE lowid = '$loid'");
+		forEach ($data2 as $row); {
 			$hiid = $row->highid;
 			$icon = $row->icon;
 			$phat = $row->name;
@@ -612,12 +586,11 @@ else if (preg_match ("/^spiritssen ([0-9]+) (.+)$/i", $message, $arr)) {
 		$spirits .="Feet\n";
 	} else  {
 		$title = "Search for $name Spirits With Sense Req of $sense";
-		$db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND sense < $sense AND sense > $losense ORDER BY ql");
+		$data = $db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND sense < $sense AND sense > $losense ORDER BY ql");
 		$matches = $db->numrows();
 		if ($matches == 0) {
 			$spirits .="<red>There were no matches for $name with a Sense Requirement of $sense";
 		}
-		$data = $db->fobject("all");
 		forEach ($data as $row) {
 			$name = $row->name;
 			$spot = $row->spot;
@@ -625,9 +598,8 @@ else if (preg_match ("/^spiritssen ([0-9]+) (.+)$/i", $message, $arr)) {
 			$loid = $row->id;
 			$agi = $row->agility;
 			
-			$db->query("SELECT * FROM aodb WHERE lowid = $loid");
-			$data = $db->fobject("all");
-			forEach ($data as $row); {
+			$data2 = $db->query("SELECT * FROM aodb WHERE lowid = $loid");
+			forEach ($data2 as $row); {
 				$hiid = $row->highid;
 				$icon = $row->icon;
 				$phat = $row->name;

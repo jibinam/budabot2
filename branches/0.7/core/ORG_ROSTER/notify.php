@@ -33,22 +33,20 @@ if (preg_match("/^notify (on|add) (.+)$/i", $message, $arr)) {
     // Get User id
     $uid = $chatBot->get_uid($arr[2]);
 	$name = ucfirst(strtolower($arr[2]));
-    $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$name'");
+    $row = $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$name'");
 	$numrows = $db->numrows();
-	if($numrows != 0) {
-	    $row = $db->fObject();
-	}
+
     // Is the player already a member?
-    if($numrows != 0 && $row->mode != "del") {
+    if ($numrows != 0 && $row->mode != "del") {
         $msg = "<highlight>$name<end> is already on the Notify list.";
     // If the member was deleted set him as manual added again
-    } elseif ($numrows != 0 && $row->mode == "del") {
-        $db->query("UPDATE org_members_<myname> SET `mode` = 'man' WHERE `name` = '$name'");
+    } else if ($numrows != 0 && $row->mode == "del") {
+        $db->exec("UPDATE org_members_<myname> SET `mode` = 'man' WHERE `name` = '$name'");
         Buddylist::add($uid, 'org');
 	    
     	$msg = "<highlight>$name<end> has been added to the Notify list.";
     // Is the player name valid?
-    } elseif($uid) {
+    } else if ($uid) {
         // Getting Player infos
         $whois = new WhoisXML($name);
 
@@ -64,7 +62,7 @@ if (preg_match("/^notify (on|add) (.+)$/i", $message, $arr)) {
 		  	$whois -> gender = "Unknown";
 		  	$whois -> breed = "Unknown";
 		}
-        $db->query("INSERT INTO org_members_<myname> (`mode`, `name`, `firstname`, `lastname`, `guild`, `rank_id`, `rank`, `level`, `profession`, `gender`, `breed`, `ai_level`, `ai_rank`)
+        $db->exec("INSERT INTO org_members_<myname> (`mode`, `name`, `firstname`, `lastname`, `guild`, `rank_id`, `rank`, `level`, `profession`, `gender`, `breed`, `ai_level`, `ai_rank`)
                     VALUES ('man',
                     '".$name."', '".$whois -> firstname."',
                     '".$whois -> lastname."', '".$whois -> org."',
@@ -83,15 +81,13 @@ if (preg_match("/^notify (on|add) (.+)$/i", $message, $arr)) {
     $chatBot->send($msg, $sendto);
 } else if (preg_match("/^notify (off|rem) (.+)$/i", $message, $arr)) {
     $name = ucfirst(strtolower($arr[2]));
-    $query = $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$name'");
+    $row = $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$name'");
 	$numrows = $db->numrows();
-	if($numrows != 0)
-	    $row = $db->fObject();
-	    
+
     // Is the player a member of this bot?
     if($numrows != 0 && $row->mode != "del") {
-        $db->query("UPDATE org_members_<myname> SET `mode` = 'del' WHERE `name` = '$name'");
-        $db->query("DELETE FROM guild_chatlist_<myname> WHERE `name` = '$name'");
+        $db->exec("UPDATE org_members_<myname> SET `mode` = 'del' WHERE `name` = '$name'");
+        $db->exec("DELETE FROM guild_chatlist_<myname> WHERE `name` = '$name'");
         $msg = "Removed <highlight>$name<end> from the Notify list.";
     // Player is not a member of this bot
     } else {

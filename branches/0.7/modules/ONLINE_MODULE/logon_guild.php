@@ -30,9 +30,8 @@
    */
 
 $msg = "";
-$db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$sender'");
+$org_member = $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$sender'", true);
 $numrows = $db->numrows();
-$org_member = $db->fObject();
 if($org_member->mode != "del" && $numrows == 1) {
   	$db->query("SELECT * FROM guild_chatlist_<myname> WHERE `name` = '$sender'");
 	if ($db->numrows() != 0) {
@@ -68,9 +67,8 @@ if($org_member->mode != "del" && $numrows == 1) {
         $db->query("SELECT * FROM alts WHERE `main` = '$sender'");
         if ($db->numrows() == 0) {
             // Check if $sender is an alt
-            $db->query("SELECT * FROM alts WHERE `alt` = '$sender'");
+            $row = $db->query("SELECT * FROM alts WHERE `alt` = '$sender'", true);
             if ($db->numrows() != 0) {
-                $row = $db->fObject();
                 $main = $row->main;
             }
         } else {
@@ -92,8 +90,8 @@ if($org_member->mode != "del" && $numrows == 1) {
 			}
 
             $list .= ":::::: Alt Character(s)\n";
-            $db->query("SELECT * FROM alts WHERE `main` = '$main'");
-            while ($row = $db->fObject()) {
+            $data = $db->query("SELECT * FROM alts WHERE `main` = '$main'");
+            forEach ($data as $row) {
                 $list .= "<tab><tab>".bot::makeLink($row->alt, "/tell <myname> whois $row->alt", "chatcmd")." - ";
 				$online = Buddylist::is_online($row->alt);
                 if ($online === null) {

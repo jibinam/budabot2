@@ -45,9 +45,9 @@ if (preg_match("/^delnews ([0-9]+)$/i", $message, $arr)) {
 
     $chatBot->send($msg, $sendto);
 } else if (preg_match("/^news$/i", $message, $arr)) {
-	$db->query("SELECT * FROM news_<myname> ORDER BY `time` DESC LIMIT 0, 10");
+	$data = $db->query("SELECT * FROM news_<myname> ORDER BY `time` DESC LIMIT 0, 10");
 	if ($db->numrows() != 0) {
-		while ($row = $db->fObject()) {
+		forEach ($data as $row) {
 		  	if (!$updated) {
 				$updated = $row->time;
 			}

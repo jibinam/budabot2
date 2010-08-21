@@ -16,15 +16,13 @@ class Admin {
 	public static function get($uid) {
 		global $db;
 		
-		$db->query("SELECT * FROM admin_<myname> WHERE `uid` = $uid");
-		return $db->fObject();
+		return $db->query("SELECT * FROM admin_<myname> WHERE `uid` = $uid", true);
 	}
 	
 	public static function find_all() {
 		global $db;
 		
-		$db->query("SELECT * FROM admin_<myname> ORDER BY `access_level` ASC");
-		return $db->fObject('all');
+		return $db->query("SELECT * FROM admin_<myname> ORDER BY `access_level` ASC");
 	}
 	
 	public static function update($uid, $access_level) {
@@ -36,8 +34,7 @@ class Admin {
 	public static function find_by_access_level($access_level) {
 		global $db;
 		
-		$db->query("SELECT * FROM admin_<myname> WHERE `access_level` = $access_level");
-		return $db->fObject('all');
+		return $db->query("SELECT * FROM admin_<myname> WHERE `access_level` = $access_level");
 	}
 	
 	public static function add_or_update_admin(&$sendto, &$player, &$who, $access_level) {

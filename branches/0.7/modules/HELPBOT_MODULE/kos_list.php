@@ -30,11 +30,11 @@
  */
 
 if (preg_match("/^kos$/i", $message)) {
-	$db->query("SELECT * FROM koslist_<myname>");
+	$data = $db->query("SELECT * FROM koslist_<myname>");
 	if ($db->numrows() == 0) {
 		$msg = "No list exists yet.";
 	} else {
-		while ($row = $db->fObject()) {
+		forEach ($data as $row) {
 			$list[$row->name]++;
 		}
 
@@ -98,10 +98,10 @@ if (preg_match("/^kos$/i", $message)) {
 	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^kos (.+)$/i", $message, $arr)) {
 	$name = ucfirst(strtolower($arr[1]));
-	$db->query("SELECT * FROM koslist_<myname> WHERE `name` = '".str_replace("'", "''", $name)."' LIMIT 0, 40");
+	$data = $db->query("SELECT * FROM koslist_<myname> WHERE `name` = '".str_replace("'", "''", $name)."' LIMIT 0, 40");
 	if ($db->numrows() >= 1) {
 		$link .= "The following Players has added <highlight>$name<end> to his list\n\n";
-		while ($row = $db->fObject()) {
+		forEach ($data as $row) {
 			$link .= "Name: <highlight>$row->sender<end>\n";
 			$link .= "Date: <highlight>".gmdate("dS F Y, H:i", $row->time)."<end>\n";
 			if ($row->reason != "0" && "" != $row->reason) {

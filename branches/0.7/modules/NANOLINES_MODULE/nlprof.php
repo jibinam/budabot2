@@ -43,11 +43,11 @@ if (preg_match("/^nlprof (.*)$/i", $message, $arr)) {
 	}
 
 	$sql = "SELECT * FROM aonanos_nanolines WHERE profession LIKE '%$profession%' ORDER BY name ASC";
-	$db->query($sql);
+	$data = $db->query($sql);
 
 	$count = 0;
 	$profession = '';
-	while ($row = $db->fObject()) {
+	forEach ($data as $row) {
 
 		$count++;
 		if (Settings::get("shownanolineicons") == "1") {

@@ -31,10 +31,10 @@
 
 if (preg_match("/^onlineguests$/i", $message)) {
 	if (count($chatBot->vars["Guest"]) > 0) {
-		$db->query("SELECT * FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY `profession`, `level` DESC");
+		$data = $db->query("SELECT * FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY `profession`, `level` DESC");
 		$numguest = $db->numrows();
 
-	    while ($row = $db->fObject()) {
+	    forEach ($data as $row) {
             if ($oldprof != $row->profession) {
                 $list .= "\n<tab><highlight>$row->profession<end>\n";
                 $oldprof = $row->profession;

@@ -16,13 +16,11 @@ $msg = '';
 if (preg_match("/^whereis (.+)$/i", $message, $arr)) {
 	$search = $arr[1];
 	$search = ucwords(strtolower($search));
-	$db->query("SELECT * FROM whereis WHERE name LIKE '%".str_replace("'", "''", $search)."%'");
+	$data = $db->query("SELECT * FROM whereis WHERE name LIKE '%".str_replace("'", "''", $search)."%'");
 	$whereis_found = $db->numrows();
 	$whereis = '';
 	
-	$data = $db->fobject("all");
-	foreach($data as $row)
-	{
+	forEach ($data as $row) {
 		$whereis .= "<yellow>$row->name \n <green>Can be found $row->answer\n";
 	}
 	

@@ -56,16 +56,14 @@ class Event {
 		global $db;
 		
 		$sql = "SELECT * FROM eventcfg_<myname> WHERE `module` = '$module' AND `type` = '$type' AND `file` = '$filename'";
-		$db->query($sql);
-		return $db->fObject();
+		return $db->query($sql, true);
 	}
 	
 	public static function find_active_events_by_type($type) {
 		global $db;
 		
 		$sql = "SELECT * FROM eventcfg_<myname> WHERE `type` = '$type' AND `status` = 1";
-		$db->query($sql);
-		return $db->fObject("all");
+		return $db->query($sql);
 	}
 	
 	public static function fire_event(&$params) {

@@ -23,23 +23,20 @@
 function searchByProfession($profession) {
 	
 	global $db;
-	$db->query("SELECT * FROM premade_implant WHERE profession = '$profession' ORDER BY slot");
-	return $db->fObject("all");
+	return $db->query("SELECT * FROM premade_implant WHERE profession = '$profession' ORDER BY slot");
 }
 
 function searchBySlot($slot) {
 
 	global $db;
 	$sql = "SELECT * FROM premade_implant WHERE slot = '$slot' ORDER BY shiny, bright, faded";
-	$db->query($sql);
-	return $db->fObject("all");
+	return $db->query($sql);
 }
 
 function searchByModifier($modifier) {
 	
 	global $db;
-	$db->query("SELECT * FROM premade_implant WHERE shiny LIKE '%$modifier%' OR bright LIKE '%$modifier%' OR faded LIKE '%$modifier%'");
-	return $db->fObject("all");
+	return $db->query("SELECT * FROM premade_implant WHERE shiny LIKE '%$modifier%' OR bright LIKE '%$modifier%' OR faded LIKE '%$modifier%'");
 }
 
 function formatResults($implants) {

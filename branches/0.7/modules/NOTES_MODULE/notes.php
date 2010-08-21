@@ -34,10 +34,10 @@ if (preg_match("/^notes?$/i", $message)) {
 	$moreInfoMsg = '';
 
 	$sql = "SELECT * FROM notes_<myname> WHERE name LIKE '$sender'";
-  	$db->query($sql);
-  	while ($note = $db->fObject()) {
-	  	$remove = Text::makeLink('Remove', "/tell <myname> <symbol>note rem $note->id" , 'chatcmd');
-	  	$moreInfoMsg .= "$remove $note->note\n\n";
+  	$data = $db->query($sql);
+  	forEach ($data as $row) {
+	  	$remove = Text::makeLink('Remove', "/tell <myname> <symbol>note rem $row->id" , 'chatcmd');
+	  	$moreInfoMsg .= "$remove $row->note\n\n";
 	}
 	
 	if ($moreInfoMsg == '') {

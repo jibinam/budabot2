@@ -76,16 +76,16 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
     }
     if ($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $chatBot->vars["Guest"][$sender] == true)) {
 	    if (Settings::get("relaydb"))
-			$db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `profession` = '$prof' AND `guest` = 1 ORDER BY level");
+			$data = $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `profession` = '$prof' AND `guest` = 1 ORDER BY level");
 	    else
-		    $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `profession` = '$prof' AND `guest` = 1 ORDER BY level"); 
+		    $data = $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `profession` = '$prof' AND `guest` = 1 ORDER BY level"); 
 	} elseif ($type == "priv" || (Settings::get("count_tell") == 1 && $type == "msg")) {
-	  	$db->query("SELECT * FROM priv_chatlist_<myname> WHERE `profession` = '$prof' ORDER BY `level`");
+	  	$data = $db->query("SELECT * FROM priv_chatlist_<myname> WHERE `profession` = '$prof' ORDER BY `level`");
 	}
     $numonline = $db->numrows();
     $msg = "<highlight>$numonline<end> $prof:";
 
-    while($row = $db->fObject()) {
+    forEach ($data as $row) {
         if($row->afk == "kiting")
             $afk = "<red>*KITING*<end>";
 		elseif($row->afk != "0")
@@ -105,14 +105,14 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
 	$tl7 = 0;
 	if($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $chatBot->vars["Guest"][$sender] == true)) {							
 	    if(Settings::get("relaydb"))
-		    $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY level");
+		    $data = $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY level");
 	    else
-		    $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY level"); 
+		    $data = $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY level"); 
  	} elseif($type == "priv"  || (Settings::get("count_tell") == 1 && $type == "msg")) {
-	  	$db->query("SELECT * FROM priv_chatlist_<myname>");
+	  	$data = $db->query("SELECT * FROM priv_chatlist_<myname>");
 	} 
 	$numonline = $db->numrows();
-    while($row = $db->fObject()) {
+    forEach ($data as $row) {
       	if($row->level > 1 && $row->level <= 14)
       		$tl1++;
       	elseif($row->level >= 15 && $row->level <= 49)
@@ -207,7 +207,7 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
             $online[$prof] = 0;
             break;
     }
-    if(!$prof) {
+    if (!$prof) {
         $msg = "Please choose one of these professions: adv, agent, crat, doc, enf, eng, fix, keep, ma, mp, nt, sol, shade, trader or all";
 	    $chatBot->send($msg, $sendto);
 	    return;
@@ -215,38 +215,38 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
 	if($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $chatBot->vars["Guest"][$sender] == true)) {
 	    if(Settings::get("relaydb")) {
 	        if($prof == "all") {
-				$db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY profession");
+				$data = $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY profession");
 	            $numonline = $db->numrows();
 	            $msg = "<highlight>$numonline<end> in total: ";
 	        } else {
-				$db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `profession` = '$prof' AND `guest` = 1 ORDER BY level");
+				$data = $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `profession` = '$prof' AND `guest` = 1 ORDER BY level");
 	            $numonline = $db->numrows();
 	            $msg = "<highlight>$numonline<end> $prof:";
 	        }
 	    } else {
 	        if($prof == "all") {
-				$db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY profession");
+				$data = $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY profession");
 	            $numonline = $db->numrows();
 	            $msg = "<highlight>$numonline<end> in total: ";
 	        } else {
-				$db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `profession` = '$prof' AND `guest`= 1 ORDER BY level");
+				$data = $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `profession` = '$prof' AND `guest`= 1 ORDER BY level");
 	            $numonline = $db->numrows();
 	            $msg = "<highlight>$numonline<end> $prof:";
 	        }
 		}
  	} elseif($type == "priv" || (Settings::get("count_tell") == 1 && $type == "msg")) {
         if($prof == "all") {
-            $db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `profession`");
+            $data = $db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `profession`");
             $numonline = $db->numrows();
             $msg = "<highlight>$numonline<end> in total: ";
         } else {
-            $db->query("SELECT * FROM priv_chatlist_<myname> WHERE `profession` = '$prof' ORDER BY `level`");
+            $data = $db->query("SELECT * FROM priv_chatlist_<myname> WHERE `profession` = '$prof' ORDER BY `level`");
             $numonline = $db->numrows();
             $msg = "<highlight>$numonline<end> $prof:";
         }
 	}  
 
-    while($row = $db->fObject()) {
+    forEach ($data as $row) {
 	    if($prof == "all")
     	    $online[$row->profession]++;
         else {

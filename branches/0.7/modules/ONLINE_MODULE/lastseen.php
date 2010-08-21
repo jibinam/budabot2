@@ -36,9 +36,8 @@ if (preg_match("/^lastseen (.+)$/i", $message, $arr)) {
     if (!$uid) {
         $msg = "Player <highlight>$name<end> does not exist.";
     } else {
-	    $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$name' AND `mode` != 'del'");
+	    $row = $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$name' AND `mode` != 'del'", true);
         if ($db->numrows() == 1) {
-    	    $row = $db->fObject();
     	    if (Buddylist::is_online($name)) {
     	    	$msg = "This player is currently <green>online<end>.";
             } else if ($row->logged_off != "0") {

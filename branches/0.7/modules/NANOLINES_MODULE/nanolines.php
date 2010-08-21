@@ -36,9 +36,9 @@
 if (preg_match("/^nanolines$/i", $message, $arr)) {
 
 	$sql = "SELECT DISTINCT profession FROM aonanos_nanolines ORDER BY profession ASC";
-	$db->query($sql);
+	$data = $db->query($sql);
 
-	while($row = $db->fObject()) {
+	forEach ($data as $row) {
 
 		$window .= Text::makeLink($row->profession, "/tell <myname> <symbol>nlprof $row->profession", 'chatcmd');
 		$window .= "\n";

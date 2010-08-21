@@ -107,7 +107,7 @@ class Budabot extends AOChat {
 		Logger::log(__FILE__, "End: Loading CORE MODULES", DEBUG);
 		
 		// Load User Modules
-		//$this->load_user_modules();
+		$this->load_user_modules();
 	}
 	
 	public function connectedEvents() {
@@ -143,7 +143,7 @@ class Budabot extends AOChat {
 
 
 		//Register modules
-		$this->register_modules();
+		//$this->register_modules();
 		
 		//Delete old entrys in the DB
 		$db->query("DELETE FROM hlpcfg_<myname> WHERE verify = 0 AND `is_core` = 0");

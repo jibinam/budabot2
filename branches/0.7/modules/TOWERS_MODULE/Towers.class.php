@@ -31,8 +31,7 @@ class Towers {
 			ORDER BY
 				proximity ASC
 			LIMIT 1";
-		$db->query($sql);
-		return $db->fObject();		
+		return $db->query($sql, true);
 	}
 }
 

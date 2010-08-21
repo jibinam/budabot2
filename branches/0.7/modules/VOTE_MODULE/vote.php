@@ -51,10 +51,10 @@ if (!function_exists(timeLeft)) {
 // Listing of all votes
 if (preg_match("/^vote$/i", $message)) {
 	
-	$db->query("SELECT * FROM $table WHERE `duration` IS NOT NULL ORDER BY `started`");
+	$data = $db->query("SELECT * FROM $table WHERE `duration` IS NOT NULL ORDER BY `started`");
 	
 	if ($db->numrows() > 0) {
-		while($row = $db->fObject()) {
+		forEach ($data as $row) {
 			$question = $row->question; $started = $row->started; $duration = $row->duration;
 			$line = "<tab>" . Text::makeLink($question, "/tell <myname> vote $question", 'chatcmd');
 			
@@ -79,13 +79,13 @@ if (preg_match("/^vote$/i", $message)) {
 	//////////////////////////////////////
 	if (count($sect) == 1) { // Show vote
 		
-		$db->query("SELECT * FROM $table WHERE `question` = '".str_replace("'", "''", $sect[0])."'");
+		$data = $db->query("SELECT * FROM $table WHERE `question` = '".str_replace("'", "''", $sect[0])."'");
 		
 		if ($db->numrows() <= 0) { $msg = "Couldn't find any votes with this topic.";} 
 		
 		else {
 			$results = array();
-			while($row = $db->fObject()) {
+			forEach ($data as $row) {
 				if ($row->duration) {
 					$question = $row->question; $author = $row->author; $started = $row->started;
 					$duration = $row->duration; $status = $row->status;
@@ -144,8 +144,7 @@ if (preg_match("/^vote$/i", $message)) {
 				$msg .="<tab>" . Text::makeLink('End the vote early', "/tell <myname> vote end$delimiter$question" , 'chatcmd');
 			}
 			
-			$db->query("SELECT * FROM $table WHERE `author` = '$sender' AND `question` = '$question' AND `duration` IS NULL");
-			$row = $db->fObject();
+			$row = $db->query("SELECT * FROM $table WHERE `author` = '$sender' AND `question` = '$question' AND `duration` IS NULL", true);
 			if ($row->answer && $timeleft > 0) {$privmsg = "On this vote, you already selected: <highlight>(".$row->answer.")<end>.";}
 			elseif ($timeleft > 0){$privmsg = "You haven't voted on this one yet.";}
 			
@@ -188,11 +187,10 @@ if (preg_match("/^vote$/i", $message)) {
 	/////////////////////////////////////////////////////////////////////////////////
 	} elseif (count($sect) == 2 && strtolower($sect[0]) == "end") {      // End vote
 
-		$db->query("SELECT * FROM $table WHERE `question` = '".str_replace("'", "''", $sect[1])."' AND `author` = '$sender' AND `duration` IS NOT NULL");
+		$row = $db->query("SELECT * FROM $table WHERE `question` = '".str_replace("'", "''", $sect[1])."' AND `author` = '$sender' AND `duration` IS NOT NULL", true);
 		
 		if ($db->numrows() == 0) {$msg = "Either this vote doesn't exist, or you didn't create it.";}
 		else {
-			$row = $db->fObject();
 			$question = $row->question; $author = $row->author; $started = $row->started;
 			$duration = $row->duration; $status = $row->status;
 			$timeleft = $started+$duration-time();		
@@ -221,8 +219,7 @@ if (preg_match("/^vote$/i", $message)) {
 		}
 
 		
-		$db->query("SELECT * FROM $table WHERE `question` = '".str_replace("'", "''", $sect[0])."' AND `duration` IS NOT NULL");
-		$row = $db->fObject();
+		$row = $db->query("SELECT * FROM $table WHERE `question` = '".str_replace("'", "''", $sect[0])."' AND `duration` IS NOT NULL", true);
 		$question = $row->question; $author = $row->author; $started = $row->started;
 		$duration = $row->duration; $status = $row->status; $answer = $row->answer;
 		$timeleft = $started+$duration-time();	

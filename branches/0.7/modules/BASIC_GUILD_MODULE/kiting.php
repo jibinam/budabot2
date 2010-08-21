@@ -30,15 +30,14 @@
    */
 
 if ($type == "guild") {
-	$db->query("SELECT afk FROM guild_chatlist_<myname> WHERE `name` = '$sender'");
+	$row = $db->query("SELECT afk FROM guild_chatlist_<myname> WHERE `name` = '$sender'", true);
 	$numrows = $db->numrows();
-	$row = $db->fObject();
 	if (preg_match("/^kiting$/i", $message, $arr) && $numrows != 0) {
 	    if ($row->afk != 'kiting') {
-	        $db->query("UPDATE guild_chatlist_<myname> SET `afk` = 'kiting' WHERE `name` = '$sender'");
+	        $db->exec("UPDATE guild_chatlist_<myname> SET `afk` = 'kiting' WHERE `name` = '$sender'");
 	        $msg = "<highlight>$sender<end> is now kiting";
 	    } else if ($row->afk != '0') {
-	        $db->query("UPDATE guild_chatlist_<myname> SET `afk` = '0' WHERE `name` = '$sender'");
+	        $db->exec("UPDATE guild_chatlist_<myname> SET `afk` = '0' WHERE `name` = '$sender'");
 	        $msg = "<highlight>$sender<end> is back";
 	    }
 	    $chatBot->send($msg, "guild");
@@ -46,15 +45,14 @@ if ($type == "guild") {
 		$syntax_error = true;
 	}
 } else {
-	$db->query("SELECT afk FROM priv_chatlist_<myname> WHERE `name` = '$sender'");
+	$row = $db->query("SELECT afk FROM priv_chatlist_<myname> WHERE `name` = '$sender'", true);
 	$numrows = $db->numrows();
-	$row = $db->fObject();
 	if (preg_match("/^kiting$/i", $message, $arr) && $numrows != 0) {
 	    if ($row->afk != 'kiting') {
-	        $db->query("UPDATE priv_chatlist_<myname> SET `afk` = 'kiting' WHERE `name` = '$sender'");
+	        $db->exec("UPDATE priv_chatlist_<myname> SET `afk` = 'kiting' WHERE `name` = '$sender'");
 	        $msg = "<highlight>$sender<end> is now kiting";
 	    } else if ($row->afk != '0') {
-	        $db->query("UPDATE priv_chatlist_<myname> SET `afk` = '0' WHERE `name` = '$sender'");
+	        $db->exec("UPDATE priv_chatlist_<myname> SET `afk` = '0' WHERE `name` = '$sender'");
 	        $msg = "<highlight>$sender<end> is back";
 	    }
 	    $chatBot->send($msg);

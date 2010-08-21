@@ -40,9 +40,8 @@ if (preg_match("/^is (.+)$/i", $message, $arr)) {
     } else {
         //if the player is a buddy then
         if (Buddylist::is_buddy($uid, NULL)) {
-            $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$name' AND `mode` != 'del'");
+            $row = $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$name' AND `mode` != 'del'", true);
             if ($db->numrows() == 1) {
-                $row = $db->fObject();
                 if($row->logged_off != "0") {
                     $logged_off = "\nLogged off at ".gmdate("l F d, Y - H:i", $row->logged_off)."(GMT)";
 				}

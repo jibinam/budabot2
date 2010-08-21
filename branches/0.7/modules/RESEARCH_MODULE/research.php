@@ -11,8 +11,7 @@ If (preg_match("/^research ([0-9]+)$/i",$message, $arr)) {
 		$research .= "<orange>Invalid Research Level Input. Valid reserch levels are from 1-10.<end>";
 	} else {
 		$sql = "SELECT * FROM research WHERE level = $level";
-		$db->query($sql);
-		$row = $db->fObject();
+		$row = $db->query($sql, true);
 		
 		$levelcap = $row->levelcap;
 		$sk = $row->sk;
@@ -43,8 +42,8 @@ If (preg_match("/^research ([0-9]+)$/i",$message, $arr)) {
 				research r2
 			WHERE
 				r1.level = $lolevel AND r2.level = $hilevel";
-		$db->query($sql);
-		$row = $db->fobject();
+		$row = $db->query($sql, true);
+
 		$range = $row->hisk - $row->losk;
 		$xp = number_format($range * 1000);
 		$range = number_format($range);

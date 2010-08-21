@@ -57,8 +57,7 @@ if (preg_match("/^config$/i", $message)) {
 		ORDER BY
 			module ASC";
 
-	$db->query($sql);
-	$data = $db->fObject("all");
+	$data = $db->query($sql);
 	forEach ($data as $row) {
 		$db->query("SELECT * FROM hlpcfg_<myname> WHERE `module` = '".strtoupper($row->module)."'");
 		if ($db->numrows() > 0) {
@@ -89,8 +88,7 @@ if (preg_match("/^config$/i", $message)) {
 	$typeSql = ($arr[2] == "all" ? "`type` = 'guild' OR `type` = 'priv' OR `type` = 'msg'" : "`type` = '{$arr[2]}'");
 	
 	$sql = "SELECT type, file, cmd, admin FROM cmdcfg_<myname> WHERE (`cmdevent` = 'cmd' OR `cmdevent` = 'subcmd') AND ($typeSql)";
-	$db->query($sql);
-	$data = $db->fObject('all');
+	$data = $db->query($sql);
 	forEach ($data as $row) {
 	  	if ($status == 1) {
 			$chatBot->regcommand($row->type, $row->file, $row->cmd, $row->access_level);
@@ -119,19 +117,19 @@ if (preg_match("/^config$/i", $message)) {
 		$status = 0;
 	
 	if($arr[1] == "mod" && $type == "all")
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `module` = '$cmdmod'");
+		$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `module` = '$cmdmod'");
 	elseif($arr[1] == "mod" && $type != "all")
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `module` = '$cmdmod' AND `type` = '$type'");
+		$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `module` = '$cmdmod' AND `type` = '$type'");
 	elseif($arr[1] == "cmd" && $type != "all")
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '$cmdmod' AND `type` = '$type' AND `cmdevent` = 'cmd'");
+		$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '$cmdmod' AND `type` = '$type' AND `cmdevent` = 'cmd'");
 	elseif($arr[1] == "cmd" && $type == "all")
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '$cmdmod' AND `cmdevent` = 'cmd'");
+		$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '$cmdmod' AND `cmdevent` = 'cmd'");
 	elseif($arr[1] == "grp" && $type != "all")
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `grp` = '$cmdmod' AND `type` = '$type' AND `cmdevent` = 'cmd'");
+		$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `grp` = '$cmdmod' AND `type` = '$type' AND `cmdevent` = 'cmd'");
 	elseif($arr[1] == "grp" && $type == "all")
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `grp` = '$cmdmod' AND `cmdevent` = 'cmd'");
+		$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `grp` = '$cmdmod' AND `cmdevent` = 'cmd'");
 	elseif($arr[1] == "event" && $file != "")
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `file` = '$file' AND `cmdevent` = 'event' AND `type` = '$cmdmod'");	
+		$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `file` = '$file' AND `cmdevent` = 'event' AND `type` = '$cmdmod'");	
 	else
 		$msg = "Unknown Syntax for this command. Pls look into the help system for usage of this command.";
 
@@ -172,7 +170,6 @@ if (preg_match("/^config$/i", $message)) {
 
 	$chatBot->send($msg, $sendto);
 
-	$data = $db->fObject("all");
 	forEach ($data as $row) {
 	  	if ($row->cmdevent != "event") {
 		  	if ($status == 1) {
@@ -256,9 +253,9 @@ if (preg_match("/^config$/i", $message)) {
 		}
 	} elseif($channel == "grp") {
 	  	if($type == "all")
-			$db->query("SELECT * FROM cmdcfg_<myname> WHERE `grp` = '$command' AND `cmdevent` = 'cmd'");
+			$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `grp` = '$command' AND `cmdevent` = 'cmd'");
 		else
-			$db->query("SELECT * FROM cmdcfg_<myname> WHERE `grp` = '$command' AND `type` = '$type' AND `cmdevent` = 'cmd'");
+			$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `grp` = '$command' AND `type` = '$type' AND `cmdevent` = 'cmd'");
 	
 		if($db->numrows() == 0) {
 			if($arr[3] == "all")
@@ -268,7 +265,7 @@ if (preg_match("/^config$/i", $message)) {
 		  	$chatBot->send($msg, $sendto);
 		  	return;
 		}
-		while($row = $db->fObject()) {
+		forEach ($data as $row) {
 			switch($arr[3]) {
 				case "all":
 					if($chatBot->tellCmds[$row->cmd])
@@ -298,13 +295,13 @@ if (preg_match("/^config$/i", $message)) {
 			$msg = "Updated access of group <highlight>$command<end> in Channel <highlight>$type<end> to <highlight>$arr[4]<end>";
 		}
 	} else {
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `type` = '$type' AND `cmdevent` = 'subcmd' AND `cmd` = '$command'");
+		$row = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `type` = '$type' AND `cmdevent` = 'subcmd' AND `cmd` = '$command'", true);
 		if($db->numrows() == 0) {
 			$msg = "Could not find the subcmd <highlight>$command<end> for Channel <highlight>$type<end>";
 		  	$chatBot->send($msg, $sendto);
 		  	return;
 		}
-		$row = $db->fObject();
+
 		$chatBot->subcommands[$row->file][$row->type]["access_level"] = $access_level;		
 		$db->query("UPDATE cmdcfg_<myname> SET `access_level` = $access_level WHERE `type` = '$type' AND `cmdevent` = 'subcmd' AND `cmd` = '$command'");
 		$msg = "Updated access of sub command <highlight>$command<end> in Channel <highlight>$type<end> to <highlight>$arr[4]<end>";
@@ -323,10 +320,8 @@ if (preg_match("/^config$/i", $message)) {
 	else {
 		$list = "<header>::::: Configure command $cmd :::::<end>\n\n";
 		$list .= "<u><highlight>Tells:<end></u>\n";	
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '$cmd' AND `type` = 'msg' AND `module` = '$module'");
+		$row = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '$cmd' AND `type` = 'msg' AND `module` = '$module'", true);
 		if($db->numrows() == 1) {
-			$row = $db->fObject();
-
 			$found_msg = 1;
 		
 			if($row->status == 1)
@@ -350,14 +345,13 @@ if (preg_match("/^config$/i", $message)) {
 			$list .= "<a href='chatcmd:///tell <myname> config cmd ".$cmd." admin msg " . RAIDLEADER . "'>RL</a>  ";
 			$list .= "<a href='chatcmd:///tell <myname> config cmd ".$cmd." admin msg " . MODERATOR . "'>Mod</a>  ";
 			$list .= "<a href='chatcmd:///tell <myname> config cmd ".$cmd." admin msg " . ADMIN . "'>Admin</a>\n";
-		} else 
+		} else {
 			$list .= "Current Status: <red>Unused<end>. \n";
+		}
 
 		$list .= "\n\n<u><highlight>Private Channel:<end></u>\n";	
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '$cmd' AND `type` = 'priv' AND `module` = '$module'");
-		if($db->numrows() == 1) {
-			$row = $db->fObject();
-
+		$row = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '$cmd' AND `type` = 'priv' AND `module` = '$module'", true);
+		if ($db->numrows() == 1) {
 			$found_priv = 1;
 
 			if($row->status == 1)
@@ -381,14 +375,13 @@ if (preg_match("/^config$/i", $message)) {
 			$list .= "<a href='chatcmd:///tell <myname> config cmd ".$cmd." admin priv " . RAIDLEADER . "'>RL</a>  ";
 			$list .= "<a href='chatcmd:///tell <myname> config cmd ".$cmd." admin priv " . MODERATOR . "'>Mod</a>  ";		
 			$list .= "<a href='chatcmd:///tell <myname> config cmd ".$cmd." admin priv " . ADMIN . "'>Admin</a>\n";
-		} else 
+		} else {
 			$list .= "Current Status: <red>Unused<end>. \n";
+		}
 
 		$list .= "\n\n<u><highlight>Guild Channel:<end></u>\n";
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '$cmd' AND `type` = 'guild' AND `module` = '$module'");
-		if($db->numrows() == 1) {
-			$row = $db->fObject();
-			
+		$row = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '$cmd' AND `type` = 'guild' AND `module` = '$module'", true);
+		if ($db->numrows() == 1) {
 			$found_guild = 1;
 
 			if($row->status == 1)
@@ -412,14 +405,15 @@ if (preg_match("/^config$/i", $message)) {
 			$list .= "<a href='chatcmd:///tell <myname> config cmd ".$cmd." admin guild " . RAIDLEADER . "'>RL</a>  ";
 			$list .= "<a href='chatcmd:///tell <myname> config cmd ".$cmd." admin guild " . MODERATOR . "'>Mod</a>  ";
 			$list .= "<a href='chatcmd:///tell <myname> config cmd ".$cmd." admin guild " . ADMIN . "'>Admin</a>  ";
-		} else 
+		} else {
 			$list .= "Current Status: <red>Unused<end>. \n";
+		}
 
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE dependson = '$cmd' AND `type` = 'msg' AND `cmdevent` = 'subcmd' AND `module` = '$module'");
-		if($db->numrows() != 0) {
+		$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE dependson = '$cmd' AND `type` = 'msg' AND `cmdevent` = 'subcmd' AND `module` = '$module'");
+		if ($db->numrows() != 0) {
 			
 			$list .= "\n\n<u><highlight>Available Subcommands in tells<end></u>\n";
-			while($row = $db->fObject()) {
+			forEach ($data as $row) {
 				if($row->description != "")
 					$list .= "Description: $row->description\n";
 				else
@@ -440,10 +434,10 @@ if (preg_match("/^config$/i", $message)) {
 			}
 		}
 
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `dependson` = '$cmd' AND `type` = 'priv' AND `cmdevent` = 'subcmd' AND `module` = '$module'");
+		$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `dependson` = '$cmd' AND `type` = 'priv' AND `cmdevent` = 'subcmd' AND `module` = '$module'");
 		if($db->numrows() != 0) {
 			$list .= "\n\n<u><highlight>Available Subcommands in Private Channel<end></u>\n";
-			while($row = $db->fObject()) {
+			forEach ($data as $row) {
 				if($row->description != "")
 					$list .= "Description: $row->description\n";
 				else
@@ -464,10 +458,10 @@ if (preg_match("/^config$/i", $message)) {
 			}
 		}
 
-		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `dependson` = '$cmd' AND `type` = 'guild' AND `cmdevent` = 'subcmd' AND `module` = '$module'");
+		$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `dependson` = '$cmd' AND `type` = 'guild' AND `cmdevent` = 'subcmd' AND `module` = '$module'");
 		if($db->numrows() != 0) {
 			$list .= "\n\n<u><highlight>Available Subcommands in Guild Channel<end></u>\n";
-			while($row = $db->fObject()) {
+			forEach ($data as $row) {
 				if($row->description != "")
 					$list .= "Description: $row->description\n";
 				else
@@ -493,13 +487,13 @@ if (preg_match("/^config$/i", $message)) {
 } else if (preg_match("/^config grp (.+)$/i", $message, $arr)) {
 	$grp = strtolower($arr[1]);
 
-	$db->query("SELECT * FROM cmdcfg_<myname> WHERE `grp` = '$grp' AND `cmdevent` = 'cmd' ORDER BY `cmd`");
+	$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `grp` = '$grp' AND `cmdevent` = 'cmd' ORDER BY `cmd`");
 	if($db->numrows() == 0)
 		$msg = "Could not find the group <highligh>$grp<end>";
 	else {
 		$list = "<header>::::: Configure group $grp :::::<end>\n\n";
 		$list .= "<highlight><u>Commands of this group</u><end> \n";
-		while($row = $db->fObject()) {
+		forEach ($data as $row) {
 	  	  	if($oldcmd != $row->cmd) {
 				$adv = "<a href='chatcmd:///tell <myname> config cmd $row->cmd $row->module'>Adv.</a>";
 				if($row->description != "none")
@@ -565,12 +559,12 @@ if (preg_match("/^config$/i", $message)) {
 	$list .= " - Click Adv. behind the name to change their Status for the single Channels \n";
 	$list .= "   and to change their Access Limit\n\n";
 
-	$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'cmd' AND `type` != 'setup' AND `dependson` = 'none' AND `module` = '$mod'"
+	$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'cmd' AND `type` != 'setup' AND `dependson` = 'none' AND `module` = '$mod'"
         ." UNION ALL"
         ." SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'event' AND `type` != 'setup' AND `dependson` = 'none' AND `module` = '$mod'"
         ." ORDER BY `cmd`");
-	$data = $db->fObject("all");
-	foreach($data as $row) {
+	
+	forEach ($data as $row) {
         if($row->cmdevent == "cmd" && $oldcmd != $row->cmd) {
 			if($row->grp == "none") {
 				$on = "<a href='chatcmd:///tell <myname> config cmd ".$row->cmd." enable all'>ON</a>";
@@ -587,9 +581,8 @@ if (preg_match("/^config$/i", $message)) {
 				$off = "<a href='chatcmd:///tell <myname> config grp ".$row->grp." disable all'>OFF</a>";
 				$adv = "<a href='chatcmd:///tell <myname> config grp ".$row->grp."'>Adv.</a>";
 
-				$db->query("SELECT * FROM cmdcfg_<myname> WHERE `module` = 'none' AND `cmdevent` = 'group' AND `type` = '$row->grp'");
+				$temp = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `module` = 'none' AND `cmdevent` = 'group' AND `type` = '$row->grp'", true);
 				if($db->numrows() == 1) {
-				  	$temp = $db->fObject();
 					if($temp->description != "none")
 				    	$list .= "$temp->description ($adv): $on  $off \n";
 					else
@@ -631,8 +624,7 @@ if (preg_match("/^config$/i", $message)) {
   	$mod = strtoupper($arr[1]);
 	$list = "<header>::::: Configure help files for module $mod :::::<end>\n\n";
 
-	$db->query("SELECT * FROM hlpcfg_<myname> WHERE module = '$mod' ORDER BY name");
-	$data = $db->fObject("all");
+	$data = $db->query("SELECT * FROM hlpcfg_<myname> WHERE module = '$mod' ORDER BY name");
 	forEach ($data as $row) {
 	  	$list .= "<highlight><u>Helpfile</u><end>: $row->name\n";
 	  	$list .= "<highlight><u>Description</u><end>: $row->description\n";
@@ -658,11 +650,11 @@ if (preg_match("/^config$/i", $message)) {
 	$list .= "\n<highlight><u>" . strtoupper($module) . "</u><end>\n";
 	
 
- 	$db->query("SELECT * FROM settings_<myname> WHERE `mode` != 'hide' AND `module` = '$module'");
+ 	$data = $db->query("SELECT * FROM settings_<myname> WHERE `mode` != 'hide' AND `module` = '$module'");
 	if ($db->numrows() > 0) {
 		$list .= "\n<i>Settings</i>\n";
 	}
- 	while ($row = $db->fObject()) {
+ 	forEach ($data as $row) {
 		$cur = $row->mod;	
 		
 		if($row->help != "")
@@ -703,11 +695,11 @@ if (preg_match("/^config$/i", $message)) {
 			AND `module` = '$module'
 		GROUP BY
 			cmd";
-	$db->query($sql);
+	$data = $db->query($sql);
 	if ($db->numrows() > 0) {
 		$list .= "\n<i>Commands</i>\n";
 	}
-	$data = $db->fObject("all");
+
 	forEach ($data as $row) {
 		$guild = '';
 		$priv = '';
@@ -745,11 +737,11 @@ if (preg_match("/^config$/i", $message)) {
 		}
 	}
 	
-	$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'event' AND `type` != 'setup' AND `module` = '$module'");
+	$data = $db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'event' AND `type` != 'setup' AND `module` = '$module'");
 	if ($db->numrows() > 0) {
 		$list .= "\n<i>Events</i>\n";
 	}
-	while ($row = $db->fObject()) {
+	forEach ($data as $row) {
 		$on = "<a href='chatcmd:///tell <myname> config event ".$row->type." ".$row->file." enable all'>ON</a>";
 		$off = "<a href='chatcmd:///tell <myname> config event ".$row->type." ".$row->file." disable all'>OFF</a>";
 

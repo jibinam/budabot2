@@ -36,11 +36,11 @@ if (-1 == $sender) {
         $db->query("INSERT INTO org_city_<myname> (`time`, `action`) VALUES ('".time()."', 'Attack')");
     }
 } else if (preg_match("/^city$/i", $message)) {
-    $db->query("SELECT * FROM org_city_<myname> WHERE `action` = 'on' OR `action` = 'off' ORDER BY `time` DESC LIMIT 0, 20 ");
+    $data = $db->query("SELECT * FROM org_city_<myname> WHERE `action` = 'on' OR `action` = 'off' ORDER BY `time` DESC LIMIT 0, 20 ");
     if ($db->numrows() == 0) {
         $msg = "<highlight>Unknown status on city cloak!<end>";
     } else {
-        $row = $db->fObject();
+		$row = $data[0];
         if (((time() - $row->time) >= 60*60) && ($row->action == "off")) {
             $msg = "The cloaking device is disabled. It is possible to enable it.";
         } else if (((time() - $row->time) < 60*60) && ($row->action == "off")) {
@@ -60,7 +60,7 @@ if (-1 == $sender) {
             $list .= "Player: <highlight>".$row->player."<end>\n\n";
         }
         
-        while ($row = $db->fObject()) {
+        forEach ($data as $row) {
             $list .= "Time: <highlight>".gmdate("M j, Y, G:i", $row->time)." (GMT)<end>\n";
             if ($row->action == "Attack") {
                 $list .= "Action: <highlight>City was under attack.<end>\n\n";

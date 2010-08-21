@@ -31,16 +31,16 @@
    
 if (preg_match("/^check (all|prof|org)$/i", $message, $arr)) {
 	if ($arr[1] == "all") {
-	  	$db->query("SELECT * FROM priv_chatlist_<myname>");
-		while ($row = $db->fObject()) {
+	  	$data = $db->query("SELECT * FROM priv_chatlist_<myname>");
+		forEach ($data as $row) {
 			$content .= " \\n /assist $row->name";
 		}
 
 	  	$list .= "<a href='chatcmd:///text AssistAll: $content'>Click here to check who is here</a>";
 	  	$msg = Text::makeBlob("Check on all", $list);
 	} else if ($arr[1] == "prof") {
-	  	$db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `profession` DESC");
-		while ($row = $db->fObject()) {
+	  	$data = $db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `profession` DESC");
+		forEach ($data as $row) {
 			$prof[$row->profession] .= " \\n /assist $row->name";
 		}
 
@@ -52,8 +52,8 @@ if (preg_match("/^check (all|prof|org)$/i", $message, $arr)) {
 
 	  	$msg = Text::makeBlob("Check on professions", $list);
 	} else if ($arr[1] == "org") {
-	  	$db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `guild` DESC");
-		while ($row = $db->fObject()) {
+	  	$data = $db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `guild` DESC");
+		forEach ($data as $row) {
 		  	if ($row->guild == "") {
 	  			$org["Non orged"] .= " \\n /assist $row->name";
 			} else {

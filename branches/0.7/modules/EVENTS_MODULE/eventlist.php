@@ -8,9 +8,8 @@
    */
 
 if (preg_match("/^eventlist ([0-9]+)$/i", $message, $arr)) {
-	$db->query("SELECT event_attendees FROM events_<myname>_<dim> WHERE `id` = '$arr[1]'");
+	$row = $db->query("SELECT event_attendees FROM events_<myname>_<dim> WHERE `id` = '$arr[1]'", true);
 	if ($db->numrows() != 0) {
-		$row = $db->fObject();
 		
 		$link .= Text::makeLink("Join this event", "/tell <myname> joinEvent $arr[1]", "chatcmd")."\n";
 		$link .= Text::makeLink("Leave this event", "/tell <myname> leaveEvent $arr[1]", "chatcmd")."\n\n";
@@ -19,19 +18,17 @@ if (preg_match("/^eventlist ([0-9]+)$/i", $message, $arr)) {
 		sort($eventlist);
 		if ($row->event_attendees != "") {
 			forEach ($eventlist as $key => $value) {
-				$db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$value'");
+				$row = $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$value'", true);
 				if ($db->numrows() != 0) {
-					$row = $db->fObject();
 					$level = $row->level;
 					$prof = $row->profession;
 					$info = ", level $level $prof";
 				}
 				
-				$db->query("SELECT * FROM alts WHERE `alt` = '$value'");
+				$row1 = $db->query("SELECT * FROM alts WHERE `alt` = '$value'", true);
 				if ($db->numrows() == 0) {
 					$alt = "<highlight>::<end> <a href='chatcmd:///tell <myname> alts $value'>Alts</a>";
 				} else {
-					$row1 = $db->fObject();
 					$alt = "<highlight>::<end> <a href='chatcmd:///tell <myname> alts $value'>Alts of $row1->main</a>";
 				}
 				

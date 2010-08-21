@@ -39,9 +39,9 @@ if (preg_match("/^about$/i", $message)) {
 	$user_access_level = AccessLevel::get_user_access_level($sender);
 	
 	$sql = "SELECT name, module, description FROM hlpcfg_<myname> WHERE access_level >= $user_access_level ORDER BY module ASC";
-	$db->query($sql);
+	$data = $db->query($sql);
 	$current_module = '';
-	while (($row = $db->fObject()) != FALSE) {
+	forEach ($data as $row) {
 		if ($row->module != $current_module) {
 			$list .= "\n<green>$row->module<end>\n";
 			$current_module = $row->module;

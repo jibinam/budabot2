@@ -29,8 +29,7 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-$db->query("SELECT afk FROM priv_chatlist_<myname> WHERE `name` = '$sender'");
-$row = $db->fObject();
+$row = $db->query("SELECT afk FROM priv_chatlist_<myname> WHERE `name` = '$sender'", true);
 if (preg_match("/^afk$/i", $message, $arr)) {
     if ($row->afk == '0') {
         $db->query("UPDATE priv_chatlist_<myname> SET `afk` = 1 WHERE `name` = '$sender'");

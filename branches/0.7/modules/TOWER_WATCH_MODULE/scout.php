@@ -41,16 +41,15 @@ if (preg_match("/^scout (.*)$/i", $message)) {
 			$msg = "Valid values for side are: 'Omni', 'Neutral', and 'Clan'.";
 	  	} else {
 
-		  	$db->query("SELECT * FROM tower_watch WHERE zone = '$zone' AND base_number = $base_number");
-		  	$result = $db->fObject("all");
-		  	if ($db->numRows()) {
+		  	$data = $db->query("SELECT * FROM tower_watch WHERE zone = '$zone' AND base_number = $base_number");
+		  	if ($db->numRows() > 0) {
 			  	
-			  	$db->query("UPDATE tower_watch SET close_time = $closing_time_seconds, ct_ql = $ct_ql, side = '$side', org = '$org' WHERE zone = '$zone' AND base_number = $base_number");
+			  	$db->exec("UPDATE tower_watch SET close_time = $closing_time_seconds, ct_ql = $ct_ql, side = '$side', org = '$org' WHERE zone = '$zone' AND base_number = $base_number");
 			  	$msg = "Tower site has been updated successfully.";
 		  	
 			} else {
 			
-				$db->query("INSERT INTO tower_watch (zone, base_number, close_time, ct_ql, side, org) VALUES('$zone', $base_number, $closing_time_seconds, $ct_ql, '$side', '$org')");
+				$db->exec("INSERT INTO tower_watch (zone, base_number, close_time, ct_ql, side, org) VALUES('$zone', $base_number, $closing_time_seconds, $ct_ql, '$side', '$org')");
 			  	$msg = "Tower site has been added successfully.";
   			}
   		}

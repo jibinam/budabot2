@@ -15,20 +15,20 @@ function online($type, $sender, $sendto, &$bot, $prof = "all")
 	if($type == "guild" || ($bot->settings["online_tell"] == 0 && $type == "msg")  || ($type == "priv" && $bot->vars["Guest"][$sender] == true)) {
 		if($bot->settings["relaydb"]) {
 			if($prof == "all")
-			$db->query("SELECT * FROM guild_chatlist_<myname> UNION ALL SELECT * FROM guild_chatlist_".strtolower($bot->settings["relaydb"])." ORDER BY `profession`, `level` DESC");
+				$data = $db->query("SELECT * FROM guild_chatlist_<myname> UNION ALL SELECT * FROM guild_chatlist_".strtolower($bot->settings["relaydb"])." ORDER BY `profession`, `level` DESC");
 			else
-			$db->query("SELECT * FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT * FROM guild_chatlist_".strtolower($bot->settings["relaydb"])." WHERE `profession` = '$prof'");
+				$data = $db->query("SELECT * FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT * FROM guild_chatlist_".strtolower($bot->settings["relaydb"])." WHERE `profession` = '$prof'");
 		} else {
 			if($prof == "all")
-			$db->query("SELECT * FROM guild_chatlist_<myname> ORDER BY `profession`, `level` DESC");
+				$data = $db->query("SELECT * FROM guild_chatlist_<myname> ORDER BY `profession`, `level` DESC");
 			else
-			$db->query("SELECT * FROM guild_chatlist_<myname> WHERE `profession` = '$prof'");
+				$data = $db->query("SELECT * FROM guild_chatlist_<myname> WHERE `profession` = '$prof'");
 		}
 	} elseif($type == "priv" || ($bot->settings["online_tell"] == 1 && $type == "msg")) {
 		if($prof == "all")
-		$db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `profession`, `level` DESC");
+			$data = $db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `profession`, `level` DESC");
 		else
-		$db->query("SELECT * FROM priv_chatlist_<myname> WHERE `profession` = '$prof'");
+			$data = $db->query("SELECT * FROM priv_chatlist_<myname> WHERE `profession` = '$prof'");
 	}
 
 	$oldprof = "";
@@ -41,22 +41,22 @@ function online($type, $sender, $sendto, &$bot, $prof = "all")
 	{
 		$list .= "<header>::::: $numonline members online :::::<end>\n";
 	}
-	$data = $db->fObject("all");
+
 	// create the list with alts shown
 	createList($data, $sender, $list, $type, $bot, true);
 
 	// Guest Channel Part
 	if((count($bot->vars["Guest"]) > 0 || $bot->settings["relaydb"]) && ($type == "guild" || ($bot->settings["online_tell"] == 0 && $type == "msg")  || ($type == "priv" && $bot->vars["Guest"][$sender] == true))) {
 		if($prof == "all")
-		if($bot->settings["relaydb"])
-		$db->query("SELECT * FROM priv_chatlist_<myname> UNION ALL SELECT * FROM priv_chatlist_".strtolower($bot->settings["relaydb"])." ORDER BY `profession`, `level` DESC");
+			if($bot->settings["relaydb"])
+				$data = $db->query("SELECT * FROM priv_chatlist_<myname> UNION ALL SELECT * FROM priv_chatlist_".strtolower($bot->settings["relaydb"])." ORDER BY `profession`, `level` DESC");
+			else
+				$data = $db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `profession`, `level` DESC");
 		else
-		$db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `profession`, `level` DESC");
-		else
-		if($bot->settings["relaydb"])
-		$db->query("SELECT * FROM priv_chatlist_<myname> UNION ALL SELECT * FROM priv_chatlist_".strtolower($bot->settings["relaydb"])." WHERE `profession` = '$prof' ORDER BY `level` DESC");
-		else
-		$db->query("SELECT * FROM priv_chatlist_<myname> WHERE `profession` = '$prof' ORDER BY `level` DESC");
+			if($bot->settings["relaydb"])
+				$data = $db->query("SELECT * FROM priv_chatlist_<myname> UNION ALL SELECT * FROM priv_chatlist_".strtolower($bot->settings["relaydb"])." WHERE `profession` = '$prof' ORDER BY `level` DESC");
+			else
+				$data = $db->query("SELECT * FROM priv_chatlist_<myname> WHERE `profession` = '$prof' ORDER BY `level` DESC");
 
 		$numguest = $db->numrows();
 		if ($numguest == 1)
@@ -67,7 +67,7 @@ function online($type, $sender, $sendto, &$bot, $prof = "all")
 		{
 			$list .= "\n\n<highlight><u>$numguest Users in Guestchannel<end></u>\n";
 		}
-		$data = $db->fObject("all");
+
 		// create the list of guests, without showing alts
 		createList($data, $sender, $list, $type, $bot);
 	}
@@ -79,9 +79,8 @@ function online($type, $sender, $sendto, &$bot, $prof = "all")
 	if ($bot->settings["bbin_status"] == 1)
 	{
 		// members
-		$db->query("SELECT * FROM bbin_chatlist_<myname> WHERE (`guest` = 0) ORDER BY `profession`, `level` DESC");
+		$data = $db->query("SELECT * FROM bbin_chatlist_<myname> WHERE (`guest` = 0) ORDER BY `profession`, `level` DESC");
 		$numbbinmembers = $db->numrows();
-		$data = $db->fObject("all");
 		if ($numbbinmembers == 1)
 		{
 			$list .= "\n\n<highlight><u>1 member in BBIN<end></u>\n";
@@ -93,9 +92,8 @@ function online($type, $sender, $sendto, &$bot, $prof = "all")
 		createList($data, $sender, $list, $type, $bot);
 		
 		// guests
-		$db->query("SELECT * FROM bbin_chatlist_<myname> WHERE (`guest` = 1) ORDER BY `profession`, `level` DESC");
+		$data = $db->query("SELECT * FROM bbin_chatlist_<myname> WHERE (`guest` = 1) ORDER BY `profession`, `level` DESC");
 		$numbbinguests = $db->numrows();
-		$data = $db->fObject("all");
 		if ($numbbinguests == 1)
 		{
 			$list .= "\n\n<highlight><u>1 guest in BBIN<end></u>\n";
@@ -186,11 +184,10 @@ function createList(&$data, &$sender, &$list, &$type, &$bot, $show_alts = false)
 		{
 			if($type == "guild" || ($bot->settings["online_tell"] == 0 && $type == "msg") || ($type == "priv" && $bot->vars["Guest"][$sender] == true))
 			{
-				$db->query("SELECT * FROM alts WHERE `alt` = '$row->name'");
+				$row1 = $db->query("SELECT * FROM alts WHERE `alt` = '$row->name'", true);
 				if($db->numrows() == 0)
-				$alt = "<highlight>::<end> <a href='chatcmd:///tell <myname> alts $row->name'>Alts</a>";
+					$alt = "<highlight>::<end> <a href='chatcmd:///tell <myname> alts $row->name'>Alts</a>";
 				else {
-					$row1 = $db->fObject();
 					$alt = "<highlight>::<end> <a href='chatcmd:///tell <myname> alts $row->name'>Alts of $row1->main</a>";
 				}
 					

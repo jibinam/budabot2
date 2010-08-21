@@ -42,8 +42,8 @@ if($chatBot->vars["my guild"] != "" && $chatBot->vars["my guild id"] != "") {
 		Logger::log(__FILE__, "could not get the org roster xml file", ERROR);
 	} else {
 		// clear $chatBot->members and reload from the database
-		$db->query("SELECT * FROM members_<myname>");
-		while ($row = $db->fObject()) {
+		$data = $db->query("SELECT * FROM members_<myname>");
+		forEach ($data as $row) {
 			if ($row->autoinv == 1) {
 				Buddylist::add($row->uid, "member");
 			} else {
@@ -55,12 +55,12 @@ if($chatBot->vars["my guild"] != "" && $chatBot->vars["my guild id"] != "") {
 		unset($chatBot->guildmembers);
 		
 		//Save the current org_members table in a var
-		$db->query("SELECT * FROM org_members_<myname>");
+		$data = $db->query("SELECT * FROM org_members_<myname>");
 		if ($db->numrows() == 0 && (count($org->member) > 0)) {
 			$restart = true;
 		} else {
 			$restart = false;
-			while ($row = $db->fObject()) {
+			forEach ($data as $row) {
 				$dbentrys[$row->name]["name"] = $row->name;
 				$dbentrys[$row->name]["mode"] = $row->mode;
 			}

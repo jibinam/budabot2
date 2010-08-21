@@ -8,11 +8,11 @@
    */
 
 if (preg_match("/^events$/i", $message, $arr)) {
-  	$db->query("SELECT * FROM events_<myname>_<dim> ORDER BY `event_date` DESC LIMIT 0,5");
+  	$row = $db->query("SELECT * FROM events_<myname>_<dim> ORDER BY `event_date` DESC LIMIT 0,5");
 	if ($db->numrows() != 0) {
 		$upcoming_title = "<header>::::: Upcoming Events :::::<end>\n\n";
 		$past_title = "<header>::::: Past Events :::::<end>\n\n";
-		while ($row = $db->fObject()) {
+		forEach ($data as $row) {
 			$row->event_name = stripslashes($row->event_name);
 		  	$row->event_desc = stripslashes($row->event_desc);
 			if ($row->event_attendees == '') {
@@ -53,8 +53,7 @@ if (preg_match("/^events$/i", $message, $arr)) {
 		$msg = "No events entered yet.";
 	}
 } else if (preg_match("/^joinevent ([0-9]+)$/i", $message, $arr)) {
-	$db->query("SELECT * FROM events_<myname>_<dim> WHERE `id` = '$arr[1]'");
-	$row = $db->fObject();
+	$row = $db->query("SELECT * FROM events_<myname>_<dim> WHERE `id` = '$arr[1]'", true);
 	if (time() < (($row->event_date)+(3600*3))) { // cannot join an event after 3 hours past its starttime
 		if (strpos($row->event_attendees,$sender) !== false) {
 			$chatBot->send("<highlight>$sender<end> is already on the event list.",$sender);
@@ -73,8 +72,7 @@ if (preg_match("/^events$/i", $message, $arr)) {
 		$msg = "You cannot join an event once it has already passed!";
 	}
 } else if (preg_match("/^leaveevent ([0-9]+)$/i", $message, $arr)) {
-	$db->query("SELECT * FROM events_<myname>_<dim> WHERE `id` = '$arr[1]'");
-	$row = $db->fObject();
+	$row = $db->query("SELECT * FROM events_<myname>_<dim> WHERE `id` = '$arr[1]'", true);
 	if (time() < (($row->event_date)+(3600*3))) { // cannot leave an event after 3 hours past its starttime
 		if (strpos($row->event_attendees,$sender) !== false) {
 			$event = explode(",", $row->event_attendees);

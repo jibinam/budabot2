@@ -34,7 +34,7 @@ class DB {
 	private $type;
 	private $sql;
 	private $dbName;
-	private $result;
+	private $data;
 	private $user;
 	private $pass;
 	private $host;
@@ -84,8 +84,8 @@ class DB {
 	}
 	
 	//Sends a query to the Database and gives the result back
-	public function query($stmt, $type = "object") {
-		$this->result = NULL;
+	public function query($stmt, $single = false) {
+		$this->data = NULL;
 		$stmt = str_replace("<myname>", $this->botname, $stmt);
 		$stmt = str_replace("<dim>", $this->dim, $stmt);
 		
@@ -99,15 +99,9 @@ class DB {
       	$result = $this->sql->query($stmt);
       	
 		if (is_object($result)) {
-		  	if ($type == "object") {
-	  			$this->result = $result->fetchALL(PDO::FETCH_OBJ);
-		  	} else if ($type == "assoc") {
-		  		$this->result = $result->fetchALL(PDO::FETCH_ASSOC);
-		  	} else if ($type == "num") {
-		  		$this->result = $result->fetchALL(PDO::FETCH_NUM);
-			}
+		  	$this->data = $result->fetchALL(PDO::FETCH_OBJ);
 		} else {
-			$this->result = NULL;
+			$this->data = NULL;
 		}
 
 		$error = $this->sql->errorInfo();
@@ -115,12 +109,20 @@ class DB {
 			Logger::log(__FILE__, "Error msg: $error[2] in: $stmt", ERROR);
 		}
 
-		return($result);				
+		if ($single) {
+			if (count($this->data) > 0) {
+				return $this->data[0];
+			} else {
+				return null;
+			}
+		} else {
+			return $this->data;
+		}
 	}
 	
 	//Does Basicly the same thing just don't gives the result back(used for create table, Insert, delete etc), a bit faster as normal querys 
 	public function exec($stmt) {
-		$this->result = NULL;
+		$this->data = NULL;
 		
 		$stmt = str_replace("<myname>", $this->botname, $stmt);
 		$stmt = str_replace("<dim>", $this->dim, $stmt);
@@ -139,7 +141,7 @@ class DB {
 			Logger::log(__FILE__, "Error msg: $error[2] in: $stmt", ERROR);
 		}
 
-		return($aff_rows);		
+		return $aff_rows;
 	}
 
 	//Function for creating the table. Main reason is that some SQL commands are not compatible with sqlite for example the autoincrement field
@@ -180,19 +182,10 @@ class DB {
 			}			
 		}	
 	}
-	
-	//Return the result of an Select statement
-	public function fObject($mode = "single") {
-		if ($mode == "single") {
-	  		return array_shift($this->result);
-		} else if ($mode == "all") {
-			return $this->result;
-		}
-	}
 
 	//Give the affected rows back from an select statement
 	public function numrows() {
-		return count($this->result);
+		return count($this->data);
 	}
 	
 	//Start of an transaction	
@@ -214,11 +207,11 @@ class DB {
 	public function getTables() {
 		if ($this->type == "Sqlite") {
 			$tables = array();
-			$this->query("SELECT tbl_name FROM sqlite_master WHERE type = 'table'");
+			$data = $this->query("SELECT tbl_name FROM sqlite_master WHERE type = 'table'");
 			if ($this->numrows() == 0) {
 				return $tables;
 			}
-			while ($row = $this->fObject()) {
+			forEach ($data as $row) {
 				$tables[$row->tbl_name] = true;
 			}
 			
@@ -230,12 +223,11 @@ class DB {
 	public function getTableInfos($tbl_name) {
 		if ($this->type == "Sqlite") {
 		 	$table_info = array();
-			$this->query("SELECT tbl_name, sql FROM sqlite_master WHERE `type` = 'table' AND `tbl_name` = '$tbl_name'");
+			$tbl_sql = $this->query("SELECT tbl_name, sql FROM sqlite_master WHERE `type` = 'table' AND `tbl_name` = '$tbl_name'", true);
 			if ($this->numrows() == 0) {
 				return $table_info;
 			}
 			
-			$tbl_sql = $this->fObject();
 			$table_info["sql"] = $tbl_sql->sql;
 			
 		 	$tmp = $this->sql->query("SELECT * FROM $tbl_name LIMIT 0, 1");

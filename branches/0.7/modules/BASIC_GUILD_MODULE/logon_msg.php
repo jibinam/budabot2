@@ -29,12 +29,10 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-$db->query("SELECT `name`, `logon_msg` FROM org_members_<myname> WHERE `name` = '$sender'");
+$row = $db->query("SELECT `name`, `logon_msg` FROM org_members_<myname> WHERE `name` = '$sender'", true);
 if ($db->numrows() == 0) {
     $msg = "You are not on the notify list of this bot.";
 	$chatBot->send($msg, $sendto);
-} else {
-	$row = $db->fObject();
 }
 
 if (preg_match("/^logon$/i", $message)) {

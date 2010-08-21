@@ -11,7 +11,7 @@
 if (preg_match("/^searchcmd (.*)/i", $message, $arr))
 {
 	$sqlquery = "SELECT DISTINCT module FROM cmdcfg_<myname> WHERE `cmd` = '".strtolower($arr[1])."' ;";
-	$db->query($sqlquery);
+	$data = $db->query($sqlquery);
 	
 	if ( 0 == $db->numrows())
 	{
@@ -20,7 +20,6 @@ if (preg_match("/^searchcmd (.*)/i", $message, $arr))
 		return;
 	}
 	
-	$data = $db->fObject("all");
 	$blob = '';
 	$msg = '';
 	foreach ($data as $row)

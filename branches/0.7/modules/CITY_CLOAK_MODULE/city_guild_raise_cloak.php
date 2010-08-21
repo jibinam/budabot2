@@ -30,10 +30,9 @@
    */
 
 // valid states for action are: 'on', 'off', 'Attack'
-$db->query("SELECT * FROM org_city_<myname> WHERE `action` = 'on' OR `action` = 'off' ORDER BY `time` DESC LIMIT 1 ");
+$row = $db->query("SELECT * FROM org_city_<myname> WHERE `action` = 'on' OR `action` = 'off' ORDER BY `time` DESC LIMIT 1", true);
 if ($db->numrows() != 0) {
 	$msg = "";
-	$row = $db->fObject();
 	
 	if ($row->action == "off") {
 		// 10 minutes before, send tell to player
@@ -55,10 +54,10 @@ if ($db->numrows() != 0) {
 			}
 			
 			// send message to any online alts
-			$db->query("SELECT * FROM `alts` WHERE `main` = (SELECT `main` FROM `alts` WHERE `main` = '$row->player' or `alt` = '$row->player' LIMIT 1)");
-			while ($nextAlt = $db->fObject()) {
-				if (Buddylist::is_online($nextAlt->alt)) {
-					$chatBot->send($msg, $nextAlt->alt);
+			$data = $db->query("SELECT * FROM `alts` WHERE `main` = (SELECT `main` FROM `alts` WHERE `main` = '$row->player' or `alt` = '$row->player' LIMIT 1)");
+			forEach ($data as $row) {
+				if (Buddylist::is_online($row->alt)) {
+					$chatBot->send($msg, $row->alt);
 				}
 			}
 		}

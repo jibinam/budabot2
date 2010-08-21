@@ -24,22 +24,18 @@ if (preg_match ("/^boss (.+)$/i", $message, $arr)) {
 	
 	//If multiple matches found output list of bosses
 	if ($name_found > 1) {
-		$db->query("SELECT * FROM boss_namedb WHERE bossname LIKE '%".str_replace("'", "''", $search)."%' OR keyname LIKE '%".str_replace("'", "''", $search)."%'");
-		$data = $db->fobject("all");
-		$bosses = $data;
-		foreach ($bosses as $row) {
+		$bosses = $db->query("SELECT * FROM boss_namedb WHERE bossname LIKE '%".str_replace("'", "''", $search)."%' OR keyname LIKE '%".str_replace("'", "''", $search)."%'");
+		forEach ($bosses as $row) {
 			$bossname = $row->bossname;
 			$bossid = $row->bossid;
-			$db->query("SELECT * FROM whereis WHERE name = '".str_replace("'", "''", $bossname)."'");
-			$data = $db->fobject("all");
-			foreach ($data as $row) {
+			$locations = $db->query("SELECT * FROM whereis WHERE name = '".str_replace("'", "''", $bossname)."'");
+			forEach ($locations as $row) {
 				$bossname = $row->name;
 				$boss .= "\n\n<a href='chatcmd:///tell <myname> !boss $bossname'>$bossname</a>\n";
 				$where = $row->answer;
 				$boss .= "<green>Can be found $where<end>\nDrops:";
-				$db->query("SELECT * FROM boss_lootdb, aodb WHERE boss_lootdb.bossid = '$bossid' AND boss_lootdb.itemid = aodb.lowid");
-				$data = $db->fobject("all");
-				foreach ($data as $row) {
+				$bossloot = $db->query("SELECT * FROM boss_lootdb, aodb WHERE boss_lootdb.bossid = '$bossid' AND boss_lootdb.itemid = aodb.lowid");
+				forEach ($bossloot as $row) {
 					$lowid = $row->lowid;
 					$highid = $row->highid;
 					$ql = $row->highql;
@@ -50,23 +46,21 @@ if (preg_match ("/^boss (.+)$/i", $message, $arr)) {
 		}
 		$output = Text::makeBlob("Boss", $boss);
 	} else if ($name_found  == 1) { //If single match found, output full loot table
-		$db->query("SELECT * FROM boss_namedb WHERE bossname LIKE  '%".str_replace("'", "''", $search)."%' OR keyname LIKE '%".str_replace("'", "''", $search)."%'");
-		$row = $db->fobject();
+		$row = $db->query("SELECT * FROM boss_namedb WHERE bossname LIKE  '%".str_replace("'", "''", $search)."%' OR keyname LIKE '%".str_replace("'", "''", $search)."%'", true);
 		$name_id = $row->bossid;
 		$name = $row->bossname;
 		
 		$boss .= "<yellow>$name\n\n";
 		
-		$db->query("SELECT answer FROM whereis WHERE name = '".str_replace("'", "''", $name)."'");
-		$data = $db->fobject("all");
-			forEach ($data as $row) {
-				$where = $row->answer;
-				
-				$boss .= "<green>Can be found $where<end>\n\n";
-				$boss .= "Loot:\n\n";
-			}
-		$db->query("SELECT * FROM boss_lootdb, aodb WHERE boss_lootdb.bossid = $name_id AND boss_lootdb.itemid = aodb.lowid");
-		$data = $db->fobject("all");
+		$data = $db->query("SELECT answer FROM whereis WHERE name = '".str_replace("'", "''", $name)."'");
+		forEach ($data as $row) {
+			$where = $row->answer;
+			
+			$boss .= "<green>Can be found $where<end>\n\n";
+			$boss .= "Loot:\n\n";
+		}
+		
+		$data = $db->query("SELECT * FROM boss_lootdb, aodb WHERE boss_lootdb.bossid = $name_id AND boss_lootdb.itemid = aodb.lowid");
 		forEach ($data as $row) {
 			$loid = $row->itemid;
 			$hiid = $row->highid;

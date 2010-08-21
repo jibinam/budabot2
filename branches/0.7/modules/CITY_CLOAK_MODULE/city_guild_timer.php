@@ -29,9 +29,8 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-$db->query("SELECT * FROM org_city_<myname> ORDER BY `time` DESC LIMIT 0, 2");
+$row = $db->query("SELECT * FROM org_city_<myname> ORDER BY `time` DESC LIMIT 0, 2", true);
 if ($db->numrows() != 0) {
-    $row = $db->fObject();
     if ($row->action == "off") {
         if (((time() - $row->time) >= 60*60) && ((time() - $row->time) < 61*60)) {
             $chatBot->send("Shields have been disabled one hour ago. It is now possible to enable it again.", "guild");

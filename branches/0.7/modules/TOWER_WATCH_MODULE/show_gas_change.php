@@ -32,13 +32,13 @@
    **
    */
 
-$db->query("SELECT * FROM tower_watch");
+$data = $db->query("SELECT * FROM tower_watch");
 $minutes = Settings::get("alarmpreview");
 $seconds = $minutes * 60;
 
 $secondsPastMidnight = time() % 86400;
 
-while ($site = $db->fObject()) {
+forEach ($data as $site) {
 
 	$msg = "";
 	$variance = 2;

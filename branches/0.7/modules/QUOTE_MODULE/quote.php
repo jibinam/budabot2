@@ -31,9 +31,8 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	}
 	
 	$arr[1] = trim($arr[1]);
-	$db->query("SELECT * FROM quote WHERE `What` LIKE '".str_replace("'", "''", $arr[1])."'");
+	$row = $db->query("SELECT * FROM quote WHERE `What` LIKE '".str_replace("'", "''", $arr[1])."'", true);
 	if ($db->numrows() > 0) {
-		$row = $db->fObject();
 		$msg = "This quote is already in as quote <highlight>$row->IDNumber<end>.";
 	} else {
 		if (strlen($arr[1]) <= 1000) {
@@ -43,8 +42,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 			$quoteWHO = $sender;
 	
 			// Search for highest ID and +1 for new ID.
-			$db->query("SELECT * FROM quote ORDER BY `IDNumber` DESC");
-			$row = $db->fObject();
+			$row = $db->query("SELECT * FROM quote ORDER BY `IDNumber` DESC", true);
 
 			if ($row->IDNumber == "") {
 				$quoteID = 0;
@@ -91,10 +89,9 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 // Removing a quote
 } else if (preg_match("/^quote (rem|del|remove|delete) (\\d+)$/i", $message, $arr)) {
 
-	$db->query("SELECT * FROM quote WHERE `IDNumber` = '$arr[2]'");
+	$row = $db->query("SELECT * FROM quote WHERE `IDNumber` = '$arr[2]'", true);
 
 	if ($db->numrows() > 0) {
-		$row = $db->fObject();
 		$quoteID = $arr[2];
 		$quoteWHO = $row->Who;
 		$quoteOfWHO = $row->OfWho;
@@ -119,8 +116,8 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	
 	// Search for poster:
 	$list = "";
-	$db->query("SELECT * FROM quote WHERE `Who` LIKE '".str_replace("'", "''", $search)."'");
-	while ($row = $db->fObject()) {
+	$data = $db->query("SELECT * FROM quote WHERE `Who` LIKE '".str_replace("'", "''", $search)."'");
+	forEach ($data as $row) {
 		$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber'>$row->IDNumber</a>, ";
 	}
 	if ($list) {
@@ -130,8 +127,8 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	
 	// Search for victim:
 	$list = "";
-	$db->query("SELECT * FROM quote WHERE `OfWho` LIKE '".str_replace("'", "''", $search)."'");
-	while ($row = $db->fObject()) {
+	$data = $db->query("SELECT * FROM quote WHERE `OfWho` LIKE '".str_replace("'", "''", $search)."'");
+	forEach ($data as $row) {
 		$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber'>$row->IDNumber</a>, ";
 	}
 	if ($list) {
@@ -144,8 +141,8 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 
 	// Search inside quotes:
 	$list = "";
-	$db->query("SELECT * FROM quote WHERE `OfWho` NOT LIKE '$search' AND `What` LIKE '%".str_replace("'", "''", $search)."%'");
-	while($row = $db->fObject()) {
+	$data = $db->query("SELECT * FROM quote WHERE `OfWho` NOT LIKE '$search' AND `What` LIKE '%".str_replace("'", "''", $search)."%'");
+	forEach ($data as $row) {
 		$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber'>$row->IDNumber</a>, ";
 	}
 	if ($list) {
@@ -179,13 +176,11 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 } else if (preg_match("/^quote ([0-9]+)$/i", $message, $arr)) {
 	
 	//get total number of entries(by grabbing the Highest ID.)
-    $db->query("SELECT * FROM quote ORDER BY `IDNumber` DESC");
-	$row = $db->fObject();
+    $row = $db->query("SELECT * FROM quote ORDER BY `IDNumber` DESC", true);
 	$count = $row->IDNumber;
 	
-	$db->query("SELECT * FROM quote WHERE `IDNumber` = '$arr[1]'");
+	$row = $db->query("SELECT * FROM quote WHERE `IDNumber` = '$arr[1]'", true);
     if ($db->numrows() > 0) {
-		$row = $db->fObject();
 		$quoteID = $row->IDNumber;
 		$quoteWHO = $row->Who;
 		$quoteOfWHO = $row->OfWho;
@@ -198,17 +193,17 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		$msg .="<tab>Date: <highlight>$quoteDATE<end><br><br>";
 		
 		$msg .="<tab>Quotes posted by <highlight>$quoteWHO<end>: ";
-		$db->query("SELECT * FROM quote WHERE `Who` = '$quoteWHO'");
+		$data = $db->query("SELECT * FROM quote WHERE `Who` = '$quoteWHO'");
 		$list = "";
-		while ($row = $db->fObject()) {
+		forEach ($data as $row) {
 			$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber>$row->IDNumber</a>, ";
 		}
 		$msg .= substr($list,0,strlen($list)-2)."<br><br>";
 		
 		$msg .="<tab>Quotes <highlight>$quoteOfWHO<end> said: ";
-		$db->query("SELECT * FROM quote WHERE `OfWho` = '".str_replace("'", "''", $quoteOfWHO)."'");
+		$data = $db->query("SELECT * FROM quote WHERE `OfWho` = '".str_replace("'", "''", $quoteOfWHO)."'");
 		$list = "";
-		while($row = $db->fObject()) {
+		forEach ($data as $row) {
 			$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber>$row->IDNumber</a>, ";
 		}
 		$msg .= substr($list,0,strlen($list)-2);
@@ -228,16 +223,14 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	//get total number of entries for rand (and see if we even have any quotes to show)
 	
 	// find the highest IDnumber
-    $db->query("SELECT * FROM quote ORDER BY `IDNumber` DESC");
-	$row = $db->fObject();
+    $row = $db->query("SELECT * FROM quote ORDER BY `IDNumber` DESC", true);
 	$count = $row->IDNumber;
 
 	if ($count != "") {
 		do {
 			// loop till we find a random entry that isnt deleted.
-			$db->query("SELECT * FROM quote WHERE `IDNumber` = '".rand(0, $count)."'");
+			$row = $db->query("SELECT * FROM quote WHERE `IDNumber` = '".rand(0, $count)."'", true);
 			if ($db->numrows() > 0) {
-				$row = $db->fObject();
 				$quoteID = $row->IDNumber;
 				$quoteWHO = $row->Who;
 				$quoteOfWHO = $row->OfWho;
@@ -253,17 +246,17 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		$msg .="<tab>Date: <highlight>$quoteDATE<end><br><br>";
 		
 		$msg .="<tab>Quotes posted by <highlight>$quoteWHO<end>: ";
-		$db->query("SELECT * FROM quote WHERE `Who` = '".str_replace("'", "''", $quoteWHO)."'");
+		$data = $db->query("SELECT * FROM quote WHERE `Who` = '".str_replace("'", "''", $quoteWHO)."'");
 		$list = "";
-		while($row = $db->fObject()) {
+		forEach ($data as $row) {
 			$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber>$row->IDNumber</a>, ";
 		}
 		$msg .= substr($list,0,strlen($list)-2)."<br><br>";
 		
 		$msg .="<tab>Quotes <highlight>$quoteOfWHO<end> said: ";
-		$db->query("SELECT * FROM quote WHERE `OfWho` = '".str_replace("'", "''", $quoteOfWHO)."'");
+		$data = $db->query("SELECT * FROM quote WHERE `OfWho` = '".str_replace("'", "''", $quoteOfWHO)."'");
 		$list = "";
-		while($row = $db->fObject()) {
+		forEach ($data as $row) {
 			$list .= "<a href='chatcmd:///tell <myname> quote $row->IDNumber>$row->IDNumber</a>, ";
 		}
 		$msg .= substr($list,0,strlen($list)-2);

@@ -47,8 +47,8 @@ if (preg_match("/^orghistory$/i", $message, $arr) || preg_match("/^orghistory (\
 	$window = "";
 	
 	$sql = "SELECT actor, actee, action, organization, time FROM org_history ORDER BY time DESC LIMIT $startingRecord, $pageSize";
-	$db->query($sql);
-	while ($row = $db->fObject()) {
+	$data = $db->query($sql);
+	forEach ($data as $row) {
 
 		$window .= "$row->actor $row->action $row->actee in $row->organization at " . gmdate("M j, Y, G:i", $row->time)." (GMT)\n";
 	}
@@ -64,16 +64,16 @@ if (preg_match("/^orghistory$/i", $message, $arr) || preg_match("/^orghistory (\
 	
 	$window .= "\n  Actions on $character\n";
 	$sql = "SELECT actor, actee, action, organization, time FROM org_history WHERE actee = '$character' ORDER BY time DESC";
-	$db->query($sql);
-	while ($row = $db->fObject()) {
+	$data = $db->query($sql);
+	forEach ($data as $row) {
 
 		$window .= "$row->actor $row->action $row->actee in $row->organization at " . gmdate("M j, Y, G:i", $row->time)." (GMT)\n";
 	}
 
 	$window .= "\n  Actions by $character\n";
 	$sql = "SELECT actor, actee, action, organization, time FROM org_history WHERE actor = '$character' ORDER BY time DESC";
-	$db->query($sql);
-	while ($row = $db->fObject()) {
+	$data = $db->query($sql);
+	forEach ($data as $row) {
 
 		$window .= "$row->actor $row->action $row->actee in $row->organization at " . gmdate("M j, Y, G:i", $row->time)." (GMT)\n";
 	}

@@ -54,10 +54,9 @@ if(($data = fgets($socket)) && ("1" == Settings::get('irc_status'))) {
 			$numguest = 0;
 			//guild listing
 			if($chatBot->vars['my guild'] != "") {
-				$db->query("SELECT * FROM guild_chatlist_<myname>");
+				$data = $db->query("SELECT * FROM guild_chatlist_<myname>");
 				$numonline = $db->numrows();
 				if($numonline != 0) {
-					$data = $db->fObject("all");
 					foreach($data as $row) {
 						if($row->afk == "kiting")
 							$afk = " KITING";
@@ -65,11 +64,10 @@ if(($data = fgets($socket)) && ("1" == Settings::get('irc_status'))) {
 							$afk = " AFK";
 						else
 							$afk = "";
-						$db->query("SELECT * FROM alts WHERE `alt` = '$row->name'");
+						$row1 = $db->query("SELECT * FROM alts WHERE `alt` = '$row->name'", true);
 						if($db->numrows() == 0)
 							$alt = "";
 						else {
-							$row1 = $db->fObject();
 							$alt = " ($row1->main)";
 						}
 						$list .= "$row->name"."$alt"."$afk, ";
@@ -78,20 +76,18 @@ if(($data = fgets($socket)) && ("1" == Settings::get('irc_status'))) {
 				}
 			}
 			//priv listing
-			$db->query("SELECT * FROM priv_chatlist_<myname>");
+			$data = $db->query("SELECT * FROM priv_chatlist_<myname>");
 			$numguest = $db->numrows();
 			if($db->numrows() != 0) {
-				$data = $db->fObject("all");
 				foreach($data as $row) {
 					if($row->afk != "0")
 						$afk = " AFK";
 					else
 						$afk = "";
-					$db->query("SELECT * FROM alts WHERE `alt` = '$row->name'");
+					$row1 = $db->query("SELECT * FROM alts WHERE `alt` = '$row->name'", true);
 					if($db->numrows() == 0)
 						$alt = "";
 					else {
-						$row1 = $db->fObject();
 						$alt = " ($row1->main)";
 					}
 					$list .= "$row->name"."$alt"."$afk, ";

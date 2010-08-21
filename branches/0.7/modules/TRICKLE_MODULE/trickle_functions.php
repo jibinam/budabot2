@@ -86,9 +86,7 @@ function getTrickleResults($agi, $int, $psy, $sta, $str, $sen) {
 			groupName,
 			name";
 
-	$db->query($sql);
-
-	return $db->fObject("all");
+	return $db->query($sql);
 }
 
 function formatOutput($results, $amount) {

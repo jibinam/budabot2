@@ -21,9 +21,9 @@ if (preg_match("/^eventlist$/i", $message, $arr) || preg_match("/^eventlist (tow
 			$cmdSearchSql
 		ORDER BY
 			type ASC";
-	$db->query($sql);
+	$data = $db->query($sql);
 
-	while ($row = $db->fObject()) {
+	forEach ($data as $row) {
 		$on = Text::makeLink('ON', "/tell <myname> config cmd $row->cmd enable all", 'chatcmd');
 		$off = Text::makeLink('OFF', "/tell <myname> config cmd $row->cmd disable all", 'chatcmd');
 		$adv = Text::makeLink('Adv.', "/tell <myname> config cmd $row->cmd $row->module", 'chatcmd');

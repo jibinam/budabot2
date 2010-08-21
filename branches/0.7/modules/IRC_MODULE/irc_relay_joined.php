@@ -27,9 +27,8 @@ if("1" == Settings::get('irc_status')) {
 	$db->query("SELECT * FROM alts WHERE `main` = '$sender'");
 	if($db->numrows() == 0){
 		// Check if $sender is an alt
-		$db->query("SELECT * FROM alts WHERE `alt` = '$sender'");
+		$row = $db->query("SELECT * FROM alts WHERE `alt` = '$sender'", true);
 		if($db->numrows() != 0) {
-			$row = $db->fObject();
 			$main = $row->main;
 		}
 	} else

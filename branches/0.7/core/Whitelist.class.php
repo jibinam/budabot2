@@ -51,8 +51,7 @@ class Whitelist {
 	public static function find_all() {
 		global $db;
 	
-		$db->query("SELECT * FROM whitelist ORDER BY name ASC");
-		return $db->fObject('all');
+		return $db->query("SELECT * FROM whitelist ORDER BY name ASC");
 	}
 }
 

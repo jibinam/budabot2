@@ -39,9 +39,9 @@ function getRequirements($ql) {
 
 	$sql = "SELECT * FROM implant_requirements WHERE ql = $ql";
 
-	$db->query($sql);
+	$row = $db->query($sql, true);
 
-	return rowMapper($db->fObject());
+	return rowMapper($row);
 }
 
 function rowMapper($row) {
@@ -63,9 +63,9 @@ function findMaxImplantQlByReqs($ability, $treatment) {
 
 	$sql = "SELECT * FROM implant_requirements WHERE ability <= $ability AND treatment <= $treatment ORDER BY ql DESC LIMIT 1";
 
-	$db->query($sql);
+	$row = $db->query($sql, true);
 
-	return rowMapper($db->fObject());
+	return rowMapper($row);
 }
 
 function formatClusterBonuses(&$obj) {
@@ -146,9 +146,7 @@ function _setHighestAndLowestQls(&$obj, $var) {
 	$varValue = $obj->$var;
 
 	$sql = "SELECT MAX(ql) as max, MIN(ql) as min FROM implant_requirements WHERE $var = $varValue";
-	$db->query($sql);
-	$row = $db->fObject();
-
+	$row = $db->query($sql, true);
 
 	// camel case var name
 	$tempNameVar = ucfirst($var);

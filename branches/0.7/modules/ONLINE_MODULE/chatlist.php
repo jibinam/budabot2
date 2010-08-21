@@ -31,14 +31,14 @@
 
 if(preg_match("/^chatlist$/i", $message) || preg_match("/^sm$/i", $message)){
 	if($type == "priv" || (Settings::get("online_tell") == 1 && $type == "msg")) {
-		$db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `level` DESC");
+		$data = $db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `level` DESC");
 	} elseif($type == "guild" || (Settings::get("online_tell") == 0 && $type == "msg")) {
 	  	if(Settings::get("relaydb") != "0")
-			$db->query("SELECT * FROM guild_chatlist_<myname> UNION ALL SELECT * FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." ORDER BY `level` DESC");
+			$data = $db->query("SELECT * FROM guild_chatlist_<myname> UNION ALL SELECT * FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." ORDER BY `level` DESC");
 		else
-			$db->query("SELECT * FROM guild_chatlist_<myname> ORDER BY `level` DESC");
+			$data = $db->query("SELECT * FROM guild_chatlist_<myname> ORDER BY `level` DESC");
 	}
-	while($row = $db->fObject()){
+	forEach ($data as $row) {
 		$list = $list."$row->name ".
 			  "<br>   $row->level/$row->ai_level $row->profession";
 		if($row->org)

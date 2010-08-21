@@ -16,9 +16,9 @@ $db->query("SELECT * FROM quote");
 $count = $db->numrows();
 
 //$quoters = setup a list of who quoted the most
-$db->query("SELECT * FROM quote ORDER BY `Who`");
+$data = $db->query("SELECT * FROM quote ORDER BY `Who`");
 $quoters = array();
-while ($row = $db->fObject()) {
+forEach ($data as $row) {
 	if ($row->Who != "") {
 		$quoters[$row->Who]++;
 	}
@@ -26,9 +26,9 @@ while ($row = $db->fObject()) {
 arsort($quoters);
 
 //$victims = setup a list of who was quoted the most
-$db->query("SELECT * FROM quote ORDER BY `OfWho`");
+$data = $db->query("SELECT * FROM quote ORDER BY `OfWho`");
 $victims = array();
-while($row = $db->fObject()) {
+forEach ($data as $row) {
 	if ($row->Who != "") {
 		$victims[$row->OfWho]++;
 	}

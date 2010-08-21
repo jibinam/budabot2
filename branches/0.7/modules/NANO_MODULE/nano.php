@@ -43,7 +43,7 @@ if ($ql) {
 	$query .= " AND `lowql` <= $ql AND `highql` >= $ql";
 }
 
-$db->query("SELECT * FROM nanos WHERE $query ORDER BY lowql, name LIMIT 0, " . Settings::get("maxnano"));
+$data = $db->query("SELECT * FROM nanos WHERE $query ORDER BY lowql, name LIMIT 0, " . Settings::get("maxnano"));
 $num = $db->numrows();
 if ($num == 0) {
   	if ($ql) {
@@ -57,7 +57,7 @@ if ($num == 0) {
 
 $countitems = 0;
 
-while ($row = $db->fObject()) {
+forEach ($data as $row) {
 	if (!isset($itemlist[$row->name])) {
 		$itemlist[$row->name] = array(array("lowid" => $row->lowid, "highid" => $row->highid, "lowql" => $row->lowql, "highql" => $row->highql, "icon" => $row->icon, "location" => $row->location));
 		$countitems++;

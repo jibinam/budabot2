@@ -33,8 +33,8 @@ if (preg_match("/^(.+) invited (.+) to your organization.$/", $message, $arr)) {
     $uid = $chatBot->get_uid($arr[2]);
     $name = ucfirst(strtolower($arr[2]));
     $name2 = ucfirst(strtolower($arr[1]));
-    $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$name'");
-    $row = $db->fObject();
+    $row = $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$name'", true);
+
     if($row->name != "" && $row->mode == "del") {
         $db->query("UPDATE org_members_<myname> SET `mode` = 'man' WHERE `name` = '".$name."'");
 	    $chatBot->guildmembers[$name] = 6;

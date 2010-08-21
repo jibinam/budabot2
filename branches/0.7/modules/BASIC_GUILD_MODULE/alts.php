@@ -35,8 +35,7 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
     if (!$uid) {
         $msg = "Player <highlight>$name<end> does not exist.";
     } else {
-        $db->query("SELECT * FROM alts WHERE `alt` = '$name'");
-        $row = $db->fObject();
+        $row = $db->query("SELECT * FROM alts WHERE `alt` = '$name'", true);
         if ($row->alt == $name) {
             $msg = "Player <highlight>$name<end> is already registered as alt from <highlight>$row->main<end>.";
         } else {
@@ -45,8 +44,7 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
                 $msg = "Player <highlight>$name<end> is already registered as main from someone.";
             } else {
 				//check added to make sure the $sender himself isn't already an alt
-				$db->query("SELECT * FROM alts WHERE `alt` = '$sender'");
-				$row = $db->fObject();
+				$row = $db->query("SELECT * FROM alts WHERE `alt` = '$sender'", true);
 				if ($row->alt == $sender) {
 					$db->query("INSERT INTO alts (`alt`, `main`) VALUES ('$name', '$row->main')");
 					$msg = "<highlight>You<end> are already an alt of <highlight>$row->main<end>. <highlight>$name<end> has been registered as an alt of <highlight>$row->main<end>.";
@@ -63,15 +61,13 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
     if (!$uid) {
         $msg = "Player <highlight>".$name."<end> does not exist.";
     } else {
-        $db->query("SELECT * FROM alts WHERE `main` = '$sender' AND `alt` = '$name'");
-        $row = $db->fObject();
+        $row = $db->query("SELECT * FROM alts WHERE `main` = '$sender' AND `alt` = '$name'", true);
         if ($row->main == $sender) {
             $db->query("DELETE FROM alts WHERE `main` = '$sender' AND `alt` = '$name'");
             $msg = "<highlight>$name<end> has been deleted from your alt list.";
 		} else {
 			//sender was not found as a main.  checking if he himself is an alt and let him be able to modify his own alts list
-			$db->query("SELECT * FROM alts WHERE `alt` = '$sender'");
-			$row = $db->fObject();
+			$row = $db->query("SELECT * FROM alts WHERE `alt` = '$sender'", true);
 			//retrieve his main, use the main's name to do searches and modifications with
 			$main = $row->main;
 			$db->query("SELECT * FROM alts WHERE main = '$main' AND alt = '$name'");
@@ -94,11 +90,10 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
         $db->query("SELECT * FROM alts WHERE `main` = '$name'");
         if ($db->numrows() == 0){
             // Check if sender is an alt
-            $db->query("SELECT * FROM alts WHERE `alt` = '$name'");
+            $row = $db->query("SELECT * FROM alts WHERE `alt` = '$name'", true);
             if ($db->numrows() == 0) {
                 $msg = "No alts are registered for <highlight>$name<end>.";
             } else {
-                $row = $db->fObject();
                 $main = $row->main;
             }
         } else {
@@ -118,8 +113,8 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
                 $list .= "<red>Offline<end>\n";
 			}
             $list .= ":::::: Alt Character(s)\n";
-            $db->query("SELECT * FROM alts WHERE `main` = '$main'");
-            while($row = $db->fObject()) {
+            $data = $db->query("SELECT * FROM alts WHERE `main` = '$main'");
+            forEach ($data as $row) {
                 $list .= "<tab><tab>".Text::makeLink($row->alt, "/tell <myname> whois $row->alt", "chatcmd")." - ";
 				$online = Buddylist::is_online($row->alt);
                 if ($online === null) {
@@ -139,11 +134,10 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
     $db->query("SELECT * FROM alts WHERE `main` = '$sender'");
     if ($db->numrows() == 0){
         // Check if $sender is an alt
-        $db->query("SELECT * FROM alts WHERE `alt` = '$sender'");
+        $row = $db->query("SELECT * FROM alts WHERE `alt` = '$sender'", true);
         if ($db->numrows() == 0) {
             $msg = "No alts are registered for <highlight>$sender<end>.";
         } else {
-            $row = $db->fObject();
             $main = $row->main;
         }
     } else {
@@ -165,8 +159,8 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
 		}
             
         $list .= ":::::: Alt Character(s)\n";
-        $db->query("SELECT * FROM alts WHERE `main` = '$main'");
-        while ($row = $db->fObject()) {
+        $data = $db->query("SELECT * FROM alts WHERE `main` = '$main'");
+        forEach ($data as $row) {
             $list .= "<tab><tab>".Text::makeLink($row->alt, "/tell <myname> whois $row->alt", "chatcmd")." - ";
 			$online = Buddylist::is_online($row->alt);
             if ($online === null) {
@@ -193,8 +187,7 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
 				$msg .= " Player <highlight>$name_main<end> does not exist.";
 			}
 			if ($uid1 && $uid2) {
-				$db->query("SELECT * FROM alts WHERE `alt` = '$name_alt'");
-				$row = $db->fObject();
+				$row = $db->query("SELECT * FROM alts WHERE `alt` = '$name_alt'", true);
 				if ($row->alt == $name_alt) {
 					$msg = "Player <highlight>$name_alt<end> is already registered as alt from <highlight>$row->main<end>.";
 				} else {

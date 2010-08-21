@@ -30,10 +30,10 @@
    */
 
 if (preg_match("/^members$/i", $message)) {
-	$db->query("SELECT * FROM members_<myname> ORDER BY `name`");
+	$data = $db->query("SELECT * FROM members_<myname> ORDER BY `name`");
 	$autoguests = $db->numrows();
 	if ($autoguests != 0) {
-	  	while ($row = $db->fObject()) {
+	  	forEach ($data as $row) {
 	  	  	if (Buddylist::is_online($row->name)) {
 				$status = "<green>Online";
 				if ($chatBot->vars["Guest"][$row->name] == true) {

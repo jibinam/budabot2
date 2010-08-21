@@ -29,11 +29,10 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-$db->query("SELECT * FROM priv_chatlist_<myname> WHERE `guest` = 1");
-$data = $db->fObject("all");
+$data = $db->query("SELECT * FROM priv_chatlist_<myname> WHERE `guest` = 1");
 forEach ($data as $row) {
   	if (!isset($chatBot->chatlist[$row->name])) {
-  		$db->query("DELETE FROM priv_chatlist_<myname> WHERE `name` = '$row->name'");
+  		$db->exec("DELETE FROM priv_chatlist_<myname> WHERE `name` = '$row->name'");
 	}
 }
 

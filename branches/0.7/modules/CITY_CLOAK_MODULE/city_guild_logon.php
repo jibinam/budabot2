@@ -30,11 +30,10 @@
    */
 
 if (isset($chatBot->guildmembers[$sender])) {
-    $db->query("SELECT * FROM org_city_<myname> WHERE `action` = 'on' OR `action` = 'off' ORDER BY `time` DESC LIMIT 0, 20 ");
+    $row = $db->query("SELECT * FROM org_city_<myname> WHERE `action` = 'on' OR `action` = 'off' ORDER BY `time` DESC LIMIT 0, 20 ", true);
     
     $case = 0;
     if ($db->numrows() > 0) {
-        $row = $db->fObject();
         if (((time() - $row->time) >= 60*60) && ($row->action == "off")) {
 	        $case = 1;
             $msg = "The cloaking device is disabled. It is possible to enable it.";

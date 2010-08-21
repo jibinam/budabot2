@@ -42,7 +42,7 @@ if (preg_match("/^battle(s?)$/i", $message) || preg_match("/^battle(s?) (.+)$/i"
 		$search = " WHERE `att_guild` LIKE '".str_replace("'", "''", $arr[2])."' OR `att_player` LIKE '".str_replace("'", "''", $arr[2])."' OR `def_guild` LIKE '".str_replace("'", "''", $arr[2])."' OR `zone` LIKE '".str_replace("'", "''", $arr[2])."' ";
 	}
 
-	$db->query("SELECT * FROM tower_attack_<myname> $search ORDER BY `time` DESC LIMIT 0, $listcount");
+	$data = $db->query("SELECT * FROM tower_attack_<myname> $search ORDER BY `time` DESC LIMIT 0, $listcount");
 
 	if ($db->numrows() == 0 && $search == " ") {
         $msg = "No Tower messages recorded yet.";
@@ -51,7 +51,7 @@ if (preg_match("/^battle(s?)$/i", $message) || preg_match("/^battle(s?) (.+)$/i"
 	} else {
 		$list = $colorvalue;
 
- 		while($row = $db->fObject()) {
+ 		forEach ($data as $row) {
 			$list .= $colorlabel."Attacktime:<end> ".gmdate("M j, Y, G:i", $row->time)." (GMT)\n";
 			if (!$att_side = strtolower($row->att_side)) {$att_side = "unknown";}
 			if (!$def_side = strtolower($row->def_side)) {$def_side = "unknown";}
@@ -79,14 +79,14 @@ if (preg_match("/^battle(s?)$/i", $message) || preg_match("/^battle(s?) (.+)$/i"
 		$search = " WHERE `win_guild` LIKE '".str_replace("'", "''", $arr[1])."' OR `lose_guild` LIKE '".str_replace("'", "''", $arr[1])."' ";
 	}
 
-	$db->query("SELECT * FROM tower_result_<myname>".$search."ORDER BY `time` DESC LIMIT 0, $listcount");
+	$data = $db->query("SELECT * FROM tower_result_<myname>".$search."ORDER BY `time` DESC LIMIT 0, $listcount");
 	if ($db->numrows() == 0 && $search == " ") {
 		$msg = "No Tower results recorded yet.";
 	} else if ($db->numrows() == 0) {
 		$msg = "No Tower results found within this search.";
 	} else {
 		$list = $colorvalue;
-       	while ($row = $db->fObject()) {
+       	forEach ($data as $row) {
  			$list .= $colorlabel."Time:<end> ".gmdate("M j, Y, G:i", $row->time)." (GMT)\n";
 
 			if (!$win_side = strtolower($row->win_side)) {$win_side = "unknown";}
