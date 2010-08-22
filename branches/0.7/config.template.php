@@ -28,8 +28,8 @@
 	// WARN
 	// ERROR
 	// FATAL
-	$vars['console_log_level'] = DETAIL;
-	$vars['file_log_level'] = DETAIL;
+	$vars['console_log_level'] = INFO;
+	$vars['file_log_level'] = INFO;
 
 	// Default Delay for crons after bot is connected
 	$settings['CronDelay'] = 0;
