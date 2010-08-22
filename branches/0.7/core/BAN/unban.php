@@ -30,16 +30,17 @@
    */
 
 if (preg_match("/^unban (.+)$/i", $message, $arr)){
-	$who = ucfirst(strtolower($arr[1]));
+	$name = ucfirst(strtolower($arr[1]));
+	$uid = $chatBot->get_uid($name);
+	$who = new Player($uid);
 	
-	if (!isset($this->banlist[$who])) {
+	if (Banlist::get($who) == false) {
 		$this->send("<red>Sorry the player you wish to remove doesn't exist or isn't on the banlist.", $sendto);
 		return;
 	}
-		
-	unset($this->banlist[$who]);
-	$db->query("DELETE FROM banlist_<myname> WHERE name = '$who'");
-	$this->send("You have revomed the ban for <highlight>$who<end>", $sendto);
+
+	Banlist::remove($who);
+	$this->send("You have revomed the ban for <highlight>$name<end>", $sendto);
 } else {
 	$syntax_error = true;
 }

@@ -1,4 +1,6 @@
 <?php 
+	require 'Banlist.class.php';
+
 	$MODULE_NAME = "BAN";
 
 	DB::loadSQLFile($MODULE_NAME, "banlist");

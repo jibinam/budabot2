@@ -1,1 +1,1 @@
-CREATE TABLE IF NOT EXISTS banlist_<myname> (name VARCHAR(25) NOT NULL PRIMARY KEY, banned_by VARCHAR(25), time VARCHAR(10), reason TEXT NOT NULL, banend INT);
+CREATE TABLE IF NOT EXISTS banlist_<myname> (who INT NOT NULL PRIMARY KEY, banned_by INT, time INT, reason TEXT NOT NULL, banend INT);

@@ -29,10 +29,5 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-forEach ($this->banlist as $key => $data){
-	if ((time() - $this->banlist[$key]->banend) >= 0) {
-	 	 unset($this->banlist[$key]);
-	 	 $db->query("DELETE FROM banlist_<myname> WHERE name = '$key'");
-	}	
-}
+Banlist::remove_expired_bans();
 ?>

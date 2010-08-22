@@ -31,8 +31,7 @@
 
 if (preg_match("/^banlist$/i", $message)){
 
-	$sql = "SELECT name, banned_by, time, reason, banend FROM banlist_<myname>";
-	$data = $db->query($sql);
+	$data = Banlist::find_all();
 	if ($db->numrows() == 0) {
 	    $this->send("No one is banned from this bot currently.", $sendto);
 	    return;
@@ -40,9 +39,12 @@ if (preg_match("/^banlist$/i", $message)){
 
 	$list.= "<header>::::: Banlist :::::<end>\n\n";
 	forEach ($data as $row) {
-		$list.= "<highlight>Name:<end> {$row->name}\n";
-		$list.= "<highlight><tab>Date:<end> {$row->time}\n";
-		$list.= "<highlight><tab>By:<end> {$row->banned_by}\n";
+		$who = new Player($row->who);
+		$banned_by = new Player($row->banned_by);
+	
+		$list.= "<highlight>Name:<end> {$who->name}\n";
+		$list.= "<highlight><tab>Date:<end> " .date("m-d-y", $row->time). "\n";
+		$list.= "<highlight><tab>By:<end> {$banned_by->name}\n";
 		if ($row->banend != null) {
 			$list.= "<highlight><tab>Ban ends at:<end> ".date("m-d-y", $row->banend)."\n";
 		}

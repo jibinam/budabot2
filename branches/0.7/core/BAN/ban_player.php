@@ -82,18 +82,19 @@ if(preg_match("/^ban ([0-9]+)(w|week|weeks|m|month|months|d|day|days) (.+) (for|
 	return;
 }
 
-if($this->get_uid($who) == NULL){
-	$this->send("<red>Sorry player you wish to ban does not exist.", $sendto);
+$uid = $chatBot->get_uid($name);
+$who = new Player($uid);
+if ($uid == false){
+	$this->send("<red>Error! '$name' does not exist.", $sendto);
 	return;
 }
 
-if (isset($this->banlist[$who])) {
-	$this->send("<red>Player $who is already banned.<end>", $sendto);
+if (Banlist->get($player) == false) {
+	$this->send("<red>'$name' is already banned.<end>", $sendto);
 	return;
 }
 
-$db->execute("INSERT INTO banlist_<myname> (`name`, `banned_by`, `time`, `reason`, `banend`) VALUES ('".str_replace("'", "''", $name)."', '$sender', '".date("m-d-y")."', '".str_replace("'", "''", $reason)."', $banend)");
-include 'upload_banlist.php';
+Banlist->add($who, $player, $reason, $banend);
 $this->send("You have banned <highlight>$name<end> from this bot", $sendto);
 
 ?>
