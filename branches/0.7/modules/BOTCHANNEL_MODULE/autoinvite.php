@@ -39,7 +39,7 @@ if (preg_match("/^autoinvite (on|off)$/i", $message, $arr)) {
 	if($db->numrows() == 0) {
 		$msg = "You are not a member of this bot.";
 	} else {
-		$db->exec("UPDATE members_<myname> SET autoinv = $onOrOff WHERE name = '$sender'");
+		$db->execute("UPDATE members_<myname> SET autoinv = $onOrOff WHERE name = '$sender'");
 		$msg = "Your auto invite preference has been updated.";
 	}
 	

@@ -92,7 +92,7 @@ if (isset($this->banlist[$who])) {
 	return;
 }
 
-$db->exec("INSERT INTO banlist_<myname> (`name`, `banned_by`, `time`, `reason`, `banend`) VALUES ('".str_replace("'", "''", $name)."', '$sender', '".date("m-d-y")."', '".str_replace("'", "''", $reason)."', $banend)");
+$db->execute("INSERT INTO banlist_<myname> (`name`, `banned_by`, `time`, `reason`, `banend`) VALUES ('".str_replace("'", "''", $name)."', '$sender', '".date("m-d-y")."', '".str_replace("'", "''", $reason)."', $banend)");
 include 'upload_banlist.php';
 $this->send("You have banned <highlight>$name<end> from this bot", $sendto);
 

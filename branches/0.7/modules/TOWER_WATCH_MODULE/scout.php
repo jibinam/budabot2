@@ -44,12 +44,12 @@ if (preg_match("/^scout (.*)$/i", $message)) {
 		  	$data = $db->query("SELECT * FROM tower_watch WHERE zone = '$zone' AND base_number = $base_number");
 		  	if ($db->numRows() > 0) {
 			  	
-			  	$db->exec("UPDATE tower_watch SET close_time = $closing_time_seconds, ct_ql = $ct_ql, side = '$side', org = '$org' WHERE zone = '$zone' AND base_number = $base_number");
+			  	$db->execute("UPDATE tower_watch SET close_time = $closing_time_seconds, ct_ql = $ct_ql, side = '$side', org = '$org' WHERE zone = '$zone' AND base_number = $base_number");
 			  	$msg = "Tower site has been updated successfully.";
 		  	
 			} else {
 			
-				$db->exec("INSERT INTO tower_watch (zone, base_number, close_time, ct_ql, side, org) VALUES('$zone', $base_number, $closing_time_seconds, $ct_ql, '$side', '$org')");
+				$db->execute("INSERT INTO tower_watch (zone, base_number, close_time, ct_ql, side, org) VALUES('$zone', $base_number, $closing_time_seconds, $ct_ql, '$side', '$org')");
 			  	$msg = "Tower site has been added successfully.";
   			}
   		}

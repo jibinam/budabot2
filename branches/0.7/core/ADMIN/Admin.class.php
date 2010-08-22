@@ -4,13 +4,13 @@ class Admin {
 	public static function add($uid, $acces_level) {
 		global $db;
 
-		$db->exec("INSERT INTO admin_<myname> (`access_level`, `uid`) VALUES ($acces_level, $uid)");
+		$db->execute("INSERT INTO admin_<myname> (`access_level`, `uid`) VALUES ($acces_level, $uid)");
 	}
 	
 	public static function remove($uid) {
 		global $db;
 
-		$db->exec("DELETE FROM admin_<myname> WHERE `uid` = $uid");
+		$db->execute("DELETE FROM admin_<myname> WHERE `uid` = $uid");
 	}
 	
 	public static function get($uid) {
@@ -28,7 +28,7 @@ class Admin {
 	public static function update($uid, $access_level) {
 		global $db;
 		
-		$db->exec("UPDATE admin_<myname> SET `access_level` = $access_level WHERE `uid` = $uid");
+		$db->execute("UPDATE admin_<myname> SET `access_level` = $access_level WHERE `uid` = $uid");
 	}
 	
 	public static function find_by_access_level($access_level) {

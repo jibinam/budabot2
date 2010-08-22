@@ -129,7 +129,7 @@ if($chatBot->vars["my guild"] != "" && $chatBot->vars["my guild id"] != "") {
 		
 		// remove buddies who used to be org members, but are no longer
 		forEach ($dbentrys as $buddy) {
-			$db->exec("DELETE FROM org_members_<myname> WHERE `name` = '".$buddy['name']."'");
+			$db->execute("DELETE FROM org_members_<myname> WHERE `name` = '".$buddy['name']."'");
 			$uid = $chatBot->get_uid($buddy['name']);
 			Buddylist::remove($uid, 'org');
 		}

@@ -30,7 +30,7 @@
    */
 
 if (preg_match("/^delnews ([0-9]+)$/i", $message, $arr)) {
-	$rows = $db->exec("DELETE FROM news_<myname> WHERE `id` = {$arr[1]}");
+	$rows = $db->execute("DELETE FROM news_<myname> WHERE `id` = {$arr[1]}");
 	if ($rows == 0) {
 		$msg = "No newsentry found with the ID <highlight>{$arr[1]}<end>.";
 	} else {

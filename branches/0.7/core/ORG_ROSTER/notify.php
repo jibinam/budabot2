@@ -41,7 +41,7 @@ if (preg_match("/^notify (on|add) (.+)$/i", $message, $arr)) {
         $msg = "<highlight>$name<end> is already on the Notify list.";
     // If the member was deleted set him as manual added again
     } else if ($numrows != 0 && $row->mode == "del") {
-        $db->exec("UPDATE org_members_<myname> SET `mode` = 'man' WHERE `name` = '$name'");
+        $db->execute("UPDATE org_members_<myname> SET `mode` = 'man' WHERE `name` = '$name'");
         Buddylist::add($uid, 'org');
 	    
     	$msg = "<highlight>$name<end> has been added to the Notify list.";
@@ -62,7 +62,7 @@ if (preg_match("/^notify (on|add) (.+)$/i", $message, $arr)) {
 		  	$whois -> gender = "Unknown";
 		  	$whois -> breed = "Unknown";
 		}
-        $db->exec("INSERT INTO org_members_<myname> (`mode`, `name`, `firstname`, `lastname`, `guild`, `rank_id`, `rank`, `level`, `profession`, `gender`, `breed`, `ai_level`, `ai_rank`)
+        $db->execute("INSERT INTO org_members_<myname> (`mode`, `name`, `firstname`, `lastname`, `guild`, `rank_id`, `rank`, `level`, `profession`, `gender`, `breed`, `ai_level`, `ai_rank`)
                     VALUES ('man',
                     '".$name."', '".$whois -> firstname."',
                     '".$whois -> lastname."', '".$whois -> org."',
@@ -86,8 +86,8 @@ if (preg_match("/^notify (on|add) (.+)$/i", $message, $arr)) {
 
     // Is the player a member of this bot?
     if($numrows != 0 && $row->mode != "del") {
-        $db->exec("UPDATE org_members_<myname> SET `mode` = 'del' WHERE `name` = '$name'");
-        $db->exec("DELETE FROM guild_chatlist_<myname> WHERE `name` = '$name'");
+        $db->execute("UPDATE org_members_<myname> SET `mode` = 'del' WHERE `name` = '$name'");
+        $db->execute("DELETE FROM guild_chatlist_<myname> WHERE `name` = '$name'");
         $msg = "Removed <highlight>$name<end> from the Notify list.";
     // Player is not a member of this bot
     } else {

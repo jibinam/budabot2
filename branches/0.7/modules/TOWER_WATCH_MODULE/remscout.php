@@ -29,7 +29,7 @@ if (preg_match("/^remscout( (.*))?$/i", $message)) {
 	  	$zone = strtoupper($arr[1]);
 	  	$base_number = $arr[2];
 
-	  	$numRows = $db->exec("DELETE FROM tower_watch WHERE zone = '$zone' AND base_number = $base_number");
+	  	$numRows = $db->execute("DELETE FROM tower_watch WHERE zone = '$zone' AND base_number = $base_number");
 		if ($numRows) {
 		  	$msg = "Tower site has been deleted successfully.";
 	  	} else {

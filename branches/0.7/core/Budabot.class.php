@@ -117,12 +117,12 @@ class Budabot extends AOChat {
 		$this->load_core_module("SYSTEM");
 		$this->load_core_module("ADMIN");
 		$this->load_core_module("BAN");
-		//$this->load_core_module("HELP");
-		//$this->load_core_module("CONFIG");
-		//$this->load_core_module("ORG_ROSTER");
-		//$this->load_core_module("BASIC_CONNECTED_EVENTS");
-		//$this->load_core_module("PRIV_TELL_LIMIT");
-		//$this->load_core_module("USER_MODULES");
+		$this->load_core_module("HELP");
+		$this->load_core_module("CONFIG");
+		$this->load_core_module("ORG_ROSTER");
+		$this->load_core_module("BASIC_CONNECTED_EVENTS");
+		$this->load_core_module("PRIV_TELL_LIMIT");
+		$this->load_core_module("USER_MODULES");
 		
 		Logger::log(__FILE__, "End: Loading CORE MODULES", DEBUG);
 		
@@ -141,10 +141,8 @@ class Budabot extends AOChat {
 ** Name: load_core_module
 ** Loads a core module
 */	function load_core_module($module_name) {
-		if (Settings::get('debug') > 0) {
-			Logger::log(__FILE__, "Loading CORE MODULE: $module_name", INFO);
-		}
-		include "./core/$module_name/$module_name.php";
+		Logger::log(__FILE__, "Loading CORE MODULE: $module_name", INFO);
+		require "./core/$module_name/$module_name.php";
 	}
 	
 /*===============================

@@ -32,7 +32,7 @@
 $data = $db->query("SELECT * FROM guild_chatlist_<myname>");
 forEach ($data as $row) {
   	if (!Buddylist::is_online($row->name)) {
-  		$db->exec("DELETE FROM guild_chatlist_<myname> WHERE `name` = '$row->name'");
+  		$db->execute("DELETE FROM guild_chatlist_<myname> WHERE `name` = '$row->name'");
 	}
 }
 

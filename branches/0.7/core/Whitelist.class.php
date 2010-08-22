@@ -14,7 +14,7 @@ class Whitelist {
 		if ($db->numrows() != 0) {
 			return "Error! $user already added to the whitelist";
 		} else {
-			$db->exec("INSERT INTO whitelist (name, added_by, added_dt) VALUES ('$user', '$sender', CURRENT_TIMESTAMP)");
+			$db->execute("INSERT INTO whitelist (name, added_by, added_dt) VALUES ('$user', '$sender', CURRENT_TIMESTAMP)");
 			return "$user has been added to the whitelist";
 		}
 	}
@@ -31,7 +31,7 @@ class Whitelist {
 		if ($db->numrows() == 0) {
 			return "Error! $user is not on the whitelist";
 		} else {
-			$db->exec("DELETE FROM whitelist WHERE name = '$user'");
+			$db->execute("DELETE FROM whitelist WHERE name = '$user'");
 			return "$user has been removed from the whitelist";
 		}
 	}

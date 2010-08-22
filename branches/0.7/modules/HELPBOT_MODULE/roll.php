@@ -33,7 +33,7 @@ if (preg_match("/^flip$/i", $message)) {
 	$row = $db->query("SELECT * FROM roll_<myname> WHERE `type` = 0 AND `name` = '$sender' ORDER BY `time`", true);
 	if ($db->numrows() == 0) {
 	  	$flip = rand(1, 2);
-		$db->exec("INSERT INTO roll_<myname> (`time`, `name`, `type`, `result`) VALUES (".time().", '$sender', 0, $flip)");
+		$db->execute("INSERT INTO roll_<myname> (`time`, `name`, `type`, `result`) VALUES (".time().", '$sender', 0, $flip)");
 		$ver_num = $db->lastInsertId();
 	  	if ($flip == 1) {
 	  		$msg = "The coin landed <highlight>heads<end>, to verify do /tell <myname> verify $ver_num";
@@ -45,7 +45,7 @@ if (preg_match("/^flip$/i", $message)) {
 	  		$msg = "You can only flip once every 30 seconds.";
 	  	} else {
 		  	$flip = rand(1,2);
-			$db->exec("INSERT INTO roll_<myname> (`time`, `name`, `type`, `result`) VALUES (".time().", '$sender', 0, $flip)");
+			$db->execute("INSERT INTO roll_<myname> (`time`, `name`, `type`, `result`) VALUES (".time().", '$sender', 0, $flip)");
 			$ver_num = $db->lastInsertId();
 		  	if ($flip == 1) {
 		  		$msg = "The coin landed <highlight>heads<end>, to verify do /tell <myname> verify $ver_num";
@@ -63,7 +63,7 @@ if (preg_match("/^flip$/i", $message)) {
 		$row = $db->query("SELECT * FROM roll_<myname> WHERE `type` = 1 AND `name` = '$sender' ORDER BY `time`", true);
 		if ($db->numrows() == 0) {
 		  	$num = rand(1, $arr[1]);
-			$db->exec("INSERT INTO roll_<myname> (`time`, `name`, `type`, `start`, `end`, `result`) VALUES (".time().", '$sender', 1, 1, $arr[1], $num)");
+			$db->execute("INSERT INTO roll_<myname> (`time`, `name`, `type`, `start`, `end`, `result`) VALUES (".time().", '$sender', 1, 1, $arr[1], $num)");
 		  	$ver_num = $db->lastInsertId();
 			$msg = "Between 1 and $arr[1] i rolled a $num, to verify do /tell <myname> verify $ver_num";
 		} else {
@@ -71,7 +71,7 @@ if (preg_match("/^flip$/i", $message)) {
 		  		$msg = "You can only flip once ever 30 seconds.";
 		  	} else {
 			  	$num = rand(1, $arr[1]);
-				$db->exec("INSERT INTO roll_<myname> (`time`, `name`, `type`, `start`, `end`, `result`) VALUES (".time().", '$sender', 1, 1, $arr[1], $num)");
+				$db->execute("INSERT INTO roll_<myname> (`time`, `name`, `type`, `start`, `end`, `result`) VALUES (".time().", '$sender', 1, 1, $arr[1], $num)");
 			  	$ver_num = $db->lastInsertId();
 				$msg = "Between 1 and $arr[1] i rolled a $num, to verify do /tell <myname> verify $ver_num";
 			}		
@@ -88,7 +88,7 @@ if (preg_match("/^flip$/i", $message)) {
 		$row = $db->query("SELECT * FROM roll_<myname> WHERE `type` = 1 AND `name` = '$sender' ORDER BY `time`", true);
 		if ($db->numrows() == 0) {
 		  	$num = rand($arr[1], $arr[2]);
-			$db->exec("INSERT INTO roll_<myname> (`time`, `name`, `type`, `start`, `end`, `result`) VALUES (".time().", '$sender', 1, $arr[1], $arr[2], $num)");
+			$db->execute("INSERT INTO roll_<myname> (`time`, `name`, `type`, `start`, `end`, `result`) VALUES (".time().", '$sender', 1, $arr[1], $arr[2], $num)");
 			$ver_num = $db->lastInsertId();
 			$msg = "Between $arr[1] and $arr[2] i rolled a $num, to verify do /tell <myname> verify $ver_num";
 		} else {
@@ -97,7 +97,7 @@ if (preg_match("/^flip$/i", $message)) {
 			}
 		  	else {
 			  	$num = rand($arr[1], $arr[1]);
-				$db->exec("INSERT INTO roll_<myname> (`time`, `name`, `type`, `start`, `end`, `result`) VALUES (".time().", '$sender', 1, $arr[1], $arr[2], $num)");
+				$db->execute("INSERT INTO roll_<myname> (`time`, `name`, `type`, `start`, `end`, `result`) VALUES (".time().", '$sender', 1, $arr[1], $arr[2], $num)");
 				$ver_num = $db->lastInsertId();
 				$msg = "Between $arr[1] and $arr[2] i rolled a $num, to verify do /tell <myname> verify $ver_num";
 			}

@@ -33,7 +33,7 @@ if (!preg_match("/^afk(.*)$/i", $message, $arr)) {
 	$row = $db->query("SELECT afk FROM priv_chatlist_<myname> WHERE `name` = '$sender'", true);
 	if ($db->numrows() != 0) {
 	    if ($row->afk != '0') {
-	        $db->exec("UPDATE priv_chatlist_<myname> SET `afk` = 0 WHERE `name` = '$sender'");
+	        $db->execute("UPDATE priv_chatlist_<myname> SET `afk` = 0 WHERE `name` = '$sender'");
 	        $msg = "<highlight>$sender<end> is back";
 	        $chatBot->send($msg);
 	    }

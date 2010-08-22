@@ -98,7 +98,7 @@ if (preg_match("/^config$/i", $message)) {
 	}
 	
 	$sql = "UPDATE cmdcfg_<myname> SET `status` = $status WHERE (`cmdevent` = 'cmd' OR `cmdevent` = 'subcmd') AND ($typeSql)";
-	$db->exec($sql);
+	$db->execute($sql);
 	
 	$chatBot->send("Command(s) updated successfully.", $sendto);	
 } else if (preg_match("/^config (mod|cmd|grp|event) (.+) (enable|disable) (priv|msg|guild|all)$/i", $message, $arr)) {
@@ -617,7 +617,7 @@ if (preg_match("/^config$/i", $message)) {
 		$chatBot->send("The helpfile <highlight>$help<end> doesn't exists!", $sendto);		  	
 		return;
 	} else {
-		$db->exec("UPDATE hlpcfg_<myname> SET `access_level` = $access_level WHERE `name` = '$help'");
+		$db->execute("UPDATE hlpcfg_<myname> SET `access_level` = $access_level WHERE `name` = '$help'");
 		$chatBot->send("Updated access for helpfile <highlight>$help<end> to <highlight>".ucfirst(strtolower($arr[2]))."<end>.", $sendto);
 	}
 } else if (preg_match("/^config help (.+)$/i", $message, $arr)) {

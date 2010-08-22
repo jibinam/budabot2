@@ -74,7 +74,7 @@ function checkForUpdate($currentVersion, $forceUpdate) {
 	
 	if ($version > $currentVersion || $forceUpdate) {
 		
-		$db->exec("DELETE FROM premade_implant");
+		$db->execute("DELETE FROM premade_implant");
 		
 		$csv = file_get_contents($downloadUrl);
 		$rows = explode("\r\n", $csv);
@@ -102,7 +102,7 @@ function checkForUpdate($currentVersion, $forceUpdate) {
 			$faded = $array[5];
 
 			$sql = "INSERT INTO premade_implant (slot, profession, ability, shiny, bright, faded) VALUES('$slot', '$profession', '$ability', '$shiny', '$bright', '$faded')";
-			$db->exec($sql);
+			$db->execute($sql);
 		}
 
 	}

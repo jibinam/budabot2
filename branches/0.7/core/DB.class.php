@@ -154,7 +154,6 @@ class DB {
 			
 			$error = $this->sql->errorInfo();
 			if ($error[0] != "00000") {
-				sleep(5);
 				$paramString = print_r($params, true);
 				Logger::log(__FILE__, "Error msg: $error[2] in:\n$sql $paramString", ERROR);
 			}
@@ -336,7 +335,7 @@ class DB {
 				$line = trim($line);
 				// don't process comment lines or blank lines
 				if ($line != '' && substr($line, 0, 1) != "#") {
-					$db->exec($line);
+					$db->execute($line);
 				}
 			}
 			$db->Commit();

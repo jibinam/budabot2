@@ -34,10 +34,10 @@ if ($type == "guild") {
 	$numrows = $db->numrows();
 	if (preg_match("/^kiting$/i", $message, $arr) && $numrows != 0) {
 	    if ($row->afk != 'kiting') {
-	        $db->exec("UPDATE guild_chatlist_<myname> SET `afk` = 'kiting' WHERE `name` = '$sender'");
+	        $db->execute("UPDATE guild_chatlist_<myname> SET `afk` = 'kiting' WHERE `name` = '$sender'");
 	        $msg = "<highlight>$sender<end> is now kiting";
 	    } else if ($row->afk != '0') {
-	        $db->exec("UPDATE guild_chatlist_<myname> SET `afk` = '0' WHERE `name` = '$sender'");
+	        $db->execute("UPDATE guild_chatlist_<myname> SET `afk` = '0' WHERE `name` = '$sender'");
 	        $msg = "<highlight>$sender<end> is back";
 	    }
 	    $chatBot->send($msg, "guild");
@@ -49,10 +49,10 @@ if ($type == "guild") {
 	$numrows = $db->numrows();
 	if (preg_match("/^kiting$/i", $message, $arr) && $numrows != 0) {
 	    if ($row->afk != 'kiting') {
-	        $db->exec("UPDATE priv_chatlist_<myname> SET `afk` = 'kiting' WHERE `name` = '$sender'");
+	        $db->execute("UPDATE priv_chatlist_<myname> SET `afk` = 'kiting' WHERE `name` = '$sender'");
 	        $msg = "<highlight>$sender<end> is now kiting";
 	    } else if ($row->afk != '0') {
-	        $db->exec("UPDATE priv_chatlist_<myname> SET `afk` = '0' WHERE `name` = '$sender'");
+	        $db->execute("UPDATE priv_chatlist_<myname> SET `afk` = '0' WHERE `name` = '$sender'");
 	        $msg = "<highlight>$sender<end> is back";
 	    }
 	    $chatBot->send($msg);
