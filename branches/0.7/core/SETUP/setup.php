@@ -39,21 +39,22 @@ function read_input ($output = "") {
 function savecfg($vars, $settings) {
 	global $config_file;
 	$lines = file($config_file);
-	foreach($lines as $key => $line) {
-	  	if(preg_match("/^(.+)vars\[('|\")(.+)('|\")](.*)=(.*)\"(.*)\";(.*)$/i", $line, $arr))
+	forEach ($lines as $key => $line) {
+	  	if (preg_match("/^(.+)vars\[('|\")(.+)('|\")](.*)=(.*)\"(.*)\";(.*)$/i", $line, $arr)) {
 			$lines[$key] = "$arr[1]vars['$arr[3]']$arr[5]=$arr[6]\"{$vars[$arr[3]]}\"; $arr[8]";
-		elseif(preg_match("/^(.+)vars\[('|\")(.+)('|\")](.*)=([ 	]+)([0-9]+);(.*)$/i", $line, $arr))
+		} else if (preg_match("/^(.+)vars\[('|\")(.+)('|\")](.*)=([ 	]+)([0-9]+);(.*)$/i", $line, $arr)) {
 			$lines[$key] = "$arr[1]vars['$arr[3]']$arr[5]=$arr[6]{$vars[$arr[3]]}; $arr[8]";
-	  	elseif(preg_match("/^(.+)settings\[('|\")(.+)('|\")](.*)=(.*)\"(.*)\";(.*)$/i", $line, $arr))
+	  	} else if (preg_match("/^(.+)settings\[('|\")(.+)('|\")](.*)=(.*)\"(.*)\";(.*)$/i", $line, $arr)) {
 			$lines[$key] = "$arr[1]settings['$arr[3]']$arr[5]=$arr[6]\"{$settings[$arr[3]]}\"; $arr[8]";
-		elseif(preg_match("/^(.+)settings\[('|\")(.+)('|\")](.*)=([ 	]+)([0-9]+);(.*)$/i", $line, $arr))
+		} else if (preg_match("/^(.+)settings\[('|\")(.+)('|\")](.*)=([ 	]+)([0-9]+);(.*)$/i", $line, $arr)) {
 			$lines[$key] = "$arr[1]settings['$arr[3]']$arr[5]=$arr[6]{$settings[$arr[3]]}; $arr[8]";
+		}
 	}
 	file_put_contents($config_file, $lines);
 }
 
 //Check current $config_file settings(if they are manually inserted)
-if($vars["login"] != "" && $vars["password"] != "" && $vars["dimension"] != "" && $vars["name"] != "" && $settings["Super Admin"] != "" && $settings["DB Type"] != "") {
+if ($vars["login"] != "" && $vars["password"] != "" && $vars["dimension"] != "" && $vars["name"] != "" && $settings["Super Admin"] != "" && $settings["DB Type"] != "") {
 	do {
 	    echo "             **********************************************\n";		
 		echo "             All needed informations are already entered\n";
@@ -65,18 +66,17 @@ if($vars["login"] != "" && $vars["password"] != "" && $vars["dimension"] != "" &
 
 		$msg = "Do you want to re-enter it?(yes/no): \n";
 		$answer = strtolower(read_input($msg));
-	} while($answer == "" || ($answer != "yes" && $answer != "no"));
-} else 
+	} while($answer != "yes" && $answer != "no");
+} else {
 	$answer = "yes";
+}
 
 if($answer == "yes") {
 	echo "             \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     echo "             ***************************************************\n";	
 	echo "             On the first using of this Bot you need to \n";
 	echo "             fill out some Informations that are needed \n";
-	echo "             to start this bot. You can everytime re-enter \n";
-	echo "             this setup procedure with deleting the file \n";
-	echo "             'delete me for new setup' in your bot folder\n";
+	echo "             to start this bot.\n";
 	echo "             ***************************************************\n";
 	echo "             \n\n\n\n\n\n\n\n\n";
 	$msg = "Press enter to continue. \n";
@@ -92,7 +92,7 @@ if($answer == "yes") {
 		echo "             \n\n\n\n\n\n\n\n\n";
 		$msg = "Enter your AO-Username(case-senstitive): \n";
 		$vars["login"] = read_input($msg);
-	} while($vars["login"] == "");
+	} while ($vars["login"] == "");
 	
 	do {
 		echo "             \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
@@ -104,7 +104,7 @@ if($answer == "yes") {
 		echo "             \n\n\n\n\n\n\n\n\n";
 		$msg = "Enter your AO-Password(case-senstitive): \n";
 		$vars["password"] = read_input($msg);
-	} while($vars["password"] == "");	
+	} while ($vars["password"] == "");	
 	
 	do {
 		echo "             \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";		
@@ -116,7 +116,7 @@ if($answer == "yes") {
 		echo "             \n\n\n\n\n\n\n\n\n";
 		$msg = "Choose a Dimension (1 = Atlantean, 2 = Rimor, 3 = Die Neue Welt, 4 = Test): \n";
 		$vars["dimension"] = read_input($msg);
-	} while($vars["dimension"] == "" || ($vars["dimension"] != 1 && $vars["dimension"] != 2 && $vars["dimension"] != 3 && $vars["dimension"] != 4));
+	} while ($vars["dimension"] != 1 && $vars["dimension"] != 2 && $vars["dimension"] != 3 && $vars["dimension"] != 4);
 
 	do {
 		echo "             \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
@@ -130,7 +130,7 @@ if($answer == "yes") {
 		echo "             \n\n\n\n\n\n\n\n";
 		$msg = "Enter the Character you want to use as bot: \n";
 		$vars["name"] = read_input($msg);
-	} while($vars["name"] == "");
+	} while ($vars["name"] == "");
 
 	do {
 		echo "             \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
@@ -143,7 +143,7 @@ if($answer == "yes") {
 		$msg = "Enter the Administrator for this bot: \n";
 		
 		$settings["Super Admin"] = read_input($msg);
-	} while($settings["Super Admin"] == "");
+	} while ($settings["Super Admin"] == "");
 	
 	echo "             \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	echo "             ***************************************************\n";	
@@ -185,9 +185,9 @@ if($answer == "yes") {
 		echo "             \n\n\n\n\n\n\n";
 		$msg = "Do you want to setup the database manually(yes/no(recommended)): \n";
 		$mansetupdb = strtolower(read_input($msg));
-	} while($mansetupdb == "" || ($mansetupdb != "no" && $mansetupdb != "yes"));
+	} while ($mansetupdb != "no" && $mansetupdb != "yes");
 	
-	if(strtolower($mansetupdb) == "yes") {
+	if (strtolower($mansetupdb) == "yes") {
 		do {
 			echo "             \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 			echo "             *********************************************************\n";		
@@ -203,7 +203,7 @@ if($answer == "yes") {
 			echo "             \n\n\n\n\n\n\n";
 			$msg = "Choose a Databasesystem (1 = Sqlite(RECOMMENDED), 2 = MySQL): \n";
 			$settings["DB Type"] = read_input($msg);
-		} while($settings["DB Type"] == "" || (strtolower($settings["DB Type"]) != "1" && strtolower($settings["DB Type"]) != "2"));
+		} while (strtolower($settings["DB Type"]) != "1" && strtolower($settings["DB Type"]) != "2");
 
 		switch($settings["DB Type"]) {
 		  	case "1":
@@ -217,20 +217,22 @@ if($answer == "yes") {
 		echo "             *********************************************************\n";	
 		echo "             What is the name of the database that you\n";
 		echo "             wannna use?\n";
-		if($settings["DB Type"] == "Sqlite") {
+		if ($settings["DB Type"] == "Sqlite") {
 			echo "             (This is the filename of the database)\n";
 			echo "             (Default: budabot.db)\n";
-		} else
+		} else {
 			echo "             (Default: budabot)\n";
+		}
 		echo "             *********************************************************\n";	
 		echo "             \n\n\n\n\n\n\n\n";
 		$msg = "Enter the Databasename(leave blank for default setting): \n";
 		$settings["DB Name"] = read_input($msg);
 		
-		if($settings["DB Name"] == "" && $settings["DB Type"] == "Sqlite")
+		if ($settings["DB Name"] == "" && $settings["DB Type"] == "Sqlite") {
 			$settings["DB Name"] = "budabot.db";
-		elseif($settings["DB Name"] == "" && $settings["DB Type"] == "Mysql")
+		} else if ($settings["DB Name"] == "" && $settings["DB Type"] == "Mysql") {
 			$settings["DB Name"] = "budabot";
+		}
 			
 		if($settings["DB Type"] == "Mysql") {
 			echo "             \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
@@ -258,8 +260,9 @@ if($answer == "yes") {
 			$msg = "Enter username for the Database(leave blank for default setting): \n";
 			$settings["DB username"] = read_input($msg);
 
-			if($settings["DB username"] == "")
+			if ($settings["DB username"] == "") {
 				$settings["DB username"] = "root";
+			}
 
 			echo "             \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 			echo "             **********************************************\n";
@@ -285,8 +288,9 @@ if($answer == "yes") {
 			$msg = "Enter the path for the Database(leave blank for default setting):  \n";
 			$settings["DB Host"] = read_input($msg);
 
-			if($settings["DB Host"] == "")
-				$settings["DB Host"] = "./data/";		  	
+			if ($settings["DB Host"] == "") {
+				$settings["DB Host"] = "./data/";
+			}
 		}
 	}
 	
@@ -305,20 +309,19 @@ if($answer == "yes") {
 
 		$msg = "Should all modules be enabled ? (yes/no): \n";
 		$settings["default module status"] = strtolower(read_input($msg));
-	} while($settings["default module status"] == "" || ($settings["default module status"] != "yes" && $settings["default module status"] != "no"));
+	} while ($settings["default module status"] != "yes" && $settings["default module status"] != "no");
 
-	if($settings["default module status"] == "yes")
+	if ($settings["default module status"] == "yes") {
 		$settings["default module status"] = 1;
-	if($settings["default module status"] == "no")
+	}
+	if ($settings["default module status"] == "no") {
 		$settings["default module status"] = 0;
+	}
 		
 	echo "         \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	echo "             **********************************************\n";		
 	echo "             If you have entered everything correctly \n";
 	echo "             the bot should start.\n";
-	echo "             You can everytime re-enter\n";
-	echo "             this setup procedure with deleting the file\n";
-	echo "             'delete me for new setup' in your bot folder.\n";
 	echo "             ----------------------------------------------\n";
 	echo "             We would appreciate every feedback if it is\n";
 	echo "             positive or not. Everything will help us to\n";
@@ -333,8 +336,6 @@ if($answer == "yes") {
 	//Save the entered infos to $config_file
 	savecfg($vars, $settings);
 }
-//Create file
-$fp = fopen("delete me for new setup", "w");
-fclose($fp);
+
 die("Restarting bot");
 ?>

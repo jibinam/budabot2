@@ -75,7 +75,10 @@ error_reporting(E_ERROR | E_PARSE);
 //error_reporting(-1);
 
 //Show setup dialog
-if (!file_exists("delete me for new setup")) {
+if ($vars['login']		== "" ||
+	$vars['password']	== "" ||
+	$vars['name']		== "") {
+
 	include "./core/SETUP/setup.php";
 }
 
