@@ -37,6 +37,12 @@ class Admin {
 		return $db->query("SELECT * FROM admin_<myname> WHERE `access_level` = $access_level");
 	}
 	
+	public static function find_at_or_above_access_level($access_level) {
+		global $db;
+		
+		return $db->query("SELECT * FROM admin_<myname> WHERE `access_level` <= $access_level");
+	}
+	
 	public static function add_or_update_admin(&$sendto, &$player, &$who, $access_level) {
 		global $chatBot;
 		

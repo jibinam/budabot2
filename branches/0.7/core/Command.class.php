@@ -98,7 +98,7 @@ class Command {
 		return $db->query($sql, true);
 	}
 	
-	public static function find_command_for_user($player, $cmd, $type) {
+	public static function find_command_for_user(&$player, $cmd, $type) {
 		global $db;
 		
 		if ($type == 'msg') {

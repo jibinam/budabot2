@@ -15,7 +15,7 @@ class Player {
 	}
 	
 	public function get_access_level() {
-		return AccessLevel::get_user_access_level($this->uid);
+		return AccessLevel::get_user_access_level($this);
 	}
 	
 	public function get_name() {

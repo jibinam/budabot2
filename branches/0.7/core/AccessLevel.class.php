@@ -22,8 +22,9 @@ class AccessLevel {
 		$user = ucfirst(strtolower($player->name));
 
 		// covers superadmin, admin, moderator, raidleader
-		if (isset($chatBot->admins[$user])) {
-			return $chatBot->admins[$user]['level'];
+		$admin = Admin::get($player->uid);
+		if ($admin != false) {
+			return $admin->access_level;
 		}
 		
 		// covers guildadmin

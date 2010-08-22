@@ -30,15 +30,12 @@
    */
 
 //Send Admin(s) a tell that the bot is online
-foreach($this->admins as $who => $data){
-	if($this->admins[$who]["level"] == 4){
-		if($who != "")
-			if($this->admins[$who]["online"] == "online") {
-				$this->send("The bot is online and ready to use. For updates or help use the Budabot Forum <highlight>http://budabot.com<end>", $who);
-			}
-	}
+$data = Admin::find_at_or_above_access_level(ADMIN);
+forEach ($data as $admin) {
+	$player = new Player($admin->uid);
+	$chatBot->send("The bot is online and ready to use. For updates or help use the Budabot Forum <highlight>http://budabot.com<end>", $player);
 }
 
 //Send a message to guild channel
-$this->send("Logon Complete :: All systems ready to use.", "guild");
+$chatBot->send("Logon Complete :: All systems ready to use.", "guild");
 ?>

@@ -35,12 +35,12 @@ if (preg_match("/^unban (.+)$/i", $message, $arr)){
 	$who = new Player($uid);
 	
 	if (Banlist::get($who) == false) {
-		$this->send("<red>Sorry the player you wish to remove doesn't exist or isn't on the banlist.", $sendto);
+		$chatBot->send("<red>Sorry the player you wish to remove doesn't exist or isn't on the banlist.", $sendto);
 		return;
 	}
 
 	Banlist::remove($who);
-	$this->send("You have revomed the ban for <highlight>$name<end>", $sendto);
+	$chatBot->send("You have revomed the ban for <highlight>$name<end>", $sendto);
 } else {
 	$syntax_error = true;
 }

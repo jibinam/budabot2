@@ -33,7 +33,7 @@ if (preg_match("/^banlist$/i", $message)){
 
 	$data = Banlist::find_all();
 	if ($db->numrows() == 0) {
-	    $this->send("No one is banned from this bot currently.", $sendto);
+	    $chatBot->send("No one is banned from this bot currently.", $sendto);
 	    return;
 	}
 
@@ -55,7 +55,7 @@ if (preg_match("/^banlist$/i", $message)){
 		$list.= "\n";	
 	}
 	$link = Text::makeLink('Banlist', $list);
-	$this->send($link, $sendto);
+	$chatBot->send($link, $sendto);
 } else {
 	$syntax_error = true;
 }
