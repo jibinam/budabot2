@@ -57,6 +57,10 @@ require_once './core/Help.class.php';
 require_once './core/Buddylist.class.php';
 require_once './core/AccessLevel.class.php';
 
+function save_setting_to_db($name, $value, $options, $intoptions, $description, $help) {
+	Settings::add($name, 'Basic Settings', $description, 'edit', $value, $options, $intoptions, MODERATOR, $help, 1);
+}
+
 
 class Budabot extends AOChat {
 
@@ -70,15 +74,31 @@ class Budabot extends AOChat {
 /*===============================
 ** Name: __construct
 ** Constructor of this class.
-*/	function __construct($vars, &$settings) {
+*/	function __construct($vars) {
 		parent::__construct("callback");
-
-		$this->settings = $settings;
+		
 		$this->vars = $vars;
         $this->name = ucfirst(strtolower($this->vars["name"]));
 
 		//Set startuptime
 		$this->vars["startup"] = time();
+	}
+	
+	public function load_settings_from_config(&$settings) {
+		save_setting_to_db('symbol', $settings["symbol"], '!;#;*;@;$;+;-', null, 'Prefix for Guild- or Privatechat Commands', null);
+		save_setting_to_db('debug', $settings["debug"], "Disabled;Show basic msg's;Show enhanced debug msg's;Show enhanced debug msg's + 1s Delay", '0;1;2;3', 'Show debug messages', null);
+		save_setting_to_db('echo', $settings["echo"], 'Disabled;Only Console;Console and Logfiles', '0;1;2' , 'Show messages in console and log them to files', null);
+		save_setting_to_db('guild admin level', $settings["guild admin level"], 'President;General;Squad Commander;Unit Commander;Unit Leader;Unit Member;Applicant', '0;1;2;3;4;5;6', 'Min Level for Rank Guildadmin', null);
+		save_setting_to_db('default_guild_color', $settings["default_guild_color"], 'color', null, 'Default Guild Color', null);
+		save_setting_to_db('default_priv_color', $settings["default_priv_color"], 'color', null, 'Default Private Color', null);
+		save_setting_to_db('default_window_color', $settings["default_window_color"], 'color', null, 'Default Window Color', null);
+		save_setting_to_db('default_tell_color', $settings["default_tell_color"], 'color', null, 'Default Tell Color', null);
+		save_setting_to_db('default_highlight_color', $settings["default_highlight_color"], 'color', null, 'Default Highlight Color', null);
+		save_setting_to_db('default_header_color', $settings["default_header_color"], 'color', null, 'Default Header Color', null);
+		save_setting_to_db('default_error_color', $settings["default_error_color"], 'color', null, 'Default Error Color', null);
+		save_setting_to_db('spam protection', $settings["spam protection"], 'ON;OFF', '1;0', 'Spam Protection for Private Chat', './core/SETTINGS/spam_help.txt');
+		save_setting_to_db('default module status', $settings["default module status"], 'ON;OFF', '1;0', 'Default Status for new Modules', './core/SETTINGS/module_status_help.txt');
+		save_setting_to_db('max_blob_size', $settings["max_blob_size"], 'number', null, 'Max chars for a window', './core/SETTINGS/max_blob_size_help.txt');
 	}
 	
 	public function init() {
@@ -96,7 +116,7 @@ class Budabot extends AOChat {
 		$this->load_core_module("SETTINGS");
 		$this->load_core_module("SYSTEM");
 		$this->load_core_module("ADMIN");
-		//$this->load_core_module("BAN");
+		$this->load_core_module("BAN");
 		//$this->load_core_module("HELP");
 		//$this->load_core_module("CONFIG");
 		//$this->load_core_module("ORG_ROSTER");

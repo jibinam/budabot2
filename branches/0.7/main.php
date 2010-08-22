@@ -106,7 +106,8 @@ if ($db->errorCode != 0) {
 }
 
 global $chatBot;
-$chatBot = new Budabot($vars, $settings);
+$chatBot = new Budabot($vars);
+$chatBot->load_settings_from_config($settings);
 $chatBot->init();
 
 /////////////////////////////////////////////

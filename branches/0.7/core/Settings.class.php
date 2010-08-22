@@ -23,27 +23,80 @@ class Settings {
 */	public static function add($name, $module, $description = 'none', $mode = 'hide', $setting = 'none', $options = 'none', $intoptions = '0', $access_level = MODERATOR, $help = '', $is_core = 0) {
 		global $db;
 		global $chatBot;
+
 		$name = strtolower($name);
 
-		if ($chatBot->existing_settings[$name] != true) {
-			$db->query("INSERT INTO settings_<myname> (`name`, `module`, `mode`, `setting`, `options`, `intoptions`, `description`, `source`, `access_level`, `help`, `is_core`) VALUES ('$name', '$module', '$mode', '" . str_replace("'", "''", $setting) . "', '$options', '$intoptions', '" . str_replace("'", "''", $description) . "', 'db', $access_level, '$help', $is_core)");
-		  	$chatBot->settings[$name] = $setting;
-	  	} else {
-			$db->query("UPDATE settings_<myname> SET `module` = '$module', `mode` = '$mode', `options` = '$options', `intoptions` = '$intoptions', `description` = '" . str_replace("'", "''", $description) . "', `access_level` = $access_level, `help` = '$help', `is_core` = $is_core WHERE `name` = '$name'");
+		$params = array(
+			':name' => $name,
+			':module' => $module,
+			':mode' => $mode,
+			':setting' => $setting,
+			':options' => $options,
+			':intoptions' => $intoptions,
+			':description' => $description,
+			':source' => 'db',
+			':access_level' => $access_level,
+			':help' => $help,
+			':is_core' => $is_core
+		);
+
+		if (Settings::get($name) != false) {
+			$sql =
+				"UPDATE settings_<myname> SET
+					`module` = :module,
+					`mode` = :mode,
+					`options` = :options,
+					`intoptions` = :intoptions,
+					`description` = :description,
+					`access_level` = :access_level,
+					`help` = :help,
+					`is_core` = :is_core
+				WHERE
+					`name` = :name
+			";
+		} else {
+			$sql = "
+				INSERT INTO settings_<myname> (
+					`name`,
+					`module`,
+					`mode`,
+					`setting`,
+					`options`,
+					`intoptions`,
+					`description`,
+					`source`,
+					`access_level`,
+					`help`, 
+					`is_core`
+				) VALUES (
+					:name,
+					:module,
+					:mode,
+					:setting,
+					:options,
+					:intoptions,
+					:description,
+					:source,
+					:access_level,
+					:help,
+					:is_core
+				)";
 		}
+		
+		$db->prepared_statement($sql, $params);
 	}
 
 /*===============================
 ** Name: get
-** Gets an loaded setting
+** Gets a loaded setting
 */	public static function get($name) {
+		global $db;
 		global $chatBot;
 
-		if (isset($chatBot->settings[$name])) {
-	  		return $chatBot->settings[$name];
-	  	} else {
-	  		return false;
-		}
+		$params = array(':name' => $name);
+		$sql = "SELECT setting FROM settings_<myname> WHERE `name` = :name";
+		$row = $db->prepared_statement($sql, $params, true);
+		return $row->value;
 	}
 	
 	public static function is_ignored(&$player) {
