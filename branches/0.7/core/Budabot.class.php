@@ -122,7 +122,6 @@ class Budabot extends AOChat {
 		$this->load_core_module("ORG_ROSTER");
 		$this->load_core_module("BASIC_CONNECTED_EVENTS");
 		$this->load_core_module("PRIV_TELL_LIMIT");
-		$this->load_core_module("USER_MODULES");
 		
 		Logger::log(__FILE__, "End: Loading CORE MODULES", DEBUG);
 		

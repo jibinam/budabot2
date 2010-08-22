@@ -6,8 +6,8 @@ global $vars;
 @mkdir("./logs/{$vars['name']}.{$vars['dimension']}", 0777, true);
 
 // logging levels
-define('TRACE', 0);
-define('DEBUG', 1);
+define('DEBUG', 0);
+define('DETAIL', 1);
 define('INFO', 2);
 define('WARN', 3);
 define('ERROR', 4);
@@ -21,7 +21,7 @@ class Logger {
 		$timestamp = date("Ymd H:i");
 		$log_level_description = Logger::get_log_level_description($log_level);
 
-		$line = str_pad("$timestamp", 14) . ' ' .  str_pad("$log_level_description", 5) . ' ' . str_pad("[$file]", 21) . ' ' . $message;
+		$line = str_pad("$timestamp", 14) . ' ' .  str_pad("$log_level_description", 6) . ' ' . str_pad("[$file]", 21) . ' ' . $message;
 
 		if ($log_level >= $vars['console_log_level']) {
 			echo "$line\n";
@@ -78,10 +78,10 @@ class Logger {
 
 	public static function get_log_level_description($log_level) {
 		switch ($log_level) {
-			case TRACE:
-				return "TRACE";
 			case DEBUG:
 				return "DEBUG";
+			case DETAIL:
+				return "DETAIL";
 			case INFO:
 				return "INFO";
 			case WARN:

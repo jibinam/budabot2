@@ -22,14 +22,14 @@
 	$settings['symbol'] = "!";
 
 	// Logging level 
-	// TRACE = 0
-	// DEBUG = 1
-	// INFO = 2
-	// WARN = 3
-	// ERROR = 4
-	// FATAL = 5
-	$vars['console_log_level'] = 2;
-	$vars['file_log_level'] = 2;
+	// DEBUG
+	// DETAIL
+	// INFO
+	// WARN
+	// ERROR
+	// FATAL
+	$vars['console_log_level'] = DETAIL;
+	$vars['file_log_level'] = DETAIL;
 
 	// Default Delay for crons after bot is connected
 	$settings['CronDelay'] = 0;
