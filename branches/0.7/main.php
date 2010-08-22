@@ -67,6 +67,9 @@ if (isWindows()) {
 
 //Load Required Files
 $config_file = $argv[1];
+if (!file_exists($config_file)) {
+	copy('config.template.php', $config_file) or die("could not create config file: $config_file");
+}
 require_once $config_file;
 require_once './core/Budabot.class.php';
 
