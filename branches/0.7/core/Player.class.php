@@ -36,6 +36,18 @@ class Player {
 		$buddy = Buddylist::get($this->uid);
 		return ($buddy === null ? null : $buddy['online']);
 	}
+	
+	public function get_is_org_member() {
+		// TODO
+	}
+	
+	public function get_is_member() {
+		// TODO
+	}
+	
+	public function get_is_admin() {
+		// TODO
+	}
 }
 
 ?>
