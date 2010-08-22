@@ -427,10 +427,10 @@ class Budabot extends AOChat {
 
 				$message = html_entity_decode($message, ENT_QUOTES);
 
-				Logger::log_chat("Inc. Msg.", $sender, $message);
+				Logger::log_chat("Inc. Msg.", $player->name, $message);
 
 				// AFK/bot check
-				if (preg_match("/^$sender is AFK/si", $message, $arr)) {
+				if (preg_match("/^$player->name is AFK/si", $message, $arr)) {
 					return;
 				} else if (preg_match("/^I am away from my keyboard right now/si", $message)) {
 					return;
@@ -493,12 +493,12 @@ class Budabot extends AOChat {
 				// TODO
 				/*
 				if ($this->vars['spam protection'] == 1) {
-					if ($this->spam[$sender] == 40) $this->send("Error! Your client is sending a high frequency of chat messages. Stop or be kicked.", $player);
-					if ($this->spam[$sender] > 60) $this->privategroup_kick($player->uid);
+					if ($this->spam[$player->name] == 40) $this->send("Error! Your client is sending a high frequency of chat messages. Stop or be kicked.", $player);
+					if ($this->spam[$player->name] > 60) $this->privategroup_kick($player->uid);
 					if (strlen($args[1]) > 400) {
-						$this->largespam[$sender] = $this->largespam[$sender] + 1;
-						if ($this->largespam[$sender] > 1) $this->privategroup_kick($player->uid);
-						if ($this->largespam[$sender] > 0) $this->send("Error! Your client is sending large chat messages. Stop or be kicked.", $player);
+						$this->largespam[$player->name] = $this->largespam[$player->name] + 1;
+						if ($this->largespam[$player->name] > 1) $this->privategroup_kick($player->uid);
+						if ($this->largespam[$player->name] > 0) $this->send("Error! Your client is sending large chat messages. Stop or be kicked.", $player);
 					}
 				}
 				*/
@@ -554,7 +554,7 @@ class Budabot extends AOChat {
 
 				Logger::log_chat($channel, $player->name, $message);
 
-				if ($sender) {
+				if ($player) {
 					//Ignore Message that are sent from the bot self
 					if ($player->name == $this->name) {
 						return;
