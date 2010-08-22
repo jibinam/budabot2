@@ -35,6 +35,7 @@ class DB {
 	private $sql;
 	private $dbName;
 	private $data;
+	private $stmt;
 	private $user;
 	private $pass;
 	private $host;
@@ -120,8 +121,8 @@ class DB {
 		}
 	}
 	
-	//Does Basicly the same thing just don't gives the result back(used for create table, Insert, delete etc), a bit faster as normal querys 
-	public function exec($stmt) {
+	//used for create table, Insert, delete etc
+	public function execute($stmt) {
 		$this->data = NULL;
 		
 		$stmt = str_replace("<myname>", $this->botname, $stmt);
@@ -142,6 +143,34 @@ class DB {
 		}
 
 		return $aff_rows;
+	}
+	
+	public function prepared_statement($sql, $params, $single = false) {
+		try {
+			$sql = str_replace("<myname>", $this->botname, $sql);
+			$sql = str_replace("<dim>", $this->dim, $sql);
+		
+			$stmt = $this->sql->prepare($sql);
+			
+			$error = $this->sql->errorInfo();
+			if ($error[0] != "00000") {
+				sleep(5);
+				$paramString = print_r($params, true);
+				Logger::log(__FILE__, "Error msg: $error[2] in:\n$sql $paramString", ERROR);
+			}
+			
+			$stmt->execute($params);
+			
+			if ($single) {
+				return $stmt->fetch();
+			} else {
+				return $stmt->fetchAll();
+			}
+		} catch (PDOException $e) {
+			echo "ERROR!";
+			$this->errorCode = 1;
+			$this->errorInfo = $e->getMessage();
+		}
 	}
 
 	//Function for creating the table. Main reason is that some SQL commands are not compatible with sqlite for example the autoincrement field
