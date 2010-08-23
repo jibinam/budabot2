@@ -39,8 +39,8 @@ if (preg_match("/^banlist$/i", $message)){
 
 	$list.= "<header>::::: Banlist :::::<end>\n\n";
 	forEach ($data as $row) {
-		$who = new Player($row->who);
-		$banned_by = new Player($row->banned_by);
+		$who = Player::create($row->who);
+		$banned_by = Player::create($row->banned_by);
 	
 		$list.= "<highlight>Name:<end> {$who->name}\n";
 		$list.= "<highlight><tab>Date:<end> " .date("m-d-y", $row->time). "\n";

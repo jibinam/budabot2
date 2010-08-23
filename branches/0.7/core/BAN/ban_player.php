@@ -82,9 +82,8 @@ if(preg_match("/^ban ([0-9]+)(w|week|weeks|m|month|months|d|day|days) (.+) (for|
 	return;
 }
 
-$uid = $chatBot->get_uid($name);
-$who = new Player($uid);
-if ($uid == false){
+$who = Player::create($name);
+if ($who == null){
 	$chatBot->send("<red>Error! '$name' does not exist.", $sendto);
 	return;
 }

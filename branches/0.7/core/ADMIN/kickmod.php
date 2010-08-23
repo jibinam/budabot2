@@ -30,8 +30,7 @@
    */
 
 if (preg_match("/^kickmod (.+)$/i", $message, $arr)){
-	$uid = $chatBot->get_uid($arr[1]);
-	$who = new Player($uid);
+	$who = Player::create($arr[1]);
 	
 	Admin::remove_admin($sendto, $player, $who, RAIDLEADER);
 } else {

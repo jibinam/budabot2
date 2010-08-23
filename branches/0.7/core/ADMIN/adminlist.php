@@ -34,7 +34,7 @@ if (preg_match("/^adminlist$/i", $message)) {
 	$list.= "<highlight>Administrators<end>\n";
 	$admins = Admin::find_by_access_level(SUPERADMIN);
 	forEach ($admins as $admin) {
-		$admin_player = new Player($admin->uid);
+		$admin_player = Player::create($admin->uid);
 		$list.= "<tab>$admin_player->name (<orange>Super Administrator<end>) ";
 
 		$is_online = $admin_player->is_online;
@@ -48,7 +48,7 @@ if (preg_match("/^adminlist$/i", $message)) {
 		$list.= "\n";
 	}
 	forEach (Admin::find_by_access_level(ADMIN) as $admin) {
-		$admin_player = new Player($admin->uid);
+		$admin_player = Player::create($admin->uid);
 		$list.= "<tab>$admin_player->name ";
 		
 		$is_online = $admin_player->is_online;
@@ -65,7 +65,7 @@ if (preg_match("/^adminlist$/i", $message)) {
 
 	$list.="<highlight>Moderators<end>\n";	
 	forEach (Admin::find_by_access_level(MODERATOR) as $admin) {
-		$admin_player = new Player($admin->uid);
+		$admin_player = Player::create($admin->uid);
 		$list.= "<tab>$admin_player->name ";
 		
 		$is_online = $admin_player->is_online;
@@ -82,7 +82,7 @@ if (preg_match("/^adminlist$/i", $message)) {
 
 	$list.=	"<highlight>Raidleaders<end>\n";	
 	forEach (Admin::find_by_access_level(RAIDLEADER) as $admin) {
-		$admin_player = new Player($admin->uid);
+		$admin_player = Player::create($admin->uid);
 		$list.= "<tab>$admin_player->name ";
 		
 		$is_online = $admin_player->is_online;

@@ -31,8 +31,7 @@
 
 if (preg_match("/^unban (.+)$/i", $message, $arr)){
 	$name = ucfirst(strtolower($arr[1]));
-	$uid = $chatBot->get_uid($name);
-	$who = new Player($uid);
+	$who = Player::create($name);
 	
 	if (Banlist::get($who) == false) {
 		$chatBot->send("<red>Sorry the player you wish to remove doesn't exist or isn't on the banlist.", $sendto);

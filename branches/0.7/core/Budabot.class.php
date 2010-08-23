@@ -336,7 +336,7 @@ class Budabot extends AOChat {
 				$params = array();
 				$params['channel'] = $this->lookup_user($args[0]);
 
-				$player = new Player($args[1]);
+				$player = Player::create($args[1]);
 				$params['player'] = &$player;
 
 				if ($params['channel'] == $this->vars['name']) {
@@ -364,7 +364,7 @@ class Budabot extends AOChat {
 				$params = array();
 				$params['channel'] = $this->lookup_user($args[0]);
 				
-				$player = new Player($args[1]);
+				$player = Player::create($args[1]);
 				$params['player'] = &$player;
 
 				if ($params['channel'] == $this->vars['name']) {
@@ -383,7 +383,7 @@ class Budabot extends AOChat {
 			break;
 			case AOCP_BUDDY_ADD: // 40, Incoming buddy logon or off
 				$params = array();
-				$player = new Player($args[0]);
+				$player = Player::create($args[0]);
 				$params['player'] = &$player;
 
 				$status	= 0 + $args[1];
@@ -413,7 +413,7 @@ class Budabot extends AOChat {
 				$params['type'] = 'msg';
 				$params['restricted'] = false;
 
-				$player = new Player($args[0]);
+				$player = Player::create($args[0]);
 				$params['player'] = &$player;
 
 				$params['sendto'] = &$player;
@@ -476,7 +476,7 @@ class Budabot extends AOChat {
 				$message = $args[2];
 
 				$params = array();
-				$player = new Player($args[1]);
+				$player = Player::create($args[1]);
 				$params['player'] = &$player;
 				$params['channel'] = $channel;
 				$params['message'] = $message;
@@ -534,7 +534,7 @@ class Budabot extends AOChat {
 				$params['restricted'] = false;
 
 				$syntax_error = false;
-				$player = new Player($args[1]);
+				$player = Player::create($args[1]);
 				$params['player'] = &$player;
 
 				//Ignore Messages from Vicinity/IRRK New Wire/OT OOC/OT Newbie OOC...
@@ -592,7 +592,7 @@ class Budabot extends AOChat {
 				$params = array();
 				$params['type'] = "extJoinPrivRequest"; // Set message type.
 				
-				$player = new Player($args[1]);
+				$player = Player::create($args[1]);
 				$params['player'] = &$player;
 
 				Logger::log_chat("Priv Group Invitation", $player->name, " channel invited.");

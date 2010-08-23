@@ -29,9 +29,8 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if (preg_match("/^kickraidleader (.+)$/i", $message, $arr)){
-	$uid = $chatBot->get_uid($arr[1]);
-	$who = new Player($uid);
+if (preg_match("/^kickraidleader (.+)$/i", $message, $arr)) {
+	$who = Player::create($arr[1]);
 	
 	Admin::remove_admin($sendto, $player, $who, RAIDLEADER);
 } else {

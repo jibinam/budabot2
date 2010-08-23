@@ -30,8 +30,7 @@
    */
 
 if (preg_match("/^addmod (.+)$/i", $message, $arr)){
-	$uid = $chatBot->get_uid($arr[1]);
-	$who = new Player($uid);
+	$who = Player::create($arr[1]);
 
 	Admin::add_or_update_admin($sendto, $player, $who, MODERATOR);
 } else {

@@ -3,8 +3,21 @@
 class Player {
 
 	private $uid;
+	
+	public static function create($input) {
+		if (is_int($input)) {
+			return new Player($input);
+		} else {
+			$uid = $chatBot->get_uid($input);
+			if ($uid == false) {
+				return null;
+			} else {
+				return new Player($uid);
+			}
+		}
+	}
 
-	public function __construct($uid) {
+	private function __construct($uid) {
 		$this->uid = $uid;
 	}
 	
