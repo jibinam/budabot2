@@ -88,7 +88,7 @@ if ($vars['login']		== "" ||
 //Bring the ignore list to a bot readable format
 $ignore = explode(";", $settings["Ignore"]);
 unset($settings["Ignore"]);
-forEach ($ignore as $bot){
+forEach ($ignore as $bot) {
 	$bot = ucfirst(strtolower($bot));
 	$settings["Ignore"][$bot] = true;
 }
@@ -103,7 +103,6 @@ unset($vars['password']);
 
 //////////////////////////////////////////////////////////////
 // Create new objects
-global $db;
 $db = new DB($settings["DB Type"], $settings["DB Name"], $settings["DB Host"], $settings["DB username"], $settings["DB password"]);
 if ($db->errorCode != 0) {
 	Logger::log(__FILE__, "Error in creating Database Object: $db->errorInfo", ERROR);
@@ -111,7 +110,6 @@ if ($db->errorCode != 0) {
 	die();
 }
 
-global $chatBot;
 $chatBot = new Budabot($vars);
 $chatBot->load_settings_from_config($settings);
 $chatBot->init();

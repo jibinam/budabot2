@@ -30,7 +30,9 @@
    */
 
 if (preg_match("/^about$/i", $message)) {
+	global $version;
 	$data = file_get_contents("./core/HELP/about.txt");
+	$data = str_replace('<version>', $version, $data);
 	$msg = Text::makeLink("About", $data);
 	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^help$/i", $message)) {
