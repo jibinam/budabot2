@@ -97,7 +97,6 @@ if (preg_match("/^adminlist$/i", $message)) {
 		$list.= "\n";
 	}
 	
-	//require './core/ADMIN/upload_admins.php';
 	$link = Text::makeLink('Adminlist', $list);	
 	$chatBot->send($link, $sendto);
 } else {

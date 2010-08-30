@@ -30,11 +30,7 @@
    */
 
 //Send Admin(s) a tell that the bot is online
-$data = Admin::find_at_or_above_access_level(ADMIN);
-forEach ($data as $admin) {
-	$player = Player::create($admin->uid);
-	$chatBot->send("The bot is online and ready to use. For updates or help use the Budabot Forum <highlight>http://budabot.com<end>", $player);
-}
+Admin::send_message_to_online_admins("The bot is online and ready to use. For updates or help use the Budabot Forum <highlight>http://budabot.com<end>", ADMIN);
 
 //Send a message to guild channel
 $chatBot->send("Logon Complete :: All systems ready to use.", "guild");
