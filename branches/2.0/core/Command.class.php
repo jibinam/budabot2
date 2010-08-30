@@ -98,7 +98,7 @@ class Command {
 		return $db->query($sql, true);
 	}
 	
-	public static function find_command_for_user(&$player, $cmd, $type) {
+	public static function find_commands_for_user(&$player, $cmd, $type) {
 		global $db;
 		
 		if ($type == 'msg') {
@@ -106,7 +106,7 @@ class Command {
 		}
 		
 		$sql = "SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '$cmd' AND {$type}_status = 1 AND {$type}_access_level >= $player->access_level";
-		return $db->query($sql, true);
+		return $db->query($sql);
 	}
 	
 	public static function fire_command(&$params) {
@@ -116,23 +116,39 @@ class Command {
 		forEach ($params as $key => $value) {
 			$$key = &$params[$key];
 		}
+		unset($params);
 		
-		// Break down in to words.
-		$words	= explode(' ', $message, 2);
-		$command = Command::find_command_for_user($player, $words[0], $type);
+		// split message into command name and command params
+		$list($command_name, $command_params)	= explode(' ', $message, 2);
+		$commands = Command::find_commands_for_user($player, $command_name, $type);
 
 		// Upload Command File or return error message
-		if ($command == false) {
+		if (count($command) === 0 ) {
 			$chatBot->send("Error! Unknown command or Access denied! for more info try /tell <myname> help", $sendto);
 			Settings::add_spam($player, 20);
 		} else {
-			$syntax_error = false;
+			// syntax error is true unless incoming message matches at least one command
+			$syntax_error = true;
 			$msg = "";
-			$path = Util::get_full_path($command);
-			Logger::log(__FILE__, "Command: '$type' File: '$path'", DEBUG);
-			require $path;
+			forEach ($commands as $command) {
+				if ($command->regex === null) {
+					// handle legacy commands
+					$syntax_error = false;
+					$path = Util::get_full_path($command->file);
+					Logger::log(__FILE__, "Legacy Command: '$type' File: '$path'", DEBUG);
+					require $path;
+					break;
+				} else if (preg_match("/^{$command->regex}$/i", $command_params, $params) {
+					// handle new commands
+					$syntax_error = false;
+					$path = Util::get_full_path($command->file);
+					Logger::log(__FILE__, "Command: '$type' File: '$path'", DEBUG);
+					require $path;
+					break;
+				}
+			}
 			if ($syntax_error == true) {
-				if (($output = Help::find($player, $words[0])) !== FALSE) {
+				if (($output = Help::find($player, $command_name)) !== FALSE) {
 					$chatBot->send("Error! Check your syntax " . $output, $sendto);
 				} else {
 					$chatBot->send("Error! Check your syntax or for more info try /tell <myname> help", $sendto);
