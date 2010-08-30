@@ -78,7 +78,6 @@ class DB {
 				$this->sql = new PDO("sqlite:".$this->dbName);
 			}
 		} catch (PDOException $e) {
-			echo "ERROR!";
 			$this->errorCode = 1;
 			$this->errorInfo = $e->getMessage();
 		}
@@ -166,7 +165,6 @@ class DB {
 				return $stmt->fetchAll();
 			}
 		} catch (PDOException $e) {
-			echo "ERROR!";
 			$this->errorCode = 1;
 			$this->errorInfo = $e->getMessage();
 		}

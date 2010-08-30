@@ -43,6 +43,18 @@ class Admin {
 		return $db->query("SELECT * FROM admin_<myname> WHERE `access_level` <= $access_level");
 	}
 	
+	public static function send_message_to_online_admins($message, $min_acess_level) {
+		global $chatBot;
+	
+		$data = Admin::find_at_or_above_access_level($min_access_level);
+		forEach ($data as $admin) {
+			$player = new Player($admin->uid);
+			if ($player->is_online) {
+				$this->send($message, $player);
+			}
+		}
+	}
+	
 	public static function add_or_update_admin(&$sendto, &$player, &$who, $access_level) {
 		global $chatBot;
 		

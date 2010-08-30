@@ -137,8 +137,7 @@ if($chatBot->vars["my guild"] != "" && $chatBot->vars["my guild id"] != "") {
 		Logger::log(__FILE__, "Org Roster Update is done", INFO);
 		
 		if ($restart == true) {
-		  	$chatBot->send("The bot needs to be restarted to be able to see who is online in your org. Automatically restarting in 10 seconds.", "org");
-			echo "The bot needs to be restarted to be able to see who is online in your org. Automatically restarting in 10 seconds.\n";
+		  	Admin::send_message_to_online_admins("The bot needs to be restarted to be able to see who is online in your org. Automatically restarting in 10 seconds.", ADMIN);
 		  	sleep(10);
 		  	die("The bot is restarting");
 		}
