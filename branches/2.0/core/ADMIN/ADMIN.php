@@ -4,7 +4,7 @@
 	$MODULE_NAME = "ADMIN";
 	
 	//Setup
-	Event::register("connect", $MODULE_NAME, "upload_admins.php", '', 1);
+	Event::register("setup", $MODULE_NAME, "upload_admins.php", '', 1);
 
 	//Commands	
 	Command::register($MODULE_NAME, "addadmin.php", "addadmin", SUPERADMIN, 'add admin', 1);

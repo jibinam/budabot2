@@ -36,11 +36,10 @@ class Whitelist {
 		}
 	}
 	
-	public static function check($user) {
+	public static function check(&$player) {
 		global $db;
-		$user = ucfirst(strtolower($user));
 
-		$db->query("SELECT * FROM whitelist WHERE name = '$user'");
+		$db->query("SELECT * FROM whitelist WHERE name = '$player->name'");
 		if ($db->numrows() == 0) {
 			return false;
 		} else {

@@ -30,24 +30,23 @@
    */
 
 $db->query("CREATE TABLE IF NOT EXISTS admin_<myname> (uid INT NOT NULL PRIMARY KEY, `access_level` INT NOT NULL)");
-$superAdmin = ucfirst(strtolower(Settings::get("Super Admin")));
-$uid = $chatBot->get_uid($superAdmin);
+$superAdmin = Player::create(Settings::get("Super Admin"));
 
 if ($uid === FALSE) {
-	Logger::log(__FILE__, "could not get char_id for super admin: '$superAdmin'", ERROR);
+	Logger::log(__FILE__, "could not get char_id for super admin: '$superAdmin->name'", ERROR);
 } else {
 	// demote any current super admins to admins
 	forEach (Admin::find_by_access_level(SUPERADMIN) as $admin) {
-		if ($admin->uid != $uid) {
-			Admin::update($admin->uid, ADMIN);
+		if ($admin->uid != $superAdmin->uid) {
+			Admin::update($admin, ADMIN);
 		}
 	}
 		
 	// remove the new super admin from any other admin levels
-	Admin::remove($uid);
+	Admin::remove($superAdmin);
 	
 	// add new super admin
-	Admin::add($uid, SUPERADMIN);
+	Admin::add($superAdmin, SUPERADMIN);
 	Buddylist::add($uid, 'admin');
 }
 

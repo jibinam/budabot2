@@ -119,7 +119,7 @@ class Command {
 		unset($params);
 		
 		// split message into command name and command params
-		$list($command_name, $command_params)	= explode(' ', $message, 2);
+		list($command_name, $command_params) = explode(' ', $message, 2);
 		$commands = Command::find_commands_for_user($player, $command_name, $type);
 
 		// Upload Command File or return error message
@@ -138,7 +138,7 @@ class Command {
 					Logger::log(__FILE__, "Legacy Command: '$type' File: '$path'", DEBUG);
 					require $path;
 					break;
-				} else if (preg_match("/^{$command->regex}$/i", $command_params, $params) {
+				} else if (preg_match("/^{$command->regex}$/i", $command_params, $params)) {
 					// handle new commands
 					$syntax_error = false;
 					$path = Util::get_full_path($command->file);
