@@ -39,7 +39,7 @@ class Event {
 		//	Logger::log(__FILE__, "Invalid filename: '$filename'", WARN);
 		//}
 
-		if (Settings::get("default module status") == 1) {
+		if (Settings::get("default_module_status") == 1) {
 			$status = 1;
 		} else {
 			$status = 0;

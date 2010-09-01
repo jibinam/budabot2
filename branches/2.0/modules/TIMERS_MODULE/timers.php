@@ -143,7 +143,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) ) {
 					
 			  	$msg = "Removed timer <highlight>$name<end>.";
 			  	break;
-			} else if (($chatBot->guildmembers[$sender] <= Settings::get('guild admin level')) || isset($chatBot->admins[$sender])) {
+			} else if (($chatBot->guildmembers[$sender] <= Settings::get('guild_admin_level')) || isset($chatBot->admins[$sender])) {
 				unset($chatBot->vars["Timers"][$key]);
 				$db->query("DELETE FROM timers_<myname> WHERE `name` = '".str_replace("'", "''", $name)."'");
 

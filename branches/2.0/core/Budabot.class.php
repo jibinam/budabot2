@@ -96,16 +96,16 @@ class Budabot extends AOChat {
 		save_setting_to_db('symbol', $settings["symbol"], '!;#;*;@;$;+;-', null, 'Prefix for Guild- or Privatechat Commands', null);
 		save_setting_to_db('debug', $settings["debug"], "Disabled;Show basic msg's;Show enhanced debug msg's;Show enhanced debug msg's + 1s Delay", '0;1;2;3', 'Show debug messages', null);
 		save_setting_to_db('echo', $settings["echo"], 'Disabled;Only Console;Console and Logfiles', '0;1;2' , 'Show messages in console and log them to files', null);
-		save_setting_to_db('guild admin level', $settings["guild admin level"], 'President;General;Squad Commander;Unit Commander;Unit Leader;Unit Member;Applicant', '0;1;2;3;4;5;6', 'Min Level for Rank Guildadmin', null);
-		save_setting_to_db('default_guild_color', $settings["default_guild_color"], 'color', null, 'Default Guild Color', null);
-		save_setting_to_db('default_priv_color', $settings["default_priv_color"], 'color', null, 'Default Private Color', null);
-		save_setting_to_db('default_window_color', $settings["default_window_color"], 'color', null, 'Default Window Color', null);
-		save_setting_to_db('default_tell_color', $settings["default_tell_color"], 'color', null, 'Default Tell Color', null);
-		save_setting_to_db('default_highlight_color', $settings["default_highlight_color"], 'color', null, 'Default Highlight Color', null);
-		save_setting_to_db('default_header_color', $settings["default_header_color"], 'color', null, 'Default Header Color', null);
-		save_setting_to_db('default_error_color', $settings["default_error_color"], 'color', null, 'Default Error Color', null);
-		save_setting_to_db('spam protection', $settings["spam protection"], 'ON;OFF', '1;0', 'Spam Protection for Private Chat', './core/SETTINGS/spam_help.txt');
-		save_setting_to_db('default module status', $settings["default module status"], 'ON;OFF', '1;0', 'Default Status for new Modules', './core/SETTINGS/module_status_help.txt');
+		save_setting_to_db('guild_admin_level', $settings["guild_admin_level"], 'President;General;Squad Commander;Unit Commander;Unit Leader;Unit Member;Applicant', '0;1;2;3;4;5;6', 'Min Level for Rank Guildadmin', null);
+		save_setting_to_db('default_guild_color', "<font color='#84FFFF'>", 'color', null, 'Default Guild Color', null);
+		save_setting_to_db('default_priv_color', "<font color='#84FFFF'>", 'color', null, 'Default Private Color', null);
+		save_setting_to_db('default_window_color', "<font color='#84FFFF'>", 'color', null, 'Default Window Color', null);
+		save_setting_to_db('default_tell_color', "<font color='#DDDDDD'>", 'color', null, 'Default Tell Color', null);
+		save_setting_to_db('default_highlight_color', "<font color='#9CC6E7'>", 'color', null, 'Default Highlight Color', null);
+		save_setting_to_db('default_header_color', "<font color='#FFFF00'>", 'color', null, 'Default Header Color', null);
+		save_setting_to_db('default_error_color', "<font color='#FCA712'>", 'color', null, 'Default Error Color', null);
+		save_setting_to_db('spam_protection', $settings["spam_protection"], 'ON;OFF', '1;0', 'Spam Protection for Private Chat', './core/SETTINGS/spam_help.txt');
+		save_setting_to_db('default_module_status', $settings["default_module_status"], 'ON;OFF', '1;0', 'Default Status for new Modules', './core/SETTINGS/module_status_help.txt');
 		save_setting_to_db('max_blob_size', $settings["max_blob_size"], 'number', null, 'Max chars for a window', './core/SETTINGS/max_blob_size_help.txt');
 	}
 	
@@ -492,7 +492,7 @@ class Budabot extends AOChat {
 
 				// TODO
 				/*
-				if ($this->vars['spam protection'] == 1) {
+				if ($this->vars['spam_protection'] == 1) {
 					if ($this->spam[$player->name] == 40) $this->send("Error! Your client is sending a high frequency of chat messages. Stop or be kicked.", $player);
 					if ($this->spam[$player->name] > 60) $this->privategroup_kick($player->uid);
 					if (strlen($args[1]) > 400) {

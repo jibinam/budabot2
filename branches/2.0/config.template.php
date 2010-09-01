@@ -13,9 +13,9 @@
 	$vars['password']	= "";
 	$vars['name']		= "";
 	$vars['my guild']	= "";
-	$vars['dimension']	= 1;  // enter 1 for Atlantean, 2 for Rimor, 3 for Die Nueue Welt
+	$vars['dimension']	= 1;  // 1 for Atlantean, 2 for Rimor, 3 for Die Nueue Welt, 4 for Testlive
 
-	// Insert the Administratorname here
+	// Insert the Administrator name here
 	$settings['Super Admin'] = "";
 
 	// What prefix should be used for private/Guild channel
@@ -34,16 +34,7 @@
 	// Default Delay for crons after bot is connected
 	$settings['CronDelay'] = 0;
 
-	// Default Colors that should be used
-	$settings['default guild color']	= "<font color='#84FFFF'>";
-	$settings['default priv color']		= "<font color='#84FFFF'>";
-	$settings['default window color']	= "<font color='#84FFFF'>";
-	$settings['default tell color']		= "<font color='#DDDDDD'>";
-	$settings['default highlight color']	= "<font color='#9CC6E7'>";
-	$settings['default header color']	= "<font color='#FFFF00'>";
-
-	// Replace "Insert Name here" with the bot that
-	// tells should be ignored by default
+	// Other bots that this bot should ignore
 	$settings['Ignore'] = "";
 
 	// Database Informations	
@@ -64,17 +55,17 @@
 	// Unit Leader		Applicant	= 4
 	// Unit Member				= 5
 	// Applicant				= 6
-	$settings['guild admin level'] = 3;
+	$settings['guild_admin_level'] = 3;
 
 	// Spam Protection
 	// 1 = Spam Protection is enabled
 	// 0 = Spam Protection is disabled
-	$settings['spam protection'] = 0;
+	$settings['spam_protection'] = 0;
 
 	// Default Status for modules
 	// 0 = Modules are disabled by default
 	// 1 = Modules are enabled by default
-	$settings['default module status'] = 0;
+	$settings['default_module_status'] = 0;
 
 	// Maximum chars for one window(blob) in bytes
 	$settings['max_blob_size'] = 7500;

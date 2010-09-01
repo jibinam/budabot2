@@ -28,7 +28,7 @@ class AccessLevel {
 		}
 		
 		// covers guildadmin
-		if (isset($chatBot->guildmembers[$user]) && $chatBot->guildmembers[$sender] <= $chatBot->settings['guild admin level']) {
+		if (isset($chatBot->guildmembers[$user]) && $chatBot->guildmembers[$sender] <= $chatBot->settings['guild_admin_level']) {
 			return GUILDADMIN;
 		}
 		

@@ -54,7 +54,7 @@ class Command {
 					`cmd` = '$command'";
 		} else {
 			// TODO
-			$status = Settings::get("default module status");
+			$status = Settings::get("default_module_status");
 			$status = 1;
 		
 			$sql = "
