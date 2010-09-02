@@ -6,7 +6,7 @@
 $table = "org_members_<myname>";  //org_members_<myname>
 if (preg_match("/^inactivemem ([0-9]+)/i", $message, $arr)) {
 	
-	if ($chatBot->vars["my guild id"] == "") {
+	if ($chatBot->guild_id == "") {
 	    $chatBot->send("The Bot needs to be in an org to show the orgmembers.", $sendto);
 		return;
 	}

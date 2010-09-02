@@ -36,7 +36,7 @@ if ($type == "joinPriv") {
 				"VALUES ('$sender', '$whois->faction', '$whois->prof', '$whois->org', '$whois->breed', '$whois->level', '$whois->ai_level', 1)");
 	$msg = "<highlight>$sender<end> (<highlight>{$whois->level}<end>/<green>{$whois->ai_level}<end>, <highlight>{$whois->prof}<end>, $whois->faction) has joined the guestchannel";
     if (Settings::get('relaybot') != 'Off') {
-	   	send_message_to_relay("grc <grey>[".$chatBot->vars["my guild"]."] ".$msg);
+	   	send_message_to_relay("grc <grey>[".$chatBot->guild."] ".$msg);
 	}
 	if (Settings::get("guest_relay") == 1 ) {
 		$chatBot->send($msg, "guild", true);

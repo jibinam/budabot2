@@ -29,15 +29,15 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
    
-if(preg_match("/^orgranks$/i", $message)) {
-	if($chatBot->vars["my guild id"] == "") {
+if (preg_match("/^orgranks$/i", $message)) {
+	if ($chatBot->guild_id == "") {
 	  	$msg = "The Bot needs to be in a org to show the orgmembers.";
         $chatBot->send($msg, $sendto);
 	}
 	
 	$data = $db->query("SELECT * FROM org_members_<myname> WHERE `mode` != 'del' ORDER BY `rank_id`");  
 	$members = $db->numrows();
-  	if($members == 0) {
+  	if ($members == 0) {
 	  	$msg = "No members recorded.";
         $chatBot->send($msg, $sendto);
 	}
@@ -46,15 +46,16 @@ if(preg_match("/^orgranks$/i", $message)) {
     $chatBot->send($msg, $sendto);
        	
 	forEach ($data as $row) {
-        if($row->logged_off != "0")
+        if ($row->logged_off != "0") {
 	        $logged_off = gmdate("l F d, Y - H:i", $row->logged_off)."(GMT)";
-	    else
+	    } else {
 	    	$logged_off = "<red>Not set yet.<end>";
+		}
 	    	
 	  	$list .= "<tab><highlight>$row->name<end> (Lvl $row->level/<green>$row->ai_level<end> $row->profession) (<highlight>$row->rank<end>) <highlight>::<end> Last logoff: $logged_off\n";
 	}
 	
-	$msg = Text::makeBlob("$members Members of {$chatBot->vars["my guild"]} (Sorted by orgrank)", $list);
+	$msg = Text::makeBlob("$members Members of {$chatBot->guild} (Sorted by orgrank)", $list);
     $chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;

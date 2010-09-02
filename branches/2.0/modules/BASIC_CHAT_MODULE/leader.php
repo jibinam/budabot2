@@ -41,28 +41,28 @@ if (preg_match("/^setleader (.+)$/i", $message, $arr)) {
     $uid = $chatBot->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
 	if (!$uid) {
-		$msg = "Player <highlight>".$name."<end> does not exist.";
+		$msg = "Player <highlight>{$name}<end> does not exist.";
 	} else if (!isset($chatBot->chatlist[$name])) {
-		$msg = "Player <highlight>".$name."<end> did't joined this channel.";
+		$msg = "Player <highlight>{$name}<end> did't joined this channel.";
 	} else {
-		$chatBot->vars["leader"] = $name;
-	  	$msg = "$name is now Raidleader. Raidleader echo is currently $status. You can change it with <symbol>leaderecho $cmd";	    	
+		$chatBot->leader = $name;
+	  	$msg = "{$name} is now Raidleader. Raidleader echo is currently {$status}. You can change it with <symbol>leaderecho {$cmd}"
 	}
   	$chatBot->send($msg);
 } else if (preg_match("/^leader$/i", $message)) {
-  	if ($chatBot->vars["leader"] == $sender) {
-		unset($chatBot->vars["leader"]);
+  	if ($chatBot->leader == $sender) {
+		unset($chatBot->leader);
 	  	$msg = "Raidleader is cleared.";
-	} else if ($chatBot->vars["leader"] != "") {
-		if ($chatBot->admins[$sender]["level"] >= $chatBot->admins[$chatBot->vars["leader"]]["level"]){
-  			$chatBot->vars["leader"] = $sender;
-		  	$msg = "$sender is now Raidleader. Raidleader echo is currently $status. You can change it with <symbol>leaderecho $cmd";
+	} else if ($chatBot->leader != "") {
+		if ($chatBot->admins[$sender]["level"] >= $chatBot->admins[$chatBot->leader]["level"]){
+  			$chatBot->leader = $sender;
+		  	$msg = "{$sender} is now Raidleader. Raidleader echo is currently {$status}. You can change it with <symbol>leaderecho {$cmd}";
 		} else {
-			$msg = "You can't take leader from <highlight>{$chatBot->vars["leader"]}<end>.";
+			$msg = "You can't take leader from <highlight>{$chatBot->leader}<end>.";
 		}
 	} else {
-		$chatBot->vars["leader"] = $sender;
-	  	$msg = "$sender is now Raidleader. Raidleader echo is currently $status. You can change it with <symbol>leaderecho $cmd";
+		$chatBot->leader = $sender;
+	  	$msg = "{$sender} is now Raidleader. Raidleader echo is currently {$status}. You can change it with <symbol>leaderecho {$cmd}";
 	}
   	$chatBot->send($msg);
 

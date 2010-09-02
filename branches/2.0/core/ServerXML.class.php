@@ -45,9 +45,10 @@ class ServerXML extends XML {
 
 	//the constructor
 	function __construct($rk_num = 0){
+		global $vars;
+		
 		//if no server was specified use the one where the bot is logged in
 		if($rk_num == 0) {
-			global $vars;
 			$rk_num = $vars["dimension"];
 		}
 

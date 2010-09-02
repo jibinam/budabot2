@@ -10,18 +10,18 @@
 
 	$MODULE_NAME = "IRC_MODULE";
 	if (Settings::get('irc_channel') == "") {
-		if($chatBot->vars['my guild'] == "") {
+		if($chatBot->guild == "") {
 			$channel = "#".strtolower($chatBot->name);
 		} else {
-			if(strpos($chatBot->vars['my guild']," ")) {
-				$sandbox = explode(" ",$chatBot->vars['my guild']);
+			if(strpos($chatBot->guild, " ")) {
+				$sandbox = explode(" ", $chatBot->guild);
 				for ($i = 0; $i < count($sandbox); $i++) {
 					$channel .= ucfirst(strtolower($sandbox[$i]));
 				}
 				$channel = "#".$channel;
 			}
 			else {
-				$channel = "#".$chatBot->vars['my guild'];
+				$channel = "#".$chatBot->guild;
 			}
 		}
 	}

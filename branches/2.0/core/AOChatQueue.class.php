@@ -88,8 +88,8 @@ class AOChatQueue {
 			return 0;
 		}
 
-		foreach(array_keys($this->queue) as $priority) {
-			for(;;) {
+		forEach (array_keys($this->queue) as $priority) {
+			for (;;) {
 				$item = array_shift($this->queue[$priority]);
 				if ($item === NULL) {
 					unset($this->queue[$priority]);

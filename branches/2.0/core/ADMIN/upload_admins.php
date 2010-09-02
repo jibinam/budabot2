@@ -29,7 +29,7 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-$superAdmin = Player::create($chatBot->vars["SuperAdmin"]);
+$superAdmin = Player::create($chatBot->SuperAdmin);
 
 if ($superAdmin === null) {
 	Logger::log(__FILE__, "could not get char_id for super admin: '$superAdmin->name'", ERROR);

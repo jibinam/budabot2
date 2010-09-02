@@ -54,7 +54,7 @@ if (preg_match("/^The (Clan|Neutral|Omni) organization (.+) just entered a state
 
 if ($def_guild) {
 
-	$whois = new WhoisXML($att_player, $chatBot->vars["dimension"]);
+	$whois = new WhoisXML($att_player, $chatBot->dimension);
 	if (!$att_side) {
 		$att_side = $whois->faction;
 	}
@@ -135,7 +135,7 @@ if ($def_guild) {
 	}
 	
 	// Prep for if our org is being attacked.
-	if (strtolower($def_guild) == strtolower($chatBot->vars["my guild"])) {
+	if (strtolower($def_guild) == strtolower($chatBot->guild)) {
 		$wedefend = true;
 		$msg = "<red>We are under attack!<end> ";
 	} else {

@@ -38,12 +38,12 @@ if (Settings::get("guest_relay") == 1) {
         $chatBot->send($msg, 'org', true);
         //If a guildrelay bot is set do
         if (Settings::get("relaybot") != "0") {
-        	$chatBot->send("grc " . Settings::get("guest_color") . "[".$chatBot->vars["my guild"]."] ".$msg, Settings::get("relaybot"));
+        	$chatBot->send("grc " . Settings::get("guest_color") . "[".$chatBot->guild."] ".$msg, Settings::get("relaybot"));
 		}
 	//If the message comes from the guild and the message is not a command and the player is not on ignore
 	} else if ($type == "guild" && ($args[2][0] != Settings::get("symbol") || ($args[2][0] == Settings::get("symbol") && Settings::get("guest_relay_commands") == 1))) {
 		//Relay the message to the guest channel
-        $msg = "<end>".Settings::get("guest_color_channel")."[{$this -> vars["my guild"]}]<end> ".Settings::get("guest_color_username").Text::makeLink($sender, $sender, "user")."<end>: " . Settings::get("guest_color_guest") . $message . "<end>";
+        $msg = "<end>".Settings::get("guest_color_channel")."[{$this ->guild}]<end> ".Settings::get("guest_color_username").Text::makeLink($sender, $sender, "user")."<end>: " . Settings::get("guest_color_guest") . $message . "<end>";
         $chatBot->send($msg, 'prv', true);
 	}
 }

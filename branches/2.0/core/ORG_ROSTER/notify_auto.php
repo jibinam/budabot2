@@ -58,7 +58,7 @@ if (preg_match("/^(.+) invited (.+) to your organization.$/", $message, $arr)) {
         $db->query("INSERT INTO org_members_<myname> (`mode`, `name`, `firstname`, `lastname`, `guild`, `rank_id`, `rank`, `level`, `profession`, `gender`, `breed`, `ai_level`, `ai_rank`)
                     VALUES ('man',
                     '".$name."', '".$whois -> firstname."',
-                    '".$whois -> lastname."', '".$chatBot->vars["my guild"]."',
+                    '".$whois -> lastname."', '".$chatBot->guild."',
                     '".$whois -> rank_id."', '".$whois -> rank."',
                     '".$whois -> level."', '".$whois -> prof."',
                     '".$whois -> gender."', '".$whois -> breed."',
@@ -69,7 +69,7 @@ if (preg_match("/^(.+) invited (.+) to your organization.$/", $message, $arr)) {
     	$chatBot->guildmembers[$name] = 6;
     }
     $db->query("INSERT INTO guild_chatlist_<myname> (`name`, `profession`, `guild`, `breed`, `level`, `ai_level`)
-                VALUES ('".$name."', '".$whois->prof."', '".$chatBot->vars["my guild"]."',
+                VALUES ('".$name."', '".$whois->prof."', '".$chatBot->guild."',
                    '".$whois->breed."', '".$whois->level."', '".$whois->ai_level."')");     
     $chatBot->send($msg, "guild");
 } else if (preg_match("/^(.+) kicked (.+) from your organization.$/", $message, $arr) || preg_match("/^(.+) removed inactive character (.+) from your organization.$/", $message, $arr)) {

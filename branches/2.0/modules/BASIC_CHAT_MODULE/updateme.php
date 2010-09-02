@@ -30,8 +30,8 @@
    */
 
 if (preg_match("/^updateme$/i", $message)) {
-  	$rk_num = $chatBot->vars["dimension"];
-  	$cache = $chatBot->vars["cachefolder"];
+  	$rk_num = $chatBot->dimension;
+  	$cache = $chatBot->cachefolder;
   	if (file_exists("$cache/$sender.$rk_num.xml")) {
 	    if (!unlink("$cache/$sender.$rk_num.xml")) {
 		  	$chatBot->send("An Error occurred while trying to update your infos. Please try again laters.", $sendto);

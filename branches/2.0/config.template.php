@@ -12,7 +12,7 @@
 	$vars['login']		= "";
 	$vars['password']	= "";
 	$vars['name']		= "";
-	$vars['my guild']	= "";
+	$vars['guild']	= "";
 	$vars['dimension']	= 1;  // 1 for Atlantean, 2 for Rimor, 3 for Die Nueue Welt, 4 for Testlive
 
 	// Insert the Administrator name here

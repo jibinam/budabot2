@@ -29,13 +29,13 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if($chatBot->vars["my guild"] != "" && $chatBot->vars["my guild id"] != "") {
+if ($chatBot->guild != "" && $chatBot->guild_id != "") {
 	// Set Delay for notify on/off(prevent spam from org roster module)
 	$chatBot->vars["onlinedelay"] = time() + 60;
 	
 	Logger::log(__FILE__, "Starting Org Roster Update", INFO);
 	//Get the org infos
-	$org = new OrgXML($chatBot->vars["my guild id"], $chatBot->vars["dimension"], $force_update);
+	$org = new OrgXML($chatBot->guild_id, $chatBot->dimension, $force_update);
 	
 	//Check if Orgxml file is correct if not abort
 	if($org->errorCode != 0) {

@@ -32,11 +32,9 @@ if (preg_match("/^info$/i", $message)) {
 
 		closedir($handle);
 		
-		global $vars;
-		global $settings;
 		$linkContents = '';
 		forEach ($topicList as $topic) {
-			$linkContents .= Text::makeLink($topic, "/tell " . $vars['name'] . " " . $settings['symbol'] . "info $topic", 'chatcmd') . "\n";  
+			$linkContents .= Text::makeLink($topic, "/tell {$chatBot->name} info {$topic}", 'chatcmd') . "\n";  
 		}
 		
 		if ($linkContents) {

@@ -37,22 +37,23 @@ class OrgXML extends XML {
 	public $errorInfo;
 
 	//contructor of the class
-	function __construct($organization_id = 0, $rk_num = 0, $cache = 0, $force_update = false){
+	function __construct($organization_id = 0, $rk_num = 0, $cache = 0, $force_update = false) {
+		global $vars;
+	
 		//if no server number is specified use the one on which the bot is logged in
-		if($rk_num == 0) {
-			global $vars;
+		if $rk_num == 0) {
 			$rk_num = $vars["dimension"];
 		}
 
 		//if no specific cachefolder is defined use the one from config.php
-		if($cache == 0) {
-			global $vars;
+		if ($cache == 0) {
 			$cache = $vars["cachefolder"];
 		}
 
 		//Making sure that the cache folder exists
-		if(!dir($cache))
-		@mkdir($cache, 0777);
+		if (!dir($cache)) {
+			@mkdir($cache, 0777);
+		}
 		
 		//organisation lookup
 		$this->lookup($organization_id, $rk_num, $cache, $force_update);
@@ -65,16 +66,17 @@ class OrgXML extends XML {
 		$data_save = false;
 		
 		//Check if a xml file of the person exists and if it is uptodate
-		if(!force_update && file_exists("$cache/$organization_id.$rk_num.xml")) {
+		if (!force_update && file_exists("$cache/$organization_id.$rk_num.xml")) {
 			$mins = (time() - filemtime("$cache/$organization_id.$rk_num.xml")) / 60;
 			$hours = floor($mins/60);
 			//if the file is not older then 24hrs and it is not the roster of the bot guild then use the cache one, when it the xml file from the org bot guild and not older then 6hrs use it
-			if(($hours < 24 && $vars["my guild id"] != $organization_id) || ($hours < 6 && $vars["my guild id"] == $organization_id)) {
+			if (($hours < 24 && $vars["guild_id"] != $organization_id) || ($hours < 6 && $vars["guild_id"] == $organization_id)) {
 				$fp = fopen("$cache/$organization_id.$rk_num.xml", "r");
-				while(!feof($fp))
-				$orgxml .= fgets($fp, 4096);
+				while (!feof($fp)) {
+					$orgxml .= fgets($fp, 4096);
+				}
 				fclose($fp);
-				if(xml::spliceData($orgxml, '<id>', '</id>') == $organization_id) {
+				if (xml::spliceData($orgxml, '<id>', '</id>') == $organization_id) {
 					$data_found = true;
 				} else {
 					$data_found = false;
@@ -85,9 +87,9 @@ class OrgXML extends XML {
 		}
 		
 		//If no file was found or it is outdated try to update it from anarchyonline.com
-		if(!$data_found) {
+		if (!$data_found) {
 			$orgxml = xml::getUrl("http://people.anarchy-online.com/org/stats/d/$rk_num/name/$organization_id/basicstats.xml", 30);
-			if(xml::spliceData($orgxml, '<id>', '</id>') == $organization_id) {
+			if (xml::spliceData($orgxml, '<id>', '</id>') == $organization_id) {
 				$data_found = true;
 				$data_save = true;
 			} else {
@@ -97,12 +99,13 @@ class OrgXML extends XML {
 		}
 		
 		//If the site was not responding or the data was invalid and a xml file exists get that one
-		if(!$data_found && file_exists("$cache/$organization_id.$rk_num.xml")) {
-			if($fp = fopen("$cache/$organization_id.$rk_num.xml", "r")) {
-				while(!feof($fp))
-				$orgxml .= fgets($fp, 4096);
+		if (!$data_found && file_exists("$cache/$organization_id.$rk_num.xml")) {
+			if ($fp = fopen("$cache/$organization_id.$rk_num.xml", "r")) {
+				while (!feof($fp)) {
+					$orgxml .= fgets($fp, 4096);
+				}
 				fclose($fp);
-				if(xml::spliceData($orgxml, '<id>', '</id>') == $name) {
+				if (xml::spliceData($orgxml, '<id>', '</id>') == $name) {
 					$data_found = true;
 				} else {
 					$data_found = false;
@@ -112,7 +115,7 @@ class OrgXML extends XML {
 			}
 		}
 		//if there is still no valid data available give an error back
-		if(!$data_found) {
+		if (!$data_found) {
 			$this->errorCode = 1;
 			$this->errorInfo = "Couldn't get infos for the organization";
 			return;
@@ -124,7 +127,7 @@ class OrgXML extends XML {
 		$this->orgside	= xml::spliceData($orgxml, "<side>", "</side");
 
 		global $chatBot;
-		foreach($members as $amember) {
+		forEach ($members as $amember) {
 			$name								= xml::splicedata($amember,"<nickname>", "</nickname>");
 			$this->member[]						= $name;
 			$this->members[$name]["firstname"]	= xml::spliceData($amember, '<firstname>', '</firstname>');
@@ -144,7 +147,7 @@ class OrgXML extends XML {
 		}
 
 		//if a new xml file was downloaded, save it
-		if($data_save) {
+		if ($data_save) {
 			$fp = fopen("$cache/$organization_id.$rk_num.xml", "w");
 			fwrite($fp, $orgxml);
 			fclose($fp);

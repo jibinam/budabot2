@@ -33,7 +33,7 @@ class AccessLevel {
 		}
 		
 		// covers leader
-		if ($chatBot->vars["leader"] = $user) {
+		if ($chatBot->leader == $user) {
 			return LEADER;
 		}
 		

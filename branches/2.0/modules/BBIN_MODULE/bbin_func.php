@@ -41,10 +41,10 @@ function parse_incoming_bbin($bbinmsg, $nick, &$bot) {
 		}
 		$msg .= ".";
 
-		if ($bot->vars['my guild'] != "") {
+		if ($bot->guild != "") {
 			$bot->send("<yellow>[BBIN]<end> $msg","guild",true);
 		}
-		if ($bot->vars['my guild'] == "" || $bot->settings["guest_relay"] == 1) {
+		if ($bot->guild == "" || $bot->settings["guest_relay"] == 1) {
 			$bot->send("<yellow>[BBIN]<end> $msg","priv",true);
 		}
 
@@ -65,10 +65,10 @@ function parse_incoming_bbin($bbinmsg, $nick, &$bot) {
 		$msg .= "<highlight>$name<end> has left the network.";
 
 
-		if($bot->vars['my guild'] != "") {
+		if($bot->guild != "") {
 			$bot->send("<yellow>[BBIN]<end> $msg","guild",true);
 		}
-		if($bot->vars['my guild'] == "" || $bot->settings["guest_relay"] == 1) {
+		if($bot->guild == "" || $bot->settings["guest_relay"] == 1) {
 			$bot->send("<yellow>[BBIN]<end> $msg","priv",true);
 		}
 
@@ -80,7 +80,7 @@ function parse_incoming_bbin($bbinmsg, $nick, &$bot) {
 
 		// send actual online members
 
-		$msg = "[BBIN:ONLINELIST:".$bot->vars["dimension"].":";
+		$msg = "[BBIN:ONLINELIST:".$bot->dimension.":";
 		$data = $db->query("SELECT * FROM guild_chatlist_<myname>");
 		$numrows = $db->numrows();
 
@@ -141,10 +141,10 @@ function parse_incoming_bbin($bbinmsg, $nick, &$bot) {
 		}
 	} else {
 		// normal message
-		if($bot->vars['my guild'] != "") {
+		if($bot->guild != "") {
 			$bot->send("<yellow>[BBIN]<end> $bbinmsg","guild",true);
 		}
-		if ($bot->vars['my guild'] == "" || $bot->settings["guest_relay"] == 1) {
+		if ($bot->guild == "" || $bot->settings["guest_relay"] == 1) {
 			$bot->send("<yellow>[BBIN]<end> $bbinmsg","priv",true);
 		}
 	}

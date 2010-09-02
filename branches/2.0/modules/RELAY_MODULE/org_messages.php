@@ -35,7 +35,7 @@
 // relay org messages between linked orgs
 if(Settings::get("relaybot") != "0") {
 
-	$orgName = $chatBot->vars["my guild"];
+	$orgName = $chatBot->guild;
 	$chatBot->send("grc <grey>[$orgName] $message<end>", Settings::get("relaybot"));
 }
 

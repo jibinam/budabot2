@@ -50,7 +50,7 @@ if (Whitelist::check($player) || isset($chatBot->admins[$sender]) || $sender == 
 
 	//Check if he is a org Member
 	if (Settings::get("priv_req_open") == "org" && !isset($chatBot->guildmembers)) {
-	  	$msg = "<orange>Error! Only members of the org {$chatBot->vars["my guild"]} can join this bot.<end>";
+	  	$msg = "<orange>Error! Only members of the org $chatBot->guild can join this bot.<end>";
 	  	$chatBot->send($msg, $sender);
 	  	$restricted = true;
 	  	return;
@@ -112,7 +112,7 @@ if (Whitelist::check($player) || isset($chatBot->admins[$sender]) || $sender == 
 
 	//Check if he is a org Member
 	if (Settings::get("tell_req_open") == "org" && !isset($chatBot->guildmembers[$sender])) {
-	  	$msg = "<orange>Error! I am only respondling to members of the org {$chatBot->vars["my guild"]}.<end>";
+	  	$msg = "<orange>Error! I am only respondling to members of the org $chatBot->guild.<end>";
 	  	$chatBot->send($msg, $sender);
 	  	$restricted = true;
 	  	return;

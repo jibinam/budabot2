@@ -209,8 +209,8 @@ class AOChat {
 			return false;
 		}
 
-		$this->tellqueue  = new AOChatQueue(array($this, 'dispatch_tell'), AOC_FLOOD_LIMIT, AOC_FLOOD_INC);
-		$this->groupqueue = new AOChatQueue(array($this, 'dispatch_groupmsg'), AOC_FLOOD_LIMIT, AOC_FLOOD_INC);
+		$this->tellqueue  = new AOChatQueue(array($this, 'send_packet'), AOC_FLOOD_LIMIT, AOC_FLOOD_INC);
+		$this->groupqueue = new AOChatQueue(array($this, 'send_packet'), AOC_FLOOD_LIMIT, AOC_FLOOD_INC);
 
 		return $s;
 	}
@@ -501,33 +501,29 @@ class AOChat {
 		}
 	}
 
-	/* Sending various packets */
 	function send_ping() {
 		$this->last_ping = time();
 		return $this->send_packet(new AOChatPacket("out", AOCP_PING, "AOChat.php"));
 	}
 
-	function dispatch_tell($uid, $msg) {
-		return $this->send_packet(new AOChatPacket("out", AOCP_MSG_PRIVATE, array($uid, $msg, "\0")));
-	}
-
-	function send_tell($uid, $msg, $blob = "\0") {
-		$this->tellqueue->push(AOC_PRIORITY_MED, $uid, $msg);
+	/* Tells */
+	function send_tell($user, $msg, $blob = "\0") {
+		if (($uid = $this->get_uid($user)) === false) {
+			return false;
+		} else {
+			$this->tellqueue->push(AOC_PRIORITY_MED, new AOChatPacket("out", AOCP_MSG_PRIVATE, array($uid, $msg, $blob)));
+		}
 		return true;
 	}
 
 	/* General chat groups */
-	function dispatch_groupmsg($group, $msg) {
+	function send_group($group, $msg, $blob = "\0") {
 		if (($gid = $this->get_gid($group)) === false) {
 			return false;
 		} else {
-			return $this->send_packet(new AOChatPacket("out", AOCP_GROUP_MESSAGE, array($gid, $msg, "\0")));
+			$this->groupqueue->push(AOC_PRIORITY_MED, new AOChatPacket("out", AOCP_GROUP_MESSAGE, array($gid, $msg, $blob)));
+			return true;
 		}
-	}
-
-	function send_group($group, $msg, $blob = "\0") {
-		$this->groupqueue->push(AOC_PRIORITY_MED, $group, $msg);
-		return true;
 	}
 
 	function group_join($group) {
@@ -556,18 +552,18 @@ class AOChat {
 
 	/* Private chat groups */
 	function send_privgroup($group, $msg, $blob = "\0") {
-		if (($gid = $this->get_uid($group)) === false) {
+		if (($uid = $this->get_uid($group)) === false) {
 			return false;
 		} else {
-			return $this->send_packet(new AOChatPacket("out", AOCP_PRIVGRP_MESSAGE, array($gid, $msg, $blob)));
+			return $this->send_packet(new AOChatPacket("out", AOCP_PRIVGRP_MESSAGE, array($uid, $msg, $blob)));
 		}
 	}
 
 	function privategroup_join($group) {
-		if (($gid = $this->get_uid($group)) === false) {
+		if (($uid = $this->get_uid($group)) === false) {
 			return false;
 		} else {
-			return $this->send_packet(new AOChatPacket("out", AOCP_PRIVGRP_JOIN, $gid));
+			return $this->send_packet(new AOChatPacket("out", AOCP_PRIVGRP_JOIN, $uid));
 		}
 	}
 

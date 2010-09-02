@@ -30,7 +30,7 @@
    */
    
 if (preg_match("/^orgmembers$/i", $message)) {
-	if ($chatBot->vars["my guild id"] == "") {
+	if ($chatBot->guild_id == "") {
 	  	$msg = "The Bot needs to be in a org to show the orgmembers.";
 	    $chatBot->send($msg, $sendto);
 	}
@@ -106,10 +106,10 @@ if (preg_match("/^orgmembers$/i", $message)) {
 		$list .= "<tab><highlight>$row->name<end> (Lvl $row->level/<green>$row->ai_level<end>/$prof/<highlight>$row->rank<end>)$logged_off\n";	    
 	}
 	
-	$msg = Text::makeBlob("$members Members of {$chatBot->vars["my guild"]}", $list);
+	$msg = Text::makeBlob("$members Members of {$chatBot->guild}", $list);
  	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^orgmembers (.*)$/i", $message, $arr)) {
-	if($chatBot->vars["my guild id"] == "") {
+	if ($chatBot->guild_id == "") {
 	  	$msg = "The Bot needs to be in a org to show the orgmembers.";
 	  	$chatBot->send($msg, $sendto);
 	}
@@ -188,7 +188,7 @@ if (preg_match("/^orgmembers$/i", $message)) {
 	  	$list .= "<tab><highlight>$row->name<end> (Lvl $row->level/<green>$row->ai_level<end> $row->profession) (<highlight>$row->rank<end>) <highlight>::<end> Last logoff: $logged_off\n";
 	}
 	
-	$msg = Text::makeBlob("$members {$prof}s of {$chatBot->vars["my guild"]}", $list);
+	$msg = Text::makeBlob("$members {$prof}s of {$chatBot->guild}", $list);
  	$chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;

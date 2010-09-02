@@ -10,7 +10,7 @@
    
 global $bbin_socket;
 if ("1" == Settings::get('bbin_status')) {
-	$msg = "[BBIN:LOGON:".$sender.",".$chatBot->vars["dimension"].",";
+	$msg = "[BBIN:LOGON:".$sender.",".$chatBot->dimension.",";
 	
 	if ($type == "joinPriv") {
 		$msg .= "1]";

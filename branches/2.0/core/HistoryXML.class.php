@@ -38,15 +38,15 @@ class HistoryXML extends xml{
 
 	//constructor of the class
 	function __construct($name, $rk_num = 0, $cache = 0){
+		global $vars;
+		
 		//if no server number is specified use the one on which the bot is logged in
 		if($rk_num == 0) {
-			global $vars;
 			$rk_num = $vars["dimension"];
 		}
 
 		//if no specific cachefolder is defined use the one from config.php
 		if($cache == 0) {
-			global $vars;
 			$cache = $vars["cachefolder"];
 		}
 

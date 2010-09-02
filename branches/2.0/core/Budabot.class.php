@@ -79,11 +79,13 @@ class Budabot extends AOChat {
 		
 		global $db;
 		
-		$this->vars = $vars;
-        $this->name = ucfirst(strtolower($this->vars["name"]));
+		forEach ($vars as $key => $value) {
+			$this->$key = $value;
+		}
+        $this->name = ucfirst(strtolower($this->name));
 
 		//Set startuptime
-		$this->vars["startup"] = time();
+		$this->startup = time();
 	
 		//Create command/event settings table if not exists
 		$db->query("CREATE TABLE IF NOT EXISTS cmdcfg_<myname> (`module` VARCHAR(50) NOT NULL, `regex` VARCHAR(255), `file` VARCHAR(255) NOT NULL, `is_core` TINYINT NOT NULL, `cmd` VARCHAR(25) NOT NULL, `tell_status` INT DEFAULT 0, `tell_access_level` INT DEFAULT 0, `guild_status` INT DEFAULT 0, `guild_access_level` INT DEFAULT 0, `priv_status` INT DEFAULT 0, `priv_access_level` INT DEFAULT 0, `description` VARCHAR(50) NOT NULL DEFAULT '', `verify` INT DEFAULT 1)");
@@ -199,16 +201,16 @@ public function load_settings_from_config(&$settings) {
 		echo "\n\n";
 
 		// Choose Server
-		if ($this->vars["dimension"] == 1) {
+		if ($this->dimension == 1) {
 			$server = "chat.d1.funcom.com";
 			$port = 7101;
-		} else if ($this->vars["dimension"] == 2) {
+		} else if ($this->dimension == 2) {
 			$server = "chat.d2.funcom.com";
 			$port = 7102;
-		} else if ($this->vars["dimension"] == 3) {
+		} else if ($this->dimension == 3) {
 			$server = "chat.d3.funcom.com";
 			$port = 7103;
-		} else if ($this->vars["dimension"] == 4) {
+		} else if ($this->dimension == 4) {
 			$server = "chat.dt.funcom.com";
 			$port = 7109;
 		} else {
@@ -267,54 +269,100 @@ public function load_settings_from_config(&$settings) {
 		return $this->wait_for_packet();
 	}
 
-	function sendPrivate($message, $group, $disable_relay = false) {
-		// for when makeLink generates several pages
-		if (is_array($message)) {
-			forEach ($message as $page) {
-				$this->sendPrivate($page, $group, $disable_relay);
-			}
-			return;
-		}
-	
-		$message = Text::format_message($message);
-		$this->send_privgroup($group,Settings::get("default_priv_color").$message);
-		if ((Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay)) {
-			$this->send_group($group, "</font>" . Settings::get("guest_color_channel") . "[Guest]<end> " . Settings::get("guest_color_username") . "$this->name</font>: " . Settings::get("default_priv_color") . "$message</font>");
-		}
-	}
-
 /*===============================
 ** Name: send
 ** Send chat messages back to aochat servers thru aochat.
-*/	function send($message, $who, $disable_relay = false) {
+*/	function send($message, $sendto, $disable_relay = false) {
+		if ($sendto instanceof Player) {
+			$this->send_to_player($message, $sendto, $disable_relay);
+		} else if ($sendto == 'prv' || $sendto == 'priv') { // Target is private chat by defult.
+			$this->send_to_pgroup($message, $disable_relay);
+		} else if ($sendto == $this->guild || $sendto == 'org' || $sendto == 'guild') {// Target is guild chat.
+    		$this->send_to_guild($message, $disable_relay);
+		} else {
+	    	Logging::log(__FILE__, "Could not deliver message to: '$sendto'", WARN); 
+		}
+	}
+	
+	function send_to_player($message, &$player) {
 		// for when makeLink generates several pages
 		if (is_array($message)) {
 			forEach ($message as $page) {
-				$this->send($page, $who, $disable_relay);
+				$this->send_to_player($page, $player);
 			}
 			return;
 		}
-		print_r($who);
 
 		$message = Text::format_message($message);
 
-		// Send
-		if ($who instanceof Player) {
-			Logger::log_chat("Out. Msg.", $who->name, $message);
-			$this->send_tell($who->uid, Settings::get("default_tell_color").$message);
-		} else if ($who == 'prv' || $who == 'priv') { // Target is private chat by defult.
-			$this->send_privgroup($this->name, Settings::get("default_priv_color").$message);
-			if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
-				$this->send_group($this->vars["my guild"], "</font>" . Settings::get("guest_color_channel") . "[Guest]<end> " . Settings::get("guest_color_username") . Text::makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_priv_color") . "$message</font>");
+		Logger::log_chat("Out. Msg.", $player->name, $message);
+		$this->send_tell($player->name, Settings::get("default_tell_color").$message);
+	}
+
+	function send_to_pgroup($message, $disable_relay = false) {
+		// for when makeLink generates several pages
+		if (is_array($message)) {
+			forEach ($message as $page) {
+				$this->send_to_pgroup($page, $disable_relay);
 			}
-		} else if ($who == $this->vars["my guild"] || $who == 'org' || $who == 'guild') {// Target is guild chat.
-    		$this->send_group($this->vars["my guild"],Settings::get("default_guild_color").$message);
-			if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
-				$this->send_privgroup($this->name, "</font>" . Settings::get("guest_color_channel") . "[{$this->vars["my guild"]}]<end> " . Settings::get("guest_color_username") . Text::makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_guild_color") . "$message</font>");
-			}
-		} else { // Public channels that are not myguild.
-	    	$this->send_group($who, Settings::get("default_guild_color").$message);
+			return;
 		}
+
+		$message = Text::format_message($message);
+
+		$this->send_privgroup($this->name, Settings::get("default_priv_color").$message);
+		if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
+			$this->send_group($this->guild, "</font>" . Settings::get("guest_color_channel") . "[Guest]<end> " . Settings::get("guest_color_username") . Text::makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_priv_color") . "$message</font>");
+		}
+	}
+	
+	function send_to_external_pgroup($message, $pgroup) {
+		// for when makeLink generates several pages
+		if (is_array($message)) {
+			forEach ($message as $page) {
+				$this->send_to_external_pgroup($page, $pgroup);
+			}
+			return;
+		}
+
+		$message = Text::format_message($message);
+
+		$this->send_privgroup($pgroup, Settings::get("default_priv_color").$message);
+	}
+	
+	function send_to_guild($message, $disable_relay = false) {
+		// for when makeLink generates several pages
+		if (is_array($message)) {
+			forEach ($message as $page) {
+				$this->send_to_guild($page, $disable_relay);
+			}
+			return;
+		}
+
+		$message = Text::format_message($message);
+		
+		if ($this->guild_id == '') {
+			Logging::log(__FILE__, "Cannot send message to guild since bot is not a member of a guild", WARN);
+		}
+		
+		$this->send_group($this->guild, Settings::get("default_guild_color").$message);
+		if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
+			$this->send_privgroup($this->name, "</font>" . Settings::get("guest_color_channel") . "[{$this->guild}]<end> " . Settings::get("guest_color_username") . Text::makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_guild_color") . "$message</font>");
+		}
+	}
+	
+	function send_to_public_channel($message, $channel) {
+		// for when makeLink generates several pages
+		if (is_array($message)) {
+			forEach ($message as $page) {
+				$this->send_to_public_channel($page, $channel);
+			}
+			return;
+		}
+
+		$message = Text::format_message($message);
+	
+		$this->send_group($channel, Settings::get("default_guild_color").$message);
 	}
 
 /*===========================================================================================
@@ -326,8 +374,8 @@ public function load_settings_from_config(&$settings) {
 		switch ($type) {
 			case AOCP_GROUP_ANNOUNCE: // 60
 				$b = unpack("C*", $args[0]);
-				if ($b[1]==3) {
-					$this->vars["my guild id"] = $b[2]*256*256*256 + $b[3]*256*256 + $b[4]*256 + $b[5];
+				if ($b[1] == 3) {
+					$this->guild_id = $b[2]*256*256*256 + $b[3]*256*256 + $b[4]*256 + $b[5];
 				}
 			break;
 			case AOCP_PRIVGRP_CLIJOIN: // 55, Incoming player joined private chat
@@ -337,7 +385,7 @@ public function load_settings_from_config(&$settings) {
 				$player = Player::create($args[1]);
 				$params['player'] = &$player;
 
-				if ($params['channel'] == $this->vars['name']) {
+				if ($params['channel'] == $this->name) {
 					$params['type'] = "joinPriv";
 
 					// Add sender to the chatlist.
@@ -365,7 +413,7 @@ public function load_settings_from_config(&$settings) {
 				$player = Player::create($args[1]);
 				$params['player'] = &$player;
 
-				if ($params['channel'] == $this->vars['name']) {
+				if ($params['channel'] == $this->name) {
 					$params['type'] = "leavePriv";
 					Logger::log_chat("Priv Group", $player->name, "left the channel.");
 
@@ -490,7 +538,7 @@ public function load_settings_from_config(&$settings) {
 
 				// TODO
 				/*
-				if ($this->vars['spam_protection'] == 1) {
+				if ($this->spam_protection == 1) {
 					if ($this->spam[$player->name] == 40) $this->send("Error! Your client is sending a high frequency of chat messages. Stop or be kicked.", $player);
 					if ($this->spam[$player->name] > 60) $this->privategroup_kick($player->uid);
 					if (strlen($args[1]) > 400) {
@@ -501,7 +549,7 @@ public function load_settings_from_config(&$settings) {
 				}
 				*/
 
-				if ($channel == $this->vars['name']) {
+				if ($channel == $this->name) {
 					$params['type'] = "priv";
 					$params['sendto'] = 'prv';
 					Logger::log_chat("Priv Group", $player->name, $message);
@@ -570,7 +618,7 @@ public function load_settings_from_config(&$settings) {
                 } else if ($channel == "Org Msg") {
                     $params['type'] = "orgmsg";
     				Event::fire_event($params);
-                } else if ($channel == $this->vars["my guild"]) {
+                } else if ($channel == $this->guild) {
                     $params['type'] = 'guild';
 					$params['sendto'] = 'org';
 

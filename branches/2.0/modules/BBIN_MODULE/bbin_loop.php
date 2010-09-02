@@ -39,10 +39,10 @@ if (($data = fgets($bbin_socket)) && ("1" == Settings::get('bbin_status'))) {
 
 			// send notification to channel
 			$extendedinfo = Text::makeBlob("Extended informations", $data);
-			if ($chatBot->vars['my guild'] != "") {
+			if ($chatBot->guild != "") {
 				$chatBot->send("<yellow>[BBIN]<end> Lost connection with server:".$extendedinfo,"guild",true);
 			}
-			if ($chatBot->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
+			if ($chatBot->guild == "" ||Settings::get("guest_relay") == 1) {
 				$chatBot->send("<yellow>[BBIN]<end> Lost connection with server:".$extendedinfo,"priv",true);
 			}
 		}
@@ -51,35 +51,35 @@ if (($data = fgets($bbin_socket)) && ("1" == Settings::get('bbin_status'))) {
 		if ($ex[3] == Settings::get('bbin_nickname')) {
 			// oh noez, I was kicked !
 			Settings::save("bbin_status","0");
-			if ($chatBot->vars['my guild'] != "") {
+			if ($chatBot->guild != "") {
 				$chatBot->send("<yellow>[BBIN]<end> Our uplink was kicked from the server:".$extendedinfo,"guild",true);
 			}
-			if ($chatBot->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
+			if ($chatBot->guild == "" ||Settings::get("guest_relay") == 1) {
 				$chatBot->send("<yellow>[BBIN]<end> Our uplink was kicked from the server:".$extendedinfo,"priv",true);
 			}
 		} else {
 			// yay someone else was kicked
 			$db->query("DELETE FROM bbin_chatlist_<myname> WHERE `ircrelay` = '$ex[3]'");
-			if ($chatBot->vars['my guild'] != "") {
+			if ($chatBot->guild != "") {
 				$chatBot->send("<yellow>[BBIN]<end> The uplink ".$ex[3]." was kicked from the server:".$extendedinfo,"guild",true);
 			}
-			if ($chatBot->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
+			if ($chatBot->guild == "" ||Settings::get("guest_relay") == 1) {
 				$chatBot->send("<yellow>[BBIN]<end> The uplink ".$ex[3]." was kicked from the server:".$extendedinfo,"priv",true);
 			}
 		}
 	} else if (($ex[1] == "QUIT") || ($ex[1] == "PART")) {
 		$db->query("DELETE FROM bbin_chatlist_<myname> WHERE `ircrelay` = '$nick'");
-		if ($chatBot->vars['my guild'] != "") {
+		if ($chatBot->guild != "") {
 			$chatBot->send("<yellow>[BBIN]<end> Lost uplink with $nick","guild",true);
 		}
-		if ($chatBot->vars['my guild'] == "" ||Settings::get("guest_relay") == 1) {
+		if ($chatBot->guild == "" ||Settings::get("guest_relay") == 1) {
 			$chatBot->send("<yellow>[BBIN]<end> Lost uplink with $nick","priv",true);
 		}
 	} else if ($ex[1] == "JOIN") {
-		if ($chatBot->vars['my guild'] != "") {
+		if ($chatBot->guild != "") {
 			$chatBot->send("<yellow>[BBIN]<end> Uplink established with $nick.","guild",true);
 		}
-		if ($chatBot->vars['my guild'] == "" || Settings::get("guest_relay") == 1) {
+		if ($chatBot->guild == "" || Settings::get("guest_relay") == 1) {
 			$chatBot->send("<yellow>[BBIN]<end> Uplink established with $nick.","priv",true);
 		}
 	} else if ($channel == trim(strtolower(Settings::get('bbin_channel')))) {

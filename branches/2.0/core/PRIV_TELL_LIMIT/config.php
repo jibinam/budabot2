@@ -50,7 +50,7 @@ if (preg_match("/^limits$/i", $message)) {
 	if(Settings::get("tell_req_open") == "all")
 		$list .= "No general Limit";
 	elseif(Settings::get("tell_req_open") == "org")
-		$list .= "Responding only to Players that are in the Organistion {$chatBot->vars["my guild"]}";
+		$list .= "Responding only to Players that are in the Organistion $chatBot->my guild";
 	else
 		$list .= "Responding only to players that are Members of this Bot";
 	$list .= "<end> (";
@@ -70,7 +70,7 @@ if (preg_match("/^limits$/i", $message)) {
 	if(Settings::get("priv_req_open") == "all")
 		$list .= "No general Limit";
 	elseif(Settings::get("priv_req_open") == "org")
-		$list .= "Accepting invites only from Members of the Organistion {$chatBot->vars["my guild"]}";
+		$list .= "Accepting invites only from Members of the Organistion $chatBot->my guild";
 	else
 		$list .= "Accepting invites only from Members of this Bot";
 	$list .= "<end> (";
@@ -197,14 +197,14 @@ if (preg_match("/^limits$/i", $message)) {
  	 	if(Settings::get("priv_req_open") == "all")
 			$list .= "No general Limit";
 		elseif(Settings::get("priv_req_open") == "org")
-			$list .= "Responding only to Players that are in the Organistion {$chatBot->vars["my guild"]}";
+			$list .= "Responding only to Players that are in the Organistion $chatBot->my guild";
 		else
 			$list .= "Responding only to players that are Members of this Bot";
  	} else {
 		if(Settings::get("tell_req_open") == "all")
 			$list .= "No general Limit";
 		elseif(Settings::get("tell_req_open") == "org")
-			$list .= "Responding only to Players that are in the Organistion {$chatBot->vars["my guild"]}";
+			$list .= "Responding only to Players that are in the Organistion $chatBot->my guild";
 		else
 			$list .= "Responding only to players that are Members of this Bot";
 	}

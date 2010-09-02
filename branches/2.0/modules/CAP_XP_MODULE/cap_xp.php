@@ -29,7 +29,7 @@
 
 if (preg_match("/^(capxp|capsk) ([0-9]+)/i$", $message, $arr)) {
 	//get player lvl
-	$rk_num = $chatBot->vars["dimension"];
+	$rk_num = $chatBot->dimension;
 	$info = new WhoisXML($sender);
 	$reward = $arr[2];
 	

@@ -83,7 +83,7 @@ if (preg_match("/^kos$/i", $message)) {
 	if ($db->numrows() == 1) {
 		$db->query("DELETE FROM koslist_<myname> WHERE `sender` = '$sender' AND `name` = '".str_replace("'", "''", $name)."'");
 		$msg = "You have successfull removed <highlight>$name<end> from the KOS List.";
-	} else if ($chatBot->guildmembers[$sender] < $chatBot->vars['guild_admin_level']) {
+	} else if ($chatBot->guildmembers[$sender] < $chatBot->guild_admin_level) {
 		$db->query("SELECT * FROM koslist_<myname> WHERE `name` = '".str_replace("'", "''", $name)."'");
 		if ($db->numrows() != 0) {
 			$db->query("DELETE FROM koslist_<myname> WHERE `name` = '$".str_replace("'", "''", $name)."'");
