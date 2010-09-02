@@ -33,5 +33,6 @@
 Admin::send_message_to_online_admins("The bot is online and ready to use. For updates or help use the Budabot Forum <highlight>http://budabot.com<end>", ADMIN);
 
 //Send a message to guild channel
-$chatBot->send("Logon Complete :: All systems ready to use.", "guild");
+// TODO
+//$chatBot->send("Logon Complete :: All systems ready to use.", "guild");
 ?>

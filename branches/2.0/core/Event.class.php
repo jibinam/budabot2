@@ -48,7 +48,7 @@ class Event {
 		if (($event = EVENT::get($type, $module, $filename)) != false) {
 		  	$db->query("UPDATE eventcfg_<myname> SET `verify` = 1, `description` = '". str_replace("'", "''", $description) ."' WHERE `type` = '$type' AND `file` = '$filename' AND `module` = '$module'");
 		} else {
-		  	$db->query("INSERT INTO eventcfg_<myname> (`module`, `type`, `file`, `verify`, `description`, `status`, `is_core`) VALUES ('$module', '$type', '$filename', 1, '". str_replace("'", "''", $description) ."', '$status', $is_core)");
+		  	$db->query("INSERT INTO eventcfg_<myname> (`module`, `type`, `file`, `verify`, `description`, `status`, `is_core`) VALUES ('$module', '$type', '$filename', 1, '". str_replace("'", "''", $description) ."', $status, $is_core)");
 		}
 	}
 	

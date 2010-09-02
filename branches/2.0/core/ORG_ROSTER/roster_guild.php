@@ -45,9 +45,9 @@ if($chatBot->vars["my guild"] != "" && $chatBot->vars["my guild id"] != "") {
 		$data = $db->query("SELECT * FROM members_<myname>");
 		forEach ($data as $row) {
 			if ($row->autoinv == 1) {
-				Buddylist::add($row->uid, "member");
+				Buddylist::add(Player::create($row->uid), "member");
 			} else {
-				Buddylist::remove($row->uid, "member");
+				Buddylist::remove(Player::create($row->uid), "member");
 			}
 		}
 		
@@ -83,12 +83,10 @@ if($chatBot->vars["my guild"] != "" && $chatBot->vars["my guild id"] != "") {
 		            $chatBot->guildmembers[$amember] = $org->members[$amember]["rank_id"];
 					
 					// add org members who are on notify to buddy list
-					$uid = $chatBot->get_uid($amember);
-					Buddylist::add($uid, 'org');
+					Buddylist::add(Player::create($amember), 'org');
 			  	} else {
 		            $mode = "del";
-					$uid = $chatBot->get_uid($amember);
-					Buddylist::remove($uid, 'org');
+					Buddylist::remove(Player::create($amember), 'org');
 				}
 		
 		        $db->query("UPDATE org_members_<myname> SET `mode` = '".$mode."',
@@ -107,8 +105,7 @@ if($chatBot->vars["my guild"] != "" && $chatBot->vars["my guild id"] != "") {
 			//Else insert his data
 			} else {
 				// add new org members to buddy list
-				$uid = $chatBot->get_uid($amember);
-				Buddylist::add($uid, 'org');
+				Buddylist::add(Player::create($amember), 'org');
 			
 			    $db->query("INSERT INTO org_members_<myname> (`name`, `mode`, `firstname`, `lastname`, `guild`, `rank_id`, `rank`, `level`, `profession`, `gender`, `breed`, `ai_level`, `ai_rank`)
 		                        VALUES ('".$org -> members[$amember]["name"]."', 'org',
@@ -130,8 +127,7 @@ if($chatBot->vars["my guild"] != "" && $chatBot->vars["my guild id"] != "") {
 		// remove buddies who used to be org members, but are no longer
 		forEach ($dbentrys as $buddy) {
 			$db->execute("DELETE FROM org_members_<myname> WHERE `name` = '".$buddy['name']."'");
-			$uid = $chatBot->get_uid($buddy['name']);
-			Buddylist::remove($uid, 'org');
+			Buddylist::remove(Player::create($buddy['name']), 'org');
 		}
 
 		Logger::log(__FILE__, "Org Roster Update is done", INFO);

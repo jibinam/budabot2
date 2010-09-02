@@ -29,14 +29,14 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-$db->query("CREATE TABLE IF NOT EXISTS admin_<myname> (uid INT NOT NULL PRIMARY KEY, `access_level` INT NOT NULL)");
-$superAdmin = Player::create(Settings::get("Super Admin"));
+$superAdmin = Player::create($chatBot->vars["SuperAdmin"]);
 
-if ($uid === FALSE) {
+if ($superAdmin === null) {
 	Logger::log(__FILE__, "could not get char_id for super admin: '$superAdmin->name'", ERROR);
 } else {
 	// demote any current super admins to admins
-	forEach (Admin::find_by_access_level(SUPERADMIN) as $admin) {
+	$admins = Admin::find_by_access_level(SUPERADMIN);
+	forEach ($admins as $admin) {
 		if ($admin->uid != $superAdmin->uid) {
 			Admin::update($admin, ADMIN);
 		}
@@ -47,7 +47,7 @@ if ($uid === FALSE) {
 	
 	// add new super admin
 	Admin::add($superAdmin, SUPERADMIN);
-	Buddylist::add($uid, 'admin');
+	Buddylist::add($superAdmin, 'admin');
 }
 
 ?>

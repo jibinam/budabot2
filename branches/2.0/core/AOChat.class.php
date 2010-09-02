@@ -330,6 +330,11 @@ class AOChat {
 	}
 
 	function send_packet($packet) {
+		if ($this->state == "connect") {
+			Logger::log(__FILE__, "Error sending packet when connection is not established!", WARN);
+			return;
+		}
+	
 		$data = pack("n2", $packet->type, strlen($packet->data)) . $packet->data;
 		if (is_resource($this->debug)) {
 			fwrite($this->debug, ">>>>>\n");

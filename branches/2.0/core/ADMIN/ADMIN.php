@@ -3,8 +3,10 @@
 
 	$MODULE_NAME = "ADMIN";
 	
+	DB::loadSQLFile($MODULE_NAME, "admin");
+	
 	//Setup
-	Event::register("setup", $MODULE_NAME, "upload_admins.php", '', 1);
+	Event::register("connect", $MODULE_NAME, "upload_admins.php", '', 1);
 
 	//Commands	
 	Command::register($MODULE_NAME, "addadmin.php", "addadmin", SUPERADMIN, 'add admin', 1);

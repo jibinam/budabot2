@@ -123,7 +123,7 @@ class Command {
 		$commands = Command::find_commands_for_user($player, $command_name, $type);
 
 		// Upload Command File or return error message
-		if (count($command) === 0 ) {
+		if (count($commands) === 0 ) {
 			$chatBot->send("Error! Unknown command or Access denied! for more info try /tell <myname> help", $sendto);
 			Settings::add_spam($player, 20);
 		} else {
@@ -131,17 +131,17 @@ class Command {
 			$syntax_error = true;
 			$msg = "";
 			forEach ($commands as $command) {
-				if ($command->regex === null) {
+				if ($command->regex === null || $command->regex == '') {
 					// handle legacy commands
 					$syntax_error = false;
-					$path = Util::get_full_path($command->file);
+					$path = Util::get_full_path($command);
 					Logger::log(__FILE__, "Legacy Command: '$type' File: '$path'", DEBUG);
 					require $path;
 					break;
 				} else if (preg_match("/^{$command->regex}$/i", $command_params, $params)) {
 					// handle new commands
 					$syntax_error = false;
-					$path = Util::get_full_path($command->file);
+					$path = Util::get_full_path($command);
 					Logger::log(__FILE__, "Command: '$type' File: '$path'", DEBUG);
 					require $path;
 					break;

@@ -30,9 +30,9 @@
    */
 
 if (preg_match("/^adduser (.+)$/i", $message, $arr)) {
-    $uid = $chatBot->get_uid($arr[1]);
+    $add_player = Player::create($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
-    if (!$uid) {
+    if ($add_player == null) {
         $msg = "Player <highlight>$name<end> does not exist.";
     } else {
 	  	$db->query("SELECT * FROM members_<myname> WHERE `name` = '$name'");
@@ -41,7 +41,7 @@ if (preg_match("/^adduser (.+)$/i", $message, $arr)) {
 	  	} else {
 		    $db->query("INSERT INTO members_<myname> (`name`, `autoinv`) VALUES ('$name', 1)");
 		    $msg = "<highlight>$name<end> has been added to the guestlist.";
-	        Buddylist::add($uid, 'member');
+	        Buddylist::add($add_player, 'member');
 		}
 	}
 

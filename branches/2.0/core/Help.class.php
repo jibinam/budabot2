@@ -39,6 +39,8 @@ class Help {
 ** Name: help_lookup
 ** Find a help topic for a command if it exists
 */	public static function find($player, $helpcmd) {
+		global $db;
+
 		$helpcmd = strtolower($helpcmd);
 
 		$sql = "SELECT name, module, description, file FROM hlpcfg_<myname> WHERE access_level >= $player->access_level AND name = '$helpcmd' ORDER BY module ASC";

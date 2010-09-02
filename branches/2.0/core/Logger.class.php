@@ -29,6 +29,10 @@ class Logger {
 		if ($log_level >= $vars['file_log_level']) {
 			Logger::append_to_log_file($log_level_description, $line);
 		}
+		
+		if ($log_level >= WARN) {
+			sleep(5);
+		}
 
 		/*
 			00:00 DEBUG [/modules/TOWER_MODULE/towers.php] [timer check]

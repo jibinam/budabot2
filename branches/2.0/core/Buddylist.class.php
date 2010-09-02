@@ -25,21 +25,20 @@ class Buddylist {
 		return ($buddy === null ? null : $buddy['online']);
     }
 	
-	public static function add($uid, $type) {
+	public static function add(&$player, $type) {
 		global $chatBot;
 
-		if ($uid === false || $type === null || $type == '') {
+		if ($player == null) {
 			return false;
 		} else {
-			$name = $chatBot->buddyList[$uid]['name'];
-			if (!isset($chatBot->buddyList[$uid])) {
-				Logger::log(__FILE__, "$name buddy added", DEBUG);
-				$chatBot->buddy_add($uid);
+			if (!isset($chatBot->buddyList[$player->uid])) {
+				Logger::log(__FILE__, "$player->name buddy added", DEBUG);
+				$chatBot->buddy_add($player->uid);
 			}
 			
-			if (!isset($chatBot->buddyList[$uid]['types'][$type])) {
-				$chatBot->buddyList[$uid]['types'][$type] = 1;
-				Logger::log(__FILE__, "$name buddy type added (type: $type)", DEBUG);
+			if (!isset($chatBot->buddyList[$player->uid]['types'][$type])) {
+				$chatBot->buddyList[$player->uid]['types'][$type] = 1;
+				Logger::log(__FILE__, "$player->name buddy type added (type: $type)", DEBUG);
 			}
 			
 			return true;
@@ -88,10 +87,10 @@ class Buddylist {
 		global $chatBot;
 	
 		// store buddy info
-		$chatBot->buddyList[$char_id]['uid'] = $player->uid;
-		$chatBot->buddyList[$char_id]['name'] = $player->name;
-		$chatBot->buddyList[$char_id]['online'] = $status;
-		$chatBot->buddyList[$char_id]['known'] = $known;
+		$chatBot->buddyList[$player->uid]['uid'] = $player->uid;
+		$chatBot->buddyList[$player->uid]['name'] = $player->name;
+		$chatBot->buddyList[$player->uid]['online'] = $status;
+		$chatBot->buddyList[$player->uid]['known'] = $known;
 	}
 }
 

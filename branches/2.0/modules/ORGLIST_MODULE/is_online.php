@@ -32,14 +32,14 @@
 $msg = "";
 if (preg_match("/^is (.+)$/i", $message, $arr)) {
     // Get User id
-    $uid = $chatBot->get_uid($arr[1]);
+    $is_player = $chatBot->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
-    if (!$uid) {
+    if ($is_player == null) {
         $msg = "Player <highlight>$name<end> does not exist.";
 		$chatBot->send($msg, $sendto);
     } else {
         //if the player is a buddy then
-        if (Buddylist::is_buddy($uid, NULL)) {
+        if (Buddylist::is_buddy($is_player->uid, NULL)) {
             $row = $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$name' AND `mode` != 'del'", true);
             if ($db->numrows() == 1) {
                 if($row->logged_off != "0") {
@@ -57,7 +57,7 @@ if (preg_match("/^is (.+)$/i", $message, $arr)) {
         } else {
 			$chatBot->data["ONLINE_MODULE"]['playername'] = $name;
 			$chatBot->data["ONLINE_MODULE"]['sendto'] = $sendto;
-			Buddylist::add($uid, 'is_online');
+			Buddylist::add($is_player, 'is_online');
         }
     }
 } elseif (($type == "logOn" || $type == "logOff") && $sender == $chatBot->data["ONLINE_MODULE"]['playername']) {

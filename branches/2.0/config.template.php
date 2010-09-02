@@ -16,7 +16,7 @@
 	$vars['dimension']	= 1;  // 1 for Atlantean, 2 for Rimor, 3 for Die Nueue Welt, 4 for Testlive
 
 	// Insert the Administrator name here
-	$settings['Super Admin'] = "";
+	$vars['SuperAdmin'] = "";
 
 	// What prefix should be used for private/Guild channel
 	$settings['symbol'] = "!";

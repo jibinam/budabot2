@@ -82,7 +82,6 @@ class Settings {
 					:is_core
 				)";
 		}
-		
 		$db->prepared_statement($sql, $params);
 	}
 
@@ -96,7 +95,7 @@ class Settings {
 		$params = array(':name' => $name);
 		$sql = "SELECT setting FROM settings_<myname> WHERE `name` = :name";
 		$row = $db->prepared_statement($sql, $params, true);
-		return $row->value;
+		return $row->setting;
 	}
 	
 	public static function is_ignored(&$player) {

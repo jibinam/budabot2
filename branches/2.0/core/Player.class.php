@@ -5,6 +5,8 @@ class Player {
 	private $uid;
 	
 	public static function create($input) {
+		global $chatBot;
+	
 		if (is_int($input)) {
 			return new Player($input);
 		} else {

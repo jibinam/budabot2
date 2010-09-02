@@ -155,14 +155,17 @@ class DB {
 			if ($error[0] != "00000") {
 				$paramString = print_r($params, true);
 				Logger::log(__FILE__, "Error msg: $error[2] in:\n$sql $paramString", ERROR);
+				return null;
 			}
 			
+			$paramString = print_r($params, true);
+			Logger::log(__FILE__, "Prepared Statement: \n$sql $paramString", DEBUG);
 			$stmt->execute($params);
 			
 			if ($single) {
-				return $stmt->fetch();
+				return $stmt->fetch(PDO::FETCH_OBJ);
 			} else {
-				return $stmt->fetchAll();
+				return $stmt->fetchAll(PDO::FETCH_OBJ);
 			}
 		} catch (PDOException $e) {
 			$this->errorCode = 1;

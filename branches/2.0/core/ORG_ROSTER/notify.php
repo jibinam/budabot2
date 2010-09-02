@@ -31,7 +31,7 @@
 
 if (preg_match("/^notify (on|add) (.+)$/i", $message, $arr)) {
     // Get User id
-    $uid = $chatBot->get_uid($arr[2]);
+    $notify_player = Player::create($arr[2]);
 	$name = ucfirst(strtolower($arr[2]));
     $row = $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$name'");
 	$numrows = $db->numrows();
@@ -42,16 +42,16 @@ if (preg_match("/^notify (on|add) (.+)$/i", $message, $arr)) {
     // If the member was deleted set him as manual added again
     } else if ($numrows != 0 && $row->mode == "del") {
         $db->execute("UPDATE org_members_<myname> SET `mode` = 'man' WHERE `name` = '$name'");
-        Buddylist::add($uid, 'org');
+        Buddylist::add($notify_player, 'org');
 	    
     	$msg = "<highlight>$name<end> has been added to the Notify list.";
     // Is the player name valid?
-    } else if ($uid) {
+    } else if ($notify_player != null) {
         // Getting Player infos
         $whois = new WhoisXML($name);
 
         // Add him as a buddy and put his infos into the DB
-		Buddylist::add($uid, 'org');
+		Buddylist::add($notify_player, 'org');
         if($whois->errorCode != 0) {
 		  	$whois -> firstname = "";
 		  	$whois -> lastname = "";

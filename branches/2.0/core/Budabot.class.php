@@ -92,10 +92,8 @@ class Budabot extends AOChat {
 		$db->query("CREATE TABLE IF NOT EXISTS hlpcfg_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50) NOT NULL, `description` VARCHAR(50) NOT NULL DEFAULT '', `file` VARCHAR(255) NOT NULL, `is_core` TINYINT NOT NULL, `access_level` INT DEFAULT 0, `verify` INT Default 1)");
 	}
 	
-	public function load_settings_from_config(&$settings) {
+public function load_settings_from_config(&$settings) {
 		save_setting_to_db('symbol', $settings["symbol"], '!;#;*;@;$;+;-', null, 'Prefix for Guild- or Privatechat Commands', null);
-		save_setting_to_db('debug', $settings["debug"], "Disabled;Show basic msg's;Show enhanced debug msg's;Show enhanced debug msg's + 1s Delay", '0;1;2;3', 'Show debug messages', null);
-		save_setting_to_db('echo', $settings["echo"], 'Disabled;Only Console;Console and Logfiles', '0;1;2' , 'Show messages in console and log them to files', null);
 		save_setting_to_db('guild_admin_level', $settings["guild_admin_level"], 'President;General;Squad Commander;Unit Commander;Unit Leader;Unit Member;Applicant', '0;1;2;3;4;5;6', 'Min Level for Rank Guildadmin', null);
 		save_setting_to_db('default_guild_color', "<font color='#84FFFF'>", 'color', null, 'Default Guild Color', null);
 		save_setting_to_db('default_priv_color', "<font color='#84FFFF'>", 'color', null, 'Default Private Color', null);
@@ -120,7 +118,6 @@ class Budabot extends AOChat {
 		$this->load_core_module("HELP");
 		$this->load_core_module("CONFIG");
 		$this->load_core_module("ORG_ROSTER");
-		$this->load_core_module("BASIC_CONNECTED_EVENTS");
 		$this->load_core_module("PRIV_TELL_LIMIT");
 		
 		Logger::log(__FILE__, "End: Loading CORE MODULES", DEBUG);
@@ -289,7 +286,7 @@ class Budabot extends AOChat {
 /*===============================
 ** Name: send
 ** Send chat messages back to aochat servers thru aochat.
-*/	function send($message, &$who, $disable_relay = false) {
+*/	function send($message, $who, $disable_relay = false) {
 		// for when makeLink generates several pages
 		if (is_array($message)) {
 			forEach ($message as $page) {
@@ -297,6 +294,7 @@ class Budabot extends AOChat {
 			}
 			return;
 		}
+		print_r($who);
 
 		$message = Text::format_message($message);
 

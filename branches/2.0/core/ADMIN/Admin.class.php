@@ -1,16 +1,16 @@
 <?php
 
 class Admin {
-	public static function add($uid, $acces_level) {
+	public static function add(&$player, $acces_level) {
 		global $db;
 
-		$db->execute("INSERT INTO admin_<myname> (`access_level`, `uid`) VALUES ($acces_level, $uid)");
+		$db->execute("INSERT INTO admin_<myname> (`access_level`, `uid`) VALUES ($acces_level, $player->uid)");
 	}
 	
-	public static function remove($uid) {
+	public static function remove(&$player) {
 		global $db;
 
-		$db->execute("DELETE FROM admin_<myname> WHERE `uid` = $uid");
+		$db->execute("DELETE FROM admin_<myname> WHERE `uid` = $player->uid");
 	}
 	
 	public static function get($uid) {
@@ -25,10 +25,10 @@ class Admin {
 		return $db->query("SELECT * FROM admin_<myname> ORDER BY `access_level` ASC");
 	}
 	
-	public static function update($uid, $access_level) {
+	public static function update(&$player, $access_level) {
 		global $db;
 		
-		$db->execute("UPDATE admin_<myname> SET `access_level` = $access_level WHERE `uid` = $uid");
+		$db->execute("UPDATE admin_<myname> SET `access_level` = $access_level WHERE `uid` = $player->uid");
 	}
 	
 	public static function find_by_access_level($access_level) {
@@ -43,14 +43,14 @@ class Admin {
 		return $db->query("SELECT * FROM admin_<myname> WHERE `access_level` <= $access_level");
 	}
 	
-	public static function send_message_to_online_admins($message, $min_acess_level) {
+	public static function send_message_to_online_admins($message, $min_access_level) {
 		global $chatBot;
 	
 		$data = Admin::find_at_or_above_access_level($min_access_level);
 		forEach ($data as $admin) {
-			$player = new Player($admin->uid);
+			$player = Player::create($admin->uid);
 			if ($player->is_online) {
-				$this->send($message, $player);
+				$chatBot->send($message, $player);
 			}
 		}
 	}
@@ -92,7 +92,7 @@ class Admin {
 			// no change
 		}
 		
-		Buddylist::add($who->uid, 'admin');
+		Buddylist::add($who, 'admin');
 	}
 	
 	public static function remove_admin(&$sendto, &$player, &$who, $access_level) {

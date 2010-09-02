@@ -12,6 +12,9 @@
 	Command::register($MODULE_NAME, "memory.php", "memory", MEMBER, 'shows the memory usage of the bot', 1);
 	Command::register($MODULE_NAME, "cmdlist.php", "cmdlist", MEMBER, 'shows the list of commands', 1);
 	Command::register($MODULE_NAME, "eventlist.php", "eventlist", MEMBER, 'shows the list of events', 1);
+	Command::register($MODULE_NAME, "lookup.php", "lookup", MEMBER, 'shows player info', 1);
+	
+	Event::register("connect", $MODULE_NAME, "systems_ready.php", 'Alert users bot is online and ready to be used', 1);
 
 	//Help Files
 	Help::register($MODULE_NAME, "system.txt", "system", ADMIN, "Admin System Help file.");

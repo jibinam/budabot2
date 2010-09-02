@@ -30,7 +30,7 @@
    */
    
 if (preg_match("/^(.+) invited (.+) to your organization.$/", $message, $arr)) {
-    $uid = $chatBot->get_uid($arr[2]);
+    $notify_player = Player::create($arr[2]);
     $name = ucfirst(strtolower($arr[2]));
     $name2 = ucfirst(strtolower($arr[1]));
     $row = $db->query("SELECT * FROM org_members_<myname> WHERE `name` = '$name'", true);
@@ -64,7 +64,7 @@ if (preg_match("/^(.+) invited (.+) to your organization.$/", $message, $arr)) {
                     '".$whois -> gender."', '".$whois -> breed."',
                     '".$whois -> ai_level."',
                     '".$whois -> ai_rank."')");                            
-		Buddylist::add($uid, 'org');
+		Buddylist::add(notify_player, 'org');
     	$msg = "<highlight>".$name."<end> has been added to the Notify list.";
     	$chatBot->guildmembers[$name] = 6;
     }
@@ -73,22 +73,22 @@ if (preg_match("/^(.+) invited (.+) to your organization.$/", $message, $arr)) {
                    '".$whois->breed."', '".$whois->level."', '".$whois->ai_level."')");     
     $chatBot->send($msg, "guild");
 } else if (preg_match("/^(.+) kicked (.+) from your organization.$/", $message, $arr) || preg_match("/^(.+) removed inactive character (.+) from your organization.$/", $message, $arr)) {
-    $uid = $chatBot->get_uid($arr[2]);
+    $notify_player = Player::create($arr[2]);
     $name = ucfirst(strtolower($arr[2]));
     $db -> query("UPDATE org_members_<myname> SET `mode` = 'del' WHERE `name` = '$name'");
     $db -> query("DELETE FROM guild_chatlist_<myname> WHERE `name` = '$name'");
     $msg = "Removed <highlight>".$name."<end> from the Notify list.";
     unset($chatBot->guildmembers[$name]);
-	Buddylist::remove($uid, 'org');
+	Buddylist::remove($notify_player, 'org');
     $chatBot->send($msg, "guild");
 } else if(preg_match("/^(.+) just left your organization.$/", $message, $arr) || preg_match("/^(.+) kicked from organization (alignment changed).$/", $message, $arr)) {
-    $uid = $chatBot->get_uid($arr[1]);
+    $notify_player = Player::create($arr[2]);
     $name = ucfirst(strtolower($arr[1]));
     $db -> query("UPDATE org_members_<myname> SET `mode` = 'del' WHERE `name` = '$name'");
     $db -> query("DELETE FROM guild_chatlist_<myname> WHERE `name` = '$name'");
     $msg = "Removed <highlight>".$name."<end> from the Notify list.";
     unset($chatBot->guildmembers[$name]);
-	Buddylist::remove($uid, 'org');
+	Buddylist::remove($notify_player, 'org');
     $chatBot->send($msg, "guild");
 }
 
