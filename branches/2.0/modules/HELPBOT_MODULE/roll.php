@@ -30,7 +30,7 @@
    */
 
 if (preg_match("/^flip$/i", $message)) {
-	$row = $db->query("SELECT * FROM roll_<myname> WHERE `name` = '$sender' ORDER BY `time`", true);
+	$row = $db->query("SELECT * FROM roll_<myname> WHERE `name` = '$sender' ORDER BY `time` DESC", true);
 	if ($db->numrows() == 0) {
 	  	$flip = rand(1, 2);
 		$db->execute("INSERT INTO roll_<myname> (`time`, `name`, `type`, `result`) VALUES (".time().", '$sender', 0, $flip)");
@@ -60,7 +60,7 @@ if (preg_match("/^flip$/i", $message)) {
   	if ($arr[1] > getrandmax()) {
 		$msg = "Can't use the number you have given me. Maximum is <highlight>".getrandmax()."<end>";
 	} else {
-		$row = $db->query("SELECT * FROM roll_<myname> WHERE `name` = '$sender' ORDER BY `time`", true);
+		$row = $db->query("SELECT * FROM roll_<myname> WHERE `name` = '$sender' ORDER BY `time` DESC", true);
 		if ($db->numrows() == 0) {
 		  	$num = rand(1, $arr[1]);
 			$db->execute("INSERT INTO roll_<myname> (`time`, `name`, `type`, `start`, `end`, `result`) VALUES (".time().", '$sender', 1, 1, $arr[1], $num)");
@@ -85,7 +85,7 @@ if (preg_match("/^flip$/i", $message)) {
 	} else if ($arr[1] >= $arr[2]) {
 		$msg = "The first number can't be higher than or equal to the second one.";
 	} else {
-		$row = $db->query("SELECT * FROM roll_<myname> WHERE `name` = '$sender' ORDER BY `time`", true);
+		$row = $db->query("SELECT * FROM roll_<myname> WHERE `name` = '$sender' ORDER BY `time` DESC", true);
 		if ($db->numrows() == 0) {
 		  	$num = rand($arr[1], $arr[2]);
 			$db->execute("INSERT INTO roll_<myname> (`time`, `name`, `type`, `start`, `end`, `result`) VALUES (".time().", '$sender', 1, $arr[1], $arr[2], $num)");
