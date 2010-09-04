@@ -47,14 +47,14 @@ if (preg_match("/^info$/i", $message)) {
 } else if (preg_match("/^info ([a-z0-9_-]+)$/i", $message, $arr) || preg_match("/^([a-z0-9_-]+)$/i", $message, $arr)) {
 	// if they want a certain topic
 	// get the filename and read in the file
-	$fileName = $arr[1];
+	$fileName = strtolower($arr[1]);
 	$info = getTopicContents($path, $fileName, $fileExt);
 	
 	// make sure the $ql is an integer between 1 and 300
 	if (!$info) {
 		$msg = "No info for $fileName could be found";
 	} else {	
-		$msg = Text::makeBlob($fileName, $info);
+		$msg = Text::makeBlob(ucfirst($fileName), $info);
 	}
 }
 
