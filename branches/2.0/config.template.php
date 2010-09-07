@@ -22,12 +22,7 @@
 	$settings['symbol'] = "!";
 
 	// Logging level 
-	// DEBUG
-	// DETAIL
-	// INFO
-	// WARN
-	// ERROR
-	// FATAL
+	// in order from most verbose to lease: DEBUG, DETAIL, INFO, WARN, ERROR, FATAL, NONE
 	$vars['console_log_level'] = INFO;
 	$vars['file_log_level'] = INFO;
 
@@ -40,7 +35,7 @@
 	// Database Informations	
 	$vars['DB Type'] = "Sqlite";	// What type of Database should be used? (Sqlite or Mysql)
 	$vars['DB Name'] = "budabot.db";	// Database Name
-	$vars['DB Host'] = "./data/";	// Hostname or File location.
+	$vars['DB Host'] = "./data/";	// Hostname or File location
 	$vars['DB username'] = "";		// Mysql User name
 	$vars['DB password'] = "";		// Mysql Password
 

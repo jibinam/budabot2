@@ -12,6 +12,7 @@ define('INFO', 2);
 define('WARN', 3);
 define('ERROR', 4);
 define('FATAL', 5);
+define('NONE', 100);
 
 class Logger {
 	public static function log($file, $message, $log_level) {
@@ -29,7 +30,7 @@ class Logger {
 		if ($log_level >= $vars['file_log_level']) {
 			Logger::append_to_log_file($log_level_description, $line);
 		}
-		
+
 		if ($log_level >= WARN) {
 			sleep(5);
 		}
@@ -94,6 +95,8 @@ class Logger {
 				return "ERROR";
 			case FATAL:
 				return "FATAL";
+			case NONE:
+				return "NONE";
 			default:
 				// TODO log this error?
 				return "UNKNOWN";
