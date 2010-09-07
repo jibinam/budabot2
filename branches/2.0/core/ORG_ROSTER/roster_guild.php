@@ -38,7 +38,7 @@ if ($chatBot->guild != "" && $chatBot->guild_id != "") {
 	$org = new OrgXML($chatBot->guild_id, $chatBot->dimension, $force_update);
 	
 	//Check if Orgxml file is correct if not abort
-	if($org->errorCode != 0) {
+	if ($org->errorCode != 0) {
 		Logger::log(__FILE__, "could not get the org roster xml file", ERROR);
 	} else {
 		// clear $chatBot->members and reload from the database
@@ -101,7 +101,7 @@ if ($chatBot->guild != "" && $chatBot->guild_id != "") {
 		                    `ai_rank` = '".$org->members[$amember]["ai_rank"]."',
 		                    `gender` = '".$org->members[$amember]["gender"]."',
 		                    `breed` = '".$org->members[$amember]["breed"]."'
-		                    WHERE `name` = '".$org->members[$amember]["name"]."'");	  		
+		                WHERE `name` = '".$org->members[$amember]["name"]."'");	  		
 			//Else insert his data
 			} else {
 				// add new org members to buddy list
