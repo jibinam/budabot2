@@ -1,5 +1,5 @@
 <?php
-	$MODULE_NAME = "BIOR_MODULE";
+	$MODULE_NAME = "BIOR_GUARDIAN_MODULE";
 
 	//Bio Regrowth module
 	Event::register("leavePriv", $MODULE_NAME, "bior_left_chat.php", "Remove player who leaves chat from bior list if he was on it");
