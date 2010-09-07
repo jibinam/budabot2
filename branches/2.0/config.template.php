@@ -38,11 +38,11 @@
 	$settings['Ignore'] = "";
 
 	// Database Informations	
-	$settings['DB Type'] = "Sqlite";	// What type of Database should be used? (Sqlite or Mysql)
-	$settings['DB Name'] = "budabot.db";	// Database Name
-	$settings['DB Host'] = "./data/";	// Hostname or File location.
-	$settings['DB username'] = "";		// Mysql User name
-	$settings['DB password'] = "";		// Mysql Password
+	$vars['DB Type'] = "Sqlite";	// What type of Database should be used? (Sqlite or Mysql)
+	$vars['DB Name'] = "budabot.db";	// Database Name
+	$vars['DB Host'] = "./data/";	// Hostname or File location.
+	$vars['DB username'] = "";		// Mysql User name
+	$vars['DB password'] = "";		// Mysql Password
 
 	// Cache folder for storing char or org xml files
 	$vars['cachefolder'] = "./cache/";

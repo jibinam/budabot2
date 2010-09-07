@@ -103,7 +103,7 @@ unset($vars['password']);
 
 //////////////////////////////////////////////////////////////
 // Create new objects
-$db = new DB($settings["DB Type"], $settings["DB Name"], $settings["DB Host"], $settings["DB username"], $settings["DB password"]);
+$db = new DB($vars["DB Type"], $vars["DB Name"], $vars["DB Host"], $vars["DB username"], $vars["DB password"]);
 if ($db->errorCode != 0) {
 	Logger::log(__FILE__, "Error in creating Database Object: $db->errorInfo", ERROR);
 	sleep(5);
@@ -124,11 +124,11 @@ unset($login);
 unset($password);
 
 //Clear database settings
-unset($settings["DB Type"]);
-unset($settings["DB Name"]);
-unset($settings["DB Host"]);
-unset($settings["DB username"]);
-unset($settings["DB password"]);
+unset($vars["DB Type"]);
+unset($vars["DB Name"]);
+unset($vars["DB Host"]);
+unset($vars["DB username"]);
+unset($vars["DB password"]);
 
 // Call Main Loop
 main(true, $chatBot);
