@@ -134,7 +134,6 @@ if ($chatBot->guild != "" && $chatBot->guild_id != "") {
 		
 		if ($restart == true) {
 		  	Admin::send_message_to_online_admins("The bot needs to be restarted to be able to see who is online in your org. Automatically restarting in 10 seconds.", ADMIN);
-		  	sleep(10);
 		  	die("The bot is restarting");
 		}
 	}
