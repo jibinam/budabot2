@@ -14,6 +14,8 @@
 	Command::register($MODULE_NAME, "brawl.php", "brawl", ALL, "Brawl: Calculates brawl facts.");
 	Command::register($MODULE_NAME, "fast.php", "fast", ALL, "Fast: Calculates Fast Attack recharge.");
 	Command::register($MODULE_NAME, "fast.php", "fastattack", ALL, "alias for: fast");
+	
+	Command::register($MODULE_NAME, "inits.php", "inits", ALL, "shows how much inits you need for 1/1");
 
 	//Helpiles
 	Help::register($MODULE_NAME, "skills.txt", "skills", ALL, "Explains the various Skill commands");

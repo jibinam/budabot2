@@ -1,5 +1,11 @@
 <?php
 
+/*
+	Inits Module
+	Author: William "Xyphos" Scott
+	Jan 19, 2010
+*/
+
 /// inits <a href="itemref://280727/280727/300">Sloth of the Xan</a>
 if (preg_match('/^inits \<a href\=\"itemref\:\/\/([0-9]+)\/([0-9]+)\/([0-9]+)\"\>/i', $message, $arr)) {
 	$url = "http://inits.xyphos.com/?";
