@@ -567,7 +567,7 @@ public function load_settings_from_config(&$settings) {
 					}
 				} else {  // ext priv group message
 					$params['type'] = "extPriv";
-					Logger::log_chat("Ext Priv Group $channel", $player->name, $message);
+					Logger::log_chat($channel, $player->name, $message);
 					Event::fire_event($params);
 				}
 			break;
