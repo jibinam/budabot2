@@ -44,12 +44,17 @@ if (Settings::get("topic") != "" && $type == "joinPriv") {
 	$mins = floor($mins - ($hours * 60));
 	$days = floor($hours / 24);
 	$hours = floor($hours - ($days * 24));
-	$msg = "<highlight>Topic:<end> " . Settings::get("topic") . " [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$days}days, {$hours}hrs and {$mins}mins ago<end>)";
+	if (Settings::get("topic") == '') {
+		$topic = 'No topic set at the moment';
+	} else {
+		$topic = Settings::get("topic");
+	}
+	$msg = "<highlight>Topic:<end> {$topic} [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$days}days, {$hours}hrs and {$mins}mins ago<end>)";
     $chatBot->send($msg, $sendto);
 } else if (preg_match("/^cleartopic$/i", $message, $arr)) {
   	Settings::save("topic_time", time());
   	Settings::save("topic_setby", $sender);
-  	Settings::save("topic", "No Topic set atm.");
+  	Settings::save("topic", "");
 	$msg = "Topic has been cleared.";
     $chatBot->send($msg, $sendto);
 } else if (preg_match("/^settopic (.+)$/i", $message, $arr)) {
