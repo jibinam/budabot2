@@ -17,7 +17,7 @@ if (preg_match('/^inits \<a href\=\"itemref\:\/\/([0-9]+)\/([0-9]+)\/([0-9]+)\"\
 	$msg = "Calculating Inits... Please wait.";
 	$chatBot->send($msg, $sendto);
 	
-	$ctx = stream_context_create( array( 'http' => array( 'timeout' => 60 ) ) );
+	$ctx - stream_context_create( array( 'http' => array( 'timeout' => 60 ) ) );
 
 	$msg = file_get_contents($url, 0, $ctx);
 	if (empty($msg)) {
