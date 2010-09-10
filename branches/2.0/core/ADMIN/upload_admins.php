@@ -47,7 +47,7 @@ if ($superAdmin === null) {
 	
 	// add new super admin
 	Admin::add($superAdmin, SUPERADMIN);
-	Buddylist::add($superAdmin, 'admin');
+	$superAdmin->add_to_buddylist('admin');
 }
 
 ?>

@@ -64,7 +64,7 @@ if (preg_match("/^(.+) invited (.+) to your organization.$/", $message, $arr)) {
                     '".$whois -> gender."', '".$whois -> breed."',
                     '".$whois -> ai_level."',
                     '".$whois -> ai_rank."')");                            
-		Buddylist::add(notify_player, 'org');
+		$notify_player->remove_from_buddylist('org');
     	$msg = "<highlight>".$name."<end> has been added to the Notify list.";
     	$chatBot->guildmembers[$name] = 6;
     }
@@ -79,7 +79,7 @@ if (preg_match("/^(.+) invited (.+) to your organization.$/", $message, $arr)) {
     $db -> query("DELETE FROM guild_chatlist_<myname> WHERE `name` = '$name'");
     $msg = "Removed <highlight>".$name."<end> from the Notify list.";
     unset($chatBot->guildmembers[$name]);
-	Buddylist::remove($notify_player, 'org');
+	$notify_player->remove_from_buddylist('org');
     $chatBot->send($msg, "guild");
 } else if(preg_match("/^(.+) just left your organization.$/", $message, $arr) || preg_match("/^(.+) kicked from organization (alignment changed).$/", $message, $arr)) {
     $notify_player = Player::create($arr[2]);
@@ -88,7 +88,7 @@ if (preg_match("/^(.+) invited (.+) to your organization.$/", $message, $arr)) {
     $db -> query("DELETE FROM guild_chatlist_<myname> WHERE `name` = '$name'");
     $msg = "Removed <highlight>".$name."<end> from the Notify list.";
     unset($chatBot->guildmembers[$name]);
-	Buddylist::remove($notify_player, 'org');
+	$notify_player->remove_from_buddylist('org');
     $chatBot->send($msg, "guild");
 }
 

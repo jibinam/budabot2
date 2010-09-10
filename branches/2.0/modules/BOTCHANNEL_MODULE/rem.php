@@ -30,18 +30,17 @@
    */
 
 if (preg_match("/^remuser (.+)$/i", $message, $arr)) {
-    $uid = $chatBot->get_uid($arr[1]);
-    $name = ucfirst(strtolower($arr[1]));
-    if (!$uid) {
-        $msg = "Player <highlight>$name<end> does not exist.";
+	$member = Player::create($arr[1]);
+    if ($member == null) {
+        $msg = "Player <highlight>{$arr[1]}<end> does not exist.";
     } else {
-	  	$db->query("SELECT * FROM members_<myname> WHERE `name` = '$name'");
-	  	if($db->numrows() == 0) {
-	  		$msg = "<highlight>$name<end> is not on the guestlist.";
+	  	$db->query("SELECT * FROM members_<myname> WHERE `name` = '$member->name'");
+	  	if ($db->numrows() == 0) {
+	  		$msg = "<highlight>{$member->name}<end> is not on the guestlist.";
 	  	} else {
-		    $db->query("DELETE FROM members_<myname> WHERE `name` = '$name'");
-		    $msg = "<highlight>$name<end> has been removed from the guestlist.";
-			Buddylist::remove($uid, 'member');
+		    $db->query("DELETE FROM members_<myname> WHERE `name` = '{$member->name}'");
+		    $msg = "<highlight>{$member->name}<end> has been removed from the guestlist.";
+			$member->remove_from_buddylist('member');
 		}
 	}
 

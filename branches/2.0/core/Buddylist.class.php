@@ -25,20 +25,21 @@ class Buddylist {
 		return ($buddy === null ? null : $buddy['online']);
     }
 	
-	public static function add(&$player, $type) {
+	public static function add($uid, $type) {
 		global $chatBot;
 
-		if ($player == null) {
+		if ($uid == false) {
 			return false;
 		} else {
-			if (!isset($chatBot->buddyList[$player->uid])) {
-				Logger::log(__FILE__, "$player->name buddy added", DEBUG);
-				$chatBot->buddy_add($player->uid);
+			$name = $chatBot->buddyList[$uid]['name'];
+			if (!isset($chatBot->buddyList[$uid])) {
+				Logger::log(__FILE__, "{$name} buddy added", DEBUG);
+				$chatBot->buddy_add($uid);
 			}
 			
-			if (!isset($chatBot->buddyList[$player->uid]['types'][$type])) {
-				$chatBot->buddyList[$player->uid]['types'][$type] = 1;
-				Logger::log(__FILE__, "$player->name buddy type added (type: $type)", DEBUG);
+			if (!isset($chatBot->buddyList[$uid]['types'][$type])) {
+				$chatBot->buddyList[$uid]['types'][$type] = 1;
+				Logger::log(__FILE__, "{$name} buddy type added (type: {$type})", DEBUG);
 			}
 			
 			return true;
@@ -48,18 +49,18 @@ class Buddylist {
 	public static function remove($uid, $type = '') {
 		global $chatBot;
 
-		if ($uid === false) {
+		if ($uid == false) {
 			return false;
 		} else if (isset($chatBot->buddyList[$uid])) {
 			$name = $chatBot->buddyList[$uid]['name'];
 			if (isset($chatBot->buddyList[$uid]['types'][$type])) {
 				unset($chatBot->buddyList[$uid]['types'][$type]);
-				Logger::log(__FILE__, "$name buddy type removed (type: $type)", DEBUG);
+				Logger::log(__FILE__, "{name} buddy type removed (type: {$type})", DEBUG);
 			}
 
 			if (count($chatBot->buddyList[$uid]['types']) == 0) {
 				unset($chatBot->buddyList[$uid]);
-				Logger::log(__FILE__, "$name buddy removed", DEBUG);
+				Logger::log(__FILE__, "{$name} buddy removed", DEBUG);
 				$chatBot->buddy_remove($uid);
 			}
 			

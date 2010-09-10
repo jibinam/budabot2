@@ -69,7 +69,7 @@ if (preg_match("/^is (.+)$/i", $message, $arr)) {
 	$msg = "Player <highlight>$sender<end> is $status";
 	$chatBot->send($msg, $chatBot->data["ONLINE_MODULE"]['sendto']);
 
-	Buddylist::remove($char_id, 'is_online');
+	$player->remove_from_buddylist('is_online');
 	unset($chatBot->data["ONLINE_MODULE"]);
 }
 ?>

@@ -31,7 +31,7 @@
    
 $admins = Admin::find_all();
 forEach ($admins as $admin) {
-	Buddylist::add(Player::create($admin->uid), 'admin');
+	Buddylist::add($admin->uid, 'admin');
 }
 
 ?>

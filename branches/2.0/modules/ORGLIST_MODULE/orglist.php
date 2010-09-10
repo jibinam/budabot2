@@ -108,7 +108,7 @@ $orgcolor["onlineH"] = "<highlight>";			// Highlights on whois info
 $orgcolor["offline"] = "<font color=#555555>";		// Offline names
 
 // No options? Target the $sender
-if (preg_match("/^(orglist|onlineorg)$/i", $message, $arr)) {$message = "orglist $sender";}
+if (preg_match("/^(orglist|onlineorg)$/i", $message, $arr)) {$message = "orglist $player->name";}
 
 $end = false;
 if (preg_match("/^(orglist|onlineorg) end$/i", $message, $arr)) {
@@ -218,7 +218,7 @@ if (preg_match("/^(orglist|onlineorg) end$/i", $message, $arr)) {
 					unset($chatBot->data["ORGLIST_MODULE"]);
 					return;
 				}
-				
+
 				$chatBot->data["ORGLIST_MODULE"]["check"][$amember] = 1;
 				Buddylist::add($uid, 'onlineorg');
 				
@@ -240,16 +240,16 @@ if (preg_match("/^(orglist|onlineorg) end$/i", $message, $arr)) {
 
 // If we added names to the buddylist, this will kick in to determine if they are online or not.
 // If no more names need to be checked, then post results.
-} elseif (($type == "logOn" || $type == "logOff") && isset($chatBot->data["ORGLIST_MODULE"]["check"][$sender])) {
+} elseif (($type == "logOn" || $type == "logOff") && isset($chatBot->data["ORGLIST_MODULE"]["check"][$player->name])) {
 
 	if ($type == "logOn") {
-		$chatBot->data["ORGLIST_MODULE"]["result"][$sender]["online"] = 1;
+		$chatBot->data["ORGLIST_MODULE"]["result"][$player->name["online"] = 1;
 	} else if ($type == "logOff") {
-		$chatBot->data["ORGLIST_MODULE"]["result"][$sender]["online"] = 0;
+		$chatBot->data["ORGLIST_MODULE"]["result"][$player->name]["online"] = 0;
 	}
 
-	Buddylist::remove($char_id, 'onlineorg');
-	unset($chatBot->data["ORGLIST_MODULE"]["check"][$sender]);
+	$player->remove_from_buddylist('onlineorg');
+	unset($chatBot->data["ORGLIST_MODULE"]["check"][$player->name]);
 }
 
 if (isset($chatBot->data["ORGLIST_MODULE"]) && count($chatBot->data["ORGLIST_MODULE"]["check"]) == 0 || $end) {

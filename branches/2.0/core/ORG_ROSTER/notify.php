@@ -37,21 +37,23 @@ if (preg_match("/^notify (on|add) (.+)$/i", $message, $arr)) {
 	$numrows = $db->numrows();
 
     // Is the player already a member?
-    if ($numrows != 0 && $row->mode != "del") {
-        $msg = "<highlight>$name<end> is already on the Notify list.";
+	if ($notify_player == null) {
+		$msg = "<highlight>{$name}<end> does not exist.";
+	} else if ($numrows != 0 && $row->mode != "del") {
+        $msg = "<highlight>{$name}<end> is already on the Notify list.";
     // If the member was deleted set him as manual added again
     } else if ($numrows != 0 && $row->mode == "del") {
         $db->execute("UPDATE org_members_<myname> SET `mode` = 'man' WHERE `name` = '$name'");
-        Buddylist::add($notify_player, 'org');
+        $notify_player->add_to_buddylist('org');
 	    
     	$msg = "<highlight>$name<end> has been added to the Notify list.";
     // Is the player name valid?
-    } else if ($notify_player != null) {
+    } else {
         // Getting Player infos
         $whois = new WhoisXML($name);
 
         // Add him as a buddy and put his infos into the DB
-		Buddylist::add($notify_player, 'org');
+		$notify_player->add_to_buddylist('org');
         if($whois->errorCode != 0) {
 		  	$whois -> firstname = "";
 		  	$whois -> lastname = "";

@@ -52,6 +52,14 @@ class Player {
 		return ($buddy === null ? null : $buddy['online']);
 	}
 	
+	public function add_to_buddylist($type) {
+		return Buddylist::add($this->uid, $type);
+	}
+	
+	public function remove_from_buddylist($type) {
+		return Buddylist::remove($this->uid, $type);
+	}
+	
 	public function get_is_org_member() {
 		// TODO
 	}

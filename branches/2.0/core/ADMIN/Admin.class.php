@@ -92,7 +92,7 @@ class Admin {
 			// no change
 		}
 		
-		Buddylist::add($who, 'admin');
+		$who->add_to_buddylist('admin');
 	}
 	
 	public static function remove_admin(&$sendto, &$player, &$who, $access_level) {
@@ -120,7 +120,7 @@ class Admin {
 		$chatBot->send("<highlight>$who->name<end> has been removed as a(n) $description.", $sendto);
 		$chatBot->send("You have been removed as a(n) $description.", $who);
 		
-		Buddylist::remove($uid, 'admin');
+		$who->add_to_buddylist('admin');
 	}
 }
 

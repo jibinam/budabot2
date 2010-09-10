@@ -7,7 +7,7 @@
 	Settings::add("priv_status_reason", $MODULE_NAME, "no", "hide", "not set");	
 
 	//Check macros
-	Command::register($MODULE_NAME, "check.php", "check", LEADER, "Checks who of the raidgroup is in the area");	
+	Command::register($MODULE_NAME, "check.php", "check", LEADER, "Checks who of the raidgroup is in the area");
 	
 	//Topic set/show
 	Event::register("joinPriv", $MODULE_NAME, "topic.php", "Show Topic when someone joins PrivChat");
