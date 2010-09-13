@@ -14,6 +14,11 @@
 	Command::register($MODULE_NAME, "dyna.php", "dyna", ALL, "Search for RK Dynaboss");
 	Command::register($MODULE_NAME, "research.php", "research", ALL, "Info on Research");
 	
+	//Max XP calculator
+	Command::register($MODULE_NAME, "cap_xp.php", "capsk", ALL, "Max SK Calculator");
+	Command::register($MODULE_NAME, "cap_xp.php", "capxp", ALL, "Max XP Calculator");
+	
 	Help::register($MODULE_NAME, "dyna.txt", "dyna", ALL, "Search for RK Dynaboss");
 	Help::register($MODULE_NAME, "research.txt", "Research", ALL, "Info on Research");
+	Help::register($MODULE_NAME, "capxp.txt", "capxp", ALL, "Set your reasearch bar for max xp/sk");
 ?>
