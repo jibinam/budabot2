@@ -33,52 +33,44 @@
    **
    */
 
-if (preg_match("/^nlline ([0-9]*)$/i", $message, $arr)) {
+if (preg_match("/^nlprof (.*)$/i", $message, $arr)) {
 
-	$nanoline_id = $arr[1];
-
-	$sql = "SELECT * FROM aonanos_nanolines WHERE id = $nanoline_id";
-	$row = $db->query($sql, true);
-
-	$msg = '';
-	if ($row != null) {
-
-		$header = "$row->profession $row->name Nanos";
-
-		$sql = "
-			SELECT
-				a.low_id,
-				a.high_id,
-				a.ql,
-				a.name,
-				n.location
-			FROM
-				aonanos_nanos a
-				LEFT JOIN nanos n
-					ON (a.high_id = n.highid AND a.low_id = n.lowid)
-			WHERE
-				nanoline_id = $nanoline_id
-			ORDER BY
-				a.ql DESC, a.name ASC";
-		$data = $db->query($sql);
-		$count = 0;
-		forEach ($data as $row) {
-
-			$count++;
-			$window .= "<a href='itemref://" . $row->low_id . "/" . $row->high_id . "/" . $row->ql . "'>" . $row->name . "</a>";
-			$window .= " [$row->ql] $row->location\n";
-		}
-
-		$window .= "\n\nAO Nanos by Voriuste";
-
-		$msg = Text::makeBlob($header, $window);
-
-	} else {
-
-		$msg = "No nanoline found.";
+	$profession = strtolower($arr[1]);
+	if ($profession == 'nt') {
+		$profession = 'nano';
+	} else if ($profession == 'mp') {
+		$profession = 'meta';
 	}
 
-	$chatBot->send($msg, $sendto);
+	$sql = "SELECT * FROM aonanos_nanolines WHERE profession LIKE '%$profession%' ORDER BY name ASC";
+	$db->query($sql);
+
+	$count = 0;
+	$profession = '';
+	while($row = $db->fObject()) {
+
+		$count++;
+		if ($this->settings["shownanolineicons"] == "1") {
+			$window .= "<img src='rdb://$row->image_id'><br>";
+		}
+		$window .= bot::makeLink("$row->name", "/tell <myname> <symbol>nlline $row->id", 'chatcmd');
+		$window .= "\n";
+
+		$profession = $row->profession;
+	}
+
+	$msg = '';
+	if ($count > 0) {
+		$window = bot::makeHeader("$profession Nanolines", "none") . $window;
+		$window .= "\n\nAO Nanos by Voriuste";
+		$msg = bot::makeLink("$profession Nanolines", $window, 'blob');
+	} else {
+		$msg = "Profession not found.";
+	}
+
+	bot::send($msg, $sendto);
+} else {
+	$syntax_error = true;
 }
 
 ?>

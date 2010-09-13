@@ -33,41 +33,24 @@
    **
    */
 
-if (preg_match("/^nlprof (.*)$/i", $message, $arr)) {
+if (preg_match("/^nanolines$/i", $message, $arr)) {
 
-	$profession = strtolower($arr[1]);
-	if ($profession == 'nt') {
-		$profession = 'nano';
-	} else if ($profession == 'mp') {
-		$profession = 'meta';
-	}
-
-	$sql = "SELECT * FROM aonanos_nanolines WHERE profession LIKE '%$profession%' ORDER BY name ASC";
+	$sql = "SELECT DISTINCT profession FROM aonanos_nanolines ORDER BY profession ASC";
 	$data = $db->query($sql);
 
-	$count = 0;
-	$profession = '';
 	forEach ($data as $row) {
 
-		$count++;
-		if (Settings::get("shownanolineicons") == "1") {
-			$window .= "<img src='rdb://$row->image_id'><br>";
-		}
-		$window .= Text::makeLink("$row->name", "/tell <myname> <symbol>nlline $row->id", 'chatcmd');
+		$window .= Text::makeLink($row->profession, "/tell <myname> <symbol>nlprof $row->profession", 'chatcmd');
 		$window .= "\n";
-
-		$profession = $row->profession;
 	}
 
-	$msg = '';
-	if ($count > 0) {
-		$window .= "\n\nAO Nanos by Voriuste";
-		$msg = Text::makeBlob("$profession Nanolines", $window);
-	} else {
-		$msg = "Profession not found.";
-	}
+	$window .= "\n\nAO Nanos by Voriuste";
+
+	$msg = Text::makeBlob('Nanolines', $window);
 
 	$chatBot->send($msg, $sendto);
+} else {
+	$syntax_error = true;
 }
 
 ?>
