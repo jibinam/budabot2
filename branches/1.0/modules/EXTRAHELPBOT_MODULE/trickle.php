@@ -33,15 +33,56 @@
    **
    */
 
-	require_once 'trickle_functions.php';
+$usageMsg = "Usage: <symbol>trickle &lt;ability&gt; &lt;amount&gt;\n<tab>ex: <symbol>trickle agi 20\nValid abilites are: agi, int, psy, sta, str, sen";
 
-	$MODULE_NAME = "TRICKLE_MODULE";
+$msg = "";
+$agi = 0;
+$int = 0;
+$psy = 0;
+$sta = 0;
+$str = 0;
+$sen = 0;
 
-	Command::register($MODULE_NAME, "trickle.php", "trickle", ALL, "Shows how much skills you will gain by increasing an ability");
+// make sure the $ql is an integer between 1 and 300
+if (!preg_match("/^trickle( ([a-zA-Z]+) ([0-9]+)){1,6}$/i", $message)) {
 
-	//Help
-	Help::register($MODULE_NAME, "trickle.txt", "Trickle", ALL, "Trickle help");
+	$msg = $usageMsg;
 
-	//Setup
-	DB::loadSQLFile($MODULE_NAME, "trickle");
+} else {
+
+	$array = explode(" ", $message);
+	for ($i = 0; isset($array[1 + $i]); $i += 2) {
+		$ability = getAbility($array[1 + $i]);
+		$$ability = $array[2 + $i];
+	}
+
+	if ($ability == null) {
+
+		$msg = $usageMsg;
+
+	} else {
+		
+		global $abilities;
+		
+		$header = "";
+		forEach ($abilities as $ability) {
+			if ($$ability != 0) {
+				$header .= " (" . ucfirst($ability) . " " . $$ability . ")";
+			}
+		}
+
+		$output = "";
+		if (method_exists('bot', 'makeHeader')) {
+			$output .= bot::makeHeader("Trickle$header", "none");
+		} else {
+			$output .= "<header>::::: Trickle$header :::::<end>\n";	
+		}
+		$results = getTrickleResults($agi, $int, $psy, $sta, $str, $sen);
+		$output .= formatOutput($results, $amount);
+		$msg = bot::makeLink('Trickle Results', $output);
+	}
+}
+
+bot::send($msg, $sendto);
+
 ?>
