@@ -32,11 +32,10 @@
    **
    */
 
-// relay org messages between linked orgs
-if(Settings::get("relaybot") != "0") {
-
+if (Settings::get("relaybot") != "Off") {
 	$orgName = $chatBot->guild;
-	$chatBot->send("grc <grey>[$orgName] $message<end>", Settings::get("relaybot"));
+	$msg = "grc <grey>[$orgName] $message<end>";
+	send_message_to_relay($msg);
 }
 
 ?>
