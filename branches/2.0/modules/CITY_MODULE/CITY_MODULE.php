@@ -50,4 +50,7 @@
 	Command::register($MODULE_NAME, "stopraid.php", "stopraid", ALL, "manually stops wave counter");
 	Event::register("guild", $MODULE_NAME, "start.php", "Starts a wave counter when cloak is lowered");
 	Event::register("2sec", $MODULE_NAME, "counter.php", "Checks timer to see when next wave should come");
+	
+	// OS/AS timer
+	Event::register("orgmsg", $MODULE_NAME, "os_timer.php", "Sets a timer when an OS/AS is launched");
 ?>
