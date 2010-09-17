@@ -119,7 +119,6 @@ public function load_settings_from_config(&$settings) {
 		$this->load_core_module("BAN");
 		$this->load_core_module("HELP");
 		$this->load_core_module("CONFIG");
-		$this->load_core_module("ORG_ROSTER");
 		$this->load_core_module("PRIV_TELL_LIMIT");
 		
 		Logger::log(__FILE__, "End: Loading CORE MODULES", DEBUG);
