@@ -40,7 +40,8 @@
 	Command::register($MODULE_NAME, "heal_assist.php", "sethealassist", LEADER, "Set a new Doc assist");
 
 	//Tell
-	Command::register($MODULE_NAME, "tell.php", "tell", ALL, "Repeats a Message 3times");
+	Command::register($MODULE_NAME, "tell.php", "tell", ALL, "Repeats a message 3 times");
+	Command::register($MODULE_NAME, "cmd.php", "cmd", LEADER, "Creates a highly visible messaage");
 	
 	//updateme
 	Command::register($MODULE_NAME, "updateme.php", "updateme", ALL, "Updates Charinfos from a player");
@@ -52,7 +53,8 @@
 	Help::register($MODULE_NAME, "healassist.txt", "heal_assist", ALL, "Creating an Healassist Macro");
 	Help::register($MODULE_NAME, "leader.txt", "leader", ALL, "Set a Leader of a Raid/Echo on/off");
 	Help::register($MODULE_NAME, "priv_news.txt", "priv_news", RAIDLEADER, "Set Privategroup News");
-	Help::register($MODULE_NAME, "tell.txt", "tell", LEADER, "Repeating of a msg 3times");
+	Help::register($MODULE_NAME, "tell.txt", "tell", LEADER, "How to use tell");
 	Help::register($MODULE_NAME, "topic.txt", "topic", RAIDLEADER, "Set the Topic of the raid");
 	Help::register($MODULE_NAME, "updateme.txt", "updateme", ALL, "Update your character infos");
+	Help::register($MODULE_NAME, "cmd.txt", "cmd", ALL, "How to use cmd");
 ?>
