@@ -1,17 +1,4 @@
 <?php
-   /*
-   ** Author: Tyrence (RK2)
-   ** Description: Statistics for implants at given ql
-   ** Version: 1.0
-   **
-   ** Developed for: Budabot(http://sourceforge.net/projects/budabot)
-   **
-   ** Date(created): 13-OCT-2007
-   ** Date(last modified): 13-OCT-2007
-   ** 
-   ** Copyright (C) 2007 Jason Wheeler
-   */
-
 
 $path = getcwd() . "/modules/GUIDEBOT_MODULE/guides/";
 $fileExt = ".txt";
@@ -35,12 +22,10 @@ if (preg_match("/^guides list$/i", $message)) {
 		}
 
 		closedir($handle);
-		
-		global $vars;
-		global $settings;
+
 		$linkContents = '';
 		forEach ($topicList as $topic) {
-			$linkContents .= Text::makeLink($topic, "/tell " . $vars['name'] . " " . $settings['symbol'] . "info $topic", 'chatcmd') . "\n";  
+			$linkContents .= Text::makeLink($topic, "/tell <myname> <symbol>info $topic", 'chatcmd') . "\n";  
 		}
 		
 		if ($linkContents) {
