@@ -17,7 +17,7 @@ Trash is one giant mean looking hulk of metal that can send even the most persis
 
 Trash rules the Junkyard outside West Athen (around 1600x1000) where his army of little buzzsaws and technoscavengers mill about, and this is the place you'll start your quest.
 
-Don't be intimidated though, we just want a peak for now. This is not as easy as it sounds as he's very sought after for exclusive interviews and a little something to do with #L 'part 3' '/tell chunkbot info sided3'  of this quest. 	  	
+Don't be intimidated though, we just want a peak for now. This is not as easy as it sounds as he's very sought after for exclusive interviews and a little something to do with <a href='chatcmd:///tell <myname> guides sided3>Part 3</a> of this quest. 	  	
 
 But alas, all we want for now is a peek, to report the findings and place a little bug. This could be, under 'abnormal' circumstances, a hazardous task as he's quite the angry robot. Under 'normal' circumstances though, this isn't a problem as many others will certainly be around to engage him when he drops in, keeping you out of harms way long enough to what you came here to do. Trash will most likely be abscent when you arrive, so bite it and wait around until he comes to check on his minions.
 
@@ -43,4 +43,4 @@ After the final bot is tagged, your mission icon will change and to your amazeme
 
 In your inventory now should be a strange 'Syringe' called a First Update Syringe. Moving your shoulderpads from part 1 to your inventory and using this syringe on the pads will update them to the second level.
 
-Additionally, you will again be presented with a card. And if you didn't keep your card from part 1 like we told you to, I'm sure you remember to keep this one around now. As before, this card is needed to kick off #L 'part 3' '/tell chunkbot info sided3'  of the grand shoulderpads quest.
+Additionally, you will again be presented with a card. And if you didn't keep your card from part 1 like we told you to, I'm sure you remember to keep this one around now. As before, this card is needed to kick off <a href='chatcmd:///tell <myname> guides sided3>Part 3</a> of the grand shoulderpads quest.

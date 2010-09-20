@@ -177,7 +177,7 @@ Using drains to equip 'stuff' :
 This is really simple, and you'll probably figure it out on your own.
 Get a shotgun expertise, get your top drains going, note down your shotgun skill.
 Then check how much above your drained shotgun skill you can go before you are Over Equipped.
-This is easily done by doing a '/tell helpbot OE #' (# is your skill). Then check what QL shotgun you can use and
+This is easily done by doing a '/tell <myname> OE #' (# is your skill). Then check what QL shotgun you can use and
 not be OEd while at fully drained. To equip the shotgun, run expertise, find a trader that can give you the wrangle
 you need, then run and drain something and equip it. Now, you'll probably be OEd, but as soon as your drains hit the
 roof, you'll be under the 20% curse.

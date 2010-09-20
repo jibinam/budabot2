@@ -11,8 +11,8 @@ While she fails to explain what is she doing there, she is quite happy to go on 
 Laila has two small quests for you. The credit and XP reward is small but the task really is not that hard ... although it does include a lot of traveling. 
 
 To make your lives a little easier, please refer either to our:
-<a href='chatcmd:///tell <myname> shoelyutto'> Knowledge of the Yuttos Guide</a>
-<a href='chatcmd:///tell <myname> jobeshoel'> Jobe Scientists Quest - Shoel</a>
+<a href='chatcmd:///tell <myname> guides shoelyutto'> Knowledge of the Yuttos Guide</a>
+<a href='chatcmd:///tell <myname> guides jobeshoel'> Jobe Scientists Quest - Shoel</a>
 or try our map
 <a href='chatcmd:///start http://www.ao-universe.com/website/images/guides/sl/272/scheol_map.jpg'><font color = yellow>Quest Map click to view full size!</font></a>
 

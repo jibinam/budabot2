@@ -103,7 +103,7 @@ Yet again it's time to travel in team, this time even for higher characters. Unf
 
 <font color = green>Vanward Four</font>
 
-Before this Yutto, located at <font color = yellow>1115x1360</font>, allows you to help him, he demands you comple whole line of quests from <a href='chatcmd:///tell <myname> indieshoel'</a>Jobe Scientists</a>.
+Before this Yutto, located at <font color = yellow>1115x1360</font>, allows you to help him, he demands you comple whole line of quests from <a href='chatcmd:///tell <myname> guides indieshoel'</a>Jobe Scientists</a>.
 
 Should you already done it, he gives you <a href='itemref://264071/264071/1'>Glowing Bark</a> to use on Firekeeper Argoth, located at <font color = yellow>840x1150</font>.
 
