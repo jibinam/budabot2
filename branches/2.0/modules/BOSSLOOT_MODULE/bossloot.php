@@ -11,7 +11,7 @@
    */
 
 $output = '';
-if(preg_match ("/^bossloot (.+)$/i", $message, $arr)) {
+if (preg_match ("/^bossloot (.+)$/i", $message, $arr)) {
 
 	$search = $arr[1];
 	$search = ucwords(strtolower($search));
@@ -54,8 +54,3 @@ if(preg_match ("/^bossloot (.+)$/i", $message, $arr)) {
 }
 
 ?>
-
-
-
-
-
