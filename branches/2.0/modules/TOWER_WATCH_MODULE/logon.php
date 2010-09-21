@@ -21,6 +21,9 @@
    */
 
 if (isset($chatBot->guildmembers[$sender])) {
-    $chatBot->send(getTowerInfoMsg(), $sender);
+	$msg = getTowerInfoMsg();
+	if ($msg != 'No sites in watch list.') {
+		$chatBot->send($msg, $sender);
+	}
 }
 ?>
