@@ -21,14 +21,14 @@
 	Command::register($MODULE_NAME, "specials.php", "specials", ALL, "shows how much skill you need to cap specials recycle");
 
 	//Helpiles
-	Help::register($MODULE_NAME, "aggdef.txt", "aggdef", ALL, "Explains the various Skill commands");
-	Help::register($MODULE_NAME, "nanoinit.txt", "nanoinit", ALL, "Explains the various Skill commands");
-	Help::register($MODULE_NAME, "as.txt", "as", ALL, "Explains the various Skill commands");
-	Help::register($MODULE_NAME, "fa.txt", "fa", ALL, "Explains the various Skill commands");
-	Help::register($MODULE_NAME, "fling.txt", "fling", ALL, "Explains the various Skill commands");
-	Help::register($MODULE_NAME, "burst.txt", "burst", ALL, "Explains the various Skill commands");
-	Help::register($MODULE_NAME, "mafist.txt", "mafist", ALL, "Explains the various Skill commands");
-	Help::register($MODULE_NAME, "brawl.txt", "brawl", ALL, "Explains the various Skill commands");
-	Help::register($MODULE_NAME, "dimach.txt", "dimach", ALL, "Explains the various Skill commands");
-	Help::register($MODULE_NAME, "fast.txt", "fast", ALL, "Explains the various Skill commands");
+	Help::register($MODULE_NAME, "aggdef.txt", "aggdef", ALL, "How to use aggdef");
+	Help::register($MODULE_NAME, "nanoinit.txt", "nanoinit", ALL, "How to use nanoinit");
+	Help::register($MODULE_NAME, "as.txt", "as", ALL, "How to use as");
+	Help::register($MODULE_NAME, "fa.txt", "fa", ALL, "How to use fa");
+	Help::register($MODULE_NAME, "fling.txt", "fling", ALL, "How to use fling");
+	Help::register($MODULE_NAME, "burst.txt", "burst", ALL, "How to use burst");
+	Help::register($MODULE_NAME, "mafist.txt", "mafist", ALL, "How to use mafist");
+	Help::register($MODULE_NAME, "brawl.txt", "brawl", ALL, "How to use brawl");
+	Help::register($MODULE_NAME, "dimach.txt", "dimach", ALL, "How to use dimach");
+	Help::register($MODULE_NAME, "fast.txt", "fast", ALL, "How to use fast");
 ?>
