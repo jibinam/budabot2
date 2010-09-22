@@ -31,10 +31,9 @@
    
 if (preg_match("/^updateorg$/i", $message)) {
  	$force_update = true;
- 	$chatBot->send("Starting updating Organisation roster. Please Standby.", $sendto);
-	$chatBot->vars["onlinedelay"] = time() + Settings::get("CronDelay") + 60;
-	include("./core/ORG_ROSTER/roster_guild.php");
-	$chatBot->send("Done", $sender);
+ 	bot::send("Starting updating Organisation roster. Please Standby.", $sendto);
+	include './modules/GUILD_MODULE/roster_guild.php';
+	bot::send("Done", $sendto);
 } else {
 	$syntax_error = true;
 }
