@@ -59,5 +59,8 @@ if ((!$AttTim) || (!$RechT) || (!$InitS)) {
 
 	$windowlink = Text::makeBlob("::Your Agg/Def Settings::", $inside);
 	$chatBot->send($windowlink, $sendto); 
+} else {
+	$syntax_error = true;
 }
+
 ?>
