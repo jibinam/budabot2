@@ -67,13 +67,11 @@ class HistoryXML extends xml{
 		if(file_exists("$cache/$name.$rk_num.history.xml")) {
 			$mins = (time() - filemtime("$cache/$name.$rk_num.history.xml")) / 60;
 			$hours = floor($mins/60);
-			if($hours < 24 && $fp = fopen("$cache/$name.$rk_num.history.xml", "r")) {
-				while(!feof ($fp))
-				$playerhistory .= fgets ($fp, 4096);
-				fclose($fp);
-				if(xml::spliceData($playerhistory, '<nick>', '</nick>') == $name)
-				$data_found = true;
-				else {
+			if ($hours < 24) {
+				$playerhistory = file_get_contents("$cache/$name.$rk_num.history.xml");
+				if (xml::spliceData($playerhistory, '<nick>', '</nick>') == $name) {
+					$data_found = true;
+				} else {
 					$data_found = false;
 					unset($playerhistory);
 					@unlink("$cache/$name.$rk_num.history.xml");
@@ -82,9 +80,9 @@ class HistoryXML extends xml{
 		}
 		
 		//If no old history file was found or it was invalid try to update it from auno.org
-		if(!$data_found) {
+		if (!$data_found) {
 			$playerhistory = xml::getUrl("http://auno.org/ao/char.php?output=xml&dimension=$rk_num&name=$name", 20);
-			if(xml::spliceData($playerhistory, '<nick>', '</nick>') == $name) {
+			if (xml::spliceData($playerhistory, '<nick>', '</nick>') == $name) {
 				$data_found = true;
 				$data_save = true;
 			} else {
@@ -94,24 +92,20 @@ class HistoryXML extends xml{
 		}
 		
 		//If the site was not responding or the data was invalid and a xml file exists get that one
-		if(!$data_found && file_exists("$cache/$name.$rk_num.history.xml")) {
-			if ($fp = fopen("$cache/$name.$rk_num.history.xml", "r")) {
-				while(!feof($fp))
-				$playerhistory .= fgets($fp, 4096);
-				fclose($fp);
+		if (!$data_found && file_exists("$cache/$name.$rk_num.history.xml")) {
+			$playerhistory = file_get_contents("$cache/$name.$rk_num.history.xml");
 
-				if(xml::spliceData($playerhistory, '<nick>', '</nick>') == $name)
+			if (xml::spliceData($playerhistory, '<nick>', '</nick>') == $name) {
 				$data_found = true;
-				else {
-					$data_found = false;
-					unset($playerhistory);
-					@unlink("$cache/$name.$rk_num.history.xml");
-				}
+			} else {
+				$data_found = false;
+				unset($playerhistory);
+				@unlink("$cache/$name.$rk_num.history.xml");
 			}
 		}
 		
 		//if there is still no valid data available give an error back
-		if(!$data_found) {
+		if (!$data_found) {
 			$this->errorCode = 1;
 			$this->errorInfo = "Couldn't get History of $name";
 			return;
@@ -120,7 +114,7 @@ class HistoryXML extends xml{
 		//parsing of the xml file		
 		$data = xml::spliceData($playerhistory, "<history>", "</history>");
 		$data = xml::splicemultidata($data, "<entry", "/>");
-		foreach($data as $hdata) {
+		forEach ($data as $hdata) {
 			preg_match("/date=\"(.+)\" level=\"(.+)\" ailevel=\"(.*)\" faction=\"(.+)\" guild=\"(.*)\" rank=\"(.*)\"/i", $hdata, $arr);
 			$this->data[$arr[1]]["level"] = $arr[2];
 			$this->data[$arr[1]]["ailevel"] = $arr[3];
@@ -130,12 +124,12 @@ class HistoryXML extends xml{
 		}
 		
 		//if he downloaded a new xml file save it in the cache folder
-		if($data_save) {
+		if ($data_save) {
 			$fp = fopen("$cache/$name.$rk_num.history.xml", "w");
 			fwrite($fp, $playerbio);
 			fclose($fp);
 		}    	
-	} //end of lookup
-} //end of history class
+	}
+}
 
 ?>

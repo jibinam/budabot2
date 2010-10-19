@@ -37,8 +37,8 @@ if (preg_match("/^list$/i", $message)) {
 	  	if (is_array($loot)) {
 		  	$list = "Use <symbol>flatroll or <symbol>roll to roll.\n\n";
 			forEach ($loot as $key => $item) {
-				$add = Text::makeLink("Add", "/tell <myname> add $key", "chatcmd");
-				$rem = Text::makeLink("Remove", "/tell <myname> add 0", "chatcmd");
+				$add = Text::make_link("Add", "/tell <myname> add $key", "chatcmd");
+				$rem = Text::make_link("Remove", "/tell <myname> add 0", "chatcmd");
 				$added_players = count($item["users"]);
 	
 				$list .= "<u>Slot #<font color='#FF00AA'>$key</font></u>\n";
@@ -75,15 +75,15 @@ if (preg_match("/^list$/i", $message)) {
 				
 				$list .= "\n\n";
 			}
-			$msg = Text::makeBlob("Loot List", $list);
+			$msg = Text::make_blob("Loot List", $list);
 		} else {
 			$msg = "No List exists yet.";
 		}
 	} else if ($chatBot->vars["raid_status"] != "" && $chatBot->vars["raid_loot_pts"] == 0) {
 	  	if (is_array($raidloot)) {
 			forEach ($raidloot as $key => $item) {
-				$add = Text::makeLink("Add", "/tell <myname> add $key", "chatcmd");
-				$rem = Text::makeLink("Remove", "/tell <myname> add 0", "chatcmd");
+				$add = Text::make_link("Add", "/tell <myname> add $key", "chatcmd");
+				$rem = Text::make_link("Remove", "/tell <myname> add 0", "chatcmd");
 				$added_players = count($item["users"]);
 	
 				$list .= "<u>Slot #$key</u>\n";
@@ -107,7 +107,7 @@ if (preg_match("/^list$/i", $message)) {
 				
 				$list .= "\n\n";
 			}
-			$msg = Text::makeBlob("Raidloot List", $list);
+			$msg = Text::make_blob("Raidloot List", $list);
 		} else {
 			$msg = "No List exists yet.";
 		}

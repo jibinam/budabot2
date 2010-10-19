@@ -29,7 +29,7 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if (preg_match("/^inviteuser (.+)$/i", $message, $arr)) {
+if (preg_match("/^inviteuser (.+)$/i", $message, $arr) || preg_match("/^invite (.+)$/i", $message, $arr)) {
     $uid = $chatBot->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
     if ($chatBot->name == $name) {
@@ -38,10 +38,10 @@ if (preg_match("/^inviteuser (.+)$/i", $message, $arr)) {
       	$msg = "Invited <highlight>$name<end> to this channel.";      	
 	  	$chatBot->privategroup_kick($name);
 	  	$chatBot->privategroup_invite($name);
-		$msg2 = "You have been invited to the Privategroup <highlight>$chatBot->name<end> by <highlight>$sender<end>";
+		$msg2 = "You have been invited to the <highlight>$chatBot->name<end> channel by <highlight>$sender<end>";
 		$chatBot->send($msg2, $name);
     } else {
-		$msg = "Player <highlight>$name<end> does not exist.";
+		$msg = "Player <highlight>{$name}<end> does not exist.";
 	}
 	
 	$chatBot->send($msg, $sendto);

@@ -29,73 +29,73 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-$itemlink["ICE"] = Text::makeItem(257968, 257968, 1, "Hacker ICE-Breaker Source");
-$itemlink["NPI"] = Text::makeItem(161699, 161699, 1, "Nano Programming Interface");
-$itemlink["BOARD"] = Text::makeItem(257706, 257706, 1, "Kyr'Ozch Helmet");
-$itemlink["APE"] = Text::makeItem(257960, 257960, 250, "Action Probability Estimator");
-$itemlink["DGRV"] = Text::makeItem(257962, 257962, 250, "Dynamic Gas Redistribution Valves");
-$itemlink["KBAP"] = Text::makeItem(257529, 257529, 1, "Kyr'Ozch Battlesuit Audio Processor");
-$itemlink["KVPU"] = Text::makeItem(257533, 257533, 1, "Kyr'Ozch Video Processing Unit");
-$itemlink["KRI"] = Text::makeItem(257531, 257531, 1, "Kyr'Ozch Rank Identification");	
-$itemlink["ICEU"] = Text::makeItem(257110, 257110, 1, "Intrusion Countermeasure Electronics Upgrade");
-$itemlink["OTAE"] = Text::makeItem(257112, 257112, 1, "Omni-Tek Award - Exemplar");
-$itemlink["CMP"] = Text::makeItem(257113, 257113, 1, "Clan Merits - Paragon");
-$itemlink["EMCH"] = Text::makeItem(257379, 257379, 200, "Extruder's Molybdenum Crash Helmet");
-$itemlink["CKCNH"] = Text::makeItem(257115, 257115, 200, "Conscientious Knight Commander Nizno's Helmet");
-$itemlink["SKCGH"] = Text::makeItem(257114, 257114, 200, "Sworn Knight Commander Genevra's Helmet");
-$itemlink["BCOH"] = Text::makeItem(257383, 257383, 300, "Blackmane's Combined Officer's Headwear");		
-$itemlink["GCCH"] = Text::makeItem(257381, 257381, 300, "Gannondorf's Combined Commando's Headwear");		
-$itemlink["HCSH"] = Text::makeItem(257384, 257384, 300, "Haitte's Combined Sharpshooter's Headwear");		
-$itemlink["OCPH"] = Text::makeItem(257377, 257377, 300, "Odum's Combined Paramedic's Headwear");		
-$itemlink["SCMH"] = Text::makeItem(257380, 257380, 300, "Sillum's Combined Mercenary's Headwear");		
-$itemlink["YCSH"] = Text::makeItem(257382, 257382, 300, "Yakomo's Combined Scout's Headwear");		
-$itemlink["HLOA"] = Text::makeItem(257128, 257128, 300, "High Lord of Angst");
-$itemlink["SKR2"] = Text::makeItem(257967, 257967, 300, "Silenced Kyr'Ozch Rifle - Type 2");
-$itemlink["SKR3"] = Text::makeItem(257131, 257131, 300, "Silenced Kyr'Ozch Rifle - Type 3");
-$itemlink["ASC"] = Text::makeItem(257126, 257126, 300, "Amplified Sleek Cannon");
-$itemlink["IAPU"] = Text::makeItem(257959, 257959, 1, "Inertial Adjustment Processing Unit");
-$itemlink["HVBCP"] = Text::makeItem(257119, 257119, 300, "Hadrulf's Viral Belt Component Platform");
-$itemlink["NAC"] = Text::makeItem(257963, 257963, 250, "Notum Amplification Coil ");
-$itemlink["TAHSC"] = Text::makeItem(257124, 257124, 300, "Twice Augmented Hellspinner Shock Cannon");
-$itemlink["ONC"] = Text::makeItem(257118, 257118, 250, "ObiTom's Nano Calculator");
-$itemlink["AKC12"] = Text::makeItem(257143, 257143, 300, "Amplified Kyr'Ozch Carbine - Type 12");
-$itemlink["AKC13"] = Text::makeItem(257142, 257142, 300, "Amplified Kyr'Ozch Carbine - Type 13");
-$itemlink["AKC5"] = Text::makeItem(257144, 257144, 300, "Amplified Kyr'Ozch Carbine - Type 5");	
-$itemlink["ERU"] = Text::makeItem(257961, 257961, 250, "Energy Redistribution Unit");	
-$itemlink["BOB"] = Text::makeItem(257147, 257147, 300, "Blades of Boltar");	
-$itemlink["DVLPR"] = Text::makeItem(257116, 257116, 1, "De'Valos Lava Protection Ring");	
-$itemlink["VLRD"] = Text::makeItem(257964, 257964, 250, "Visible Light Remodulation Device");	
-$itemlink["DVRPR"] = Text::makeItem(257117, 257117, 1, "De'Valos Radiation Protection Ring");	
-$itemlink["SSSS"] = Text::makeItem(257141, 257141, 300, "Scoped Salabim Shotgun Supremo");	
-$itemlink["EPP"] = Text::makeItem(258345, 258345, 300, "Explosif's Polychromatic Pillows");
-$itemlink["KMPH"] = Text::makeItem(252017, 252017, 200, "Kegern's Molybdenum Plate Helmet");
-$itemlink["JMPH"] = Text::makeItem(252005, 252005, 200, "Jathos' Molybdenum Plate Helmet");
-$itemlink["EMCH"] = Text::makeItem(257379, 257379, 200, "Extruder's Molybdenum Crash Helmet");
-$itemlink["SKH"] = Text::makeItem(225514, 225514, 200, "Sworn Knight's Helmet");
-$itemlink["CKH"] = Text::makeItem(225541, 225541, 200, "Conscientious Knight's Helmet");
-$itemlink["LOA"] = Text::makeItem(244821, 244821, 300, "Lord of Angst");
-$itemlink["KR2"] = Text::makeItem(254478, 254478, 250, "Kyr'Ozch Rifle - Type 2");
-$itemlink["KR3"] = Text::makeItem(254485, 254485, 250, "Kyr'Ozch Rifle - Type 3");
-$itemlink["ESC"] = Text::makeItem(160162, 160162, 200, "Excellent Sleek Cannon");
-$itemlink["VDS"] = Text::makeItem(251225, 251225, 200, "Viral Data Storage");
-$itemlink["DBWM"] = Text::makeItem(257540, 257540, 250, "Disassembled Belt with Memory");
-$itemlink["OC"] = Text::makeItem(251221, 251221, 200, "Overheated Compiler");
-$itemlink["DBWMAC"] = Text::makeItem(257541, 257541, 250, "Disassembled Belt with Memory and Compiler");
-$itemlink["COP"] = Text::makeItem(253153, 253153, 200, "Cannister of Powder");
-$itemlink["DKP"] = Text::makeItem(165168, 165168, 250, "Diamondine Kick Pistol");
-$itemlink["LRDKP"] = Text::makeItem(257109, 257109, 300, "Low Recoil Diamondine Kick Pistol");
-$itemlink["MM"] = Text::makeItem(233335, 233335, 250, "Murder Maul");
-$itemlink["LMM"] = Text::makeItem(257111, 257111, 300, "Lightened Murder Maul");
-$itemlink["AHSC"] = Text::makeItem(201939, 201939, 190, "Augmented Hellspinner Shock Cannon");
-$itemlink["AMC"] = Text::makeItem(244376, 244376, 250, "Aquarius's Multitask Calculator");
-$itemlink["KER992"] = Text::makeItem(254723, 254723, 250, "Kyr'Ozch Energy Rapier - Type 992");
-$itemlink["LPBASG"] = Text::makeItem(231235, 231235, 1, "Lava Protection Boots and Skin Galvanizer");
-$itemlink["VNGW"] = Text::makeItem(257123, 257123, 300, "Vektor ND Grand Wyrm");	
-$itemlink["VNDS"] = Text::makeItem(124262, 124262, 180, "Vektor ND DRAGON Shotgun");	
-$itemlink["CC"] = Text::makeItem(125456, 125456, 10, "Concrete Cushion");	
-$itemlink["HRPSAG"] = Text::makeItem(231236, 231236, 1, "Hyper-Radiation Protection Skin and Glasses");	
-$itemlink["VTS"] = Text::makeItem(251240, 251240, 250, "Viral Targeting Subunit");	
-$itemlink["SS"] = Text::makeItem(253235, 253235, 250, "Salabim Shotgun");	
+$itemlink["ICE"] = Text::make_item(257968, 257968, 1, "Hacker ICE-Breaker Source");
+$itemlink["NPI"] = Text::make_item(161699, 161699, 1, "Nano Programming Interface");
+$itemlink["BOARD"] = Text::make_item(257706, 257706, 1, "Kyr'Ozch Helmet");
+$itemlink["APE"] = Text::make_item(257960, 257960, 250, "Action Probability Estimator");
+$itemlink["DGRV"] = Text::make_item(257962, 257962, 250, "Dynamic Gas Redistribution Valves");
+$itemlink["KBAP"] = Text::make_item(257529, 257529, 1, "Kyr'Ozch Battlesuit Audio Processor");
+$itemlink["KVPU"] = Text::make_item(257533, 257533, 1, "Kyr'Ozch Video Processing Unit");
+$itemlink["KRI"] = Text::make_item(257531, 257531, 1, "Kyr'Ozch Rank Identification");	
+$itemlink["ICEU"] = Text::make_item(257110, 257110, 1, "Intrusion Countermeasure Electronics Upgrade");
+$itemlink["OTAE"] = Text::make_item(257112, 257112, 1, "Omni-Tek Award - Exemplar");
+$itemlink["CMP"] = Text::make_item(257113, 257113, 1, "Clan Merits - Paragon");
+$itemlink["EMCH"] = Text::make_item(257379, 257379, 200, "Extruder's Molybdenum Crash Helmet");
+$itemlink["CKCNH"] = Text::make_item(257115, 257115, 200, "Conscientious Knight Commander Nizno's Helmet");
+$itemlink["SKCGH"] = Text::make_item(257114, 257114, 200, "Sworn Knight Commander Genevra's Helmet");
+$itemlink["BCOH"] = Text::make_item(257383, 257383, 300, "Blackmane's Combined Officer's Headwear");		
+$itemlink["GCCH"] = Text::make_item(257381, 257381, 300, "Gannondorf's Combined Commando's Headwear");		
+$itemlink["HCSH"] = Text::make_item(257384, 257384, 300, "Haitte's Combined Sharpshooter's Headwear");		
+$itemlink["OCPH"] = Text::make_item(257377, 257377, 300, "Odum's Combined Paramedic's Headwear");		
+$itemlink["SCMH"] = Text::make_item(257380, 257380, 300, "Sillum's Combined Mercenary's Headwear");		
+$itemlink["YCSH"] = Text::make_item(257382, 257382, 300, "Yakomo's Combined Scout's Headwear");		
+$itemlink["HLOA"] = Text::make_item(257128, 257128, 300, "High Lord of Angst");
+$itemlink["SKR2"] = Text::make_item(257967, 257967, 300, "Silenced Kyr'Ozch Rifle - Type 2");
+$itemlink["SKR3"] = Text::make_item(257131, 257131, 300, "Silenced Kyr'Ozch Rifle - Type 3");
+$itemlink["ASC"] = Text::make_item(257126, 257126, 300, "Amplified Sleek Cannon");
+$itemlink["IAPU"] = Text::make_item(257959, 257959, 1, "Inertial Adjustment Processing Unit");
+$itemlink["HVBCP"] = Text::make_item(257119, 257119, 300, "Hadrulf's Viral Belt Component Platform");
+$itemlink["NAC"] = Text::make_item(257963, 257963, 250, "Notum Amplification Coil ");
+$itemlink["TAHSC"] = Text::make_item(257124, 257124, 300, "Twice Augmented Hellspinner Shock Cannon");
+$itemlink["ONC"] = Text::make_item(257118, 257118, 250, "ObiTom's Nano Calculator");
+$itemlink["AKC12"] = Text::make_item(257143, 257143, 300, "Amplified Kyr'Ozch Carbine - Type 12");
+$itemlink["AKC13"] = Text::make_item(257142, 257142, 300, "Amplified Kyr'Ozch Carbine - Type 13");
+$itemlink["AKC5"] = Text::make_item(257144, 257144, 300, "Amplified Kyr'Ozch Carbine - Type 5");	
+$itemlink["ERU"] = Text::make_item(257961, 257961, 250, "Energy Redistribution Unit");	
+$itemlink["BOB"] = Text::make_item(257147, 257147, 300, "Blades of Boltar");	
+$itemlink["DVLPR"] = Text::make_item(257116, 257116, 1, "De'Valos Lava Protection Ring");	
+$itemlink["VLRD"] = Text::make_item(257964, 257964, 250, "Visible Light Remodulation Device");	
+$itemlink["DVRPR"] = Text::make_item(257117, 257117, 1, "De'Valos Radiation Protection Ring");	
+$itemlink["SSSS"] = Text::make_item(257141, 257141, 300, "Scoped Salabim Shotgun Supremo");	
+$itemlink["EPP"] = Text::make_item(258345, 258345, 300, "Explosif's Polychromatic Pillows");
+$itemlink["KMPH"] = Text::make_item(252017, 252017, 200, "Kegern's Molybdenum Plate Helmet");
+$itemlink["JMPH"] = Text::make_item(252005, 252005, 200, "Jathos' Molybdenum Plate Helmet");
+$itemlink["EMCH"] = Text::make_item(257379, 257379, 200, "Extruder's Molybdenum Crash Helmet");
+$itemlink["SKH"] = Text::make_item(225514, 225514, 200, "Sworn Knight's Helmet");
+$itemlink["CKH"] = Text::make_item(225541, 225541, 200, "Conscientious Knight's Helmet");
+$itemlink["LOA"] = Text::make_item(244821, 244821, 300, "Lord of Angst");
+$itemlink["KR2"] = Text::make_item(254478, 254478, 250, "Kyr'Ozch Rifle - Type 2");
+$itemlink["KR3"] = Text::make_item(254485, 254485, 250, "Kyr'Ozch Rifle - Type 3");
+$itemlink["ESC"] = Text::make_item(160162, 160162, 200, "Excellent Sleek Cannon");
+$itemlink["VDS"] = Text::make_item(251225, 251225, 200, "Viral Data Storage");
+$itemlink["DBWM"] = Text::make_item(257540, 257540, 250, "Disassembled Belt with Memory");
+$itemlink["OC"] = Text::make_item(251221, 251221, 200, "Overheated Compiler");
+$itemlink["DBWMAC"] = Text::make_item(257541, 257541, 250, "Disassembled Belt with Memory and Compiler");
+$itemlink["COP"] = Text::make_item(253153, 253153, 200, "Cannister of Powder");
+$itemlink["DKP"] = Text::make_item(165168, 165168, 250, "Diamondine Kick Pistol");
+$itemlink["LRDKP"] = Text::make_item(257109, 257109, 300, "Low Recoil Diamondine Kick Pistol");
+$itemlink["MM"] = Text::make_item(233335, 233335, 250, "Murder Maul");
+$itemlink["LMM"] = Text::make_item(257111, 257111, 300, "Lightened Murder Maul");
+$itemlink["AHSC"] = Text::make_item(201939, 201939, 190, "Augmented Hellspinner Shock Cannon");
+$itemlink["AMC"] = Text::make_item(244376, 244376, 250, "Aquarius's Multitask Calculator");
+$itemlink["KER992"] = Text::make_item(254723, 254723, 250, "Kyr'Ozch Energy Rapier - Type 992");
+$itemlink["LPBASG"] = Text::make_item(231235, 231235, 1, "Lava Protection Boots and Skin Galvanizer");
+$itemlink["VNGW"] = Text::make_item(257123, 257123, 300, "Vektor ND Grand Wyrm");	
+$itemlink["VNDS"] = Text::make_item(124262, 124262, 180, "Vektor ND DRAGON Shotgun");	
+$itemlink["CC"] = Text::make_item(125456, 125456, 10, "Concrete Cushion");	
+$itemlink["HRPSAG"] = Text::make_item(231236, 231236, 1, "Hyper-Radiation Protection Skin and Glasses");	
+$itemlink["VTS"] = Text::make_item(251240, 251240, 250, "Viral Targeting Subunit");	
+$itemlink["SS"] = Text::make_item(253235, 253235, 250, "Salabim Shotgun");	
 
 if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<u>Process for 100% CRU</u>\n\n";
@@ -109,7 +109,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab>{$itemlink["ICEU"]}\n\n";
 	$list .= "<highlight>Tradeskills needed for this process:<end> 1000Nano Programming.\n";
 
-	$msg = Text::makeBlob("Guide for Hacker ICE-Breaker Source", $list);
+	$msg = Text::make_blob("Guide for Hacker ICE-Breaker Source", $list);
 
     $chatBot->send($msg, $sendto);
 } elseif(preg_match("/^apfloot KyrOzch Helmet$/i", $message)) {
@@ -120,7 +120,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab><tab><tab><tab><img src=rdb://82981>\n";
 	$list .= "<tab>{$itemlink["CMP"]}\n\n";
 
-	$msg = Text::makeBlob("Guide for Kyr'Ozch Helmet", $list);
+	$msg = Text::make_blob("Guide for Kyr'Ozch Helmet", $list);
 
     $chatBot->send($msg, $sendto);
 } elseif(preg_match("/^apfloot Action Probability Estimator$/i", $message)) {
@@ -174,7 +174,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab><tab><tab><tab><tab>OR\n\n";
 	$list .= "<tab>{$itemlink["YCSH"]}\n\n";
 
-	$msg = Text::makeBlob("Guide for Action Probability Estimator", $list);
+	$msg = Text::make_blob("Guide for Action Probability Estimator", $list);
 
     $chatBot->send($msg, $sendto);
 } elseif(preg_match("/^apfloot Dynamic Gas Redistribution Valves$/i", $message)) {
@@ -220,7 +220,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab><tab><tab><tab><img src=rdb://13342>\n";
 	$list .= "<tab>{$itemlink["ASC"]}\n\n";
 		
-	$msg = Text::makeBlob("Guide for Dynamic Gas Redistribution Valves", $list);
+	$msg = Text::make_blob("Guide for Dynamic Gas Redistribution Valves", $list);
 
     $chatBot->send($msg, $sendto);
 } elseif(preg_match("/^apfloot Inertial Adjustment Processing Unit$/i", $message)) {
@@ -271,7 +271,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab><tab><tab><tab><img src=rdb://218716>\n";
 	$list .= "<tab>{$itemlink["LMM"]}\n";
 			
-	$msg = Text::makeBlob("Guide for Inertial Adjustment Processing Unit", $list);
+	$msg = Text::make_blob("Guide for Inertial Adjustment Processing Unit", $list);
 
     $chatBot->send($msg, $sendto);
 } elseif(preg_match("/^apfloot Notum Amplification Coil$/i", $message)) {
@@ -307,7 +307,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab><tab><tab><tab><tab>OR\n\n";
 	$list .= "<tab>{$itemlink["AKC13"]}\n\n";
 		
-	$msg = Text::makeBlob("Guide for Notum Amplification Coil", $list);
+	$msg = Text::make_blob("Guide for Notum Amplification Coil", $list);
 
     $chatBot->send($msg, $sendto);
 } elseif(preg_match("/^apfloot Energy Redistribution Unit$/i", $message)) {
@@ -342,7 +342,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab><tab><tab><tab><img src=rdb://257711>\n";
 	$list .= "<tab>{$itemlink["VNGW"]}\n";
 			
-	$msg = Text::makeBlob("Guide for Energy Redistribution Unit", $list);
+	$msg = Text::make_blob("Guide for Energy Redistribution Unit", $list);
 
     $chatBot->send($msg, $sendto);
 } elseif(preg_match("/^apfloot Visible Light Remodulation Device$/i", $message)) {
@@ -382,7 +382,7 @@ if(preg_match("/^apfloot Hacker ICE-Breaker Source$/i", $message)) {
 	$list .= "<tab><tab><tab><tab><img src=rdb://257711>\n";
 	$list .= "<tab>{$itemlink["SSSS"]}\n";
 			
-	$msg = Text::makeBlob("Guide for Visible Light Remodulation Device", $list);
+	$msg = Text::make_blob("Guide for Visible Light Remodulation Device", $list);
 
     $chatBot->send($msg, $sendto);
 } else {

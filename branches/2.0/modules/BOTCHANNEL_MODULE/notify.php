@@ -32,12 +32,9 @@
 if ($type == "joinPriv") {
     $chatBot->vars["Guest"][$sender] = true;
 	$whois = new WhoisXML($sender);
-	$db->query("INSERT INTO priv_chatlist_<myname> (`name`, `faction`, `profession`, `guild`, `breed`, `level`, `ai_level`, `guest`) ".
-				"VALUES ('$sender', '$whois->faction', '$whois->prof', '$whois->org', '$whois->breed', '$whois->level', '$whois->ai_level', 1)");
-	$msg = "<highlight>$sender<end> (<highlight>{$whois->level}<end>/<green>{$whois->ai_level}<end>, <highlight>{$whois->prof}<end>, $whois->faction) has joined the guestchannel";
-    if (Settings::get('relaybot') != 'Off') {
-	   	send_message_to_relay("grc <grey>[".$chatBot->guild."] ".$msg);
-	}
+	$db->query("INSERT INTO priv_chatlist_<myname> (`name`, `faction`, `profession`, `guild`, `breed`, `level`, `ai_level`) ".
+				"VALUES ('$sender', '$whois->faction', '$whois->prof', '$whois->org', '$whois->breed', '$whois->level', '$whois->ai_level')");
+	$msg = "<highlight>{$sender}<end> (<highlight>{$whois->level}<end>/<green>{$whois->ai_level}<end>, <highlight>{$whois->prof}<end>, {$whois->faction}) has joined the private channel";
 	if (Settings::get("guest_relay") == 1 ) {
 		$chatBot->send($msg, "guild", true);
 	}
@@ -46,10 +43,7 @@ if ($type == "joinPriv") {
 	$db->query("DELETE FROM priv_chatlist_<myname> WHERE `name` = '$sender'");
 	unset($chatBot->vars["Guest"][$sender]);
     $msg = "<highlight>$sender<end> left the Guestchannel.";
-	
-    if (Settings::get('relaybot') != 'Off') {
-		$chatBot->send("grc <grey>[".$chatBot->vars['my guild']."] ".$msg, Settings::get('relaybot'));
-	}
+
 	if (Settings::get("guest_relay") == 1) {
 		$chatBot->send($msg, "guild", true);
 	}

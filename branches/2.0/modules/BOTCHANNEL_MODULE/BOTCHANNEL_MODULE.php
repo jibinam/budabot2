@@ -3,8 +3,9 @@
 	
 	DB::loadSQLFile($MODULE_NAME, "private_chat");
     
-    Command::register($MODULE_NAME, "members.php", "members", ALL, "Guest Channel Auto-Invitelist");
-    Command::register($MODULE_NAME, "onlineguests.php", "onlineguests", ALL, "Guest Channellist");
+    Command::register($MODULE_NAME, "members.php", "members", ALL, "Member list");
+    Command::register($MODULE_NAME, "sm.php", "sm", ALL, "Shows who is in the private channel");
+	Command::register($MODULE_NAME, "count.php", "count", ALL, "Shows who is in the private channel");
 	Command::register($MODULE_NAME, "autoinvite.php", "autoinvite", ALL, "Allows member to set whether he should be auto-invited to guest channel on logon or not");
     Command::register($MODULE_NAME, "join.php", "join", ALL, "Join command for guests");
 	Command::register($MODULE_NAME, "leave.php", "leave", ALL, "Enables Privatechat Kick");
@@ -14,7 +15,9 @@
 	Command::register($MODULE_NAME, "lock.php", "unlock", RAIDLEADER, "Unlocks the privgroup");
 	
 	Command::register($MODULE_NAME, "invite.php", "inviteuser", ALL, "Enables Privatechat Join");
+	Command::register($MODULE_NAME, "invite.php", "invite", ALL, "Enables Privatechat Join");
 	Command::register($MODULE_NAME, "kick.php", "kickuser", ALL, "kick command for guests");
+	Command::register($MODULE_NAME, "kick.php", "kick", ALL, "kick command for guests");
 	Command::register($MODULE_NAME, "add.php", "adduser", ALL, "Enables Privatechat Join");
 	Command::register($MODULE_NAME, "rem.php", "remuser", ALL, "Enables Privatechat Join");
 	
@@ -34,13 +37,13 @@
 	Event::register("logOn", $MODULE_NAME, "logon_autoinvite.php", "Auto-invite members on logon");
 	
 	//Show Char infos on privjoin
-	Event::register("joinPriv", $MODULE_NAME, "notify.php", "Show Infos about a Char when he joins the channel");
-	Event::register("leavePriv", $MODULE_NAME, "notify.php", "Show a msg when someone leaves the channel");
+	Event::register("joinPriv", $MODULE_NAME, "notify.php", "Records people who have joined the channel");
+	Event::register("leavePriv", $MODULE_NAME, "notify.php", "Records people who have left the channel");
 	
 	//Verifies the Guestchannellist every 1hour
 	Event::register("1hour", $MODULE_NAME, "guest_channel_check.php", "Guest channel check");
 
-    Help::register($MODULE_NAME, "guestchannel.txt", "GuestChannel", GUILDMEMBER, "Guestchannel");
+    Help::register($MODULE_NAME, "botchannel.txt", "botchannel", GUILDMEMBER, "Private channel commands");
 	Help::register($MODULE_NAME, "joinleave.txt", "join_leave", ALL, "Joining and leaving the bot");
 	Help::register($MODULE_NAME, "kickall.txt", "kickall", RAIDLEADER, "Kick all players from the Bot");
 	Help::register($MODULE_NAME, "lock.txt", "lock", RAIDLEADER, "Lock the privategroup");

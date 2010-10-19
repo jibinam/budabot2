@@ -74,7 +74,7 @@ if (Settings::get("relaybot") != "Off" && isset($chatBot->guildmembers[$sender])
             // If a main was found create the list
             if ($main) {
                 $list .= ":::::::: Main Character\n";
-                $list .= "<tab><tab>".Text::makeLink($row->main, "/tell <myname> whois $main", "chatcmd")." - ";
+                $list .= "<tab><tab>".Text::make_link($row->main, "/tell <myname> whois $main", "chatcmd")." - ";
 				$online = $chatBot->buddy_online($main);
 				if ($online === null) {
 				   $list .= "No status.\n";
@@ -87,7 +87,7 @@ if (Settings::get("relaybot") != "Off" && isset($chatBot->guildmembers[$sender])
                 $list .= ":::::::: Alt Character(s)\n";
                 $data = $db->query("SELECT * FROM alts WHERE `main` = '$main'");
                 forEach ($data as $row) {
-                    $list .= "<tab><tab>".Text::makeLink($row->alt, "/tell <myname> whois $row->alt", "chatcmd")." - ";
+                    $list .= "<tab><tab>".Text::make_link($row->alt, "/tell <myname> whois $row->alt", "chatcmd")." - ";
 					$online = $chatBot->buddy_online($row->alt);
                     if ($online === null) {
                        $list .= "No status.\n";
@@ -100,10 +100,10 @@ if (Settings::get("relaybot") != "Off" && isset($chatBot->guildmembers[$sender])
             }
 
 			if ($main != $sender && $main != false) {
-				$alts = Text::makeLink("Alts of $main", $list);
+				$alts = Text::make_link("Alts of $main", $list);
 				$msg .= "Main: <highlight>$main<end> ($alts) ";
 			} elseif($main != false) {
-	  			$alts = Text::makeLink("Alts of $main", $list);
+	  			$alts = Text::make_link("Alts of $main", $list);
 				$msg .= "$alts ";  
 			}
 		

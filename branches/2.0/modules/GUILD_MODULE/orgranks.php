@@ -55,7 +55,7 @@ if (preg_match("/^orgranks$/i", $message)) {
 	  	$list .= "<tab><highlight>$row->name<end> (Lvl $row->level/<green>$row->ai_level<end> $row->profession) (<highlight>$row->rank<end>) <highlight>::<end> Last logoff: $logged_off\n";
 	}
 	
-	$msg = Text::makeBlob("$members Members of {$chatBot->guild} (Sorted by orgrank)", $list);
+	$msg = Text::make_blob("$members Members of {$chatBot->guild} (Sorted by orgrank)", $list);
     $chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;

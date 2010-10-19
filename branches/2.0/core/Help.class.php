@@ -51,7 +51,7 @@ class Help {
 			$path = Util::get_full_path($help);;
 			$data = file_get_contents($path);
 			$helpcmd = ucfirst($helpcmd);
-			$msg = Text::makeLink("Help($helpcmd)", $data);
+			$msg = Text::make_link("Help($helpcmd)", $data);
 			return $msg;
 		}
 	}

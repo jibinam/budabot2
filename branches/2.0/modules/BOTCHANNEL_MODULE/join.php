@@ -38,7 +38,7 @@ if (preg_match("/^join$/i", $message)) {
 		$chatBot->privategroup_kick($sender);
 		$chatBot->privategroup_invite($sender);
 	} else {
-		$chatBot->send("You are not allowed to join the guest channel, ask a member of the bot for an invite.", $sender);
+		$chatBot->send("You are not allowed to join the private channel, ask a member of the bot for an invite.", $sendto);
 	}
 } else {
 	$syntax_error = true;

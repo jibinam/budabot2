@@ -25,7 +25,7 @@ if (preg_match("/^searchcmd (.*)/i", $message, $arr))
 	foreach ($data as $row)
 	{
 		$foundmodule = strtoupper($row->module);
-		$blob .= Text::makeLink($foundmodule.' configuration', '/tell <myname> config '.$foundmodule, 'chatcmd') . "\n";
+		$blob .= Text::make_link($foundmodule.' configuration', '/tell <myname> config '.$foundmodule, 'chatcmd') . "\n";
 	}
 	if (count($data) == 0)
 	{
@@ -33,7 +33,7 @@ if (preg_match("/^searchcmd (.*)/i", $message, $arr))
 	}
 	else
 	{
-		$msg = Text::makeLink(count($data) . ' results found.', $blob);
+		$msg = Text::make_link(count($data) . ' results found.', $blob);
 	}
 	$chatBot->send($msg, $sendto);
 }

@@ -62,7 +62,7 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 		$list .= "Location: <highlight>$row->location<end>\n\n";
 	}
 	
-	$msg = Text::makeBlob("Land Control Areas with the QL$ql(Matches ".$db->numrows().")", $list);
+	$msg = Text::make_blob("Land Control Areas with the QL$ql(Matches ".$db->numrows().")", $list);
 	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^lca ([a-z ]+)$/i", $message, $arr)) {
 	$name = $arr[1];
@@ -91,7 +91,7 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 		$list .= "Location: <highlight>$row->location<end>\n\n";
 	}
 	
-	$msg = Text::makeBlob("Land Control Areas with the name $name(Matches ".$db->numrows().")", $list);
+	$msg = Text::make_blob("Land Control Areas with the name $name(Matches ".$db->numrows().")", $list);
 	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^lca ([0-9]+) ([a-z ]+)$/i", $message, $arr)) {
 	$name = $arr[2];
@@ -127,7 +127,7 @@ if (preg_match("/^lca ([0-9]+)$/i", $message, $arr)) {
 		$list .= "Location: <highlight>$row->location<end>\n\n";
 	}
 	
-	$msg = Text::makeBlob("Land Control Areas with the name $name and ql$ql(Matches ".$db->numrows().")", $list);
+	$msg = Text::make_blob("Land Control Areas with the name $name and ql$ql(Matches ".$db->numrows().")", $list);
 	$chatBot->send($msg, $sendto);
 
 } else {

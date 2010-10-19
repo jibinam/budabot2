@@ -23,7 +23,7 @@ if (preg_match("/^onlineirc$/i", $message, $arr)) {
 				$list .= "$value<br>";
 			}
 			
-			$msg = Text::makeBlob("$numusers online in IRC", $list);
+			$msg = Text::make_blob("$numusers online in IRC", $list);
 			
 			$chatBot->send($msg, $sendto);
 		}

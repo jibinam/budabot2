@@ -18,7 +18,7 @@ if (preg_match("/^leprocs? (.+)$/i", $message, $arr)) {
 			$blob .= "<yellow>$row->name<end> $row->duration <orange>$row->modifiers<end>\n";
 		}
 
-		$msg = Text::makeBlob('LE Proc results for $profession', $blob);
+		$msg = Text::make_blob('LE Proc results for $profession', $blob);
 	}
 	$chatBot->send($msg, $sendto);
 }

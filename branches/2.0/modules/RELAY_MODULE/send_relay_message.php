@@ -9,7 +9,7 @@ if ((Settings::get("relaybot") != "Off") && ($args[2][0] != Settings::get("symbo
 	}
 
 	if ($relayMessage != '') {
-		$msg = "grc <grey>[".$chatBot->guild."] ".Text::makeLink($sender,$sender,"user").": ".$relayMessage."</font>";
+		$msg = "grc <grey>[".$chatBot->guild."] ".Text::make_link($sender,$sender,"user").": ".$relayMessage."</font>";
         send_message_to_relay($msg);
 	}
 }

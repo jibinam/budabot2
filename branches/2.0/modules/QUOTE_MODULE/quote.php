@@ -154,7 +154,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	}
 	
 	if ($msg) {
-		$msg = Text::makeBlob("Results for: '$search'", $msg);
+		$msg = Text::make_blob("Results for: '$search'", $msg);
 	} 
 	else {
 		$msg = "Couldn't find any matches for this search.";
@@ -208,7 +208,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		}
 		$msg .= substr($list,0,strlen($list)-2);
 
-		$msg = Text::makeBlob("Quote", $msg).': "'.$quoteMSG.'"';
+		$msg = Text::make_blob("Quote", $msg).': "'.$quoteMSG.'"';
 		
 	} else {
 		$msg = "No quote found with that ID.";
@@ -261,7 +261,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		}
 		$msg .= substr($list,0,strlen($list)-2);
 		
-		$msg = Text::makeBlob("Quote", $msg).': "'.$quoteMSG.'"';
+		$msg = Text::make_blob("Quote", $msg).': "'.$quoteMSG.'"';
 		
 	} else {
 		$msg = "I dont have any quotes to show!";

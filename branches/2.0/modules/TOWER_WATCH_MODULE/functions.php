@@ -122,7 +122,7 @@ function getTowerInfoMsg() {
 	} else {
 		// this is required
 		global $chatBot;
-		$link = $chatBot->makeBlob('Tower Watch List -- More info', $moreInfoMsg);
+		$link = Text::make_blob('Tower Watch List -- More info', $moreInfoMsg);
 		$displayMsg .= "$link";
 	}
 	

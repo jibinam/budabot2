@@ -40,7 +40,7 @@ if (isset($chatBot->guildmembers[$sender]) && (time() >= $chatBot->vars["newsdel
 		  	$link .= "<highlight>Author:<end> $row->name\n";
 		  	$link .= "<highlight>Message:<end> $row->news\n\n";
 		}
-		$msg = Text::makeBlob("News", $link)." [Last updated at ".gmdate("dS M, H:i", $updated)."]";
+		$msg = Text::make_blob("News", $link)." [Last updated at ".gmdate("dS M, H:i", $updated)."]";
         $chatBot->send($msg, $sender);
 	}	
 }

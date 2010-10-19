@@ -29,47 +29,47 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
    
-if (preg_match("/^check (all|prof|org)$/i", $message, $arr)) {
-	if ($arr[1] == "all") {
-	  	$data = $db->query("SELECT * FROM priv_chatlist_<myname>");
-		forEach ($data as $row) {
-			$content .= " \\n /assist $row->name";
-		}
-
-	  	$list .= "<a href='chatcmd:///text AssistAll: $content'>Click here to check who is here</a>";
-	  	$msg = Text::makeBlob("Check on all", $list);
-	} else if ($arr[1] == "prof") {
-	  	$data = $db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `profession` DESC");
-		forEach ($data as $row) {
-			$prof[$row->profession] .= " \\n /assist $row->name";
-		}
-
-		ksort($prof);
-		
-		forEach ($prof as $key => $value) {
-			$list .= "<a href='chatcmd:///text AssistProf: $value'>Click here to check $key</a>\n";
-		}
-
-	  	$msg = Text::makeBlob("Check on professions", $list);
-	} else if ($arr[1] == "org") {
-	  	$data = $db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `guild` DESC");
-		forEach ($data as $row) {
-		  	if ($row->guild == "") {
-	  			$org["Non orged"] .= " \\n /assist $row->name";
-			} else {
-				$org[$row->guild] .= " \\n /assist $row->name";
-			}
-		}
-		
-		ksort($org);
-		
-		forEach ($org as $key => $value) {
-			$list .= "<a href='chatcmd:///text AssistOrg: $value'>Click here to check $key</a>\n";
-		}
-
-	  	$msg = Text::makeBlob("Check on Organisations", $list);
+if (preg_match("/^check$/i", $message) || preg_match("/^check all$/i", $message)) {
+	$data = $db->query("SELECT * FROM priv_chatlist_<myname>");
+	forEach ($data as $row) {
+		$content .= " \\n /assist $row->name";
 	}
-	$chatBot->send($msg);
+
+	$list .= "<a href='chatcmd:///text AssistAll: $content'>Click here to check who is here</a>";
+	$msg = Text::make_blob("Check on all", $list);
+	$chatBot->send($msg, $sendto);
+} else if (preg_match("/^check prof$/i", $message)) {
+	$data = $db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `profession` DESC");
+	forEach ($data as $row) {
+		$prof[$row->profession] .= " \\n /assist $row->name";
+	}
+
+	ksort($prof);
+	
+	forEach ($prof as $key => $value) {
+		$list .= "<a href='chatcmd:///text Assist $key: $value'>Click here to check $key</a>\n";
+	}
+
+	$msg = Text::make_blob("Check on professions", $list);
+	$chatBot->send($msg, $sendto);
+} else if (preg_match("/^check org$/i", $message)) {
+	$data = $db->query("SELECT * FROM priv_chatlist_<myname> ORDER BY `guild` DESC");
+	forEach ($data as $row) {
+		if ($row->guild == "") {
+			$org["Non orged"] .= " \\n /assist $row->name";
+		} else {
+			$org[$row->guild] .= " \\n /assist $row->name";
+		}
+	}
+	
+	ksort($org);
+	
+	forEach ($org as $key => $value) {
+		$list .= "<a href='chatcmd:///text Assist $key: $value'>Click here to check $key</a>\n";
+	}
+
+	$msg = Text::make_blob("Check on Organizations", $list);
+	$chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

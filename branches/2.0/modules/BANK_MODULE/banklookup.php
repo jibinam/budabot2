@@ -30,12 +30,12 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 		forEach ($xml->children() as $base_container) {// Loops through inventory and bank
 			forEach ($base_container->children() as $base_slot) {// Loops through items and backpacks
 				if ($base_slot->getName() == "item" && preg_match("/\b".$base_slot['id']."\b/i", $arr)) {
-					$msg .= Text::makeItem($base_slot['lowid'], $base_slot['highid'], $base_slot['ql'], $base_slot['name'])."\nItem ID: ".$base_slot['id']."\nLocation: ".ucwords($base_container->getName())."\n\n";
+					$msg .= Text::make_item($base_slot['lowid'], $base_slot['highid'], $base_slot['ql'], $base_slot['name'])."\nItem ID: ".$base_slot['id']."\nLocation: ".ucwords($base_container->getName())."\n\n";
 					$item_count++;
 				} else if ($base_slot->getName() == "backpack") {
 					forEach ($base_slot->children() as $item) {// Loops through items in backpacks
 						if (preg_match("/\b".$item['id']."\b/i", $arr)) {
-							$msg .= Text::makeItem($item['lowid'], $item['highid'], $item['ql'], $item['name'])."\nItem ID: ".$item['id']."\nLocation: ".ucwords($base_container->getName())." > Backpack #".$base_slot['id']."\n\n";
+							$msg .= Text::make_item($item['lowid'], $item['highid'], $item['ql'], $item['name'])."\nItem ID: ".$item['id']."\nLocation: ".ucwords($base_container->getName())." > Backpack #".$base_slot['id']."\n\n";
 							$item_count++;
 						}
 					}
@@ -45,7 +45,7 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 		if ($item_count == 0) {
 			$link = "No items found.";
 		} else {
-			$link = Text::makeBlob($item_count." bank items found", $msg);
+			$link = Text::make_blob($item_count." bank items found", $msg);
 		}
 		$chatBot->send($link, $sendto);
 	} else {

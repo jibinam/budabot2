@@ -33,7 +33,7 @@ if (preg_match("/^about$/i", $message)) {
 	global $version;
 	$data = file_get_contents("./core/HELP/about.txt");
 	$data = str_replace('<version>', $version, $data);
-	$msg = Text::makeLink("About", $data);
+	$msg = Text::make_link("About", $data);
 	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^help$/i", $message)) {
 	global $version;
@@ -58,7 +58,7 @@ if (preg_match("/^about$/i", $message)) {
 	if ($list == "") {
 		$msg = "<orange>No Help files found.<end>";
 	} else {
-		$msg = Text::makeLink("Help(main)", $data.$list);
+		$msg = Text::make_link("Help(main)", $data.$list);
 	}
 	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^help (.+)$/i", $message, $arr)) {

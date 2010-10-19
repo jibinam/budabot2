@@ -128,7 +128,7 @@ if (preg_match("/^bio <a href=\"itemref:\/\/([0-9]+)\/([0-9]+)\/([0-9]+)\">Solid
 	}
 
     //Create the output message
-    $msg = Text::makeItem($low_id, $high_id, $arr[3], "QL ".$arr[3]." ".$name)." ".$use;
+    $msg = Text::make_item($low_id, $high_id, $arr[3], "QL ".$arr[3]." ".$name)." ".$use;
 
     // Send info back
     $chatBot->send($msg, $sendto);

@@ -31,11 +31,12 @@
 
 global $assist;
 if (preg_match("/^assist$/i", $message)) {
-  	if(!isset($assist)) {
+  	if (!isset($assist)) {
 		$msg = "No assist set atm.";
 		$chatBot->send($msg, $sendto);
+		return;
 	}
-} else if (preg_match("/^setassist (.+)$/i", $message, $arr)) {
+} else if (preg_match("/^assist (.+)$/i", $message, $arr)) {
     $nameArray = explode(' ', $arr[1]);
 	
 	if (count($nameArray) == 1) {
@@ -46,13 +47,13 @@ if (preg_match("/^assist$/i", $message)) {
 			$chatBot->send($msg, $sendto);
 		}
 		
-		if(!$uid) {
+		if (!$uid) {
 			$msg = "Player <highlight>$name<end> does not exist.";
 			$chatBot->send($msg, $sendto);
 		}
 		
 		$link .= "<a href='chatcmd:///macro $name /assist $name'>Click here to make an assist $name macro</a>";
-		$assist = Text::makeBlob("Assist $name Macro", $link);
+		$assist = Text::make_blob("Assist $name Macro", $link);
 	} else {
 		forEach ($nameArray as $key => $name) {
 			$name = ucfirst(strtolower($name));

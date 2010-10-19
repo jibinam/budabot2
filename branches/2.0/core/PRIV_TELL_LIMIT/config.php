@@ -38,14 +38,14 @@ if (preg_match("/^limits$/i", $message)) {
 	else
 		$list .= Settings::get("tell_req_faction");
 	$list .= "<end> (";
-	$list .= Text::makeLink("Change this", "/tell <myname> limit tell faction", "chatcmd").")\n";
+	$list .= Text::make_link("Change this", "/tell <myname> limit tell faction", "chatcmd").")\n";
 	$list .= "Level: <highlight>";
 	if(Settings::get("tell_req_lvl") == 0)
 		$list .= "No Limit";
 	else
 		$list .= Settings::get("tell_req_lvl");
 	$list .= "<end> (";
-	$list .= Text::makeLink("Change this", "/tell <myname> limit tell minlvl", "chatcmd").")\n";
+	$list .= Text::make_link("Change this", "/tell <myname> limit tell minlvl", "chatcmd").")\n";
 	$list .= "General: <highlight>";
 	if(Settings::get("tell_req_open") == "all")
 		$list .= "No general Limit";
@@ -54,18 +54,18 @@ if (preg_match("/^limits$/i", $message)) {
 	else
 		$list .= "Responding only to players that are Members of this Bot";
 	$list .= "<end> (";
-	$list .= Text::makeLink("Change this", "/tell <myname> limit tell open", "chatcmd").")\n";
+	$list .= Text::make_link("Change this", "/tell <myname> limit tell open", "chatcmd").")\n";
 
 	$list .= "\n<u>Privatgroup Invites</u>\n";
 	$list .= "Faction: <highlight>" . Settings::get("priv_req_faction") . "<end> (";
-	$list .= Text::makeLink("Change this", "/tell <myname> limit priv faction", "chatcmd") . ")\n";
+	$list .= Text::make_link("Change this", "/tell <myname> limit priv faction", "chatcmd") . ")\n";
 	$list .= "Level: <highlight>";
 	if(Settings::get("priv_req_lvl") == 0)
 		$list .= "No Limit";
 	else
 		$list .= Settings::get("priv_req_lvl");
 	$list .= "<end> (";
-	$list .= Text::makeLink("Change this", "/tell <myname> limit priv minlvl", "chatcmd").")\n";
+	$list .= Text::make_link("Change this", "/tell <myname> limit priv minlvl", "chatcmd").")\n";
 	$list .= "General: <highlight>";
 	if(Settings::get("priv_req_open") == "all")
 		$list .= "No general Limit";
@@ -75,16 +75,16 @@ if (preg_match("/^limits$/i", $message)) {
 		$list .= "Accepting invites only from Members of this Bot";
 	$list .= "<end> (";
 	
-	$list .= Text::makeLink("Change this", "/tell <myname> limit priv open", "chatcmd").")\n";
+	$list .= Text::make_link("Change this", "/tell <myname> limit priv open", "chatcmd").")\n";
 	$list .= "Player Limit: <highlight>";
 	if(Settings::get("priv_req_maxplayers") == 0)
 		$list .= "No Limit";
 	else
 		$list .= Settings::get("priv_req_maxplayers");
 	$list .= "<end> (";
-	$list .= Text::makeLink("Change this", "/tell <myname> limit priv maxplayers", "chatcmd").")\n";
+	$list .= Text::make_link("Change this", "/tell <myname> limit priv maxplayers", "chatcmd").")\n";
 
-	$msg = Text::makeLink("Limits for privGroup and Tells", $list);
+	$msg = Text::make_link("Limits for privGroup and Tells", $list);
 	$chatBot->send($msg, $sender);
 } else if (preg_match("/^limit (priv|tell) faction$/i", $message, $arr)) {
  	$list .= "<header>::::: Faction Limit :::::<end>\n\n";
@@ -101,14 +101,14 @@ if (preg_match("/^limits$/i", $message)) {
 			$list .= Settings::get("tell_req_faction");
 	}
 	$list .= "<end>\n\nChange it to:\n";
-	$list .= Text::makeLink("No Faction Limit", "/tell <myname> limit {$arr[1]} faction all", "chatcmd")."\n\n";	
-	$list .= Text::makeLink("Omni only", "/tell <myname> limit {$arr[1]} faction omni", "chatcmd")."\n";
-	$list .= Text::makeLink("Clan only", "/tell <myname> limit {$arr[1]} faction clan", "chatcmd")."\n";	
-	$list .= Text::makeLink("Neutral only", "/tell <myname> limit {$arr[1]} faction neutral", "chatcmd")."\n\n";
-	$list .= Text::makeLink("Not Clan", "/tell <myname> limit {$arr[1]} faction not clan", "chatcmd")."\n";
-	$list .= Text::makeLink("Not Neutral", "/tell <myname> limit {$arr[1]} faction not neutral", "chatcmd")."\n";
-	$list .= Text::makeLink("Not Omni", "/tell <myname> limit {$arr[1]} faction not omni", "chatcmd")."\n";
-	$msg = Text::makeLink("Faction Limit", $list);
+	$list .= Text::make_link("No Faction Limit", "/tell <myname> limit {$arr[1]} faction all", "chatcmd")."\n\n";	
+	$list .= Text::make_link("Omni only", "/tell <myname> limit {$arr[1]} faction omni", "chatcmd")."\n";
+	$list .= Text::make_link("Clan only", "/tell <myname> limit {$arr[1]} faction clan", "chatcmd")."\n";	
+	$list .= Text::make_link("Neutral only", "/tell <myname> limit {$arr[1]} faction neutral", "chatcmd")."\n\n";
+	$list .= Text::make_link("Not Clan", "/tell <myname> limit {$arr[1]} faction not clan", "chatcmd")."\n";
+	$list .= Text::make_link("Not Neutral", "/tell <myname> limit {$arr[1]} faction not neutral", "chatcmd")."\n";
+	$list .= Text::make_link("Not Omni", "/tell <myname> limit {$arr[1]} faction not omni", "chatcmd")."\n";
+	$msg = Text::make_link("Faction Limit", $list);
 	$chatBot->send($msg, $sender);
 } else if (preg_match("/^limit (priv|tell) faction (omni|clan|neutral|all)$/i", $message, $arr)) {
 	$faction = ucfirst(strtolower($arr[2]));
@@ -159,11 +159,11 @@ if (preg_match("/^limits$/i", $message)) {
 			$list .= Settings::get("tell_req_lvl");
 	}
 	$list .= "<end>\n\nChange it to:\n";
-	$list .= Text::makeLink("No Level limit", "/tell <myname> limit {$arr[1]} minlvl 0", "chatcmd")."\n\n";	
+	$list .= Text::make_link("No Level limit", "/tell <myname> limit {$arr[1]} minlvl 0", "chatcmd")."\n\n";	
 	for($i = 5; $i <= 220; $i+=5)
-		$list .= Text::makeLink("Level limit $i", "/tell <myname> limit {$arr[1]} minlvl $i", "chatcmd")."\n";
+		$list .= Text::make_link("Level limit $i", "/tell <myname> limit {$arr[1]} minlvl $i", "chatcmd")."\n";
 
-	$msg = Text::makeLink("Level Limit", $list);
+	$msg = Text::make_link("Level Limit", $list);
 	$chatBot->send($msg, $sender);
 } else if (preg_match("/^limit (priv|tell) minlvl ([0-9]+)$/i", $message, $arr)) {
 	$minlvl = strtolower($arr[2]);
@@ -209,11 +209,11 @@ if (preg_match("/^limits$/i", $message)) {
 			$list .= "Responding only to players that are Members of this Bot";
 	}
 	$list .= "<end>\n\nChange it to:\n";
-	$list .= Text::makeLink("No General limit", "/tell <myname> limit {$arr[1]} open all", "chatcmd")."\n\n";
-	$list .= Text::makeLink("Only for Members of your Organisation", "/tell <myname> limit {$arr[1]} open org", "chatcmd")."\n";
-	$list .= Text::makeLink("Only for Members of the Bot", "/tell <myname> limit {$arr[1]} open members", "chatcmd")."\n\n";
+	$list .= Text::make_link("No General limit", "/tell <myname> limit {$arr[1]} open all", "chatcmd")."\n\n";
+	$list .= Text::make_link("Only for Members of your Organisation", "/tell <myname> limit {$arr[1]} open org", "chatcmd")."\n";
+	$list .= Text::make_link("Only for Members of the Bot", "/tell <myname> limit {$arr[1]} open members", "chatcmd")."\n\n";
 
-	$msg = Text::makeLink("General Limit", $list);
+	$msg = Text::make_link("General Limit", $list);
 	$chatBot->send($msg, $sender);
 } else if (preg_match("/^limit (priv|tell) open (all|org|members)$/i", $message, $arr)) {
 	$open = strtolower($arr[2]);
@@ -247,11 +247,11 @@ if (preg_match("/^limits$/i", $message)) {
 		$list .= Settings::get("priv_req_maxplayers");
 
 	$list .= "<end>\n\nChange it to:\n";
-	$list .= Text::makeLink("No Limit of Players", "/tell <myname> limit priv maxplayers 0", "chatcmd")."\n\n";	
+	$list .= Text::make_link("No Limit of Players", "/tell <myname> limit priv maxplayers 0", "chatcmd")."\n\n";	
 	for($i = 6; $i <= 120; $i+=6)
-		$list .= Text::makeLink("Set Maximum allowed Players in the Bot to $i", "/tell <myname> limit priv maxplayers $i", "chatcmd")."\n";
+		$list .= Text::make_link("Set Maximum allowed Players in the Bot to $i", "/tell <myname> limit priv maxplayers $i", "chatcmd")."\n";
 
-	$msg = Text::makeLink("Limit of Players in the Bot", $list);
+	$msg = Text::make_link("Limit of Players in the Bot", $list);
 	$chatBot->send($msg, $sender);
 } else if (preg_match("/^limit priv maxplayers ([0-9]+)$/i", $message, $arr)) {
 	$maxplayers = strtolower($arr[1]);

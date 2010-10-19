@@ -24,7 +24,7 @@ if (preg_match("/^onlineirc$/i", $message, $arr)) {
 				$list .= "$value<br>";
 			}
 			
-			$msg = Text::makeLink("$numusers online in IRC",$list);
+			$msg = Text::make_link("$numusers online in IRC",$list);
 			
 			$chatBot->send($msg, $sendto);
 		}

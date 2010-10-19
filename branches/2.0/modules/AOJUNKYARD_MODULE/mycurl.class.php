@@ -35,7 +35,7 @@ class mycurl {
 	}
 
 	public function __construct($url, $followlocation = true, $timeOut = 30, $maxRedirecs = 4,
-			$binaryTransfer = false, $includeHeader = false, $noBody = false) {
+		$binaryTransfer = false, $includeHeader = false, $noBody = false) {
 
 		$this->_url = $url;
 		$this->_followlocation = $followlocation;

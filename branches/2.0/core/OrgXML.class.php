@@ -71,11 +71,7 @@ class OrgXML extends XML {
 			$hours = floor($mins/60);
 			//if the file is not older then 24hrs and it is not the roster of the bot guild then use the cache one, when it the xml file from the org bot guild and not older then 6hrs use it
 			if (($hours < 24 && $vars["guild_id"] != $organization_id) || ($hours < 6 && $vars["guild_id"] == $organization_id)) {
-				$fp = fopen("$cache/$organization_id.$rk_num.xml", "r");
-				while (!feof($fp)) {
-					$orgxml .= fgets($fp, 4096);
-				}
-				fclose($fp);
+				$orgxml = file_get_contents("$cache/$organization_id.$rk_num.xml");
 				if (xml::spliceData($orgxml, '<id>', '</id>') == $organization_id) {
 					$data_found = true;
 				} else {
@@ -100,18 +96,13 @@ class OrgXML extends XML {
 		
 		//If the site was not responding or the data was invalid and a xml file exists get that one
 		if (!$data_found && file_exists("$cache/$organization_id.$rk_num.xml")) {
-			if ($fp = fopen("$cache/$organization_id.$rk_num.xml", "r")) {
-				while (!feof($fp)) {
-					$orgxml .= fgets($fp, 4096);
-				}
-				fclose($fp);
-				if (xml::spliceData($orgxml, '<id>', '</id>') == $name) {
-					$data_found = true;
-				} else {
-					$data_found = false;
-					unset($orgxml);
-					@unlink("$cache/$organization_id.$rk_num.xml");
-				}
+			$orgxml = file_get_contents("$cache/$organization_id.$rk_num.xml");
+			if (xml::spliceData($orgxml, '<id>', '</id>') == $name) {
+				$data_found = true;
+			} else {
+				$data_found = false;
+				unset($orgxml);
+				@unlink("$cache/$organization_id.$rk_num.xml");
 			}
 		}
 		//if there is still no valid data available give an error back

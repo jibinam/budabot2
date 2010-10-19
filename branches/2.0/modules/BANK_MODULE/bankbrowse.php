@@ -32,7 +32,7 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 			$packprelude = substr($base_container->getName(), 0, 1);
 			forEach ($base_container->children() as $base_slot) {// Loops through items and backpacks
 				if ($base_slot->getName()=='item') {
-					$msg .= "<tab>> ".Text::makeItem($base_slot['lowid'], $base_slot['highid'], $base_slot['ql'], $base_slot['name'])." Item ID: ".$base_slot['id']."\n";
+					$msg .= "<tab>> ".Text::make_item($base_slot['lowid'], $base_slot['highid'], $base_slot['ql'], $base_slot['name'])." Item ID: ".$base_slot['id']."\n";
 					$item_count++;
 				} else if ($base_slot->getName()=='backpack') {
 					$backpack_inside_count = 0;
@@ -42,14 +42,14 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 						$item_count++;
 					}
 					if ($backpack_inside_count) {
-						$msg .= "<tab>+ ".Text::makeLink("Backpack #".$base_slot['id'], "/tell <myname> pack ".$packprelude.$base_slot['id'], "chatcmd")." Contains ".$backpack_inside_count." items\n";
+						$msg .= "<tab>+ ".Text::make_link("Backpack #".$base_slot['id'], "/tell <myname> pack ".$packprelude.$base_slot['id'], "chatcmd")." Contains ".$backpack_inside_count." items\n";
 					} else {
 						$msg .= "<tab>- Backpack #".$base_slot['id']." Is empty\n";
 					}
 				}
 			}
 		}
-		$link = Text::makeBlob("$item_count Items in total, $backpack_count Backpacks in total", $msg);
+		$link = Text::make_blob("$item_count Items in total, $backpack_count Backpacks in total", $msg);
 		$chatBot->send($link, $sendto);
 	} else {
 		$syntax_error = true;

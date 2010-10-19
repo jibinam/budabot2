@@ -11,7 +11,7 @@ if (preg_match("/^svn update/i", $message)) {
 		$window .= $line . "\n";
 	}
 	
-	$msg = Text::makeBlob('SVN Update output', $window);
+	$msg = Text::make_blob('SVN Update output', $window);
 	
 	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^svn info/i", $message)) {
@@ -25,7 +25,7 @@ if (preg_match("/^svn update/i", $message)) {
 		$window .= $line . "\n";
 	}
 	
-	$msg = Text::makeBlob('SVN Info output', $window);
+	$msg = Text::make_blob('SVN Info output', $window);
 	
 	$chatBot->send($msg, $sendto);
 } else {

@@ -30,8 +30,8 @@
    */
    
 if (preg_match("/^kickall$/", $message)) {
-  	$msg = "All will be kicked out of this group in 10seconds. [by <highlight>$sender<end>]";
-  	$chatBot->send($msg);
+  	$msg = "Everyone will be kicked from this channel in 10 seconds. [by <highlight>$sender<end>]";
+  	$chatBot->send($msg, 'priv');
   	$chatBot->vars["priv_kickall"] = time() + 10;
 	// TODO change this to enable event
 	Event::register("2sec", "BOTCHANNEL_MODULE/kickall_event.php");

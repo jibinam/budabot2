@@ -30,34 +30,25 @@
    */
 
 if (Settings::get("topic") != "" && $type == "joinPriv") {
-	$time = time() - Settings::get("topic_time");
-	$mins = floor($time / 60);
-	$hours = floor($mins / 60);
-	$mins = floor($mins - ($hours * 60));
-	$days = floor($hours / 24);
-	$hours = floor($hours - ($days * 24));
-  	$chatBot->send("<highlight>Topic:<end> " . Settings::get("topic") . " [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$days}days, {$hours}hrs and {$mins}mins ago<end>)", $sendto);
+	$date_string = Util::unixtime_to_readable(time() - Settings::get("topic_time"), false);
+	$msg = "<highlight>Topic:<end> " . Settings::get("topic") . " [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$date_string} ago<end>)";
+  	$chatBot->send($msg, $sender);
 } else if (preg_match("/^topic$/i", $message, $arr)) {
-	$time = time() - Settings::get("topic_time");
-	$mins = floor($time / 60);
-	$hours = floor($mins / 60);
-	$mins = floor($mins - ($hours * 60));
-	$days = floor($hours / 24);
-	$hours = floor($hours - ($days * 24));
+	$date_string = Util::unixtime_to_readable(time() - Settings::get("topic_time"), false);
 	if (Settings::get("topic") == '') {
 		$topic = 'No topic set at the moment';
 	} else {
 		$topic = Settings::get("topic");
 	}
-	$msg = "<highlight>Topic:<end> {$topic} [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$days}days, {$hours}hrs and {$mins}mins ago<end>)";
+	$msg = "<highlight>Topic:<end> {$topic} [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$date_string} ago<end>)";
     $chatBot->send($msg, $sendto);
-} else if (preg_match("/^cleartopic$/i", $message, $arr)) {
+} else if (preg_match("/^topic clear$/i", $message, $arr)) {
   	Settings::save("topic_time", time());
   	Settings::save("topic_setby", $sender);
   	Settings::save("topic", "");
 	$msg = "Topic has been cleared.";
     $chatBot->send($msg, $sendto);
-} else if (preg_match("/^settopic (.+)$/i", $message, $arr)) {
+} else if (preg_match("/^topic (.+)$/i", $message, $arr)) {
   	Settings::save("topic_time", time());
   	Settings::save("topic_setby", $sender);
   	Settings::save("topic", $arr[1]);

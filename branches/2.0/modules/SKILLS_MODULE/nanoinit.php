@@ -36,7 +36,7 @@ if ((!$AttTim) || (!$RechT)) {
 	$inside	.= "NanoC. Init needed to instacast at neutral (88%bar):<orange> ". $Init2 ." <end>inits.\n";
 	$inside	.= "NanoC. Init needed to instacast at Full Def:<orange> ". $Init3 ." <end>inits.";
 
-	$windowlink = Text::makeBlob("::Nano Init Results::", $inside);
+	$windowlink = Text::make_blob("::Nano Init Results::", $inside);
 	$chatBot->send($windowlink, $sendto);
 }
 ?>

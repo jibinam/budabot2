@@ -35,7 +35,7 @@ if (!preg_match("/^afk(.*)$/i", $message, $arr)) {
 	    if ($row->afk != '0') {
 	        $db->execute("UPDATE priv_chatlist_<myname> SET `afk` = 0 WHERE `name` = '$sender'");
 	        $msg = "<highlight>$sender<end> is back";
-	        $chatBot->send($msg);
+	        $chatBot->send($msg, 'priv');
 	    }
 	}
 	$name = split(" ", $message, 2);
@@ -57,7 +57,7 @@ if (!preg_match("/^afk(.*)$/i", $message, $arr)) {
 				$msg = "<highlight>$name<end> is currently AFK: <highlight>$row->afk<end>";
 			}
 			if ($msg != "") {
-				$chatBot->send($msg);
+				$chatBot->send($msg, 'priv');
 			}
 		}
 	}

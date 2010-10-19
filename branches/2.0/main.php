@@ -31,16 +31,16 @@
 
 $version = "2.0";
 
-echo "\n\n\n\n\n";
-echo "		**************************************************\n";
-echo "		****         Budabot Version: $version           ****\n";
-echo "		****    written by Sebuda & Derroylo(RK2)     ****\n";
-echo "		****                Project Site:             ****\n";
-echo "		****    http://code.google.com/p/budabot2/    ****\n";
-echo "		****               Support Forum:             ****\n";
-echo "		****          http://www.budabot.com/         ****\n";
-echo "		**************************************************\n";
-echo "\n";
+echo "\n\n\n\n\n
+		**************************************************
+		****         Budabot Version: $version           ****
+		****    written by Sebuda & Derroylo(RK2)     ****
+		****                Project Site:             ****
+		****    http://code.google.com/p/budabot2/    ****
+		****               Support Forum:             ****
+		****          http://www.budabot.com/         ****
+		**************************************************
+\n";
 
 date_default_timezone_set("UTC");
 
@@ -141,7 +141,7 @@ main(true, $chatBot);
 		$start = time();
 		
 		// Create infinite loop
-		while ($forever == true) {					
+		while ($forever === true) {					
 			$chatBot->ping();
 			Event::run_cron_jobs();
 			if ($exec_connected_events == false && ((time() - $start) > 5))	{
@@ -159,7 +159,7 @@ main(true, $chatBot);
 		global $chatBot;
 		$chatBot->processCallback($type, $args);	
 	}
-	
+
 /**
 * isWindows is a little utility function to check
 * whether the bot is running Windows or something

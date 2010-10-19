@@ -31,6 +31,6 @@
 
 if (Settings::get("leaderecho") == 1 && $chatBot->leader == $sender && $message[0] != Settings::get("symbol")) {
   	$msg = Settings::get("leaderecho_color") . $message . "<end>";
-  	$chatBot->send($msg);
+  	$chatBot->send($msg, 'priv');
 }
 ?>

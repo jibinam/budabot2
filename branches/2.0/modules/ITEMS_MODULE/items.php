@@ -114,9 +114,9 @@ if ($countitems > 3) {
 	 	forEach ($item1 as $key => $item) {
 	        $list .= "<img src=rdb://".$item["icon"]."> \n";
 	        if ($ql) {
-		        $list .= "QL $ql ".Text::makeItem($item["lowid"], $item["highid"], $ql, $name);
+		        $list .= "QL $ql ".Text::make_item($item["lowid"], $item["highid"], $ql, $name);
 			} else {
-		        $list .= Text::makeItem($item["lowid"], $item["highid"], $item["highql"], $name);		  
+		        $list .= Text::make_item($item["lowid"], $item["highid"], $item["highql"], $name);		  
 			}
 	
 	        if ($item["lowql"] != $item["highql"]) {
@@ -126,7 +126,7 @@ if ($countitems > 3) {
 			}
 	    }
     }
-    $link = Text::makeLink("Item Search Result ($countitems)", $list);
+    $link = Text::make_link("Item Search Result ($countitems)", $list);
 	$list .= "\n\nItem DB Rips provided by MajorOutage";
     $chatBot->send($link, $sendto);
 
@@ -139,9 +139,9 @@ if ($countitems > 3) {
     forEach ($itemlist as $name => $item1) {
    	 	forEach ($item1 as $key => $item) {
 	        if ($ql) {
-		        $link .= "\n QL $ql ".Text::makeItem($item["lowid"], $item["highid"], $ql, $name);
+		        $link .= "\n QL $ql ".Text::make_item($item["lowid"], $item["highid"], $ql, $name);
 			} else {
-		        $link .= "\n".Text::makeItem($item["lowid"], $item["highid"], $item["highql"], $name);
+		        $link .= "\n".Text::make_item($item["lowid"], $item["highid"], $item["highql"], $name);
 	        }
 			
 	        if ($item["lowql"] != $item["highql"]) {

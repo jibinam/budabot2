@@ -69,7 +69,7 @@ if (-1 == $sender) {
                 $list .= "Player: <highlight>".$row->player."<end>\n\n";
             }
         }
-        $msg .= " " . Text::makeBlob("City History", $list);
+        $msg .= " " . Text::make_blob("City History", $list);
 
     }
     $chatBot->send($msg, $sendto);

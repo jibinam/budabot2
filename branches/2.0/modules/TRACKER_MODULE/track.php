@@ -14,12 +14,12 @@ if (preg_match("/^track$/i", $message)) {
 				$status = "<grey>Unknown<end>";
 			}
 			
-			$history = Text::makeLink('History', "/tell <myname> track {$row->name}", 'chatcmd');
+			$history = Text::make_link('History', "/tell <myname> track {$row->name}", 'chatcmd');
 
 	  		$blob .= "<tab>- {$row->name} ({$status}) - {$history}\n";
 	  	}
 	  	
-	    $msg = Text::makeBlob("<highlight>{$numrows}<end> players on the Track List", $blob);
+	    $msg = Text::make_blob("<highlight>{$numrows}<end> players on the Track List", $blob);
 		$chatBot->send($msg, $sendto);
 	} else {
        	$chatBot->send("No players are on the track list.", $sendto);
@@ -77,7 +77,7 @@ if (preg_match("/^track$/i", $message)) {
 	  		$blob .= "$row->event <white>" . date(DATE_RFC850, $row->dt) ."<end>\n";
 	  	}
 
-	    $msg = Text::makeBlob("Track History for {$tracked_player->name}", $blob);
+	    $msg = Text::make_blob("Track History for {$tracked_player->name}", $blob);
 	} else {
 		$msg = "'{$tracked_player->name}' has never logged on or is not being tracked.";
 	}

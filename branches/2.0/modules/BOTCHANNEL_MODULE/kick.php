@@ -29,16 +29,16 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if (preg_match("/^kickuser (.+)$/i", $message, $arr)) {
+if (preg_match("/^kickuser (.+)$/i", $message, $arr) || preg_match("/^kick (.+)$/i", $message, $arr)) {
     $uid = $chatBot->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
     if ($uid) {
         if ($chatBot->chatlist[$name] == true) {
-			$msg = "<highlight>$name<end> has been kicked.";
+			$msg = "<highlight>$name<end> has been kicked from the private channel.";
 		} else {
-			$msg = "<highlight>$name<end> is not in private channel.";
+			$msg = "<highlight>$name<end> is not in the private channel.";
 		}
-		// we kick whether they are in the channel or not incase the channel list is bugged
+		// we kick whether they are in the channel or not in case the channel list is bugged
 		$chatBot->privategroup_kick($name);
     } else {
 		$msg = "Player <highlight>$name<end> does not exist.";

@@ -119,7 +119,7 @@ function createList(&$data, &$sender, &$list, &$type, &$bot, $show_alts = false)
 
 	$oldprof = "";
 	foreach($data as $row) {
-		$name = $bot->makeLink($row->name, "/tell $row->name", "chatcmd");
+		$name = Text::make_link($row->name, "/tell $row->name", "chatcmd");
 		 
 		if($row->profession == "")
 		$row->profession = "Unknown";

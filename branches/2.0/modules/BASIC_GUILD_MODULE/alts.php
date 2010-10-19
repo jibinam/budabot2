@@ -103,7 +103,7 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
         // If a main was found create the list
         if ($main) {
             $list .= ":::::: Main Character\n";
-            $list .= "<tab><tab>".Text::makeLink($main, "/tell <myname> whois $main", "chatcmd")." - ";
+            $list .= "<tab><tab>".Text::make_link($main, "/tell <myname> whois $main", "chatcmd")." - ";
 			$online = Buddylist::is_online($main);
             if ($online === null) {
                 $list .= "No status.\n";
@@ -115,7 +115,7 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
             $list .= ":::::: Alt Character(s)\n";
             $data = $db->query("SELECT * FROM alts WHERE `main` = '$main'");
             forEach ($data as $row) {
-                $list .= "<tab><tab>".Text::makeLink($row->alt, "/tell <myname> whois $row->alt", "chatcmd")." - ";
+                $list .= "<tab><tab>".Text::make_link($row->alt, "/tell <myname> whois $row->alt", "chatcmd")." - ";
 				$online = Buddylist::is_online($row->alt);
                 if ($online === null) {
                     $list .= "No status.\n";
@@ -125,7 +125,7 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
                     $list .= "<red>Offline<end>\n";
 				}
             }
-            $msg = Text::makeBlob($main."'s Alts", $list);
+            $msg = Text::make_blob($main."'s Alts", $list);
         }
     }
 } else if (preg_match("/^alts$/i", $message)) {
@@ -148,7 +148,7 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
     // If a main was found create the list
     if ($main) {
         $list .= ":::::: Main Character\n";
-        $list .= "<tab><tab>".Text::makeLink($main, "/tell <myname> whois $main", "chatcmd")." - ";
+        $list .= "<tab><tab>".Text::make_link($main, "/tell <myname> whois $main", "chatcmd")." - ";
 		$online = Buddylist::is_online($main);
         if ($online === null) {
             $list .= "No status.\n";
@@ -161,7 +161,7 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
         $list .= ":::::: Alt Character(s)\n";
         $data = $db->query("SELECT * FROM alts WHERE `main` = '$main'");
         forEach ($data as $row) {
-            $list .= "<tab><tab>".Text::makeLink($row->alt, "/tell <myname> whois $row->alt", "chatcmd")." - ";
+            $list .= "<tab><tab>".Text::make_link($row->alt, "/tell <myname> whois $row->alt", "chatcmd")." - ";
 			$online = Buddylist::is_online($row->alt);
             if ($online === null) {
                 $list .= "No status.\n";
@@ -171,7 +171,7 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
                 $list .= "<red>Offline<end>\n";
 			}
         }
-        $msg = Text::makeBlob($sender."'s Alts", $list);
+        $msg = Text::make_blob($sender."'s Alts", $list);
     }
 } else if (preg_match("/^altsadmin (.+)$/i", $message, $arr)) {
 	if (preg_match("/^add (.+) (.+)$/i", $arr[1], $names)) {

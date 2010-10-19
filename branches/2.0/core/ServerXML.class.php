@@ -44,7 +44,7 @@ class ServerXML extends XML {
 	public $errorCode = 0;
 
 	//the constructor
-	function __construct($rk_num = 0){
+	function __construct($rk_num = 0) {
 		global $vars;
 		
 		//if no server was specified use the one where the bot is logged in
@@ -59,7 +59,7 @@ class ServerXML extends XML {
 	function lookup($rk_num) {
 		$serverstat = xml::getUrl("probes.funcom.com/ao.xml", 30);
 		
-		if($serverstat == NULL) {
+		if ($serverstat == NULL) {
 			$this->errorCode = 1;
 			$this->errorInfo = "Couldn't get Serverstatus for Dimension $rk_num";
 			return;
@@ -90,13 +90,14 @@ class ServerXML extends XML {
 		$this->name = $tmp[1];
 
 		$data = xml::spliceMultiData($data, "<playfield", "/>");			
-		foreach($data as $hdata) {
-			if(preg_match("/id=\"(.+)\" name=\"(.+)\" status=\"(.+)\" load=\"(.+)\" players=\"(.+)\"/i", $hdata, $arr)) {
+		forEach ($data as $hdata) {
+			if (preg_match("/id=\"(.+)\" name=\"(.+)\" status=\"(.+)\" load=\"(.+)\" players=\"(.+)\"/i", $hdata, $arr)) {
 				$this->data[$arr[2]]["status"] = $arr[3];
 				$this->data[$arr[2]]["load"] = $arr[4];
 				$this->data[$arr[2]]["players"] = $arr[5];
 			}				
 		}
-	} //end lookup function
-} //end server class
+	}
+}
+
 ?>

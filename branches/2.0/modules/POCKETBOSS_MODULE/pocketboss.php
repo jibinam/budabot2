@@ -45,9 +45,9 @@ if (preg_match("/^pb (.+)$/i", $message, $arr)) {
 			$data2 = $db->query("SELECT * FROM pbdb WHERE pb = '$row->pb' ORDER BY ql");
 			forEach ($data2 as $row) {
 			  	$name = "QL $symb->ql $symb->line $symb->slot Symbiant, $symb->type Unit Aban";
-			  	$link .= Text::makeItem($symb->itemid, $symb->itemid, $symb->ql, $name)."\n";
+			  	$link .= Text::make_item($symb->itemid, $symb->itemid, $symb->ql, $name)."\n";
 			}
-			$msg .= "\n".Text::makeBlob("Remains of $row->pb", $link);
+			$msg .= "\n".Text::make_blob("Remains of $row->pb", $link);
 		}
 	} else if ($pb_found > 5) {
 		$msg = "Too many results.";
@@ -110,10 +110,10 @@ if (preg_match("/^pb (.+)$/i", $message, $arr)) {
 	if ($numrows != 0) {
 		forEach ($data as $row) {
 		  	$name = "\n\nQL $row->ql $row->line $row->slot Symbiant, $row->type Unit Aban";
-		  	$link .= Text::makeItem($row->itemid, $row->itemid, $row->ql, $name)."\n";
-		  	$link .= "Found on ".Text::makeLink($row->pb, "/tell <myname> pb $row->pb", "chatcmd");
+		  	$link .= Text::make_item($row->itemid, $row->itemid, $row->ql, $name)."\n";
+		  	$link .= "Found on ".Text::make_link($row->pb, "/tell <myname> pb $row->pb", "chatcmd");
 		}
-		$msg .= Text::makeBlob("Symb Results ($numrows)", $link);
+		$msg .= Text::make_blob("Symb Results ($numrows)", $link);
 	} else {
 		$msg = "Couldn't find any symbs";
 	}
@@ -175,10 +175,10 @@ if (preg_match("/^pb (.+)$/i", $message, $arr)) {
 	if ($numrows != 0) {
 		forEach ($data as $row) {
 		  	$name = "\n\nQL $row->ql $row->line $row->slot Symbiant, $row->type Unit Aban";
-		  	$link .= Text::makeItem($row->itemid, $row->itemid, $row->ql, $name)."\n";
-		  	$link .= "Found on ".Text::makeLink($row->pb, "/tell <myname> pb $row->pb", "chatcmd");
+		  	$link .= Text::make_item($row->itemid, $row->itemid, $row->ql, $name)."\n";
+		  	$link .= "Found on ".Text::make_link($row->pb, "/tell <myname> pb $row->pb", "chatcmd");
 		}
-		$msg .= Text::makeBlob("Symb Results ($numrows)", $link);
+		$msg .= Text::make_blob("Symb Results ($numrows)", $link);
 	} else {
 		$msg = "Couldn't find any symbs";
 	}

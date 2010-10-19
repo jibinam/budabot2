@@ -71,57 +71,58 @@ class Text {
 	}
 	
 /*===============================
-** Name: makeBlob
+** Name: make_blob
 ** Make click link reference.
-*/	public static function makeBlob($name, $content, $links = null) {
+*/	public static function make_blob($name, $content, $links = null) {
 		$content = str_replace('"', '&quot;', $content);
 		$content = explode("\n", $content);
-		$page = 1;
+		$page = 0;
 		forEach ($content as $line) {
 			$result[$page] .= $line."\n";
 			if (strlen($result[$page]) >= Settings::get("max_blob_size")) {
 				$page++;
 			}
 		}
+
 		$pages = count($result);
 		if ($pages == 1) {
-			$result[$page] = "<a href=\"text://".Text::make_header($name, $links).Settings::get("default_window_color").$result[$page]."\">$name</a>";
+			$result = "<a href=\"text://".Text::make_header($name, $links).Settings::get("default_window_color").$result[0]."\">{$name}</a>";
 		} else {
 			forEach ($result as $page => $content) {
-				$result[$page] = "<a href=\"text://".Text::make_header("$name Page $page / $pages", $links).Settings::get("default_window_color").$result[$page]."\">$name</a> (Page <highlight>$page / $pages<end>)";
+				$result[$page] = "<a href=\"text://".Text::make_header("{$name} Page {$page} / {$pages}", $links).Settings::get("default_window_color").$result[$page]."\">{$name}</a> (Page <highlight>{$page} / {$pages}<end>)";
 			}
 		}
 		return $result;
 	}
 
 /*===============================
-** Name: makeLink
+** Name: make_link
 ** Make click link reference.
-*/	public static function makeLink($name, $content, $type) {
+*/	public static function make_link($name, $content, $type) {
 		// escape double quotes
 		if ($type == 'blob' || $type == '') {
-			return Text::makeBlob($name, $content);
+			return Text::make_blob($name, $content);
 		} else {
 			$content = str_replace('"', '&quote;', $content);
 			$content = str_replace("'", '&#39;', $content);
 		}
 
 		if ($type == "text") { // Majic link.
-			return "<a href='text://$content'>$name</a>";
+			return "<a href='text://{$content}'>{$name}</a>";
 		} else if ($type == "chatcmd") { // Chat command.
-			return "<a href='chatcmd://$content'>$name</a>";
+			return "<a href='chatcmd://{$content}'>{$name}</a>";
 		} else if ($type == "user") { // Adds support for right clicking usernames in chat, providing you with a menu of options (ignore etc.) (see 18.1 AO patchnotes)
-			return "<a href='user://$content'>$name</a>";
+			return "<a href='user://{$content}'>{$name}</a>";
 		} else {
-			Logger::log(__FILE__, "Invalid type: '$type'", ERROR);
+			Logger::log(__FILE__, "Invalid type: '{$type}'", ERROR);
 		}
 	}
 	
 /*===============================
-** Name: makeItem
+** Name: make_item
 ** Make item link reference.
-*/	public static function makeItem($lowID, $hiID,  $ql, $name) {
-		return "<a href='itemref://$lowID/$hiID/$ql'>$name</a>";
+*/	public static function make_item($low_id, $hi_id,  $ql, $name) {
+		return "<a href='itemref://{$low_id}/{$hi_id}/{$ql}'>{$name}</a>";
 	}
 }
 

@@ -83,11 +83,8 @@ class WhoisXML extends XML {
 		if (file_exists("$cache/$name.$rk_num.xml")) {
 			$mins = (time() - filemtime("$cache/$name.$rk_num.xml")) / 60;
 			$hours = floor($mins/60);
-			if ($hours < 24 && $fp = fopen("$cache/$name.$rk_num.xml", "r")) {
-				while (!feof ($fp)) {
-					$playerbio .= fgets ($fp, 4096);
-				}
-				fclose($fp);
+			if ($hours < 24) {
+				$playerbio = file_get_contents("$cache/$name.$rk_num.xml");
 				if (xml::spliceData($playerbio, '<nick>', '</nick>') == $name) {
 					$this->source = 'cache-current';
 					$data_found = true;
@@ -127,19 +124,14 @@ class WhoisXML extends XML {
 		
 		//If both site were not responding or the data was invalid and a xml file exists get that one
 		if (!$data_found && file_exists("$cache/$name.$rk_num.xml")) {
-			if ($fp = fopen("$cache/$name.$rk_num.xml", "r")) {
-				while(!feof ($fp))
-				$playerbio .= fgets ($fp, 4096);
-				fclose($fp);
-
-				if(xml::spliceData($playerbio, '<nickname>', '</nickname>') == $name) {
-					$this->source = 'cache-old';
-					$data_found = true;
-				} else {
-					$data_found = false;
-					unset($playerbio);
-					@unlink("$cache/$name.$rk_num.xml");
-				}
+			$playerbio = file_get_contents("$cache/$name.$rk_num.xml");
+			if(xml::spliceData($playerbio, '<nickname>', '</nickname>') == $name) {
+				$this->source = 'cache-old';
+				$data_found = true;
+			} else {
+				$data_found = false;
+				unset($playerbio);
+				@unlink("$cache/$name.$rk_num.xml");
 			}
 		}
 		

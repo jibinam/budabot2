@@ -127,7 +127,7 @@ if (preg_match("/^stats$/i", $message, $arr)) {
 		<a href=skillid://681>Team Deaths</a>
 		<a href=skillid://410>Number of fighting opponents</a>";
 
-	$msg = Text::makeBlob('Stats', $window);
+	$msg = Text::make_blob('Stats', $window);
 
 	$chatBot->send($msg, $sendto);
 }

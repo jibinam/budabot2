@@ -30,9 +30,9 @@ if (preg_match("/^cmdlist$/i", $message, $arr) || preg_match("/^cmdlist (.*)$/i"
 		$priv = '';
 		$msg = '';
 
-		$on = Text::makeLink('ON', "/tell <myname> config cmd $row->cmd enable all", 'chatcmd');
-		$off = Text::makeLink('OFF', "/tell <myname> config cmd $row->cmd disable all", 'chatcmd');
-		$adv = Text::makeLink('Adv.', "/tell <myname> config cmd $row->cmd $row->module", 'chatcmd');
+		$on = Text::make_link('ON', "/tell <myname> config cmd $row->cmd enable all", 'chatcmd');
+		$off = Text::make_link('OFF', "/tell <myname> config cmd $row->cmd disable all", 'chatcmd');
+		$adv = Text::make_link('Adv.', "/tell <myname> config cmd $row->cmd $row->module", 'chatcmd');
 		
 		if ($row->msg_avail == 0) {
 			$tell = "|_";
@@ -65,7 +65,7 @@ if (preg_match("/^cmdlist$/i", $message, $arr) || preg_match("/^cmdlist (.*)$/i"
 		}
 	}
 
-	$msg = Text::makeLink("Bot Settings -- Command List", $list);
+	$msg = Text::make_link("Bot Settings -- Command List", $list);
  	$chatBot->send($msg, $sendto);
 }
 

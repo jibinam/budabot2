@@ -55,7 +55,7 @@ Click <a href='chatcmd:///tell <myname> leaveRaffle'>here</a> if you wish to lea
 
 	$linkMsg .= "\n\n Time left: $tleft seconds.";
 
-    $link = Text::makeLink("here", $linkMsg);
+    $link = Text::make_link("here", $linkMsg);
         
 	if ($tleft < 0 && $timesincelastmsg > 15) {
 		$memNum = count($chatBot->vars["Raffles"]["rafflees"]);

@@ -40,7 +40,7 @@ if(count($bior) == 0) {
 	$info .= "The bot has it's own Bio Regrowth macro to use it just do ";
 	$info .= "<symbol>b in the chat. \n\n";
 	$info .= "<a href='chatcmd:///macro BR_Macro /g <myname> <symbol>b'>Click here to make an Bio Regrowth macro </a>";
-	$info = Text::makeBlob("about Bio Regrowth macro", $info);
+	$info = Text::make_blob("about Bio Regrowth macro", $info);
 
   	//Create Bio Regrowth Order
 	forEach ($bior as $key => $value) {

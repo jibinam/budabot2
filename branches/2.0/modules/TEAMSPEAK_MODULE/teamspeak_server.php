@@ -218,7 +218,7 @@ if (preg_match("/^ts$/i", $message)) {
 			}
 		}
 
-		$msg = Text::makeBlob("Teamspeak Server Status", $link);
+		$msg = Text::make_blob("Teamspeak Server Status", $link);
 	} else {
 		$msg = "Couldn't connect to Teamspeak Server. Try again later.";
 	}

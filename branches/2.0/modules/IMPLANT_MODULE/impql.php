@@ -46,7 +46,7 @@ if (!preg_match("/^[0-9]+$/i", $ql, $p) || ($ql < 1) || ($ql > 300)) {
 } else {
 	$obj = getRequirements($ql);
 	$clusterInfo = formatClusterBonuses($obj);
-	$link = Text::makeBlob('Impql $ql', $clusterInfo);
+	$link = Text::make_blob('Impql $ql', $clusterInfo);
 	$msg = "\nFor ql $ql imps\nTreatment required: $obj->treatment.\nAbility Required: $obj->ability\n$link";
 }
 

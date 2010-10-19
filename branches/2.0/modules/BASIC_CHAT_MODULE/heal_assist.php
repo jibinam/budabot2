@@ -30,32 +30,32 @@
    */
 
 global $heal_assist;
-if (preg_match("/heal(assist)?$/i", $message)) {
+if (preg_match("/heal$/i", $message)) {
   	if (isset($heal_assist)) {
 	  	$link .= "<a href='chatcmd:///macro $heal_assist /assist $heal_assist'>Click here to make an healassist on $heal_assist macro</a>";
-	  	$msg = Text::makeBlob("HealAssist Macro on $heal_assist", $link);
+		$msg = Text::make_blob("HealAssist Macro on $heal_assist", $link);
 	} else {
 		$msg = "No Healassist set atm.";
 	}
-	$chatBot->send($msg);
-} else if (preg_match("/^setheal(assist)? (.+)$/i", $message, $arr)) {
-    $name = $arr[2];
+	$chatBot->send($msg, 'priv');
+} else if (preg_match("/^heal (.+)$/i", $message, $arr)) {
+    $name = $arr[1];
     $uid = $chatBot->get_uid(ucfirst(strtolower($name)));
     if ($uid) {
-      	$name = ucfirst(strtolower($name));
-	  	$heal_assist = $name;
-	  	$link .= "<a href='chatcmd:///macro $name /assist $name'>Click here to make an healassist on $name macro</a>";
-	  	$msg = Text::makeBlob("HealAssist Macro on $name", $link);
-		$chatBot->send($msg);
-		$chatBot->send($msg);
-		$chatBot->send($msg);
+		$name = ucfirst(strtolower($name));
+		$heal_assist = $name;
+		$link .= "<a href='chatcmd:///macro $name /assist $name'>Click here to make an healassist on $name macro</a>";
+		$msg = Text::make_blob("HealAssist Macro on $name", $link);
+		$chatBot->send($msg, 'priv');
+		$chatBot->send($msg, 'priv');
+		$chatBot->send($msg, 'priv');
 	} else {
 	  	$heal_assist = $name;
 	  	$link .= "<a href='chatcmd:///macro $name /assist $name'>Click here to make an healassist on $name macro</a>";
-	  	$msg = Text::makeBlob("HealAssist Macro on $name", $link);
-		$chatBot->send($msg);
-		$chatBot->send($msg);
-		$chatBot->send($msg);
+	  	$msg = Text::make_blob("HealAssist Macro on $name", $link);
+		$chatBot->send($msg, 'priv');
+		$chatBot->send($msg, 'priv');
+		$chatBot->send($msg, 'priv');
 	}
 } else {
 	$syntax_error = true;

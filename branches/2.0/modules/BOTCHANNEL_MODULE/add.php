@@ -30,18 +30,18 @@
    */
 
 if (preg_match("/^adduser (.+)$/i", $message, $arr)) {
-    $add_player = Player::create($arr[1]);
-    $name = ucfirst(strtolower($arr[1]));
-    if ($add_player == null) {
-        $msg = "Player <highlight>$name<end> does not exist.";
-    } else {
-	  	$db->query("SELECT * FROM members_<myname> WHERE `name` = '$name'");
-	  	if($db->numrows() != 0) {
-	  		$msg = "<highlight>$name<end> is already on the guestlist.";
-	  	} else {
-		    $db->query("INSERT INTO members_<myname> (`name`, `autoinv`) VALUES ('$name', 1)");
-		    $msg = "<highlight>$name<end> has been added to the guestlist.";
-	        $add_player->add_to_buddylist->('member');
+	$add_player = Player::create($arr[1]);
+	$name = ucfirst(strtolower($arr[1]));
+	if ($add_player == null) {
+		$msg = "Player <highlight>$name<end> does not exist.";
+	} else {
+		$db->query("SELECT * FROM members_<myname> WHERE `name` = '$name'");
+		if($db->numrows() != 0) {
+			$msg = "<highlight>$name<end> is already a member of this bot.";
+		} else {
+			$db->query("INSERT INTO members_<myname> (`name`, `autoinv`) VALUES ('$name', 1)");
+			$msg = "<highlight>$name<end> has been added as a member of this bot.";
+			$add_player->add_to_buddylist->('member');
 		}
 	}
 

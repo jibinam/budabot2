@@ -39,6 +39,6 @@ if (preg_match("/^tell (.+)$/i", $message, $arr)) {
 		$chatBot->send("Tell from $sender: <yellow>".$arr[1]."<end>", $row->name);
 	}
 	
-	$chatBot->send("A tell has been send to all online Orgmembers.", "guild");
+	$chatBot->send("A tell has been sent to all online Orgmembers.", $sendto);
 }
 ?>

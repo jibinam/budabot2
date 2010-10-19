@@ -30,13 +30,8 @@
    */
 
 if (Settings::get("topic") != '' && isset($chatBot->guildmembers[$sender]) && (time() >= $chatBot->vars["topicdelay"])) {
-	$time = time() - Settings::get("topic_time");
-	$mins = floor($time / 60);
-	$hours = floor($mins / 60);
-	$mins = floor($mins - ($hours * 60));
-	$days = floor($hours / 24);
-	$hours = floor($hours - ($days * 24));
-	$msg = "<highlight>Topic:<end> ". Settings::get("topic") ." [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$days}days, {$hours}hrs and {$mins}mins ago<end>]";
+	$date_string = Util::unixtime_to_readable(time() - Settings::get("topic_time"), false);
+	$msg = "<highlight>Topic:<end> ". Settings::get("topic") ." [set by <highlight>" . Settings::get("topic_setby") . "<end>][<highlight>{$date_string} ago<end>]";
     $chatBot->send($msg, $sender);
 }
 ?>

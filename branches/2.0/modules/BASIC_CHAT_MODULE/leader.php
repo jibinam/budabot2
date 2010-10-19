@@ -37,34 +37,40 @@ if (Settings::get("leaderecho") == 1) {
 	$cmd = "on";
 }
 
-if (preg_match("/^setleader (.+)$/i", $message, $arr)) {
+if ($type == "leavePriv") {
+	if ($this->vars["leader"] == $sender) {
+		unset($this->vars["leader"]);
+	  	$msg = "Raid leader cleared.";
+		bot::send($msg, 'priv');
+	}
+} else if (preg_match("/^leader (.+)$/i", $message, $arr)) {
     $uid = $chatBot->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
 	if (!$uid) {
 		$msg = "Player <highlight>{$name}<end> does not exist.";
 	} else if (!isset($chatBot->chatlist[$name])) {
-		$msg = "Player <highlight>{$name}<end> did't joined this channel.";
+		$msg = "Player <highlight>{$name}<end> isn't in this channel.";
 	} else {
 		$chatBot->leader = $name;
-	  	$msg = "{$name} is now Raidleader. Raidleader echo is currently {$status}. You can change it with <symbol>leaderecho {$cmd}"
+	  	$msg = "{$name} is now Leader. Leader echo is currently {$status}. You can change it with <symbol>leaderecho {$cmd}";
 	}
-  	$chatBot->send($msg);
+  	$chatBot->send($msg, 'priv');
 } else if (preg_match("/^leader$/i", $message)) {
   	if ($chatBot->leader == $sender) {
 		unset($chatBot->leader);
-	  	$msg = "Raidleader is cleared.";
+	  	$msg = "Leader cleared.";
 	} else if ($chatBot->leader != "") {
 		if ($chatBot->admins[$sender]["level"] >= $chatBot->admins[$chatBot->leader]["level"]){
   			$chatBot->leader = $sender;
-		  	$msg = "{$sender} is now Raidleader. Raidleader echo is currently {$status}. You can change it with <symbol>leaderecho {$cmd}";
+		  	$msg = "{$sender} is now Leader. Leader echo is currently {$status}. You can change it with <symbol>leaderecho {$cmd}";
 		} else {
 			$msg = "You can't take leader from <highlight>{$chatBot->leader}<end>.";
 		}
 	} else {
 		$chatBot->leader = $sender;
-	  	$msg = "{$sender} is now Raidleader. Raidleader echo is currently {$status}. You can change it with <symbol>leaderecho {$cmd}";
+	  	$msg = "{$sender} is now Leader. Leader echo is currently {$status}. You can change it with <symbol>leaderecho {$cmd}";
 	}
-  	$chatBot->send($msg);
+  	$chatBot->send($msg, 'priv');
 
 } else {
 	$syntax_error = true;

@@ -131,7 +131,7 @@ if ($def_guild) {
 		$link .= "<highlight>Playfield:<end> ".$colorvalue.$site_info->playfield." (<highlight>#".$site_info->hugemaploc."<end> : {$site_info->low_level}-{$site_info->high_level})<end>\n";
 		$link .= $colorlabel."Location:<end> ".$colorvalue.$site_info->location." (".$coordx." x ".$coordy.")<end>\n";
 
-		$more = "[".Text::makeBlob("Advanced Tower Info", $link)."]";
+		$more = "[".Text::make_blob("Advanced Tower Info", $link)."]";
 	}
 	
 	// Prep for if our org is being attacked.

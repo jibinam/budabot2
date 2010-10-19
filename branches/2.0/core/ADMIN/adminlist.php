@@ -97,7 +97,7 @@ if (preg_match("/^adminlist$/i", $message)) {
 		$list.= "\n";
 	}
 	
-	$link = Text::makeLink('Adminlist', $list);	
+	$link = Text::make_link('Adminlist', $list);	
 	$chatBot->send($link, $sendto);
 } else {
 	$syntax_error = true;

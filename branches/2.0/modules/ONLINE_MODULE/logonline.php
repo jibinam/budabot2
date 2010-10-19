@@ -36,7 +36,7 @@ if (Settings::get("logonline_tell") && (isset($chatBot->guildmembers[$sender]) |
 	$msg = "";
 	$type = "msg";
 	list($numonline, $msg, $list) = online($type, $sender, $sendto, $this);
-	$link = ":: ".Text::makeLink('Click here', $list);
+	$link = ":: ".Text::make_link('Click here', $list);
 	if ($numonline != 0) {
 		$chatBot->send($msg.$link, $sender);
 	} else {

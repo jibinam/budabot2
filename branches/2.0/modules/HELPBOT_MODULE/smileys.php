@@ -123,8 +123,8 @@ User is braindead.
 User just died. ";
 	
 if (preg_match("/^smileys$/i", $message)) {
-	$basiclink = Text::makeBlob("Basic Smileys", $basic) ;
-	$widelink = Text::makeBlob("Widely Used Smileys", $wide);
+	$basiclink = Text::make_blob("Basic Smileys", $basic) ;
+	$widelink = Text::make_blob("Widely Used Smileys", $wide);
 
 	$chatBot->send($basiclink, $sendto);
 	$chatBot->send($widelink, $sendto);

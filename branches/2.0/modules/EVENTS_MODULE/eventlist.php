@@ -11,8 +11,8 @@ if (preg_match("/^eventlist ([0-9]+)$/i", $message, $arr)) {
 	$row = $db->query("SELECT event_attendees FROM events_<myname>_<dim> WHERE `id` = '$arr[1]'", true);
 	if ($db->numrows() != 0) {
 		
-		$link .= Text::makeLink("Join this event", "/tell <myname> joinEvent $arr[1]", "chatcmd")."\n";
-		$link .= Text::makeLink("Leave this event", "/tell <myname> leaveEvent $arr[1]", "chatcmd")."\n\n";
+		$link .= Text::make_link("Join this event", "/tell <myname> joinEvent $arr[1]", "chatcmd")."\n";
+		$link .= Text::make_link("Leave this event", "/tell <myname> leaveEvent $arr[1]", "chatcmd")."\n\n";
 	
 		$eventlist = explode(",", $row->event_attendees);
 		sort($eventlist);
@@ -34,7 +34,7 @@ if (preg_match("/^eventlist ([0-9]+)$/i", $message, $arr)) {
 				
 				$link .= trim($value)."$info $alt\n";
 			}
-			$msg = Text::makeBlob("Eventlist", $link);
+			$msg = Text::make_blob("Eventlist", $link);
 		} else {
 			$msg = "Eventlist is empty";
 		}

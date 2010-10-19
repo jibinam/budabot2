@@ -79,7 +79,7 @@ if($org_member->mode != "del" && $numrows == 1) {
         if ($main) {
             $list = "<header>::::: Alternative Character List :::::<end> \n \n";
             $list .= ":::::: Main Character\n";
-            $list .= "<tab><tab>".bot::makeLink($main, "/tell <myname> whois $main", "chatcmd")." - ";
+            $list .= "<tab><tab>".Text::make_link($main, "/tell <myname> whois $main", "chatcmd")." - ";
 			$online = Buddylist::is_online($main);
             if ($online === null) {
                 $list .= "No status.\n";
@@ -92,7 +92,7 @@ if($org_member->mode != "del" && $numrows == 1) {
             $list .= ":::::: Alt Character(s)\n";
             $data = $db->query("SELECT * FROM alts WHERE `main` = '$main'");
             forEach ($data as $row) {
-                $list .= "<tab><tab>".bot::makeLink($row->alt, "/tell <myname> whois $row->alt", "chatcmd")." - ";
+                $list .= "<tab><tab>".Text::make_link($row->alt, "/tell <myname> whois $row->alt", "chatcmd")." - ";
 				$online = Buddylist::is_online($row->alt);
                 if ($online === null) {
                     $list .= "No status.\n";
@@ -105,10 +105,10 @@ if($org_member->mode != "del" && $numrows == 1) {
         }
 
 		if ($main != $sender && $main != false) {
-			$alts = Text::makeLink("Alts", $list);
+			$alts = Text::make_link("Alts", $list);
 			$msg .= "Main: <highlight>$main<end> ($alts) ";
 		} else if ($main != false) {
-  			$alts = Text::makeLink("Alts of $main", $list);
+  			$alts = Text::make_link("Alts of $main", $list);
 			$msg .= "$alts ";
 		}
 

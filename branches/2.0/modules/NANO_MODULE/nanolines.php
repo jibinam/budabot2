@@ -40,13 +40,13 @@ if (preg_match("/^nanolines$/i", $message, $arr)) {
 
 	forEach ($data as $row) {
 
-		$window .= Text::makeLink($row->profession, "/tell <myname> <symbol>nlprof $row->profession", 'chatcmd');
+		$window .= Text::make_link($row->profession, "/tell <myname> <symbol>nlprof $row->profession", 'chatcmd');
 		$window .= "\n";
 	}
 
 	$window .= "\n\nAO Nanos by Voriuste";
 
-	$msg = Text::makeBlob('Nanolines', $window);
+	$msg = Text::make_blob('Nanolines', $window);
 
 	$chatBot->send($msg, $sendto);
 } else {

@@ -47,5 +47,5 @@ if (preg_match("/^afk$/i", $message, $arr)) {
         $msg = "<highlight>$sender<end> is back";
     }
 }
-$chatBot->send($msg);
+$chatBot->send($msg, 'priv');
 ?>

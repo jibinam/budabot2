@@ -1,7 +1,7 @@
 <?php
   /*
    ** Author: Derroylo (RK2)
-   ** Description: Locking the privategroup
+   ** Description: Locking the private channel
    ** Version: 1.0
    **
    ** Developed for: Budabot(http://sourceforge.net/projects/budabot)
@@ -31,42 +31,42 @@
    
 if (preg_match("/^lock$/i", $message)) {
   	if (Settings::get("priv_status") == "closed") {
-	    $chatBot->send("Private group is already locked.", $sendto);
+	    $chatBot->send("Private channel is already locked.", $sendto);
 		return;
 	}
-	$msg = "The private group has been locked by <highlight>$sender<end>.";
+	$msg = "The private channel has been locked by <highlight>$sender<end>.";
 	$chatBot->send($msg, "priv");
 	
 	if ($type == "msg") {
-		$chatBot->send("You have locked the private group.", $sender);
+		$chatBot->send("You have locked the private channel.", $sender);
 	}
 	
 	Settings::save("priv_status", "closed");
 } else if (preg_match("/^lock (.+)$/i", $message, $arr)) {
   	$reason = $arr[1];
 	if (Settings::get("priv_status") == "closed") {
-	    $chatBot->send("Private group is already locked.", $sendto);
+	    $chatBot->send("Private channel is already locked.", $sendto);
 		return;
 	}
-	$msg = "The private group has been locked by <highlight>$sender<end>. Reason: <highlight>$reason<end> ";
+	$msg = "The private channel has been locked by <highlight>$sender<end>. Reason: <highlight>$reason<end> ";
 	$chatBot->send($msg);
 	
 	if ($type == "msg") {
-		$chatBot->send("You have locked the private group.", $sender);
+		$chatBot->send("You have locked the private channel.", $sender);
 	}
 	
 	Settings::save("priv_status", "closed");
 	Settings::save("priv_status_reason", $reason);
 } else if (preg_match("/^unlock$/i", $message)) {
   	if (Settings::get("priv_status") == "open") {
-    	$chatBot->send("Private group is already opened.", $sendto);
+    	$chatBot->send("Private channel is already opened.", $sendto);
 		return;
 	}
-	$msg = "The private group has been opened by <highlight>$sender<end>.";
+	$msg = "The private channel has been opened by <highlight>$sender<end>.";
 	$chatBot->send($msg);
 
 	if ($type == "msg") {
-		$chatBot->send("You have opened the privategroup.", $sender);
+		$chatBot->send("You have opened the private channel.", $sender);
 	}
 	
 	Settings::save("priv_status", "open");

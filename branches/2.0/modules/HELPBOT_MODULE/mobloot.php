@@ -12,7 +12,7 @@
 	$help .= "<a href='chatcmd:///tell <myname> <symbol>mobloot 150'>/tell <myname> <symbol>mobloot 150</a>\n\n";
 	$help .= $footer;
 
-	$helplink = Text::makeLink("::How to use mobloot::", $help);
+	$helplink = Text::make_link("::How to use mobloot::", $help);
 
 	if (preg_match("/^mobloot ([0-9]+)$/i", $message, $arr)) {
 		$lvl = trim($arr[1]);
@@ -28,7 +28,7 @@
 			$inside .= "Loot QL range: <orange>".$low."<end> - <orange>".$high."<end>\n";
 			$inside .= $footer;
 			
-			$windowlink = Text::makeLink("::Your loot QL results::", $inside);
+			$windowlink = Text::make_link("::Your loot QL results::", $inside);
 			$chatBot->send($windowlink, $sendto);
 		}
 	

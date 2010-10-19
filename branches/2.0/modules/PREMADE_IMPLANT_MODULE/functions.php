@@ -52,7 +52,7 @@ function formatResults($implants) {
 		
 	if ($count > 3) {
 		$msg .= "\n\nProvided by Demoder(RK2)";
-		$msg = $chatBot->makeBlob('Results', $msg);
+		$msg = Text::make_blob('Results', $msg);
 	}
 	
 	return $msg;

@@ -14,7 +14,7 @@
 	$help .= "<a href='chatcmd:///tell <myname> <symbol>buffitem nova dil'>/tell <myname> <symbol>buffitem nova dil</a>\n\n";
 	$help .= $footer;
 
-	$helplink = Text::makeLink("::How to use buffitem::", $help);
+	$helplink = Text::make_link("::How to use buffitem::", $help);
 
 	if (preg_match("/^buffitem (.+)$/i", $message, $arr)) {
 		$name = $arr[1];
@@ -59,7 +59,7 @@
 				$inside .= "\n".sizeof($results)." results found, please pick one by clicking it\n\n";
 			}
 			$inside .= $footer;
-			$windowlink = Text::makeLink("Buff item search results", $inside);
+			$windowlink = Text::make_link("Buff item search results", $inside);
 		}
 		$chatBot->send($windowlink, $sendto);
 		$chatBot->send("<highlight>$found<end> result(s) in total", $sendto);

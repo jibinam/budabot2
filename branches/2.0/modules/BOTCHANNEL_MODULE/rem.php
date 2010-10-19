@@ -36,10 +36,10 @@ if (preg_match("/^remuser (.+)$/i", $message, $arr)) {
     } else {
 	  	$db->query("SELECT * FROM members_<myname> WHERE `name` = '$member->name'");
 	  	if ($db->numrows() == 0) {
-	  		$msg = "<highlight>{$member->name}<end> is not on the guestlist.";
+	  		$msg = "<highlight>{$member->name}<end> is not a member of this bot.";
 	  	} else {
 		    $db->query("DELETE FROM members_<myname> WHERE `name` = '{$member->name}'");
-		    $msg = "<highlight>{$member->name}<end> has been removed from the guestlist.";
+		    $msg = "<highlight>{$member->name}<end> has been removed as a member of this bot.";
 			$member->remove_from_buddylist('member');
 		}
 	}

@@ -58,7 +58,7 @@ if(preg_match("/^chatlist$/i", $message) || preg_match("/^sm$/i", $message)){
 	$list = "Players(1-209): $below<br>".$list;
 	$topic = "Topic: " . Settings::get("topic") . "<br><br>";
 	$list = "<green>$topic<lgreen>".$list;
-	$link = Text::makeBlob('Chatlist', $list);
+	$link = Text::make_blob('Chatlist', $list);
 
 	$chatBot->send($link, $sender);
 }

@@ -47,7 +47,7 @@ if (preg_match("/^kos$/i", $message)) {
 			$link .= "$i. $key <highlight>(Voted {$value}times)<end>\n";
 		}
 			
-		$msg = Text::makeBlob("KOS-List", $link);
+		$msg = Text::make_blob("KOS-List", $link);
 	}
 
 	$chatBot->send($msg, $sendto);
@@ -113,7 +113,7 @@ if (preg_match("/^kos$/i", $message)) {
 
 			$link .= "\n";
 		}
-		$msg = Text::makeBlob("KOS-List from $name", $link);
+		$msg = Text::make_blob("KOS-List from $name", $link);
 	} else {
 		$msg = "The player <highlight>$name<end> isn't on the KOS List.";
 	}

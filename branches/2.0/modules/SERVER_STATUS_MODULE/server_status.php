@@ -62,7 +62,7 @@ if (preg_match("/^server(.*)$/i", $message, $arr)) {
 		    	$link .= "<highlight>$zone<end>: {$proz["players"]} \n";
 			}
 			
-			$msg = Text::makeBlob("Status of $server->name", $link);	    
+			$msg = Text::make_blob("Status of $server->name", $link);	    
 		}
 	} else {
 		$msg = "Choose a server between 1 and 4";

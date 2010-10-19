@@ -17,7 +17,7 @@ if (preg_match("/^fling ([0-9]*\.?[0-9]+) ([0-9]+)$/i", $message, $arr)) {
 	$inside	.= "Fling Recharge:<orange> ". $flingrech ."<end>s\n";
 	$inside	.= "You need <orange>".$flingskillcap."<end> Fling Skill to cap your fling at: <orange>".$flinghardcap."<end>s";
 
-	$windowlink = Text::makeBlob("::Your Fling Results::", $inside);
+	$windowlink = Text::make_blob("::Your Fling Results::", $inside);
 	$chatBot->send($windowlink, $sendto);
 } else {
 	$syntax_error = true;

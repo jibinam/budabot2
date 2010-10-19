@@ -31,7 +31,7 @@
 		$inside .= "Stun duration: ".$stunD."\n";
 		$inside .= "\n\nby Imoutochan, RK1";
 		
-		$windowlink = Text::makeBlob("::Your Brawl skill results::", $inside);
+		$windowlink = Text::make_blob("::Your Brawl skill results::", $inside);
 		$chatBot->send($windowlink, $sendto);
 	} else {
 		$syntax_error = true;

@@ -615,7 +615,7 @@ else if (preg_match ("/^spiritssen ([0-9]+) (.+)$/i", $message, $arr)) {
 	return;
 }
 		
-$spirits = Text::makeLink($title, $spirits);
+$spirits = Text::make_link($title, $spirits);
 		
 $chatBot->send($spirits, $sendto);
 ?>

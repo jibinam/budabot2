@@ -144,7 +144,7 @@ if (preg_match("/^time$/i", $message)) {
 
 
 	$msg = "<highlight>".gmdate("dS M, H:i", $time)."<end> (GMT/AO)";
-	$msg .= " ".Text::makeBlob("All Timezones", $link);
+	$msg .= " ".Text::make_blob("All Timezones", $link);
     $chatBot->send($msg, $sendto);
 } else if (preg_match("/^time (.+)$/i", $message, $arr)) {
   	$zone = strtoupper($arr[1]);

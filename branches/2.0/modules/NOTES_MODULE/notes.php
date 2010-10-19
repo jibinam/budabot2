@@ -36,14 +36,14 @@ if (preg_match("/^notes?$/i", $message)) {
 	$sql = "SELECT * FROM notes_<myname> WHERE name LIKE '$sender'";
   	$data = $db->query($sql);
   	forEach ($data as $row) {
-	  	$remove = Text::makeLink('Remove', "/tell <myname> <symbol>note rem $row->id" , 'chatcmd');
+	  	$remove = Text::make_link('Remove', "/tell <myname> <symbol>note rem $row->id" , 'chatcmd');
 	  	$moreInfoMsg .= "$remove $row->note\n\n";
 	}
 	
 	if ($moreInfoMsg == '') {
 		$msg = "No notes for $sender.";	
 	} else {
-		$msg = Text::makeBlob("Notes for $sender", $moreInfoMsg);
+		$msg = Text::make_blob("Notes for $sender", $moreInfoMsg);
 	}
   	
 	$chatBot->send($msg, $sendto);

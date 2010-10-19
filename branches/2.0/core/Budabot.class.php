@@ -284,7 +284,7 @@ public function load_settings_from_config(&$settings) {
 	}
 	
 	function send_to_player($message, &$player) {
-		// for when makeLink generates several pages
+		// for when Text::make_link() generates several pages
 		if (is_array($message)) {
 			forEach ($message as $page) {
 				$this->send_to_player($page, $player);
@@ -299,7 +299,7 @@ public function load_settings_from_config(&$settings) {
 	}
 
 	function send_to_pgroup($message, $disable_relay = false) {
-		// for when makeLink generates several pages
+		// for when Text::make_link() generates several pages
 		if (is_array($message)) {
 			forEach ($message as $page) {
 				$this->send_to_pgroup($page, $disable_relay);
@@ -311,12 +311,12 @@ public function load_settings_from_config(&$settings) {
 
 		$this->send_privgroup($this->name, Settings::get("default_priv_color").$message);
 		if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
-			$this->send_group($this->guild, "</font>" . Settings::get("guest_color_channel") . "[Guest]<end> " . Settings::get("guest_color_username") . Text::makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_priv_color") . "$message</font>");
+			$this->send_group($this->guild, "</font>" . Settings::get("guest_color_channel") . "[Guest]<end> " . Settings::get("guest_color_username") . Text::make_link($this->name, $this->name, "user")."</font>: " . Settings::get("default_priv_color") . "$message</font>");
 		}
 	}
 	
 	function send_to_external_pgroup($message, $pgroup) {
-		// for when makeLink generates several pages
+		// for when Text::make_link() generates several pages
 		if (is_array($message)) {
 			forEach ($message as $page) {
 				$this->send_to_external_pgroup($page, $pgroup);
@@ -330,7 +330,7 @@ public function load_settings_from_config(&$settings) {
 	}
 	
 	function send_to_guild($message, $disable_relay = false) {
-		// for when makeLink generates several pages
+		// for when Text::make_link() generates several pages
 		if (is_array($message)) {
 			forEach ($message as $page) {
 				$this->send_to_guild($page, $disable_relay);
@@ -346,12 +346,12 @@ public function load_settings_from_config(&$settings) {
 		
 		$this->send_group($this->guild, Settings::get("default_guild_color").$message);
 		if (Settings::get("guest_relay") == 1 && Settings::get("guest_relay_commands") == 1 && !$disable_relay) {
-			$this->send_privgroup($this->name, "</font>" . Settings::get("guest_color_channel") . "[{$this->guild}]<end> " . Settings::get("guest_color_username") . Text::makeLink($this->name, $this->name, "user")."</font>: " . Settings::get("default_guild_color") . "$message</font>");
+			$this->send_privgroup($this->name, "</font>" . Settings::get("guest_color_channel") . "[{$this->guild}]<end> " . Settings::get("guest_color_username") . Text::make_link($this->name, $this->name, "user")."</font>: " . Settings::get("default_guild_color") . "$message</font>");
 		}
 	}
 	
 	function send_to_public_channel($message, $channel) {
-		// for when makeLink generates several pages
+		// for when Text::make_link() generates several pages
 		if (is_array($message)) {
 			forEach ($message as $page) {
 				$this->send_to_public_channel($page, $channel);
@@ -475,17 +475,17 @@ public function load_settings_from_config(&$settings) {
 				Logger::log_chat("Inc. Msg.", $player->name, $message);
 
 				// AFK/bot check
-				if (preg_match("/^$player->name is AFK/si", $message, $arr)) {
+				if (preg_match("/$player->name is AFK/si", $message, $arr)) {
 					return;
-				} else if (preg_match("/^I am away from my keyboard right now/si", $message)) {
+				} else if (preg_match("/I am away from my keyboard right now/si", $message)) {
 					return;
-				} else if (preg_match("/^Unknown command/si", $message, $arr)) {
+				} else if (preg_match("/Unknown command or access denied!/si", $message, $arr)) {
 					return;
-				} else if (preg_match("/^I am responding/si", $message, $arr)) {
+				} else if (preg_match("/I am responding/si", $message, $arr)) {
 					return;
-				} else if (preg_match("/^I only listen/si", $message, $arr)) {
+				} else if (preg_match("/I only listen/si", $message, $arr)) {
 					return;
-				} else if (preg_match("/^Error!/si", $message, $arr)) {
+				} else if (preg_match("/Error!/si", $message, $arr)) {
 					return;
 				}
 

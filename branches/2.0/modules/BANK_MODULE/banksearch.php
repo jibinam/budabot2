@@ -35,7 +35,7 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 					$hitlimit=true;
 					break 2;
 				} else {
-					$msg .= Text::makeItem($base_slot['lowid'], $base_slot['highid'], $base_slot['ql'], $base_slot['name'])."\nItem ID: ".$base_slot['id']."\nLocation: ".ucwords($base_container->getName())."\n\n";
+					$msg .= Text::make_item($base_slot['lowid'], $base_slot['highid'], $base_slot['ql'], $base_slot['name'])."\nItem ID: ".$base_slot['id']."\nLocation: ".ucwords($base_container->getName())."\n\n";
 					$item_count++;
 				}
 			} else {
@@ -45,7 +45,7 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 							$hitlimit=true;
 							break 3;
 						} else {
-							$msg .= Text::makeItem($item['lowid'], $item['highid'], $item['ql'], $item['name'])."\nItem ID: ".$item['id']."\nLocation: ".ucwords($base_container->getName())." > Backpack #".$base_slot['id']."\n\n";
+							$msg .= Text::make_item($item['lowid'], $item['highid'], $item['ql'], $item['name'])."\nItem ID: ".$item['id']."\nLocation: ".ucwords($base_container->getName())." > Backpack #".$base_slot['id']."\n\n";
 							$item_count++;
 						}
 					}
@@ -55,11 +55,11 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 	}
 	
 	if ($hitlimit) {
-		$link = Text::makeBlob("Item search limited to 40 items", $msg);
+		$link = Text::make_blob("Item search limited to 40 items", $msg);
 	} else if ($item_count == 0) {
 		$link = "No items found.";
 	} else {
-		$link = Text::makeBlob($item_count." bank items found", $msg);
+		$link = Text::make_blob($item_count." bank items found", $msg);
 	}
 	$chatBot->send($link, $sendto);
 } else {

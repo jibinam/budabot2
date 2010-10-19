@@ -44,7 +44,7 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 				}
 				$msg .= "   - Backpack #".$backpack['id']."\n";
 				forEach ($backpack->children() as $item) {// Loops through items
-					$msg .= "<tab><tab>> ".Text::makeItem($item['lowid'], $item['highid'], $item['ql'], $item['name'])." Item ID: ".$item['id']."\n";
+					$msg .= "<tab><tab>> ".Text::make_item($item['lowid'], $item['highid'], $item['ql'], $item['name'])." Item ID: ".$item['id']."\n";
 					$item_count++;
 				}
 				if ($location == "inventory") {
@@ -59,7 +59,7 @@ if ($xml = simplexml_load_file("modules/BANK_MODULE/bank.xml")) {
 		} elseif($item_count == 0) {
 			$link = "No items found in Backpack#".$arr." in ".ucwords($location);
 		} else {
-			$link = Text::makeBlob($item_count." items found in \"Backpack #".$arr."\" in ".ucwords($location), $msg);
+			$link = Text::make_blob($item_count." items found in \"Backpack #".$arr."\" in ".ucwords($location), $msg);
 		}
 		$chatBot->send($link, $sendto);
 	} else {

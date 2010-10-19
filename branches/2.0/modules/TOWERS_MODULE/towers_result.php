@@ -68,7 +68,7 @@ if (preg_match("/^battle(s?)$/i", $message) || preg_match("/^battle(s?) (.+)$/i"
 			$list .= $colorlabel."Defender:<end> <$def_side>".$row->def_guild."<end> (".ucfirst($def_side).")\n";
 			$list .= $colorlabel."Zone:<end> ".$row->zone." (".$row->x."x".$row->y.")\n\n";
  		}
-		$msg = Text::makeBlob("The last $listcount Tower Attacks", $list);
+		$msg = Text::make_blob("The last $listcount Tower Attacks", $list);
 	}
 
 } else if (preg_match("/^victory$/i", $message) || preg_match("/^victory (.+)$/i", $message, $arr)) {
@@ -95,7 +95,7 @@ if (preg_match("/^battle(s?)$/i", $message) || preg_match("/^battle(s?) (.+)$/i"
 			$list .= $colorlabel."Winner:<end> <$win_side>".$row->win_guild."<end> (".ucfirst($win_side).")\n";
 			$list .= $colorlabel."Loser:<end> <$lose_side>".$row->lose_guild."<end> (".ucfirst($lose_side).")\n\n";
 		}
-		$msg = Text::makeBlob("The last $listcount Tower Results", $list);
+		$msg = Text::make_blob("The last $listcount Tower Results", $list);
 	}
  
 } else {

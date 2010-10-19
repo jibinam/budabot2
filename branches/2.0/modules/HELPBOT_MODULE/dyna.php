@@ -23,7 +23,7 @@ if (preg_match ("/^dyna ([0-2]?[0-9]?[0-9])$/i", $message, $arr)) {
 		$dynacamps .="<blue>Level:  $row->minQl<yellow>-<blue>$row->maxQl\n\n";
 	}
 	
-	$dynacamps = Text::makeBlob("Results Of Dynacamp Search For $search", $dynacamps);
+	$dynacamps = Text::make_blob("Results Of Dynacamp Search For $search", $dynacamps);
 	$chatBot->send($dynacamps, $sendto);
 } else if (preg_match ("/^dyna (.+)$/i", $message, $arr)) {
 	$search = str_replace(" ", "%", $arr[1]);
@@ -38,7 +38,7 @@ if (preg_match ("/^dyna ([0-2]?[0-9]?[0-9])$/i", $message, $arr)) {
 		$dynacamps .="<blue>Level: $row->minQl<yellow>-<blue>$row->maxQl\n\n";
 	}
 	
-	$dynacamps = Text::makeBlob("Results Of Dynacamp Search For $search", $dynacamps);
+	$dynacamps = Text::make_blob("Results Of Dynacamp Search For $search", $dynacamps);
 	$chatBot->send($dynacamps, $sendto);
 } else {
 	$syntax_error = true;

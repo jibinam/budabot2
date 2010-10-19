@@ -31,17 +31,17 @@
 
 if (preg_match("/^config$/i", $message)) {
 	$list = "Org Commands - " . 
-		Text::makeLink('Enable All', '/tell <myname> config cmd enable guild', 'chatcmd') . " " . 
-		Text::makeLink('Disable All', '/tell <myname> config cmd disable guild', 'chatcmd') . "\n";
+		Text::make_link('Enable All', '/tell <myname> config cmd enable guild', 'chatcmd') . " " . 
+		Text::make_link('Disable All', '/tell <myname> config cmd disable guild', 'chatcmd') . "\n";
 	$list .= "Private Group Commands - " . 
-		Text::makeLink('Enable All', '/tell <myname> config cmd enable priv', 'chatcmd') . " " . 
-		Text::makeLink('Disable All', '/tell <myname> config cmd disable priv', 'chatcmd') . "\n";
+		Text::make_link('Enable All', '/tell <myname> config cmd enable priv', 'chatcmd') . " " . 
+		Text::make_link('Disable All', '/tell <myname> config cmd disable priv', 'chatcmd') . "\n";
 	$list .= "Private Message Commands - " . 
-		Text::makeLink('Enable All', '/tell <myname> config cmd enable msg', 'chatcmd') . " " . 
-		Text::makeLink('Disable All', '/tell <myname> config cmd disable msg', 'chatcmd') . "\n";
+		Text::make_link('Enable All', '/tell <myname> config cmd enable msg', 'chatcmd') . " " . 
+		Text::make_link('Disable All', '/tell <myname> config cmd disable msg', 'chatcmd') . "\n";
 	$list .= "ALL Commands - " . 
-		Text::makeLink('Enable All', '/tell <myname> config cmd enable all', 'chatcmd') . " " . 
-		Text::makeLink('Disable All', '/tell <myname> config cmd disable all', 'chatcmd') . "\n\n\n";
+		Text::make_link('Enable All', '/tell <myname> config cmd enable all', 'chatcmd') . " " . 
+		Text::make_link('Disable All', '/tell <myname> config cmd disable all', 'chatcmd') . "\n\n\n";
 	
 	$sql = "
 		SELECT
@@ -81,7 +81,7 @@ if (preg_match("/^config$/i", $message)) {
 		$list .= strtoupper($row->module)." $a ($on/$off) $c $b\n";
 	}
 
-	$msg = Text::makeLink("Module Config", $list);
+	$msg = Text::make_link("Module Config", $list);
 	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^config cmd (enable|disable) (all|guild|priv|msg)$/i", $message, $arr)) {
 	$status = ($arr[1] == "enable" ? 1 : 0);
@@ -481,7 +481,7 @@ if (preg_match("/^config$/i", $message)) {
 				$list .= "<a href='chatcmd:///tell <myname> config subcmd ".$row->cmd." admin guild " . ADMIN . "'>Admin</a>\n\n";
 			}
 		}		
-		$msg = Text::makeLink(ucfirst($cmd)." config", $list);
+		$msg = Text::make_link(ucfirst($cmd)." config", $list);
 	}
 	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^config grp (.+)$/i", $message, $arr)) {
@@ -546,7 +546,7 @@ if (preg_match("/^config$/i", $message)) {
 		$list .= "<a href='chatcmd:///tell <myname> config grp ".$grp." admin guild " . MODERATOR . "'>Mod</a>  ";
 		$list .= "<a href='chatcmd:///tell <myname> config grp ".$grp." admin guild " . ADMIN . "'>Admin</a>\n";
 		
-		$msg = Text::makeLink(ucfirst($grp)." group config", $list);
+		$msg = Text::make_link(ucfirst($grp)." group config", $list);
 	} 
 	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^config mod (.+)$/i", $message, $arr)) {
@@ -606,7 +606,7 @@ if (preg_match("/^config$/i", $message)) {
 		}
 	}
 
-	$msg = Text::makeLink("Configuration for module $mod", $list);
+	$msg = Text::make_link("Configuration for module $mod", $list);
 	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^config help (.+) admin (\\d)$/i", $message, $arr)) {
   	$help = strtolower($arr[1]);
@@ -641,7 +641,7 @@ if (preg_match("/^config$/i", $message)) {
 	  	$list .= "\n\n";
 	}
 
-	$msg = Text::makeLink("Configurate help files for module $mod", $list);
+	$msg = Text::make_link("Configurate help files for module $mod", $list);
 	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^config (.*)$/i", $message, $arr)) {
 	$module = strtoupper($arr[1]);
@@ -758,7 +758,7 @@ if (preg_match("/^config$/i", $message)) {
 			$list .= "$row->type - ($status): $on  $off \n";
 	}
 
-  	$msg = Text::makeLink("Bot Settings", $list);
+  	$msg = Text::make_link("Bot Settings", $list);
  	$chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;

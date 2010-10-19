@@ -143,7 +143,7 @@ foreach($chatBot->vars["Vote"] as $key => $value) {
 			$msg .="<tab><a href='chatcmd:///tell <myname> vote end$delimiter$question'>End</a> the vote early.";
 		}
 		
-		$msg = Text::makeBlob($title, $msg);
+		$msg = Text::make_blob($title, $msg);
 		
 		if (Settings::get("vote_channel_spam") == 0 || Settings::get("vote_channel_spam") == 2) {$chatBot->send($msg, "guild");}
 	   	if (Settings::get("vote_channel_spam") == 1 || Settings::get("vote_channel_spam") == 2) {$chatBot->send($msg);}
