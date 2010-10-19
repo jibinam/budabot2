@@ -155,8 +155,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	
 	if ($msg) {
 		$msg = Text::make_blob("Results for: '$search'", $msg);
-	} 
-	else {
+	} else {
 		$msg = "Couldn't find any matches for this search.";
 	}
 	
@@ -180,7 +179,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 	$count = $row->IDNumber;
 	
 	$row = $db->query("SELECT * FROM quote WHERE `IDNumber` = '$arr[1]'", true);
-    if ($db->numrows() > 0) {
+	if ($db->numrows() > 0) {
 		$quoteID = $row->IDNumber;
 		$quoteWHO = $row->Who;
 		$quoteOfWHO = $row->OfWho;
@@ -238,7 +237,7 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 				$quoteMSG = $row->What;
 				break;
 			}
-		} while(1);
+		} while (1);
 		
 		$msg .="<tab>ID: (<highlight>$quoteID<end> of $count)<br>";
 		$msg .="<tab>Poster: <highlight>$quoteWHO<end><br>";
@@ -267,8 +266,6 @@ if (preg_match("/^quote add (.+)$/i", $message, $arr)) {
 		$msg = "I dont have any quotes to show!";
 	}
 }
-
-// Send info back
 
 if ($msg) {
 	$chatBot->send($msg, $sendto);
