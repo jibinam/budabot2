@@ -54,11 +54,12 @@ $first = true;
 forEach ($tmp as $key => $value) {
 	// escape single quotes to prevent sql injection
 	$value = str_replace("'", "''", $value);
-	if($first) {
+	if ($first) {
 		$query .= "`name` LIKE '%$value%'";
 		$first = false;
-	} else
-		$query .= " AND `name` LIKE '%$value%'";		
+	} else {
+		$query .= " AND `name` LIKE '%$value%'";
+	}
 }
 
 if ($ql) {
@@ -80,14 +81,14 @@ if ($num == 0) {
 $countitems = 0;
 
 forEach ($data as $row) {
-	if(!isset($itemlist[$row->name])) {
+	if (!isset($itemlist[$row->name])) {
 		$itemlist[$row->name] = array(array("lowid" => $row->lowid, "highid" => $row->highid, "lowql" => $row->lowql, "highql" => $row->highql, "icon" => $row->icon));
 		$countitems++;
-	} elseif(isset($itemlist[$row->name])) {
-	  	if($itemlist[$row->name][0]["lowql"] > $row->lowql) {
+	} else if (isset($itemlist[$row->name])) {
+	  	if ($itemlist[$row->name][0]["lowql"] > $row->lowql) {
 		    $itemlist[$row->name][0]["lowql"] = $row->lowql;
 		    $itemlist[$row->name][0]["lowid"] = $row->lowid;
-		} elseif($itemlist[$row->name][0]["highql"] < $row->highql) {
+		} else if ($itemlist[$row->name][0]["highql"] < $row->highql) {
 		    $itemlist[$row->name][0]["highql"] = $row->highql;
 		    $itemlist[$row->name][0]["highid"] = $row->highid;		    
 		} else {
@@ -152,7 +153,6 @@ if ($countitems > 3) {
 	    }
     }
 
-	// Send info back
     $chatBot->send($link, $sendto);
 }
 ?>

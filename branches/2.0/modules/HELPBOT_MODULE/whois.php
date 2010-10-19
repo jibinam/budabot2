@@ -42,7 +42,7 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
 	            $msg = $whois->firstname." ";
 			}
 	
-	        $msg .= "<highlight>\"$whois->name\"<end> ";
+	        $msg .= "<highlight>\"{$whois->name}\"<end> ";
 	
 	        if ($whois->lastname) {
 	            $msg .= $whois->lastname." ";
@@ -55,12 +55,12 @@ if (preg_match("/^whois (.+)$/i", $message, $arr)) {
 	        } else {
 	            $msg .= " Not in a guild.) ";
 			}
-	
+
 	        $list .= "<a href='chatcmd:///tell <myname> history $name'>Check $name's History</a>\n";
 	        $list .= "<a href='chatcmd:///tell <myname> is $name'>Check $name's online status</a>\n";
 	        if ($whois->org) {
-		        $list .= "<a href='chatcmd:///tell <myname> whoisorg $whois->org_id'>Show infos about $whois->org</a>\n";
-				$list .= "<a href='chatcmd:///tell <myname> orglist $whois->org_id'>Orglist for $whois->org</a>\n";
+		        $list .= "<a href='chatcmd:///tell <myname> whoisorg $whois->org_id'>Show info about {$whois->org}</a>\n";
+				$list .= "<a href='chatcmd:///tell <myname> orglist $whois->org_id'>Orglist for {$whois->org}</a>\n";
 			}
 	        $list .= "<a href='chatcmd:///cc addbuddy $name'>Add to buddylist</a>\n";
 	        $list .= "<a href='chatcmd:///cc rembuddy $name'>Remove from buddylist</a>\n";

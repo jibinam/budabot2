@@ -5,7 +5,7 @@ For Budabot
 5/11/07
 */
 
-If (preg_match("/^research ([0-9]+)$/i",$message, $arr)) {
+if (preg_match("/^research ([0-9]+)$/i",$message, $arr)) {
 	$level = $arr[1];
 	if ($level < 1 OR $level > 10) {
 		$research .= "<orange>Invalid Research Level Input. Valid reserch levels are from 1-10.<end>";

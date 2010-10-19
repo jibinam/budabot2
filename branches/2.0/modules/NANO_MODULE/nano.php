@@ -62,7 +62,7 @@ forEach ($data as $row) {
 		$itemlist[$row->name] = array(array("lowid" => $row->lowid, "highid" => $row->highid, "lowql" => $row->lowql, "highql" => $row->highql, "icon" => $row->icon, "location" => $row->location));
 		$countitems++;
 	} else if (isset($itemlist[$row->name])) {
-	  	if($itemlist[$row->name][0]["lowql"] > $row->lowql) {
+	  	if ($itemlist[$row->name][0]["lowql"] > $row->lowql) {
 		    $itemlist[$row->name][0]["lowql"] = $row->lowql;
 		    $itemlist[$row->name][0]["lowid"] = $row->lowid;
 		} else if ($itemlist[$row->name][0]["highql"] < $row->highql) {

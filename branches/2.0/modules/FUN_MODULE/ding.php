@@ -40,6 +40,6 @@ elseif(preg_match("/^ding ([0-9]+)$/i", $message, $arr)) {
 	else {
 		$msg = "Ding ding ding..now ding some more!";
 	}
- 	$chatBot->send($msg, "guild");
+ 	$chatBot->send($msg, $sendto);
 }
 ?>

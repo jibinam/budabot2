@@ -40,7 +40,6 @@ if (preg_match("/^oe ([0-9]+)$/i", $message, $arr)) {
         $msg = "A skill can't get so high!";
     }
     
-    // Send info back
     $chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;

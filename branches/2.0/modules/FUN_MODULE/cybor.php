@@ -114,6 +114,6 @@ if(preg_match("/^cybor/i", $message)) {
 	$msg = $cybor[$randval];
     $msg = str_replace("*name*", $sender, $msg);
     $msg = str_replace("*creds*", $cred, $msg);
-	$chatBot->send($msg, "guild");
+	$chatBot->send($msg, $sendto);
 }
 ?>

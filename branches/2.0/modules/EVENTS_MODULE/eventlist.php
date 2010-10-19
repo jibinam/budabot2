@@ -13,7 +13,7 @@ if (preg_match("/^eventlist ([0-9]+)$/i", $message, $arr)) {
 		
 		$link .= Text::make_link("Join this event", "/tell <myname> joinEvent $arr[1]", "chatcmd")."\n";
 		$link .= Text::make_link("Leave this event", "/tell <myname> leaveEvent $arr[1]", "chatcmd")."\n\n";
-	
+
 		$eventlist = explode(",", $row->event_attendees);
 		sort($eventlist);
 		if ($row->event_attendees != "") {
@@ -43,7 +43,7 @@ if (preg_match("/^eventlist ([0-9]+)$/i", $message, $arr)) {
 	}
 }
 
-if($msg) {
+if ($msg) {
 	$chatBot->send($msg, $sendto);
 }
 ?>

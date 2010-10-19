@@ -32,19 +32,18 @@
 // include online_func.php for the actual working functions
 require_once("online_func.php");
 
-
 if (preg_match("/^online$/i", $message)){
 	$msg = "";
 	list($numonline, $msg, $list) = online($type, $sender, $sendto, $this);
 	$link = ":: ".Text::make_link('Click here', $list);
-	if($numonline != 0) {
+	if ($numonline != 0) {
 		$chatBot->send($msg.$link, $sendto);
 	} else {
 		$chatBot->send($msg, $sendto);
 	}
 } else if (preg_match("/^online (.*)$/i", $message, $arr)) {
 	$msg = "";
-	switch(strtolower($arr[1])) {
+	switch (strtolower($arr[1])) {
 		case "all":
 			$prof = "all";
 			break;
@@ -91,14 +90,16 @@ if (preg_match("/^online$/i", $message)){
 			$prof = "Shade";
 			break;
 	}
-	if(!$prof) {
+
+	if (!$prof) {
 		$msg = "Please choose one of these professions: adv, agent, crat, doc, enf, eng, fix, keep, ma, mp, nt, sol, shade, trad or all";
 		$chatBot->send($msg, $sendto);
 		return;
 	}
+
 	list($numonline, $msg, $list) = online($type, $sender, $sendto, $this);
 	$link = ":: ".Text::make_link('Click here', $list);
-	if($numonline != 0) {
+	if ($numonline != 0) {
 		$chatBot->send($msg.$link, $sendto);
 	} else {
 		$chatBot->send($msg, $sendto);

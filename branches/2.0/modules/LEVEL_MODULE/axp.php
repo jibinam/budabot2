@@ -113,7 +113,7 @@ if (preg_match("/^axp$/i", $message)) {
 			}
             $msg = "From the beginning of ai lvl <highlight>".$arr[1]."<end> to ai lvl <highlight>".$arr[2]."<end> you need <highlight>".number_format($axp_comp)."<end> AXP to level up.";
         } else {
-            $msg = "The startlevel can't be higher then the endlevel.";
+            $msg = "The start level can't be higher then the endlevel.";
 		}
     } else {
         $msg = "You need to specify a lvl between 1 and 30.";

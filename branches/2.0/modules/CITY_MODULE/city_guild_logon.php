@@ -51,8 +51,9 @@ if (isset($chatBot->guildmembers[$sender])) {
             $case = 2;
     	} else {
 			$msg = "<highlight>Unknown status on city cloak!<end>";
-			$case = 2;
+			$case = 1;
 		}
+
 		if ($case <= Settings::get("showcloakstatus")) {
 			$chatBot->send($msg, $sender);
 		}

@@ -6,8 +6,6 @@
 
 	//Online
 	Command::register($MODULE_NAME, "online.php", "online", MEMBER, "Shows who is the PrivChan");
-	Command::register($MODULE_NAME, "chatlist.php", "sm", MEMBER, "Shows who is the PrivChan");
-	Command::register($MODULE_NAME, "chatlist.php", "chatlist", MEMBER, "Shows who is the PrivChan");
 	Command::register($MODULE_NAME, "count.php", "count", MEMBER, "Shows who is the PrivChan");
 	Command::register($MODULE_NAME, "count.php", "adv", MEMBER, "Shows Adventurers in PrivChan");
 	Command::register($MODULE_NAME, "count.php", "agent", MEMBER, "Shows Agents in PrivChan");
@@ -38,7 +36,6 @@
 	Event::register("logOff", $MODULE_NAME, "logoff_guild.php", "Shows a logoff from a member in chat and records in db");
 
 	//Help files
-	Help::register($MODULE_NAME, "chatlist.txt", "chatlist", MEMBER, "Showing who is in the private group");
 	Help::register($MODULE_NAME, "online.txt", "online", MEMBER, "Show who is on from the guild");
 	Help::register($MODULE_NAME, "lastseen.txt", "lastseen", MEMBER, "Check when an orgmember was online");
 ?>

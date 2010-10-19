@@ -28,7 +28,7 @@ if (preg_match("/^aiarmor (cc|cm|co|cp|cs|css|ss)$/i", $message, $arr) || preg_m
 	    	$name_armor_trg = "Supple";
 	    	$lowid_armor_trg = 247140;
 	    	$highid_armor_trg = 247141;
-	    break;
+	    	break;
 	    case 'cm':
 	    	//Result
 	    	$icon_armor_result = 256356;
@@ -47,7 +47,7 @@ if (preg_match("/^aiarmor (cc|cm|co|cp|cs|css|ss)$/i", $message, $arr) || preg_m
 	    	$name_armor_trg = "Enduring";
 	    	$lowid_armor_trg = 247137;
 	    	$highid_armor_trg = 247137;
-	    break;
+	    	break;
 	    case 'co':
 	    	//Result
 	    	$icon_armor_result = 256320;
@@ -66,7 +66,7 @@ if (preg_match("/^aiarmor (cc|cm|co|cp|cs|css|ss)$/i", $message, $arr) || preg_m
 	    	$name_armor_trg = "Arithmetic";
 	    	$lowid_armor_trg = 247145;
 	    	$highid_armor_trg = 247145;
-	    break;
+	    	break;
 	    case 'cp':
 	    	//Result
 	    	$icon_armor_result = 256350;
@@ -85,7 +85,7 @@ if (preg_match("/^aiarmor (cc|cm|co|cp|cs|css|ss)$/i", $message, $arr) || preg_m
 	    	$name_armor_trg = "Enduring";
 	    	$lowid_armor_trg = 247137;
 	    	$highid_armor_trg = 247137;
-	    break;
+	    	break;
 	    case 'cs':
 	    	//Result
 	    	$icon_armor_result = 256326;
@@ -104,7 +104,7 @@ if (preg_match("/^aiarmor (cc|cm|co|cp|cs|css|ss)$/i", $message, $arr) || preg_m
 	    	$name_armor_trg = "Arithmetic";
 	    	$lowid_armor_trg = 247145;
 	    	$highid_armor_trg = 247145;
-	    break;
+	    	break;
 		case 'css':
 	    case 'ss':
 	    	//Result

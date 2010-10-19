@@ -1,6 +1,6 @@
 <?php
 	$MODULE_NAME = "NEWS_MODULE";
-	
+
 	//Setup
 	Event::register("setup", $MODULE_NAME, "setup.php");
 
@@ -17,5 +17,5 @@
 	Settings::add("adminnews", $MODULE_NAME, "no", "hide", "Not set.");
 
 	//Help files
-	Help::register($MODULE_NAME, "news.txt", "news", MEMBER, "News");
+	Help::register($MODULE_NAME, "news.txt", "news", MEMBER, "How to use news");
 ?>

@@ -1,6 +1,6 @@
 <?php 
 	$MODULE_NAME = "EVENTS_MODULE";
-	
+
 	//Setup
 	Event::register("setup", $MODULE_NAME, "setup.php");
 

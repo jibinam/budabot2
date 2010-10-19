@@ -81,7 +81,7 @@ if (preg_match("/^pb (.+)$/i", $message, $arr)) {
 			break;
 	    case "lwrist":
 	    	$arr[1] = "Left Wrist";
-	    break;
+			break;
    	    case "rhand":
 	    	$arr[1] = "Right Hand";
 			break;

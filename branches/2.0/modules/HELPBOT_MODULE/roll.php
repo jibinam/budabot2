@@ -94,8 +94,7 @@ if (preg_match("/^flip$/i", $message)) {
 		} else {
 		  	if ((time() - $row->time) <= 30) {
 		  		$msg = "You can only flip or roll once every 30 seconds.";
-			}
-		  	else {
+			} else {
 			  	$num = rand($arr[1], $arr[1]);
 				$db->execute("INSERT INTO roll_<myname> (`time`, `name`, `type`, `start`, `end`, `result`) VALUES (".time().", '$sender', 1, $arr[1], $arr[2], $num)");
 				$ver_num = $db->lastInsertId();

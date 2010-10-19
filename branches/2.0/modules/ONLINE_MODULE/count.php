@@ -79,7 +79,7 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
 			$data = $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `profession` = '$prof' AND `guest` = 1 ORDER BY level");
 	    else
 		    $data = $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> WHERE `profession` = '$prof' UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `profession` = '$prof' AND `guest` = 1 ORDER BY level"); 
-	} elseif ($type == "priv" || (Settings::get("count_tell") == 1 && $type == "msg")) {
+	} else if ($type == "priv" || (Settings::get("count_tell") == 1 && $type == "msg")) {
 	  	$data = $db->query("SELECT * FROM priv_chatlist_<myname> WHERE `profession` = '$prof' ORDER BY `level`");
 	}
     $numonline = $db->numrows();
@@ -95,7 +95,7 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
         $msg .= " [<highlight>$row->name<end> - ".$row->level.$afk."]";
     }
     $chatBot->send($msg, $sendto);  	
-} elseif(preg_match("/^count (level|lvl)$/i", $message, $arr)) {
+} else if (preg_match("/^count (level|lvl)$/i", $message, $arr)) {
 	$tl1 = 0;
 	$tl2 = 0;
 	$tl3 = 0;
@@ -103,12 +103,12 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
 	$tl5 = 0;
 	$tl6 = 0;
 	$tl7 = 0;
-	if($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $chatBot->vars["Guest"][$sender] == true)) {							
-	    if(Settings::get("relaydb"))
+	if ($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $chatBot->vars["Guest"][$sender] == true)) {							
+	    if (Settings::get("relaydb"))
 		    $data = $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY level");
 	    else
 		    $data = $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY level"); 
- 	} elseif($type == "priv"  || (Settings::get("count_tell") == 1 && $type == "msg")) {
+ 	} else if ($type == "priv"  || (Settings::get("count_tell") == 1 && $type == "msg")) {
 	  	$data = $db->query("SELECT * FROM priv_chatlist_<myname>");
 	} 
 	$numonline = $db->numrows();
@@ -130,7 +130,7 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
     }	
     $msg = "<highlight>$numonline<end> in total: TL1 <highlight>$tl1<end>, TL2 <highlight>$tl2<end>, TL3 <highlight>$tl3<end>, TL4 <highlight>$tl4<end>, TL5 <highlight>$tl5<end>, TL6 <highlight>$tl6<end>, TL7 <highlight>$tl7<end>";
     $chatBot->send($msg, $sendto);
-} else if(preg_match("/^count (.*)$/i", $message, $arr)) {
+} else if (preg_match("/^count (.*)$/i", $message, $arr)) {
     switch(strtolower($arr[1])) {
         case "all":
             $prof = "all";
@@ -212,9 +212,9 @@ if(preg_match("/^(adv|agent|crat|doc|enf|eng|fix|keep|ma|mp|nt|sol|shade|trader)
 	    $chatBot->send($msg, $sendto);
 	    return;
 	}
-	if($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $chatBot->vars["Guest"][$sender] == true)) {
-	    if(Settings::get("relaydb")) {
-	        if($prof == "all") {
+	if ($type == "guild" || (Settings::get("count_tell") == 0 && $type == "msg") || ($type == "priv" && $chatBot->vars["Guest"][$sender] == true)) {
+	    if (Settings::get("relaydb")) {
+	        if ($prof == "all") {
 				$data = $db->query("SELECT name, profession, level, afk FROM guild_chatlist_<myname> UNION ALL SELECT name, profession, level, afk FROM guild_chatlist_".strtolower(Settings::get("relaydb"))." UNION ALL SELECT name, profession, level, afk FROM priv_chatlist_<myname> WHERE `guest` = 1 ORDER BY profession");
 	            $numonline = $db->numrows();
 	            $msg = "<highlight>$numonline<end> in total: ";

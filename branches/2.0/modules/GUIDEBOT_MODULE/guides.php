@@ -23,6 +23,8 @@ if (preg_match("/^guides list$/i", $message)) {
 
 		closedir($handle);
 
+		sort($topicList);
+
 		$linkContents = '';
 		forEach ($topicList as $topic) {
 			$linkContents .= Text::make_link($topic, "/tell <myname> <symbol>info $topic", 'chatcmd') . "\n";  

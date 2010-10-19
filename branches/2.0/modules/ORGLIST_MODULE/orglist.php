@@ -190,17 +190,17 @@ if (preg_match("/^(orglist|onlineorg) end$/i", $message, $arr)) {
 				($orgmate->members[$amember]["rank_id"] == 3 && $orgmate->members[$amember]["rank"] == "Member") ||
 				($orgmate->members[$amember]["rank_id"] == 4 && $orgmate->members[$amember]["rank"] == "Applicant")) {
 				// Dont do anything. Can't do a match cause this rank is in multiple orgtypes.
-			} elseif ($orgmate->members[$amember]["rank"] == $orgrankmap["Anarchism"][$orgmate->members[$amember]["rank_id"]]) {
+			} else if ($orgmate->members[$amember]["rank"] == $orgrankmap["Anarchism"][$orgmate->members[$amember]["rank_id"]]) {
 				$chatBot->data["ORGLIST_MODULE"]["orgtype"]= "Anarchism";
-			} elseif ($orgmate->members[$amember]["rank"] == $orgrankmap["Monarchy"][$orgmate->members[$amember]["rank_id"]]) {
+			} else if ($orgmate->members[$amember]["rank"] == $orgrankmap["Monarchy"][$orgmate->members[$amember]["rank_id"]]) {
 				$chatBot->data["ORGLIST_MODULE"]["orgtype"]= "Monarchy";
-			} elseif ($orgmate->members[$amember]["rank"] == $orgrankmap["Feudalism"][$orgmate->members[$amember]["rank_id"]]) {
+			} else if ($orgmate->members[$amember]["rank"] == $orgrankmap["Feudalism"][$orgmate->members[$amember]["rank_id"]]) {
 				$chatBot->data["ORGLIST_MODULE"]["orgtype"]= "Feudalism";
-			} elseif ($orgmate->members[$amember]["rank"] == $orgrankmap["Republic"][$orgmate->members[$amember]["rank_id"]]) {
+			} else if ($orgmate->members[$amember]["rank"] == $orgrankmap["Republic"][$orgmate->members[$amember]["rank_id"]]) {
 				$chatBot->data["ORGLIST_MODULE"]["orgtype"]= "Republic";
-			} elseif ($orgmate->members[$amember]["rank"] == $orgrankmap["Faction"][$orgmate->members[$amember]["rank_id"]]) {
+			} else if ($orgmate->members[$amember]["rank"] == $orgrankmap["Faction"][$orgmate->members[$amember]["rank_id"]]) {
 				$chatBot->data["ORGLIST_MODULE"]["orgtype"]= "Faction";
-			} elseif ($orgmate->members[$amember]["rank"] == $orgrankmap["Department"][$orgmate->members[$amember]["rank_id"]]) {
+			} else if ($orgmate->members[$amember]["rank"] == $orgrankmap["Department"][$orgmate->members[$amember]["rank_id"]]) {
 				$chatBot->data["ORGLIST_MODULE"]["orgtype"]= "Department";
 			}
 		}
@@ -208,7 +208,7 @@ if (preg_match("/^(orglist|onlineorg) end$/i", $message, $arr)) {
 		$buddy_online_status = Buddylist::is_online($amember);
 		if ($buddy_online_status !== null) {
 			$chatBot->data["ORGLIST_MODULE"]["result"][$amember]["online"] = $buddy_online_status;
-		} elseif ($chatBot->name != $amember) { // If the name being checked ISNT the bot.
+		} else if ($chatBot->name != $amember) { // If the name being checked ISNT the bot.
 			// check if they exist, (They might be deleted)
 			$uid = $chatBot->get_uid($amember);
 			if ($uid) {
@@ -225,7 +225,7 @@ if (preg_match("/^(orglist|onlineorg) end$/i", $message, $arr)) {
 				// wait 1 millisecond so the buddy list doesn't fill up too quickly
 				usleep(10000);
 			}
-		} elseif ($chatBot->name == $amember) { // Yes, this bot is online. Don't need a buddylist to tell me.
+		} else if ($chatBot->name == $amember) { // Yes, this bot is online. Don't need a buddylist to tell me.
 			$chatBot->data["ORGLIST_MODULE"]["result"][$amember]["online"] = 1;
 		}
 	}
@@ -240,7 +240,7 @@ if (preg_match("/^(orglist|onlineorg) end$/i", $message, $arr)) {
 
 // If we added names to the buddylist, this will kick in to determine if they are online or not.
 // If no more names need to be checked, then post results.
-} elseif (($type == "logOn" || $type == "logOff") && isset($chatBot->data["ORGLIST_MODULE"]["check"][$player->name])) {
+} else if (($type == "logOn" || $type == "logOff") && isset($chatBot->data["ORGLIST_MODULE"]["check"][$player->name])) {
 
 	if ($type == "logOn") {
 		$chatBot->data["ORGLIST_MODULE"]["result"][$player->name["online"] = 1;

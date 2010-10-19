@@ -41,7 +41,6 @@ if (preg_match("/^events$/i", $message, $arr)) {
 				$past .= "<highlight>Description:<end> ".stripslashes($row->event_desc)."\n\n";
 				$past_events .= $past;
 			}
-			
 		}
 		if (!$upcoming_events) {
 			$upcoming_events = "<i>More to come.  Check back soon!</i>\n\n";
@@ -54,7 +53,8 @@ if (preg_match("/^events$/i", $message, $arr)) {
 	}
 } else if (preg_match("/^joinevent ([0-9]+)$/i", $message, $arr)) {
 	$row = $db->query("SELECT * FROM events_<myname>_<dim> WHERE `id` = '$arr[1]'", true);
-	if (time() < (($row->event_date)+(3600*3))) { // cannot join an event after 3 hours past its starttime
+	if (time() < (($row->event_date)+(3600*3))) {
+		// cannot join an event after 3 hours past its starttime
 		if (strpos($row->event_attendees,$sender) !== false) {
 			$chatBot->send("<highlight>$sender<end> is already on the event list.",$sender);
 			return;

@@ -33,7 +33,7 @@
 $row = $db->query("SELECT * FROM org_city_<myname> WHERE `action` = 'on' OR `action` = 'off' ORDER BY `time` DESC LIMIT 1", true);
 if ($db->numrows() != 0) {
 	$msg = "";
-	
+
 	if ($row->action == "off") {
 		// 10 minutes before, send tell to player
 		if ((time() - $row->time) >= 49*60 && (time() - $row->time) <= 50*60) {
@@ -61,7 +61,7 @@ if ($db->numrows() != 0) {
 				}
 			}
 		}
-			
+
 		// send message to org chat every 5 minutes that the cloaking device is
 		// disabled past the the time that the cloaking device could be enabled.
 		$interval = 5;

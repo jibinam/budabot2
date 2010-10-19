@@ -19,7 +19,7 @@ if (preg_match("/^inspect (.+)$/i", $message, $arr)) {
 	if (preg_match("/<a href=\"itemref:\/\/(\d{6})\/(\d{6})\/(\d{1,3})\">Christmas Gift<\/a>/i",$realword,$idql) ||
 		preg_match("/<a href=\"itemref:\/\/(\d{6})\/(\d{6})\/(\d{1,3})\">Expensive Gift from Earth<\/a>/i",$realword,$idql) ||
 		preg_match("/<a href=\"itemref:\/\/(\d{6})\/(\d{6})\/(\d{1,3})\">Light Perennium Container<\/a>/i",$realword,$idql)) {
-		
+
 		$lid = $idql[1];
 		$hid = $idql[2];
 		$ql = $idql[3];

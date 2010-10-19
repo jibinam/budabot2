@@ -32,7 +32,7 @@ if (preg_match("/^(capxp|capsk) ([0-9]+)/i$", $message, $arr)) {
 	$rk_num = $chatBot->dimension;
 	$info = new WhoisXML($sender);
 	$reward = $arr[2];
-	
+
 	if ($info->errorCode != 0) {
 		$chatBot->send("An Error occurred while trying to get your level. Please input it manually via <highlight><symbol>capxp 'mission reward' 'your lvl'<end> or try again later.", $sendto);
 		return;

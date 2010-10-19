@@ -29,23 +29,32 @@
    ** Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
    */
 
-if (preg_match("/^calc ([0-9\\.,+=*x%\\(\\)\\/\\ ]+)$/i", $message, $arr)) {
+if (preg_match("/^calc (.+)$/i", $message, $arr)) {
     $calc = strtolower($arr[1]);
 
-	$result = "";
-	//Do the calculations
-	$calc = "\$result = ".$calc.";";
-	eval($calc);
-	//If calculation is succesfull
-	if (is_numeric($result)) {
-		$result = round($result, 4);
-		$msg = $arr[1]." = <highlight>".$result."<end>";
-	} else {
-		$msg = "Wrong syntax for the calc command!";
+    //check if the calc string includes not allowed chars
+    $calc_check = strspn($calc, "0123456789.,+-*x%()/\\ ");
+
+    //If no wrong char found
+    if ($calc_check == strlen($calc)) {
+        $result = "";
+        //Do the calculations
+   		$calc = "\$result = ".$calc.";";
+        eval($calc);
+        //If calculation is succesfull
+   		if (is_numeric($result)) {
+            $result = round($result, 4);
+            $msg = $arr[1]." = <highlight>".$result."<end>";
+        } else {
+            $msg = "Wrong syntax for the calc command!";
+		}
+    } else {
+        $msg = "Wrong syntax for the calc command!";
 	}
 
     $chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }
+
 ?>

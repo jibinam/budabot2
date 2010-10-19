@@ -1,4 +1,5 @@
 <?php
+	require_once 'Playfields.class.php';
 	require_once 'db_utils.php';
 	require_once 'trickle_functions.php';
 
@@ -31,6 +32,8 @@
 	Command::register($MODULE_NAME, "whatbuffs.php", "whatbuffs", ALL, "find items that buff");
 	Command::register($MODULE_NAME, "dyna.php", "dyna", ALL, "Search for RK Dynaboss");
 	Command::register($MODULE_NAME, "research.php", "research", ALL, "Info on Research");
+	Command::register($MODULE_NAME, "playfields.php", "playfields", ALL, "Shows all the playfields including IDs and short names");
+	Command::register($MODULE_NAME, "waypoint.php", "waypoint", ALL, "Creats a waypoint link");
 
 	// Flip or Roll command
 	Command::register($MODULE_NAME, "roll.php", "flip", ALL, "Flip a coin");

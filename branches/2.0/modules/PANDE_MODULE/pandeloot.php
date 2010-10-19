@@ -384,9 +384,7 @@ if (preg_match("/^pande$/i", $message)){
 
 
 	$msg = Text::make_blob("Pandemonium Loot", $list);
-}
-
-else if ( preg_match("/^pandeloot ([0-9]+)$/i", $message, $arr)) {
+} else if (preg_match("/^pandeloot ([0-9]+)$/i", $message, $arr)) {
 	$val = $arr[1];
 	$itemname = $pandeloot[$val]["name"];
 	$dontadd = 0;
@@ -421,9 +419,7 @@ else if ( preg_match("/^pandeloot ([0-9]+)$/i", $message, $arr)) {
 		$msg = "<highlight>".$itemname."<end> will be rolled in Slot <highlight>#".$slot."<end> as multiloot. Total: <yellow>".$total."<end>";
 	}
 	$msg .= "\nTo add use !add ".$nextloot.", or !add 0 to remove yourself";
-}
-
-elseif( preg_match("/^beastarmor$/i", $message)){
+} else if (preg_match("/^beastarmor$/i", $message)){
 	$loop = 1;
 	while($loop <= 10) {
 		$addlink = Text::make_link("Add to Loot List", "/tell <myname> pandeloot ".$loop, "chatcmd");
@@ -433,8 +429,7 @@ elseif( preg_match("/^beastarmor$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Beast Armor", $list);
-}
-elseif( preg_match("/^beastweaps$/i", $message)){
+} else if (preg_match("/^beastweaps$/i", $message)){
 	$loop = 11;
 	while($loop <= 24) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -445,8 +440,7 @@ elseif( preg_match("/^beastweaps$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Beast Weapons", $list);
-}
-elseif( preg_match("/^beaststars$/i", $message)){
+} else if (preg_match("/^beaststars$/i", $message)){
 	$loop = 25;
 	while($loop <= 38) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -457,8 +451,7 @@ elseif( preg_match("/^beaststars$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Beast Stars", $list);
-}
-elseif( preg_match("/^sb$/i", $message)){
+} else if (preg_match("/^sb$/i", $message)){
 	$loop = 39;
 	while($loop <= 41) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -469,8 +462,7 @@ elseif( preg_match("/^sb$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Shadowbreeds", $list);
-}
-elseif( preg_match("/^tnh$/i", $message)){
+} else if (preg_match("/^tnh$/i", $message)){
 	$loop = 42;
 	while($loop <= 46) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -481,8 +473,7 @@ elseif( preg_match("/^tnh$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("The Night Heart Loot", $list);
-}
-elseif( preg_match("/^aries$/i", $message)){
+} else if (preg_match("/^aries$/i", $message)){
 	$loop = 47;
 	while($loop <= 51) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -493,8 +484,7 @@ elseif( preg_match("/^aries$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Aries Loot", $list);
-}
-elseif( preg_match("/^leo$/i", $message)){
+} else if (preg_match("/^leo$/i", $message)){
 	$loop = 52;
 	while($loop <= 55) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -505,8 +495,7 @@ elseif( preg_match("/^leo$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Leo Loot", $list);
-}
-elseif( preg_match("/^virgo$/i", $message)){
+} else if (preg_match("/^virgo$/i", $message)){
 	$loop = 56;
 	while($loop <= 59) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -517,8 +506,7 @@ elseif( preg_match("/^virgo$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Virgo Loot", $list);
-}
-elseif( preg_match("/^aquarius$/i", $message)){
+} else if (preg_match("/^aquarius$/i", $message)){
 	$loop = 60;
 	while($loop <= 63) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -529,8 +517,7 @@ elseif( preg_match("/^aquarius$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Aquarius Loot", $list);
-}
-elseif( preg_match("/^cancer$/i", $message)){
+} else if (preg_match("/^cancer$/i", $message)){
 	$loop = 64;
 	while($loop <= 67) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -541,8 +528,7 @@ elseif( preg_match("/^cancer$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Cancer Loot", $list);
-}
-elseif( preg_match("/^gemini$/i", $message)){
+} else if (preg_match("/^gemini$/i", $message)){
 	$loop = 68;
 	while($loop <= 71) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -553,8 +539,7 @@ elseif( preg_match("/^gemini$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Gemini Loot", $list);
-}
-elseif( preg_match("/^libra$/i", $message)){
+} else if (preg_match("/^libra$/i", $message)){
 	$loop = 72;
 	while($loop <= 76) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -565,8 +550,7 @@ elseif( preg_match("/^libra$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Libra Loot", $list);
-}
-elseif( preg_match("/^pisces$/i", $message)){
+} else if (preg_match("/^pisces$/i", $message)){
 	$loop = 77;
 	while($loop <= 80) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -577,8 +561,7 @@ elseif( preg_match("/^pisces$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Pisces Loot", $list);
-}
-elseif( preg_match("/^taurus$/i", $message)){
+} else if (preg_match("/^taurus$/i", $message)){
 	$loop = 81;
 	while($loop <= 84) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -589,8 +572,7 @@ elseif( preg_match("/^taurus$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Taurus Loot", $list);
-}
-elseif( preg_match("/^capricorn$/i", $message)){
+} else if (preg_match("/^capricorn$/i", $message)){
 	$loop = 85;
 	while($loop <= 88) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -601,8 +583,7 @@ elseif( preg_match("/^capricorn$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Capricorn Loot", $list);
-}
-elseif( preg_match("/^sagittarius$/i", $message)){
+} else if (preg_match("/^sagittarius$/i", $message)){
 	$loop = 89;
 	while($loop <= 92) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");
@@ -613,8 +594,7 @@ elseif( preg_match("/^sagittarius$/i", $message)){
 		$loop++;
 	}
 	$msg = Text::make_blob("Sagittarius Loot", $list);
-}
-elseif( preg_match("/^scorpio$/i", $message)){
+} else if (preg_match("/^scorpio$/i", $message)){
 	$loop = 93;
 	while($loop <= 96) {
 		//$itemlink = Text::make_link($pandeloot[$loop]["name"], "itemfref://{$pandeloot[$loop]["ref"]}", "chatcmd");

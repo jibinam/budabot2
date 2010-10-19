@@ -19,12 +19,12 @@
    ** This module may be obtained at: http://www.box.net/shared/bgl3cx1c3z
    **
    */
-   
+
 	require_once('Implant.class.php');
 	require_once('functions.php');
 
 	$MODULE_NAME = "PREMADE_IMPLANT_MODULE";
-	
+
 	//Setup
 	Event::register("setup", $MODULE_NAME, "setup.php");
 
@@ -33,6 +33,6 @@
 	Command::register($MODULE_NAME, "premade_update.php", "premadeupdate", ALL, "Checks the premade imp db for updates");
 	
 	//Help files
-	Help::register($MODULE_NAME, "premade_implant.txt", "Premade Implants", ALL, "Premade Implant Help");
+	Help::register($MODULE_NAME, "premade_implant.txt", "premade", ALL, "Premade Implant Help");
 	
 ?>

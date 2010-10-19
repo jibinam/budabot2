@@ -39,7 +39,7 @@
 
 	Command::register($MODULE_NAME, "org_history.php", "orghistory", GUILDMEMBER, "Shows the org history (invites and kicks and leaves) for a player");
 	
-	Event::register("orgmsg", $MODULE_NAME, "org_action_listener.php", "Capture Org Invite/Kick/Leave messages");
+	Event::register("orgmsg", $MODULE_NAME, "org_action_listener.php", "Capture Org Invite/Kick/Leave messages for orghistory");
 	
 	Help::register($MODULE_NAME, "org_history.txt", "orghistory", GUILDMEMBER, "How to use orghistory");
 ?>

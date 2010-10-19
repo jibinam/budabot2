@@ -46,16 +46,19 @@ if (preg_match("/^info$/i", $message)) {
 	}
 } else if (preg_match("/^info ([a-z0-9_-]+)$/i", $message, $arr) || preg_match("/^([a-z0-9_-]+)$/i", $message, $arr)) {
 	// if they want a certain topic
+	// second form is for the aliases
 	// get the filename and read in the file
 	$fileName = strtolower($arr[1]);
 	$info = getTopicContents($path, $fileName, $fileExt);
 	
-	// make sure the $ql is an integer between 1 and 300
-	if (!$info) {
+	if (empty($info)) {
 		$msg = "No info for $fileName could be found";
-	} else {	
+	} else {
 		$msg = Text::make_blob(ucfirst($fileName), $info);
 	}
+} else {
+	$syntax_error = true;
+	return;
 }
 
 $chatBot->send($msg, $sendto);
