@@ -8,7 +8,7 @@ if (preg_match("/^reroll$/i", $message)) {
 	//Check if a residual list exits
   	if (!is_array($residual)) {
 	    $msg = "There are no remaining items to re-add.";
-	    $chatBot->send($msg);
+	    $chatBot->send($msg, $sendto);
 	    return;
 	}
   	
@@ -25,7 +25,10 @@ if (preg_match("/^reroll$/i", $message)) {
 	$residual = "";
 	//Show winner list
 	$msg = "All remaining items have been re-added by <highlight>$sender<end>. Check <symbol>list.";
-	$chatBot->send($msg);
+	$chatBot->send($msg, 'priv');
+	if ($type != 'priv') {
+		$chatBot->send($msg, $sendto);
+	}
 	if (is_array($loot)) {
 		$list = "<header>::::: Loot List :::::<end>\n\nUse <symbol>flatroll or <symbol>roll to roll.\n\n";
 		forEach ($loot as $key => $item) {
@@ -38,12 +41,12 @@ if (preg_match("/^reroll$/i", $message)) {
 				$list .= "<img src=rdb://{$item["icon"]}>\n";
 			}
 
-			if ($item["multiloot"]>1) {
+			if ($item["multiloot"] > 1) {
 				$ml = " <yellow>(x".$item["multiloot"].")<end>";
 			} else {
 				$ml = "";
 			}
-			
+
 			if ($item["linky"]) {
 				$itmnm = $item["linky"];
 			} else {
@@ -54,7 +57,6 @@ if (preg_match("/^reroll$/i", $message)) {
 			if ($item["minlvl"] != "") {
 				$list .= "MinLvl set to <highlight>{$item["minlvl"]}<end>\n";
 			}
-
 		
 			$list .= "<highlight>$added_players<end> Total ($add/$rem)\n";
 			$list .= "Players added:";

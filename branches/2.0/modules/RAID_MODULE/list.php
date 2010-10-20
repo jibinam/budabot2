@@ -46,7 +46,7 @@ if (preg_match("/^list$/i", $message)) {
 			  		$list .= "<img src=rdb://{$item["icon"]}>\n";
 				}
 
-				if ($item["multiloot"]>1) {
+				if ($item["multiloot"] > 1) {
 					$ml = " <yellow>(x".$item["multiloot"].")<end>";
 				} else {
 					$ml = "";
@@ -120,4 +120,5 @@ if (preg_match("/^list$/i", $message)) {
 } else {
 	$syntax_error = true;
 }
+
 ?>

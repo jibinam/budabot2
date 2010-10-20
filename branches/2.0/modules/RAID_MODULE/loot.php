@@ -35,7 +35,10 @@ if (preg_match("/^(loot clear|clear)$/i", $message)) {
   	$loot = "";
 	$residual = "";
   	$msg = "Loot has been cleared by <highlight>$sender<end>.";
-  	$chatBot->send($msg);	
+  	$chatBot->send($msg, "priv");
+	if ($type != 'priv') {
+		$chatBot->send($msg, $sendto);
+	}
 } else if (preg_match("/^loot (.+)$/i", $message, $arr)) {
 
 	//Check if the item is a link
@@ -44,12 +47,11 @@ if (preg_match("/^(loot clear|clear)$/i", $message)) {
 	    $item_highid = $item[1];
 	    $item_lowid = $item[2];
 	    $item_name = $item[4];
-	} else if(preg_match("/^(.+)<a href=\"itemref:\/\/([0-9]+)\/([0-9]+)\/([0-9]+)\">(.+)<\/a>(.*)$/i", $arr[1], $item)){
+	} else if (preg_match("/^(.+)<a href=\"itemref:\/\/([0-9]+)\/([0-9]+)\/([0-9]+)\">(.+)<\/a>(.*)$/i", $arr[1], $item)){
 	    $item_ql = $item[4];
 	    $item_highid = $item[2];
 	    $item_lowid = $item[3];
 	    $item_name = $item[5];
-		
 	} else {
 		$item_name = $arr[1];
 	}

@@ -69,7 +69,7 @@ if (preg_match("/^35$/i", $message)) {
 			  		$list .= "<img src=rdb://{$item["icon"]}>\n";
 				}
 
-				if ($item["multiloot"]>1) {
+				if ($item["multiloot"] > 1) {
 					$ml = " <yellow>(x".$item["multiloot"].")<end>";
 				} else {
 					$ml = "";
@@ -84,7 +84,8 @@ if (preg_match("/^35$/i", $message)) {
 				$list .= "Item: <orange>$itmnm<end>".$ml."\n";
 				if ($item["minlvl"] != "") {
 					$list .= "MinLvl set to <highlight>{$item["minlvl"]}<end>\n";
-				}				
+				}
+
 				$list .= "<highlight>$added_players<end> Total ($add/$rem)\n";
 			  	$list .= "Players added:";
 				if (count($item["users"]) > 0) {

@@ -47,7 +47,7 @@ if (preg_match("/^flatroll$/i", $message) || preg_match("/^rollloot$/i", $messag
   	  	$list .= "Item: <orange>{$item["name"]}<end>\n";
   	  	$list .= "Winner(s): ";
 	    $users = count($item["users"]);
-	 	if ($users == 0){
+	 	if ($users == 0) {
 	 		$list .= "<highlight>None added.<end>\n\n";
 			$residual[$resnum]["name"] = $item["name"];
 			$residual[$resnum]["icon"] = $item["icon"];
@@ -56,12 +56,12 @@ if (preg_match("/^flatroll$/i", $message) || preg_match("/^rollloot$/i", $messag
 			$resnum++;
 	 	} else {
 			if ($item["multiloot"]>1) {
-				if ($item["multiloot"] > sizeof($item["users"])){
+				if ($item["multiloot"] > sizeof($item["users"])) {
 					$arrolnum = sizeof($item["users"]);
 				} else {
 					$arrolnum = $item["multiloot"];
 				}
-				
+
 				for ($i = 0; $i < $arrolnum; $i++) {
 					$winner = array_rand($item["users"], 1);
 					unset($item["users"][$winner]);
@@ -81,7 +81,6 @@ if (preg_match("/^flatroll$/i", $message) || preg_match("/^rollloot$/i", $messag
 				$list .= "<red>$winner<end>";
 			}
 			$list .= "\n\n";
-			
 		}
 	}
 	//Reset loot
@@ -90,11 +89,16 @@ if (preg_match("/^flatroll$/i", $message) || preg_match("/^rollloot$/i", $messag
 	$loot = "";
 	//Show winner list
 	$msg = Text::make_blob("Winner List", $list);
-	if (is_array($residual)){
+	if (is_array($residual)) {
 		$rerollmsg = " (There are item(s) left to be rolled. To re-add, type <symbol>reroll)";
 	} else {
 		$rerollmsg = "";
 	}
-	$chatBot->send($msg.$rerollmsg, $sendto);
+
+	$chatBot->send($msg.$rerollmsg, 'priv');
+
+	if ($type != 'priv') {
+		$chatBot->send($msg.$rerollmsg, $sendto);
+	}
 }
 ?>

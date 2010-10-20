@@ -96,10 +96,11 @@ if (preg_match("/^add$/i", $message)) {
 		$msg = "You have been removed from all rolls";
 	  	$chatBot->send($msg, $sender);	  
 	} else if (count($loot) > 0) {
-	  	forEach ($loot as $key => $item)
+	  	forEach ($loot as $key => $item) {
 			if ($loot[$key]["users"][$sender] == true) {
 				unset($loot[$key]["users"][$sender]);
 			}
+		}
 	
 		$msg = "You have been removed from all rolls";
 	  	$chatBot->send($msg, $sender);	   
@@ -204,7 +205,7 @@ if (preg_match("/^add$/i", $message)) {
 	  	
 	  	//Remove the player from other slots if set
 	  	$found = false;
-	  	forEach ($loot as $key => $item) {
+		forEach ($loot as $key => $item) {
 			if ($loot[$key]["users"][$sender] == true) {
 				unset($loot[$key]["users"][$sender]);
 				$found = true;
@@ -227,4 +228,5 @@ if (preg_match("/^add$/i", $message)) {
 } else {
 	$syntax_error = true;
 }
+
 ?>

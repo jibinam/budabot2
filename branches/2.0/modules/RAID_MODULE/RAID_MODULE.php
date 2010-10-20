@@ -1,9 +1,6 @@
 <?php
 	$MODULE_NAME = "RAID_MODULE";
 
-	/* Commands used only for flatroll of items */
-	//Set requirements for the loot roll		
-
 	//Loot list and adding/removing of players	
 	Command::register($MODULE_NAME, "loot.php", "loot", LEADER, "Adds an item to the loot list");
 	Command::register($MODULE_NAME, "multiloot.php", "multiloot", LEADER, "Adds items using multiloot");

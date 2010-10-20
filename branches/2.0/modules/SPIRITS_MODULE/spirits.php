@@ -41,8 +41,8 @@ if (preg_match("/^spirits ([^0-9,]+)$/i", $message, $arr)) {
 			$loid = $row->id;
 			$agi = $row->agility;
 			
-			$data = $db->query("SELECT * FROM aodb WHERE lowid = '$loid'");
-			forEach ($data as $row); {
+			$data2 = $db->query("SELECT * FROM aodb WHERE lowid = '$loid'");
+			forEach ($data2 as $row); {
 				$hiid = $row->highid;
 				$icon = $row->icon;
 				$phat = $row->name;
@@ -195,7 +195,7 @@ else if (preg_match("/^spirits ([0-9]+) (.+)$/i", $message, $arr)) {
 		$spirits .="Lhand\n";
 		$spirits .="Rhand\n";
 		$spirits .="Feet\n";
-	} else  {
+	} else {
 		$title = "Search for $name Spirits QL $ql";
 		$data = $db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND ql = $ql ORDER BY ql");
 		$matches = $db->numrows();
@@ -482,7 +482,7 @@ else if (preg_match ("/^spiritsagi ([0-9]+) (.+)$/i", $message, $arr)) {
 	$name = ucwords(strtolower($name));
     if ($agility < 1 OR $agility > 1276) {
         $msg = "<red><red>No valid Agility specified(1-1276)";
-        $chatBot->send($msg, $sendto);
+		$chatBot->send($msg, $sendto);
         return;
     } else if (preg_match("/[^chest|ear|eye|feet|head|larm|legs|lhand|lwrist|rarm|rhand|rwrist|waist]/i",$name)) {
 		$title = "Search Spirits Database Error";
@@ -501,7 +501,7 @@ else if (preg_match ("/^spiritsagi ([0-9]+) (.+)$/i", $message, $arr)) {
 		$spirits .="Lhand\n";
 		$spirits .="Rhand\n";
 		$spirits .="Feet\n";
-	} else  {
+	} else {
 		$title = "Search for $name Spirits With Agility Req of $agility";
 		$data = $db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND agility < $agility AND agility > $loagility ORDER BY ql");
 		$matches = $db->numrows();
@@ -584,7 +584,7 @@ else if (preg_match ("/^spiritssen ([0-9]+) (.+)$/i", $message, $arr)) {
 		$spirits .="Lhand\n";
 		$spirits .="Rhand\n";
 		$spirits .="Feet\n";
-	} else  {
+	} else {
 		$title = "Search for $name Spirits With Sense Req of $sense";
 		$data = $db->query("SELECT * FROM spiritsdb where spot = '".str_replace("'", "''", $name)."' AND sense < $sense AND sense > $losense ORDER BY ql");
 		$matches = $db->numrows();

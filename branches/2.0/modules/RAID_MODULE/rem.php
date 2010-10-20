@@ -36,13 +36,13 @@ if (preg_match("/^rem$/i", $message)) {
 	  	forEach ($raidloot as $key => $value) {
 			forEach ($value as $key1 => $value1) {
 				if ($raidloot[$key][$key1]["users"][$sender] == true) {
-					unset($raidloot[$key][$key1]["users"][$sender]);	
+					unset($raidloot[$key][$key1]["users"][$sender]);
 				}
 			}
 		}
 	
 		$msg = "You have been removed from all rolls";
-	  	$chatBot->send($msg, $sender);	
+	  	$chatBot->send($msg, $sender);
 	} else if (count($loot) > 0) {
 	  	forEach ($loot as $key => $item) {
 			if ($loot[$key]["users"][$sender] == true) {
@@ -56,4 +56,5 @@ if (preg_match("/^rem$/i", $message)) {
 		$chatBot->send("There is nothing where you could add in.", $sender);
 	}
 }
+
 ?>
