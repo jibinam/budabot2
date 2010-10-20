@@ -54,7 +54,7 @@ if (preg_match("/^The (Clan|Neutral|Omni) organization (.+) just entered a state
 
 if ($def_guild) {
 
-	$whois = new WhoisXML($att_player, $chatBot->dimension);
+	$whois = new WhoisXML($att_player);
 	if (!$att_side) {
 		$att_side = $whois->faction;
 	}
@@ -81,12 +81,14 @@ if ($def_guild) {
 			$link .= $whois->lastname." ";
 		}
 		$link .= "<end>\n";
+
 		if ($whois->breed) {
 			$link .= $colorlabel."Breed:<end> ".$colorvalue.$whois->breed."<end>\n";
 		}
 		if ($whois->gender) {
 			$link .= $colorlabel."Gender:<end> ".$colorvalue.$whois->gender."<end>\n";
 		}
+
 		if ($whois->prof) {
 			$link .= $colorlabel."Profession:<end> ".$colorvalue.$whois->prof."<end>\n";
 		}
@@ -205,7 +207,6 @@ if ($def_guild) {
         (strtolower($att_side) == "omni"    && ($a & 4)) ))) {
 
     	$chatBot->send($msg, "guild", true);
-    	$chatBot->send($msg, "priv", true);
 	}
 
 	$sql = "INSERT INTO tower_attack_<myname> (`time`, `att_guild`, `att_side`, `att_player`, `att_level`, `att_profession`,

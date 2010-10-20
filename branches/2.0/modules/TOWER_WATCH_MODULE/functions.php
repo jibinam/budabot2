@@ -38,7 +38,7 @@ function getAllSitesInfo() {
 
 		$timePastCloseTime = $time - $site->close_time;
 		
-		if($timePastCloseTime < 3600 * 18) {
+		if ($timePastCloseTime < 3600 * 18) {
 			$site->gas_change = 3600 * 18 - $timePastCloseTime;
 			$site->gas_level = '75%';
 		} else if ($timePastCloseTime < 3600 * 23) {
@@ -130,7 +130,6 @@ function getTowerInfoMsg() {
 }
 
 function getTowerType($ql) {
-
 	$towerType = '';
 	
 	if ($ql >= 276) {

@@ -31,15 +31,15 @@
 
 $msg = "";
 if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) || preg_match("/^timers? ([0-9]+) (.+)$/i", $message, $arr)) {
-  	if ($arr[2] == '') {
+	if ($arr[2] == '') {
 		$timer_name = 'PrimTimer';
 	} else {
 		$timer_name = trim($arr[2]);
 	}
 	
 	forEach ($chatBot->vars["Timers"] as $key => $value) {
-	  	if ($chatBot->vars["Timers"][$key]["name"] == $timer_name) {
-		   $msg = "A Timer with the name <highlight>$timer_name<end> is already running.";
+		if ($chatBot->vars["Timers"][$key]["name"] == $timer_name) {
+			$msg = "A Timer with the name <highlight>$timer_name<end> is already running.";
 
 			// Send info back
 			$chatBot->send($msg, $sendto);
@@ -58,10 +58,10 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) || preg_match("/^timers?
 	$run_time = $arr[1] * 60;
     $timer = time() + $run_time;
 
-  	$chatBot->vars["Timers"][] = array("name" => $timer_name, "owner" => $sender, "mode" => $type, "timer" => $timer, "settime" => time());
+	$chatBot->vars["Timers"][] = array("name" => $timer_name, "owner" => $sender, "mode" => $type, "timer" => $timer, "settime" => time());
     $db->query("INSERT INTO timers_<myname> (`name`, `owner`, `mode`, `timer`, `settime`) VALUES ('".str_replace("'", "''", $timer_name)."', '$sender', '$type', $timer, ".time().")");	
 	
-	$timerset = Util::date_difference(0, $run_time);
+	$timerset = Util::unixtime_to_readable($run_time);
 	$msg = "Timer has been set for $timerset.";
 		
     $chatBot->send($msg, $sendto);
@@ -75,8 +75,8 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) || preg_match("/^timers?
 	}
 	
 	forEach ($chatBot->vars["Timers"] as $key => $value) {
-	  	if ($chatBot->vars["Timers"][$key]["name"] == $timer_name) {
-		   $msg = "A Timer with the name <highlight>$timer_name<end> is already running.";
+		if ($chatBot->vars["Timers"][$key]["name"] == $timer_name) {
+			$msg = "A Timer with the name <highlight>$timer_name<end> is already running.";
 
 			// Send info back
 			$chatBot->send($msg, $sendto);
@@ -149,7 +149,7 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) || preg_match("/^timers?
 	$chatBot->vars["Timers"][] = array("name" => $timer_name, "owner" => $sender, "mode" => $type, "timer" => $timer, "settime" => time());
 	$db->query("INSERT INTO timers_<myname> (`name`, `owner`, `mode`, `timer`, `settime`) VALUES ('".str_replace("'", "''", $timer_name) ."', '$sender', '$type', $timer, ".time().")");
 	
-	$timerset = Util::date_difference(0, $run_time);
+	$timerset = Util::unixtime_to_readable($run_time);
 	$msg = "Timer has been set for $timerset.";
 		
     $chatBot->send($msg, $sendto);
@@ -183,7 +183,6 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) || preg_match("/^timers?
 		$msg = "A timer with this name is not running.";
 	}
 
-    // Send info back
     $chatBot->send($msg, $sendto);
 } else if (preg_match("/^timers$/i", $message, $arr)) {
 	$num_timers = count($chatBot->vars["Timers"]);
@@ -326,7 +325,6 @@ if (preg_match("/^timers? ([0-9]+)$/i", $message, $arr) || preg_match("/^timers?
 		}
 	}
 
-    // Send info back
     $chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;

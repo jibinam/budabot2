@@ -22,5 +22,5 @@
 	
 	//Help files
 	Help::register($MODULE_NAME, "towers.txt", "towers", ALL, "Show Tower messages");
-	Help::register($MODULE_NAME, "lca.txt", "lca", ALL, "Show Infos about Land Control Areas");
+	Help::register($MODULE_NAME, "lca.txt", "lca", ALL, "Show Info about Land Control Areas");
 ?>

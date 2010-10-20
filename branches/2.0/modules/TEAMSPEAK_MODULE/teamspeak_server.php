@@ -171,8 +171,8 @@ if (preg_match("/^ts$/i", $message)) {
 		$data 	= explode("\t", $out);
 		$num 	= count($data);				
 		
-		for ($i=0;$i<count($data);$i++) {
-			if ($i>=10) {
+		for ($i = 0; $i < count($data); $i++) {
+			if ($i >= 10) {
 				$innerArray[$j] = $data[$i];
 				if ($j>=8) {
 					$cArray[$k]=$innerArray;

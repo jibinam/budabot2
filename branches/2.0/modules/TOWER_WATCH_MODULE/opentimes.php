@@ -21,7 +21,6 @@
    */
 
 if (preg_match("/^opentimes$/i", $message)) {
-	
     $chatBot->send(getTowerInfoMsg(), $sendto);
 }
 ?>

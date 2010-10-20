@@ -103,7 +103,6 @@ if (preg_match("/^battle(s?)$/i", $message) || preg_match("/^battle(s?) (.+)$/i"
 }
 
 if ($msg) {
-	// Send info back
 	$chatBot->send($msg, $sendto);
 }
 

@@ -82,4 +82,5 @@ forEach ($chatBot->vars["Timers"] as $key => $value) {
 		}
 	}
 }
+
 ?>

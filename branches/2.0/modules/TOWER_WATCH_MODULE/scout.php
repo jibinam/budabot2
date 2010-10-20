@@ -60,5 +60,8 @@ if (preg_match("/^scout (.*)$/i", $message)) {
 	}
 
     $chatBot->send($msg, $sendto);
+} else {
+	$syntax_error = true;
 }
+
 ?>

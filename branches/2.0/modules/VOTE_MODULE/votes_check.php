@@ -45,7 +45,7 @@ if (!function_exists(timeLeft)) {function timeLeft($origtime, $showbiggest=4) {
 
 $table = "vote_<myname>";
 
-foreach($chatBot->vars["Vote"] as $key => $value) {
+forEach ($chatBot->vars["Vote"] as $key => $value) {
    	
 	$author = $chatBot->vars["Vote"][$key]["author"];
 	$question = $key;
