@@ -1,42 +1,17 @@
 <?php
 
 class Player {
-	private $xml;
-	
-	public static function create($input) {
-		global $chatBot;
 
-		if (is_int($input)) {
-			// if input is the uid
-			$uid = (int)$input;
-
-			return new Player::get_instance_by_uid($uid);
-		} else {
-			// if input is the player name
-			$name = ucfirst(strtolower($input));
-			$uid = $chatBot->get_uid($input);
-			if ($uid === false) {
-				return null;
-			}
-
-			return new Player::get_instance_by_name($uid, $name);
-		}
-	}
-	
-	private static function get_instance_by_uid($uid) {
+	public static function get_by_name($name) {
 		global $db;
-
-		$sql = "SELECT * FROM players WHERE `uid` = {$uid}";
-		$xml = $db->query($sql, true);
-		if ($xml === null) {
-			// TODO log "Could not find player with uid: '$uid'"
-			return null;
-		} else {
-			return new Player($xml);
-		}
+		
+		$params = array (':name' => $name);
+		
+		$sql = "SELECT * FROM players WHERE name LIKE :name";
+		return $db->prepared_statement($sql, $params, true);
 	}
 	
-	private static function get_instance_by_name($name, $dimension = null) {
+	private static function get_by_name($name, $dimension = null) {
 		global $db;
 		global $vars;
 		
@@ -44,9 +19,12 @@ class Player {
 			$dimension = $vars['dimension'];
 		}
 	
-		$sql = "SELECT * FROM players WHERE `name` = {$name} AND dimension = {$dimension}";
-		$xml = $db->query($sql, true);
-		if ($xml === null || $xml->last_update < (time() - 86400)) {
+		$params = array (':uid' => $uid);
+		
+		$sql = "SELECT * FROM players WHERE uid LIKE :uid";
+		$player = $db->prepared_statement($sql, $params, true);
+
+		if ($player === null || $player->last_update < (time() - 86400)) {
 			$xml = Player::lookup($name, $vars['dimension']);
 			if ($xml === null) {
 				$xml = new stdObject;
@@ -59,14 +37,37 @@ class Player {
 			Player::update($xml);
 		}
 		
-		return new Player($xml);
+		return $db->prepared_statement($sql, $params, true);
+	}
+	
+	public static function get_by_uid($uid) {
+		global $db;
+		
+		$params = array (':uid' => $uid);
+		
+		$sql = "SELECT * FROM players WHERE uid LIKE :uid";
+		return $db->prepared_statement($sql, $params, true);
+	}
+	
+	public static function update_name($uid, $name) {
+		global $db;
+		global $vars;
+		
+		$sql = "SELECT * FROM players WHERE `uid` = {$uid}";
+		$row = $db->query($sql, true);
+		if ($row === null) {
+			$sql = "INSERT INTO players (`uid`, `name`, dimension, `last_update`) VALUES ({$uid}, '{$name}', {$vars['dimension']}, " . time() . ")";
+			$db->exec($sql);
+		} else {
+			$sql = "UPDATE players SET `name` = '{$name}', `last_update` = " . time() . " WHERE `uid` = {$uid}";
+			$db->exec($sql);
+		}
 	}
 	
 	public static function lookup($name, $rk_num) {
 		$xml = Player::lookup_url("http://people.anarchy-online.com/character/bio/d/$rk_num/name/$name/bio.xml");
 		if ($xml !== null) {
 			$xml->source = 'people.anarchy-online.com';
-			Player::update($xml);
 
 			return $xml;
 		}
@@ -75,7 +76,6 @@ class Player {
 		$xml = Player::lookup_url("http://auno.org/ao/char.php?output=xml&dimension=$rk_num&name=$name");
 		if ($xml !== null) {
 			$xml->source = 'auno.org';
-			Player::update($xml);
 			
 			return $xml;
 		}
@@ -111,49 +111,31 @@ class Player {
 		return null;
 	}
 	
-	public static function update_name($uid, $name) {
-		global $db;
-		global $vars;
-		
-		$sql = "SELECT * FROM players WHERE `uid` = {$uid}";
-		$row = $db->query($sql, true);
-		if ($row === null) {
-			$sql = "INSERT INTO players (`uid`, `name`, dimension, `last_update`) VALUES ({$uid}, '{$name}', {$vars['dimension']}, " . time() . ")";
-			$db->exec($sql);
-		} else {
-			$sql = "UPDATE players SET `name` = '{$name}', `last_update` = " . time() . " WHERE `uid` = {$uid}";
-			$db->exec($sql);
-		}
-	}
-	
 	public static function update(&$xml) {
-	
+		// TODO
 	}
 	
-	private function __construct($xml) {
-		$this->xml = $xml;
-	}
-	
-	// gives property-like syntax for xml values
+	// gives property-like syntax
 	public function __get($name) {
-		return $this->xml->$name();
+		$function_name = "get_" . $name;
+		return $this->$function_name();
 	}
 	
 	public function get_access_level() {
-		//return AccessLevel::get_user_access_level($this);
+		return AccessLevel::get_user_access_level($this);
 	}
 	
 	public function get_is_online() {
-		//$buddy = Buddylist::get($this->uid);
-		//return ($buddy === null ? null : $buddy['online']);
+		$buddy = Buddylist::get($this->uid);
+		return ($buddy === null ? null : $buddy['online']);
 	}
 	
 	public function add_to_buddylist($type) {
-		//return Buddylist::add($this->uid, $type);
+		return Buddylist::add($this->uid, $type);
 	}
 	
 	public function remove_from_buddylist($type) {
-		//return Buddylist::remove($this->uid, $type);
+		return Buddylist::remove($this->uid, $type);
 	}
 	
 	public function get_is_org_member() {

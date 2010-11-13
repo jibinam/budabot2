@@ -88,11 +88,6 @@ class DB {
 		$this->data = NULL;
 		$stmt = str_replace("<myname>", $this->botname, $stmt);
 		$stmt = str_replace("<dim>", $this->dim, $stmt);
-		
-		if (substr_compare($stmt, "create", 0, 6, true) == 0) {
-			$this->CreateTable($stmt);
-			return;
-		}
 
 		$this->lastQuery = $stmt;
 		Logger::log(__FILE__, "Query: $stmt", DEBUG);
@@ -100,6 +95,37 @@ class DB {
       	
 		if (is_object($result)) {
 		  	$this->data = $result->fetchALL(PDO::FETCH_OBJ);
+		} else {
+			$this->data = NULL;
+		}
+
+		$error = $this->sql->errorInfo();
+		if ($error[0] != "00000") {
+			Logger::log(__FILE__, "Error msg: $error[2] in: $stmt", ERROR);
+		}
+
+		if ($single) {
+			if (count($this->data) > 0) {
+				return $this->data[0];
+			} else {
+				return null;
+			}
+		} else {
+			return $this->data;
+		}
+	}
+	
+	public function query_for_object($stmt, $single = false, $classname) {
+		$this->data = NULL;
+		$stmt = str_replace("<myname>", $this->botname, $stmt);
+		$stmt = str_replace("<dim>", $this->dim, $stmt);
+
+		$this->lastQuery = $stmt;
+		Logger::log(__FILE__, "Query: $stmt", DEBUG);
+      	$result = $this->sql->query($stmt);
+      	
+		if (is_object($result)) {
+		  	$this->data = $result->fetchALL(PDO::FETCH_CLASS, $classname);
 		} else {
 			$this->data = NULL;
 		}
