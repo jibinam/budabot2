@@ -206,7 +206,7 @@ class Towers {
 			) VALUES (
 				{$playfield_id},
 				{$site_number},
-				".time().",
+				NOW(),
 				'{$scouted_by}',
 				{$ct_ql},
 				'{$org_name}',

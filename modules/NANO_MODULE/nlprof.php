@@ -51,7 +51,7 @@ if (preg_match("/^nlprof (.*)$/i", $message, $arr)) {
 
 		$count++;
 		if ($this->settings["shownanolineicons"] == "1") {
-			$window .= "<img src='rdb://$row->image_id'>\n";
+			$window .= "<img src='rdb://$row->image_id'><br>";
 		}
 		$window .= bot::makeLink("$row->name", "/tell <myname> <symbol>nlline $row->id", 'chatcmd');
 		$window .= "\n";

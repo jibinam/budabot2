@@ -55,16 +55,16 @@ class bot extends AOChat{
 		$this->vars["startup"] = time();
 
 		//Create command/event settings table if not exists
-		$db->exec("CREATE TABLE IF NOT EXISTS cmdcfg_<myname> (`module` VARCHAR(50), `cmdevent` VARCHAR(5), `type` VARCHAR(18), `file` VARCHAR(255), `cmd` VARCHAR(25), `admin` VARCHAR(10), `description` VARCHAR(50) DEFAULT 'none', `verify` INT DEFAULT '0', `status` INT DEFAULT '0', `dependson` VARCHAR(25) DEFAULT 'none', `grp` VARCHAR(25) DEFAULT 'none')");
-		$db->exec("CREATE TABLE IF NOT EXISTS settings_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `mode` VARCHAR(10), `setting` VARCHAR(50) Default '0', `options` VARCHAR(255) Default '0', `intoptions` VARCHAR(50) DEFAULT '0', `description` VARCHAR(50), `source` VARCHAR(5), `admin` VARCHAR(25), `help` VARCHAR(60))");
-		$db->exec("CREATE TABLE IF NOT EXISTS hlpcfg_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `cat` VARCHAR(50), `description` VARCHAR(50), `admin` VARCHAR(10), `verify` INT Default '0')");
+		$db->query("CREATE TABLE IF NOT EXISTS cmdcfg_<myname> (`module` VARCHAR(50), `cmdevent` VARCHAR(5), `type` VARCHAR(18), `file` VARCHAR(255), `cmd` VARCHAR(25), `admin` VARCHAR(10), `description` VARCHAR(50) DEFAULT 'none', `verify` INT DEFAULT '0', `status` INT DEFAULT '0', `dependson` VARCHAR(25) DEFAULT 'none', `grp` VARCHAR(25) DEFAULT 'none')");
+		$db->query("CREATE TABLE IF NOT EXISTS settings_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `mode` VARCHAR(10), `setting` VARCHAR(50) Default '0', `options` VARCHAR(255) Default '0', `intoptions` VARCHAR(50) DEFAULT '0', `description` VARCHAR(50), `source` VARCHAR(5), `admin` VARCHAR(25), `help` VARCHAR(60))");
+		$db->query("CREATE TABLE IF NOT EXISTS hlpcfg_<myname> (`name` VARCHAR(30) NOT NULL, `module` VARCHAR(50), `cat` VARCHAR(50), `description` VARCHAR(50), `admin` VARCHAR(10), `verify` INT Default '0')");
 
 		//Prepare command/event settings table
-		$db->exec("UPDATE cmdcfg_<myname> SET `verify` = 0");
-		$db->exec("UPDATE hlpcfg_<myname> SET `verify` = 0");
-		$db->exec("UPDATE cmdcfg_<myname> SET `status` = 1 WHERE `cmdevent` = 'event' AND `type` = 'setup'");
-		$db->exec("UPDATE cmdcfg_<myname> SET `grp` = 'none'");
-		$db->exec("DELETE FROM cmdcfg_<myname> WHERE `module` = 'none'");
+		$db->query("UPDATE cmdcfg_<myname> SET `verify` = 0");
+		$db->query("UPDATE hlpcfg_<myname> SET `verify` = 0");
+		$db->query("UPDATE cmdcfg_<myname> SET `status` = 1 WHERE `cmdevent` = 'event' AND `type` = 'setup'");
+		$db->query("UPDATE cmdcfg_<myname> SET `grp` = 'none'");
+		$db->query("DELETE FROM cmdcfg_<myname> WHERE `module` = 'none'");
 
 		//To reduce query's save the current commands/events in an array
 		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'cmd'");
@@ -95,7 +95,7 @@ class bot extends AOChat{
 		}
 
 		// Load the Core Modules -- SETINGS must be first in case the other modules have settings
-		Logger::log('INFO', 'StartUp', "Loading CORE modules...");
+		Logger::log('debug', 'Core', ":::::::CORE MODULES::::::::");
 		
 		Logger::log('debug', 'Core', "MODULE_NAME:(SETTINGS.php)");
 		include "./core/SETTINGS/SETTINGS.php";
@@ -127,7 +127,7 @@ class bot extends AOChat{
 		$curMod = "";
 
 		// Load Plugin Modules
-		Logger::log('INFO', 'StartUp', "Loading USER modules...");
+		Logger::log('debug', 'Core', ":::::::USER MODULES::::::::");
 
 		//Start Transaction
 		$db->beginTransaction();
@@ -156,6 +156,7 @@ class bot extends AOChat{
 		unset($this->existing_helps);
 
 		//Delete old entrys in the DB
+		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0");
 		$db->query("DELETE FROM hlpcfg_<myname> WHERE `verify` = 0");
 	}
 
@@ -164,6 +165,8 @@ class bot extends AOChat{
 ** Name: connect
 ** Connect to AO chat servers.
 */	function connectAO($login, $password){
+		echo "\n\n";
+
 		// Choose Server
 		if($this->vars["dimension"] == 1) {
 			$server = "chat.d1.funcom.com";
@@ -178,40 +181,40 @@ class bot extends AOChat{
 			$server = "chat.dt.funcom.com";
 			$port = 7109;
 		} else {
-			Logger::log('ERROR', 'StartUp', "No valid Server to connect with! Available dimensions are 1, 2, 3 and 4.");
+			echo "No valid Server to connect with! Available dimensions are 1, 2, 3 and 4.\n";
 		  	sleep(10);
 		  	die();
 		}
 
 		// Begin the login process
-		Logger::log('INFO', 'StartUp', "Connecting to AO Server...($server)");
+		echo "Connecting to AO Server...($server)\n";
 		AOChat::connect($server, $port);
 		sleep(2);
 		if($this->state != "auth") {
-			Logger::log('ERROR', 'StartUp', "Connection failed! Please check your Internet connection and firewall.");
+			echo "Connection failed! Please check your Internet connection and firewall.\n";
 			sleep(10);
 			die();
 		}
 
-		Logger::log('INFO', 'StartUp', "Authenticate login data...");
+		echo "Authenticate login data...\n";
 		AOChat::authenticate($login, $password);
 		sleep(2);
 		if($this->state != "login") {
-			Logger::log('ERROR', 'StartUp', "Authentication failed! Please check your username and password.");
+			echo "Authentication failed! Please check your username and password.\n";
 			sleep(10);
 			die();
 		}
 
-		Logger::log('INFO', 'StartUp', "Logging in {$this->vars["name"]}...");
+		echo "Logging in {$this->vars["name"]}...\n";
 		AOChat::login($this->vars["name"]);
 		sleep(2);
 		if($this->state != "ok") {
-			Logger::log('ERROR', 'StartUp', "Logging in of {$this->vars["name"]} failed! Please check the character name and dimension.");
+			echo "Logging in of {$this->vars["name"]} failed! Please check the character name and dimension.\n";
 			sleep(10);
 			die();
 		}
 
-		Logger::log('INFO', 'StartUp', "All Systems ready!");
+		echo "All Systems ready....\n\n\n";
 		sleep(2);
 
 		// Set cron timers
@@ -523,7 +526,7 @@ class bot extends AOChat{
 */	function loadCommands() {
 	  	$db = db::get_instance();
 		//Delete commands that are not verified
-		$db->exec("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0 AND `cmdevent` = 'cmd'");
+		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0 AND `cmdevent` = 'cmd'");
 		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `status` = '1' AND `cmdevent` = 'cmd'");
 		$data = $db->fObject("all");
 		forEach ($data as $row) {
@@ -537,7 +540,7 @@ class bot extends AOChat{
 */	function loadSubcommands() {
 	  	$db = db::get_instance();
 		//Delete subcommands that are not verified
-		$db->exec("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0 AND `cmdevent` = 'subcmd'");
+		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0 AND `cmdevent` = 'subcmd'");
 		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmdevent` = 'subcmd'");
 		$data = $db->fObject("all");
 		forEach ($data as $row) {
@@ -552,7 +555,7 @@ class bot extends AOChat{
 */	function loadEvents() {
 	  	$db = db::get_instance();
 		//Delete events that are not verified
-		$db->exec("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0 AND `cmdevent` = 'event'");
+		$db->query("DELETE FROM cmdcfg_<myname> WHERE `verify` = 0 AND `cmdevent` = 'event'");
 		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `status` = '1' AND `cmdevent` = 'event'");
 		$data = $db->fObject("all");
 		forEach ($data as $row) {
@@ -568,7 +571,7 @@ class bot extends AOChat{
 		$db = db::get_instance();
 
 		if (!bot::processCommandArgs($type, $admin)) {
-			Logger::log('ERROR', 'Core', "invalid args for command '$command'!!");
+			echo "invalid args for command '$command'!!\n";
 			return;
 		}
 
@@ -581,9 +584,9 @@ class bot extends AOChat{
 			Logger::log('debug', 'Core', "                 Admin:({$admin[$i]}) Type:({$type[$i]})");
 			
 			if ($this->existing_commands[$type[$i]][$command] == true) {
-				$db->exec("UPDATE cmdcfg_<myname> SET `module` = '$curMod', `verify` = 1, `file` = '$filename', `description` = '$description' WHERE `cmd` = '$command' AND `type` = '{$type[$i]}'");
+				$db->query("UPDATE cmdcfg_<myname> SET `module` = '$curMod', `verify` = 1, `file` = '$filename', `description` = '$description' WHERE `cmd` = '$command' AND `type` = '{$type[$i]}'");
 			} else {
-				$db->exec("INSERT INTO cmdcfg_<myname> (`module`, `type`, `file`, `cmd`, `admin`, `description`, `verify`, `cmdevent`, `status`) VALUES ('$curMod', '{$type[$i]}', '$filename', '$command', '{$admin[$i]}', '$description', 1, 'cmd', '".$this->settings["default_module_status"]."')");
+				$db->query("INSERT INTO cmdcfg_<myname> (`module`, `type`, `file`, `cmd`, `admin`, `description`, `verify`, `cmdevent`, `status`) VALUES ('$curMod', '{$type[$i]}', '$filename', '$command', '{$admin[$i]}', '$description', 1, 'cmd', '".$this->settings["default module status"]."')");
 			}
 		}
 	}
@@ -604,7 +607,7 @@ class bot extends AOChat{
 		if (($actual_filename = bot::verifyFilename($filename)) != '') {
     		$filename = $actual_filename;
 		} else {
-			Logger::log('ERROR', 'Core', "Error in registering the File $filename for command $command. The file doesn't exists!");
+			echo "Error in registering the File $filename for command $command. The file doesn't exists!\n";
 			return;
 		}
 
@@ -625,7 +628,7 @@ class bot extends AOChat{
 			} else if($admin == "admin") {
 				$admin = 4;
 			} else if($admin != "all" && $admin != "guild" && $admin != "guildadmin") {
-				Logger::log('ERROR', 'Core', "Error in registrating the command $command for channel $type. Reason Unknown Admintype: $admin. Admintype is set to all now.");
+				echo "Error in registrating the command $command for channel $type. Reason Unknown Admintype: $admin. Admintype is set to all now.\n";
 				$admin = "all";
 			}
 		}
@@ -689,7 +692,7 @@ class bot extends AOChat{
 		if (count($admin) == 1) {
 			$admin = array_fill(0, count($type), $admin[0]);
 		} else if (count($admin) != count($type)) {
-			Logger::log('ERROR', 'Core', "ERROR! the number of type arguments does not equal the number of admin arguments for command/subcommand registration!");
+			echo "ERROR! the number of type arguments does not equal the number of admin arguments for command/subcommand registration!";
 			return false;
 		}
 		return true;
@@ -703,7 +706,7 @@ class bot extends AOChat{
 		global $curMod;
 
 		if (!bot::processCommandArgs($type, $admin)) {
-			Logger::log('ERROR', 'Core', "invalid args for subcommand '$command'!!");
+			echo "invalid args for subcommand '$command'!!\n";
 			return;
 		}
 
@@ -718,7 +721,7 @@ class bot extends AOChat{
 		if (($actual_filename = bot::verifyFilename($filename)) != '') {
 			$filename = $actual_filename;
 		} else {
-			Logger::log('ERROR', 'Core', "Error in registering the file $filename for Subcommand $command. The file doesn't exists!");
+			echo "Error in registering the file $filename for Subcommand $command. The file doesn't exists!\n";
 			return;
 		}
 
@@ -740,15 +743,15 @@ class bot extends AOChat{
 				} else if ($admin[$i] == "admin") {
 					$admin[$i] = 4;
 				} else if ($admin[$i] != "all" && $admin[$i] != "guild" && $admin[$i] != "guildadmin") {
-					Logger::log('ERROR', 'Core', "Error in registrating the command $command for channel {$type[$i]}. Reason Unknown Admintype: {$admin[$i]}. Admintype is set to all now.");
+					echo "Error in registrating the command $command for channel {$type[$i]}. Reason Unknown Admintype: {$admin[$i]}. Admintype is set to all now.\n";
 					$admin[$i] = "all";
 				}
 			}
 
 			if ($this->existing_subcmds[$type[$i]][$command] == true) {
-				$db->exec("UPDATE cmdcfg_<myname> SET `module` = '$curMod', `verify` = 1, `file` = '$filename', `description` = '$description', `dependson` = '$dependson' WHERE `cmd` = '$command' AND `type` = '{$type[$i]}'");
+				$db->query("UPDATE cmdcfg_<myname> SET `module` = '$curMod', `verify` = 1, `file` = '$filename', `description` = '$description', `dependson` = '$dependson' WHERE `cmd` = '$command' AND `type` = '{$type[$i]}'");
 			} else {
-				$db->exec("INSERT INTO cmdcfg_<myname> (`module`, `type`, `file`, `cmd`, `admin`, `description`, `verify`, `cmdevent`, `dependson`) VALUES ('$curMod', '{$type[$i]}', '$filename', '$command', '{$admin[$i]}', '$description', 1, 'subcmd', '$dependson')");
+				$db->query("INSERT INTO cmdcfg_<myname> (`module`, `type`, `file`, `cmd`, `admin`, `description`, `verify`, `cmdevent`, `dependson`) VALUES ('$curMod', '{$type[$i]}', '$filename', '$command', '{$admin[$i]}', '$description', 1, 'subcmd', '$dependson')");
 			}
 		}
 	}
@@ -766,16 +769,16 @@ class bot extends AOChat{
 		
 		Logger::log('debug', 'Core', "Adding Event to list:($type) File:($filename)");
 
-		if ($this->settings["default_module_status"] == 1) {
+		if ($this->settings["default module status"] == 1) {
 			$status = 1;
 		} else {
 			$status = 0;
 		}
 
-		if ($this->existing_events[$type][$actual_filename] == true) {
-		  	$db->exec("UPDATE cmdcfg_<myname> SET `verify` = 1, `description` = '$description' WHERE `type` = '$type' AND `cmdevent` = 'event' AND `file` = '$actual_filename' AND `module` = '$module'");
+		if ($this->existing_events[$type][$filename] == true) {
+		  	$db->query("UPDATE cmdcfg_<myname> SET `verify` = 1, `description` = '$description' WHERE `type` = '$type' AND `cmdevent` = 'event' AND `file` = '$actual_filename' AND `module` = '$module'");
 		} else {
-		  	$db->exec("INSERT INTO cmdcfg_<myname> (`module`, `cmdevent`, `type`, `file`, `verify`, `description`, `status`) VALUES ('$module', 'event', '$type', '$actual_filename', '1', '$description', '$status')");
+		  	$db->query("INSERT INTO cmdcfg_<myname> (`module`, `cmdevent`, `type`, `file`, `verify`, `description`, `status`) VALUES ('$module', 'event', '$type', '$actual_filename', '1', '$description', '$status')");
 		}
 	}
 
@@ -903,7 +906,7 @@ class bot extends AOChat{
 		if (($actual_filename = bot::verifyFilename($filename)) != '') {
     		$filename = $actual_filename;
 		} else {
-			Logger::log('ERROR', 'Core', "Error in unregistering the File $filename for Event $type. The file doesn't exists!");
+			echo "Error in unregistering the File $filename for Event $type. The file doesn't exists!\n";
 			return;
 		}
 
@@ -1061,32 +1064,32 @@ class bot extends AOChat{
 		$group = strtolower($group);
 		//Check if the module is correct
 		if ($module == "none") {
-			Logger::log('ERROR', 'Core', "Error in creating group $group. You need to specify a module for the group.");
+			echo "Error in creating group $group. You need to specify a module for the group.\n";
 			return;
 		}
 		//Check if the group already exists
 		$db->query("SELECT * FROM cmdcfg_<myname> WHERE `grp` = '$group'");
 		if ($db->numrows() != 0) {
-			Logger::log('ERROR', 'Core', "Error in creating group $group. This group already exists.");
+			echo "Error in creating group $group. This group already exists.\n";
 			return;
 		}
     	$numargs = func_num_args();
     	$arg_list = func_get_args();
 		//Check if enough commands are given for the group
 		if ($numargs < 5) {
-			Logger::log('ERROR', 'Core', "Not enough commands to build group $group(must be at least 2commands)");
+			echo "Not enough commands to build group $group(must be at least 2commands)";
 			return;
 		}
 		//Go through the arg list and assign it to the group
 		for ($i = 3;$i < $numargs; $i++) {
 		  	$db->query("SELECT * FROM cmdcfg_<myname> WHERE `cmd` = '".$arg_list[$i]."' AND `module` = '$curMod'");
 		  	if ($db->numrows() != 0) {
-			    $db->exec("UPDATE cmdcfg_<myname> SET `grp` = '$group' WHERE `cmd` = '".$arg_list[$i]."' AND `module` = '$curMod'");
+			    $db->query("UPDATE cmdcfg_<myname> SET `grp` = '$group' WHERE `cmd` = '".$arg_list[$i]."' AND `module` = '$curMod'");
 			} else {
-			  	Logger::log('ERROR', 'Core', "Error in creating group $group for module $curMod. Command ".$arg_list[$i]." doesn't exists.");
+			  	echo "Error in creating group $group for module $curMod. Command ".$arg_list[$i]." doesn't exists.\n";
 			}
 		}
-	  	$db->exec("INSERT INTO cmdcfg_<myname> (`module`, `type`, `cmdevent`, `verify`, `description`) VALUES ('none', '$group', 'group', '1', '$description')");
+	  	$db->query("INSERT INTO cmdcfg_<myname> (`module`, `type`, `cmdevent`, `verify`, `description`) VALUES ('none', '$group', 'group', '1', '$description')");
 	}
 
 
@@ -1101,7 +1104,7 @@ class bot extends AOChat{
 		if ($help != '' && ($actual_filename = bot::verifyFilename($help)) != '') {
     		$filename = $actual_filename;
 		} else if ($help != "") {
-			Logger::log('ERROR', 'Core', "Error in registering the File $filename for Setting $name. The file doesn't exists!");
+			echo "Error in registering the File $filename for Setting $name. The file doesn't exists!\n";
 			return;
 		}
 		
@@ -1109,10 +1112,10 @@ class bot extends AOChat{
 		$description = str_replace("'", "''", $description);
 
 		if ($this->existing_settings[$name] != true) {
-			$db->exec("INSERT INTO settings_<myname> (`name`, `module`, `mode`, `setting`, `options`, `intoptions`, `description`, `source`, `admin`, `help`) VALUES ('$name', '$module', '$mode', '" . str_replace("'", "''", $value) . "', '$options', '$intoptions', '$description', 'db', '$admin', '$help')");
+			$db->query("INSERT INTO settings_<myname> (`name`, `module`, `mode`, `setting`, `options`, `intoptions`, `description`, `source`, `admin`, `help`) VALUES ('$name', '$module', '$mode', '" . str_replace("'", "''", $value) . "', '$options', '$intoptions', '$description', 'db', '$admin', '$help')");
 		  	$this->settings[$name] = $value;
 	  	} else {
-			$db->exec("UPDATE settings_<myname> SET `module` = '$module', `mode` = '$mode', `options` = '$options', `intoptions` = '$intoptions', `description` = '$description', `admin` = '$admin', `help` = '$help' WHERE `name` = '$name'");
+			$db->query("UPDATE settings_<myname> SET `module` = '$module', `mode` = '$mode', `options` = '$options', `intoptions` = '$intoptions', `description` = '$description', `admin` = '$admin', `help` = '$help' WHERE `name` = '$name'");
 		}
 	}
 
@@ -1139,7 +1142,7 @@ class bot extends AOChat{
 		}
 
 		if (isset($this->settings[$name])) {
-			$db->exec("UPDATE settings_<myname> SET `setting` = '" . str_replace("'", "''", $newsetting) . "' WHERE `name` = '$name'");
+			$db->query("UPDATE settings_<myname> SET `setting` = '" . str_replace("'", "''", $newsetting) . "' WHERE `name` = '$name'");
 			$this->settings[$name] = $newsetting;
 		} else {
 			return false;
@@ -1167,7 +1170,7 @@ class bot extends AOChat{
 			} else if ($admin == "admin") {
 				$admin = 4;
 			} else if($admin != "all" && $admin != "guild" && $admin != "guildadmin") {
-				Logger::log('ERROR', 'Core', "Error in registrating the command $command for channel '$type'. Unknown Admin type: '$admin'. Admin type is set to 'all'.");
+				echo "Error in registrating the command $command for channel '$type'. Unknown Admin type: '$admin'. Admin type is set to 'all'.\n";
 				$admin = "all";
 			}
 		}
@@ -1179,14 +1182,14 @@ class bot extends AOChat{
 	    		$this->helpfiles[$module][$command]["status"] = "enabled";
 			}
 		} else {
-			Logger::log('ERROR', 'Core', "Error in registering the File $filename for Help command $command. The file doesn't exist!");
+			echo "Error in registering the File $filename for Help command $command. The file doesn't exist!\n";
 			return;
 		}
 
 		if (isset($this->existing_helps[$command])) {
-			$db->exec("UPDATE hlpcfg_<myname> SET `verify` = 1, `description` = '$description', `cat` = '$module' WHERE `name` = '$command'");
+			$db->query("UPDATE hlpcfg_<myname> SET `verify` = 1, `description` = '$description', `cat` = '$module' WHERE `name` = '$command'");
 		} else {
-			$db->exec("INSERT INTO hlpcfg_<myname> VALUES ('$command', '$module', '$module', '$description', '$admin', 1)");
+			$db->query("INSERT INTO hlpcfg_<myname> VALUES ('$command', '$module', '$module', '$description', '$admin', 1)");
 		}
 
 		$db->query("SELECT * FROM hlpcfg_<myname> WHERE `name` = '$command'");
@@ -1258,6 +1261,7 @@ class bot extends AOChat{
 				if ($channel == $this->vars['name']) {
 					$type = "joinPriv";
 					
+					// Echo
 					Logger::log_chat("Priv Group", -1, "$sender joined the channel.");
 
 					// Remove sender if they are /ignored or /banned or if spam filter is blocking them
@@ -1295,6 +1299,7 @@ class bot extends AOChat{
 				if ($channel == $this->vars['name']) {
 					$type = "leavePriv";
 				
+					// Echo
 					Logger::log_chat("Priv Group", -1, "$sender left the channel.");
 
 					// Remove from Chatlist array.
@@ -1333,6 +1338,7 @@ class bot extends AOChat{
 				if ($status == 0) {
 					$type = "logOff"; // Set message type
 					
+					// Echo
 					Logger::log('debug', "Buddy", "$sender logged off");
 
 					// Check files, for all 'player logged off events'
@@ -1348,6 +1354,7 @@ class bot extends AOChat{
 				} else if ($status == 1) {
 					$type = "logOn"; // Set Message Type
 					
+					// Echo
 					Logger::log('info', "Buddy", "$sender logged on");
 
 					// Check files, for all 'player logged on events'.
@@ -1376,6 +1383,7 @@ class bot extends AOChat{
 
 				$message = html_entity_decode($message, ENT_QUOTES);
 
+				// Echo
 				Logger::log_chat("Inc. Msg.", $sender, $message);
 
 				// AFK/bot check
@@ -1453,6 +1461,7 @@ class bot extends AOChat{
 
 					$type = "priv";
 
+					// Echo
 					Logger::log_chat("Priv Group", $sender, $message);
 					
 					// Events
@@ -1576,6 +1585,7 @@ class bot extends AOChat{
 				$uid = $args[0];
 				$sender = $this->lookup_user($uid);
 
+				// Echo
 				Logger::log_chat("Priv Channel Invitation", -1, "$sender channel invited.");
 
 				if ($this->extJoinPrivRequest != NULL) {
@@ -1735,7 +1745,7 @@ class bot extends AOChat{
 		if ($arr[2] == strtolower($arr[2])) {
 			return true;
 		} else {
-			Logger::log('ERROR', 'Core', "Warning: $filename does not match the nameconvention(All php files needs to be in lowercases except loading files)!");
+			echo "Warning: $filename does not match the nameconvention(All php files needs to be in lowercases except loading files)!\n";
 			return false;
 		}
 	}
@@ -1751,7 +1761,7 @@ class bot extends AOChat{
 		
 		// only letters, numbers, underscores are allowed
 		if (!preg_match('/^[a-z0-9_]+$/', $name)) {
-			Logger::log('ERROR', 'Core', "Invalid SQL file name: '$name' for module: '$module'!  Only numbers, letters, and underscores permitted!");
+			echo "Invalid SQL file name: '$name' for module: '$module'!  Only numbers, letters, and underscores permitted!\n";
 			return;
 		}
 		
@@ -1793,8 +1803,16 @@ class bot extends AOChat{
 		}
 		
 		if ($file === false) {
-			Logger::log('ERROR', 'Core', "No SQL file found with name '$name'!");
+			echo "No SQL file found with name '$name'!\n";
 		} else if ($forceUpdate || compareVersionNumbers($maxFileVersion, $currentVersion) > 0) {
+			// if the file had a version, tell them the start and end version
+			// otherwise, just tell them we're updating the database
+			if ($maxFileVersion != 0) {
+				echo "Updating '$name' database from '$currentVersion' to '$maxFileVersion'...";
+			} else {
+				echo "Updating '$name' database...";
+			}
+
 			$fileArray = file("$dir/$file");
 			//$db->beginTransaction();
 			forEach ($fileArray as $num => $line) {
@@ -1805,18 +1823,13 @@ class bot extends AOChat{
 				}
 			}
 			//$db->Commit();
+			echo "Finished!\n";
 		
 			if (!bot::savesetting($settingName, $maxFileVersion)) {
 				bot::addsetting($module, $settingName, $settingName, 'noedit', $maxFileVersion);
 			}
-			
-			if ($maxFileVersion != 0) {
-				Logger::log('DEBUG', 'Core', "Updated '$name' database from '$currentVersion' to '$maxFileVersion'");
-			} else {
-				Logger::log('DEBUG', 'Core', "Updated '$name' database");
-			}
 		} else {
-			Logger::log('DEBUG', 'Core',  "'$name' database already up to date! version: '$currentVersion'");
+			echo "Updating '$name' database...already up to date! version: '$currentVersion'\n";
 		}
 	}
 }

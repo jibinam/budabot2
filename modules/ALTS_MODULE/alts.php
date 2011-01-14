@@ -182,13 +182,58 @@ if (preg_match("/^alts add (.+)$/i", $message, $arr)) {
 		$name = $sender;
 	}
 
-	$blob = Alts::get_alts_blob($name);
-	
-	if ($blob === null) {
+	$main = Alts::get_main($name);
+	$alts = Alts::get_alts($main);
+
+	if (count($alts) == 0) {
 		$msg = "No alts are registered for <highlight>{$name}<end>.";
-	} else {
-		$msg = $this->makeLink($name."'s Alts", $blob);
+		$this->send($msg, $sendto);
+		return;
 	}
+
+	$list = "<header>::::: Alternative Character List :::::<end> \n \n";
+	$list .= ":::::: Main Character\n";
+	$list .= "<tab><tab>{$main}";
+	$character = Player::get_by_name($main);
+	if ($character !== null) {
+		$list .= " (Level <highlight>{$character->level}<end>/<green>{$character->ai_level}<end> <highlight>{$character->profession}<end>)";
+	}
+	$online = $this->buddy_online($main);
+	if ($online === null)
+	{
+		$list .= " - No status.\n";
+	}
+	elseif ($online == 1)
+	{
+		$list .= " - <green>Online<end>\n";
+	}
+	else
+	{
+		$list .= " - <red>Offline<end>\n";
+	}
+	$list .= ":::::: Alt Character(s)\n";
+	forEach ($alts as $alt)
+	{
+		$list .= "<tab><tab>{$alt}";
+		$character = Player::get_by_name($alt);
+		if ($character !== null) {
+			$list .= " (Level <highlight>{$character->level}<end>/<green>{$character->ai_level}<end> <highlight>{$character->profession}<end>)";
+		}
+		$online = $this->buddy_online($alt);
+		if ($online === null)
+		{
+			$list .= " - No status.\n";
+		}
+		else if ($online == 1)
+		{
+			$list .= " - <green>Online<end>\n";
+		}
+		else
+		{
+			$list .= " - <red>Offline<end>\n";
+		}
+	}
+	$msg = $this->makeLink($name."'s Alts", $list);
 	$this->send($msg, $sendto);
 } else {
 	$syntax_error = true;

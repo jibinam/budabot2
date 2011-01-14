@@ -7,13 +7,13 @@
 
 	//Check macros
 	bot::command("", "$MODULE_NAME/check.php", "check", "rl", "Checks who of the raidgroup is in the area");
-
+	
 	//Topic set/show
 	bot::event($MODULE_NAME, "joinPriv", "topic.php", "topic", "Show Topic when someone joins PrivChat");
 	bot::event($MODULE_NAME, "logOn", "topic_logon.php", "none", "Show Topic on logon of members");
 	bot::command("", "$MODULE_NAME/topic.php", "topic", "all", "Show Topic");
 	bot::subcommand("", "$MODULE_NAME/topic.php", "topic (.+)", "leader", "topic", "Change Topic");
-	bot::addsetting($MODULE_NAME, "topic", "Topic for Priv Channel", "noedit", "");
+	bot::addsetting($MODULE_NAME, "topic", "Topic for Priv Channel", "noedit", "");	
 	bot::addsetting($MODULE_NAME, "topic_setby", "no", "hide", "none");
 	bot::addsetting($MODULE_NAME, "topic_time", "no", "hide", time());
 

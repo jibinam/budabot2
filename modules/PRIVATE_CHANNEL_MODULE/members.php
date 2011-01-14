@@ -8,7 +8,7 @@ if (preg_match("/^members$/i", $message)) {
 	  	while ($row = $db->fObject()) {
 	  	  	if ($this->buddy_online($row->name)) {
 				$status = "<green>Online";
-				if (isset($this->vars["Guest"][$row->name])) {
+				if ($this->vars["Guest"][$row->name] == true) {
 			    	$status .= " and in channel";
 				}
 			} else {

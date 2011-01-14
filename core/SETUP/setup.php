@@ -41,13 +41,13 @@ function savecfg($vars, $settings) {
 	$lines = file($config_file);
 	forEach ($lines as $key => $line) {
 	  	if (preg_match("/^(.+)vars\[('|\")(.+)('|\")](.*)=(.*)\"(.*)\";(.*)$/i", $line, $arr)) {
-			$lines[$key] = "$arr[1]vars['$arr[3]']$arr[5]=$arr[6]\"{$vars[$arr[3]]}\";$arr[8]";
+			$lines[$key] = "$arr[1]vars['$arr[3]']$arr[5]=$arr[6]\"{$vars[$arr[3]]}\"; $arr[8]";
 		} else if (preg_match("/^(.+)vars\[('|\")(.+)('|\")](.*)=([ 	]+)([0-9]+);(.*)$/i", $line, $arr)) {
-			$lines[$key] = "$arr[1]vars['$arr[3]']$arr[5]=$arr[6]{$vars[$arr[3]]};$arr[8]";
+			$lines[$key] = "$arr[1]vars['$arr[3]']$arr[5]=$arr[6]{$vars[$arr[3]]}; $arr[8]";
 	  	} else if (preg_match("/^(.+)settings\[('|\")(.+)('|\")](.*)=(.*)\"(.*)\";(.*)$/i", $line, $arr)) {
-			$lines[$key] = "$arr[1]settings['$arr[3]']$arr[5]=$arr[6]\"{$settings[$arr[3]]}\";$arr[8]";
+			$lines[$key] = "$arr[1]settings['$arr[3]']$arr[5]=$arr[6]\"{$settings[$arr[3]]}\"; $arr[8]";
 		} else if (preg_match("/^(.+)settings\[('|\")(.+)('|\")](.*)=([ 	]+)([0-9]+);(.*)$/i", $line, $arr)) {
-			$lines[$key] = "$arr[1]settings['$arr[3]']$arr[5]=$arr[6]{$settings[$arr[3]]};$arr[8]";
+			$lines[$key] = "$arr[1]settings['$arr[3]']$arr[5]=$arr[6]{$settings[$arr[3]]}; $arr[8]";
 		}
 	}
 	file_put_contents($config_file, $lines);
@@ -285,14 +285,14 @@ do {
 	echo "             \n\n\n\n\n\n\n";
 
 	$msg = "Should all modules be enabled ? (yes - Recommended/no): \n";
-	$settings["default_module_status"] = strtolower(read_input($msg));
-} while ($settings["default_module_status"] != "yes" && $settings["default_module_status"] != "no");
+	$settings["default module status"] = strtolower(read_input($msg));
+} while ($settings["default module status"] != "yes" && $settings["default module status"] != "no");
 
-if ($settings["default_module_status"] == "yes") {
-	$settings["default_module_status"] = 1;
+if ($settings["default module status"] == "yes") {
+	$settings["default module status"] = 1;
 }
-if ($settings["default_module_status"] == "no") {
-	$settings["default_module_status"] = 0;
+if ($settings["default module status"] == "no") {
+	$settings["default module status"] = 0;
 }
 	
 echo "         \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";

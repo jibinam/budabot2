@@ -30,7 +30,7 @@
    */
 
 if (preg_match("/^cmd (.+)$/i", $message, $arr)) {
-	$msg = "\n<yellow>---------------------\n<red>".$arr[1]."<end>\n<yellow>---------------------";
+	$msg = "<br><yellow>---------------------<br><red>".$arr[1]."<end><br><yellow>---------------------";
 	
 	if ($type == "msg") {
 		bot::send($msg, "guild", true);
