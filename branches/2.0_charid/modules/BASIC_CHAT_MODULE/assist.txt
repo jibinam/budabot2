@@ -1,7 +1,0 @@
-<header>::::: Creating an assist macro :::::<end>
-
-<highlight>Set a new assist<end>
-<tab><symbol>assist 'name'
-
-<highlight>Show current assist<end>
-<tab><symbol>assist
