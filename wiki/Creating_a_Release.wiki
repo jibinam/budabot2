@@ -15,7 +15,7 @@ On the other hand, if this is not an official release (ie. if this is a release 
 ==Creating==
   # "Checkout" or "Export" from /svn/branches/1.0 (or 2.0)
   # If you "Checked Out" you will need to search for and remove all the .svn folders
-  # Remove SVN_MODULE, WEBCAST_MODULE, and BANK_MODULE from /modules
+  # Remove SVN_MODULE, WEBCAST_MODULE, MIGRATE_MODULE and BANK_MODULE from /modules
   # Make a post on budabot.com notifying people of the releasing, listing the fixes and changes, and listing any known issues that still need to be addressed
   # Rename budabot folder to `"Budabot<version>_<build>"` if it's not already (eg: "Budabot1.0_RC9_build390", "Budabot2.0_GA_build420", etc)
   # Zip the folder into a zip file called `"Budabot<version>_<build>"` (eg: "Budabot1.0_RC9_build390.zip", "Budabot2.0_GA_build420.zip", etc)
