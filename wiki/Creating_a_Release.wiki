@@ -2,22 +2,15 @@
 #labels Phase-Implementation
 
 =How to create a release version of Budabot from SVN=
-
-==Preparation==
-If this is an official release you need to do these things first:
   # Open "/main.php" and update $version (ex: $version = "1.0_RC9")
   # Update "/patchnotes.txt" for this release
   # Commit these changes
   # Tag this release
-
-On the other hand, if this is not an official release (ie. if this is a release candidate), then still do steps 1 and 2 of Preparation, but don't commit the changes to SVN or tag the release.  And you can skip updating patch notes for release candidates also if you wish.  However, do include the changed files from steps 1 and 2 of Preparation in the release candidate when you create the zip file in step 6 of Creating below.
-
-==Creating==
-  # "Checkout" or "Export" from /svn/branches/1.0 (or 2.0)
+  # "Checkout" or "Export" from the tagged branch you just created
   # If you "Checked Out" you will need to search for and remove all the .svn folders
-  # Remove SVN_MODULE, WEBCAST_MODULE, MIGRATE_MODULE and BANK_MODULE from /modules
-  # Make a post on budabot.com notifying people of the releasing, listing the fixes and changes, and listing any known issues that still need to be addressed
+  # Remove BANK_MODULE, MIGRATE_MODULE, SVN_MODULE and WEBCAST_MODULE from /modules
   # Rename budabot folder to `"Budabot<version>_<build>"` if it's not already (eg: "Budabot1.0_RC9_build390", "Budabot2.0_GA_build420", etc)
   # Zip the folder into a zip file called `"Budabot<version>_<build>"` (eg: "Budabot1.0_RC9_build390.zip", "Budabot2.0_GA_build420.zip", etc)
   # Upload to the downloads section
+  # Make a post on budabot.com notifying people of the releasing, listing the fixes and changes, and listing any known issues that still need to be addressed
 All done!
