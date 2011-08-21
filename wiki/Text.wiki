@@ -1,0 +1,147 @@
+= How to use the Text class =
+
+The text class allows you to format a message, create a fancy header, create an image tag, and create links.  There are 4 types of links you can create in Anarchy Online: blob links, chatcmd links, user links, and item links.
+
+== Format message ==
+Typically, you won't need this functionality as it is called automatically when you send a message with `$chatBot->send()`.  However, in some cases you may need it.  This how
+
+{{{
+$msg = Text::format_message($input);
+}}}
+
+Where $input is the string containing Budabot markup tags.  There are the tags that Budabot currently supports in text (and how it converts them):
+
+{{{
+<header>" => $chatBot->settings['default_header_color']
+<highlight>" => $chatBot->settings['default_highlight_color']
+<black>" => "<font color='#000000'>"
+<white>" => "<font color='#FFFFFF'>"
+<yellow>" => "<font color='#FFFF00'>"
+<blue>" => "<font color='#8CB5FF'>"
+<green>" => "<font color='#00DE42'>"
+<red>" => "<font color='#ff0000'>"
+<orange>" => "<font color='#FCA712'>"
+<grey>" => "<font color='#C3C3C3'>"
+<cyan>" => "<font color='#00FFFF'>"
+<neutral>" => $chatBot->settings['default_neut_color']
+<omni>" => $chatBot->settings['default_omni_color']
+<clan>" => $chatBot->settings['default_clan_color']
+<unknown>" => $chatBot->settings['default_unknown_color']
+<myname>" => $chatBot->vars["name"]
+<myguild>" => $chatBot->vars["my_guild"]
+<tab>" => "    "
+<end>" => "</font>"
+<symbol>" => $chatBot->settings["symbol"])
+}}}
+
+== Fancy headers ==
+By convention, most blobs will use the format `<header> :::::: $title :::::: <end>` for the top line of the blob.  However, the text class allows you to create a fancy header that will 'fade' the color in and out.  Format:
+
+{{{
+$header = Text::make_header($title, $links);
+}}}
+
+Where `$title` will be the text to display and `$links` is an optional param that lets you specify which links, if any, you want to appear right under the header.  `$links` is an array where the key will be the name of the link, and the value will be the chatcmd to execute when it's clicked on.
+
+Example:
+
+{{{
+$header = Text::make_header("Budabot Help", $links);
+$content = "This is the help file for Budabot";
+$blob = Text::make_blob("Help for Budabot", $header . "\n" . $content);
+$chatBot->send($blob, 'guild');
+}}}
+
+== Images ==
+Any image in the AO database can be displayed within a blob.  This is the format for the call:
+
+{{{
+$image = Text::make_image($imageid);
+}}}
+
+Where `$imageid` is the id of the image in the AO database.  This is how you would use it:
+
+{{{
+$image = Text::make_image(84203);
+$blob = Text::make_blob('Click me', $image);
+$chatBot->send($blob, 'guild');
+}}}
+
+This will create a blob link in guild channel which, when clicked, will open an info window and display an image (in the example it's the image that we use for Adventurers in the online list).
+
+== Blob links ==
+Blob links show up as info windows for the client and are used for showing large amounts of data that typically can't be shown in one or two lines.  To create a blob link:
+
+{{{
+$blob = Text::make_blob($name, $content, $style);
+}}}
+
+Where `$name` is what the name of the link will be, `$content` is what will be in the info window, and `$style` is an option variable that you can use to style the link.  For instance, to create a blob link named 'Click me' that will display 'Hi there!' inside, and won't contain the underline (and then send it to a player named 'Tyrence') you would do:
+
+{{{
+$blob = Text::make_blob('Click me', 'Hi there!', 'text-decoration: none');
+$chatBot->send($blob, 'Tyrence');
+}}}
+
+Note that the `$style` parameter is optional, and left off most of the time:
+
+{{{
+$blob = Text::make_blob('Click me', 'Hi there!');
+$chatBot->send($blob, 'Tyrence');
+}}}
+
+== Chatcmd links ==
+Chatcmd links allow you to create a link that, when clicked on, will cause the client to execute the chatcmd in the link.  This is typically used to create links that send tells back to the bot so the user does not have to manually type the command.
+
+To create a chatcmd link:
+
+{{{
+$link = Text::make_chatcmd('Restart', '/tell <myname> <symbol>restart');
+}}}
+
+Note that you can also specify an optional `$style` parameter for chatcmd links.
+
+Also note that chatcmd links only work inside of blob links, so to use you would do something like this:
+
+{{{
+$link = Text::make_chatcmd('Restart', '/tell <myname> <symbol>restart');
+$blob = Text::make_blob('Click me', $link);
+$chatBot->send($blob, 'Tyrence');
+}}}
+
+This would create a link named 'Click me' that when clicked would open up an info window with a link named 'Restart'.  If the user click the 'Restart' link, they would execute the chatcmd '/tell bot !restart' and the bot would restart (if the user had high enough access level to restart the bot).
+
+== User links ==
+User links were added in 2009 or 2010 by Funcom.  This let's you create a link of a character's name and gives the client a few more options.  If you left click the name, it will open up a chat window with the player.  If you right click the name, it will give you a small menu where you can either send a message to the user, ignore the user, or invite the user to your private channel.
+
+To create a user link:
+
+{{{
+$userlink = Text::make_userlink($playername);
+}}}
+
+Note that you can also specify an optional `$style` parameter for user links.
+
+For instance:
+{{{
+$userlink = Text::make_userlink('Tyrence');
+$chatBot->send("$userlink was banned by Funcom for no reason", 'guild');
+}}}
+
+This would create a link in the guild channel that said: 'Tyrence was banned by Funcom for no reason" with 'Tyrence' being a link that users could right click or left click on.
+
+== Item links ==
+Item links are a way to display an item link the same very users can drop items into chat and display them.
+
+To create an item link:
+
+{{{
+$item = Text::make_item($lowId, $highId, $ql, $name);
+}}}
+
+For instance, to create an item link of Sword of the Illuminated, ql 153 you would do and display it in the guild channel you would do:
+
+{{{
+$item = Text::make_item(245578, 254579, 153, "Sword of the Illuminated");
+$chatBot->send($item, 'guild');
+}}}
