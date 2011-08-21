@@ -41,7 +41,7 @@ By convention, most blobs will use the format `<header> :::::: $title :::::: <en
 $header = Text::make_header($title, $links);
 }}}
 
-Where `$title` will be the text to display and `$links` is an optional param that lets you specify which links, if any, you want to appear right under the header.  If you want to leave the default links, just leave the `$links` parameter off.  If you don't want any links, pass in 'none' for the `$links` parameter.  `$links` is an array where the key will be the name of the link, and the value will be the chatcmd to execute when it's clicked on.
+Where `$title` will be the text to display and `$links` is an optional param that lets you specify which links, if any, you want to appear next to the header.  If you want to leave the default links, just leave the `$links` parameter off.  If you don't want any links, pass in 'none' for the `$links` parameter.  For custom links, make `$links` an array where the key will be the name of the link, and the value will be the chatcmd to execute when it's clicked on.
 
 Example:
 
