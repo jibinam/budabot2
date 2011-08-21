@@ -1,0 +1,12 @@
+#labels Featured
+This page will contain links to wiki pages that talk about the functions available in Budabot to allow module authors to use the bot to it's full potential.
+
+= Module Declaration File =
+  * Coming soon
+
+= Handling commands and events =
+  * Coming soon
+
+= Bot APIs =
+  * Text in *bold* or _italic_
+  * Checking a character's AccessLevel
