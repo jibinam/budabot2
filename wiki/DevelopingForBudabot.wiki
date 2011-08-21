@@ -9,4 +9,4 @@ This page will contain links to wiki pages that talk about the functions availab
 
 = Bot APIs =
   * Text in *bold* or _italic_
-  * Checking a character's AccessLevel
+  * Checking a character's access level with CheckAccess
