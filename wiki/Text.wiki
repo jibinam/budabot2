@@ -180,18 +180,13 @@ The low level arrays, `$content[0]`, are mappings of a pre-defined string key to
 
 Standard Keys:
   * "*header*" contains any header to this section, as well as any opening formatting tags.
-    * *If Not Set:* Section is output like normal.
-  * "*content*" is the raw contents of the section - What you're displaying here.
-    * *If Not Set:* Treated as an empty string, and header/footer are output like normal.
+  * "*content*" is the raw contents of the section - What you're displaying here.  This is the only required key.
   * "*footer*" is any closing formatting tags (ie closing tags that were opened in "header"), plus any formatting/spacing/empty lines before the next section.
-    * *If Not Set:* Section is output like normal.
 
 Advanced Keys:
-These are special cases for when the content of a section is too big to fit into a single page.
+These are special cases for when the content of a section is too big to fit into a single page.  These are optional.
   * "*header_incomplete*" is placed in the new page before the rest of the content for this section.
-    * *If Not Set:* "header" is used instead.
   * "*footer_incomplete*"  is placed at the end of the current page before creating a new page.  This should be used to close up any formatting that would cause blob problems, or with a short message noting the section is continued.
-    * *If not set:* Nothing is output.
 
 Examples:
 
@@ -233,3 +228,10 @@ When the system does need to split output into multiple pages, it will first att
 When splitting mid-section, the system prefers to split on a newline or `<`pagebreak`>` tag.  If your content is spaced over several lines, then you don't need to work about any special support.  However, if you are outputting a list on a single line (like of all characters of a certain org rank), then you will need to include `<`pagebreak`>` tags in the content.
 
 In the event that a section's "content" is too big to fit into a single page, and has no suitable break points (newlines or `<`pagebreak`>` tags), the section will be dropped and not output.
+
+
+*Special Cases*:
+  * In the event that a section's "footer" would create a new page without any "content", the "footer" is dropped entirely.
+  * If "header_incomplete" is not defined, but the section splits over multiple pages, "header" is rendered to the new page before the rest of "content".
+  * If "header", "footer", or "footer_incomplete" is not defined, it is treated as a blank string.
+  * A section will not 'jump' to a new page if the current page is less than half its maximum size. 
