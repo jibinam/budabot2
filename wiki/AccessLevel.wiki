@@ -21,3 +21,5 @@ if (AccessLevel::check_access("Tyrence", "raidleader")) {
 }}}
 
 Note that this will return `true` if 'Tyrence' is a raidleader on your bot, but also if he is anything higher, such as moderator, administrator, or superadmin.
+
+If the setting `alts_inherit_admin` is enabled, this command will return the character's "effective" admin level - Not necessarily that character's set access level, but the access level inherited from its main (if it has one).
