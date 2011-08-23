@@ -7,6 +7,6 @@ Since there are often several terms that mean the same thing for many ideas rela
 = List of terms =
   * *access level* - admin level, privilege, 
   * *guild channel* - org chat, org channel
-  * *module declaration file* - the file that registers the settings, events, commands, etc of a module (eg, _/ITEMS_MODULE/ITEMS_MODULE.php_)
+  * *module declaration file* - the file that registers the settings, events, commands, etc for a module (eg, _/ITEMS_MODULE/ITEMS_MODULE.php_)
   * *private channel* - guest channel, raid channel, private group
   * *private message* - referred to as a "tell" most commonly in game
