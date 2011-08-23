@@ -8,5 +8,6 @@ This page will contain links to wiki pages that talk about the functions availab
   * Coming soon
 
 = Bot APIs =
+  * List of standard terms and names for Budabot [Naming]
   * Creating blobs, links, and formatting text with [Text Text.class.php]
   * Checking a character's access level with [AccessLevel AccessLevel.class.php]
