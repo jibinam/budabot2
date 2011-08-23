@@ -231,7 +231,7 @@ In the event that a section's "content" is too big to fit into a single page, an
 
 
 *Special Cases*:
-  * In the event that a section's "footer" would create a new page without any "content", the "footer" is dropped entirely.
+  * In the event that a section's "footer" would create a new page, the "footer" is dropped entirely.
   * If "header_incomplete" is not defined, but the section splits over multiple pages, "header" is rendered to the new page before the rest of "content".
   * If "header", "footer", or "footer_incomplete" is not defined, it is treated as a blank string.
   * A section will not 'jump' to a new page if the current page is less than half its maximum size. 
