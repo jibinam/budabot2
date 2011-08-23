@@ -14,9 +14,9 @@ To check if a player named 'Tyrence' has raidleader access, you would do:
 
 {{{
 if (AccessLevel::check_access("Tyrence", "raidleader")) {
-   // do something
+   // Tyrence has [at least] raidleader access level
 } else {
-   // not allowed
+   // Tyrence does not have raidleader access level
 }
 }}}
 
