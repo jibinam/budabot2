@@ -10,3 +10,5 @@ Since there are often several terms that mean the same thing for many ideas rela
   * *module declaration file* - the file that registers the settings, events, commands, etc for a module (eg, _/ITEMS_MODULE/ITEMS_MODULE.php_)
   * *private channel* - guest channel, raid channel, private group
   * *private message* - referred to as a "tell" most commonly in game
+  * *blob* - info window, popup window, text window
+  * *page* - a single blob from a command that has output multiple blobs
