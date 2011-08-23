@@ -12,6 +12,12 @@ Where `$player` is the name of the player and `$access_level` is any one of: `su
 
 To check if a player named 'Tyrence' has raidleader access, you would do:
 
-`AccessLevel::check_access("Tyrence", "raidleader");`
+{{{
+if (AccessLevel::check_access("Tyrence", "raidleader")) {
+   // do something
+} else {
+   // not allowed
+}
+}}}
 
 Note that this will return `true` if 'Tyrence' is a raidleader on your bot, but also if he is anything higher, such as moderator, administrator, or superadmin.
