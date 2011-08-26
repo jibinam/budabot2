@@ -146,6 +146,8 @@ $blob = Text::make_blob('Click me', 'Hi there!');
 $chatBot->send($blob, 'Tyrence');
 }}}
 
+Note: The bot will automatically break your blob into multiple messages if the size exceeds the max_blob_size.  It will split on newlines by default, but you can specify acceptable places to break pages by inserting '<pagebreak>' tags in the appropriate places.  If you need more control over how blobs are created, see "Pagewise" Blob formatting below.
+
 == "Pagewise" Blob Formatting ==
 
 Anarchy Online has a maximum blob size.  There is some debate as to whether it is 8000 or 12000, so Budabot has a setting for it.  This setting defaults to 7500.  Unfortunately, for a command that generates a lot of output to a blob, this can often result in the blob being split into multiple pages at bad locations.
@@ -153,7 +155,7 @@ Anarchy Online has a maximum blob size.  There is some debate as to whether it i
 Pagewise Blob Formatting is a system by which the Text class will automatically break output in a more elegant fashion, without requiring individual modules to track the blob size.  The function call is identical to creating a normal blob link:
 
 {{{
-$blob = Text::make_blob('Click me', $content);
+$blob = Text::make_structured_blob('Click me', $content);
 $chatBot->send($blob, 'Norb');
 }}}
 
