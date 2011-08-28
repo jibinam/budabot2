@@ -1,0 +1,2 @@
+-- sql for finding registered commands that don't have a help file
+select cmd from cmdcfg_<myname> where cmdevent <> 'subcmd' and help = '' and cmd not in (select distinct name from hlpcfg_<myname>) group by cmd
