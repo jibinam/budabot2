@@ -15,4 +15,4 @@ Since there are often several terms that mean the same thing for many ideas rela
   * *playfield* - zone
   * *private channel* - guest channel, raid channel, private group
   * *private message* - referred to as a "tell" most commonly in game
-  * *site number* - tower site
+  * *tower site* - base
