@@ -1,0 +1,4 @@
+<header> :::::: Pocketboss Commands :::::: <end>
+
+<highlight>Show a list of Symbiants that a Pocketboss drops<end>
+<tab><symbol>pb 'pocketboss name'
