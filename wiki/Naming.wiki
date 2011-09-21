@@ -8,6 +8,7 @@ Since there are often several terms that mean the same thing for many ideas rela
   * *access level* - admin level, privilege, 
   * *blob* - info window, popup window, text window
   * *character* - player, user
+  * *cloaking device* - [org city] shields
   * *guild* - org, organization
   * *guild channel* - org chat, org channel
   * *module declaration file* - the file that registers the settings, events, commands, etc for a module (eg, _/ITEMS_MODULE/ITEMS_MODULE.php_)
