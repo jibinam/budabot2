@@ -1,0 +1,250 @@
+#start
+/text Started Budabot tests...
+!time
+/delay %1
+
+#whompah_module
+/text Start WHOMPAH_MODULE
+!whompah
+/delay %1
+!whompah bor
+/delay %1
+!whompah error
+/delay %1
+!whompah oa rome
+/delay %1
+!whompah oa error
+/delay %1
+/text End WHOMPAH_MODULE
+
+#whois_module
+/text Start WHOIS_MODULE
+!whois tyrence
+/delay %1
+!whois tyrenceerror
+/delay %1
+!whoisall tyrence
+/delay %1
+!whoisall tyrenceerror
+/delay %1
+!history tyrence
+/delay %1
+!history tyrenceerror
+/delay %1
+!history tyrence 1
+/delay %1
+!history tyrenceerror 1
+/delay %1
+/text End WHOIS_MODULE
+
+#whereis_module
+/text Start WHEREIS_MODULE
+!whereis ofoz
+/delay %1
+!whereis com
+/delay %1
+!whereis error
+/delay %1
+/text End WHEREIS_MODULE
+
+#weather_module
+/text Start WEATHER_MODULE
+!weather 90210
+/delay %1
+!weather sea
+/delay %1
+!weather error
+/delay %1
+/text End WEATHER_MODULE
+
+#waitlist_module
+/text Start WAITLIST_MODULE
+!waitlist
+/delay %1
+!waitlist %m
+/delay %1
+!waitlist shuffle
+/delay %1
+!waitlist rem error
+/delay %1
+!waitlist rem all
+/delay %1
+!waitlist clear
+/delay %1
+!waitlist add test1
+/delay %1
+!waitlist add test2
+/delay %1
+!waitlist add test3
+/delay %1
+!waitlist shuffle
+/delay %1
+!waitlist rem test2
+/delay %1
+!waitlist
+/delay %1
+!waitlist clear
+/delay %1
+/text End WAITLIST_MODULE
+
+#vote_module
+/text Start VOTE_MODULE
+!vote
+/delay %1
+!vote kill error
+/delay %1
+!vote remove error
+/delay %1
+!vote end error
+/delay %1
+!vote 1h|test|option1|option2|option3
+/delay %1
+!vote error|option4
+/delay %1
+!vote test|option4
+/delay %1
+!vote remove test
+/delay %1
+!vote test|option3
+/delay %1
+!vote end test
+/delay %1
+!vote kill test
+/delay %1
+/text End VOTE_MODULE
+
+#ventrilo_module
+/text Start VENTRILO_MODULE
+!settings save ventimplementation 1
+/delay %1
+!vent
+/delay %1
+!settings save ventimplementation 2
+/delay %1
+!vent
+/delay %1
+/text End VENTRILO_MODULE
+
+#trickle_module
+/text Start TRICKLE_MODULE
+!trickle
+/delay %1
+!trickle error
+/delay %1
+!trickle agi 20
+/delay %1
+!trickle 20 agi
+/delay %1
+!trickle 1 agi 2 str 3 sta 4 int 5 psyc 6 sen
+/delay %1
+!trickle agi 1 str 2 sta 3 int 4 psyc 5 sen 6
+/delay %1
+/text End TRICKLE_MODULE
+
+#tracker_module
+/text Start TRACKER_MODULE
+/delay %1
+!track
+/delay %1
+!track rem error
+/delay %1
+!track add error
+/delay %1
+!track error
+/delay %1
+!track add tyrence
+/delay %1
+!track tyrence
+/delay %1
+!track
+/delay %1
+!track rem tyrence
+/delay %1
+/text End TRACKER_MODULE
+
+#towers_module
+/text Start TOWERS_MODULE
+!victory
+/delay %1
+!victory 2
+/delay %1
+!victory error 4
+/delay %1
+!victory pw 22
+/delay %1
+!victory pw 4
+/delay %1
+!victory pw 4 2
+/delay %1
+!victory org error
+/delay %1
+!victory org Conquered Dreams
+/delay %1
+!victory org Conquered Dreams 2
+/delay %1
+!victory player error
+/delay %1
+!victory player Arato
+/delay %1
+!victory player Arato 2
+/delay %1
+!attacks
+/delay %1
+!attacks 2
+/delay %1
+!attacks error 4
+/delay %1
+!attacks pw 22
+/delay %1
+!attacks pw 4
+/delay %1
+!attacks pw 4 2
+/delay %1
+!attacks org error
+/delay %1
+!attacks org %
+/delay %1
+!attacks org % 2
+/delay %1
+!attacks player error
+/delay %1
+!attacks player %
+/delay %1
+!attacks player % 2
+/delay %1
+!lc
+/delay %1
+!lc error
+/delay %1
+!lc pw
+/delay %1
+!lc pw 44
+/delay %1
+!lc pw 4
+/delay %1
+!opentimes
+/delay %1
+!scout error 4 12:24:48 190 Omni Conquered Dreams
+/delay %1
+!scout pw 44 12:24:48 190 Omni Conquered Dreams
+/delay %1
+!scout pw 4 12:24:48 90 error Conquered Dreams
+/delay %1
+!scout pw 4 12:24:48 90 Omni Conquered Dreams
+/delay %1
+!scout pw 4 12:24:48 190 Omni Conquered Dreams
+/delay %1
+!scout pw 4 12:24:48 190 Omni Conquering Dreams
+/delay %1
+!opentimes
+/delay %1
+!remscout pw 4
+/delay %1
+!opentimes
+/delay %1
+/text End TOWERS_MODULE
+
+#end
+!time
+/delay %1
+/text Finished Budabot tests...
