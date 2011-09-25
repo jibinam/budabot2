@@ -15,12 +15,13 @@
 		-Derroylo (RK2), Sebuda (RK2), and Lucier (RK1) for creating the original Budabot.
 		-Mindrila (RK1) for his large contributions to version 1.0.
 		-Insanity-inc (RK2) for all the support and help they gave me when I first started developing Budabot modules and Capnsfix (RK2) for all of his ideas and suggestions.
-		-Dark Ninjas (RK2) and Devil Inside (RK2) for letting me use their orgs to test new features.
+		-Dark Ninjas (RK2), Devil Inside (RK2) and Conquered Dreams (RK2) for letting me use their orgs to test new features.
 		-MajorOutage (RK1) for providing items db rips.
 		-CaptainZero (RK1) and Greasegirl (RK2) for hosting and moderating the budabot.com website.
 		-Mdkdoc420 (RK2) for coding, testing new features, and testing the AO Chat Proxy in a live environment.
-		-Docteeko (RK2) for helping me manage the Budabot project, testing new features and suggesting needed finishing touches.
+		-Docteeko (RK2) for helping manage the Budabot project, testing new features and suggesting needed finishing touches.
 		-Rosss (RK1) and Kinaton (RK1) for testing the release candidates, reporting bugs, and continuously giving great feedback.
+		-All the people who have contributed modules, ideas, and bug reports to help make Budabot the best bot AO has ever seen.
     </Page>
   </Pages>
   <Staff>
@@ -31,6 +32,7 @@
   <Links>
     <Link Label="Forums" Url="http://budabot.com/forum" />
     <Link Label="Downloads" Url="http://code.google.com/p/budabot2/downloads/list" />
+	<Link Label="Source" Url="http://code.google.com/p/budabot2/source/list" />
   </Links>
   <Versions>
     <LocalVersion Type="Stable" Value="2.2" Package="2.2_GA" />
