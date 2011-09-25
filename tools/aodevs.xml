@@ -40,11 +40,11 @@
   </Versions>
   <Packages>
     <Package Name="2.3_RC1">
-      <Link Label="Release Candidate" Url="http://code.google.com/p/budabot2/downloads/detail?name=Budabot2.3_RC1_build1649.zip&can=2&q=" />
+      <Link Label="Release Candidate" Url="http://code.google.com/p/budabot2/downloads/detail?name=Budabot2.3_RC1_build1649.zip&amp;can=2&amp;q=" />
       <Repository Type="Subversion" Label="Source" Url="http://budabot2.googlecode.com/svn/tags/2.3_RC1/" />
     </Package>
     <Package Name="2.2_GA">
-      <Link Label="General Availability" Url="http://code.google.com/p/budabot2/downloads/detail?name=Budabot2.2_GA_build1348.zip&can=2&q=" />
+      <Link Label="General Availability" Url="http://code.google.com/p/budabot2/downloads/detail?name=Budabot2.2_GA_build1348.zip&amp;can=2&amp;q=" />
       <Repository Type="Subversion" Label="Source" Url="http://budabot2.googlecode.com/svn/tags/2.2_GA/" />
     </Package>
   </Packages>
