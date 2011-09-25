@@ -268,6 +268,14 @@
 /delay %1
 /text End TIMERS_MODULE
 
+#teamspeak3_module
+/text Start TEAMSPEAK3_MODULE
+!aospeak
+/delay %1
+!ts
+/delay %1
+/text End TEAMSPEAK3_MODULE
+
 #end
 !time
 /delay %1
