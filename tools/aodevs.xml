@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Project" Version="1" xsi:noNamespaceSchemaLocation="http://aodevs.com/xsd/Project.v1.xsd">
+  <Name>Budabot</Name>
+  <Tagline>The next generation of Budabot</Tagline>
+  <Description> 
+    Budabot is a next-generation chatbot designed to give your org members they tools they need to be successful in Anarchy Online.
+  </Description>
+  <License>GPLv2</License>
+  <Games>
+    <Game>Anarchy Online</Game>
+  </Games>
+  <Pages>
+    <Page Label="Credits">
+		Special thanks to:
+		-Derroylo (RK2), Sebuda (RK2), and Lucier (RK1) for creating the original Budabot.
+		-Mindrila (RK1) for his large contributions to version 1.0.
+		-Insanity-inc (RK2) for all the support and help they gave me when I first started developing Budabot modules and Capnsfix (RK2) for all of his ideas and suggestions.
+		-Dark Ninjas (RK2) and Devil Inside (RK2) for letting me use their orgs to test new features.
+		-MajorOutage (RK1) for providing items db rips.
+		-CaptainZero (RK1) and Greasegirl (RK2) for hosting and moderating the budabot.com website.
+		-Mdkdoc420 (RK2) for coding, testing new features, and testing the AO Chat Proxy in a live environment.
+		-Docteeko (RK2) for helping me manage the Budabot project, testing new features and suggesting needed finishing touches.
+		-Rosss (RK1) and Kinaton (RK1) for testing the release candidates, reporting bugs, and continuously giving great feedback.
+    </Page>
+  </Pages>
+  <Staff>
+    <Member Position="Lead Developer" Name="Tyrence" Server="Rimor" />
+    <Member Position="Website Administrator" Name="Captainzero" Server="Atlantean" />
+    <Member Position="Website Moderator" Name="Snakebite" Server="Rimor" />
+  </Staff>
+  <Links>
+    <Link Label="Forums" Url="http://budabot.com/forum" />
+    <Link Label="Downloads" Url="http://code.google.com/p/budabot2/downloads/list" />
+  </Links>
+  <Versions>
+    <LocalVersion Type="Stable" Value="2.2" Package="2.2_GA" />
+    <LocalVersion Type="Beta" Value="2.3" Package="2.3_RC1" />
+  </Versions>
+  <Packages>
+    <Package Name="2.3_RC1">
+      <Link Label="Release Candidate" Url="http://code.google.com/p/budabot2/downloads/detail?name=Budabot2.3_RC1_build1649.zip&can=2&q=" />
+      <Repository Type="Subversion" Label="Source" Url="http://budabot2.googlecode.com/svn/tags/2.3_RC1/" />
+    </Package>
+    <Package Name="2.2_GA">
+      <Link Label="General Availability" Url="http://code.google.com/p/budabot2/downloads/detail?name=Budabot2.2_GA_build1348.zip&can=2&q=" />
+      <Repository Type="Subversion" Label="Source" Url="http://budabot2.googlecode.com/svn/tags/2.2_GA/" />
+    </Package>
+  </Packages>
+</Root>
