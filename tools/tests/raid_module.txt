@@ -72,9 +72,7 @@
 /delay %1
 !apfloot Notum Amplification Coil
 /delay %1
-!apfloot
-/delay %1
-Energy Redistribution Unit
+!apfloot Energy Redistribution Unit
 /delay %1
 !apfloot Visible Light Remodulation Device
 /delay %1
