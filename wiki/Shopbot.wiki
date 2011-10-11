@@ -14,7 +14,7 @@ Setup:
 Roll four level 11 neutral toons and place them in Rome, Borealis, Old Athens, and outside Newland City. When I did this I had 'Shpc' (short for shop control), 'Shopomni', 'Shopneut', and 'Shopclan'. Shpc was placed in Newland city.
 
 
-Choose which bot you want to make the master. I used 'Shpc'. Run shop1.bat (or shop1.sh if you're on *nix) and go through the setup.
+Choose which bot you want to make the master. I used 'Shpc'. Run shop1.bat (or shop1.sh if you're on unix) and go through the setup.
 Do the same for the other three bots. It doesn't matter which bot you use for shop2, 3 or 4.
 
 Once they are all running you need make sure all modules are enabled for the master bot. The other three bots need to have SHOPPING_MODULE and PRIVATE_GROUP_MODULE (not PRIVATE_CHANNEL_MODULE) enabled and all other modules disabled. If you don't do this you will have problems.
