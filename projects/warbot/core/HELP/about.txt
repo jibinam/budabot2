@@ -1,0 +1,7 @@
+<header>::::: Omni Network :::::<end>
+
+<highlight><myname><end>
+
+This is the TL7 PVP bot.
+
+Forums: http://www.omnihq.net/

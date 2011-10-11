@@ -1,0 +1,29 @@
+<White>Chatbot help - Nwarcouncil
+
+Joining and leaving the chat channel
+
+/tell Nwarcouncil join or /tell warcouncil invite - get an invite to the chat channel
+/tell Nwarcouncil leave or /tell warcouncil kick - leave the chat channel
+/tell Nwarcouncil autoinvite (on|off) - turn automatic invites on or off (for you only).  Without 'on' or 'off', displays your current autoinvite status.
+
+
+<White>Displaying the adminlist
+
+/tell Nwarcouncil adminlist - display the adminlist<end>
+
+
+Maintaining the member list
+
+/tell Nwarcouncil member - display the list of members, including online/offline status (members only)
+/tell Nwarcouncil addmember <name> - Adds the named player as a member (moderators only)
+/tell Nwarcouncil remmember  <name> - Removes the named player as a member (moderators only)
+
+
+Chat channel information commands
+
+!chatlist or !sm - list players to the chat channel
+!count <profession> - list the members of the named profession in the chat channel.  Most commonly used abbreviations for profession names are recognised.
+!count all - show the total number of players in the chat channel and the number of each profession
+!topic - display the current topic
+!edittopic <text> - set the topic
+
