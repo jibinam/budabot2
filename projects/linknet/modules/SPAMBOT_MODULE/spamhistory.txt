@@ -1,0 +1,4 @@
+<header>::::: History :::::<end>
+
+Show the last 20 messages sent
+<highlight><tab><symbol>history<end>

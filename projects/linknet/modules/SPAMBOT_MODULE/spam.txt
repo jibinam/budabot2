@@ -1,0 +1,11 @@
+<header>::::: Help on Spam Commands. :::::<end>
+
+<highlight>To spam a specific channel<end>
+<tab><symbol>spam 'channel' 'message'
+
+<highlight>Where the channel is..<end>
+
+<tab>General , Pvp or Raids
+
+
+

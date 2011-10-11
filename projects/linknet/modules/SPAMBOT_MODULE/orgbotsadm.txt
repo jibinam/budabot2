@@ -1,0 +1,18 @@
+<header>::::: Org bots in the relay :::::<end>
+
+<highlight>To add a bot<end>
+<tab><symbol>addbot 'botname'
+
+<highlight>To remove a bot<end>
+<tab><symbol>rembot 'botname'
+
+<highlight>To list all bots<end>
+<tab><symbol>listbots
+
+
+It is possible to have org bots added to the relay, so that they can receive the spam and notify their orgs. This is the preferred way for orgs to register on the bot, as it puts much less strain on the bot, and therefore allows it to work faster.
+
+If you wish to have your orgbot added to the relay, you will need to meet a couple of conditions first, this is to protect you as well as us from potentially crashing the bot.
+
+What you will need to do, is ensure that your bot, can receive a message from <myname> without responding in any way (we can help you with this if needed).
+Failure to do this, will result in a very grumbly bot admin. And you don't want that.

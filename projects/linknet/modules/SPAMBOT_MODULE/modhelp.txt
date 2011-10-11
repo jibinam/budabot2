@@ -1,0 +1,27 @@
+<header>::::: Moderation Commands :::::<end>
+
+Moderators have access to a special 'Admin' channel, which they use with the 'spam admin' command. This channel is unlocked and is only to be used for necessary messages, and not for spamming / bypassing other locks.
+
+There is also a 'spam orgs' command, which will send a spam message to orgs only, this is handy for more 'delicate' messages.
+
+<highlight>To register a low level twink main<end>
+<tab><symbol>regtwink 'name'
+
+<highlight>To forceably remove a registered user<end>
+<tab><symbol>forceremove 'name'
+
+<highlight>To add a bot<end>
+<tab><symbol>addbot 'botname'
+
+<highlight>To remove a bot<end>
+<tab><symbol>rembot 'botname'
+
+<highlight>To list all bots<end>
+<tab><symbol>listbots
+
+<highlight>Basic statistics<end>
+<tab><symbol>statistics
+
+<highlight>Look up database info<end>
+<tab><symbol>dblookup 'letter' (Where letter is the first letter of the names you wish to lookup)
+<red>Please note, this will lag the bot somewhat for a few seconds.<end>

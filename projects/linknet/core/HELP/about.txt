@@ -1,0 +1,7 @@
+<header>::::: Omni Network :::::<end>
+
+<highlight><myname><end>
+
+This is the news/spam bot.
+
+Forums: http://www.omnihq.net/

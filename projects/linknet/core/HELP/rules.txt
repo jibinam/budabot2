@@ -1,0 +1,27 @@
+<header>::::: Linknet Rules :::::<end>
+
+The Omni Tek News Network is a broadcast relay set up with the intention of providing a fast and reliable way to get information from one member, to as many other connected members as possible.
+
+There are 3 main communications channels avaliable to registered members, with a further three reserved channels for the relay of messages from the PvP bots.
+
+Each channel has an individual lockout timer to help prevent un-necessary spam. Please do not abuse these as the banhammer often hurts.
+
+<tab><highlight>General<end> - To be used for general announcements (NOT CHATTER).
+<tab><highlight>Raids<end> - For all your raiding needs.
+<tab><highlight>PvP<end> - For those times, when you just have to reach out and kill someone.
+
+There are simple codes of conduct that will be enforced by the moderators of the bot.
+
+<tab>* Please do not swear.
+<tab>* Do not post links to non-game related websites.
+<tab>* Use each channel for the intended purpose.
+<tab>* The General channel is not to be used for WTB/WTS messages
+
+Linknet is a service provided by players for players. It is still run on a player account and that account is still held subject to all same rules that normal accounts are subject to. 
+This means that abusing the various channels, to spread needless spam, jokes, or personal attacks against other players, organizations and/or Funcom, are not welcome.
+The administration will hold to a zero tolerance policy on these matters and if you feel that you are unable to stay within the simple guidelines, then you will find that sanctions will be brought against you.
+
+Linknet is intended to facilitate communications between members, let us keep it a happy place.
+
+New rules can and will be added from time to time, it is your responsibility to know and understand them.
+

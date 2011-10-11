@@ -1,0 +1,19 @@
+<header>::::: Alternative Char Commands :::::<end>
+
+
+By registering your alts with your main, you allow the alts that are below the level lock (175) to register with the bot. 
+
+*Please note, alts are NOT automatically registered. 
+
+This means that each alt MUST REGISTER individually.
+
+<highlight>Shows your own alts<end>
+<tab><symbol>alts
+
+<highlight>Adding alts to your list<end>
+<tab><symbol>alts add 'insert name here'
+
+<highlight>Remove alts from your list<end>
+<tab><symbol>alts rem 'insert name here'
+
+Removing an alt, will also unregister them automatically.

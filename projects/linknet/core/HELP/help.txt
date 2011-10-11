@@ -1,0 +1,21 @@
+<header>::::: Linknet Commands :::::<end>
+
+<highlight>To register with the bot<end>
+<tab><symbol>Register
+<red>*Note: You must be at least level 175+ to register, if you are under 175, please contact a moderator.<end>
+
+<highlight>To unregister from the bot<end>
+<tab><symbol>Unregister
+
+<highlight>To check your subscriptions<end>
+<tab><symbol>subscriptions or <symbol>status
+
+<highlight>To subscribe to general messages<end>
+<tab><symbol>subscribe general
+<highlight>To subscribe to raids messages<end>
+<tab><symbol>subscribe raids
+<highlight>To subscribe to pvp messages<end>
+<tab><symbol>subscribe pvp
+
+
+
