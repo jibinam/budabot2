@@ -24,11 +24,23 @@
 /delay %1
 !list
 /delay %1
+!add 2
+/delay %1
+!list
+/delay %1
+!add 1
+/delay %1
+!list
+/delay %1
 !remloot
+/delay %1
+!remloot 1234567890
 /delay %1
 !remloot 1
 /delay %1
-!remloot 1234567890
+!list
+/delay %1
+!add 1
 /delay %1
 !list
 /delay %1
@@ -40,11 +52,19 @@
 /delay %1
 !add 1
 /delay %1
+!list
+/delay %1
 !rem
 /delay %1
-!add 2
+!list
+/delay %1
+!add 1
 /delay %1
 !flatroll
+/delay %1
+!reroll
+/delay %1
+!list
 /delay %1
 !13
 /delay %1
