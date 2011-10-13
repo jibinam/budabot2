@@ -78,6 +78,10 @@
 /delay %1
 !opentimes
 /delay %1
+!penalty
+/delay %1
+!penalty 4h
+/delay %1
 /text End TOWER_MODULE
 
 /timers_module.txt %1
