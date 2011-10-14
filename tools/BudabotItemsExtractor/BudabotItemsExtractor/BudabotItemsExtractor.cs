@@ -68,7 +68,7 @@ namespace BudabotItemsExtractor
         private void processNameSeparations(SQLite3 db)
         {
             db.StartTransaction();
-            StreamReader reader = new StreamReader(@"Config\BudaItemSQL\nameseperation_list.txt");
+            StreamReader reader = new StreamReader(@"Config\BudabotItemsExtractor\nameseperation_list.txt");
             while (!reader.EndOfStream)
             {
                 string line = reader.ReadLine().Trim();
@@ -130,7 +130,7 @@ namespace BudabotItemsExtractor
         private void processDeleteList(SQLite3 db)
         {
             db.StartTransaction();
-            StreamReader reader = new StreamReader(@"Config\BudaItemSQL\delete_list.txt");
+            StreamReader reader = new StreamReader(@"Config\BudabotItemsExtractor\delete_list.txt");
             while (!reader.EndOfStream)
             {
                 string line = reader.ReadLine().Trim();
@@ -147,7 +147,7 @@ namespace BudabotItemsExtractor
         private void processStaticList(SQLite3 db)
         {
             db.StartTransaction();
-            StreamReader reader = new StreamReader(@"Config\BudaItemSQL\static_list.txt");
+            StreamReader reader = new StreamReader(@"Config\BudabotItemsExtractor\static_list.txt");
             while (!reader.EndOfStream)
             {
                 string line = reader.ReadLine().Trim();
@@ -397,7 +397,7 @@ namespace BudabotItemsExtractor
             }
 
             SQLite3 db = new XRDB4_Extras.SQLite3();
-            db.Open(outPath + @"\BudaItemSQL.db3", true, false);
+            db.Open(outPath + @"\BudabotItemsExtractor.db3", true, false);
             db.NonQuery("DROP TABLE IF EXISTS entries");
             db.NonQuery("DROP TABLE IF EXISTS aodb");
             db.NonQuery("CREATE TABLE entries (aoid INT, ql INT, name TEXT, icon INT, itemtype TEXT, hash TEXT)");
