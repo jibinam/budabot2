@@ -3,7 +3,7 @@
 
 =How to create a release version of Budabot from SVN=
   # Open "/main.php" and update $version (ex: $version = "1.0_RC9")
-  # Update "/patchnotes.txt" for this release
+  # Update "/releasenotes.txt" for this release
   # Commit these changes
   # Tag this release
   # "Checkout" or "Export" from the tagged branch you just created
