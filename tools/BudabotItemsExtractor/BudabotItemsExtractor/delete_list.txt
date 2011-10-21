@@ -22,6 +22,7 @@ name LIKE '%test%' AND name LIKE '%item%'
 name LIKE '% CLONE'
 name LIKE '% (%replica)'
 name LIKE 'Replica Armor Set:%'
+name LIKE 'Dust Brigade Assistance Module'
 name like '%Symbiant, % Unit Aban' AND aoid < 220300 AND aoid > 219139
 name like '%Symbiant, % Unit Aban' AND aoid < 219124
 name like '% construction kit'
