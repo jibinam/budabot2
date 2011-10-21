@@ -23,17 +23,6 @@ namespace BudabotItemsExtractor
         public string hash;
     }
 
-    public struct LinkedEntry
-    {
-        public LinkedEntry(Entry low, Entry high)
-        {
-            this.low = low;
-            this.high = high;
-        }
-        public Entry low;
-        public Entry high;
-    }
-
     public class BudabotItemsExtractor : XRDB4_Extras.Plugin
     {
         string outPath, aoVer;
@@ -397,7 +386,8 @@ namespace BudabotItemsExtractor
             }
 
             SQLite3 db = new XRDB4_Extras.SQLite3();
-            db.Open(outPath + @"\BudabotItemsExtractor.db3", true, false);
+            //db.Open(outPath + @"\BudabotItemsExtractor.db3", true, false);  // use file db
+            db.Open(":memory:", true, false);  // use memory db
             db.NonQuery("DROP TABLE IF EXISTS entries");
             db.NonQuery("DROP TABLE IF EXISTS aodb");
             db.NonQuery("CREATE TABLE entries (aoid INT, ql INT, name TEXT, icon INT, itemtype TEXT, hash TEXT)");
