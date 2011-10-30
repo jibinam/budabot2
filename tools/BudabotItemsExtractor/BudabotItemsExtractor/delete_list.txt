@@ -25,7 +25,7 @@ name LIKE '% (%replica)'
 name LIKE 'Replica Armor Set:%'
 name LIKE 'Nano Can: %'
 name LIKE '% - Nano Can'
-name LIKE 'Dust Brigade Assistance Module'
+name LIKE 'Dust Brigade Assistance Module' AND ql > '250'
 name like '%Symbiant, % Unit Aban' AND aoid < 220300 AND aoid > 219139
 name like '%Symbiant, % Unit Aban' AND aoid < 219124
 name like '% construction kit'
