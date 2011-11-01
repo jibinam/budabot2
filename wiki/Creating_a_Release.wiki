@@ -9,6 +9,7 @@
   # "Checkout" or "Export" from the tagged branch you just created
   # If you "Checked Out" you will need to search for and remove all the .svn folders
   # Remove BIOR_GUARDIAN_MODULE, FEEDBACK_MODULE, MIGRATE_MODULE, SHOPPING_MODULE, SVN_MODULE and WAITLIST_MODULE from /modules
+  # Remove the /_modules folder
   # Rename budabot folder to `"Budabot<version>_<build>"` if it's not already (eg: "Budabot1.0_RC9_build390", "Budabot2.0_GA_build420", etc)
   # Zip the folder into a zip file called `"Budabot<version>_<build>"` (eg: "Budabot1.0_RC9_build390.zip", "Budabot2.0_GA_build420.zip", etc)
   # Upload to the downloads section
