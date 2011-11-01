@@ -1,0 +1,10 @@
+<header> :::::: Nanoline Commands :::::: <end>
+
+<highlight>Show all the professions<end>
+<tab><symbol>nanolines
+
+<highlight>Shows the nanolines for each profession<end>
+<tab><symbol>nlprof 'profession'
+
+<highlight>Shows the nanos in a nanoline<end>
+<tab><symbol>nlline 'nanoline number'

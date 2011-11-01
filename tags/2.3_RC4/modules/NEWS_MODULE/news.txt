@@ -1,0 +1,9 @@
+<header> :::::: News Commands :::::: <end>
+
+<highlight>To show the latest news entries:<end>
+<tab><symbol>news
+
+<highlight>To add a news entry:<end>
+<tab><symbol>news add 'text'
+
+<highlight>To delete a news entry click on the 'Remove' link next to the news entry you want to remove<end>
