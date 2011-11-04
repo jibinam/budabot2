@@ -40,7 +40,7 @@
   </Versions>
   <Packages>
     <Package Name="2.3_RC3">
-      <Link Label="Release Candidate" Url="http://code.google.com/p/budabot2/downloads/detail?name=Budabot2.4_RC3_build1961.zip" />
+      <Link Label="Release Candidate" Url="http://code.google.com/p/budabot2/downloads/detail?name=Budabot2.3_RC4_build1961.zip" />
       <Repository Type="Subversion" Label="Source" Url="http://budabot2.googlecode.com/svn/tags/2.3_RC4/" />
     </Package>
     <Package Name="2.2_GA">
