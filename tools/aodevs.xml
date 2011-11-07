@@ -35,17 +35,12 @@
 	<Link Label="Source" Url="http://code.google.com/p/budabot2/source/list" />
   </Links>
   <Versions>
-    <LocalVersion Type="Stable" Value="2.2" Package="2.2_GA" />
-    <LocalVersion Type="Beta" Value="2.3" Package="2.3_RC4" />
+    <LocalVersion Type="Stable" Value="2.3" Package="2.3_GA" />
   </Versions>
   <Packages>
-    <Package Name="2.3_RC3">
-      <Link Label="Release Candidate" Url="http://code.google.com/p/budabot2/downloads/detail?name=Budabot2.3_RC4_build1961.zip" />
-      <Repository Type="Subversion" Label="Source" Url="http://budabot2.googlecode.com/svn/tags/2.3_RC4/" />
-    </Package>
-    <Package Name="2.2_GA">
-      <Link Label="General Availability" Url="http://code.google.com/p/budabot2/downloads/detail?name=Budabot2.2_GA_build1348.zip" />
-      <Repository Type="Subversion" Label="Source" Url="http://budabot2.googlecode.com/svn/tags/2.2_GA/" />
+    <Package Name="2.3_GA">
+      <Link Label="General Availability" Url="http://code.google.com/p/budabot2/downloads/detail?name=Budabot2.3_GA_build2001.zip" />
+      <Repository Type="Subversion" Label="Source" Url="http://budabot2.googlecode.com/svn/tags/2.3_GA/" />
     </Package>
   </Packages>
 </Root>
