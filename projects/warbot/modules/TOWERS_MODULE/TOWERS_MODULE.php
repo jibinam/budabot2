@@ -2,8 +2,6 @@
 	require_once 'Towers.class.php';
 	require_once 'functions.php';
 
-	$MODULE_NAME = "TOWERS_MODULE";
-
 	DB::loadSQLFile($MODULE_NAME, "tower_attack");
 	DB::loadSQLFile($MODULE_NAME, "scout_info");
 	DB::loadSQLFile($MODULE_NAME, "tower_site");
@@ -32,7 +30,7 @@
 	Setting::add($MODULE_NAME, "tower_attack_spam", "Layout types when displaying tower attacks", "edit", "options", "1", "off;compact;normal;full", '0;1;2;3');
 	Setting::add($MODULE_NAME, "tower_faction_def", "Display certain factions defending", "edit", "options", "7", "none;clan;neutral;clan+neutral;omni;clan+omni;neutral+omni;all", '0;1;2;3;4;5;6;7');
 	Setting::add($MODULE_NAME, "tower_faction_atk", "Display certain factions attacking", "edit", "options", "7", "none;clan;neutral;clan+neutral;omni;clan+omni;neutral+omni;all", '0;1;2;3;4;5;6;7');
-	Setting::add($MODULE_NAME, "check_org_name_on_scout", "Verify that the org name has been attacked", "edit", "options", "1", "false;true", '0;1', "mod");
+	Setting::add($MODULE_NAME, "check_org_name_on_scout", "Verify that the org name has been attacked", "edit", "options", "1", "false;true", '0;1');
 	Setting::add($MODULE_NAME, "check_close_time_on_scout", "Verify that close time less than 1 hour later than the time is was destroyed", "edit", "options", "1", "false;true", '0;1');
 
 	Event::register($MODULE_NAME, "towers", "attack_messages.php", "none", "Record attack messages");

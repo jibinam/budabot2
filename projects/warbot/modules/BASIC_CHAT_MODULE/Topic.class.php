@@ -20,7 +20,7 @@ class Topic {
 			$topic .= ' (' . $rally . ')';
 		}
 		
-		$msg = "{$topic} [set by <highlight>{$setby}<end>][<highlight>{$date_string} ago<end>]";
+		$msg = "{$topic} [set by <highlight>{$setBy}<end>][<highlight>{$date_string} ago<end>]";
 		
 		return $msg;
 	}
