@@ -33,7 +33,7 @@ global $heal_assist;
 if (preg_match("/heal$/i", $message)) {
   	if (!isset($heal_assist)) {
 		$msg = "No heal assist set atm.";
-		bot::send($msg, $sendto);
+		$chatBot->send($msg, $sendto);
 		return;
 	}
 } else if (preg_match("/^heal (.+)$/i", $message, $arr)) {
@@ -41,23 +41,23 @@ if (preg_match("/heal$/i", $message)) {
     
 	if (count($nameArray) == 1) {
 		$name = ucfirst(strtolower($arr[1]));
-		$uid = AoChat::get_uid($name);
+		$uid = $chatBot->get_uid($name);
 		if (!$uid) {
 			$msg = "Player <highlight>$name<end> does not exist.";
-			bot::send($msg, $sendto);
+			$chatBot->send($msg, $sendto);
 			return;
 		}
 		
 		$link = "<header>::::: Heal Assist Macro for $name :::::\n\n";
 		$link .= "<a href='chatcmd:///macro HEAL /assist $name'>Click here to make an healassist $name macro</a>";
-		$heal_assist = "DOCTORS: " . bot::makeLink("Heal Assist $name Macro", $link);
+		$heal_assist = "DOCTORS: " . Text::make_blob("Heal Assist $name Macro", $link);
 	} else {
 		forEach ($nameArray as $key => $name) {
 			$name = ucfirst(strtolower($name));
-			$uid = AoChat::get_uid($name);
+			$uid = $chatBot->get_uid($name);
 			if (!$uid) {
 				$msg = "Player <highlight>$name<end> does not exist.";
-				bot::send($msg, $sendto);
+				$chatBot->send($msg, $sendto);
 				return;
 			}
 			$nameArray[$key] = "/assist $name";
@@ -72,12 +72,12 @@ if (preg_match("/heal$/i", $message)) {
 }
  
 if ($heal_assist != '') {
-	bot::send($heal_assist, $sendto);
+	$chatBot->send($heal_assist, $sendto);
 	
 	// send message 2 more times (3 total) if used in private channel
 	if ($type == "priv") {
-		bot::send($heal_assist, $sendto);
-		bot::send($heal_assist, $sendto);
+		$chatBot->send($heal_assist, $sendto);
+		$chatBot->send($heal_assist, $sendto);
 	}
 }
 ?>

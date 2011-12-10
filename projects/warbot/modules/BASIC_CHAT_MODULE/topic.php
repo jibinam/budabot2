@@ -31,17 +31,17 @@
 
 if ($this->settings["topic"] != "" && $type == "joinPriv") {
 	$msg = "<highlight>Topic:<end>" . Topic::get_topic();
-  	bot::send($msg, $sender);
+  	$chatBot->send($msg, $sender);
 } else if (preg_match("/^topic$/i", $message, $arr)) {
 	$msg = "<highlight>Topic:<end>" . Topic::get_topic();
-    bot::send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^topic clear$/i", $message, $arr) || preg_match("/^edittopic$/i", $message, $arr)) {
   	Topic::set_topic($sender, "");
 	$msg = "Topic has been cleared.";
-    bot::send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 } else if (preg_match("/^topic (.+)$/i", $message, $arr) || preg_match("/^edittopic (.+)$/i", $message, $arr)) {
   	Topic::set_topic($sender, $arr[1]);
 	$msg = "Update topic: $arr[1]";
-    bot::send($msg, $sendto);
+    $chatBot->send($msg, $sendto);
 }
 ?>

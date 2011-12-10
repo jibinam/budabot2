@@ -30,8 +30,8 @@
    */
 
 if (preg_match("/^tell (.+)$/i", $message, $arr)) {
-	bot::send("<yellow>".$arr[1]."<end>", "priv", true);
-	bot::send("<yellow>".$arr[1]."<end>", "priv", true);
-	bot::send("<yellow>".$arr[1]."<end>", "priv", true);
+	$chatBot->send("<yellow>".$arr[1]."<end>", "priv", true);
+	$chatBot->send("<yellow>".$arr[1]."<end>", "priv", true);
+	$chatBot->send("<yellow>".$arr[1]."<end>", "priv", true);
 }
 ?>

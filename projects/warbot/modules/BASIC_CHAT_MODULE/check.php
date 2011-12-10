@@ -31,18 +31,18 @@
    
 if (preg_match("/^check$/i", $message) || preg_match("/^check all$/i", $message)) {
 	$list = "<header>::::: Check for all members :::::<end>\n\n";
-	$db->query("SELECT name FROM priv_chatlist_<myname>");
-	while ($row = $db->fObject()) {
+	$data = $db->query("SELECT name FROM priv_chatlist_<myname>");
+	forEach ($data as $row) {
 		$content .= " \\n /assist $row->name";
 	}
 
 	$list .= "<a href='chatcmd:///text AssistAll: $content'>Click here to check who is here</a>";
-	$msg = bot::makeLink("Check on all", $list);
-	bot::send($msg, $sendto);
+	$msg = Text::make_blob("Check on all", $list);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^check prof$/i", $message)) {
 	$list = "<header>::::: Check for all professions :::::<end>\n\n";
-	$db->query("SELECT p2.name, p2.profession FROM priv_chatlist_<myname> p1 LEFT JOIN players p2 ON p1.name = p2.name ORDER BY `profession` DESC");
-	while ($row = $db->fObject()) {
+	$data = $db->query("SELECT p2.name, p2.profession FROM priv_chatlist_<myname> p1 LEFT JOIN players p2 ON p1.name = p2.name ORDER BY `profession` DESC");
+	forEach ($data as $row) {
 		$prof[$row->profession] .= " \\n /assist $row->name";
 	}
 
@@ -52,12 +52,12 @@ if (preg_match("/^check$/i", $message) || preg_match("/^check all$/i", $message)
 		$list .= "<a href='chatcmd:///text Assist $key: $value'>Click here to check $key</a>\n";
 	}
 
-	$msg = bot::makeLink("Check on professions", $list);
-	bot::send($msg, $sendto);
+	$msg = Text::make_blob("Check on professions", $list);
+	$chatBot->send($msg, $sendto);
 } else if (preg_match("/^check org$/i", $message)) {
 	$list = "<header>::::: Check for all organizations :::::<end>\n\n";
-	$db->query("SELECT * FROM priv_chatlist_<myname> p1 LEFT JOIN players p2 ON p1.name = p2.name ORDER BY `guild` DESC");
-	while ($row = $db->fObject()) {
+	$data = $db->query("SELECT * FROM priv_chatlist_<myname> p1 LEFT JOIN players p2 ON p1.name = p2.name ORDER BY `guild` DESC");
+	forEach ($data as $row) {
 		if ($row->guild == "") {
 			$org["Non orged"] .= " \\n /assist $row->name";
 		} else {
@@ -71,8 +71,8 @@ if (preg_match("/^check$/i", $message) || preg_match("/^check all$/i", $message)
 		$list .= "<a href='chatcmd:///text Assist $key: $value'>Click here to check $key</a>\n";
 	}
 
-	$msg = bot::makeLink("Check on Organizations", $list);
-	bot::send($msg, $sendto);
+	$msg = Text::make_blob("Check on Organizations", $list);
+	$chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }

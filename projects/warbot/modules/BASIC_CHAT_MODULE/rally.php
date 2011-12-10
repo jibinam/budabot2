@@ -5,7 +5,7 @@ if (preg_match("/^rally$/i", $message)) {
 } else if (preg_match("/^rally clear$/i", $message)) {
 	Topic::clear_rally();
 	$msg = "Rally has been cleared.";
-	bot::send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 	return;
 } else if (preg_match("/^rally ([a-z0-9]+) ([0-9]+)$/i", $message)) {
 	$playfield_name = $arr[1];
@@ -14,7 +14,7 @@ if (preg_match("/^rally$/i", $message)) {
 	$playfield = Playfields::get_playfield_by_name($playfield_name);
 	if ($playfield === null) {
 		$msg = "Invalid playfield.";
-		bot::send($msg, $sendto);
+		$chatBot->send($msg, $sendto);
 		return;
 	}
 	
@@ -34,12 +34,12 @@ if (preg_match("/^rally$/i", $message)) {
 			Topic::set_rally("{$playfield->short_name} {$row->site_number}", $playfield->id, $row->x_coords, $row->y_coords);
 		} else {
 			$msg = "$playfield_name $site_number does not have a rally set.";
-			bot::send($msg, $sendto);
+			$chatBot->send($msg, $sendto);
 			return;
 		}
 	} else {
 		$msg = "Invalid site number.";
-		bot::send($msg, $sendto);
+		$chatBot->send($msg, $sendto);
 		return;
 	}
 } else if (preg_match("/^rally \\(?([0-9\\.]+) ([0-9\\.]+) y ([0-9\\.]+) ([0-9]+)\\)?$/i", $message, $arr)) {
@@ -84,15 +84,15 @@ if (preg_match("/^rally$/i", $message)) {
 $rally = Topic::get_rally();
 if ('' == $rally) {
 	$msg = "No rally set.";
-	bot::send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 	return;
 }
 $this->send($rally, $sendto);
 
 // send message 2 more times (3 total) if used in private channel
 if ($type == "priv") {
-	bot::send($rally, $sendto);
-	bot::send($rally, $sendto);
+	$chatBot->send($rally, $sendto);
+	$chatBot->send($rally, $sendto);
 }
 
 ?>

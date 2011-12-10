@@ -30,18 +30,18 @@
    */
    
 if (preg_match("/^leaderecho on$/i", $message)) {
-	bot::savesetting("leaderecho", "1");
-	bot::send("Leader echo has been <green>enabled<end>");
+	Setting::save("leaderecho", "1");
+	$chatBot->send("Leader echo has been <green>enabled<end>");
 } else if (preg_match("/^leaderecho off$/i", $message)) {
-	bot::savesetting("leaderecho", "0");
-	bot::send("Leader echo has been <green>disabled<end>");	
+	Setting::save("leaderecho", "0");
+	$chatBot->send("Leader echo has been <green>disabled<end>");	
 } else if (preg_match("/^leaderecho$/i", $message)) {
-	if ($this->settings["leaderecho"] == 1) {
+	if (Setting::get("leaderecho") == 1) {
 		$msg = "Leader echo is currently <green>enabled<end>";
 	} else {
 		$msg = "Leader echo is currently <red>disabled<end>";
 	}
-	bot::send($msg, 'priv');
+	$chatBot->send($msg, 'priv');
 } else {
 	$syntax_error = true;
 }

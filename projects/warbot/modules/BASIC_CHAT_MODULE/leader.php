@@ -41,10 +41,10 @@ if ($type == "leavePriv") {
 	if ($this->vars["leader"] == $sender) {
 		unset($this->vars["leader"]);
 	  	$msg = "Raid leader cleared.";
-		bot::send($msg, 'priv');
+		$chatBot->send($msg, 'priv');
 	}
 } else if (preg_match("/^leader (.+)$/i", $message, $arr)) {
-    $uid = AoChat::get_uid($arr[1]);
+    $uid = $chatBot->get_uid($arr[1]);
     $name = ucfirst(strtolower($arr[1]));
 	if (!$uid) {
 		$msg = "Player <highlight>{$name}<end> does not exist.";
@@ -54,7 +54,7 @@ if ($type == "leavePriv") {
 		$this->vars["leader"] = $name;
 	  	$msg = "<yellow>{$name} is now Leader<end>";
 	}
-  	bot::send($msg, 'priv');
+  	$chatBot->send($msg, 'priv');
 } else if (preg_match("/^leader$/i", $message)) {
   	if ($this->vars["leader"] == $sender) {
 		unset($this->vars["leader"]);
@@ -70,7 +70,7 @@ if ($type == "leavePriv") {
 		$this->vars["leader"] = $sender;
 	  	$msg = "<yellow>{$sender} is now Leader<end>";
 	}
-  	bot::send($msg, 'priv');
+  	$chatBot->send($msg, 'priv');
 
 } else {
 	$syntax_error = true;

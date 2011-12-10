@@ -2,21 +2,17 @@
 
 class Topic {
 	public static function set_topic($user, $topic) {
-		global $chatBot;
-	
-		$chatBot->savesetting("topic_time", time());
-		$chatBot->savesetting("topic_setby", $user);
-		$chatBot->savesetting("topic", $topic);
+		Setting::save("topic_time", time());
+		Setting::save("topic_setby", $user);
+		Setting::save("topic", $topic);
 	}
 	
 	public static function get_topic() {
-		global $chatBot;
-	
-		$date_string = unixtime_to_readable(time() - $chatBot->settings["topic_time"], false);
-		if ($chatBot->settings["topic"] == '') {
+		$date_string = Util::unixtime_to_readable(time() - Setting::get("topic_time"), false);
+		$setBy = Setting::get('topic_setby');
+		$topic = Setting::get("topic");
+		if ($topic == '') {
 			$topic = 'No topic set';
-		} else {
-			$topic = $chatBot->settings["topic"];
 		}
 		
 		$rally = Topic::get_rally();
@@ -24,33 +20,27 @@ class Topic {
 			$topic .= ' (' . $rally . ')';
 		}
 		
-		$msg = "{$topic} [set by <highlight>{$chatBot->settings["topic_setby"]}<end>][<highlight>{$date_string} ago<end>]";
+		$msg = "{$topic} [set by <highlight>{$setby}<end>][<highlight>{$date_string} ago<end>]";
 		
 		return $msg;
 	}
 	
 	public static function set_rally($name, $playfield_id, $x_coords, $y_coords) {
-		global $chatBot;
-		
-		$link = $chatBot->makeLink("Rally: {$x_coords}x{$y_coords} {$name}", "/waypoint {$x_coords} {$y_coords} {$playfield_id}", 'chatcmd');	
+		$link = Text::make_chatcmd("Rally: {$x_coords}x{$y_coords} {$name}", "/waypoint {$x_coords} {$y_coords} {$playfield_id}");
 		$blob = "<header>:::::: Rally ({$name}) ::::::<end>\n\nClick here to use rally: $link";
-		$rally = $chatBot->makeLink("Rally: {$x_coords}x{$y_coords} {$name}", $blob, 'blob');
+		$rally = Text::make_blob("Rally: {$x_coords}x{$y_coords} {$name}", $blob);
 		
-		$chatBot->savesetting("rally", $rally);
+		Setting::save("rally", $rally);
 		
 		return $rally;
 	}
 	
 	public static function get_rally() {
-		global $chatBot;
-
-		return $chatBot->settings["rally"];
+		return Setting::get("rally");
 	}
 	
 	public static function clear_rally() {
-		global $chatBot;
-		
-		$chatBot->savesetting("rally", '');
+		Setting::save("rally", '');
 	}
 }
 

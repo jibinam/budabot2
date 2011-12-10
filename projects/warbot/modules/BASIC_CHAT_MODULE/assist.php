@@ -30,10 +30,10 @@
    */
 
 global $assist;
-if (preg_match("/^(assist|callers)$/i", $message)) {
+if (preg_match("/^assist$/i", $message)) {
   	if (!isset($assist)) {
 		$msg = "No assist set atm.";
-		bot::send($msg, $sendto);
+		$chatBot->send($msg, $sendto);
 		return;
 	}
 } else if (preg_match("/^assist (.+)$/i", $message, $arr)) {
@@ -41,31 +41,31 @@ if (preg_match("/^(assist|callers)$/i", $message)) {
 	
 	if (count($nameArray) == 1) {
 		$name = ucfirst(strtolower($arr[1]));
-		$uid = AoChat::get_uid($name);
+		$uid = $chatBot->get_uid($name);
 		if ($type == "priv" && !isset($this->chatlist[$name])) {
 			$msg = "Player <highlight>$name<end> isn't in this bot.";
-			bot::send($msg, $sendto);
+			$chatBot->send($msg, $sendto);
 			return;
 		} else if (!$uid) {
 			$msg = "Player <highlight>$name<end> does not exist.";
-			bot::send($msg, $sendto);
+			$chatBot->send($msg, $sendto);
 			return;
 		}
 		
 		$link = "<header>::::: Assist Macro for $name :::::\n\n";
 		$link .= "<a href='chatcmd:///macro $name /assist $name'>Click here to make an assist $name macro</a>";
-		$assist = bot::makeLink("Assist $name Macro", $link);
+		$assist = Text::make_blob("Assist $name Macro", $link);
 	} else {
 		forEach ($nameArray as $key => $name) {
 			$name = ucfirst(strtolower($name));
-			$uid = AoChat::get_uid($name);
+			$uid = $chatBot->get_uid($name);
 			if ($type == "priv" && !isset($this->chatlist[$name])) {
 				$msg = "Player <highlight>$name<end> isn't in this bot.";
-				bot::send($msg, $sendto);
+				$chatBot->send($msg, $sendto);
 				return;
 			} else if (!$uid) {
 				$msg = "Player <highlight>$name<end> does not exist.";
-				bot::send($msg, $sendto);
+				$chatBot->send($msg, $sendto);
 				return;
 			}
 			$nameArray[$key] = "/assist $name";
@@ -80,12 +80,12 @@ if (preg_match("/^(assist|callers)$/i", $message)) {
 }
 
 if ($assist != '') {
-	bot::send($assist, $sendto);
+	$chatBot->send($assist, $sendto);
 	
 	// send message 2 more times (3 total) if used in private channel
 	if ($type == "priv") {
-		bot::send($assist, $sendto);
-		bot::send($assist, $sendto);
+		$chatBot->send($assist, $sendto);
+		$chatBot->send($assist, $sendto);
 	}
 }
 ?>
