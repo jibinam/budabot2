@@ -84,14 +84,14 @@ $sql =
 	LIMIT
 		$page, $listcount";
 
-$db->query($sql);
+$data = $db->query($sql);
 
-if ($db->numrows() == 0) {
+if (count($data) == 0) {
 	$msg = "No tower attacks found.";
 } else {
 	$list = "<header>::::: The last $listcount Tower Attacks (page $page_label) :::::<end>\n\n" . $colorvalue;
 
-	while ($row = $db->fObject()) {
+	forEach ($data as $row) {
 		$list .= $colorlabel."Time:<end> ".gmdate("M j, Y, G:i", $row->time)." (GMT)\n";
 		if ($row->att_faction == '') {
 			$att_faction = "unknown";

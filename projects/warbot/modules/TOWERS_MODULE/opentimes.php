@@ -20,11 +20,11 @@ if (preg_match("/^opentimes (\\d+) (\\d+)$/i", $message, $arr)) {
 			$side_sql
 		ORDER BY
 			close_time";
-	$db->query($sql);
-	$numrows = $db->numrows();
+	$data = $db->query($sql);
+	$numrows = count($data);
 	
 	$blob = '';
-	while (($row = $db->fObject()) != false) {
+	forEach ($data as $row) {
 		$gas_level = getGasLevel($row->close_time);
 		$gas_change_string = "$gas_level->color $gas_level->gas_level - $gas_level->next_state in " . gmdate('H:i:s', $gas_level->gas_change) . "<end>";
 

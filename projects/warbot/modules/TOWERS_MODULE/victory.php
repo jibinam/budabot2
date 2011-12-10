@@ -77,7 +77,7 @@ $sql = "
 		v.time AS victory_time,
 		a.time AS attack_time
 	FROM
-		tower_victory v
+		tower_victory_<myname> v
 		LEFT JOIN tower_attack a ON (v.attack_id = a.id)
 		LEFT JOIN playfields p ON (a.playfield_id = p.id)
 		LEFT JOIN tower_site s ON (a.playfield_id = s.playfield_id AND a.site_number = s.site_number)
@@ -87,12 +87,12 @@ $sql = "
 	LIMIT
 		$page, $listcount";
 
-$db->query($sql);
-if ($db->numrows() == 0) {
+$data = $db->query($sql);
+if (count($data) == 0) {
 	$msg = "No Tower results found.";
 } else {
 	$list = "<header>::::: The last $listcount Tower Results (page $page_label) :::::<end>\n\n".$colorvalue;
-	while ($row = $db->fObject()) {
+	forEach ($data as $row) {
 		$list .= $colorlabel."Time:<end> ".gmdate("M j, Y, G:i", $row->victory_time)." (GMT)\n";
 
 		if (!$win_side = strtolower($row->win_faction)) {

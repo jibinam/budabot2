@@ -52,11 +52,11 @@ if (preg_match("/^(open|openomni) (\\d+)$/i", $message, $arr) || preg_match("/^(
 			$side_sql
 		ORDER BY
 			close_time";
-	$db->query($sql);
-	$numrows = $db->numrows();
+	$data = $db->query($sql);
+	$numrows = count($data);
 	
 	$blob = '';
-	while (($row = $db->fObject()) != FALSE) {
+	forEach ($data as $row) {
 		$gas_level = getGasLevel($row->close_time);
 		$site_link = Text::make_chatcmd("$row->short_name $row->site_number", "/tell <myname> lc $row->short_name $row->site_number");
 		$gas_change_string = "$gas_level->color $gas_level->gas_level - $gas_level->next_state in " . gmdate('H:i:s', $gas_level->gas_change) . "<end>";

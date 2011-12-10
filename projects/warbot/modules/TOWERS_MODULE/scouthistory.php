@@ -18,11 +18,11 @@ if (preg_match("/^scouthistory ([0-9a-z]+) ([0-9]+)$/i", $message, $arr)) {
 		return;
 	}
 	
-	$db->query("SELECT * FROM scout_info_history WHERE playfield_id = {$playfield->id} AND site_number = {$site_number}");
-	if ($db->numrows() === 0) {
+	$data = $db->query("SELECT * FROM scout_info_history WHERE playfield_id = {$playfield->id} AND site_number = {$site_number}");
+	if (count($data) === 0) {
 		$msg = "No scout history entries are available.";
 	} else {
-		while (($row = $db->fObject()) != FALSE) {
+		forEach ($data as $row) {
 			$blob .= print_r($row, true);
 		}
 		$msg = Text::make_blob("History for $playfield->short_name $site_number", $blob);

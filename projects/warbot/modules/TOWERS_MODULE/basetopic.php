@@ -18,8 +18,9 @@ if (preg_match("/^basetopic ([0-9a-z]+) ([0-9]+)$/i", $message, $arr) || preg_ma
 			JOIN playfields p ON (t1.playfield_id = p.id)
 			WHERE t1.playfield_id = $playfield->id AND t1.site_number = $site_number";
 
-	$db->query($sql);
-	if (($row = $db->fObject()) !== null) {
+	$data = $db->query($sql);
+	if (count($data) > 0) {
+		$row = $data[0];
 		$topic = "{$playfield->short_name} {$site_number}";
 		
 		if ($row->topic != '') {
@@ -43,7 +44,7 @@ if (preg_match("/^basetopic ([0-9a-z]+) ([0-9]+)$/i", $message, $arr) || preg_ma
 		$msg = "Invalid site number.";
 	}
 
-	bot::send($msg, $sendto);
+	$chatBot->send($msg, $sendto);
 } else {
 	$syntax_error = true;
 }
