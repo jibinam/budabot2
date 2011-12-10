@@ -7,6 +7,7 @@
 	DB::loadSQLFile($MODULE_NAME, "tower_attack");
 	DB::loadSQLFile($MODULE_NAME, "scout_info");
 	DB::loadSQLFile($MODULE_NAME, "tower_site");
+	DB::loadSQLFile($MODULE_NAME, "tower_info");
 
 	Command::register($MODULE_NAME, "", "scout.php", "forcescout", "all", "Adds tower info to watch list (bypasses some of the checks)");
 	Command::register($MODULE_NAME, "", "scout.php", "scout", "all", "Adds tower info to watch list");

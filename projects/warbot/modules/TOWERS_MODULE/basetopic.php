@@ -13,8 +13,8 @@ if (preg_match("/^basetopic ([0-9a-z]+) ([0-9]+)$/i", $message, $arr) || preg_ma
 	}
 
 	$sql = "SELECT * FROM tower_site t1
-			JOIN scout_info s ON (t1.playfield_id = s.playfield_id AND t1.site_number = s.site_number)
-			JOIN tower_info t2 ON (t1.playfield_id = t2.playfield_id AND t1.site_number = t2.site_number)
+			LEFT JOIN scout_info s ON (t1.playfield_id = s.playfield_id AND t1.site_number = s.site_number)
+			LEFT JOIN tower_info t2 ON (t1.playfield_id = t2.playfield_id AND t1.site_number = t2.site_number)
 			JOIN playfields p ON (t1.playfield_id = p.id)
 			WHERE t1.playfield_id = $playfield->id AND t1.site_number = $site_number";
 
