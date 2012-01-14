@@ -1,6 +1,10 @@
 <?php
 
-require_once 'CommandSearchView.class.php';
+require_once 'trunk/core/CONFIG/CommandSearchView.class.php';
+
+require_once 'Mockery/Loader.php';
+$loader = new \Mockery\Loader;
+$loader->register();
 
 class CommandSearchViewTest extends PHPUnit_Framework_TestCase {
 	const ExactMatch = true;

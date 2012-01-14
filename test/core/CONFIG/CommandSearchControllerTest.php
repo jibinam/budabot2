@@ -1,6 +1,7 @@
 <?php
 
-require_once 'CommandSearchController.class.php';
+require_once 'trunk/core/CONFIG/CommandSearchController.class.php';
+
 require_once 'Mockery/Loader.php';
 $loader = new \Mockery\Loader;
 $loader->register();
