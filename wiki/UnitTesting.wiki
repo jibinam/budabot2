@@ -1,0 +1,35 @@
+#summary Explains how to install unit test tools and how to run them.
+
+= Introduction =
+
+In order to run the tests, you need to have following:
+  * PHP 5.3 or newer,
+  * PEAR 1.9.4 or newer,
+  * PHPUnit unit testing framework,
+  * Mockery mocking library
+
+= Installing PEAR =
+If you have already PEAR installed, you can update it to newer like this:
+{{{
+pear install PEAR-1.9.4
+}}}
+
+If you don't have PEAR yet, follow instructions in [PEAR's manual http://pear.php.net/manual/en/installation.getting.php] to install it.
+
+= Installing PHPUnit =
+Open command prompt/bash shell/etc... and give commands:
+{{{
+pear config-set auto_discover 1
+pear install pear.phpunit.de/PHPUnit
+}}}
+
+= Installing Mockery =
+Open command prompt/bash shell/etc... and give commands:
+{{{
+pear channel-discover pear.survivethedeepend.com
+pear channel-discover hamcrest.googlecode.com/svn/pear
+pear install --alldeps deepend/Mockery
+}}}
+
+= Running unit tests =
+Coming soon.
