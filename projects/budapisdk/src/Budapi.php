@@ -152,9 +152,15 @@ class BudapiConnection {
 				throw new Exception('Failed to read from socket');
 			}
 			$size = @array_pop(@unpack("n", $size));
-			$output = @fread($socket, $size);
-			if ($output === FALSE) {
-				throw new Exception('Failed to read from socket');
+			$output = '';
+			// read $size amount of bytes from socket
+			for ($bytesLeft = $size; $bytesLeft > 0; $bytesLeft -= strlen($bytes)) {
+				$readLength = min($bytesLeft, 1024);
+				$bytes = @fread($socket, $readLength);
+				if ($bytes === FALSE) {
+					throw new Exception('Failed to read from socket');
+				}
+				$output .= $bytes;
 			}
 		} catch(Exception $e) {
 			$this->errorMessage = $e->getMessage();
