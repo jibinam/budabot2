@@ -9,8 +9,12 @@ if ($packet_type == AOCP_GROUP_MESSAGE) {
 		$sender	= $chatBot->lookup_user($args[1]);
 		$message = $args[2];
 		
-		Logger::log_chat($channel, $sender, $message);
+		if (Ban::is_banned($sender)) {
+			return;
+		}
 		
+		Logger::log_chat($channel, $sender, $message);
+
 		$message = preg_replace("/<font(.+)>/U", "", $message);
 		$message = preg_replace("/<\/font>/U", "", $message);
 		
@@ -25,18 +29,16 @@ if ($packet_type == AOCP_GROUP_MESSAGE) {
 		$matches = array();
 		$pattern = '/<a href="itemref:\/\/(\d+)\/(\d+)\/(\d+)">([^<]+)<\/a>/';
 		preg_match_all($pattern, $message, $matches, PREG_SET_ORDER);
-		
-		$message = str_replace("'", "''", $message);
-		
-		
+
 		$db->begin_transaction();
 		
-		$db->exec("INSERT INTO shopping_messages (dimension, message_type, channel, bot, sender, dt, message) VALUES ('<dim>', '$messageType', '$channel', '<myname>', '$sender', " . time() . ", '$message')");
+		$sql = "INSERT INTO shopping_messages (dimension, message_type, channel, bot, sender, dt, message) VALUES ('<dim>', ?, ?, '<myname>', ?, ?, ?)";
+		$db->exec($sql, $messageType, $channel, $sender, time(), $message);
 		$id = $db->lastInsertId();
 		
 		forEach ($matches as $match) {
-			$name = str_replace("'", "''", $match[4]);
-			$db->exec("INSERT INTO shopping_items (message_id, lowid, highid, ql, iconid, name) VALUES ($id, $match[1], $match[2], $match[3], IFNULL((SELECT iconid FROM aodb_items WHERE aoid = '{$match[1]}' LIMIT 1), 0), '$name')");
+			$sql = "INSERT INTO shopping_items (message_id, lowid, highid, ql, iconid, name) VALUES (?, ?, ?, ?, IFNULL((SELECT iconid FROM aodb_items WHERE aoid = ? LIMIT 1), 0), ?)";
+			$db->exec($sql, $id, $match[1], $match[2], $match[3], $match[1], $match[4]);
 		}
 		
 		$db->commit();

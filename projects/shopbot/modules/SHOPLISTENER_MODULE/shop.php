@@ -13,14 +13,15 @@ if (preg_match("/^shop (.+)$/i", $message, $arr)) {
 				ON s1.message_id = s2.id
 		WHERE
 			s2.dimension = <dim>
-			AND s1.name LIKE '%" . str_replace("'", "''", $search) . "%'
+			AND s1.name LIKE ?
 		GROUP BY
 			sender,
 			message
+		ORDER BY
+			MAX(dt) DESC
 		LIMIT
 			40";
-	$db->query($sql);
-	$data = $db->fObject('all');
+	$data = $db->query($sql, "%{$search}%");
 	
 	if (count($data) > 0) {
 		$blob = "<header> :::::: Shopping Results for '$search' :::::: <end>\n\n";
