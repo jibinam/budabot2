@@ -3,15 +3,22 @@
 class Budapi {
 
 	// api request version
-	const API_VERSION = 1.1;
+	const API_VERSION = '1.2';
 	
 	// request types
 	const API_SIMPLE_MSG = 0;
 	const API_ADVANCED_MSG = 1;
 	
 	// response status codes
-	const API_SUCCESS = 1;
-	const API_FAILURE = 0;
+	const API_SUCCESS = 0;
+	const API_INVALID_VERSION = 1;
+	const API_UNSET_PASSWORD = 2;
+	const API_INVALID_PASSWORD = 3;
+	const API_INVALID_REQUEST_TYPE = 4;
+	const API_UNKNOWN_COMMAND = 5;
+	const API_ACCESS_DENIED = 6;
+	const API_SYNTAX_ERROR = 7;
+	const API_EXCEPTION = 8;
 
 	private $host;
 	private $port;
