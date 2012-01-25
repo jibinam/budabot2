@@ -1,0 +1,5 @@
+<highlight>To show the history of a Player<end>
+<tab><symbol>history 'Insert Playername'
+
+for example
+<tab><symbol>history Sebuda
