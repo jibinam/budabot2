@@ -3,16 +3,15 @@
 
 =How to create a release version of Budabot from SVN=
   # Open "/main.php" and update $version (ex: $version = "1.0_RC9")
-  # Update "/releasenotes.txt" for this release
+  # Update "/docs/releasenotes.txt" for this release
   # Commit these changes
-  # Tag this release
+  # Tag this release (/tags/1.0_RC9)
   # "Checkout" or "Export" from the tagged branch you just created
   # If you "Checked Out" you will need to search for and remove all the .svn folders
   # Remove BIOR_GUARDIAN_MODULE, FEEDBACK_MODULE, MIGRATE_MODULE, SHOPPING_MODULE, SVN_MODULE and WAITLIST_MODULE from /modules
-  # Remove the /`_`modules folder
   # Rename budabot folder to `"Budabot<version>_<build>"` if it's not already (eg: "Budabot1.0_RC9_build390", "Budabot2.0_GA_build420", etc)
   # Zip the folder into a zip file called `"Budabot<version>_<build>"` (eg: "Budabot1.0_RC9_build390.zip", "Budabot2.0_GA_build420.zip", etc)
   # Upload to the downloads section
   # Make a post on budabot.com notifying people of the releasing, listing the fixes and changes, and listing any known issues that still need to be addressed
-  # Edit /svn/tools/aodevs.xml (http://code.google.com/p/budabot2/source/browse/tools/aodevs.xml) to reflect the changes
+  # If this is a GA release, edit /svn/tools/aodevs.xml (http://code.google.com/p/budabot2/source/browse/tools/aodevs.xml) to reflect the changes
 All done!
