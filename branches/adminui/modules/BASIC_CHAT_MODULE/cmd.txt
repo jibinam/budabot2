@@ -1,0 +1,2 @@
+<highlight>Use the command command<end>
+<tab><symbol>cmd 'message'
