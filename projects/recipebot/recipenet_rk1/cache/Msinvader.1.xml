@@ -1,0 +1,44 @@
+HTTP/1.1 200 OK
+Date: Mon, 14 Dec 2009 00:43:11 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 1839
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Msinvader</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>87</level>
+    <breed>Solitus</breed>
+    <gender>Female</gender>
+    <faction>Clan</faction>
+    <profession>Adventurer</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40638.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40638.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Oo Notum Circles oO</organization_name>
+    <rank>General</rank>
+    <rank_id>1</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-12-09" level="87" ailevel="0" faction="Clan" guild="Oo Notum Circles oO" rank="General" />
+    <entry date="2009-12-04" level="70" ailevel="0" faction="Clan" guild="Oo Notum Circles oO" rank="General" />
+    <entry date="2009-09-09" level="53" ailevel="0" faction="Clan" guild="Oo Notum Circles oO" rank="Unit Commander" />
+    <entry date="2009-08-31" level="34" ailevel="0" faction="Clan" guild="Oo Notum Circles oO" rank="Applicant" />
+    <entry date="2009-08-23" level="26" ailevel="0" faction="Clan" guild="Oo Notum Circles oO" rank="Applicant" />
+    <entry date="2009-08-21" level="26" ailevel="0" faction="Clan" guild="Peoples Collective (PC)" rank="Applicant" />
+    <entry date="2009-08-18" level="26" ailevel="0" faction="Clan" guild="Oo Notum Circles oO" rank="Squad Commander" />
+    <entry date="2009-08-16" level="26" ailevel="0" faction="Clan" guild="Oo Notum Circles oO" rank="Applicant" />
+  </history>
+  <last_updated>2009/12/09 11:30:02 Universal</last_updated>
+  <last_changed>2009/12/09 11:30:02 Universal</last_changed>
+</character>

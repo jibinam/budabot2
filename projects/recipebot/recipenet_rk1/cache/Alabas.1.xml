@@ -1,0 +1,60 @@
+HTTP/1.1 200 OK
+Date: Wed, 03 Dec 2008 03:54:08 GMT
+Server: Apache/2.2.3 (CentOS)
+X-Powered-By: PHP/5.1.6
+Content-Length: 3543
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Ward</firstname>
+    <nick>Alabas</nick>
+    <lastname>Bichrest</lastname>
+  </name>
+  <basic_stats>
+    <level>112</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Omni</faction>
+    <profession>Soldier</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/223817.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/223817.jpg</smallpictureurl>
+  <history>
+    <entry date="2008-12-02" level="112" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2008-11-28" level="111" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2008-11-21" level="109" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2008-11-16" level="72" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2008-11-11" level="61" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2008-11-10" level="59" ailevel="0" faction="Omni" guild="Chamber 37" rank="Applicant" />
+    <entry date="2008-11-07" level="58" ailevel="0" faction="Omni" guild="Chamber 37" rank="Applicant" />
+    <entry date="2008-11-06" level="56" ailevel="0" faction="Omni" guild="Chamber 37" rank="Applicant" />
+    <entry date="2008-11-05" level="48" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2008-11-04" level="43" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2008-11-03" level="37" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2008-11-02" level="35" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2006-03-08" level="52" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2006-03-02" level="51" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2005-12-09" level="50" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2005-10-23" level="45" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2005-10-04" level="43" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2005-07-20" level="43" ailevel="0" faction="Omni" guild="New Mafia" rank="Applicant" />
+    <entry date="2005-07-18" level="42" ailevel="0" faction="Omni" guild="New Mafia" rank="Applicant" />
+    <entry date="2005-06-23" level="41" ailevel="0" faction="Omni" guild="New Mafia" rank="Applicant" />
+    <entry date="2005-06-22" level="40" ailevel="0" faction="Omni" guild="New Mafia" rank="Applicant" />
+    <entry date="2005-06-21" level="37" ailevel="0" faction="Omni" guild="New Mafia" rank="Applicant" />
+    <entry date="2005-06-19" level="34" ailevel="0" faction="Omni" guild="New Mafia" rank="Applicant" />
+    <entry date="2005-06-18" level="31" ailevel="0" faction="Omni" guild="New Mafia" rank="Applicant" />
+    <entry date="2005-06-17" level="28" ailevel="0" faction="Omni" guild="New Mafia" rank="Applicant" />
+    <entry date="2005-06-16" level="26" ailevel="0" faction="Omni" guild="New Mafia" rank="Applicant" />
+    <entry date="2005-06-15" level="19" ailevel="0" faction="Omni" guild="New Mafia" rank="Applicant" />
+    <entry date="2005-06-14" level="15" ailevel="0" faction="Omni" guild="New Mafia" rank="Applicant" />
+    <entry date="2005-06-11" level="5" ailevel="0" faction="Omni" guild="New Mafia" rank="Applicant" />
+  </history>
+  <last_updated>2008/12/02 11:30:02 Universal</last_updated>
+  <last_changed>2008/12/02 11:30:02 Universal</last_changed>
+</character>

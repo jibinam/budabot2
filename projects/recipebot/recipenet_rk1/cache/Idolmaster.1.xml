@@ -1,0 +1,37 @@
+HTTP/1.1 200 OK
+Date: Sun, 14 Feb 2010 19:44:32 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 1012
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Idolmaster</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>19</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Clan</faction>
+    <profession>Meta-Physicist</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40098.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40098.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>New Order</organization_name>
+    <rank>Unit Member</rank>
+    <rank_id>5</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2010-02-01" level="19" ailevel="0" faction="Clan" guild="New Order" rank="Unit Member" />
+  </history>
+  <last_updated>2010/02/09 11:30:01 Universal</last_updated>
+  <last_changed>2010/02/01 11:30:02 Universal</last_changed>
+</character>

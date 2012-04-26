@@ -1,0 +1,1 @@
+[17:48] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Inert%Kyr'ozch%Teleportation%Relay%' AND recipe_type != '8': 

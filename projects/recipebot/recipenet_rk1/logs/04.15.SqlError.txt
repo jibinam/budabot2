@@ -1,0 +1,1 @@
+[17:54] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%<a%" AND `name` LIKE '%href="itemref&amp;#58;//281212/281212/1">Healer's%' AND `name` LIKE '%Gem[/link]%' ORDER BY `name` LIMIT 0, 40: 

@@ -1,0 +1,46 @@
+HTTP/1.1 200 OK
+Date: Tue, 16 Jun 2009 16:38:50 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 1986
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Ultimater2</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>74</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Omni</faction>
+    <profession>Enforcer</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>7</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40113.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40113.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>[Come Get Some]</organization_name>
+    <rank>Applicant</rank>
+    <rank_id>6</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-04-20" level="74" ailevel="7" faction="Omni" guild="[Come Get Some]" rank="Applicant" />
+    <entry date="2009-03-18" level="74" ailevel="7" faction="Omni" guild="BANIIIIIIK" rank="Squad Commander" />
+    <entry date="2008-09-19" level="74" ailevel="7" faction="Omni" guild="[Come Get Some]" rank="Applicant" />
+    <entry date="2008-09-13" level="74" ailevel="6" faction="Omni" guild="[Come Get Some]" rank="Applicant" />
+    <entry date="2008-09-12" level="74" ailevel="5" faction="Omni" guild="[Come Get Some]" rank="Applicant" />
+    <entry date="2008-09-10" level="74" ailevel="3" faction="Omni" guild="[Come Get Some]" rank="Applicant" />
+    <entry date="2008-09-06" level="74" ailevel="2" faction="Omni" guild="[Come Get Some]" rank="Applicant" />
+    <entry date="2008-06-07" level="60" ailevel="2" faction="Omni" guild="[Come Get Some]" rank="Applicant" />
+    <entry date="2008-06-01" level="45" ailevel="3" faction="Clan" guild="" rank="" />
+    <entry date="2008-03-31" level="30" ailevel="3" faction="Omni" guild="[Come Get Some]" rank="Applicant" />
+  </history>
+  <last_updated>2009/06/09 06:57:50 Universal</last_updated>
+  <last_changed>2009/04/20 10:30:01 Universal</last_changed>
+</character>

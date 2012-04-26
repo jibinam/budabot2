@@ -1,0 +1,38 @@
+HTTP/1.1 200 OK
+Date: Sat, 20 Jun 2009 11:27:53 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 1098
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Helices</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>12</level>
+    <breed>Opifex</breed>
+    <gender>Male</gender>
+    <faction>Omni</faction>
+    <profession>Fixer</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>1</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40282.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40282.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Eternal Darkness</organization_name>
+    <rank>Applicant</rank>
+    <rank_id>6</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-02-25" level="12" ailevel="1" faction="Omni" guild="Eternal Darkness" rank="Applicant" />
+    <entry date="2002-10-03" level="34" ailevel="" faction="Clan" guild="Tempest" rank="" />
+  </history>
+  <last_updated>2009/06/09 06:57:50 Universal</last_updated>
+  <last_changed>2009/02/25 11:30:02 Universal</last_changed>
+</character>

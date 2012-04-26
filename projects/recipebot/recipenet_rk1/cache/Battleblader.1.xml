@@ -1,0 +1,56 @@
+HTTP/1.1 200 OK
+Date: Sun, 17 May 2009 17:36:02 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 3079
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Ultima</firstname>
+    <nick>Battleblader</nick>
+    <lastname>Advy</lastname>
+  </name>
+  <basic_stats>
+    <level>69</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Clan</faction>
+    <profession>Adventurer</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40111.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40111.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Good Spirits</organization_name>
+    <rank>Unit Leader</rank>
+    <rank_id>4</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-05-17" level="69" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Leader" />
+    <entry date="2009-05-16" level="68" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-05-14" level="66" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2009-05-11" level="66" ailevel="0" faction="Clan" guild="Oo Notum Circles oO" rank="Applicant" />
+    <entry date="2009-05-10" level="65" ailevel="0" faction="Clan" guild="Oo Notum Circles oO" rank="Applicant" />
+    <entry date="2009-05-09" level="62" ailevel="0" faction="Clan" guild="Oo Notum Circles oO" rank="Applicant" />
+    <entry date="2009-05-06" level="62" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2009-02-20" level="62" ailevel="0" faction="Clan" guild="Digital Alliance (DA)" rank="Applicant" />
+    <entry date="2009-02-19" level="61" ailevel="0" faction="Clan" guild="Digital Alliance (DA)" rank="Applicant" />
+    <entry date="2009-02-18" level="60" ailevel="0" faction="Clan" guild="The Knight&#039;s of Rubi-Ka" rank="General" />
+    <entry date="2009-02-14" level="60" ailevel="0" faction="Clan" guild="Oo Notum Circles oO" rank="Applicant" />
+    <entry date="2009-02-10" level="60" ailevel="0" faction="Omni" guild="Devils Advocates" rank="Applicant" />
+    <entry date="2009-02-04" level="60" ailevel="0" faction="Omni" guild="Reavers" rank="Applicant" />
+    <entry date="2009-02-02" level="59" ailevel="0" faction="Omni" guild="Reavers" rank="Applicant" />
+    <entry date="2009-02-01" level="53" ailevel="0" faction="Omni" guild="Reavers" rank="Applicant" />
+    <entry date="2009-01-31" level="49" ailevel="0" faction="Omni" guild="Reavers" rank="Applicant" />
+    <entry date="2009-01-26" level="44" ailevel="0" faction="Omni" guild="Reavers" rank="Applicant" />
+    <entry date="2009-01-20" level="42" ailevel="0" faction="Omni" guild="Reavers" rank="Applicant" />
+    <entry date="2009-01-19" level="39" ailevel="0" faction="Omni" guild="Reavers" rank="Applicant" />
+    <entry date="2009-01-18" level="21" ailevel="0" faction="Omni" guild="Reavers" rank="Applicant" />
+  </history>
+  <last_updated>2009/05/17 10:30:01 Universal</last_updated>
+  <last_changed>2009/05/17 10:30:01 Universal</last_changed>
+</character>

@@ -1,0 +1,111 @@
+HTTP/1.1 200 OK
+Date: Sat, 22 Aug 2009 18:47:34 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Shaduu</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>211</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Clan</faction>
+    <profession>Trader</profession>
+    <defender_rank>Accomplished</defender_rank>
+    <defender_rank_id>12</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/236704.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/236704.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Paragon</organization_name>
+    <rank>Squad Commander</rank>
+    <rank_id>2</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-08-21" level="211" ailevel="12" faction="Clan" guild="Paragon" rank="Squad Commander" />
+    <entry date="2009-07-27" level="211" ailevel="12" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-06-26" level="210" ailevel="12" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-06-23" level="207" ailevel="11" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-05-25" level="198" ailevel="11" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-04-08" level="196" ailevel="11" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-04-07" level="195" ailevel="11" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-04-06" level="193" ailevel="11" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-04-03" level="191" ailevel="10" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-03-31" level="191" ailevel="9" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-03-25" level="190" ailevel="9" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-03-24" level="184" ailevel="9" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-03-23" level="184" ailevel="8" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-03-22" level="183" ailevel="8" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-03-20" level="181" ailevel="8" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-03-19" level="179" ailevel="8" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-03-04" level="178" ailevel="8" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-02-08" level="175" ailevel="8" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-02-07" level="174" ailevel="8" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-02-01" level="173" ailevel="8" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-01-12" level="171" ailevel="8" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-01-09" level="171" ailevel="7" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-01-04" level="170" ailevel="7" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-01-03" level="168" ailevel="5" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2009-01-01" level="164" ailevel="5" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2008-12-31" level="161" ailevel="5" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2008-12-30" level="160" ailevel="5" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2008-12-17" level="157" ailevel="5" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2008-11-16" level="156" ailevel="5" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2008-11-01" level="151" ailevel="5" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2008-10-04" level="150" ailevel="5" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2008-09-27" level="150" ailevel="4" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2008-09-22" level="150" ailevel="3" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2008-09-20" level="146" ailevel="3" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2008-09-15" level="145" ailevel="3" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2008-09-14" level="142" ailevel="3" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2008-09-13" level="141" ailevel="3" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2008-09-07" level="139" ailevel="3" faction="Clan" guild="Paragon" rank="Unit Member" />
+    <entry date="2008-09-01" level="137" ailevel="3" faction="Clan" guild="Paragon" rank="Applicant" />
+    <entry date="2008-08-27" level="136" ailevel="3" faction="Clan" guild="Paragon" rank="Applicant" />
+    <entry date="2008-08-02" level="136" ailevel="3" faction="Clan" guild="Veil of Illusions" rank="Applicant" />
+    <entry date="2008-08-01" level="136" ailevel="3" faction="Clan" guild="Paragon Order" rank="Applicant" />
+    <entry date="2008-07-24" level="136" ailevel="3" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-07-20" level="134" ailevel="3" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-07-19" level="131" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-07-15" level="130" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-07-06" level="110" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-06-29" level="107" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-05-20" level="105" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-05-18" level="100" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-05-11" level="90" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-05-10" level="78" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-05-09" level="74" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-05-08" level="64" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-05-07" level="63" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-05-04" level="60" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-05-03" level="54" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-05-02" level="40" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-05-01" level="38" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-04-30" level="28" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-04-29" level="85" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-04-28" level="71" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-04-26" level="54" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-04-25" level="49" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-04-24" level="41" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-04-23" level="40" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-04-22" level="23" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-04-21" level="16" ailevel="2" faction="Clan" guild="Paragon Order" rank="Unit Member" />
+    <entry date="2008-03-20" level="13" ailevel="1" faction="Clan" guild="" rank="" />
+    <entry date="2008-03-19" level="10" ailevel="1" faction="Clan" guild="" rank="" />
+    <entry date="2008-02-03" level="12" ailevel="1" faction="Clan" guild="Paragon Order" rank="Applicant" />
+    <entry date="2007-12-12" level="24" ailevel="0" faction="Clan" guild="Paragon Order" rank="Applicant" />
+    <entry date="2007-12-10" level="23" ailevel="0" faction="Clan" guild="Paragon Order" rank="Applicant" />
+    <entry date="2007-12-09" level="13" ailevel="0" faction="Clan" guild="Paragon Order" rank="Applicant" />
+    <entry date="2007-10-26" level="21" ailevel="0" faction="Clan" guild="Paragon Order" rank="Unit Commander" />
+    <entry date="2007-10-16" level="19" ailevel="0" faction="Clan" guild="Paragon Order" rank="Unit Commander" />
+  </history>
+  <last_updated>2009/08/21 08:34:37 Universal</last_updated>
+  <last_changed>2009/08/21 08:34:37 Universal</last_changed>
+</character>

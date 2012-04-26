@@ -1,0 +1,49 @@
+HTTP/1.1 200 OK
+Date: Sun, 09 Aug 2009 07:46:22 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 2284
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Sir</firstname>
+    <nick>Cheema</nick>
+    <lastname>Loki</lastname>
+  </name>
+  <basic_stats>
+    <level>61</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Clan</faction>
+    <profession>Trader</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40666.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40666.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Midnight Assassins</organization_name>
+    <rank>Applicant</rank>
+    <rank_id>6</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-03-24" level="61" ailevel="0" faction="Clan" guild="Midnight Assassins" rank="Applicant" />
+    <entry date="2009-02-05" level="61" ailevel="0" faction="Clan" guild="Midnight Orange" rank="Applicant" />
+    <entry date="2008-07-15" level="61" ailevel="0" faction="Clan" guild="Independent Assassins" rank="Applicant" />
+    <entry date="2008-05-19" level="60" ailevel="0" faction="Clan" guild="Aethyr Knights" rank="Applicant" />
+    <entry date="2008-01-28" level="60" ailevel="0" faction="Clan" guild="Aethyrs" rank="Applicant" />
+    <entry date="2007-11-27" level="60" ailevel="0" faction="Clan" guild="AETHYRS" rank="Applicant" />
+    <entry date="2007-11-13" level="60" ailevel="0" faction="Clan" guild="Aethyr Knights" rank="Applicant" />
+    <entry date="2007-01-16" level="59" ailevel="0" faction="Clan" guild="Aethyr Knights" rank="Applicant" />
+    <entry date="2007-01-10" level="57" ailevel="0" faction="Clan" guild="Aethyr Knights" rank="Applicant" />
+    <entry date="2007-01-07" level="53" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2005-09-04" level="19" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2005-08-26" level="10" ailevel="0" faction="Clan" guild="Aethyr Guard" rank="Applicant" />
+    <entry date="2005-08-25" level="9" ailevel="0" faction="Clan" guild="Aethyr Guard" rank="Applicant" />
+  </history>
+  <last_updated>2009/08/06 08:47:15 Universal</last_updated>
+  <last_changed>2009/06/23 13:55:20 Universal</last_changed>
+</character>

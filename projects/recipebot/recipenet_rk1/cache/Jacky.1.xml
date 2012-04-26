@@ -1,0 +1,37 @@
+HTTP/1.1 200 OK
+Date: Sat, 14 Feb 2009 19:18:03 GMT
+Server: Apache/2.2.3 (CentOS)
+Content-Length: 1355
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Roland</firstname>
+    <nick>Jacky</nick>
+    <lastname>Shone</lastname>
+  </name>
+  <basic_stats>
+    <level>34</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Clan</faction>
+    <profession>Enforcer</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40697.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40697.jpg</smallpictureurl>
+  <history>
+    <entry date="2005-01-10" level="34" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2002-09-17" level="34" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2002-01-25" level="33" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2002-01-18" level="27" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2002-01-11" level="16" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2002-01-04" level="10" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2001-12-07" level="38" ailevel="" faction="Omni" guild="First Order" rank="" />
+  </history>
+  <last_updated>2009/02/08 11:30:01 Universal</last_updated>
+  <last_changed>2005/01/10 16:42:23 Universal</last_changed>
+</character>

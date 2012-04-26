@@ -1,0 +1,74 @@
+HTTP/1.1 200 OK
+Date: Fri, 19 Mar 2010 10:24:35 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 4798
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Solium</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>57</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Clan</faction>
+    <profession>Engineer</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40687.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40687.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Good Spirits</organization_name>
+    <rank>Unit Member</rank>
+    <rank_id>5</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2010-02-04" level="57" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2010-01-20" level="57" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2010-01-04" level="57" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Leader" />
+    <entry date="2009-12-09" level="57" ailevel="0" faction="Clan" guild="Mixed Martial Arts (MMA)" rank="Applicant" />
+    <entry date="2009-12-01" level="57" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2009-09-14" level="57" ailevel="0" faction="Clan" guild="All move to Good Spirits" rank="Unit Leader" />
+    <entry date="2008-09-01" level="57" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Leader" />
+    <entry date="2008-08-13" level="57" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-08-12" level="56" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-08-11" level="55" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-08-08" level="54" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-07-21" level="53" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-05-05" level="53" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2008-01-09" level="52" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-11-17" level="52" ailevel="0" faction="Clan" guild="The Red Brotherhood" rank="Applicant" />
+    <entry date="2007-11-04" level="52" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-11-01" level="52" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2007-10-16" level="52" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2007-08-12" level="51" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-07-01" level="50" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-06-29" level="49" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-04-07" level="46" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-04-06" level="45" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-03-25" level="43" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-03-14" level="41" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-03-13" level="40" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-03-11" level="39" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-03-10" level="33" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-03-09" level="31" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-03-08" level="29" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-02-25" level="27" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-02-24" level="23" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-02-12" level="20" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-02-11" level="18" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-02-10" level="17" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-02-09" level="14" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-01-30" level="12" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+    <entry date="2006-01-27" level="8" ailevel="0" faction="Clan" guild="ARENA" rank="Applicant" />
+  </history>
+  <last_updated>2010/03/17 11:30:01 Universal</last_updated>
+  <last_changed>2010/02/04 11:30:02 Universal</last_changed>
+</character>

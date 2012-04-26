@@ -1,0 +1,160 @@
+HTTP/1.1 200 OK
+Date: Sat, 15 Nov 2008 00:58:47 GMT
+Server: Apache/2.2.3 (CentOS)
+X-Powered-By: PHP/5.1.6
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Cap</firstname>
+    <nick>Captainzero</nick>
+    <lastname>Makerofstuff</lastname>
+  </name>
+  <basic_stats>
+    <level>206</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Neutral</faction>
+    <profession>Engineer</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>9</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40705.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40705.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>World Trading Corporation</organization_name>
+    <rank>Board Member</rank>
+    <rank_id>1</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2008-10-29" level="206" ailevel="9" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2008-10-27" level="206" ailevel="8" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2008-10-07" level="205" ailevel="8" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2008-10-06" level="204" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2008-04-23" level="203" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2008-04-11" level="203" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-31" level="201" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-30" level="199" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-27" level="198" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-26" level="197" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-24" level="196" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-22" level="195" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-15" level="194" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-12" level="193" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-09" level="192" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-08" level="191" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-06" level="190" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-05" level="189" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-03" level="188" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-02" level="187" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-03-01" level="186" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-02-28" level="185" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-02-25" level="184" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-02-24" level="183" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-02-22" level="182" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-02-20" level="181" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-02-18" level="180" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-02-17" level="179" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-02-16" level="178" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-02-07" level="177" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-02-05" level="176" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Director" />
+    <entry date="2008-02-04" level="175" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-02-02" level="172" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-30" level="170" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-29" level="169" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-26" level="167" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-24" level="166" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-22" level="165" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-21" level="164" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-19" level="163" ailevel="7" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-18" level="161" ailevel="6" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-17" level="161" ailevel="5" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-16" level="160" ailevel="5" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-15" level="158" ailevel="5" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-13" level="155" ailevel="5" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-12" level="154" ailevel="5" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-11" level="153" ailevel="5" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-10" level="151" ailevel="4" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-09" level="150" ailevel="4" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-08" level="149" ailevel="4" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-07" level="147" ailevel="2" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-03" level="147" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-02" level="145" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2008-01-01" level="144" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2007-12-30" level="142" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2007-12-29" level="141" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2007-12-28" level="138" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2007-12-27" level="135" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2007-12-16" level="133" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2007-12-06" level="132" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2007-12-05" level="131" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2007-10-16" level="130" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2007-09-25" level="123" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2007-09-24" level="120" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2007-09-04" level="119" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2007-08-07" level="116" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2007-06-29" level="115" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Member" />
+    <entry date="2007-03-13" level="115" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2007-03-12" level="114" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2007-02-24" level="113" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2007-02-22" level="112" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2007-02-21" level="110" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2007-02-17" level="109" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2007-02-15" level="107" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2007-02-11" level="106" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2007-02-10" level="105" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2007-02-09" level="103" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-11-21" level="102" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-11-20" level="101" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-10-14" level="100" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-10-13" level="99" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-10-12" level="98" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-10-11" level="97" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-10-09" level="95" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-10-07" level="94" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-10-06" level="92" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-10-01" level="88" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-28" level="85" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-27" level="84" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-26" level="82" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-25" level="80" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-23" level="77" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-22" level="76" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-21" level="75" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-20" level="73" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-19" level="72" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-18" level="71" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-17" level="70" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-16" level="69" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-15" level="68" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-14" level="67" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-13" level="66" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-12" level="65" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-11" level="63" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-10" level="61" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-08" level="60" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-07" level="59" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-06" level="58" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-05" level="57" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-04" level="55" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-02" level="51" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-09-01" level="49" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-08-31" level="48" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-08-29" level="47" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-08-28" level="45" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-08-27" level="43" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-08-25" level="39" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-08-24" level="38" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-08-23" level="35" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Board Member" />
+    <entry date="2006-08-22" level="32" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Executive" />
+    <entry date="2006-08-21" level="31" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Executive" />
+    <entry date="2006-08-20" level="29" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Executive" />
+    <entry date="2006-08-19" level="26" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Executive" />
+    <entry date="2006-08-18" level="21" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Executive" />
+    <entry date="2006-08-17" level="20" ailevel="0" faction="Neutral" guild="World Trading Corporation" rank="Executive" />
+  </history>
+  <last_updated>2008/11/14 11:30:02 Universal</last_updated>
+  <last_changed>2008/10/29 11:30:02 Universal</last_changed>
+</character>

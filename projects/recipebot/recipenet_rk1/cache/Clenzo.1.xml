@@ -1,0 +1,46 @@
+HTTP/1.1 200 OK
+Date: Fri, 18 Sep 2009 09:09:05 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 2001
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Clenzo</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>106</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Clan</faction>
+    <profession>Enforcer</profession>
+    <defender_rank>Intermediate</defender_rank>
+    <defender_rank_id>8</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40112.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40112.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Eater of Days</organization_name>
+    <rank>Applicant</rank>
+    <rank_id>6</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-09-14" level="106" ailevel="8" faction="Clan" guild="Eater of Days" rank="Applicant" />
+    <entry date="2009-09-11" level="104" ailevel="8" faction="Clan" guild="Eater of Days" rank="Applicant" />
+    <entry date="2009-09-09" level="103" ailevel="8" faction="Clan" guild="Eater of Days" rank="Applicant" />
+    <entry date="2009-08-31" level="101" ailevel="8" faction="Clan" guild="Eater of Days" rank="Applicant" />
+    <entry date="2009-08-23" level="100" ailevel="8" faction="Clan" guild="Eater of Days" rank="Applicant" />
+    <entry date="2009-08-21" level="96" ailevel="8" faction="Clan" guild="Eater of Days" rank="Applicant" />
+    <entry date="2009-08-18" level="90" ailevel="8" faction="Clan" guild="Eater of Days" rank="Applicant" />
+    <entry date="2009-08-16" level="89" ailevel="8" faction="Clan" guild="Eater of Days" rank="Applicant" />
+    <entry date="2009-08-13" level="68" ailevel="7" faction="Clan" guild="Eater of Days" rank="Applicant" />
+    <entry date="2009-08-10" level="66" ailevel="6" faction="Clan" guild="Eater of Days" rank="Applicant" />
+  </history>
+  <last_updated>2009/09/14 12:03:21 Universal</last_updated>
+  <last_changed>2009/09/14 12:03:21 Universal</last_changed>
+</character>

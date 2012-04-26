@@ -1,0 +1,38 @@
+HTTP/1.1 200 OK
+Date: Sat, 15 Aug 2009 12:15:41 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 1113
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Smurfedup</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>24</level>
+    <breed>Opifex</breed>
+    <gender>Male</gender>
+    <faction>Clan</faction>
+    <profession>Fixer</profession>
+    <defender_rank>Amateur</defender_rank>
+    <defender_rank_id>2</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/223889.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/223889.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Army of Virtue</organization_name>
+    <rank>Member</rank>
+    <rank_id>3</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-05-11" level="24" ailevel="2" faction="Clan" guild="Army of Virtue" rank="Member" />
+    <entry date="2009-05-07" level="24" ailevel="0" faction="Clan" guild="Army of Virtue" rank="Member" />
+  </history>
+  <last_updated>2009/08/13 16:17:15 Universal</last_updated>
+  <last_changed>2009/06/23 13:55:20 Universal</last_changed>
+</character>

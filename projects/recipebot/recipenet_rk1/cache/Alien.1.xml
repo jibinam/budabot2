@@ -1,0 +1,73 @@
+HTTP/1.1 200 OK
+Date: Sun, 11 Oct 2009 17:02:53 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 5171
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Alien</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>180</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Clan</faction>
+    <profession>Bureaucrat</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40717.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40717.jpg</smallpictureurl>
+  <history>
+    <entry date="2006-02-23" level="180" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2006-02-22" level="178" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2005-01-08" level="171" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2004-11-28" level="171" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2004-09-14" level="170" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2004-09-03" level="169" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2004-08-09" level="169" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-07-23" level="163" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-07-04" level="160" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-06-30" level="159" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-06-16" level="158" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-04-21" level="155" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-04-20" level="152" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-04-19" level="150" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-04-17" level="148" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-04-16" level="146" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-04-15" level="145" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-04-13" level="142" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-04-12" level="138" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-04-11" level="137" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-04-10" level="135" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-03-18" level="128" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-03-17" level="125" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-03-14" level="120" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-02-25" level="108" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-02-20" level="107" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-01-18" level="106" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-01-17" level="105" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Advisor" />
+    <entry date="2004-01-16" level="104" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Veteran" />
+    <entry date="2004-01-14" level="102" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Veteran" />
+    <entry date="2004-01-13" level="101" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Veteran" />
+    <entry date="2004-01-12" level="96" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Veteran" />
+    <entry date="2004-01-11" level="94" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Veteran" />
+    <entry date="2004-01-09" level="85" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Veteran" />
+    <entry date="2004-01-08" level="83" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Veteran" />
+    <entry date="2004-01-07" level="80" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Veteran" />
+    <entry date="2004-01-06" level="74" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Veteran" />
+    <entry date="2004-01-05" level="70" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Veteran" />
+    <entry date="2003-12-31" level="60" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Veteran" />
+    <entry date="2003-12-30" level="52" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Veteran" />
+    <entry date="2003-12-29" level="45" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Veteran" />
+    <entry date="2003-12-21" level="37" ailevel="" faction="Clan" guild="The Scooby Gang" rank="Veteran" />
+  </history>
+  <last_updated>2009/10/04 10:30:01 Universal</last_updated>
+  <last_changed>2008/01/17 11:30:01 Universal</last_changed>
+</character>

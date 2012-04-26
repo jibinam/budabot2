@@ -1,0 +1,48 @@
+HTTP/1.1 200 OK
+Date: Tue, 01 Sep 2009 04:41:42 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 2239
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname> </firstname>
+    <nick>Warshack</nick>
+    <lastname> </lastname>
+  </name>
+  <basic_stats>
+    <level>141</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Clan</faction>
+    <profession>Enforcer</profession>
+    <defender_rank>Common</defender_rank>
+    <defender_rank_id>7</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40100.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40100.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Soulstealers</organization_name>
+    <rank>Squad Commander</rank>
+    <rank_id>2</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-08-27" level="141" ailevel="7" faction="Clan" guild="Soulstealers" rank="Squad Commander" />
+    <entry date="2009-08-26" level="140" ailevel="7" faction="Clan" guild="Soulstealers" rank="Squad Commander" />
+    <entry date="2009-08-21" level="135" ailevel="6" faction="Clan" guild="Soulstealers" rank="Squad Commander" />
+    <entry date="2009-08-18" level="130" ailevel="6" faction="Clan" guild="Soulstealers" rank="Squad Commander" />
+    <entry date="2009-08-16" level="117" ailevel="6" faction="Clan" guild="Soulstealers" rank="Unit Leader" />
+    <entry date="2009-08-13" level="113" ailevel="5" faction="Clan" guild="Soulstealers" rank="Applicant" />
+    <entry date="2009-08-10" level="103" ailevel="5" faction="Clan" guild="Soulstealers" rank="Applicant" />
+    <entry date="2009-08-06" level="100" ailevel="5" faction="Clan" guild="Soulstealers" rank="Applicant" />
+    <entry date="2009-08-04" level="99" ailevel="5" faction="Clan" guild="Soulstealers" rank="Applicant" />
+    <entry date="2009-08-03" level="87" ailevel="5" faction="Clan" guild="Soulstealers" rank="Applicant" />
+    <entry date="2009-07-30" level="83" ailevel="5" faction="Clan" guild="Soulstealers" rank="Applicant" />
+    <entry date="2009-07-27" level="71" ailevel="5" faction="Clan" guild="Soulstealers" rank="Applicant" />
+  </history>
+  <last_updated>2009/08/27 13:23:52 Universal</last_updated>
+  <last_changed>2009/08/27 13:23:52 Universal</last_changed>
+</character>

@@ -1,0 +1,2 @@
+[01:37] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%<a%" AND `name` LIKE '%href="itemref&amp;#58;//268854/268855/28">Miy's%' AND `name` LIKE '%Melee%' AND `name` LIKE '%Armor%' AND `name` LIKE '%Sleeves[/link]%' ORDER BY `name` LIMIT 0, 40: 
+[19:10] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%combined%commando's%' AND recipe_type != '8': 

@@ -1,0 +1,149 @@
+HTTP/1.1 200 OK
+Date: Sun, 13 Sep 2009 23:27:11 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Gimpy</firstname>
+    <nick>Nikodz</nick>
+    <lastname>Tradeskills</lastname>
+  </name>
+  <basic_stats>
+    <level>220</level>
+    <breed>Nano</breed>
+    <gender>Male</gender>
+    <faction>Clan</faction>
+    <profession>Engineer</profession>
+    <defender_rank>Competent</defender_rank>
+    <defender_rank_id>15</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40188.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40188.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Angelic Retribution</organization_name>
+    <rank>Unit Member</rank>
+    <rank_id>5</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-09-09" level="220" ailevel="15" faction="Clan" guild="Angelic Retribution" rank="Unit Member" />
+    <entry date="2008-02-27" level="220" ailevel="15" faction="Clan" guild="Angelic Retribution" rank="Applicant" />
+    <entry date="2008-02-17" level="220" ailevel="15" faction="Clan" guild="" rank="" />
+    <entry date="2008-01-17" level="220" ailevel="15" faction="Clan" guild="Els takes it up the bum" rank="Applicant" />
+    <entry date="2007-12-22" level="220" ailevel="15" faction="Clan" guild="OOOO" rank="Applicant" />
+    <entry date="2007-12-06" level="220" ailevel="15" faction="Clan" guild="Koskenkorva" rank="Applicant" />
+    <entry date="2007-11-07" level="220" ailevel="15" faction="Clan" guild="Angelic Retribution" rank="Applicant" />
+    <entry date="2007-11-04" level="220" ailevel="15" faction="Clan" guild="" rank="" />
+    <entry date="2007-05-23" level="220" ailevel="15" faction="Clan" guild="Uprising" rank="Applicant" />
+    <entry date="2007-02-12" level="220" ailevel="15" faction="Clan" guild="Uprising" rank="Veteran" />
+    <entry date="2007-02-05" level="220" ailevel="15" faction="Clan" guild="Uprising" rank="Member" />
+    <entry date="2007-02-04" level="219" ailevel="15" faction="Clan" guild="Uprising" rank="Member" />
+    <entry date="2007-01-25" level="219" ailevel="14" faction="Clan" guild="Uprising" rank="Member" />
+    <entry date="2007-01-22" level="218" ailevel="14" faction="Clan" guild="Uprising" rank="Member" />
+    <entry date="2007-01-16" level="217" ailevel="14" faction="Clan" guild="Uprising" rank="Member" />
+    <entry date="2007-01-08" level="217" ailevel="14" faction="Clan" guild="Infinity" rank="Applicant" />
+    <entry date="2007-01-07" level="216" ailevel="14" faction="Clan" guild="Infinity" rank="Applicant" />
+    <entry date="2007-01-02" level="215" ailevel="14" faction="Clan" guild="Infinity" rank="Applicant" />
+    <entry date="2006-06-24" level="215" ailevel="14" faction="Clan" guild="" rank="" />
+    <entry date="2005-12-20" level="215" ailevel="14" faction="Clan" guild="Uprising" rank="Member" />
+    <entry date="2005-12-16" level="215" ailevel="14" faction="Clan" guild="Uprising" rank="Applicant" />
+    <entry date="2005-10-03" level="215" ailevel="14" faction="Clan" guild="Uprising" rank="Unit Member" />
+    <entry date="2005-06-22" level="214" ailevel="14" faction="Clan" guild="Uprising" rank="Unit Member" />
+    <entry date="2005-03-30" level="213" ailevel="14" faction="Clan" guild="Uprising" rank="Unit Member" />
+    <entry date="2005-02-25" level="213" ailevel="13" faction="Clan" guild="Uprising" rank="Unit Member" />
+    <entry date="2005-01-27" level="212" ailevel="13" faction="Clan" guild="Uprising" rank="Unit Member" />
+    <entry date="2005-01-24" level="211" ailevel="13" faction="Clan" guild="Uprising" rank="Unit Member" />
+    <entry date="2005-01-19" level="211" ailevel="12" faction="Clan" guild="Uprising" rank="Unit Member" />
+    <entry date="2005-01-09" level="211" ailevel="11" faction="Clan" guild="Uprising" rank="Unit Member" />
+    <entry date="2005-01-07" level="210" ailevel="11" faction="Clan" guild="Uprising" rank="Unit Member" />
+    <entry date="2004-12-24" level="210" ailevel="" faction="Clan" guild="Uprising" rank="Unit Member" />
+    <entry date="2004-12-11" level="209" ailevel="" faction="Clan" guild="Uprising" rank="Unit Member" />
+    <entry date="2004-12-05" level="209" ailevel="" faction="Clan" guild="Uprising" rank="Applicant" />
+    <entry date="2004-11-22" level="208" ailevel="" faction="Clan" guild="Uprising" rank="Applicant" />
+    <entry date="2004-11-18" level="207" ailevel="" faction="Clan" guild="Uprising" rank="Applicant" />
+    <entry date="2004-11-17" level="206" ailevel="" faction="Clan" guild="Uprising" rank="Applicant" />
+    <entry date="2004-11-14" level="205" ailevel="" faction="Clan" guild="Uprising" rank="Applicant" />
+    <entry date="2004-11-04" level="204" ailevel="" faction="Clan" guild="Uprising" rank="Applicant" />
+    <entry date="2004-10-30" level="203" ailevel="" faction="Clan" guild="Uprising" rank="Applicant" />
+    <entry date="2004-10-24" level="202" ailevel="" faction="Clan" guild="Uprising" rank="Applicant" />
+    <entry date="2004-10-22" level="201" ailevel="" faction="Clan" guild="Uprising" rank="Applicant" />
+    <entry date="2004-10-14" level="200" ailevel="" faction="Clan" guild="Uprising" rank="Applicant" />
+    <entry date="2004-10-10" level="198" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2004-10-09" level="195" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2004-10-08" level="193" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Leader" />
+    <entry date="2004-10-07" level="192" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Leader" />
+    <entry date="2004-10-05" level="190" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Leader" />
+    <entry date="2004-10-04" level="188" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Leader" />
+    <entry date="2004-10-02" level="187" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Leader" />
+    <entry date="2004-09-26" level="186" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Leader" />
+    <entry date="2004-09-23" level="185" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Leader" />
+    <entry date="2004-09-22" level="184" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Leader" />
+    <entry date="2004-09-20" level="180" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-09-19" level="179" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-09-15" level="175" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-09-14" level="174" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-09-12" level="167" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-09-11" level="165" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-09-10" level="164" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-09-08" level="163" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-09-06" level="161" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-09-05" level="160" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-09-03" level="157" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-09-02" level="156" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-08-22" level="155" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-08-14" level="154" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-08-07" level="153" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-08-06" level="151" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-08-05" level="149" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-08-04" level="148" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-08-03" level="147" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-08-02" level="146" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-07-25" level="144" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-07-17" level="142" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-07-16" level="141" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-07-15" level="140" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-07-13" level="139" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-07-06" level="137" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Unit Member" />
+    <entry date="2004-07-05" level="135" ailevel="" faction="Clan" guild="House Maadiah *AS*" rank="Applicant" />
+    <entry date="2004-07-01" level="135" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2004-06-24" level="135" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Applicant" />
+    <entry date="2004-06-08" level="135" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate" rank="Applicant" />
+    <entry date="2004-04-20" level="135" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate" rank="Unit Commander" />
+    <entry date="2004-04-07" level="135" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Unit Commander" />
+    <entry date="2004-04-04" level="134" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Unit Commander" />
+    <entry date="2004-04-03" level="132" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Unit Commander" />
+    <entry date="2004-04-02" level="127" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Unit Commander" />
+    <entry date="2004-04-01" level="125" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Unit Commander" />
+    <entry date="2004-03-31" level="123" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Unit Commander" />
+    <entry date="2004-03-25" level="122" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Unit Commander" />
+    <entry date="2004-03-24" level="121" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Unit Commander" />
+    <entry date="2004-03-23" level="119" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Unit Commander" />
+    <entry date="2004-03-22" level="118" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Unit Commander" />
+    <entry date="2004-03-21" level="114" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Unit Commander" />
+    <entry date="2004-03-20" level="112" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Unit Commander" />
+    <entry date="2004-03-19" level="109" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Unit Commander" />
+    <entry date="2004-03-17" level="108" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Unit Commander" />
+    <entry date="2004-03-16" level="105" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Applicant" />
+    <entry date="2004-03-15" level="100" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Applicant" />
+    <entry date="2004-03-14" level="89" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Applicant" />
+    <entry date="2004-03-13" level="88" ailevel="" faction="Clan" guild="Clan Anarchist Syndicate *AP*" rank="Applicant" />
+    <entry date="2004-03-12" level="88" ailevel="" faction="Clan" guild="House Maadiah" rank="Applicant" />
+    <entry date="2004-03-11" level="81" ailevel="" faction="Clan" guild="House Maadiah" rank="Applicant" />
+    <entry date="2004-03-10" level="79" ailevel="" faction="Clan" guild="House Maadiah" rank="Applicant" />
+    <entry date="2004-03-09" level="75" ailevel="" faction="Clan" guild="House Maadiah" rank="Applicant" />
+    <entry date="2004-03-07" level="65" ailevel="" faction="Clan" guild="House Maadiah" rank="Applicant" />
+    <entry date="2004-03-06" level="60" ailevel="" faction="Clan" guild="House Maadiah" rank="Applicant" />
+    <entry date="2004-03-03" level="50" ailevel="" faction="Clan" guild="House Maadiah" rank="Applicant" />
+    <entry date="2004-03-01" level="49" ailevel="" faction="Clan" guild="House Maadiah" rank="Applicant" />
+    <entry date="2004-02-29" level="47" ailevel="" faction="Clan" guild="House Maadiah" rank="Applicant" />
+    <entry date="2004-02-20" level="44" ailevel="" faction="Clan" guild="House Maadiah" rank="Applicant" />
+    <entry date="2004-02-17" level="40" ailevel="" faction="Clan" guild="House Maadiah" rank="Applicant" />
+    <entry date="2004-02-16" level="39" ailevel="" faction="Clan" guild="House Maadiah" rank="Applicant" />
+    <entry date="2004-02-15" level="35" ailevel="" faction="Clan" guild="The Red Brotherhood" rank="Applicant" />
+  </history>
+  <last_updated>2009/09/11 11:26:57 Universal</last_updated>
+  <last_changed>2009/09/09 08:43:13 Universal</last_changed>
+</character>

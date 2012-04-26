@@ -1,0 +1,45 @@
+HTTP/1.1 200 OK
+Date: Mon, 02 Mar 2009 02:04:10 GMT
+Server: Apache/2.2.3 (CentOS)
+Content-Length: 1899
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Jayne</firstname>
+    <nick>Abbyrose</nick>
+    <lastname>Schmeisser</lastname>
+  </name>
+  <basic_stats>
+    <level>48</level>
+    <breed>Solitus</breed>
+    <gender>Female</gender>
+    <faction>Clan</faction>
+    <profession>Adventurer</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40629.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40629.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>It wasn't a trap</organization_name>
+    <rank>Lord</rank>
+    <rank_id>0</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2008-12-26" level="48" ailevel="0" faction="Clan" guild="It wasn&#039;t a trap" rank="Lord" />
+    <entry date="2008-12-22" level="48" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2008-12-07" level="48" ailevel="0" faction="Clan" guild="Oo Notum Circles oO" rank="Applicant" />
+    <entry date="2008-11-30" level="47" ailevel="0" faction="Clan" guild="Oo Notum Circles oO" rank="Applicant" />
+    <entry date="2008-09-18" level="41" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2008-09-12" level="38" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2008-09-06" level="36" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2008-09-05" level="35" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2008-09-04" level="33" ailevel="0" faction="Clan" guild="The Law" rank="Unit Member" />
+    <entry date="2008-09-02" level="31" ailevel="0" faction="Clan" guild="The Law" rank="Unit Member" />
+  </history>
+  <last_updated>2009/03/01 11:30:02 Universal</last_updated>
+  <last_changed>2008/12/26 11:30:02 Universal</last_changed>
+</character>

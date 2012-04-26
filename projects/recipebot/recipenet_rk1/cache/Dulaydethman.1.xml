@@ -1,0 +1,32 @@
+HTTP/1.1 200 OK
+Date: Thu, 02 Jul 2009 18:15:48 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 826
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Dulaydethman</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>11</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Omni</faction>
+    <profession>Bureaucrat</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40671.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40671.jpg</smallpictureurl>
+  <history>
+    <entry date="2009-06-26" level="11" ailevel="0" faction="Omni" guild="" rank="" />
+  </history>
+  <last_updated>2009/06/26 09:50:52 Universal</last_updated>
+  <last_changed>2009/06/26 09:50:52 Universal</last_changed>
+</character>

@@ -1,0 +1,93 @@
+HTTP/1.1 200 OK
+Date: Mon, 31 Aug 2009 06:20:34 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 7077
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Xavier</firstname>
+    <nick>Battledamage</nick>
+    <lastname>Maximus</lastname>
+  </name>
+  <basic_stats>
+    <level>197</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Omni</faction>
+    <profession>Soldier</profession>
+    <defender_rank>Newcomer</defender_rank>
+    <defender_rank_id>5</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40100.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40100.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Providence</organization_name>
+    <rank>Veteran</rank>
+    <rank_id>2</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2006-02-07" level="197" ailevel="5" faction="Omni" guild="Providence" rank="Veteran" />
+    <entry date="2005-11-16" level="197" ailevel="5" faction="Omni" guild="Providence" rank="Applicant" />
+    <entry date="2005-11-12" level="197" ailevel="5" faction="Omni" guild="" rank="" />
+    <entry date="2005-07-12" level="197" ailevel="5" faction="Omni" guild="Providence" rank="Applicant" />
+    <entry date="2005-07-03" level="197" ailevel="5" faction="Omni" guild="" rank="" />
+    <entry date="2005-06-15" level="197" ailevel="5" faction="Omni" guild="Providence" rank="Member" />
+    <entry date="2005-05-21" level="197" ailevel="5" faction="Omni" guild="Mosaic" rank="Applicant" />
+    <entry date="2005-04-10" level="197" ailevel="5" faction="Omni" guild="Mosaic" rank="Member" />
+    <entry date="2005-03-04" level="196" ailevel="5" faction="Omni" guild="Mosaic" rank="Member" />
+    <entry date="2005-02-22" level="194" ailevel="5" faction="Omni" guild="Mosaic" rank="Member" />
+    <entry date="2005-02-18" level="193" ailevel="5" faction="Omni" guild="Mosaic" rank="Applicant" />
+    <entry date="2005-02-05" level="192" ailevel="5" faction="Omni" guild="Mosaic" rank="Applicant" />
+    <entry date="2005-01-29" level="192" ailevel="5" faction="Omni" guild="Mercenaries of Kai (TAG)" rank="Unit Member" />
+    <entry date="2005-01-07" level="192" ailevel="5" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-12-09" level="192" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-08-04" level="192" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Applicant" />
+    <entry date="2004-07-06" level="192" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-06-07" level="191" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-03-29" level="190" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-02-23" level="188" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-02-20" level="187" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-02-01" level="186" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-01-21" level="185" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-01-20" level="184" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-01-13" level="183" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-01-12" level="180" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-01-09" level="179" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-01-08" level="176" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-01-07" level="172" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-01-06" level="171" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-01-03" level="169" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2004-01-02" level="167" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2003-12-31" level="166" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2003-12-30" level="165" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2003-12-29" level="164" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Unit Member" />
+    <entry date="2003-12-28" level="163" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Applicant" />
+    <entry date="2003-12-25" level="161" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Applicant" />
+    <entry date="2003-12-21" level="160" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Applicant" />
+    <entry date="2003-12-14" level="158" ailevel="" faction="Omni" guild="The Avengean Guard (TAG)" rank="Applicant" />
+    <entry date="2003-12-02" level="158" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2003-11-23" level="157" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2003-11-17" level="156" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2003-11-14" level="155" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2003-11-11" level="154" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2003-11-05" level="153" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2003-11-03" level="150" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2003-10-24" level="148" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2003-10-21" level="144" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2003-10-18" level="140" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2003-10-11" level="139" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2003-10-06" level="137" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2003-10-02" level="134" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2003-09-29" level="128" ailevel="" faction="Clan" guild="" rank="" />
+    <entry date="2003-09-12" level="113" ailevel="" faction="Clan" guild="-=Hecate Deimos=-" rank="President" />
+    <entry date="2003-08-31" level="110" ailevel="" faction="Clan" guild="-=Hecate Deimos=-" rank="President" />
+    <entry date="2003-08-22" level="89" ailevel="" faction="Clan" guild="-=Hecate Deimos=-" rank="President" />
+    <entry date="2003-08-11" level="50" ailevel="" faction="Clan" guild="-=Hecate Deimos=-" rank="President" />
+  </history>
+  <last_updated>2009/08/27 13:23:52 Universal</last_updated>
+  <last_changed>2009/06/23 13:55:20 Universal</last_changed>
+</character>

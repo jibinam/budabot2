@@ -1,0 +1,41 @@
+[06:47] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Kyr'ozch%Processing%Unit%' AND recipe_type != '8': 
+[06:47] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Kyr'ozch%Processing%' AND recipe_type != '8': 
+[06:34] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '253139': 
+[06:34] [SqlError] Error in: SELECT * FROM members_rk1 WHERE member_name = 'Larnaqueur': 
+[06:34] [SqlError] Error in: SELECT * FROM aodb WHERE lowid = '253139' OR highid = '253139': 
+[06:34] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[06:34] [SqlError] Error in: SELECT * FROM aodb WHERE lowid = '253139' OR highid = '253139': 
+[06:34] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[08:24] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '227910': 
+[08:24] [SqlError] Error in: SELECT * FROM members_rk1 WHERE member_name = 'Yumehime': 
+[08:24] [SqlError] Error in: SELECT * FROM aodb WHERE lowid = '227910' OR highid = '227910': 
+[08:24] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[08:24] [SqlError] Error in: SELECT * FROM aodb WHERE lowid = '227910' OR highid = '227910': 
+[08:24] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[10:59] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%short%muzzle%' AND recipe_type != '8': 
+[10:59] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%spirit%tech%' AND recipe_type != '8': 
+[10:59] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Spirit%Tech%Apparatus%' AND recipe_type != '8': 
+[11:43] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '136633': 
+[11:43] [SqlError] Error in: SELECT * FROM members_rk1 WHERE member_name = 'Illi': 
+[11:43] [SqlError] Error in: SELECT * FROM aodb WHERE lowid = '136633' OR highid = '136633': 
+[11:43] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[11:43] [SqlError] Error in: SELECT * FROM aodb WHERE lowid = '136633' OR highid = '136633': 
+[11:43] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[12:32] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '158046': 
+[12:32] [SqlError] Error in: SELECT * FROM members_rk1 WHERE member_name = 'Vietnamn': 
+[12:32] [SqlError] Error in: SELECT * FROM aodb WHERE lowid = '158046' OR highid = '158046': 
+[12:33] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[12:33] [SqlError] Error in: SELECT * FROM aodb WHERE lowid = '158046' OR highid = '158046': 
+[12:33] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[13:31] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '272309': 
+[13:31] [SqlError] Error in: SELECT * FROM members_rk1 WHERE member_name = 'Illi': 
+[13:32] [SqlError] Error in: SELECT * FROM aodb WHERE lowid = '272309' OR highid = '272309': 
+[13:32] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[13:32] [SqlError] Error in: SELECT * FROM aodb WHERE lowid = '272309' OR highid = '272309': 
+[13:32] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[13:50] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_type != '8': 
+[13:50] [SqlError] Error in: SELECT * FROM type WHERE type_visible = '1': 
+[13:50] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_type != '8': 
+[13:50] [SqlError] Error in: SELECT * FROM type WHERE type_visible = '1': 
+[13:50] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%carbonum%' AND recipe_type != '8': 
+[13:51] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%carbonum%breastplate%' AND recipe_type != '8': 

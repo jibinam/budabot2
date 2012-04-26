@@ -1,0 +1,1 @@
+[15:54] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%De'Valos%' AND recipe_type != '8': 

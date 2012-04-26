@@ -1,0 +1,145 @@
+HTTP/1.1 200 OK
+Date: Mon, 30 Nov 2009 18:42:05 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Ace</firstname>
+    <nick>Saavick</nick>
+    <lastname>Virusbuilder</lastname>
+  </name>
+  <basic_stats>
+    <level>200</level>
+    <breed>Solitus</breed>
+    <gender>Female</gender>
+    <faction>Omni</faction>
+    <profession>Doctor</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40662.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40662.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Black Sheep</organization_name>
+    <rank>Member</rank>
+    <rank_id>3</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-04-11" level="200" ailevel="0" faction="Omni" guild="Black Sheep" rank="Member" />
+    <entry date="2009-01-03" level="200" ailevel="0" faction="Omni" guild="Natas" rank="General" />
+    <entry date="2008-12-28" level="200" ailevel="0" faction="Omni" guild="Natas" rank="Squad Commander" />
+    <entry date="2008-10-21" level="200" ailevel="0" faction="Omni" guild="Natas" rank="Applicant" />
+    <entry date="2008-09-13" level="200" ailevel="0" faction="Omni" guild="Don&#039;t mention the war" rank="President" />
+    <entry date="2008-09-12" level="200" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2008-09-02" level="200" ailevel="0" faction="Omni" guild="Alpha Centauri" rank="Applicant" />
+    <entry date="2008-08-28" level="200" ailevel="0" faction="Omni" guild="Don&#039;t mention the war" rank="President" />
+    <entry date="2008-08-23" level="200" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2008-06-28" level="200" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2008-06-02" level="200" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="General" />
+    <entry date="2008-05-30" level="199" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="General" />
+    <entry date="2008-05-18" level="198" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="General" />
+    <entry date="2008-05-16" level="198" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2008-05-14" level="197" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2008-05-07" level="197" ailevel="0" faction="Omni" guild="Asgard" rank="Unit Member" />
+    <entry date="2008-04-11" level="196" ailevel="0" faction="Omni" guild="Asgard" rank="Unit Member" />
+    <entry date="2008-03-25" level="196" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2008-03-23" level="195" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2008-03-22" level="194" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2008-03-10" level="193" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2008-03-06" level="192" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2008-02-17" level="191" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2008-02-16" level="190" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2008-02-12" level="189" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2008-02-07" level="188" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2007-12-06" level="187" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2007-09-19" level="186" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2007-07-24" level="185" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2007-04-22" level="184" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2007-02-09" level="183" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Squad Commander" />
+    <entry date="2007-02-02" level="183" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Unit Commander" />
+    <entry date="2007-01-26" level="182" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Unit Commander" />
+    <entry date="2007-01-23" level="181" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Unit Commander" />
+    <entry date="2007-01-07" level="180" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Unit Commander" />
+    <entry date="2007-01-04" level="179" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Unit Commander" />
+    <entry date="2007-01-01" level="178" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Unit Commander" />
+    <entry date="2006-12-25" level="177" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Unit Commander" />
+    <entry date="2006-12-17" level="176" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Unit Leader" />
+    <entry date="2006-12-14" level="176" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Unit Member" />
+    <entry date="2006-12-11" level="175" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Unit Member" />
+    <entry date="2006-12-10" level="174" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Unit Member" />
+    <entry date="2006-12-09" level="173" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Unit Member" />
+    <entry date="2006-12-06" level="172" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Unit Member" />
+    <entry date="2006-11-13" level="171" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Unit Member" />
+    <entry date="2006-11-05" level="171" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Applicant" />
+    <entry date="2006-11-01" level="170" ailevel="0" faction="Omni" guild="Newcomers Alliance" rank="Applicant" />
+    <entry date="2006-10-27" level="170" ailevel="0" faction="Omni" guild="Asgard" rank="Unit Member" />
+    <entry date="2006-10-16" level="169" ailevel="0" faction="Omni" guild="Asgard" rank="Unit Member" />
+    <entry date="2006-10-01" level="166" ailevel="0" faction="Omni" guild="Asgard" rank="Unit Member" />
+    <entry date="2006-09-23" level="165" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-09-22" level="164" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-09-20" level="163" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-09-18" level="162" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-09-15" level="161" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-09-14" level="160" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-09-12" level="158" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-09-11" level="157" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-09-10" level="156" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-09-07" level="152" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-09-06" level="151" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-09-05" level="148" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-09-04" level="147" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-09-02" level="145" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-31" level="144" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-29" level="142" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-28" level="141" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-27" level="140" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-25" level="137" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-23" level="135" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-11" level="132" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-10" level="131" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-09" level="130" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-08" level="129" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-07" level="128" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-05" level="126" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-04" level="125" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-03" level="123" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-08-02" level="120" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-31" level="118" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-30" level="117" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-29" level="115" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-27" level="113" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-26" level="108" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-24" level="105" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-16" level="104" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-14" level="100" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-13" level="98" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-12" level="97" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-10" level="94" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-09" level="90" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-08" level="88" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-07" level="77" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-06" level="75" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-07-05" level="72" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-06-29" level="65" ailevel="0" faction="Omni" guild="Nordic CREW" rank="Unit Member" />
+    <entry date="2006-06-20" level="65" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2006-06-11" level="65" ailevel="0" faction="Omni" guild="Eternal Requiem" rank="Applicant" />
+    <entry date="2006-06-03" level="65" ailevel="0" faction="Omni" guild="Angels of Darkness" rank="Applicant" />
+    <entry date="2006-05-15" level="57" ailevel="0" faction="Omni" guild="Angels of Darkness" rank="Applicant" />
+    <entry date="2006-05-13" level="56" ailevel="0" faction="Omni" guild="Angels of Darkness" rank="Applicant" />
+    <entry date="2006-05-12" level="50" ailevel="0" faction="Omni" guild="Angels of Darkness" rank="Applicant" />
+    <entry date="2006-05-11" level="49" ailevel="0" faction="Omni" guild="Angels of Darkness" rank="Applicant" />
+    <entry date="2006-05-10" level="48" ailevel="0" faction="Omni" guild="Angels of Darkness" rank="Applicant" />
+    <entry date="2006-04-10" level="42" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2006-03-22" level="39" ailevel="0" faction="Omni" guild="Xilum Highguard" rank="Applicant" />
+    <entry date="2006-03-08" level="39" ailevel="0" faction="Omni" guild="Xilum Highguard" rank="Unit Commander" />
+    <entry date="2006-03-06" level="35" ailevel="0" faction="Omni" guild="Xilum Highguard" rank="Unit Commander" />
+    <entry date="2006-03-05" level="23" ailevel="0" faction="Omni" guild="Xilum Highguard" rank="Unit Commander" />
+    <entry date="2006-03-04" level="13" ailevel="0" faction="Omni" guild="Xilum Highguard" rank="Unit Commander" />
+  </history>
+  <last_updated>2009/11/27 11:30:02 Universal</last_updated>
+  <last_changed>2009/06/23 13:55:20 Universal</last_changed>
+</character>

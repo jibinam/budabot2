@@ -1,0 +1,42 @@
+HTTP/1.1 200 OK
+Date: Mon, 07 Sep 2009 05:04:55 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 1623
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Mrbignuke</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>121</level>
+    <breed>Nano</breed>
+    <gender>Male</gender>
+    <faction>Clan</faction>
+    <profession>Nano-Technician</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/223937.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/223937.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Defenders Of Freedom</organization_name>
+    <rank>Unit Commander</rank>
+    <rank_id>3</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-09-04" level="121" ailevel="0" faction="Clan" guild="Defenders Of Freedom" rank="Unit Commander" />
+    <entry date="2009-08-26" level="121" ailevel="0" faction="Clan" guild="Defenders Of Freedom" rank="Applicant" />
+    <entry date="2009-08-23" level="115" ailevel="0" faction="Clan" guild="Defenders Of Freedom" rank="Applicant" />
+    <entry date="2009-08-21" level="87" ailevel="0" faction="Clan" guild="Defenders Of Freedom" rank="Applicant" />
+    <entry date="2009-08-16" level="51" ailevel="0" faction="Clan" guild="Defenders Of Freedom" rank="Applicant" />
+    <entry date="2009-08-13" level="17" ailevel="0" faction="Clan" guild="Defenders Of Freedom" rank="Applicant" />
+  </history>
+  <last_updated>2009/09/04 11:34:42 Universal</last_updated>
+  <last_changed>2009/09/04 11:34:42 Universal</last_changed>
+</character>

@@ -1,0 +1,43 @@
+HTTP/1.1 200 OK
+Date: Wed, 02 Sep 2009 06:31:34 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 1659
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Saitken</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>83</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Clan</faction>
+    <profession>Enforcer</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40109.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40109.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Barador Arin</organization_name>
+    <rank>Unit Member</rank>
+    <rank_id>5</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-08-31" level="83" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Member" />
+    <entry date="2009-08-26" level="82" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Member" />
+    <entry date="2009-08-23" level="80" ailevel="0" faction="Clan" guild="Barador Arin" rank="Applicant" />
+    <entry date="2009-08-21" level="69" ailevel="0" faction="Clan" guild="Barador Arin" rank="Applicant" />
+    <entry date="2009-08-18" level="66" ailevel="0" faction="Clan" guild="Barador Arin" rank="Applicant" />
+    <entry date="2009-08-16" level="54" ailevel="0" faction="Clan" guild="Barador Arin" rank="Applicant" />
+    <entry date="2009-08-13" level="28" ailevel="0" faction="Clan" guild="Barador Arin" rank="Applicant" />
+  </history>
+  <last_updated>2009/08/31 11:04:24 Universal</last_updated>
+  <last_changed>2009/08/31 11:04:24 Universal</last_changed>
+</character>

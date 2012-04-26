@@ -1,0 +1,52 @@
+HTTP/1.1 200 OK
+Date: Sun, 07 Jun 2009 12:28:08 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 2815
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Spankmefast</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>150</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Neutral</faction>
+    <profession>Fixer</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>9</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40100.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40100.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Elite Operations</organization_name>
+    <rank>Applicant</rank>
+    <rank_id>6</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-04-25" level="150" ailevel="9" faction="Neutral" guild="Elite Operations" rank="Applicant" />
+    <entry date="2009-04-19" level="150" ailevel="9" faction="Neutral" guild="Elite Retribution" rank="Squad Commander" />
+    <entry date="2009-04-15" level="150" ailevel="9" faction="Neutral" guild="Elite Retribution" rank="Applicant" />
+    <entry date="2008-12-27" level="150" ailevel="9" faction="Neutral" guild="Elite Operations" rank="Squad Commander" />
+    <entry date="2008-12-26" level="150" ailevel="9" faction="Neutral" guild="Elite Operations" rank="Applicant" />
+    <entry date="2008-12-24" level="150" ailevel="8" faction="Neutral" guild="Elite Operations" rank="Applicant" />
+    <entry date="2008-12-23" level="150" ailevel="8" faction="Neutral" guild="Elite Retribution" rank="Squad Commander" />
+    <entry date="2008-11-19" level="150" ailevel="8" faction="Neutral" guild="Elite Operations" rank="Squad Commander" />
+    <entry date="2008-09-10" level="150" ailevel="7" faction="Neutral" guild="Elite Operations" rank="Squad Commander" />
+    <entry date="2008-08-21" level="150" ailevel="7" faction="Neutral" guild="Elite Operations" rank="Applicant" />
+    <entry date="2008-08-10" level="150" ailevel="6" faction="Neutral" guild="Elite Operations" rank="Applicant" />
+    <entry date="2008-07-24" level="150" ailevel="6" faction="Neutral" guild="Elite Operations" rank="Squad Commander" />
+    <entry date="2008-07-21" level="150" ailevel="5" faction="Neutral" guild="Elite Operations" rank="Squad Commander" />
+    <entry date="2008-07-18" level="150" ailevel="4" faction="Neutral" guild="Elite Operations" rank="Squad Commander" />
+    <entry date="2008-07-17" level="150" ailevel="3" faction="Neutral" guild="Elite Operations" rank="Squad Commander" />
+    <entry date="2008-07-15" level="150" ailevel="2" faction="Neutral" guild="Elite Operations" rank="Applicant" />
+  </history>
+  <last_updated>2009/06/04 10:30:02 Universal</last_updated>
+  <last_changed>2009/04/25 10:30:01 Universal</last_changed>
+</character>

@@ -1,0 +1,63 @@
+HTTP/1.1 200 OK
+Date: Sun, 05 Jul 2009 23:39:06 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 3912
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Waitandbleed</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>150</level>
+    <breed>Opifex</breed>
+    <gender>Male</gender>
+    <faction>Clan</faction>
+    <profession>Fixer</profession>
+    <defender_rank>Mediocre</defender_rank>
+    <defender_rank_id>9</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40254.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40254.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Oo Bubbles oO</organization_name>
+    <rank>Unit Commander</rank>
+    <rank_id>3</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-06-26" level="150" ailevel="9" faction="Clan" guild="Oo Bubbles oO" rank="Unit Commander" />
+    <entry date="2009-06-23" level="150" ailevel="9" faction="Clan" guild="Oo Bubbles oO" rank="Unit Member" />
+    <entry date="2008-06-14" level="150" ailevel="9" faction="Clan" guild="" rank="" />
+    <entry date="2006-06-29" level="150" ailevel="9" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2006-06-25" level="150" ailevel="8" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2006-06-24" level="149" ailevel="8" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2006-06-20" level="147" ailevel="8" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2006-04-03" level="142" ailevel="8" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-12-01" level="142" ailevel="8" faction="Clan" guild="Wen-tzu Enclave" rank="Unit Leader" />
+    <entry date="2005-11-30" level="140" ailevel="8" faction="Clan" guild="Wen-tzu Enclave" rank="Unit Leader" />
+    <entry date="2005-11-24" level="140" ailevel="8" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-11-23" level="140" ailevel="7" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-11-22" level="135" ailevel="7" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-11-21" level="130" ailevel="7" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-11-20" level="128" ailevel="7" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-11-19" level="126" ailevel="7" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-11-18" level="124" ailevel="7" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-11-17" level="119" ailevel="7" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-11-11" level="119" ailevel="6" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-11-08" level="116" ailevel="6" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-11-07" level="110" ailevel="5" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-11-05" level="109" ailevel="5" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-11-04" level="108" ailevel="5" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-11-03" level="98" ailevel="5" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-11-02" level="89" ailevel="5" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-10-30" level="76" ailevel="5" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+    <entry date="2005-10-29" level="72" ailevel="3" faction="Clan" guild="Wen-tzu Enclave" rank="Applicant" />
+  </history>
+  <last_updated>2009/06/30 09:32:03 Universal</last_updated>
+  <last_changed>2009/06/26 09:50:52 Universal</last_changed>
+</character>

@@ -1,0 +1,141 @@
+HTTP/1.1 200 OK
+Date: Sun, 01 Mar 2009 20:34:59 GMT
+Server: Apache/2.2.3 (CentOS)
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Maiysha</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>220</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Omni</faction>
+    <profession>Trader</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>19</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40667.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40667.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Hells Heroes</organization_name>
+    <rank>Unit Member</rank>
+    <rank_id>5</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-01-16" level="220" ailevel="19" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2008-12-01" level="220" ailevel="18" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2008-11-16" level="220" ailevel="17" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2008-10-20" level="220" ailevel="16" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2008-10-13" level="220" ailevel="15" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2008-09-15" level="219" ailevel="15" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2008-09-10" level="219" ailevel="14" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2008-08-18" level="218" ailevel="14" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2008-08-14" level="217" ailevel="14" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2008-08-10" level="217" ailevel="13" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2008-08-03" level="217" ailevel="12" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2007-07-09" level="216" ailevel="12" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2007-07-01" level="215" ailevel="12" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2007-06-26" level="214" ailevel="12" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2007-06-23" level="213" ailevel="12" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2007-06-19" level="212" ailevel="12" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2007-06-13" level="211" ailevel="12" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2007-06-11" level="210" ailevel="12" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2007-06-06" level="210" ailevel="11" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2007-02-05" level="210" ailevel="11" faction="Omni" guild="" rank="" />
+    <entry date="2006-08-14" level="210" ailevel="11" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2006-08-03" level="209" ailevel="11" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2006-07-28" level="208" ailevel="11" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2006-07-17" level="207" ailevel="10" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2006-07-13" level="206" ailevel="10" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-12-20" level="205" ailevel="10" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-12-09" level="204" ailevel="10" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-12-03" level="204" ailevel="9" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-11-27" level="203" ailevel="9" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-10-20" level="202" ailevel="8" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-10-19" level="201" ailevel="8" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-10-06" level="201" ailevel="7" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-09-26" level="200" ailevel="7" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-09-16" level="200" ailevel="5" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-09-14" level="200" ailevel="4" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-09-13" level="200" ailevel="0" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-09-10" level="197" ailevel="0" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-09-04" level="195" ailevel="0" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-08-25" level="190" ailevel="0" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-08-24" level="187" ailevel="0" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-08-23" level="183" ailevel="0" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-08-22" level="182" ailevel="0" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-08-21" level="177" ailevel="0" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-08-18" level="175" ailevel="0" faction="Omni" guild="Hells Heroes" rank="Unit Member" />
+    <entry date="2005-01-07" level="175" ailevel="0" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2004-08-15" level="175" ailevel="" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2004-08-12" level="173" ailevel="" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2004-08-09" level="171" ailevel="" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2004-08-05" level="170" ailevel="" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2004-08-02" level="165" ailevel="" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2004-07-28" level="161" ailevel="" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2004-07-25" level="159" ailevel="" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2004-07-23" level="158" ailevel="" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2004-06-18" level="157" ailevel="" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2004-06-11" level="156" ailevel="" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2004-06-08" level="155" ailevel="" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2004-06-07" level="154" ailevel="" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2004-06-05" level="154" ailevel="" faction="Omni" guild="Midnight Rayne" rank="Applicant" />
+    <entry date="2004-06-04" level="152" ailevel="" faction="Omni" guild="Midnight Rayne" rank="Applicant" />
+    <entry date="2004-05-29" level="150" ailevel="" faction="Omni" guild="Midnight Rayne" rank="Applicant" />
+    <entry date="2004-05-28" level="150" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2004-05-27" level="147" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2004-05-26" level="145" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2004-05-22" level="144" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2004-05-12" level="137" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2004-05-11" level="136" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2004-05-10" level="136" ailevel="" faction="Omni" guild="Band of Brothers" rank="Applicant" />
+    <entry date="2004-04-30" level="135" ailevel="" faction="Omni" guild="Band of Brothers" rank="Applicant" />
+    <entry date="2004-04-27" level="130" ailevel="" faction="Omni" guild="Band of Brothers" rank="Applicant" />
+    <entry date="2004-04-25" level="128" ailevel="" faction="Omni" guild="Band of Brothers" rank="Applicant" />
+    <entry date="2004-04-24" level="123" ailevel="" faction="Omni" guild="Band of Brothers" rank="Applicant" />
+    <entry date="2004-04-23" level="121" ailevel="" faction="Omni" guild="Band of Brothers" rank="Applicant" />
+    <entry date="2004-04-20" level="120" ailevel="" faction="Omni" guild="Band of Brothers" rank="Applicant" />
+    <entry date="2004-04-16" level="117" ailevel="" faction="Omni" guild="Band of Brothers" rank="Applicant" />
+    <entry date="2004-04-13" level="112" ailevel="" faction="Omni" guild="Band of Brothers" rank="Applicant" />
+    <entry date="2004-04-12" level="111" ailevel="" faction="Omni" guild="Band of Brothers" rank="Applicant" />
+    <entry date="2004-04-10" level="108" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Unit Member" />
+    <entry date="2004-04-09" level="108" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-04-08" level="105" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-04-07" level="101" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-04-05" level="96" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-04-02" level="92" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-22" level="91" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-21" level="88" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-19" level="87" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-18" level="85" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-17" level="83" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-16" level="81" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-15" level="79" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-14" level="78" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-13" level="76" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-12" level="73" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-11" level="72" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-10" level="71" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-08" level="70" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-05" level="69" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-04" level="67" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-03" level="65" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-03-01" level="61" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-02-29" level="59" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-02-27" level="55" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-02-26" level="50" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-02-25" level="47" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-02-24" level="41" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-02-23" level="35" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-02-20" level="30" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+    <entry date="2004-02-17" level="9" ailevel="" faction="Omni" guild="Band of Little Brothers (TAG)" rank="Applicant" />
+  </history>
+  <last_updated>2009/03/01 11:30:02 Universal</last_updated>
+  <last_changed>2009/01/16 11:30:01 Universal</last_changed>
+</character>

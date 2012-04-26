@@ -1,0 +1,52 @@
+HTTP/1.1 200 OK
+Date: Sun, 30 Aug 2009 16:21:27 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 2714
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Keeper97</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>150</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Clan</faction>
+    <profession>Keeper</profession>
+    <defender_rank>Newcomer</defender_rank>
+    <defender_rank_id>5</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40111.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40111.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Midnight Assassins</organization_name>
+    <rank>Applicant</rank>
+    <rank_id>6</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-08-27" level="150" ailevel="5" faction="Clan" guild="Midnight Assassins" rank="Applicant" />
+    <entry date="2009-08-26" level="150" ailevel="4" faction="Clan" guild="Midnight Assassins" rank="Applicant" />
+    <entry date="2009-08-23" level="142" ailevel="4" faction="Clan" guild="Midnight Assassins" rank="Applicant" />
+    <entry date="2009-08-21" level="123" ailevel="4" faction="Clan" guild="Midnight Assassins" rank="Applicant" />
+    <entry date="2009-08-18" level="105" ailevel="4" faction="Clan" guild="Midnight Assassins." rank="Applicant" />
+    <entry date="2009-08-16" level="100" ailevel="4" faction="Clan" guild="Midnight Assassins." rank="Applicant" />
+    <entry date="2009-08-13" level="90" ailevel="3" faction="Clan" guild="Midnight Assassins." rank="Applicant" />
+    <entry date="2009-08-10" level="87" ailevel="3" faction="Clan" guild="Midnight Assassins." rank="Applicant" />
+    <entry date="2009-03-24" level="87" ailevel="3" faction="Clan" guild="Midnight Assassins" rank="Applicant" />
+    <entry date="2009-02-25" level="87" ailevel="3" faction="Clan" guild="Midnight Orange" rank="Applicant" />
+    <entry date="2009-02-23" level="86" ailevel="3" faction="Clan" guild="Midnight Orange" rank="Applicant" />
+    <entry date="2009-02-22" level="81" ailevel="3" faction="Clan" guild="Midnight Orange" rank="Applicant" />
+    <entry date="2009-02-21" level="67" ailevel="3" faction="Clan" guild="Midnight Orange" rank="Applicant" />
+    <entry date="2009-02-20" level="62" ailevel="3" faction="Clan" guild="Oo Bubbles oO" rank="Applicant" />
+    <entry date="2009-02-18" level="41" ailevel="1" faction="Clan" guild="Oo Bubbles oO" rank="Applicant" />
+    <entry date="2009-02-16" level="15" ailevel="1" faction="Clan" guild="Oo Bubbles oO" rank="Applicant" />
+  </history>
+  <last_updated>2009/08/27 13:23:52 Universal</last_updated>
+  <last_changed>2009/08/27 13:23:52 Universal</last_changed>
+</character>

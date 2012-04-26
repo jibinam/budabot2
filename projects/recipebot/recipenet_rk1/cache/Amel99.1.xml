@@ -1,0 +1,44 @@
+HTTP/1.1 200 OK
+Date: Sun, 09 Aug 2009 02:25:46 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 1794
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Amel99</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>125</level>
+    <breed>Opifex</breed>
+    <gender>Female</gender>
+    <faction>Omni</faction>
+    <profession>Martial Artist</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40243.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40243.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Little Red Dot</organization_name>
+    <rank>Applicant</rank>
+    <rank_id>6</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-08-06" level="125" ailevel="0" faction="Omni" guild="Little Red Dot" rank="Applicant" />
+    <entry date="2009-07-27" level="124" ailevel="0" faction="Omni" guild="Little Red Dot" rank="Applicant" />
+    <entry date="2009-07-22" level="122" ailevel="0" faction="Omni" guild="Little Red Dot" rank="Applicant" />
+    <entry date="2009-07-15" level="121" ailevel="0" faction="Omni" guild="Little Red Dot" rank="Applicant" />
+    <entry date="2009-07-10" level="119" ailevel="0" faction="Omni" guild="Little Red Dot" rank="Applicant" />
+    <entry date="2009-07-05" level="117" ailevel="0" faction="Omni" guild="Little Red Dot" rank="Applicant" />
+    <entry date="2009-06-30" level="116" ailevel="0" faction="Omni" guild="Little Red Dot" rank="Applicant" />
+    <entry date="2009-06-26" level="106" ailevel="0" faction="Omni" guild="Little Red Dot" rank="Applicant" />
+  </history>
+  <last_updated>2009/08/06 08:47:15 Universal</last_updated>
+  <last_changed>2009/08/06 08:47:15 Universal</last_changed>
+</character>

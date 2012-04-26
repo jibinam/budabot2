@@ -1,0 +1,41 @@
+HTTP/1.1 200 OK
+Date: Sun, 30 Nov 2008 00:01:33 GMT
+Server: Apache/2.2.3 (CentOS)
+X-Powered-By: PHP/5.1.6
+Content-Length: 1681
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Raymond</firstname>
+    <nick>Kino</nick>
+    <lastname>Swicord</lastname>
+  </name>
+  <basic_stats>
+    <level>25</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Omni</faction>
+    <profession>Soldier</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40690.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40690.jpg</smallpictureurl>
+  <history>
+    <entry date="2005-01-10" level="25" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2004-10-12" level="25" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2003-08-01" level="25" ailevel="" faction="Omni" guild="S.I.L.F.O.S." rank="Applicant" />
+    <entry date="2002-12-21" level="25" ailevel="" faction="Omni" guild="SILFOS" rank="Applicant" />
+    <entry date="2002-10-03" level="25" ailevel="" faction="Omni" guild="SILFOS" rank="" />
+    <entry date="2002-09-17" level="25" ailevel="" faction="Omni" guild="" rank="" />
+    <entry date="2002-02-01" level="25" ailevel="" faction="Omni" guild="S.I.L.F.O.S." rank="" />
+    <entry date="2002-01-18" level="25" ailevel="" faction="Omni" guild="SILFOS" rank="" />
+    <entry date="2002-01-14" level="25" ailevel="" faction="Omni" guild="S.I.L.F.O.S." rank="" />
+    <entry date="2001-11-23" level="25" ailevel="" faction="Omni" guild="SILFOS" rank="" />
+  </history>
+  <last_updated>2008/11/22 11:30:01 Universal</last_updated>
+  <last_changed>2005/01/10 16:42:23 Universal</last_changed>
+</character>

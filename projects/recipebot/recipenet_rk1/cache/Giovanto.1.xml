@@ -1,0 +1,66 @@
+HTTP/1.1 200 OK
+Date: Mon, 22 Jun 2009 02:11:41 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 4308
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Krayotch</firstname>
+    <nick>Giovanto</nick>
+    <lastname>Ministry</lastname>
+  </name>
+  <basic_stats>
+    <level>76</level>
+    <breed>Opifex</breed>
+    <gender>Male</gender>
+    <faction>Omni</faction>
+    <profession>Agent</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40259.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40259.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Conspiracy Group Inc.</organization_name>
+    <rank>Veteran</rank>
+    <rank_id>2</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-06-09" level="76" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Veteran" />
+    <entry date="2009-02-15" level="75" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Veteran" />
+    <entry date="2009-02-14" level="69" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Veteran" />
+    <entry date="2009-02-13" level="65" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Veteran" />
+    <entry date="2008-09-08" level="62" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Veteran" />
+    <entry date="2008-08-02" level="62" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2008-05-11" level="62" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Advisor" />
+    <entry date="2008-05-05" level="61" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Advisor" />
+    <entry date="2008-05-04" level="60" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Advisor" />
+    <entry date="2008-04-22" level="60" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Applicant" />
+    <entry date="2008-04-21" level="60" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2008-04-12" level="60" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Advisor" />
+    <entry date="2008-04-11" level="59" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Advisor" />
+    <entry date="2008-02-08" level="57" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Advisor" />
+    <entry date="2008-02-07" level="56" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Advisor" />
+    <entry date="2008-02-06" level="52" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Advisor" />
+    <entry date="2008-02-05" level="44" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Advisor" />
+    <entry date="2008-02-04" level="43" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Veteran" />
+    <entry date="2008-02-02" level="41" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Veteran" />
+    <entry date="2007-11-24" level="40" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Veteran" />
+    <entry date="2007-10-30" level="39" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Veteran" />
+    <entry date="2007-10-29" level="38" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Veteran" />
+    <entry date="2007-10-28" level="35" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Veteran" />
+    <entry date="2007-10-27" level="32" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Veteran" />
+    <entry date="2007-10-26" level="29" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Veteran" />
+    <entry date="2007-10-25" level="27" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Member" />
+    <entry date="2007-10-22" level="24" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Applicant" />
+    <entry date="2007-10-21" level="21" ailevel="0" faction="Omni" guild="Conspiracy Group Inc." rank="Applicant" />
+    <entry date="2007-10-20" level="14" ailevel="0" faction="Omni" guild="The Terran Empire" rank="Applicant" />
+    <entry date="2007-10-16" level="13" ailevel="0" faction="Omni" guild="The Terran Empire" rank="Applicant" />
+  </history>
+  <last_updated>2009/06/09 06:57:50 Universal</last_updated>
+  <last_changed>2009/06/09 06:57:50 Universal</last_changed>
+</character>

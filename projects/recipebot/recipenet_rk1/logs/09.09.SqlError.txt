@@ -1,0 +1,2 @@
+[00:36] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Ravin's%Multi-Gyro%Component%' AND recipe_type != '8': 
+[02:24] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%De'Valos%Sleeves%' AND recipe_type != '8': 

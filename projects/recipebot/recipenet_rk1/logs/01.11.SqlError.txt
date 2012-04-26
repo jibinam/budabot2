@@ -1,0 +1,3 @@
+[06:59] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Kyr'ozch%Circuitry%' AND recipe_type != '8': 
+[07:39] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%<a%href="itemref://252021/252021/200">Kegern's%Molybdenum%Plate%Vest[/link]%' AND recipe_type != '8': 
+[23:26] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%de'vallos%' AND recipe_type != '8': 

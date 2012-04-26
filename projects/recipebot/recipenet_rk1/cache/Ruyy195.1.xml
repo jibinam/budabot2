@@ -1,0 +1,41 @@
+HTTP/1.1 200 OK
+Date: Mon, 24 Aug 2009 00:17:22 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 1440
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Ruyy195</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>34</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Clan</faction>
+    <profession>Enforcer</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40112.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40112.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>N.R.G</organization_name>
+    <rank>Applicant</rank>
+    <rank_id>6</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-07-22" level="34" ailevel="0" faction="Clan" guild="N.R.G" rank="Applicant" />
+    <entry date="2009-07-15" level="33" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2009-07-13" level="25" ailevel="0" faction="Clan" guild="Peoples Collective PC" rank="Applicant" />
+    <entry date="2009-07-10" level="25" ailevel="0" faction="Clan" guild="0 o People&#039;s Collective o 0" rank="Applicant" />
+    <entry date="2009-07-05" level="22" ailevel="0" faction="Clan" guild="Oo Notum Circles oO" rank="Unit Member" />
+  </history>
+  <last_updated>2009/08/21 08:34:37 Universal</last_updated>
+  <last_changed>2009/07/22 14:01:22 Universal</last_changed>
+</character>

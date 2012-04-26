@@ -1,0 +1,33 @@
+HTTP/1.1 200 OK
+Date: Wed, 02 Dec 2009 01:08:28 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 966
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Officer</firstname>
+    <nick>Cratocalypse</nick>
+    <lastname>Apocalypse</lastname>
+  </name>
+  <basic_stats>
+    <level>41</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Omni</faction>
+    <profession>Bureaucrat</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40705.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40705.jpg</smallpictureurl>
+  <history>
+    <entry date="2009-12-01" level="41" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2009-11-17" level="22" ailevel="0" faction="Clan" guild="Militia of Vindication" rank="Unit Commander" />
+  </history>
+  <last_updated>2009/12/01 11:30:01 Universal</last_updated>
+  <last_changed>2009/12/01 11:30:01 Universal</last_changed>
+</character>

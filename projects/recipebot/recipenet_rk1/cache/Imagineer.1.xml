@@ -1,0 +1,94 @@
+HTTP/1.1 200 OK
+Date: Sat, 08 Aug 2009 15:04:52 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 6940
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Imagineer</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>146</level>
+    <breed>Solitus</breed>
+    <gender>Female</gender>
+    <faction>Clan</faction>
+    <profession>Engineer</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40632.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40632.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Barador Arin</organization_name>
+    <rank>Unit Leader</rank>
+    <rank_id>4</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-07-13" level="146" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2009-07-05" level="145" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2009-06-23" level="144" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2009-03-19" level="142" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-12-22" level="141" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-12-21" level="140" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-11-26" level="138" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-11-23" level="136" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-11-16" level="135" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-10-15" level="134" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-10-13" level="131" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-10-12" level="128" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-10-11" level="127" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-09-07" level="125" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-09-02" level="123" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-08-25" level="121" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-07-23" level="117" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-07-21" level="116" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-07-19" level="115" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-07-18" level="112" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-07-17" level="111" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-07-16" level="110" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-07-15" level="104" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-06-26" level="103" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-06-23" level="101" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-06-07" level="100" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Leader" />
+    <entry date="2008-05-20" level="100" ailevel="0" faction="Clan" guild="Barador Arin" rank="Unit Member" />
+    <entry date="2008-05-06" level="100" ailevel="0" faction="Clan" guild="Barador Arin" rank="Applicant" />
+    <entry date="2008-02-16" level="100" ailevel="0" faction="Clan" guild="Barador Arin" rank="Member" />
+    <entry date="2008-02-15" level="98" ailevel="0" faction="Clan" guild="Barador Arin" rank="Member" />
+    <entry date="2008-02-08" level="94" ailevel="0" faction="Clan" guild="Barador Arin" rank="Member" />
+    <entry date="2008-02-01" level="94" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2008-01-31" level="92" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2008-01-30" level="89" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2008-01-25" level="79" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2008-01-24" level="74" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2008-01-23" level="72" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2007-12-02" level="67" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-11-27" level="67" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2007-11-22" level="65" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2007-11-20" level="64" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2007-11-19" level="64" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2007-11-18" level="61" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2007-11-16" level="60" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2007-11-15" level="55" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2007-11-08" level="54" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2007-09-15" level="53" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-09-04" level="53" ailevel="0" faction="Clan" guild="Elite Corps United" rank="Member" />
+    <entry date="2007-08-18" level="43" ailevel="0" faction="Clan" guild="Elite Corps United" rank="Member" />
+    <entry date="2007-08-10" level="43" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-07-20" level="40" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-07-19" level="38" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-07-13" level="33" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-07-12" level="31" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-06-30" level="19" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-06-29" level="16" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-06-28" level="12" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-06-27" level="6" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+  </history>
+  <last_updated>2009/08/06 08:47:15 Universal</last_updated>
+  <last_changed>2009/07/13 12:18:43 Universal</last_changed>
+</character>

@@ -1,0 +1,83 @@
+HTTP/1.1 200 OK
+Date: Thu, 01 Oct 2009 11:51:59 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 6109
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Bigenfy</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>165</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Clan</faction>
+    <profession>Enforcer</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40121.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40121.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Fusion</organization_name>
+    <rank>Applicant</rank>
+    <rank_id>6</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-09-24" level="165" ailevel="0" faction="Clan" guild="Fusion" rank="Applicant" />
+    <entry date="2009-09-14" level="163" ailevel="0" faction="Clan" guild="All move to Good Spirits" rank="Unit Commander" />
+    <entry date="2009-09-11" level="163" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Commander" />
+    <entry date="2009-04-03" level="162" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Commander" />
+    <entry date="2009-04-02" level="161" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Commander" />
+    <entry date="2009-03-26" level="160" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Commander" />
+    <entry date="2009-02-26" level="159" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Commander" />
+    <entry date="2009-02-13" level="159" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-02-12" level="158" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-02-03" level="156" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-01-29" level="155" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-01-28" level="154" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-01-27" level="153" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-01-17" level="152" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-01-16" level="150" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-01-15" level="148" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-01-14" level="147" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-01-12" level="146" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-01-10" level="145" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-01-08" level="140" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-12-23" level="136" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-12-22" level="132" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-12-21" level="131" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-12-17" level="130" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-12-16" level="129" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-12-15" level="128" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-12-14" level="126" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-12-12" level="125" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-12-11" level="124" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-11-26" level="122" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-11-11" level="121" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-11-06" level="120" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-11-05" level="119" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-11-03" level="112" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-11-02" level="107" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-11-01" level="104" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-10-31" level="100" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-10-29" level="96" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-10-28" level="90" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-10-27" level="75" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-10-26" level="62" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-10-25" level="59" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2008-10-24" level="57" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2008-10-23" level="56" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2008-10-21" level="54" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2008-10-18" level="53" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2008-10-14" level="48" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+  </history>
+  <last_updated>2009/09/27 10:30:02 Universal</last_updated>
+  <last_changed>2009/09/24 09:10:00 Universal</last_changed>
+</character>

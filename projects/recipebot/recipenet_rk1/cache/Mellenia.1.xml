@@ -1,0 +1,40 @@
+HTTP/1.1 200 OK
+Date: Fri, 25 Sep 2009 18:06:32 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 1668
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Mellenia</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>63</level>
+    <breed>Solitus</breed>
+    <gender>Female</gender>
+    <faction>Omni</faction>
+    <profession>Meta-Physicist</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40665.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40665.jpg</smallpictureurl>
+  <history>
+    <entry date="2006-07-28" level="63" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2006-07-23" level="57" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2006-07-22" level="56" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2006-06-29" level="54" ailevel="0" faction="Omni" guild="The Lone Wolf" rank="Unit Leader" />
+    <entry date="2006-06-06" level="53" ailevel="0" faction="Omni" guild="The Lone Wolf" rank="Unit Leader" />
+    <entry date="2006-06-03" level="52" ailevel="0" faction="Omni" guild="The Lone Wolf" rank="Unit Leader" />
+    <entry date="2006-05-30" level="48" ailevel="0" faction="Omni" guild="The Lone Wolf" rank="Unit Leader" />
+    <entry date="2006-05-27" level="38" ailevel="0" faction="Omni" guild="The Lone Wolf" rank="Unit Leader" />
+    <entry date="2006-05-26" level="36" ailevel="0" faction="Omni" guild="The Lone Wolf" rank="Unit Leader" />
+  </history>
+  <last_updated>2009/09/17 07:53:04 Universal</last_updated>
+  <last_changed>2008/01/23 11:30:01 Universal</last_changed>
+</character>

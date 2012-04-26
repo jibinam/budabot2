@@ -1,0 +1,2 @@
+[16:57] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Newcomer's%Body%Armor%' AND recipe_type != '8': 
+[17:36] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%<a%href="itemref://247675/247676/209">Kyr'Ozch%Bio-Material%-%Type%112[/link]%' AND recipe_type != '8': 

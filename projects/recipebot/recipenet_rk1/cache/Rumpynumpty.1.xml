@@ -1,0 +1,49 @@
+HTTP/1.1 200 OK
+Date: Sun, 17 Jan 2010 10:28:50 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 2358
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Rumpynumpty</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>220</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Clan</faction>
+    <profession>Soldier</profession>
+    <defender_rank>Challenger</defender_rank>
+    <defender_rank_id>22</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40715.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40715.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Storm</organization_name>
+    <rank>Unit Member</rank>
+    <rank_id>5</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2010-01-04" level="220" ailevel="22" faction="Clan" guild="Storm" rank="Unit Member" />
+    <entry date="2009-11-01" level="220" ailevel="22" faction="Clan" guild="Storm" rank="Applicant" />
+    <entry date="2009-09-27" level="220" ailevel="22" faction="Clan" guild="Good Spirits" rank="Squad Commander" />
+    <entry date="2009-09-17" level="220" ailevel="22" faction="Clan" guild="Good Spirits" rank="Unit Commander" />
+    <entry date="2009-09-14" level="220" ailevel="22" faction="Clan" guild="All move to Good Spirits" rank="General" />
+    <entry date="2008-12-24" level="220" ailevel="22" faction="Clan" guild="Good Spirits" rank="General" />
+    <entry date="2008-12-21" level="220" ailevel="21" faction="Clan" guild="Good Spirits" rank="General" />
+    <entry date="2008-12-14" level="220" ailevel="20" faction="Clan" guild="Good Spirits" rank="General" />
+    <entry date="2008-12-08" level="220" ailevel="19" faction="Clan" guild="Good Spirits" rank="General" />
+    <entry date="2008-11-15" level="220" ailevel="18" faction="Clan" guild="Good Spirits" rank="Squad Commander" />
+    <entry date="2008-11-01" level="220" ailevel="17" faction="Clan" guild="Good Spirits" rank="Squad Commander" />
+    <entry date="2008-10-23" level="219" ailevel="17" faction="Clan" guild="Good Spirits" rank="Squad Commander" />
+    <entry date="2008-10-20" level="218" ailevel="17" faction="Clan" guild="Good Spirits" rank="Squad Commander" />
+  </history>
+  <last_updated>2010/01/13 11:30:02 Universal</last_updated>
+  <last_changed>2010/01/04 11:30:02 Universal</last_changed>
+</character>

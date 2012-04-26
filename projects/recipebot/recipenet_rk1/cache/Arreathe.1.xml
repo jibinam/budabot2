@@ -1,0 +1,45 @@
+HTTP/1.1 200 OK
+Date: Thu, 24 Sep 2009 14:18:28 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 1879
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Arreathe</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>48</level>
+    <breed>Opifex</breed>
+    <gender>Female</gender>
+    <faction>Omni</faction>
+    <profession>Keeper</profession>
+    <defender_rank>Beginner</defender_rank>
+    <defender_rank_id>3</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40209.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40209.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Sons Of Odin</organization_name>
+    <rank>Unit Member</rank>
+    <rank_id>5</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-09-14" level="48" ailevel="3" faction="Omni" guild="Sons Of Odin" rank="Unit Member" />
+    <entry date="2009-09-11" level="44" ailevel="3" faction="Omni" guild="Sons Of Odin" rank="Unit Member" />
+    <entry date="2009-08-31" level="44" ailevel="3" faction="Omni" guild="Sons Of Odin" rank="Applicant" />
+    <entry date="2009-08-27" level="39" ailevel="3" faction="Omni" guild="Sons Of Odin" rank="Applicant" />
+    <entry date="2009-08-26" level="38" ailevel="3" faction="Omni" guild="Sons Of Odin" rank="Applicant" />
+    <entry date="2009-08-21" level="35" ailevel="3" faction="Omni" guild="Sons Of Odin" rank="Applicant" />
+    <entry date="2009-08-18" level="31" ailevel="2" faction="Omni" guild="Sons Of Odin" rank="Applicant" />
+    <entry date="2009-08-16" level="29" ailevel="0" faction="Omni" guild="Sons Of Odin" rank="Applicant" />
+    <entry date="2009-08-13" level="23" ailevel="0" faction="Omni" guild="Sons Of Odin" rank="Applicant" />
+  </history>
+  <last_updated>2009/09/17 07:53:04 Universal</last_updated>
+  <last_changed>2009/09/14 12:03:21 Universal</last_changed>
+</character>

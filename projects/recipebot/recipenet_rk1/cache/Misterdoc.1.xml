@@ -1,0 +1,115 @@
+HTTP/1.1 200 OK
+Date: Sat, 05 Dec 2009 06:56:32 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Misterdoc</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>200</level>
+    <breed>Nano</breed>
+    <gender>Male</gender>
+    <faction>Clan</faction>
+    <profession>Doctor</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40179.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40179.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Academie des Froobs</organization_name>
+    <rank>President</rank>
+    <rank_id>0</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-04-04" level="200" ailevel="0" faction="Clan" guild="Academie des Froobs" rank="President" />
+    <entry date="2008-11-28" level="200" ailevel="0" faction="Clan" guild="Good Spirits" rank="Squad Commander" />
+    <entry date="2008-11-27" level="199" ailevel="0" faction="Clan" guild="Good Spirits" rank="Squad Commander" />
+    <entry date="2008-11-26" level="198" ailevel="0" faction="Clan" guild="Good Spirits" rank="Squad Commander" />
+    <entry date="2008-11-24" level="197" ailevel="0" faction="Clan" guild="Good Spirits" rank="Squad Commander" />
+    <entry date="2008-11-21" level="196" ailevel="0" faction="Clan" guild="Good Spirits" rank="Squad Commander" />
+    <entry date="2008-11-18" level="195" ailevel="0" faction="Clan" guild="Good Spirits" rank="Squad Commander" />
+    <entry date="2008-11-17" level="194" ailevel="0" faction="Clan" guild="Good Spirits" rank="Squad Commander" />
+    <entry date="2008-10-29" level="193" ailevel="0" faction="Clan" guild="Good Spirits" rank="Squad Commander" />
+    <entry date="2008-10-27" level="192" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-10-24" level="191" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-10-11" level="190" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-10-09" level="187" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-10-08" level="186" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-10-04" level="185" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-10-02" level="184" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-10-01" level="183" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-09-30" level="182" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-09-29" level="181" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-09-22" level="180" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-09-20" level="179" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-09-18" level="178" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-09-17" level="177" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-09-12" level="176" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-09-07" level="174" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-08-29" level="173" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-08-23" level="171" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-08-22" level="170" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-08-17" level="169" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-08-15" level="168" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-08-13" level="167" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-08-12" level="165" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-08-08" level="164" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-08-04" level="163" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-07-31" level="162" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-03-28" level="161" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-03-17" level="160" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-03-15" level="159" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-03-14" level="157" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-03-13" level="156" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-03-10" level="155" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-03-03" level="154" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-03-01" level="151" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-02-29" level="148" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-02-27" level="147" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-02-17" level="146" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-02-15" level="142" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-02-14" level="137" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-02-06" level="136" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-01-30" level="135" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-01-28" level="134" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-01-27" level="133" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-01-26" level="127" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-01-25" level="126" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-01-19" level="124" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-01-18" level="120" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2008-01-14" level="117" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2007-12-31" level="116" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2007-12-30" level="115" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2007-12-29" level="105" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2007-12-27" level="102" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-09-04" level="99" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-07-12" level="95" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2006-03-22" level="95" ailevel="0" faction="Clan" guild="Les Adeptes De Morwenna" rank="Applicant" />
+    <entry date="2006-03-18" level="94" ailevel="0" faction="Clan" guild="Les Adeptes De Morwenna" rank="Applicant" />
+    <entry date="2006-03-16" level="93" ailevel="0" faction="Clan" guild="Les Adeptes De Morwenna" rank="Applicant" />
+    <entry date="2006-03-12" level="92" ailevel="0" faction="Clan" guild="Les Adeptes De Morwenna" rank="Applicant" />
+    <entry date="2006-03-11" level="90" ailevel="0" faction="Clan" guild="Les Adeptes De Morwenna" rank="Applicant" />
+    <entry date="2006-03-07" level="87" ailevel="0" faction="Clan" guild="Les Adeptes De Morwenna" rank="Applicant" />
+    <entry date="2006-03-06" level="86" ailevel="0" faction="Clan" guild="Les Adeptes De Morwenna" rank="Applicant" />
+    <entry date="2006-03-03" level="81" ailevel="0" faction="Clan" guild="Les Adeptes De Morwenna" rank="Applicant" />
+    <entry date="2006-03-02" level="80" ailevel="0" faction="Clan" guild="Les Adeptes De Morwenna" rank="Applicant" />
+    <entry date="2006-02-26" level="79" ailevel="0" faction="Clan" guild="Les Adeptes De Morwenna" rank="Applicant" />
+    <entry date="2006-02-21" level="74" ailevel="0" faction="Clan" guild="Les Adeptes De Morwenna" rank="Applicant" />
+    <entry date="2006-02-19" level="74" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2006-02-18" level="64" ailevel="0" faction="Clan" guild="Leet 0wnz0rs" rank="General" />
+    <entry date="2006-02-17" level="63" ailevel="0" faction="Clan" guild="Leet 0wnz0rs" rank="General" />
+    <entry date="2006-02-16" level="61" ailevel="0" faction="Clan" guild="Leet 0wnz0rs" rank="General" />
+    <entry date="2006-02-11" level="60" ailevel="0" faction="Clan" guild="Leet 0wnz0rs" rank="General" />
+    <entry date="2006-02-09" level="59" ailevel="0" faction="Clan" guild="Leet 0wnz0rs" rank="General" />
+  </history>
+  <last_updated>2009/12/04 11:30:02 Universal</last_updated>
+  <last_changed>2009/06/23 13:55:20 Universal</last_changed>
+</character>

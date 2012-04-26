@@ -1,0 +1,43 @@
+HTTP/1.1 200 OK
+Date: Fri, 20 Feb 2009 07:27:27 GMT
+Server: Apache/2.2.3 (CentOS)
+Content-Length: 1835
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Telttaretki</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>100</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Omni</faction>
+    <profession>Enforcer</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40100.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40100.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Council of Sagitas</organization_name>
+    <rank>Unit Member</rank>
+    <rank_id>5</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2008-10-14" level="100" ailevel="0" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-10-12" level="88" ailevel="0" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-10-08" level="69" ailevel="0" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-10-07" level="67" ailevel="0" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-10-06" level="66" ailevel="0" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-10-04" level="65" ailevel="0" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-09-30" level="61" ailevel="0" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-09-28" level="60" ailevel="0" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+  </history>
+  <last_updated>2009/02/19 11:30:02 Universal</last_updated>
+  <last_changed>2008/10/14 10:30:01 Universal</last_changed>
+</character>

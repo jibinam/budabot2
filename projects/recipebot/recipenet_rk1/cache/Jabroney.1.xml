@@ -1,0 +1,53 @@
+HTTP/1.1 200 OK
+Date: Wed, 17 Jun 2009 21:36:34 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 2724
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Jabroney</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>116</level>
+    <breed>Opifex</breed>
+    <gender>Male</gender>
+    <faction>Clan</faction>
+    <profession>Martial Artist</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40272.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40272.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Good Spirits</organization_name>
+    <rank>Unit Leader</rank>
+    <rank_id>4</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-06-09" level="116" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Leader" />
+    <entry date="2009-05-26" level="95" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-05-25" level="90" ailevel="0" faction="Clan" guild="Good Spirits" rank="Unit Member" />
+    <entry date="2009-05-24" level="88" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2009-05-23" level="80" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2009-05-22" level="78" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2009-05-21" level="76" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2009-05-20" level="74" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2009-05-19" level="72" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2009-05-18" level="70" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2009-05-17" level="69" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2009-05-16" level="67" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2009-05-15" level="66" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2009-05-13" level="64" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2009-05-12" level="61" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2009-05-11" level="59" ailevel="0" faction="Clan" guild="Good Spirits" rank="Applicant" />
+    <entry date="2009-05-10" level="57" ailevel="0" faction="Clan" guild="" rank="" />
+  </history>
+  <last_updated>2009/06/09 06:57:50 Universal</last_updated>
+  <last_changed>2009/06/09 06:57:50 Universal</last_changed>
+</character>

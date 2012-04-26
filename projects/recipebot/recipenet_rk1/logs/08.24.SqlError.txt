@@ -1,0 +1,2 @@
+[05:50] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Kyr'Ozch%Viralbots%' AND recipe_type != '8': 
+[05:51] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Kyr'Ozch%Viralbots%' AND recipe_type != '8': 

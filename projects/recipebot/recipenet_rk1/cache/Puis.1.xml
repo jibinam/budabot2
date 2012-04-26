@@ -1,0 +1,39 @@
+HTTP/1.1 200 OK
+Date: Sun, 01 Mar 2009 19:55:00 GMT
+Server: Apache/2.2.3 (CentOS)
+Content-Length: 1347
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Puis</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>30</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Neutral</faction>
+    <profession>Trader</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>3</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/223817.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/223817.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Free Spirits</organization_name>
+    <rank>Unit Member</rank>
+    <rank_id>5</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-01-30" level="30" ailevel="3" faction="Neutral" guild="Free Spirits" rank="Unit Member" />
+    <entry date="2009-01-23" level="30" ailevel="2" faction="Neutral" guild="Free Spirits" rank="Unit Member" />
+    <entry date="2009-01-22" level="23" ailevel="2" faction="Neutral" guild="Free Spirits" rank="Unit Member" />
+    <entry date="2009-01-21" level="20" ailevel="2" faction="Neutral" guild="Free Spirits" rank="Unit Member" />
+  </history>
+  <last_updated>2009/03/01 11:30:02 Universal</last_updated>
+  <last_changed>2009/01/30 11:30:01 Universal</last_changed>
+</character>

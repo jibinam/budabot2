@@ -1,0 +1,139 @@
+HTTP/1.1 200 OK
+Date: Wed, 10 Jun 2009 06:36:21 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Vernon</firstname>
+    <nick>Lucier</nick>
+    <lastname>Godfray</lastname>
+  </name>
+  <basic_stats>
+    <level>200</level>
+    <breed>Opifex</breed>
+    <gender>Male</gender>
+    <faction>Neutral</faction>
+    <profession>Fixer</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40271.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40271.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Absolution</organization_name>
+    <rank>Advisor</rank>
+    <rank_id>1</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2006-01-27" level="200" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2006-01-25" level="199" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2006-01-21" level="198" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2006-01-19" level="197" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2006-01-14" level="196" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2006-01-11" level="195" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2006-01-09" level="193" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-12-31" level="192" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-12-25" level="191" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-12-24" level="190" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-12-21" level="188" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-12-20" level="187" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-12-13" level="186" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-12-09" level="185" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-12-08" level="184" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-11-28" level="182" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-11-27" level="181" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-11-25" level="180" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-11-24" level="179" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-11-23" level="178" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-11-17" level="177" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-11-12" level="176" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-11-08" level="175" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-11-07" level="174" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-11-05" level="173" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-10-27" level="172" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-10-24" level="171" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-10-13" level="170" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-10-11" level="169" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-10-09" level="168" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-10-06" level="167" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-10-04" level="166" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-10-03" level="165" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-09-30" level="164" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-09-26" level="163" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-09-22" level="162" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-09-16" level="161" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-09-15" level="160" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-09-14" level="159" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-09-13" level="157" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-09-12" level="156" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-09-11" level="155" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-09-08" level="154" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-09-06" level="153" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-09-04" level="152" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-08-26" level="144" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-08-25" level="143" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-08-24" level="141" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-08-22" level="140" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-08-21" level="139" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-08-20" level="138" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-08-19" level="137" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-08-16" level="136" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-08-13" level="135" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-08-11" level="134" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-08-10" level="133" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-08-09" level="132" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-08-06" level="131" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-08-01" level="130" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-07-31" level="129" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-07-27" level="127" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-07-24" level="125" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-07-23" level="124" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-07-22" level="123" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-07-19" level="120" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-07-17" level="119" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-07-12" level="117" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-07-09" level="116" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-07-07" level="115" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-07-03" level="114" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-07-02" level="113" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-06-30" level="112" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-06-27" level="110" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-06-24" level="109" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-06-14" level="108" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-06-11" level="106" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-06-02" level="105" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-05-27" level="104" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-05-25" level="101" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-05-19" level="100" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-05-18" level="99" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-05-17" level="98" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-05-16" level="93" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-05-14" level="89" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-05-10" level="88" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-05-07" level="87" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-05-06" level="85" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-05-04" level="83" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-04-25" level="82" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-04-23" level="81" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-04-22" level="80" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-04-20" level="79" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-04-11" level="78" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-04-10" level="77" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-04-08" level="76" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-04-06" level="75" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-04-04" level="71" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-04-03" level="67" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-03-30" level="63" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-03-22" level="62" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-03-12" level="61" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-02-16" level="59" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-02-15" level="56" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+    <entry date="2005-02-13" level="55" ailevel="0" faction="Neutral" guild="Absolution" rank="Advisor" />
+  </history>
+  <last_updated>2009/06/09 06:57:50 Universal</last_updated>
+  <last_changed>2008/04/11 12:08:34 Universal</last_changed>
+</character>

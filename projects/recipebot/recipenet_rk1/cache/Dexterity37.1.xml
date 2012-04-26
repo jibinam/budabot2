@@ -1,0 +1,39 @@
+HTTP/1.1 200 OK
+Date: Mon, 26 Jan 2009 21:41:11 GMT
+Server: Apache/2.2.3 (CentOS)
+Content-Length: 1357
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Dexterity37</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>30</level>
+    <breed>Nano</breed>
+    <gender>Male</gender>
+    <faction>Neutral</faction>
+    <profession>Doctor</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40191.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40191.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Dragons Of Death</organization_name>
+    <rank>General</rank>
+    <rank_id>1</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-01-26" level="30" ailevel="0" faction="Neutral" guild="Dragons Of Death" rank="General" />
+    <entry date="2009-01-25" level="28" ailevel="0" faction="Neutral" guild="Dragons Of Death" rank="General" />
+    <entry date="2009-01-19" level="27" ailevel="0" faction="Neutral" guild="Dragons Of Death" rank="Unit Leader" />
+    <entry date="2009-01-18" level="18" ailevel="0" faction="Neutral" guild="Dragons Of Death" rank="Unit Leader" />
+  </history>
+  <last_updated>2009/01/26 11:30:01 Universal</last_updated>
+  <last_changed>2009/01/26 11:30:01 Universal</last_changed>
+</character>

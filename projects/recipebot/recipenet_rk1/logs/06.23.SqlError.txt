@@ -1,0 +1,2 @@
+[09:01] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Let's%make%' AND recipe_type != '8': 
+[09:02] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%<a%href="itemref://157585/157585/44">Instruction%Disc%(Demotivational%Speech:%Let's%Make%a%Committee)[/link]%' AND recipe_type != '8': 

@@ -1,0 +1,57 @@
+HTTP/1.1 200 OK
+Date: Sat, 04 Apr 2009 19:11:20 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 3269
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Cubcake</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>205</level>
+    <breed>Solitus</breed>
+    <gender>Female</gender>
+    <faction>Neutral</faction>
+    <profession>Doctor</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>10</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40654.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40654.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>The Union</organization_name>
+    <rank>Unit Member</rank>
+    <rank_id>5</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-04-01" level="205" ailevel="10" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-31" level="204" ailevel="10" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-30" level="202" ailevel="8" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-29" level="200" ailevel="3" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-28" level="192" ailevel="3" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-27" level="189" ailevel="3" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-26" level="182" ailevel="3" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-24" level="180" ailevel="3" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-22" level="177" ailevel="3" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-21" level="169" ailevel="3" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-20" level="166" ailevel="3" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-19" level="150" ailevel="2" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-18" level="139" ailevel="2" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-17" level="130" ailevel="2" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-16" level="121" ailevel="2" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-15" level="118" ailevel="2" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-14" level="86" ailevel="2" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2009-03-13" level="70" ailevel="2" faction="Neutral" guild="The Independent Rubikans" rank="Veteran" />
+    <entry date="2009-02-18" level="53" ailevel="2" faction="Neutral" guild="The Independent Rubikans" rank="Veteran" />
+    <entry date="2009-02-17" level="23" ailevel="2" faction="Neutral" guild="The Independent Rubikans" rank="Veteran" />
+    <entry date="2009-02-16" level="14" ailevel="1" faction="Neutral" guild="The Independent Rubikans" rank="Veteran" />
+  </history>
+  <last_updated>2009/04/04 10:30:02 Universal</last_updated>
+  <last_changed>2009/04/01 10:30:02 Universal</last_changed>
+</character>

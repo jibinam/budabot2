@@ -1,0 +1,98 @@
+HTTP/1.1 200 OK
+Date: Sat, 12 Sep 2009 19:20:17 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Charlie</firstname>
+    <nick>Deadleet</nick>
+    <lastname>Murphy</lastname>
+  </name>
+  <basic_stats>
+    <level>169</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Clan</faction>
+    <profession>Meta-Physicist</profession>
+    <defender_rank>Newcomer</defender_rank>
+    <defender_rank_id>5</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40110.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40110.jpg</smallpictureurl>
+  <history>
+    <entry date="2009-06-23" level="169" ailevel="5" faction="Clan" guild="" rank="" />
+    <entry date="2008-09-04" level="166" ailevel="5" faction="Clan" guild="" rank="" />
+    <entry date="2007-02-03" level="166" ailevel="5" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2007-01-29" level="164" ailevel="5" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2007-01-28" level="163" ailevel="5" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2007-01-27" level="162" ailevel="5" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2007-01-26" level="161" ailevel="5" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2007-01-24" level="160" ailevel="5" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2007-01-21" level="160" ailevel="4" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2007-01-20" level="157" ailevel="4" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2007-01-16" level="156" ailevel="4" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2007-01-15" level="156" ailevel="3" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2007-01-07" level="155" ailevel="3" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2006-01-31" level="153" ailevel="3" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2006-01-18" level="152" ailevel="3" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2006-01-15" level="151" ailevel="3" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2005-11-06" level="151" ailevel="0" faction="Clan" guild="Valheru Ascendants (AoF)" rank="Applicant" />
+    <entry date="2005-09-04" level="151" ailevel="0" faction="Clan" guild="Keep On Truckin" rank="Applicant" />
+    <entry date="2005-08-23" level="151" ailevel="0" faction="Clan" guild="Die Once Again *DOA*" rank="Applicant" />
+    <entry date="2005-08-17" level="151" ailevel="0" faction="Clan" guild="Strange Brew" rank="Applicant" />
+    <entry date="2005-07-31" level="151" ailevel="0" faction="Clan" guild="Watchers *AP*" rank="Veteran" />
+    <entry date="2005-07-12" level="150" ailevel="0" faction="Clan" guild="Watchers *AP*" rank="Veteran" />
+    <entry date="2005-06-26" level="149" ailevel="0" faction="Clan" guild="Watchers *AP*" rank="Veteran" />
+    <entry date="2005-06-24" level="147" ailevel="0" faction="Clan" guild="Watchers *AP*" rank="Veteran" />
+    <entry date="2005-06-22" level="146" ailevel="0" faction="Clan" guild="Watchers *AP*" rank="Veteran" />
+    <entry date="2005-06-21" level="145" ailevel="0" faction="Clan" guild="Watchers *AP*" rank="Veteran" />
+    <entry date="2005-04-10" level="144" ailevel="0" faction="Clan" guild="Watchers *AP*" rank="Veteran" />
+    <entry date="2005-04-06" level="143" ailevel="0" faction="Clan" guild="Watchers *AP*" rank="Applicant" />
+    <entry date="2005-03-30" level="143" ailevel="0" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2005-03-16" level="142" ailevel="0" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2005-01-07" level="141" ailevel="0" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2005-01-01" level="141" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-12-31" level="140" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-11-23" level="137" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-11-22" level="136" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-10-21" level="135" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-10-20" level="133" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-10-17" level="130" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-10-16" level="128" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-10-15" level="122" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-10-13" level="118" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-10-09" level="115" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-10-03" level="108" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-10-02" level="106" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-10-01" level="105" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-09-29" level="102" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-09-25" level="101" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-09-24" level="100" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-09-19" level="96" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-09-17" level="91" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-09-16" level="88" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-09-15" level="87" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-09-14" level="86" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-09-10" level="85" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-09-09" level="83" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-09-02" level="81" ailevel="" faction="Clan" guild="Watchers" rank="Applicant" />
+    <entry date="2004-08-29" level="78" ailevel="" faction="Clan" guild="Watchers" rank="Advisor" />
+    <entry date="2004-08-22" level="66" ailevel="" faction="Clan" guild="Watchers" rank="Knight" />
+    <entry date="2004-08-20" level="57" ailevel="" faction="Clan" guild="Watchers" rank="Knight" />
+    <entry date="2004-07-24" level="56" ailevel="" faction="Clan" guild="Watchers" rank="Knight" />
+    <entry date="2004-07-17" level="55" ailevel="" faction="Clan" guild="Watchers" rank="Knight" />
+    <entry date="2004-07-15" level="52" ailevel="" faction="Clan" guild="Watchers" rank="Knight" />
+    <entry date="2004-07-03" level="51" ailevel="" faction="Clan" guild="Watchers" rank="Knight" />
+    <entry date="2004-06-27" level="50" ailevel="" faction="Clan" guild="Watchers" rank="Knight" />
+    <entry date="2004-06-13" level="48" ailevel="" faction="Clan" guild="Watchers" rank="Knight" />
+    <entry date="2004-06-01" level="47" ailevel="" faction="Clan" guild="Watchers" rank="Knight" />
+    <entry date="2004-05-23" level="46" ailevel="" faction="Clan" guild="Watchers" rank="Knight" />
+    <entry date="2004-05-09" level="44" ailevel="" faction="Clan" guild="Watchers" rank="Knight" />
+  </history>
+  <last_updated>2009/09/09 08:43:13 Universal</last_updated>
+  <last_changed>2009/06/23 13:55:20 Universal</last_changed>
+</character>

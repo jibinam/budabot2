@@ -1,0 +1,9 @@
+[16:40] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '251979': 
+[16:40] [SqlError] Error in: SELECT * FROM members_rk1 WHERE member_name = 'Sooti': 
+[16:40] [SqlError] Error in: SELECT * FROM aodb WHERE lowid = '251979' OR highid = '251979': 
+[16:40] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[16:40] [SqlError] Error in: SELECT * FROM aodb WHERE lowid = '251979' OR highid = '251979': 
+[16:40] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[17:06] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_type != '8': 
+[17:06] [SqlError] Error in: SELECT * FROM type WHERE type_visible = '1': 
+[13:50] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%<a%href="itemref://247102/247103/72">Solid%Clump%of%Kyr'Ozch%Bio-Material[/link]%' AND recipe_type != '8': 

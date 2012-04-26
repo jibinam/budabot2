@@ -1,0 +1,4 @@
+[03:14] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%miy's%nano%' AND recipe_type != '8': 
+[03:14] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%35%miy's%nano%' AND recipe_type != '8': 
+[20:29] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%kyr'ozch%bio%' AND recipe_type != '8': 
+[20:29] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Mutated%Kyr'ozch%bio%' AND recipe_type != '8': 

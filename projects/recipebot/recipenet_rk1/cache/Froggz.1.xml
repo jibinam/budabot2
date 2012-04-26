@@ -1,0 +1,36 @@
+HTTP/1.1 200 OK
+Date: Sat, 20 Jun 2009 11:34:07 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 1233
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Froggz</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>14</level>
+    <breed>Nano</breed>
+    <gender>Male</gender>
+    <faction>Clan</faction>
+    <profession>Meta-Physicist</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40181.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40181.jpg</smallpictureurl>
+  <history>
+    <entry date="2007-10-19" level="14" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-10-16" level="14" ailevel="0" faction="Clan" guild="Purple Haze" rank="Applicant" />
+    <entry date="2007-09-04" level="14" ailevel="0" faction="Clan" guild="" rank="" />
+    <entry date="2007-05-10" level="14" ailevel="0" faction="Clan" guild="Smoke Rings" rank="Unit Member" />
+    <entry date="2007-05-06" level="10" ailevel="0" faction="Clan" guild="Smoke Rings" rank="Unit Member" />
+  </history>
+  <last_updated>2009/05/23 10:30:01 Universal</last_updated>
+  <last_changed>2008/01/22 11:30:02 Universal</last_changed>
+</character>

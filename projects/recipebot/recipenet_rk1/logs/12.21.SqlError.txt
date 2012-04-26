@@ -1,0 +1,4 @@
+[02:58] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%<a%href="itemref://247113/247114/226">Kyr'Ozch%Viralbots[/link]%' AND recipe_type != '8': 
+[05:26] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%salesman's%' AND recipe_type != '8': 
+[14:51] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%de'valos%' AND recipe_type != '8': 
+[14:52] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%de'valo%' AND recipe_type != '8': 

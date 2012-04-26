@@ -1,0 +1,39 @@
+HTTP/1.1 200 OK
+Date: Fri, 25 Sep 2009 13:51:00 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 1275
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Vladimir</firstname>
+    <nick>Waveblast</nick>
+    <lastname>Durham</lastname>
+  </name>
+  <basic_stats>
+    <level>24</level>
+    <breed>Nano</breed>
+    <gender>Male</gender>
+    <faction>Clan</faction>
+    <profession>Nano-Technician</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/223923.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/223923.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Mercury Dragons</organization_name>
+    <rank>Squad Commander</rank>
+    <rank_id>2</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-09-14" level="24" ailevel="0" faction="Clan" guild="Mercury Dragons" rank="Squad Commander" />
+    <entry date="2009-08-26" level="24" ailevel="0" faction="Clan" guild="Mercury Dragons" rank="Unit Member" />
+    <entry date="2009-08-16" level="24" ailevel="0" faction="Clan" guild="Mercury Dragons" rank="Squad Commander" />
+  </history>
+  <last_updated>2009/09/17 07:53:04 Universal</last_updated>
+  <last_changed>2009/09/14 12:03:21 Universal</last_changed>
+</character>

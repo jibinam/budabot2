@@ -1,0 +1,44 @@
+HTTP/1.1 200 OK
+Date: Sat, 26 Sep 2009 17:30:01 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 1833
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Liusmash</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>15</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Clan</faction>
+    <profession>Enforcer</profession>
+    <defender_rank>Amateur</defender_rank>
+    <defender_rank_id>2</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40111.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40111.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>All move to Good Spirits</organization_name>
+    <rank>Unit Commander</rank>
+    <rank_id>3</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-09-14" level="15" ailevel="2" faction="Clan" guild="All move to Good Spirits" rank="Unit Commander" />
+    <entry date="2009-08-31" level="15" ailevel="2" faction="Clan" guild="Good Spirits" rank="Unit Commander" />
+    <entry date="2009-08-16" level="14" ailevel="1" faction="Clan" guild="Good Spirits" rank="Unit Commander" />
+    <entry date="2009-07-22" level="13" ailevel="1" faction="Clan" guild="Good Spirits" rank="Unit Commander" />
+    <entry date="2009-07-10" level="12" ailevel="1" faction="Clan" guild="Good Spirits" rank="Unit Commander" />
+    <entry date="2009-07-05" level="11" ailevel="1" faction="Clan" guild="Good Spirits" rank="Unit Commander" />
+    <entry date="2009-06-26" level="10" ailevel="1" faction="Clan" guild="Good Spirits" rank="Unit Commander" />
+    <entry date="2009-06-23" level="9" ailevel="1" faction="Clan" guild="Good Spirits" rank="Unit Commander" />
+  </history>
+  <last_updated>2009/09/24 09:10:00 Universal</last_updated>
+  <last_changed>2009/09/14 12:03:21 Universal</last_changed>
+</character>

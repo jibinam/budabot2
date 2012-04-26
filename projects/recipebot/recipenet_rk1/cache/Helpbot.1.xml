@@ -1,0 +1,36 @@
+HTTP/1.1 200 OK
+Date: Thu, 24 Sep 2009 16:09:54 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 1177
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Helpbot</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>5</level>
+    <breed>Solitus</breed>
+    <gender>Female</gender>
+    <faction>Neutral</faction>
+    <profession>Adventurer</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40630.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40630.jpg</smallpictureurl>
+  <history>
+    <entry date="2006-05-17" level="5" ailevel="0" faction="Neutral" guild="" rank="" />
+    <entry date="2006-01-19" level="1" ailevel="0" faction="N/A" guild="" rank="" />
+    <entry date="2005-01-10" level="2" ailevel="0" faction="Neutral" guild="" rank="" />
+    <entry date="2002-11-04" level="2" ailevel="" faction="Neutral" guild="" rank="" />
+    <entry date="2002-09-17" level="1" ailevel="" faction="Neutral" guild="" rank="" />
+  </history>
+  <last_updated>2009/09/04 11:34:42 Universal</last_updated>
+  <last_changed>2008/01/29 11:30:01 Universal</last_changed>
+</character>

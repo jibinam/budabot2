@@ -1,0 +1,100 @@
+HTTP/1.1 200 OK
+Date: Sat, 21 Feb 2009 04:59:32 GMT
+Server: Apache/2.2.3 (CentOS)
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Kiarthar</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>195</level>
+    <breed>Nano</breed>
+    <gender>Female</gender>
+    <faction>Neutral</faction>
+    <profession>Nano-Technician</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40135.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40135.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Peoples Front of Newland</organization_name>
+    <rank>Advisor</rank>
+    <rank_id>1</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2008-10-09" level="195" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-09-16" level="194" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-09-14" level="193" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-08-18" level="192" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-08-02" level="191" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-28" level="190" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-27" level="189" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-25" level="188" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-24" level="187" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-23" level="186" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-21" level="185" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-20" level="184" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-19" level="183" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-18" level="182" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-17" level="181" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-16" level="179" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-15" level="178" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-06" level="163" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-05" level="160" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-04" level="157" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-03" level="155" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-07-02" level="153" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-30" level="151" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-29" level="149" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-28" level="147" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-26" level="146" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-25" level="144" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-23" level="143" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-22" level="142" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-21" level="141" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-20" level="139" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-19" level="136" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-18" level="134" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-17" level="133" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-16" level="132" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-14" level="130" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-13" level="128" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-12" level="126" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-11" level="123" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-10" level="121" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-08" level="120" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-07" level="117" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-06" level="114" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-06-05" level="112" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-05-20" level="111" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-05-19" level="110" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-05-18" level="109" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-05-17" level="108" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-05-16" level="107" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-05-15" level="105" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-04-26" level="104" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-01-02" level="103" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2008-01-01" level="102" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2007-12-21" level="101" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2007-12-19" level="100" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2007-12-16" level="98" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2007-12-13" level="97" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2007-12-12" level="96" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2007-11-07" level="95" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2007-11-06" level="94" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2007-10-25" level="93" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2007-10-23" level="92" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2007-10-22" level="91" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2007-10-20" level="89" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2007-10-19" level="88" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Advisor" />
+    <entry date="2007-10-16" level="86" ailevel="0" faction="Neutral" guild="Peoples Front of Newland" rank="Veteran" />
+  </history>
+  <last_updated>2009/02/20 11:30:02 Universal</last_updated>
+  <last_changed>2008/10/09 10:30:01 Universal</last_changed>
+</character>

@@ -1,0 +1,90 @@
+HTTP/1.1 200 OK
+Date: Fri, 28 Nov 2008 03:24:07 GMT
+Server: Apache/2.2.3 (CentOS)
+X-Powered-By: PHP/5.1.6
+Content-Length: 6811
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Reapeofdeath</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>134</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Omni</faction>
+    <profession>Meta-Physicist</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>6</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40704.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40704.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Ministry of Peace</organization_name>
+    <rank>Squad Commander</rank>
+    <rank_id>2</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2008-11-19" level="134" ailevel="6" faction="Omni" guild="Ministry of Peace" rank="Squad Commander" />
+    <entry date="2008-10-26" level="134" ailevel="5" faction="Omni" guild="Ministry of Peace" rank="Unit Commander" />
+    <entry date="2008-10-25" level="134" ailevel="5" faction="Omni" guild="" rank="" />
+    <entry date="2008-10-24" level="134" ailevel="5" faction="Omni" guild="Ministry of Peace" rank="Applicant" />
+    <entry date="2008-10-23" level="134" ailevel="5" faction="Omni" guild="" rank="" />
+    <entry date="2008-09-30" level="134" ailevel="5" faction="Omni" guild="Ministry of Peace" rank="Unit Commander" />
+    <entry date="2008-09-29" level="134" ailevel="3" faction="Omni" guild="Ministry of Peace" rank="Unit Commander" />
+    <entry date="2008-09-28" level="134" ailevel="2" faction="Omni" guild="Ministry of Peace" rank="Unit Commander" />
+    <entry date="2008-09-27" level="129" ailevel="2" faction="Omni" guild="Ministry of Peace" rank="Unit Commander" />
+    <entry date="2008-09-12" level="129" ailevel="0" faction="Omni" guild="Ministry of Peace" rank="Unit Commander" />
+    <entry date="2008-09-05" level="128" ailevel="0" faction="Omni" guild="Ministry of Peace" rank="Unit Commander" />
+    <entry date="2008-08-26" level="127" ailevel="0" faction="Omni" guild="Ministry of Peace" rank="Unit Commander" />
+    <entry date="2008-08-25" level="126" ailevel="0" faction="Omni" guild="Ministry of Peace" rank="Unit Commander" />
+    <entry date="2008-08-23" level="125" ailevel="0" faction="Omni" guild="Ministry of Peace" rank="Unit Commander" />
+    <entry date="2008-08-21" level="124" ailevel="0" faction="Omni" guild="Ministry of Peace" rank="Unit Commander" />
+    <entry date="2008-08-19" level="122" ailevel="0" faction="Omni" guild="Ministry of Peace" rank="Unit Commander" />
+    <entry date="2008-08-18" level="122" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Commander" />
+    <entry date="2008-08-08" level="121" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Commander" />
+    <entry date="2008-08-07" level="119" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Commander" />
+    <entry date="2008-08-06" level="114" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Commander" />
+    <entry date="2008-08-04" level="113" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Commander" />
+    <entry date="2008-08-02" level="109" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Commander" />
+    <entry date="2008-07-30" level="109" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-07-29" level="108" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-07-28" level="105" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-07-27" level="104" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-07-24" level="103" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-07-23" level="90" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-07-20" level="82" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-07-15" level="80" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-07-04" level="75" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-07-03" level="74" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-06-29" level="73" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-06-23" level="72" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-06-22" level="62" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-06-19" level="61" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-06-15" level="59" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-06-14" level="58" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-06-07" level="56" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-06-06" level="53" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-06-04" level="52" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-06-01" level="49" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-05-04" level="48" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-05-03" level="47" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-04-13" level="44" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-03-23" level="42" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-03-19" level="39" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-03-17" level="35" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-03-16" level="32" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-02-29" level="31" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-02-24" level="26" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-02-23" level="23" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-02-21" level="21" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+    <entry date="2008-02-20" level="18" ailevel="0" faction="Omni" guild="Warhawks" rank="Unit Leader" />
+  </history>
+  <last_updated>2008/11/27 11:30:02 Universal</last_updated>
+  <last_changed>2008/11/19 11:30:01 Universal</last_changed>
+</character>

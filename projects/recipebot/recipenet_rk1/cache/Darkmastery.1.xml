@@ -1,0 +1,44 @@
+HTTP/1.1 200 OK
+Date: Sun, 03 May 2009 15:08:57 GMT
+Server: Apache/2.2.3 (CentOS)
+Vary: Accept-Encoding
+Content-Length: 2168
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname>Raimaio</firstname>
+    <nick>Darkmastery</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>100</level>
+    <breed>Opifex</breed>
+    <gender>Male</gender>
+    <faction>Omni</faction>
+    <profession>Bureaucrat</profession>
+    <defender_rank>None</defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40271.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40271.jpg</smallpictureurl>
+  <history>
+    <entry date="2006-10-27" level="100" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2006-08-06" level="100" ailevel="0" faction="Omni" guild="Defenders Of Rubi-Ka" rank="Applicant" />
+    <entry date="2006-07-04" level="100" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2006-06-03" level="97" ailevel="0" faction="Omni" guild="HighGuard (BolB)" rank="Unit Member" />
+    <entry date="2006-05-17" level="97" ailevel="0" faction="Omni" guild="HighGuard" rank="Unit Member" />
+    <entry date="2006-04-17" level="97" ailevel="0" faction="Omni" guild="Armageddon Highguard" rank="Unit Member" />
+    <entry date="2006-03-23" level="97" ailevel="0" faction="Omni" guild="Xilum Highguard" rank="Unit Member" />
+    <entry date="2006-01-13" level="93" ailevel="0" faction="Omni" guild="Xilum Highguard" rank="Unit Member" />
+    <entry date="2006-01-11" level="87" ailevel="0" faction="Omni" guild="Xilum Highguard" rank="Unit Member" />
+    <entry date="2006-01-09" level="82" ailevel="0" faction="Omni" guild="Xilum Highguard" rank="Unit Member" />
+    <entry date="2006-01-08" level="79" ailevel="0" faction="Omni" guild="Xilum Highguard" rank="Unit Member" />
+    <entry date="2006-01-07" level="78" ailevel="0" faction="Omni" guild="Xilum Highguard" rank="Unit Member" />
+    <entry date="2006-01-06" level="76" ailevel="0" faction="Omni" guild="Xilum Highguard" rank="Unit Member" />
+  </history>
+  <last_updated>2009/04/29 10:30:01 Universal</last_updated>
+  <last_changed>2008/01/23 11:30:01 Universal</last_changed>
+</character>

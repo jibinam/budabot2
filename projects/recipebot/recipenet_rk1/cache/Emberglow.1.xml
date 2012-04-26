@@ -1,0 +1,40 @@
+HTTP/1.1 200 OK
+Date: Mon, 26 Jan 2009 21:40:35 GMT
+Server: Apache/2.2.3 (CentOS)
+Content-Length: 1486
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Emberglow</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>31</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Neutral</faction>
+    <profession>Trader</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40715.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40715.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Dragons Of Death</organization_name>
+    <rank>Squad Commander</rank>
+    <rank_id>2</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-01-23" level="31" ailevel="0" faction="Neutral" guild="Dragons Of Death" rank="Squad Commander" />
+    <entry date="2009-01-22" level="24" ailevel="0" faction="Neutral" guild="Dragons Of Death" rank="Applicant" />
+    <entry date="2009-01-19" level="17" ailevel="0" faction="Neutral" guild="Dragons Of Death" rank="Applicant" />
+    <entry date="2009-01-18" level="15" ailevel="0" faction="Neutral" guild="Dragons Of Death" rank="Applicant" />
+    <entry date="2009-01-17" level="9" ailevel="0" faction="Neutral" guild="Dragons Of Death" rank="Applicant" />
+  </history>
+  <last_updated>2009/01/26 11:30:01 Universal</last_updated>
+  <last_changed>2009/01/23 11:30:02 Universal</last_changed>
+</character>

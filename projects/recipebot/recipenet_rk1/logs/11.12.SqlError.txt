@@ -1,0 +1,3 @@
+[23:03] [SqlError] Error in: SELECT * FROM type WHERE type_visible == '1': 
+[07:56] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Joker's%GLyph%' AND recipe_type != '8': 
+[07:56] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Joker's%' AND recipe_type != '8': 

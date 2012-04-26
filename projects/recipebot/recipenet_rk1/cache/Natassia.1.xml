@@ -1,0 +1,59 @@
+HTTP/1.1 200 OK
+Date: Tue, 24 Feb 2009 08:24:08 GMT
+Server: Apache/2.2.3 (CentOS)
+Content-Length: 3490
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Natassia</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>82</level>
+    <breed>Opifex</breed>
+    <gender>Female</gender>
+    <faction>Omni</faction>
+    <profession>Fixer</profession>
+    <defender_rank></defender_rank>
+    <defender_rank_id>0</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40242.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40242.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>First Order</organization_name>
+    <rank>Applicant</rank>
+    <rank_id>6</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2008-11-13" level="82" ailevel="0" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2008-11-12" level="73" ailevel="0" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2008-11-09" level="72" ailevel="0" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2008-11-08" level="69" ailevel="0" faction="Omni" guild="First Order" rank="Applicant" />
+    <entry date="2008-11-07" level="65" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2008-11-06" level="58" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2008-10-24" level="58" ailevel="0" faction="Omni" guild="Wolves Under Lady Fate (W.U.L.F)" rank="President" />
+    <entry date="2008-08-20" level="57" ailevel="0" faction="Omni" guild="Wolves Under Lady Fate (W.U.L.F)" rank="President" />
+    <entry date="2008-08-09" level="54" ailevel="0" faction="Omni" guild="Wolves Under Lady Fate (W.U.L.F)" rank="President" />
+    <entry date="2008-08-08" level="53" ailevel="0" faction="Omni" guild="Wolves Under Lady Fate (W.U.L.F)" rank="President" />
+    <entry date="2008-08-04" level="52" ailevel="0" faction="Omni" guild="Wolves Under Lady Fate (W.U.L.F)" rank="President" />
+    <entry date="2008-08-01" level="49" ailevel="0" faction="Omni" guild="Wolves Under Lady Fate (W.U.L.F)" rank="President" />
+    <entry date="2008-05-03" level="46" ailevel="0" faction="Omni" guild="Wolves Under Lady Fate (W.U.L.F)" rank="President" />
+    <entry date="2008-04-22" level="46" ailevel="0" faction="Omni" guild="Wolves of Fate" rank="President" />
+    <entry date="2006-08-27" level="42" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2005-12-06" level="42" ailevel="0" faction="Omni" guild="Omni-SF" rank="Applicant" />
+    <entry date="2005-08-06" level="41" ailevel="0" faction="Omni" guild="Omni-SF" rank="Applicant" />
+    <entry date="2005-08-05" level="40" ailevel="0" faction="Omni" guild="Omni-SF" rank="Applicant" />
+    <entry date="2005-08-03" level="37" ailevel="0" faction="Omni" guild="Omni-SF" rank="Applicant" />
+    <entry date="2005-08-02" level="33" ailevel="0" faction="Omni" guild="Omni-SF" rank="Applicant" />
+    <entry date="2005-07-31" level="31" ailevel="0" faction="Omni" guild="Omni-SF" rank="Applicant" />
+    <entry date="2005-07-28" level="30" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2005-07-22" level="27" ailevel="0" faction="Omni" guild="" rank="" />
+    <entry date="2005-07-21" level="24" ailevel="0" faction="Omni" guild="The Alcoholics" rank="Unit Leader" />
+  </history>
+  <last_updated>2009/02/23 11:30:01 Universal</last_updated>
+  <last_changed>2008/11/13 11:30:02 Universal</last_changed>
+</character>

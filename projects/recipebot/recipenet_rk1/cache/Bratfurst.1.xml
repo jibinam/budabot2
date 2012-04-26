@@ -1,0 +1,97 @@
+HTTP/1.1 200 OK
+Date: Fri, 25 Sep 2009 16:12:38 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Bratfurst</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>218</level>
+    <breed>Atrox</breed>
+    <gender>Neuter</gender>
+    <faction>Omni</faction>
+    <profession>Adventurer</profession>
+    <defender_rank>Trustworthy</defender_rank>
+    <defender_rank_id>18</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/40105.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/40105.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>Council of Sagitas</organization_name>
+    <rank>Unit Member</rank>
+    <rank_id>5</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-08-31" level="218" ailevel="18" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-08-26" level="218" ailevel="17" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-08-03" level="217" ailevel="17" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-07-15" level="216" ailevel="16" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-07-05" level="215" ailevel="16" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-06-26" level="213" ailevel="16" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-06-23" level="212" ailevel="16" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-06-09" level="210" ailevel="16" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-05-24" level="200" ailevel="16" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-05-23" level="200" ailevel="15" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-05-21" level="195" ailevel="15" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-05-20" level="194" ailevel="15" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-05-17" level="188" ailevel="15" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-05-14" level="184" ailevel="15" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-05-11" level="183" ailevel="15" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-05-10" level="183" ailevel="14" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-05-09" level="181" ailevel="14" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-05-08" level="176" ailevel="14" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-02-15" level="175" ailevel="14" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-02-08" level="173" ailevel="14" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-01-13" level="173" ailevel="12" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2009-01-10" level="173" ailevel="11" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-12-27" level="171" ailevel="11" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-12-26" level="166" ailevel="9" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-12-25" level="163" ailevel="9" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-12-21" level="161" ailevel="9" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-12-18" level="160" ailevel="9" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-12-12" level="160" ailevel="8" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-12-08" level="154" ailevel="8" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-12-06" level="150" ailevel="8" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-12-05" level="149" ailevel="8" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-12-04" level="147" ailevel="8" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-11-29" level="146" ailevel="8" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-11-28" level="143" ailevel="8" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-11-27" level="141" ailevel="8" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-11-25" level="137" ailevel="8" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-11-24" level="136" ailevel="8" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-11-23" level="135" ailevel="8" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-11-22" level="129" ailevel="8" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-11-21" level="125" ailevel="8" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-11-20" level="125" ailevel="7" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-11-18" level="125" ailevel="6" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-11-04" level="123" ailevel="6" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-09-07" level="117" ailevel="6" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-08-12" level="115" ailevel="6" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-08-07" level="112" ailevel="6" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-08-06" level="111" ailevel="6" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-08-05" level="109" ailevel="6" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-08-02" level="104" ailevel="6" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-07-28" level="100" ailevel="6" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-07-27" level="100" ailevel="5" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-07-23" level="100" ailevel="4" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-07-15" level="91" ailevel="3" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-07-05" level="75" ailevel="3" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-07-04" level="74" ailevel="3" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-07-02" level="72" ailevel="3" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-06-28" level="67" ailevel="3" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-06-27" level="66" ailevel="3" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-05-08" level="65" ailevel="3" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-05-05" level="65" ailevel="0" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-05-03" level="62" ailevel="0" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+    <entry date="2008-03-02" level="60" ailevel="0" faction="Omni" guild="Council of Sagitas" rank="Unit Member" />
+  </history>
+  <last_updated>2009/09/17 07:53:04 Universal</last_updated>
+  <last_changed>2009/08/31 11:04:24 Universal</last_changed>
+</character>

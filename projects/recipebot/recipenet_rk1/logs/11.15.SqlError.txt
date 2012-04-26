@@ -1,0 +1,5 @@
+[01:27] [SqlError] Error in: SELECT Cl FROM members_rk1 WHERE member_name = 'Microzero': 
+[01:27] [SqlError] Error in: SELECT Cl FROM members_rk1 WHERE member_name = 'Microzero': 
+[01:28] [SqlError] Error in: SELECT Cl FROM members_rk1 WHERE member_name = 'Microzero': 
+[01:29] [SqlError] Error in: SELECT Cl FROM members_rk1 WHERE member_name = 'Microzero': 
+[01:07] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Complete%Blueprint%Pattern%of%'The%Great%Ice%Golem'%' AND recipe_type != '8': 

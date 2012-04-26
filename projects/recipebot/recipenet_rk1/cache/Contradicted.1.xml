@@ -1,0 +1,70 @@
+HTTP/1.1 200 OK
+Date: Wed, 12 Aug 2009 04:16:44 GMT
+Server: Apache/2.2.3 (Red Hat)
+Vary: Accept-Encoding
+Content-Length: 4663
+Connection: close
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<character>
+  <name>
+    <firstname></firstname>
+    <nick>Contradicted</nick>
+    <lastname></lastname>
+  </name>
+  <basic_stats>
+    <level>166</level>
+    <breed>Solitus</breed>
+    <gender>Male</gender>
+    <faction>Neutral</faction>
+    <profession>Adventurer</profession>
+    <defender_rank>Adept</defender_rank>
+    <defender_rank_id>13</defender_rank_id>
+  </basic_stats>
+  <pictureurl>http://www.anarchy-online.com/character/photos/223811.jpg</pictureurl>
+  <smallpictureurl>http://www.anarchy-online.com/character/smallphotos/223811.jpg</smallpictureurl>
+  <organization_membership>
+    <organization_name>The Union</organization_name>
+    <rank>Applicant</rank>
+    <rank_id>6</rank_id>
+  </organization_membership>
+  <history>
+    <entry date="2009-07-30" level="166" ailevel="13" faction="Neutral" guild="The Union" rank="Applicant" />
+    <entry date="2008-12-07" level="166" ailevel="13" faction="Neutral" guild="" rank="" />
+    <entry date="2007-04-20" level="166" ailevel="13" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2007-04-18" level="165" ailevel="13" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2007-04-16" level="164" ailevel="13" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2007-04-15" level="159" ailevel="13" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2007-04-11" level="157" ailevel="12" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2007-03-31" level="156" ailevel="12" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2007-03-30" level="155" ailevel="12" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2007-03-27" level="155" ailevel="11" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2007-03-24" level="151" ailevel="11" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2007-03-21" level="151" ailevel="10" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-06-20" level="150" ailevel="10" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-06-12" level="146" ailevel="8" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-06-11" level="144" ailevel="8" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-06-10" level="141" ailevel="8" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-06-07" level="140" ailevel="8" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-06-06" level="138" ailevel="8" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-06-05" level="137" ailevel="8" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-05-30" level="134" ailevel="7" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-05-26" level="130" ailevel="7" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-05-21" level="129" ailevel="7" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-05-20" level="125" ailevel="7" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-05-19" level="123" ailevel="7" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-05-18" level="116" ailevel="7" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-05-16" level="115" ailevel="6" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-05-15" level="111" ailevel="6" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-05-14" level="111" ailevel="5" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-05-13" level="107" ailevel="2" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-05-09" level="105" ailevel="2" faction="Neutral" guild="The Union" rank="Unit Member" />
+    <entry date="2006-05-08" level="105" ailevel="2" faction="Neutral" guild="The Union" rank="Applicant" />
+    <entry date="2006-05-05" level="93" ailevel="2" faction="Neutral" guild="The Union" rank="Applicant" />
+    <entry date="2006-04-28" level="90" ailevel="2" faction="Neutral" guild="The Union" rank="Applicant" />
+    <entry date="2006-04-23" level="89" ailevel="2" faction="Neutral" guild="The Union" rank="Applicant" />
+  </history>
+  <last_updated>2009/08/06 08:47:15 Universal</last_updated>
+  <last_changed>2009/07/30 18:18:19 Universal</last_changed>
+</character>

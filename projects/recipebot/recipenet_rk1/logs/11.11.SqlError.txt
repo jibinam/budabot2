@@ -1,0 +1,15 @@
+[13:42] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%soul%" ORDER BY `name` LIMIT 0, 40: 
+[13:42] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%nano%" ORDER BY `name` LIMIT 0, 40: 
+[13:43] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%soul%" ORDER BY `name` LIMIT 0, 40: 
+[13:44] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%soul%" ORDER BY `name` LIMIT 0, 40: 
+[13:44] [SqlError] Error in: SELECT * FROM aodb: 
+[13:51] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%soul%" ORDER BY `name` LIMIT 0, 40: 
+[13:54] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%soul%" ORDER BY `name` LIMIT 0, 40: 
+[13:54] [SqlError] Error in: SELECT * FROM aodb: 
+[17:52] [SqlError] Error in: SELECT low_id FROM aodb WHERE name = 'Chi Pattern of  'Circumbendibus'[/link]': 
+[17:53] [SqlError] Error in: SELECT low_id FROM aodb WHERE name = '32 - 63 NCU Memory[/link]': 
+[17:53] [SqlError] Error in: SELECT low_id FROM aodb WHERE name = 'Arbiter Gem of the Icy Tundra[/link]': 
+[18:01] [SqlError] Error in: SELECT * FROM aodb WHERE name like %'Arbiter Gem of the Icy Tundra[/link]'%: 
+[18:04] [SqlError] Error in: SELECT * FROM aodb WHERE name like %Arbiter Gem of the Icy Tundra[/link]%: 
+[18:07] [SqlError] Error in: SELECT UNIQUE(lowid) FROM aodb WHERE name like '%Arbiter Gem of the Icy Tundra%': 
+[18:08] [SqlError] Error in: SELECT low_id FROM aodb WHERE name like '%Arbiter Gem of the Icy Tundra%': 
