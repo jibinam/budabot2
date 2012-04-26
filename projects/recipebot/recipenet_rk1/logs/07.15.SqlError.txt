@@ -1,1 +1,0 @@
-[14:20] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Ole's%Cardboard%Box%' AND recipe_type != '8': 

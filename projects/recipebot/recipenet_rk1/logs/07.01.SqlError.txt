@@ -1,2 +1,0 @@
-[07:21] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%<a%href="itemref://258473/258473/150">Reanimator's%Cloak[/link]%' AND recipe_type != '8': 
-[08:51] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Combined%Sharpshooter's%Headwear%' AND recipe_type != '8': 

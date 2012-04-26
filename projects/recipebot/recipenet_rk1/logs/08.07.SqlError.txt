@@ -1,1 +1,0 @@
-[14:43] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Aquarius's%Multitask%Helper%' AND recipe_type != '8': 

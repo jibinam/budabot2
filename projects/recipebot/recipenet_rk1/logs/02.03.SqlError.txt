@@ -1,5 +1,0 @@
-[17:14] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%de'valos%ring%' AND recipe_type != '8': 
-[17:14] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%de'valos%' AND recipe_type != '8': 
-[01:01] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Circular%Kyr'Ozch%Chip%Mold%' AND recipe_type != '8': 
-[09:46] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%repairman's%hat%' AND recipe_type != '8': 
-[09:46] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%repairman's%cap%' AND recipe_type != '8': 

@@ -1,2 +1,0 @@
-[04:54] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Builder's%Gem%' AND recipe_type != '8': 
-[13:53] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%<a%href="itemref://274956/274956/50">Neleb's%Nano-master%Robe[/link]%' AND recipe_type != '8': 

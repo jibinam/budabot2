@@ -1,1 +1,0 @@
-[23:11] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Xan's%Viral%Belt%Component%Platform%' AND recipe_type != '8': 

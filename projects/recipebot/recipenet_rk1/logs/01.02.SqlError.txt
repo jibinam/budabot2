@@ -1,1 +1,0 @@
-[17:28] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%mortiig's%heart%' AND recipe_type != '8': 

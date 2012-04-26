@@ -1,2 +1,0 @@
-[23:44] [SqlError] Error in: SELECT * FROM helptopics WHERE help_id = '1': 
-[11:32] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Mortiig's%heart%' AND recipe_type != '8': 

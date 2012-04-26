@@ -1,2 +1,0 @@
-[06:25] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%<a%href="itemref://247799/247799/100">Kyr'Ozch%Bio-Mechanical%Computer[/link]%' AND recipe_type != '8': 
-[06:25] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Kyr'Ozch%Bio-Mechanical%Computer%' AND recipe_type != '8': 

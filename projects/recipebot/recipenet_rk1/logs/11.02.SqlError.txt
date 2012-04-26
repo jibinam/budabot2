@@ -1,1 +1,0 @@
-[21:14] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%Odd%Kyr'ozch%Nanobots%' AND recipe_type != '8': 

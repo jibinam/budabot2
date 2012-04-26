@@ -1,5 +1,0 @@
-[18:05] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%Bootleg%" AND `name` LIKE '%Beamers%' AND `name` LIKE '%'n%' AND `name` LIKE '%Bolters%' ORDER BY `name` LIMIT 0, 40: 
-[18:06] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%%" AND `name` LIKE '%(Bootleg%' AND `name` LIKE '%Beamers%' AND `name` LIKE '%'n%' AND `name` LIKE '%Bolters%' AND `name` LIKE '%(OP-CLX))%' ORDER BY `name` LIMIT 0, 40: 
-[18:06] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%%" AND `name` LIKE '%(Bootleg%' AND `name` LIKE '%Beamers%' AND `name` LIKE '%'n%' AND `name` LIKE '%Bolters%' AND `name` LIKE '%(OP-CLX))%' ORDER BY `name` LIMIT 0, 40: 
-[18:07] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%%" AND `name` LIKE '%(Bootleg%' AND `name` LIKE '%Beamers%' AND `name` LIKE '%'n%' AND `name` LIKE '%Bolters%' AND `name` LIKE '%(OP-CLX)%' ORDER BY `name` LIMIT 0, 40: 
-[18:07] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%(Bootleg%" AND `name` LIKE '%Beamers%' AND `name` LIKE '%'n%' AND `name` LIKE '%Bolters%' AND `name` LIKE '%(OP-CLX)%' ORDER BY `name` LIMIT 0, 40: 

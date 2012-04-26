@@ -1,2 +1,0 @@
-[08:50] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%de'valos%' AND recipe_type != '8': 
-[08:50] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%de'%valos%' AND recipe_type != '8': 

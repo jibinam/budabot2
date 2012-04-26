@@ -1,1 +1,0 @@
-[07:59] [SqlError] Error in: SELECT * FROM recipes WHERE recipe_text like '%<a%href="itemref://247765/254805/134">Kyr'Ozch%Viral%Serum[/link]%' AND recipe_type != '8': 
