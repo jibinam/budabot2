@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkWindow" id="botwindow">
+    <property name="title" translatable="yes">Budabot UI</property>
+    <property name="default_width">400</property>
+    <property name="default_height">200</property>
+    <signal name="destroy" handler="on_botwindow_destroy"/>
+    <child>
+      <object class="GtkTextView" id="outputView">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="editable">False</property>
+        <property name="cursor_visible">False</property>
+      </object>
+    </child>
+  </object>
+</interface>
