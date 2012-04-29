@@ -60,7 +60,7 @@ class BotProcess extends GObject {
 			$php_exec = "php"; 
 		}
 		
-		$php_file = "adminui/loop_test.php";
+		$php_file = "main.php -- ./conf/config.php"; //"adminui/loop_test.php";
 		
 		// create temp files to hard disk for STDOUT and STDERR
 		$this->outFile   = $this->createTempFile();
@@ -74,7 +74,9 @@ class BotProcess extends GObject {
 				2 => $this->errorFile->handle // stderr
 			),
 			$pipes,
-			dirname(__FILE__) . '/..'
+			dirname(__FILE__) . '/..',
+			null, // use same env environment as current script
+			array( 'bypass_shell' => true )
 		);
 		if (is_resource($this->processResource)) {
 			// poll bot's outputs every 100ms
