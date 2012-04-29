@@ -8,11 +8,20 @@
     <property name="default_height">200</property>
     <signal name="destroy" handler="on_botwindow_destroy"/>
     <child>
-      <object class="GtkTextView" id="outputView">
+      <object class="GtkScrolledWindow" id="outputScrollArea">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
-        <property name="editable">False</property>
-        <property name="cursor_visible">False</property>
+        <property name="hscrollbar_policy">automatic</property>
+        <property name="vscrollbar_policy">automatic</property>
+        <child>
+          <object class="GtkTextView" id="outputView">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="editable">False</property>
+            <property name="wrap_mode">word</property>
+            <property name="cursor_visible">False</property>
+          </object>
+        </child>
       </object>
     </child>
   </object>
