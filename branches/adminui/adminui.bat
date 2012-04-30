@@ -1,5 +1,5 @@
 title Budabot Admin UI
-.\win32\php -c php-win.ini -f adminui/adminui.php
+.\win32\php -c php-win.ini -f adminui/adminui.php -- %*
 
 :: This file is part of Budabot.
 ::
