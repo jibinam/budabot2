@@ -189,9 +189,28 @@ class BotProcess extends GObject {
 				Gtk::timeout_remove($timerId);
 			}
 		}
+
+		// on linux proc_open() runs the program always inside
+		// sh-shell, no matter if bypass_shell is set or not, 
+		// so we need to kill also the shell's child processes in
+		// order to succesfully kill the bot
+		// code from: http://www.php.net/manual/en/function.proc-terminate.php#81353
+		if (function_exists('posix_kill')) {
+			$status = @proc_get_status($this->processResource);
+			if($status !== false && $status['running'] == true) {
+				//get the parent pid of the process we want to kill
+				$ppid = $status['pid'];
+				//use ps to get all the children of this process, and kill them
+				$pids = preg_split('/\s+/', `ps -o pid --no-heading --ppid $ppid`);
+				foreach($pids as $pid) {
+					if(is_numeric($pid)) {
+						posix_kill($pid, 9); //9 is the SIGKILL signal
+					}
+				}
+			}
+		}
+
 		// close handles
-		@fclose($this->outFile);
-		@fclose($this->errorFile);
 		@proc_terminate($this->processResource);
 		@proc_close($this->processResource);
 		

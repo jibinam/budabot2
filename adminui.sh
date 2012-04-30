@@ -1,4 +1,4 @@
 #!/bin/sh
-php -f adminui/adminui.php
+php -f adminui/adminui.php -- $@
 
 
