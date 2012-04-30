@@ -93,7 +93,7 @@ function onCommandGiven() {
 		insertToModel($outputView->get_buffer(), "Server sent error code: " . $e->getCode() . "\n", 'error');
 	}
 	catch (Exception $e) {
-		insertToModel($outputView->get_buffer() . "\n", $data, 'error');
+		insertToModel($outputView->get_buffer(), $e->getMessage() . "\n", 'error');
 	}
 }
 
