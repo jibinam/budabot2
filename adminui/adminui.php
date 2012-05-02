@@ -63,10 +63,21 @@ function onCommandGiven() {
 	global $commandEntry;
 	global $argv;
 	global $outputView;
+	global $destinationSelector;
 		
 	$command = $commandEntry->get_text();
 	// clear the input entry
 	$commandEntry->set_text('');
+	
+	$destinationType = $destinationSelector->get_model()->get_value($destinationSelector->get_active_iter(), 1);
+	switch ($destinationType) {
+	case 1: // org channel
+		$command = 'say org ' . $command;
+		break;
+	case 2: // private channel
+		$command = 'say priv ' . $command;
+		break;
+	}
 	
 	$api = new Budapi();
 	$api->setHost('127.0.0.1');
@@ -90,7 +101,34 @@ function onCommandGiven() {
 		insertToModel($outputView->get_buffer(), $response . "\n", 'response');
 	}
 	catch (BudapiServerException $e) {
-		insertToModel($outputView->get_buffer(), "Server sent error code: " . $e->getCode() . "\n", 'error');
+		$message = "Server sent error code: " . $e->getCode() . "\n";
+		switch ($e->getCode()) {
+		case Budapi::API_UNSET_PASSWORD:
+		case Budapi::API_INVALID_PASSWORD:
+			$message = "Your credentials are incorrect, make sure you have set your API password with command 'apipassword'\n";
+			break;
+
+		case Budapi::API_ACCESS_DENIED:
+			$message = "Access denied! You have don't have permissions to execute this command\n";
+			break;
+
+		case Budapi::API_UNKNOWN_COMMAND:
+			if ($destinationType == 1) {
+				$message = "Failed to sent the message, make sure that 'say org' command is enabled\n";
+			}
+			else if ($destinationType == 2) {
+				$message = "Failed to sent the message, make sure that 'say priv' command is enabled\n";
+			}
+			else { // to chatbot
+				$message = "Failed to sent the message, the command was not found\n";
+			}
+			break;
+			
+		case Budapi::API_SYNTAX_ERROR:
+			$message = "Failed to sent the message, there was a syntax error with your command\n";
+			break;
+		}
+		insertToModel($outputView->get_buffer(), $message, 'error');
 	}
 	catch (Exception $e) {
 		insertToModel($outputView->get_buffer(), $e->getMessage() . "\n", 'error');
@@ -113,6 +151,7 @@ $botWindow  = $botWindowBuilder->get_object('botwindow');
 $outputScrollArea = $botWindowBuilder->get_object('outputScrollArea');
 $outputView = $botWindowBuilder->get_object('outputView');
 $commandEntry = $botWindowBuilder->get_object('commandInputEntry');
+$destinationSelector = $botWindowBuilder->get_object('destinationSelector');
 $outputModel = $outputView->get_buffer();
 $tagTable = $outputModel->get_tag_table();
 
