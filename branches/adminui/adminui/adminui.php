@@ -1,6 +1,7 @@
 <?php
 
 require_once 'BotProcess.class.php';
+require_once 'ControlPanelController.class.php';
 require_once 'budapi/Budapi.php';
 
 /**
@@ -178,4 +179,8 @@ $botWindow->connect_simple('destroy', array('gtk', 'main_quit'));
 
 // show bot window and start main event loop
 $botWindow->show_all();
+
+$controlPanel = new ControlPanelController();
+$controlPanel->show();
+
 Gtk::main();
