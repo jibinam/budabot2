@@ -1,6 +1,6 @@
 <?php
 
-require_once 'BotProcess.class.php';
+require_once 'Process.class.php';
 require_once 'ControlPanelController.class.php';
 require_once 'budapi/Budapi.php';
 
@@ -137,7 +137,7 @@ function onCommandGiven() {
 }
 
 // create bot process object and connect to its signals
-$process = new BotProcess();
+$process = new Process();
 $process->connect('stdout_received', 'onBotStdoutReceived');
 $process->connect('stderr_received', 'onBotStderrReceived');
 $process->connect_simple('stopped', 'onBotDied');
