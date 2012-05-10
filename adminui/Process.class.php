@@ -1,12 +1,12 @@
 <?php
 
 // register the class into GTK to enable custom signals
-GObject::register_type('BotProcess');
+GObject::register_type('Process');
 
 /**
- * The BotProcess class executes new Budabot processes. 
+ * The Process class executes new Budabot processes. 
  */
-class BotProcess extends GObject {
+class Process extends GObject {
 	
 	private $processResource;
 	private $outFile;
