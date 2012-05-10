@@ -1,6 +1,6 @@
 <?php
 
-class Settings {
+class SettingModel {
 	private $apiUsername;
 	private $apiPassword;
 	private $apiHost;
