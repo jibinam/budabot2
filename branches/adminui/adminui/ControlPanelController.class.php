@@ -4,8 +4,13 @@ class ControlPanelController {
 
 	private $builder;
 	private $view;
+	private $position;
 	
+	/**
+	 * Constructor method.
+	 */
 	public function __construct() {
+		$this->position = array(200, 200);
 		// load controlpanel.glade file
 		$this->builder = new GtkBuilder();
 		$this->builder->add_from_file(dirname(__FILE__) . '/ControlPanel.glade');
@@ -14,11 +19,27 @@ class ControlPanelController {
 		$this->botListView = $this->builder->get_object('botListView');
 		$this->botListContextMenu = $this->builder->get_object('botListContextMenu');
 		
+		$this->view->connect('delete-event', array($this, 'onDeleteEvent'));
 		$this->botListView->connect('button-press-event', array($this, 'onBotListViewMousePressed'));
 	}
 
+	/**
+	 * This method shows and the dialog to user.
+	 */
 	public function show() {
+		$this->view->move($this->position[0], $this->position[1]);
 		$this->view->show_all();
+	}
+	
+	/**
+	 * This method catches delete event and instead of simply deleting the
+	 * dialog, it is hidden instead. Doing this it is possible to re-show the
+	 * dialog next time.
+	 */
+	public function onDeleteEvent() {
+		$this->position = $this->view->get_position();
+		$this->view->hide();
+		return true;
 	}
 	
 	/**
