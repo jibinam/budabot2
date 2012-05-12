@@ -53,35 +53,39 @@ class SettingModel {
 		}
 	}
 	
-	public function getApiUsername() {
-		return $this->getGlobalValue('apiusername');
+	public function getApiUsername($botName) {
+		return $this->getValue($botName, 'apiusername');
 	}
 
-	public function getApiPassword() {
-		return $this->getGlobalValue('apipassword');
+	public function getApiPassword($botName) {
+		return $this->getValue($botName, 'apipassword');
 	}
 
-	public function getApiHost() {
-		return $this->getGlobalValue('apihost');
+	public function getApiHost($botName) {
+		return $this->getValue($botName, 'apihost');
 	}
 	
-	public function getApiPort() {
-		return $this->getGlobalValue('apiport');
+	public function getApiPort($botName) {
+		return $this->getValue($botName, 'apiport');
 	}
 
-	public function setApiUsername($name) {
+	public function setApiUsername($botName, $name) {
+		// TODO: requires refactoring
 		$this->setGlobalValue('apiusername', $name);
 	}
 
-	public function setApiPassword($password) {
+	public function setApiPassword($botName, $password) {
+		// TODO: requires refactoring
 		$this->setGlobalValue('apipassword', $password);
 	}
 
-	public function setApiHost($host) {
+	public function setApiHost($botName, $host) {
+		// TODO: requires refactoring
 		$this->setGlobalValue('apihost', $host);
 	}
 	
-	public function setApiPort($port) {
+	public function setApiPort($botName, $port) {
+		// TODO: requires refactoring
 		$this->setGlobalValue('apiport', $port);
 	}
 
@@ -102,12 +106,20 @@ class SettingModel {
 	private function getSettingsFilePath() {
 		return dirname(__FILE__) . '/../conf/adminui_settings.conf';
 	}
-	
-	private function getGlobalValue($tagName) {
+
+	private function getValue($botName, $tagName) {
 		if ($this->dom) {
+			if ($botName) {
+				$bots = $this->dom->getElementsByTagName('bots')->item(0)->getElementsByTagName('bot');
+				foreach($bots as $botElement) {
+					$name = $botElement->getAttribute('name');
+					if ($name == $botName) {
+						return $botElement->getElementsByTagName($tagName)->item(0)->textContent;
+					}
+				}
+			}
 			return $this->dom->getElementsByTagName($tagName)->item(0)->textContent;
 		}
-		return null;
 	}
 
 	private function setGlobalValue($tagName, $value) {

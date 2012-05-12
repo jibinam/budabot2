@@ -242,7 +242,7 @@ style "button"			= "default"
      detail			= "buttondefault"
      file				= "null.png"
 	
-     border			= { 15,15,8,8 }
+     border			= { 1, 1, 1, 1 }
     stretch			= TRUE
   }
 

@@ -1,6 +1,9 @@
 <?php
 
-class ControlPanelController {
+// register the class into GTK to enable custom signals
+GObject::register_type('ControlPanelController');
+
+class ControlPanelController extends GObject {
 
 	private $builder;
 	private $view;
@@ -8,9 +11,20 @@ class ControlPanelController {
 	private $botModel;
 	
 	/**
+	 * Define custom signals that this class can emit.
+	 */
+	public $__gsignals = array(
+		// This signal is emitted when user clicks item in bot's context menu.
+		// First parameter is name of action and second is name of bot.
+		'action_triggered' => array(GObject::SIGNAL_RUN_LAST, GObject::TYPE_NONE, array(GObject::TYPE_STRING, GObject::TYPE_STRING))
+	);
+	
+	/**
 	 * Constructor method.
 	 */
 	public function __construct($botModel) {
+		parent::__construct();
+		
 		$this->botModel = $botModel;
 		$this->position = array(200, 200);
 		// load controlpanel.glade file
@@ -20,6 +34,12 @@ class ControlPanelController {
 		$this->view = $this->builder->get_object('controlPanelWindow');
 		$this->botListView = $this->builder->get_object('botListView');
 		$this->botListContextMenu = $this->builder->get_object('botListContextMenu');
+		$this->contextItemOpen = $this->builder->get_object('contextItemOpen');
+		$this->contextItemModify = $this->builder->get_object('contextItemModify');
+		$this->contextItemRemove = $this->builder->get_object('contextItemRemove');
+		$this->contextItemStart = $this->builder->get_object('contextItemStart');
+		$this->contextItemRestart = $this->builder->get_object('contextItemRestart');
+		$this->contextItemStop = $this->builder->get_object('contextItemStop');
 		
 		$this->botListView->set_model($this->botModel);
 		
@@ -28,9 +48,24 @@ class ControlPanelController {
 		$renderer->set_property('height', 50);
 		$column = new GtkTreeViewColumn('Bot', $renderer, 'text', 1);
 		$this->botListView->append_column($column);
+		
+		// set default action as bold
+		$label = $this->contextItemOpen->get_children();
+		$label = $label[0];
+        $label->set_markup("<b>{$label->get_text()}</b>");
+
 
 		$this->view->connect('delete-event', array($this, 'onDeleteEvent'));
 		$this->botListView->connect('button-press-event', array($this, 'onBotListViewMousePressed'));
+		
+		$this->botListView->connect_simple('row-activated', array($this, 'onBotListViewRowActivated'));
+		
+		$this->contextItemOpen->connect('activate', array($this, 'onContextMenuItemClicked'));
+		$this->contextItemModify->connect('activate', array($this, 'onContextMenuItemClicked'));
+		$this->contextItemRemove->connect('activate', array($this, 'onContextMenuItemClicked'));
+		$this->contextItemStart->connect('activate', array($this, 'onContextMenuItemClicked'));
+		$this->contextItemRestart->connect('activate', array($this, 'onContextMenuItemClicked'));
+		$this->contextItemStop->connect('activate', array($this, 'onContextMenuItemClicked'));
 	}
 
 	/**
@@ -50,6 +85,13 @@ class ControlPanelController {
 		$this->position = $this->view->get_position();
 		$this->view->hide();
 		return true;
+	}
+	
+	/**
+	 * This callback is called when user double clicks a row in the bot list view.
+	 */
+	public function onBotListViewRowActivated() {
+		$this->emit('action_triggered', 'open', $this->getCurrentlySelectedBotName());
 	}
 	
 	/**
@@ -73,6 +115,39 @@ class ControlPanelController {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * This event handler is called when user clicks a menu item in
+	 * bot list's context menu.
+	 * Emits context_item_clicked signal.
+	 */
+	public function onContextMenuItemClicked($object) {
+		$action = null;
+
+		if ($object == $this->contextItemOpen) {
+			$action = 'open';
+		} else if ($object == $this->contextItemModify) {
+			$action = 'modify';
+		} else if ($object == $this->contextItemRemove) {
+			$action = 'remove';
+		} else if ($object == $this->contextItemStart) {
+			$action = 'start';
+		} else if ($object == $this->contextItemRestart) {
+			$action = 'restart';
+		} else if ($object == $this->contextItemStop) {
+			$action = 'stop';
+		}
+		// emit context_item_clicked
+		if ($action) {
+			$this->emit('action_triggered', $action, $this->getCurrentlySelectedBotName());
+		}
+	}
+
+	private function getCurrentlySelectedBotName() {
+		list($model, $iter) = $this->botListView->get_selection()->get_selected();
+		$name = $model->get_value($iter, 1);
+		return $name;
 	}
 }
 
