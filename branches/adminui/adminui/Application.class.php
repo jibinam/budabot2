@@ -4,14 +4,21 @@ require_once 'Process.class.php';
 require_once 'ControlPanelController.class.php';
 require_once 'budapi/Budapi.php';
 require_once 'SystrayController.class.php';
+require_once 'BotModel.class.php';
+require_once 'SettingModel.class.php';
 
 class Application {
 
+	private $botModel;
+	private $settingModel;
+	
 	public function __construct() {
 	}
 
 	public function execute() {
+		$this->settingModel = new SettingModel();
 		$this->systrayController = new SystrayController();
+		$this->botModel = new BotModel($this->settingModel);
 	
 		// create bot process object and connect to its signals
 		$process = new Process();
@@ -57,7 +64,7 @@ class Application {
 		// show bot window and start main event loop
 		$botWindow->show_all();
 
-		$controlPanel = new ControlPanelController();
+		$controlPanel = new ControlPanelController($this->botModel);
 		$controlPanel->show();
 		
 		// open control panel when user double clicks systray icon

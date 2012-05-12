@@ -72,23 +72,6 @@
       </object>
     </child>
   </object>
-  <object class="GtkListStore" id="botListModel">
-    <columns>
-      <!-- column-name Name -->
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">Testbot</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Testbot 2</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Testbot 3</col>
-      </row>
-    </data>
-  </object>
   <object class="GtkWindow" id="controlPanelWindow">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Budabot Bot Manager</property>
@@ -117,19 +100,7 @@ Control Panel</property>
           <object class="GtkTreeView" id="botListView">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="model">botListModel</property>
             <property name="headers_visible">False</property>
-            <child>
-              <object class="GtkTreeViewColumn" id="treeviewcolumn1">
-                <property name="title" translatable="yes">name</property>
-                <child>
-                  <object class="GtkCellRendererText" id="cellrenderertext1"/>
-                  <attributes>
-                    <attribute name="text">0</attribute>
-                  </attributes>
-                </child>
-              </object>
-            </child>
           </object>
           <packing>
             <property name="expand">True</property>

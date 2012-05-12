@@ -5,11 +5,13 @@ class ControlPanelController {
 	private $builder;
 	private $view;
 	private $position;
+	private $botModel;
 	
 	/**
 	 * Constructor method.
 	 */
-	public function __construct() {
+	public function __construct($botModel) {
+		$this->botModel = $botModel;
 		$this->position = array(200, 200);
 		// load controlpanel.glade file
 		$this->builder = new GtkBuilder();
@@ -19,6 +21,14 @@ class ControlPanelController {
 		$this->botListView = $this->builder->get_object('botListView');
 		$this->botListContextMenu = $this->builder->get_object('botListContextMenu');
 		
+		$this->botListView->set_model($this->botModel);
+		
+		// add cell renderer
+		$renderer = new GtkCellRendererText();
+		$renderer->set_property('height', 50);
+		$column = new GtkTreeViewColumn('Bot', $renderer, 'text', 1);
+		$this->botListView->append_column($column);
+
 		$this->view->connect('delete-event', array($this, 'onDeleteEvent'));
 		$this->botListView->connect('button-press-event', array($this, 'onBotListViewMousePressed'));
 	}
