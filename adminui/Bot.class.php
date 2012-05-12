@@ -43,15 +43,19 @@ class Bot {
 	}
 	
 	public function start() {
+		echo "Starting bot not yet implemented!\n";
 	}
 	
 	public function restart() {
+		echo "Restarting bot not yet implemented!\n";
 	}
 	
 	public function shutdown() {
+		echo "Shutting down bot not yet implemented!\n";
 	}
 	
 	public function terminate() {
+		echo "Terminating bot not yet implemented!\n";
 	}
 	
 	public function sendCommand($channel, $command) {

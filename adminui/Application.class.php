@@ -64,12 +64,25 @@ class Application {
 	 */
 	public function onControlPanelAction($object, $action, $botName) {
 
+		$bot = $this->botModel->getBotByName($botName);
+
 		switch ($action) {
 		case 'open':
-			$bot = $this->botModel->getBotByName($botName);
 			$controller = $this->botWindowController($botName);
 			$controller->connect('command_given', array($bot, 'sendCommand'));
 			$controller->show();
+			break;
+			
+		case 'start':
+			$bot->start();
+			break;
+
+		case 'restart':
+			$bot->restart();
+			break;
+
+		case 'shutdown':
+			$bot->shutdown();
 			break;
 
 		default:
