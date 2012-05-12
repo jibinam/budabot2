@@ -16,7 +16,9 @@ class ControlPanelController extends GObject {
 	public $__gsignals = array(
 		// This signal is emitted when user clicks item in bot's context menu.
 		// First parameter is name of action and second is name of bot.
-		'action_triggered' => array(GObject::SIGNAL_RUN_LAST, GObject::TYPE_NONE, array(GObject::TYPE_STRING, GObject::TYPE_STRING))
+		'action_triggered' => array(GObject::SIGNAL_RUN_LAST, GObject::TYPE_NONE, array(GObject::TYPE_STRING, GObject::TYPE_STRING)),
+		// this signal is emitted when user attempts to exit the application
+		'exit_requested' => array(GObject::SIGNAL_RUN_LAST, GObject::TYPE_NONE, array())
 	);
 	
 	/**
@@ -66,6 +68,8 @@ class ControlPanelController extends GObject {
 		$this->contextItemStart->connect('activate', array($this, 'onContextMenuItemClicked'));
 		$this->contextItemRestart->connect('activate', array($this, 'onContextMenuItemClicked'));
 		$this->contextItemStop->connect('activate', array($this, 'onContextMenuItemClicked'));
+		
+		$this->builder->get_object('exitButton')->connect_simple('clicked', array($this, 'onExitClicked'));
 	}
 
 	/**
@@ -88,14 +92,14 @@ class ControlPanelController extends GObject {
 	}
 	
 	/**
-	 * This callback is called when user double clicks a row in the bot list view.
+	 * This signal handler is called when user double clicks a row in the bot list view.
 	 */
 	public function onBotListViewRowActivated() {
 		$this->emit('action_triggered', 'open', $this->getCurrentlySelectedBotName());
 	}
 	
 	/**
-	 * Event handler for events which occur when user presses mouse button
+	 * Signal handler for events which occur when user presses mouse button
 	 * down on top of bot list view.
 	 * Returns true if the event was handled by this handler, false if not.
 	 */
@@ -118,7 +122,14 @@ class ControlPanelController extends GObject {
 	}
 	
 	/**
-	 * This event handler is called when user clicks a menu item in
+	 * This signal handler is called when user clicks Exit-button.
+	 */
+	public function onExitClicked() {
+		$this->emit('exit_requested');
+	}
+	
+	/**
+	 * This signal handler is called when user clicks a menu item in
 	 * bot list's context menu.
 	 * Emits context_item_clicked signal.
 	 */

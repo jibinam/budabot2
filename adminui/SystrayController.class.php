@@ -12,7 +12,10 @@ class SystrayController extends GObject {
 	 * Define custom signals that this class can emit.
 	 */
 	public $__gsignals = array(
-		'activated' => array(GObject::SIGNAL_RUN_LAST, GObject::TYPE_NONE, array())
+		// this signal is emitted when user attempts to open the control panel
+		'open_requested' => array(GObject::SIGNAL_RUN_LAST, GObject::TYPE_NONE, array()),
+		// this signal is emitted when user attempts to exit the application
+		'exit_requested' => array(GObject::SIGNAL_RUN_LAST, GObject::TYPE_NONE, array())
 	);
 
 	/**
@@ -22,7 +25,7 @@ class SystrayController extends GObject {
 		parent::__construct();
 		$this->icon = new GtkStatusIcon();
 		$this->icon->set_from_stock(Gtk::STOCK_FILE);
-		$this->icon->connect_simple('activate', array($this, 'onActivate'));
+		$this->icon->connect_simple('activate', array($this, 'onOpenClicked'));
 		$this->icon->connect_simple('popup-menu', array($this, 'onMenu'));
 		$this->icon->set_visible(true);
 		$this->icon->set_blinking(false);
@@ -31,11 +34,11 @@ class SystrayController extends GObject {
 		$this->contextMenu = new GtkMenu();
 		$itemOpen = new GtkMenuItem('Open');
 		$itemOpen->set_visible(true);
-		$itemOpen->connect_simple('activate', array($this, 'onActivate'));
+		$itemOpen->connect_simple('activate', array($this, 'onOpenClicked'));
 		$this->contextMenu->append($itemOpen);
 		$itemExit = new GtkMenuItem('Exit');
 		$itemExit->set_visible(true);
-		$itemExit->connect_simple('activate', array('gtk', 'main_quit'));
+		$itemExit->connect_simple('activate', array($this, 'onExitClicked'));
 		$this->contextMenu->append($itemExit);
 		
 		// set default action as bold
@@ -46,10 +49,17 @@ class SystrayController extends GObject {
 	}
 	
 	/**
-	 * This callback handler is called when user double clicks the systray icon.
+	 * This callback handler is called when user attempts to open the control panel.
 	 */
-	public function onActivate() {
-		$this->emit('activated');
+	public function onOpenClicked() {
+		$this->emit('open_requested');
+	}
+	
+	/**
+	 * This callback handler is called when user attempts to exit the application.
+	 */
+	public function onExitClicked() {
+		$this->emit('exit_requested');
 	}
 	
 	/**
