@@ -27,7 +27,7 @@ class Application {
 		$this->settingModel = new SettingModel();
 		$this->botModel = new BotModel($this->settingModel);
 
-		$this->systrayController = new SystrayController();
+		$systrayController = new SystrayController();
 		$botWindowController = new BotWindowController();
 	
 		$controlPanel = new ControlPanelController($this->botModel);
@@ -35,12 +35,30 @@ class Application {
 		$controlPanel->show();
 		
 		// open control panel when user double clicks systray icon
-		$this->systrayController->connect_simple('activated', array($controlPanel, 'show'));
+		$systrayController->connect_simple('open_requested', array($controlPanel, 'show'));
 
+		// connect exit requests to quit()-method
+		$controlPanel->connect_simple('exit_requested', array($this, 'quit'));
+		$systrayController->connect_simple('exit_requested', array($this, 'quit'));
+		
 		// start GTK's event loop
 		Gtk::main();
 	}
 
+	/**
+	 * Calling this method will stop the event loop and execution returns
+	 * from execute().
+	 */
+	public function quit() {
+		$dialog = new GtkMessageDialog(null, Gtk::DIALOG_MODAL, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_OK_CANCEL, 'Exiting');
+		$dialog->set_markup("Exiting from the Bot Manager will terminate any running bots, are you sure?");
+		if ($dialog->run() == Gtk::RESPONSE_OK) {
+			// hop out of event loop
+			Gtk::main_quit();
+		}
+		$dialog->destroy();
+	}
+	
 	/**
 	 *
 	 */
