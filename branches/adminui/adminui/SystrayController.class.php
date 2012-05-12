@@ -7,6 +7,7 @@ class SystrayController extends GObject {
 
 	private $icon;
 	private $contextMenu;
+	private $closeTimerId;
 	
 	/**
 	 * Define custom signals that this class can emit.
@@ -32,6 +33,8 @@ class SystrayController extends GObject {
 
 		// build context menu
 		$this->contextMenu = new GtkMenu();
+		$this->contextMenu->connect_simple('enter-notify-event', array($this, 'stopCloseTimout'));
+		$this->contextMenu->connect_simple('leave-notify-event', array($this, 'startCloseTimout'));
 		$itemOpen = new GtkMenuItem('Open');
 		$itemOpen->set_visible(true);
 		$itemOpen->connect_simple('activate', array($this, 'onOpenClicked'));
@@ -45,7 +48,8 @@ class SystrayController extends GObject {
 		$label = $itemOpen->get_children();
 		$label = $label[0];
         $label->set_markup("<b>{$label->get_text()}</b>");
-
+		
+		$this->closeTimerId = null;
 	}
 	
 	/**
@@ -63,10 +67,38 @@ class SystrayController extends GObject {
 	}
 	
 	/**
+	 * This method starts the timeout which closes the context menu automatically.
+	 */
+	public function startCloseTimout() {
+		if ($this->closeTimerId === null) {
+			$this->closeTimerId = Gtk::timeout_add(1000, array($this, 'closeContextMenu'));
+		}
+	}
+
+	/**
+	 * This method stops the timeout which closes the context menu automatically.
+	 */
+	public function stopCloseTimout() {
+		if ($this->closeTimerId !== null) {
+			Gtk::timeout_remove($this->closeTimerId);
+			$this->closeTimerId = null;
+		}
+	}
+	
+	/**
+	 * This method closes the context menu.
+	 */
+	public function closeContextMenu() {
+		$this->contextMenu->popdown();
+		return false;
+	}
+	
+	/**
 	 * This callback handler is called when popup menu should be shown.
 	 */
 	public function onMenu() {
 		GtkStatusIcon::position_menu($this->contextMenu, $this->icon);
 		$this->contextMenu->popup(null);
+		$this->startCloseTimout();
 	}
 }

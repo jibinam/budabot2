@@ -41,7 +41,7 @@ class ControlPanelController extends GObject {
 		$this->contextItemRemove = $this->builder->get_object('contextItemRemove');
 		$this->contextItemStart = $this->builder->get_object('contextItemStart');
 		$this->contextItemRestart = $this->builder->get_object('contextItemRestart');
-		$this->contextItemStop = $this->builder->get_object('contextItemStop');
+		$this->contextItemShutdown = $this->builder->get_object('contextItemShutdown');
 		
 		$this->botListView->set_model($this->botModel);
 		
@@ -62,12 +62,12 @@ class ControlPanelController extends GObject {
 		
 		$this->botListView->connect_simple('row-activated', array($this, 'onBotListViewRowActivated'));
 		
-		$this->contextItemOpen->connect('activate', array($this, 'onContextMenuItemClicked'));
-		$this->contextItemModify->connect('activate', array($this, 'onContextMenuItemClicked'));
-		$this->contextItemRemove->connect('activate', array($this, 'onContextMenuItemClicked'));
-		$this->contextItemStart->connect('activate', array($this, 'onContextMenuItemClicked'));
-		$this->contextItemRestart->connect('activate', array($this, 'onContextMenuItemClicked'));
-		$this->contextItemStop->connect('activate', array($this, 'onContextMenuItemClicked'));
+		$this->contextItemOpen->connect('activate', array($this, 'onContextMenuItemClicked'), 'open');
+		$this->contextItemModify->connect('activate', array($this, 'onContextMenuItemClicked'), 'modify');
+		$this->contextItemRemove->connect('activate', array($this, 'onContextMenuItemClicked'), 'remove');
+		$this->contextItemStart->connect('activate', array($this, 'onContextMenuItemClicked'), 'start');
+		$this->contextItemRestart->connect('activate', array($this, 'onContextMenuItemClicked'), 'restart');
+		$this->contextItemShutdown->connect('activate', array($this, 'onContextMenuItemClicked'), 'shutdown');
 		
 		$this->builder->get_object('exitButton')->connect_simple('clicked', array($this, 'onExitClicked'));
 	}
@@ -133,26 +133,8 @@ class ControlPanelController extends GObject {
 	 * bot list's context menu.
 	 * Emits context_item_clicked signal.
 	 */
-	public function onContextMenuItemClicked($object) {
-		$action = null;
-
-		if ($object == $this->contextItemOpen) {
-			$action = 'open';
-		} else if ($object == $this->contextItemModify) {
-			$action = 'modify';
-		} else if ($object == $this->contextItemRemove) {
-			$action = 'remove';
-		} else if ($object == $this->contextItemStart) {
-			$action = 'start';
-		} else if ($object == $this->contextItemRestart) {
-			$action = 'restart';
-		} else if ($object == $this->contextItemStop) {
-			$action = 'stop';
-		}
-		// emit context_item_clicked
-		if ($action) {
-			$this->emit('action_triggered', $action, $this->getCurrentlySelectedBotName());
-		}
+	public function onContextMenuItemClicked($object, $action) {
+		$this->emit('action_triggered', $action, $this->getCurrentlySelectedBotName());
 	}
 
 	private function getCurrentlySelectedBotName() {
