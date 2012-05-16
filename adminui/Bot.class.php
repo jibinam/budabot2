@@ -43,19 +43,19 @@ class Bot {
 	}
 	
 	public function start() {
-		echo "Starting bot not yet implemented!\n";
+		$this->process->start();
 	}
 	
 	public function restart() {
-		echo "Restarting bot not yet implemented!\n";
+		$this->sendCommand(0, 'restart');
 	}
 	
 	public function shutdown() {
-		echo "Shutting down bot not yet implemented!\n";
+		$this->sendCommand(0, 'shutdown');
 	}
 	
 	public function terminate() {
-		echo "Terminating bot not yet implemented!\n";
+		$this->process->stop();
 	}
 	
 	public function sendCommand($channel, $command) {
@@ -77,8 +77,8 @@ class Bot {
 		
 		// send command and handle errors that might occur
 		try {
-			$response = $api->sendCommand($command);
-			$this->insertToModel($this->outputView->get_buffer(), $response . "\n", 'response');
+			$response = $this->api->sendCommand($command);
+			$this->insertToModel($response . "\n", 'response');
 		}
 		catch (BudapiServerException $e) {
 			$message = "Server sent error code: " . $e->getCode() . "\n";
@@ -108,10 +108,10 @@ class Bot {
 				$message = "Failed to sent the message, there was a syntax error with your command\n";
 				break;
 			}
-			$this->insertToModel($this->outputView->get_buffer(), $message, 'error');
+			$this->insertToModel($message, 'error');
 		}
 		catch (Exception $e) {
-			$this->insertToModel($this->outputView->get_buffer(), $e->getMessage() . "\n", 'error');
+			$this->insertToModel($e->getMessage() . "\n", 'error');
 		}
 	}
 	

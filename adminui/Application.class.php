@@ -102,7 +102,9 @@ class Application {
 
 	private function botWindowController($botName) {
 		if (!isset($this->botWindowControllers[$botName])) {
+			$bot = $this->botModel->getBotByName($botName);
 			$this->botWindowControllers[$botName] = new BotWindowController();
+			$this->botWindowControllers[$botName]->setConsoleModel($bot->getConsoleModel());
 		}
 		return $this->botWindowControllers[$botName];
 	}
