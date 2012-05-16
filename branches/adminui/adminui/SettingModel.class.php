@@ -114,7 +114,10 @@ class SettingModel {
 				foreach($bots as $botElement) {
 					$name = $botElement->getAttribute('name');
 					if ($name == $botName) {
-						return $botElement->getElementsByTagName($tagName)->item(0)->textContent;
+						$foundTags = $botElement->getElementsByTagName($tagName);
+						if ($foundTags->length) {
+							return $foundTags->item(0)->textContent;
+						}
 					}
 				}
 			}

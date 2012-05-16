@@ -52,7 +52,7 @@ class Budapi {
 	 * @param $port bot's ip port
 	 */
 	public function setPort($port) {
-		$this->port = $port;
+		$this->port = intval($port);
 	}
 
 	/**
@@ -144,6 +144,10 @@ class BudapiConnection {
 	public function request($host, $port, $input) {
 		$output = FALSE;
 		try {
+			if ($port < 1 || $port > 65535) {
+				throw new Exception("Host's port must be within 1 and 65535, currently it is $port");
+			}
+			
 			$socket = @fsockopen($host, $port, $code, $error, 5);
 			if ($socket === FALSE) {
 				throw new Exception($error);
