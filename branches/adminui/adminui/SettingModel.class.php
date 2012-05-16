@@ -68,6 +68,18 @@ class SettingModel {
 	public function getApiPort($botName) {
 		return $this->getValue($botName, 'apiport');
 	}
+	
+	public function getConfigurationFilePath($botName) {
+		return $this->getValue($botName, 'configurationfile');
+	}
+	
+	public function getApiPortRangeLow() {
+		return intval($this->getValue(null, 'apiportrangelow'));
+	}
+
+	public function getApiPortRangeHigh() {
+		return intval($this->getValue(null, 'apiportrangehigh'));
+	}
 
 	public function setApiUsername($botName, $name) {
 		// TODO: requires refactoring
@@ -121,8 +133,12 @@ class SettingModel {
 					}
 				}
 			}
-			return $this->dom->getElementsByTagName($tagName)->item(0)->textContent;
+			$foundTags = $this->dom->getElementsByTagName($tagName);
+			if ($foundTags->length) {
+				return $foundTags->item(0)->textContent;
+			}
 		}
+		return null;
 	}
 
 	private function setGlobalValue($tagName, $value) {

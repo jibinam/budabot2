@@ -2,6 +2,8 @@
 
 require_once 'Process.class.php';
 require_once 'budapi/Budapi.php';
+// load Budabot's ConfigFile class
+require_once dirname(__FILE__) . '/../core/ConfigFile.class.php';
 
 class Bot {
 
@@ -43,7 +45,49 @@ class Bot {
 	}
 	
 	public function start() {
+		$configPath = $this->settingModel->getConfigurationFilePath($this->name);
+		$configFile = new ConfigFile($configPath);
+		$configFile->load();
+		$port = $configFile->getVar('API Port');
+		
+		// find a free port if currently set port is not free and update
+		// the config file
+		if (!$this->isPortFree($port)) {
+			$low = $this->settingModel->getApiPortRangeLow();
+			$high = $this->settingModel->getApiPortRangeHigh();
+			for($port = $low; $port <= $high; $port++) {
+				if ($this->isPortFree($port)) {
+					$configFile->setVar('API Port', $port);
+					$configFile->save();
+					break;
+				}
+			}
+		}
+
 		$this->process->start();
+	}
+	
+	/**
+	 * Returns true if given TCP/IP port is free.
+	 */
+	private function isPortFree($port) {
+		$socket = @socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+		if ($socket === false) {
+			trigger_error('Failed to create a socket, error was: ' . socket_strerror(socket_last_error()), E_USER_WARNING);
+			return false;
+		}
+		if (@socket_bind($socket, '0.0.0.0', $port) === false) {
+			$errorCode = socket_last_error();
+			// show error only if the failure was caused something else except
+			// that some other process has the $port already in use
+			if ($errorCode != 10048) {
+				trigger_error('Failed to bind a socket, error was: ' . socket_strerror($errorCode), E_USER_WARNING);
+			}
+			socket_close($socket);
+			return false;
+		}
+		socket_close($socket);
+		return true;
 	}
 	
 	public function restart() {

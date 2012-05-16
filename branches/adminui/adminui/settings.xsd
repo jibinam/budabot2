@@ -14,7 +14,8 @@
                 <xs:element name="apiusername" type="xs:string"/>
                 <xs:element name="apipassword" type="xs:string"/>
                 <xs:element name="apihost" type="xs:string"/>
-                <xs:element name="apiport" type="porttype"/>
+                <xs:element name="apiportrangelow" type="porttype"/>
+                <xs:element name="apiportrangehigh" type="porttype"/>
                 <xs:element name="bots">
                     <xs:complexType>
                         <xs:sequence>
