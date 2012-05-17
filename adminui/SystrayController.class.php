@@ -15,6 +15,8 @@ class SystrayController extends GObject {
 	public $__gsignals = array(
 		// this signal is emitted when user attempts to open the control panel
 		'open_requested' => array(GObject::SIGNAL_RUN_LAST, GObject::TYPE_NONE, array()),
+		// this signal is emitted when user attempts to change control panel's visibility
+		'toggle_requested' => array(GObject::SIGNAL_RUN_LAST, GObject::TYPE_NONE, array()),
 		// this signal is emitted when user attempts to exit the application
 		'exit_requested' => array(GObject::SIGNAL_RUN_LAST, GObject::TYPE_NONE, array())
 	);
@@ -26,7 +28,7 @@ class SystrayController extends GObject {
 		parent::__construct();
 		$this->icon = new GtkStatusIcon();
 		$this->icon->set_from_stock(Gtk::STOCK_FILE);
-		$this->icon->connect_simple('activate', array($this, 'onOpenClicked'));
+		$this->icon->connect_simple('activate', array($this, 'onSystrayClicked'));
 		$this->icon->connect_simple('popup-menu', array($this, 'onMenu'));
 		$this->icon->set_visible(true);
 		$this->icon->set_blinking(false);
@@ -35,21 +37,28 @@ class SystrayController extends GObject {
 		$this->contextMenu = new GtkMenu();
 		$this->contextMenu->connect_simple('enter-notify-event', array($this, 'stopCloseTimout'));
 		$this->contextMenu->connect_simple('leave-notify-event', array($this, 'startCloseTimout'));
-		$itemOpen = new GtkMenuItem('Open');
-		$itemOpen->set_visible(true);
-		$itemOpen->connect_simple('activate', array($this, 'onOpenClicked'));
-		$this->contextMenu->append($itemOpen);
+		$this->itemOpen = new GtkMenuItem('Open');
+		$this->itemOpen->set_visible(true);
+		$this->itemOpen->connect_simple('activate', array($this, 'onOpenClicked'));
+		$this->contextMenu->append($this->itemOpen);
 		$itemExit = new GtkMenuItem('Exit');
 		$itemExit->set_visible(true);
 		$itemExit->connect_simple('activate', array($this, 'onExitClicked'));
 		$this->contextMenu->append($itemExit);
 		
 		// set default action as bold
-		$label = $itemOpen->get_children();
+		$label = $this->itemOpen->get_children();
 		$label = $label[0];
         $label->set_markup("<b>{$label->get_text()}</b>");
 		
 		$this->closeTimerId = null;
+	}
+	
+	/**
+	 * This callback handler is called when user clicks the systray icon.
+	 */
+	public function onSystrayClicked() {
+		$this->emit('toggle_requested');
 	}
 	
 	/**
@@ -100,5 +109,13 @@ class SystrayController extends GObject {
 		GtkStatusIcon::position_menu($this->contextMenu, $this->icon);
 		$this->contextMenu->popup(null);
 		$this->startCloseTimout();
+	}
+	
+	/**
+	 * This callback handler is called control panel is either shown or hidden.
+	 */
+	public function onControlPanelVisibilityChanged($widget, $visibility) {
+		// disable/enable context menu's open item
+		$this->itemOpen->set_sensitive(!$visibility);
 	}
 }

@@ -32,14 +32,20 @@ class Application {
 	
 		$controlPanel = new ControlPanelController($this->botModel);
 		$controlPanel->connect('action_triggered', array($this, 'onControlPanelAction'));
-		$controlPanel->show();
 		
-		// open control panel when user double clicks systray icon
+		// open control panel when user select 'open' from systray's context menu
 		$systrayController->connect_simple('open_requested', array($controlPanel, 'show'));
+		// opens/closes control panel when user clicks systray icon
+		$systrayController->connect_simple('toggle_requested', array($controlPanel, 'toggle'));
+
+		// notify systray controller of control panel's visibility
+		$controlPanel->connect('visibility_changed', array($systrayController, 'onControlPanelVisibilityChanged'));
 
 		// connect exit requests to quit()-method
 		$controlPanel->connect_simple('exit_requested', array($this, 'quit'));
 		$systrayController->connect_simple('exit_requested', array($this, 'quit'));
+
+		$controlPanel->show();
 		
 		// start GTK's event loop
 		Gtk::main();
