@@ -18,7 +18,10 @@ class ControlPanelController extends GObject {
 		// First parameter is name of action and second is name of bot.
 		'action_triggered' => array(GObject::SIGNAL_RUN_LAST, GObject::TYPE_NONE, array(GObject::TYPE_STRING, GObject::TYPE_STRING)),
 		// this signal is emitted when user attempts to exit the application
-		'exit_requested' => array(GObject::SIGNAL_RUN_LAST, GObject::TYPE_NONE, array())
+		'exit_requested' => array(GObject::SIGNAL_RUN_LAST, GObject::TYPE_NONE, array()),
+		// this signal is emitted when control panel is either shown or hidden
+		// first parameter is contains state of visibility, true = shown, false = hidden
+		'visibility_changed' => array(GObject::SIGNAL_RUN_LAST, GObject::TYPE_NONE, array(GObject::TYPE_BOOLEAN))
 	);
 	
 	/**
@@ -58,6 +61,9 @@ class ControlPanelController extends GObject {
 
 
 		$this->view->connect('delete-event', array($this, 'onDeleteEvent'));
+		$this->view->connect('show', array($this, 'onViewShown'));
+		$this->view->connect('hide', array($this, 'onViewHidden'));
+		
 		$this->botListView->connect('button-press-event', array($this, 'onBotListViewMousePressed'));
 		
 		$this->botListView->connect_simple('row-activated', array($this, 'onBotListViewRowActivated'));
@@ -73,11 +79,30 @@ class ControlPanelController extends GObject {
 	}
 
 	/**
-	 * This method shows and the dialog to user.
+	 * This method shows the dialog to user.
 	 */
 	public function show() {
 		$this->view->move($this->position[0], $this->position[1]);
 		$this->view->show_all();
+	}
+	
+	/**
+	 * This method hides the dialog from user.
+	 */
+	public function hide() {
+		$this->position = $this->view->get_position();
+		$this->view->hide();
+	}
+
+	/**
+	 * This method either shows or hides the dialog.
+	 */
+	public function toggle() {
+		if ($this->view->is_visible()) {
+			$this->hide();
+		} else {
+			$this->show();
+		}
 	}
 	
 	/**
@@ -86,8 +111,7 @@ class ControlPanelController extends GObject {
 	 * dialog next time.
 	 */
 	public function onDeleteEvent() {
-		$this->position = $this->view->get_position();
-		$this->view->hide();
+		$this->hide();
 		return true;
 	}
 	
@@ -137,6 +161,20 @@ class ControlPanelController extends GObject {
 		$this->emit('action_triggered', $action, $this->getCurrentlySelectedBotName());
 	}
 
+	/**
+	 * This signal handler is called when the control panel window is shown.
+	 */
+	public function onViewShown() {
+		$this->emit('visibility_changed', true);
+	}
+
+	/**
+	 * This signal handler is called when the control panel window is hidden.
+	 */
+	public function onViewHidden() {
+		$this->emit('visibility_changed', false);
+	}
+	
 	private function getCurrentlySelectedBotName() {
 		list($model, $iter) = $this->botListView->get_selection()->get_selected();
 		$name = $model->get_value($iter, 1);
