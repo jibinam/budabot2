@@ -69,7 +69,6 @@ class Application {
 		switch ($action) {
 		case 'open':
 			$controller = $this->botWindowController($botName);
-			$controller->connect('command_given', array($bot, 'sendCommand'));
 			$controller->show();
 			break;
 			
@@ -105,6 +104,7 @@ class Application {
 			$bot = $this->botModel->getBotByName($botName);
 			$this->botWindowControllers[$botName] = new BotWindowController();
 			$this->botWindowControllers[$botName]->setConsoleModel($bot->getConsoleModel());
+			$this->botWindowControllers[$botName]->connect('command_given', array($bot, 'sendCommand'));
 		}
 		return $this->botWindowControllers[$botName];
 	}

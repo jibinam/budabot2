@@ -13,6 +13,7 @@ class Process extends GObject {
 	private $errorFile;
 	private $timerIds;
 	private $started;
+	private $parameters;
 	
 	/**
 	 * Define custom signals that this class can emit.
@@ -31,7 +32,18 @@ class Process extends GObject {
 	 */
 	public function __construct() {
 		parent::__construct();
+		$this->parameters = '';
 		$this->reset();
+	}
+	
+	/**
+	 * Sets a string of parameters which are passed to php-executable when
+	 * the process is started.
+	 *
+	 * @param string $parameters parameter string
+	 */
+	public function setParameters($parameters) {
+		$this->parameters = $parameters;
 	}
 	
 	/**
@@ -60,15 +72,13 @@ class Process extends GObject {
 			$php_exec = "php"; 
 		}
 		
-		$php_file = "main.php -- ./conf/config.php"; //"adminui/loop_test.php";
-		
 		// create temp files to hard disk for STDOUT and STDERR
 		$this->outFile   = $this->createTempFile();
 		$this->errorFile = $this->createTempFile();
 		
 		// start the process
 		$this->processResource = proc_open(
-			"$php_exec -f $php_file",
+			"$php_exec -f {$this->parameters}",
 			array(
 				1 => $this->outFile->handle,  // stdout
 				2 => $this->errorFile->handle // stderr
@@ -98,6 +108,13 @@ class Process extends GObject {
 			// notify listeners
 			$this->emit('stopped');
 		}
+	}
+	
+	/**
+	 * Returns true if the process is running.
+	 */
+	public function isRunning() {
+		return $this->started;
 	}
 	
 	/**

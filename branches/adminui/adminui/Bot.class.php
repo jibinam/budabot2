@@ -10,6 +10,8 @@ class Bot {
 	private $name;
 	private $settingModel;
 	private $consoleModel;
+	private $configFile;
+	private $noRestart;
 
 	public function __construct($name, $settingModel) {
 		$this->name = $name;
@@ -17,6 +19,8 @@ class Bot {
 		$this->api = new Budapi();
 		$this->process = new Process();
 		$this->consoleModel = new GtkTextBuffer();
+		$this->configFile = null;
+		$this->noRestart = false;
 
 		$this->process->connect('stdout_received', array($this, 'onBotStdoutReceived'));
 		$this->process->connect('stderr_received', array($this, 'onBotStderrReceived'));
@@ -45,10 +49,16 @@ class Bot {
 	}
 	
 	public function start() {
+	
+		// do nothing if bot process is still running.
+		if ($this->process->isRunning()) {
+			return;
+		}
+
 		$configPath = $this->settingModel->getConfigurationFilePath($this->name);
-		$configFile = new ConfigFile($configPath);
-		$configFile->load();
-		$port = $configFile->getVar('API Port');
+		$this->configFile = new ConfigFile($configPath);
+		$this->configFile->load();
+		$port = $this->configFile->getVar('API Port');
 		
 		// find a free port if currently set port is not free and update
 		// the config file
@@ -57,13 +67,14 @@ class Bot {
 			$high = $this->settingModel->getApiPortRangeHigh();
 			for($port = $low; $port <= $high; $port++) {
 				if ($this->isPortFree($port)) {
-					$configFile->setVar('API Port', $port);
-					$configFile->save();
+					$this->configFile->setVar('API Port', $port);
+					$this->configFile->save();
 					break;
 				}
 			}
 		}
-
+		$this->noRestart = false;
+		$this->process->setParameters("main.php -- $configPath"/*"adminui/loop_test.php"*/);
 		$this->process->start();
 	}
 	
@@ -91,18 +102,29 @@ class Bot {
 	}
 	
 	public function restart() {
-		$this->sendCommand(0, 'restart');
+		$this->sendCommand(null, 0, 'restart');
 	}
 	
 	public function shutdown() {
-		$this->sendCommand(0, 'shutdown');
+		$this->noRestart = true;
+		$this->sendCommand(null, 0, 'shutdown');
 	}
 	
 	public function terminate() {
+		$this->noRestart = true;
 		$this->process->stop();
 	}
 	
-	public function sendCommand($channel, $command) {
+	public function sendCommand($object, $channel, $command) {
+
+		if (!$this->configFile) {
+			return;
+		}
+		
+		// do nothing if the bot process is not running.
+		if (!$this->process->isRunning()) {
+			return;
+		}
 
 		switch ($channel) {
 		case 1: // org channel
@@ -114,10 +136,10 @@ class Bot {
 		}
 		
 		// pull API settings from setting model
-		$this->api->setUsername($this->settingModel->getApiUsername($this->name));
-		$this->api->setPassword($this->settingModel->getApiPassword($this->name));
-		$this->api->setHost($this->settingModel->getApiHost($this->name));
-		$this->api->setPort($this->settingModel->getApiPort($this->name));
+		$this->api->setUsername($this->configFile->getVar('SuperAdmin'));
+		$this->api->setPassword('');
+		$this->api->setHost('127.0.0.1');
+		$this->api->setPort($this->configFile->getVar('API Port'));
 		
 		// send command and handle errors that might occur
 		try {
@@ -164,6 +186,9 @@ class Bot {
 	 */
 	public function onBotStdoutReceived($object, $data) {
 		$this->insertToModel($data);
+		if (preg_match("/^The bot is shutting down.$/im", $data)) {
+        	$this->noRestart = true;
+		}
 	}
 
 	/**
@@ -177,7 +202,11 @@ class Bot {
 	 * This callback function is called when Budabot is shutdown.
 	 */
 	public function onBotDied() {
-		$this->insertToModel("Oops! The bot just went dead!\n", 'error');
+		// restart the bot if needed
+		if ($this->noRestart == false) {
+			$this->insertToModel("Restarting the bot\n");
+			$this->start();
+		}
 	}
 	
 	/**
