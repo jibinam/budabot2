@@ -53,6 +53,10 @@ class Application {
 		$dialog = new GtkMessageDialog(null, Gtk::DIALOG_MODAL, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_OK_CANCEL, 'Exiting');
 		$dialog->set_markup("Exiting from the Bot Manager will terminate any running bots, are you sure?");
 		if ($dialog->run() == Gtk::RESPONSE_OK) {
+			// terminate all running bots
+			foreach ($this->botModel->getAllBots() as $bot) {
+				$bot->terminate();
+			}
 			// hop out of event loop
 			Gtk::main_quit();
 		}

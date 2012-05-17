@@ -38,5 +38,17 @@ class BotModel extends GtkListStore {
 		}
 		return null;
 	}
+	
+	/**
+	 * Returns array of all bots in the model.
+	 */
+	public function getAllBots() {
+		$bots = array();
+		// loop through rows and return a bot with given name if found
+		for ($iterator = $this->get_iter_first(); $iterator != null; $iterator = $this->iter_next($iterator)) {
+			$bots []= $this->get_value($iterator, 0);
+		}
+		return $bots;
+	}
 }
 
