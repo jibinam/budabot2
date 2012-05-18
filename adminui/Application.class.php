@@ -94,6 +94,10 @@ class Application {
 			$bot->shutdown();
 			break;
 
+		case 'terminate':
+			$bot->terminate();
+			break;
+
 		default:
 			$this->showErrorMessage("This action is not implemented!");
 		}
