@@ -1,8 +1,3 @@
-title Budabot Admin UI
-:: path where to look for theme engines's directory
-set GTK_PATH=C:\Sources\adminui\win32
-:: path to theme's gtkrc-file
-set GTK2_RC_FILES=C:\Sources\adminui\adminui\themes\Cillop-Midnite\gtk-2.0\gtkrc
 :: start the application
 .\win32\php -c php-win.ini -f adminui/adminui.php -- %*
 
