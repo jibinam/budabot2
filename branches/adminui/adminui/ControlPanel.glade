@@ -71,6 +71,22 @@
         <property name="use_underline">True</property>
       </object>
     </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="separator1">
+        <property name="use_action_appearance">False</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="contextItemTerminate">
+        <property name="use_action_appearance">False</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Terminate</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
   </object>
   <object class="GtkWindow" id="controlPanelWindow">
     <property name="can_focus">False</property>

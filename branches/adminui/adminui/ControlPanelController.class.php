@@ -9,6 +9,15 @@ class ControlPanelController extends GObject {
 	private $view;
 	private $position;
 	private $botModel;
+	private $botListView;
+	private $botListContextMenu;
+	private $contextItemOpen;
+	private $contextItemModify;
+	private $contextItemRemove;
+	private $contextItemStart;
+	private $contextItemRestart;
+	private $contextItemShutdown;
+	private $contextItemTerminate;
 	
 	/**
 	 * Define custom signals that this class can emit.
@@ -45,6 +54,7 @@ class ControlPanelController extends GObject {
 		$this->contextItemStart = $this->builder->get_object('contextItemStart');
 		$this->contextItemRestart = $this->builder->get_object('contextItemRestart');
 		$this->contextItemShutdown = $this->builder->get_object('contextItemShutdown');
+		$this->contextItemTerminate = $this->builder->get_object('contextItemTerminate');
 		
 		$this->botListView->set_model($this->botModel);
 		
@@ -74,6 +84,7 @@ class ControlPanelController extends GObject {
 		$this->contextItemStart->connect('activate', array($this, 'onContextMenuItemClicked'), 'start');
 		$this->contextItemRestart->connect('activate', array($this, 'onContextMenuItemClicked'), 'restart');
 		$this->contextItemShutdown->connect('activate', array($this, 'onContextMenuItemClicked'), 'shutdown');
+		$this->contextItemTerminate->connect('activate', array($this, 'onContextMenuItemClicked'), 'terminate');
 		
 		$this->builder->get_object('exitButton')->connect_simple('clicked', array($this, 'onExitClicked'));
 	}
