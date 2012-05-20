@@ -16,61 +16,40 @@ class SystrayController(gobject.GObject):
 		'exit_requested': (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, ()),
 	}
 
-	def __init__(self, botModel):
+	def __init__(self):
 		"""Constructor method."""
-		self.super(SystrayController, self).__init__()
+		self.__gobject_init__()
 
-	def show(self):
-		"""This method shows the dialog to user."""
+	def onSystrayClicked(self, sender):
+		"""This callback handler is called when user clicks the systray icon."""
 		pass
 
-	def hide(self):
-		"""This method hides the dialog from user."""
+	def onOpenClicked(self, sender):
+		"""This callback handler is called when user attempts to open the control panel."""
 		pass
 
-	def toggle(self):
-		"""This method either shows or hides the dialog."""
+	def onExitClicked(self, sender):
+		"""This callback handler is called when user attempts to exit the application."""
 		pass
 
-	def onDeleteEvent(self):
-		"""This method catches delete event and instead of simply deleting the
-		dialog, it is hidden instead. Doing this it is possible to re-show the
-		dialog next time.
-		"""
+	def startCloseTimout(self):
+		"""This method starts the timeout which closes the context menu automatically."""
 		pass
 
-	def onBotListViewRowActivated(self):
-		"""This signal handler is called when user double clicks a row in the bot list view."""
+	def stopCloseTimout(self):
+		"""This method stops the timeout which closes the context menu automatically."""
 		pass
 
-	def onBotListViewMousePressed(self):
-		"""Signal handler for events which occur when user presses mouse button
-		down on top of bot list view.
-		Returns true if the event was handled by this handler, false if not.
-		"""
+	def closeContextMenu(self):
+		"""This method closes the context menu."""
 		pass
 
-	def onExitClicked(self):
-		"""This signal handler is called when user clicks Exit-button."""
+	def onMenu(self):
+		"""This callback handler is called when popup menu should be shown."""
 		pass
 
-	def onContextMenuItemClicked(self):
-		"""This signal handler is called when user clicks a menu item in
-		bot list's context menu.
-		Emits context_item_clicked signal.
-		"""
-		pass
-
-	def onViewShown(self):
-		"""This signal handler is called when the control panel window is shown."""
-		pass
-
-	def onViewHidden(self):
-		"""This signal handler is called when the control panel window is hidden."""
-		pass
-
-	def getCurrentlySelectedBotName(self):
-		""""""
+	def onControlPanelVisibilityChanged(self, sender, visibility):
+		"""This callback handler is called control panel is either shown or hidden."""
 		pass
 
 # register class so that custom signals will work

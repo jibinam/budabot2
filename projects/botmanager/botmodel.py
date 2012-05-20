@@ -20,4 +20,4 @@ class BotModel(ListStore):
 	
 	def getAllBots(self):
 		"""Returns list of all bots in the model."""
-		pass
+		return ()

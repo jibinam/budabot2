@@ -12,9 +12,9 @@ class BotWindowController(gobject.GObject):
 		'command_given': (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, (gobject.TYPE_LONG, gobject.TYPE_STRING)),
 	}
 	
-	def __init__(self, settingModel):
+	def __init__(self):
 		"""Constructor method."""
-		self.super(BotWindowController, self).__init__()
+		self.__gobject_init__()
 	
 	def setConsoleModel(self):
 		""""""

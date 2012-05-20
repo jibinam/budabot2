@@ -20,7 +20,7 @@ class ControlPanelController(gobject.GObject):
 	
 	def __init__(self, botModel):
 		"""Constructor method."""
-		self.super(ControlPanelController, self).__init__()
+		self.__gobject_init__()
 	
 	def show(self):
 		"""This method shows the dialog to user."""
