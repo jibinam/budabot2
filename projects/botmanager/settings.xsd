@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="porttype">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="65535"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="settings">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="apiusername" type="xs:string"/>
+                <xs:element name="apipassword" type="xs:string"/>
+                <xs:element name="apihost" type="xs:string"/>
+                <xs:element name="apiportrangelow" type="porttype"/>
+                <xs:element name="apiportrangehigh" type="porttype"/>
+                <xs:element name="bots">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="bot" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="configurationfile" type="xs:string"/>
+                                        <xs:element name="apiusername" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="apipassword" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="apihost" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="apiport" type="porttype" minOccurs="0"/>
+                                    </xs:all>
+                                    <xs:attribute name="name" type="xs:string"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
