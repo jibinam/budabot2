@@ -4,6 +4,13 @@
 import gobject
 import gtk
 
+# check which systray functionality we should use
+haveAppIndicator = True
+try:
+	import appindicator
+except:
+	haveAppIndicator = False
+
 class SystrayController(gobject.GObject):
 	""""""
 
@@ -20,17 +27,24 @@ class SystrayController(gobject.GObject):
 	def __init__(self):
 		"""Constructor method."""
 		self.__gobject_init__()
-		self.icon = gtk.StatusIcon()
-		self.icon.set_from_stock(gtk.STOCK_FILE)
-		self.icon.connect('activate', self.onSystrayClicked)
-		self.icon.connect('popup-menu', self.onMenu)
-		self.icon.set_visible(True)
-		self.icon.set_blinking(False)
+
+		self.contextMenu = gtk.Menu()
+
+		if haveAppIndicator:
+			self.icon = appindicator.Indicator('botmanager-indicator', 'gtk-execute', appindicator.CATEGORY_APPLICATION_STATUS)
+			self.icon.set_status(appindicator.STATUS_ACTIVE)
+			self.icon.set_menu(self.contextMenu)
+		else:
+			self.icon = gtk.StatusIcon()
+			self.icon.set_from_stock(gtk.STOCK_FILE)
+			self.icon.connect('activate', self.onSystrayClicked)
+			self.icon.connect('popup-menu', self.onMenu)
+			self.icon.set_visible(True)
+			self.icon.set_blinking(False)
+			self.contextMenu.connect('enter-notify-event', self.onMouseEnterContextMenu)
+			self.contextMenu.connect('leave-notify-event', self.onMouseLeaveContextMenu)
 		
 		# build context menu
-		self.contextMenu = gtk.Menu()
-		self.contextMenu.connect('enter-notify-event', self.onMouseEnterContextMenu)
-		self.contextMenu.connect('leave-notify-event', self.onMouseLeaveContextMenu)
 		self.itemOpen = gtk.MenuItem('Open')
 		self.itemOpen.set_visible(True)
 		self.itemOpen.connect('activate', self.onOpenClicked)
