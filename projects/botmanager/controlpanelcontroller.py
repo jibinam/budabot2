@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import gobject
+import gtk
 
 class ControlPanelController(gobject.GObject):
 	""""""
@@ -21,59 +22,127 @@ class ControlPanelController(gobject.GObject):
 	def __init__(self, botModel):
 		"""Constructor method."""
 		self.__gobject_init__()
-	
+		self.botModel = botModel
+		self.position = (200, 200)
+		# load controlpanel.glade file
+		self.builder = gtk.Builder()
+		self.builder.add_from_file('controlpanel.glade')
+		
+		self.view = self.builder.get_object('controlPanelWindow')
+		self.botListView = self.builder.get_object('botListView')
+		self.botListContextMenu = self.builder.get_object('botListContextMenu')
+		self.contextItemOpen = self.builder.get_object('contextItemOpen')
+		self.contextItemModify = self.builder.get_object('contextItemModify')
+		self.contextItemRemove = self.builder.get_object('contextItemRemove')
+		self.contextItemStart = self.builder.get_object('contextItemStart')
+		self.contextItemRestart = self.builder.get_object('contextItemRestart')
+		self.contextItemShutdown = self.builder.get_object('contextItemShutdown')
+		self.contextItemTerminate = self.builder.get_object('contextItemTerminate')
+		
+		self.botListView.set_model(self.botModel)
+		
+		# add cell renderer
+		renderer = gtk.CellRendererText()
+		renderer.set_property('height', 50)
+		column = gtk.TreeViewColumn('Bot', renderer, text = 1)
+		self.botListView.append_column(column)
+		
+		# set default action as bold
+		# TODO: to helper function
+		label = self.contextItemOpen.get_children()
+		label = label[0]
+		label.set_markup('<b>' + label.get_text() + '</b>')
+
+		self.view.connect('delete-event', self.onDeleteEvent)
+		self.view.connect('show', self.onViewShown)
+		self.view.connect('hide', self.onViewHidden)
+		
+		self.botListView.connect('button-press-event', self.onBotListViewMousePressed)
+		
+		self.botListView.connect('row-activated', self.onBotListViewRowActivated)
+		
+		self.contextItemOpen.connect('activate', self.onContextMenuItemClicked, 'open')
+		self.contextItemModify.connect('activate', self.onContextMenuItemClicked, 'modify')
+		self.contextItemRemove.connect('activate', self.onContextMenuItemClicked, 'remove')
+		self.contextItemStart.connect('activate', self.onContextMenuItemClicked, 'start')
+		self.contextItemRestart.connect('activate', self.onContextMenuItemClicked, 'restart')
+		self.contextItemShutdown.connect('activate', self.onContextMenuItemClicked, 'shutdown')
+		self.contextItemTerminate.connect('activate', self.onContextMenuItemClicked, 'terminate')
+		
+		self.builder.get_object('exitButton').connect('clicked', self.onExitClicked)
+
 	def show(self):
 		"""This method shows the dialog to user."""
-		pass
-		
+		self.view.move(self.position[0], self.position[1])
+		self.view.show_all()
+
 	def hide(self):
 		"""This method hides the dialog from user."""
-		pass
-	
+		self.position = self.view.get_position()
+		self.view.hide()
+
 	def toggle(self):
 		"""This method either shows or hides the dialog."""
-		pass
-		
-	def onDeleteEvent(self):
+		if self.view.is_visible():
+			self.hide()
+		else:
+			self.show()
+
+	def onDeleteEvent(self, sender, event):
 		"""This method catches delete event and instead of simply deleting the
 		dialog, it is hidden instead. Doing this it is possible to re-show the
 		dialog next time.
 		"""
-		pass
+		self.hide()
+		return True
 
-	def onBotListViewRowActivated(self):
+	def onBotListViewRowActivated(self, sender):
 		"""This signal handler is called when user double clicks a row in the bot list view."""
-		pass
+		self.emit('action_triggered', 'open', self.getCurrentlySelectedBotName())
 
-	def onBotListViewMousePressed(self):
+	def onBotListViewMousePressed(self, sender, event):
 		"""Signal handler for events which occur when user presses mouse button
 		down on top of bot list view.
 		Returns true if the event was handled by this handler, false if not.
 		"""
-		pass
+		if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+			# select the the item which currently is under mouse cursor
+			selection = self.botListView.get_selection()
+			selection.unselect_all()
+			pathArray = self.botListView.get_path_at_pos(event.x, event.y)
+			if pathArray:
+				path = pathArray[0]
+				selection.select_path(path)
+			# popup the context menu
+			self.botListContextMenu.popup(None)
+			return True
+		return False
 
-	def onExitClicked(self):
+	def onExitClicked(self, sender):
 		"""This signal handler is called when user clicks Exit-button."""
-		pass
+		self.emit('exit_requested')
 
-	def onContextMenuItemClicked(self):
+	def onContextMenuItemClicked(self, sender):
 		"""This signal handler is called when user clicks a menu item in
 		bot list's context menu.
 		Emits context_item_clicked signal.
 		"""
-		pass
+		self.emit('action_triggered', action, self.getCurrentlySelectedBotName())
 
-	def onViewShown(self):
+	def onViewShown(self, sender):
 		"""This signal handler is called when the control panel window is shown."""
-		pass
+		self.emit('visibility_changed', True)
 
-	def onViewHidden(self):
+	def onViewHidden(self, sender):
 		"""This signal handler is called when the control panel window is hidden."""
-		pass
+		self.emit('visibility_changed', False)
 
 	def getCurrentlySelectedBotName(self):
 		""""""
-		pass
+		selected = self.botListView.get_selection().get_selected()
+		name = model.get_value(selected[1], 1)
+		return name
+
 
 # register class so that custom signals will work
 gobject.type_register(ControlPanelController)
