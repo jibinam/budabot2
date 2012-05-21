@@ -24,16 +24,16 @@ class Application:
 		controlPanelController.connect('action_triggered', self.onControlPanelAction)
 
 		# open control panel when user select 'open' from systray's context menu
-		systrayController.connect_object('open_requested', controlPanelController.show, controlPanelController)
+		systrayController.connect_object('open_requested', ControlPanelController.show, controlPanelController)
 		# opens/closes control panel when user clicks systray icon
-		systrayController.connect_object('toggle_requested', controlPanelController.toggle, controlPanelController)
+		systrayController.connect_object('toggle_requested', ControlPanelController.toggle, controlPanelController)
 
 		# notify systray controller of control panel's visibility
 		controlPanelController.connect('visibility_changed', systrayController.onControlPanelVisibilityChanged)
 
 		# connect exit requests to quit()-method
-		controlPanelController.connect_object('exit_requested', self.quit, self)
-		systrayController.connect_object('exit_requested', self.quit, self)
+		controlPanelController.connect_object('exit_requested', Application.quit, self)
+		systrayController.connect_object('exit_requested', Application.quit, self)
 
 		controlPanelController.show()
 
