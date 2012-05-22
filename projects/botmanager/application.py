@@ -15,6 +15,12 @@ class Application:
 
 	def execute(self):
 		""""""
+
+		# load Cillop-Midnite theme
+		gtk.rc_add_default_file("themes/Cillop-Midnite/gtk-2.0/gtkrc")
+		settings = gtk.settings_get_default()
+		settings.set_string_property("gtk-theme-name", "Cillop-Midnite", "")
+
 		settingModel = SettingModel()
 		self.botModel = BotModel(settingModel)
 		systrayController = SystrayController()
