@@ -32,7 +32,7 @@ class SettingModel:
 
 	def getBotNames(self):
 		""""""
-		pass
+		return ()
 
 	def getSettingsFilePath(self):
 		"""Returns path to settings file where this class's data is saved."""
