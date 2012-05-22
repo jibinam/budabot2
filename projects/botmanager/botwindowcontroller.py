@@ -16,7 +16,7 @@ class BotWindowController(gobject.GObject):
 		"""Constructor method."""
 		self.__gobject_init__()
 	
-	def setConsoleModel(self):
+	def setConsoleModel(self, model):
 		""""""
 		pass
 		

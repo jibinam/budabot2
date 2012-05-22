@@ -96,7 +96,7 @@ class ControlPanelController(gobject.GObject):
 		self.hide()
 		return True
 
-	def onBotListViewRowActivated(self, sender):
+	def onBotListViewRowActivated(self, sender, path, column):
 		"""This signal handler is called when user double clicks a row in the bot list view."""
 		self.emit('action_triggered', 'open', self.getCurrentlySelectedBotName())
 
@@ -109,12 +109,12 @@ class ControlPanelController(gobject.GObject):
 			# select the the item which currently is under mouse cursor
 			selection = self.botListView.get_selection()
 			selection.unselect_all()
-			pathArray = self.botListView.get_path_at_pos(event.x, event.y)
+			pathArray = self.botListView.get_path_at_pos(int(event.x), int(event.y))
 			if pathArray:
 				path = pathArray[0]
 				selection.select_path(path)
 			# popup the context menu
-			self.botListContextMenu.popup(None)
+			self.botListContextMenu.popup(None, None, None, event.button, event.get_time())
 			return True
 		return False
 
@@ -122,7 +122,7 @@ class ControlPanelController(gobject.GObject):
 		"""This signal handler is called when user clicks Exit-button."""
 		self.emit('exit_requested')
 
-	def onContextMenuItemClicked(self, sender):
+	def onContextMenuItemClicked(self, sender, action):
 		"""This signal handler is called when user clicks a menu item in
 		bot list's context menu.
 		Emits context_item_clicked signal.
@@ -140,7 +140,7 @@ class ControlPanelController(gobject.GObject):
 	def getCurrentlySelectedBotName(self):
 		""""""
 		selected = self.botListView.get_selection().get_selected()
-		name = model.get_value(selected[1], 1)
+		name = self.botModel.get_value(selected[1], 1)
 		return name
 
 

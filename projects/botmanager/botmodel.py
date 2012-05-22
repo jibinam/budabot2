@@ -1,24 +1,24 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from gtk import ListStore
 import gobject
+from gtk import ListStore
+from bot import Bot
 
 class BotModel(ListStore):
 	""""""
 	
 	def __init__(self, settingModel):
 		"""Constructor method."""
-		super(BotModel, self).__init__(BotModel, gobject.TYPE_STRING)
+		super(BotModel, self).__init__(gobject.TYPE_PYOBJECT, gobject.TYPE_STRING)
 		self.settingModel = settingModel
-		self.loadFromSettings()
 
-	def loadFromSettings(self):
+	def load(self):
 		"""Loads configured bots from settings"""
 		names = self.settingModel.getBotNames()
 		for name in names:
 			bot = self.getBotByName(name)
-			if bot != None:
+			if bot == None:
 				# create new bot object and add it to model
 				bot = Bot(name, self.settingModel)
 				self.append((bot, bot.getName()))
@@ -34,7 +34,7 @@ class BotModel(ListStore):
 
 	def getAllBots(self):
 		"""Returns list of all bots in the model."""
-		bots = ()
+		bots = []
 		# collect and return all bots
 		for row in self:
 			bots.append(row[0])

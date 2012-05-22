@@ -41,6 +41,12 @@ class Application:
 		controlPanelController.connect_object('exit_requested', Application.quit, self)
 		systrayController.connect_object('exit_requested', Application.quit, self)
 
+		# show errors to user
+		settingModel.connect('error', self.onError)
+
+		settingModel.load()
+		self.botModel.load()
+
 		controlPanelController.show()
 
 		gtk.main()
@@ -59,7 +65,7 @@ class Application:
 			gtk.main_quit()
 		dialog.destroy()
 
-	def onControlPanelAction(self, action, botName):
+	def onControlPanelAction(self, sender, action, botName):
 		"""This signal handler is called when user actives some action
 		in control panel.
 		"""
@@ -77,6 +83,10 @@ class Application:
 			bot.terminate()
 		else:
 			self.showErrorMessage("This action is not implemented!")
+
+	def onError(self, sender, message):
+		"""This signal handler is called when an error occurs within the application"""
+		self.showErrorMessage(message)
 
 	def showErrorMessage(self, message):
 		"""Shows error dialog to user."""

@@ -6,11 +6,11 @@ class Bot:
 	
 	def __init__(self, name, settingModel):
 		"""Constructor method."""
-		pass
+		self.name = name
 	
 	def getName(self):
 		"""Returns name of the bot."""
-		pass
+		return self.name
 		
 	def getConsoleModel(self):
 		"""Returns console model"""
