@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+﻿#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import gobject
@@ -18,8 +18,12 @@ class Process(gobject.GObject):
 	
 	def __init__(self):
 		"""Constructor method."""
-		self.super(Process, self).__init__()
-	
+		self.__gobject_init__()
+
+	def setWorkingDirectoryPath(self, path):
+		"""Sets path to current working directory."""
+		pass
+
 	def setParameters(self, parameters):
 		"""Sets a string of parameters which are passed to php-executable when
 		the process is started.

@@ -81,7 +81,7 @@ class SettingModel(gobject.GObject):
 	def getValue(self, botName, name):
 		""""""
 		if self.config:
-			return self.config[botName][name]
+			return self.config['bots'][botName][name]
 		return None
 
 # register class so that custom signals will work
