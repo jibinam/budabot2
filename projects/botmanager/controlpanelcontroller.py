@@ -83,7 +83,7 @@ class ControlPanelController(gobject.GObject):
 
 	def toggle(self):
 		"""This method either shows or hides the dialog."""
-		if self.view.is_visible():
+		if self.view.get_property('visible'):
 			self.hide()
 		else:
 			self.show()

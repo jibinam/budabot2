@@ -7,6 +7,7 @@ from botmodel import BotModel
 from systraycontroller import SystrayController
 from botwindowcontroller import BotWindowController
 from controlpanelcontroller import ControlPanelController
+from bot import Bot
 
 class Application:
 	"""The main application class"""
@@ -103,5 +104,5 @@ class Application:
 			bot = self.botModel.getBotByName(botName)
 			self.botWindowControllers[botName] = BotWindowController();
 			self.botWindowControllers[botName].setConsoleModel(bot.getConsoleModel())
-			self.botWindowControllers[botName].connect('command_given', bot.sendCommand)
+			self.botWindowControllers[botName].connect_object('command_given', Bot.sendCommand, bot)
 		return self.botWindowControllers[botName]
