@@ -17,6 +17,9 @@ class Application:
 	def execute(self):
 		""""""
 
+		# intialize thread support
+		gtk.gdk.threads_init()
+
 		# load Cillop-Midnite theme
 		gtk.rc_add_default_file("themes/Cillop-Midnite/gtk-2.0/gtkrc")
 		settings = gtk.settings_get_default()

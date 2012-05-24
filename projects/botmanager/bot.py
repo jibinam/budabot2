@@ -7,6 +7,7 @@ from botconfigfile import BotPhpConfigFile
 import pango
 import socket
 import gtk
+import re
 
 class Bot:
 	""""""
@@ -76,7 +77,7 @@ class Bot:
 					break
 
 		self.noRestart = False
-		self.process.setParameters("main.php -- $configPath")
+		self.process.setConfigFilePath(configPath)
 		self.process.setWorkingDirectoryPath(self.settingModel.getValue(self.name, 'installdir'))
 		self.process.start()
 
@@ -156,7 +157,7 @@ class Bot:
 	def onBotStdoutReceived(self, sender, data):
 		"""This callback function is called when Budabot sends standard output."""
 		self.insertToModel(data)
-		if (preg_match("/^The bot is shutting down.$/im", data)):
+		if re.search("^The bot is shutting down.$", data, re.IGNORECASE):
 			self.noRestart = True
 
 	def onBotStderrReceived(self, sender, data):
