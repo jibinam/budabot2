@@ -7,6 +7,8 @@ import subprocess
 import platform
 import threading
 import Queue
+import os
+import signal
 
 class Process(gobject.GObject):
 	"""The Process class executes new Budabot processes."""
@@ -61,8 +63,15 @@ class Process(gobject.GObject):
 		arguments.append('main.php')
 		arguments.append('--')
 		arguments.append(self.configFilePath)
+
 		# start the process
-		self.process = subprocess.Popen(args = arguments, stdout = subprocess.PIPE, stderr = subprocess.PIPE, cwd = self.workingDirectoryPath)
+		flags = 0
+		useShell = False
+		if platform.system() == 'Windows':
+			flags = subprocess.CREATE_NEW_PROCESS_GROUP # allows use of CTRL_BREAK_EVENT
+			useShell = True # prevents command prompt from opening
+		self.process = subprocess.Popen(args = arguments, stdout = subprocess.PIPE, stderr = subprocess.PIPE, cwd = self.workingDirectoryPath, creationflags = flags, shell = useShell)
+
 		# start stdout and stderr polling threads
 		self.outQueue  = Queue.Queue()
 		self.outThread = threading.Thread(target = self.readStdout)
@@ -141,7 +150,11 @@ class Process(gobject.GObject):
 			gtk.timeout_remove(self.timerId)
 		# terminate the process if still running
 		if self.isRunning():
-			self.process.terminate()
+			if platform.system() == 'Windows':
+				# required to terminate shell and all its child processes
+				os.kill(self.process.pid, signal.CTRL_BREAK_EVENT)
+			else:
+				self.process.terminate()
 		# reset values
 		self.timerId = None
 		self.process = None
