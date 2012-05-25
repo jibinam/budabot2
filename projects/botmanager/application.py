@@ -54,6 +54,8 @@ class Application:
 		controlPanelController.show()
 
 		gtk.main()
+		
+		systrayController.hideIcon()
 
 	def quit(self):
 		"""Calling this method will stop the event loop and execution returns
