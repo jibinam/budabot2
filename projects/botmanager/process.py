@@ -10,6 +10,10 @@ import Queue
 import os
 import signal
 
+if platform.system() == 'Windows':
+	import win32com.client
+	import win32api
+
 class Process(gobject.GObject):
 	"""The Process class executes new Budabot processes."""
 	
@@ -65,12 +69,10 @@ class Process(gobject.GObject):
 		arguments.append(self.configFilePath)
 
 		# start the process
-		flags = 0
 		useShell = False
 		if platform.system() == 'Windows':
-			flags = subprocess.CREATE_NEW_PROCESS_GROUP # allows use of CTRL_BREAK_EVENT
 			useShell = True # prevents command prompt from opening
-		self.process = subprocess.Popen(args = arguments, stdout = subprocess.PIPE, stderr = subprocess.PIPE, cwd = self.workingDirectoryPath, creationflags = flags, shell = useShell)
+		self.process = subprocess.Popen(args = arguments, stdout = subprocess.PIPE, stderr = subprocess.PIPE, cwd = self.workingDirectoryPath, shell = useShell)
 
 		# start stdout and stderr polling threads
 		self.outQueue  = Queue.Queue()
@@ -151,10 +153,18 @@ class Process(gobject.GObject):
 		# terminate the process if still running
 		if self.isRunning():
 			if platform.system() == 'Windows':
-				# required to terminate shell and all its child processes
-				os.kill(self.process.pid, signal.CTRL_BREAK_EVENT)
-			else:
-				self.process.terminate()
+				# since the bot is running inside a shell we need to
+				# search & terminate all self.process's child processes
+				WMI = win32com.client.GetObject('winmgmts:')
+				processes = WMI.InstancesOf('Win32_Process')
+				for process in processes:
+					parent = process.Properties_('ParentProcessId').Value
+					if parent == self.process.pid:
+						pid = process.Properties_('ProcessID').Value
+						handle = win32api.OpenProcess(1, False, pid)
+						win32api.TerminateProcess(handle, -1)
+						win32api.CloseHandle(handle)
+			self.process.terminate()
 		# reset values
 		self.timerId = None
 		self.process = None
