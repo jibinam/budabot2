@@ -66,7 +66,8 @@ class SystrayController(gobject.GObject):
 		"""Hides the systray icon.
 		Required for win32 as the icon doesn't disappear automatically on program exit.
 		"""
-		self.icon.set_visible(False)
+		if not haveAppIndicator:
+			self.icon.set_visible(False)
 
 	def onSystrayClicked(self, sender):
 		"""This callback handler is called when user clicks the systray icon."""
