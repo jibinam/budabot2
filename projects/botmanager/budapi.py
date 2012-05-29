@@ -1,6 +1,11 @@
 ﻿#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import json
+import struct
+from twisted.internet import defer
+from twisted.internet.protocol import Protocol, ClientFactory
+
 # api request version
 API_VERSION = '1.2'
 
@@ -24,48 +29,51 @@ class Budapi(object):
 
 	def __init__(self):
 		"""Constructor method."""
-		pass
+		self.port = 5250
+		self.host = '127.0.0.1'
+		self.username = None
+		self.password = None
 
 	def getPort(self):
 		"""This method returns bot's ip port."""
-		pass
+		return self.port
 
 	def setPort(self, port):
 		"""This method sets port of the bot where to connect."""
-		pass
+		self.port = port
 
 	def getHost(self):
 		"""This method returns bot's address."""
-		pass
+		return self.host
 
 	def setHost(self, host):
 		"""This method sets bot's host address."""
-		pass
+		self.host = host
 
 	def getUsername(self):
 		"""This method returns name of the user."""
-		pass
+		return self.username
 
 	def setUsername(self, name):
 		"""This method sets name of an user who will access the bot."""
-		pass
+		self.username = name
 
 	def getPassword(self):
 		"""This method returns password of the user."""
-		pass
+		return self.password
 
 	def setPassword(self, password):
 		"""This method sets password of an user who will access the bot."""
-		pass
+		self.password = password
 
 	def sendCommand(self, command, payload = None):
 		"""This method sends a command to Budabot bot through its API.
-		Throws BudapiSocketException if an error occurs while connecting,
-		sending or reading data from the socket.
-		Throws BudapiServerException if returned message's status is not
-		API_SUCCESS.
+		Returns twisted deferred.
 		"""
-		return ''
+		factory = BudapiClientFactory(self.username, self.password, command)
+		from twisted.internet import reactor
+		reactor.connectTCP(self.host, self.port, factory)
+		return factory.deferred
 
 class BudapiException(Exception):
 	""""""
@@ -75,3 +83,32 @@ class BudapiServerException(BudapiException):
 
 class BudapiSocketException(BudapiException):
 	""""""
+
+class BudapiProtocol(Protocol):
+	""""""
+	def connectionMade(self):
+		request = {
+			'version': API_VERSION,
+			'username': self.factory.username,
+			'password': self.factory.password,
+			'command': self.factory.command,
+			'type': API_SIMPLE_MSG,
+			'syncId': 0
+		}
+		requestJson = json.dumps(request)
+		data = '%s%s' % (struct.pack('!H', len(requestJson)), requestJson)
+		print data
+		self.transport.write(data)
+
+	def dataReceived(self, data):
+		print data
+
+class BudapiClientFactory(ClientFactory):
+	"""A factory for BudapiProtocols."""
+	protocol = BudapiProtocol
+
+	def __init__(self, username, password, command):
+		self.deferred = defer.Deferred()
+		self.username = username
+		self.password = password
+		self.command  = command

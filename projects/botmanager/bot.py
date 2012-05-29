@@ -128,11 +128,17 @@ class Bot:
 		self.api.setPassword('')
 		self.api.setHost('127.0.0.1')
 		self.api.setPort(self.configFile.getVar('API Port'))
-		# send command and handle errors that might occur
-		try:
-			response = self.api.sendCommand(command)
-			self.insertToModel(response + "\n", 'response')
-		except budapi.BudapiServerException as e:
+		# send command
+		self.api.sendCommand(command).addCallbacks(self.onCommandSuccess, self.onCommandFailed)
+
+	def onCommandSuccess(self, response):
+		""""""
+		self.insertToModel(response + "\n", 'response')
+
+	def onCommandFailed(self, failure):
+		""""""
+		r = failure.trap(budapi.BudapiServerException, Exception)
+		if r == budapi.BudapiServerException:
 			message = None
 			code = e.getCode()
 			if code == budapi.API_UNSET_PASSWORD or code == budapi.API_INVALID_PASSWORD:
@@ -151,7 +157,7 @@ class Bot:
 			else:
 				message = "Server sent error code: " + code + "\n"
 			self.insertToModel(message, 'error')
-		except Exception as e:
+		elif r == Exception:
 			self.insertToModel(str(e) + "\n", 'error')
 
 	def onBotStdoutReceived(self, sender, data):

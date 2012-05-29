@@ -1,7 +1,12 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# install Twisted/GTK reactor
+from twisted.internet import gtk2reactor
+gtk2reactor.install()
+
 import gtk
+from twisted.internet import reactor
 from settingmodel import SettingModel
 from botmodel import BotModel
 from systraycontroller import SystrayController
@@ -52,8 +57,8 @@ class Application:
 		self.botModel.load()
 
 		controlPanelController.show()
-
-		gtk.main()
+		# run Twisted + GTK event loop
+		reactor.run()
 		
 		systrayController.hideIcon()
 
@@ -68,7 +73,7 @@ class Application:
 			for bot in self.botModel.getAllBots():
 				bot.terminate()
 			# hop out of event loop
-			gtk.main_quit()
+			reactor.stop()
 		dialog.destroy()
 
 	def onControlPanelAction(self, sender, action, botName):
