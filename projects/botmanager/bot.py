@@ -140,25 +140,21 @@ class Bot:
 		r = failure.trap(budapi.BudapiServerException, Exception)
 		if r == budapi.BudapiServerException:
 			message = None
-			code = e.getCode()
-			if code == budapi.API_UNSET_PASSWORD or code == budapi.API_INVALID_PASSWORD:
+			errorMessage = failure.value.args[0]
+			errorStatus = failure.value.args[1]
+			if errorStatus == budapi.API_UNSET_PASSWORD or errorStatus == budapi.API_INVALID_PASSWORD:
 				message = "Your credentials are incorrect, make sure you have set your API password with command 'apipassword'\n"
-			elif code == budapi.API_ACCESS_DENIED:
+			elif errorStatus == budapi.API_ACCESS_DENIED:
 				message = "Access denied! You have don't have permissions to execute this command\n"
-			elif code == budapi.API_UNKNOWN_COMMAND:
-				if destinationType == 1:
-					message = "Failed to sent the message, make sure that 'say org' command is enabled\n"
-				elif destinationType == 2:
-					message = "Failed to sent the message, make sure that 'say priv' command is enabled\n"
-				else: # to chatbot
-					message = "Failed to sent the message, the command was not found\n"
-			elif code == budapi.API_SYNTAX_ERROR:
+			elif errorStatus == budapi.API_UNKNOWN_COMMAND:
+				message = "Failed to sent the message, the command was not found\n"
+			elif errorStatus == budapi.API_SYNTAX_ERROR:
 				message = "Failed to sent the message, there was a syntax error with your command\n"
 			else:
-				message = "Server sent error code: " + code + "\n"
+				message = "Server sent error status: " + errorStatus + ", with message: " + errorMessage + "\n"
 			self.insertToModel(message, 'error')
 		elif r == Exception:
-			self.insertToModel(str(e) + "\n", 'error')
+			self.insertToModel(str(failure.value) + "\n", 'error')
 
 	def onBotStdoutReceived(self, sender, data):
 		"""This callback function is called when Budabot sends standard output."""

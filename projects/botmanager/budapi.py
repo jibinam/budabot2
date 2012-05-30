@@ -75,18 +75,22 @@ class Budapi(object):
 		reactor.connectTCP(self.host, self.port, factory)
 		return factory.deferred
 
-class BudapiException(Exception):
-	""""""
-
-class BudapiServerException(BudapiException):
-	""""""
-
-class BudapiSocketException(BudapiException):
-	""""""
+class BudapiServerException(Exception):
+	"""Raised when the server returns some status which is not API_SUCCESS.
+	Contains two arguments: status code and message.
+	"""
 
 class BudapiProtocol(Protocol):
-	""""""
+	"""Implements the BudAPI protocol."""
+	
+	STATE_READ_LENGTH = 0
+	STATE_READ_RESPONSE = 1
+	
 	def connectionMade(self):
+		self.receivedData = ''
+		self.state = self.STATE_READ_LENGTH
+		self.response = None
+		self.responselength = 0
 		request = {
 			'version': API_VERSION,
 			'username': self.factory.username,
@@ -97,11 +101,44 @@ class BudapiProtocol(Protocol):
 		}
 		requestJson = json.dumps(request)
 		data = '%s%s' % (struct.pack('!H', len(requestJson)), requestJson)
-		print data
 		self.transport.write(data)
 
 	def dataReceived(self, data):
-		print data
+		"""This callback is called automatically from Twisted when new has
+		been received from server.
+		"""
+		self.receivedData += data
+		# read length of the response
+		if self.state == self.STATE_READ_LENGTH:
+			if self.consumeLength():
+				self.state = self.STATE_READ_RESPONSE
+		# read response data
+		if self.state == self.STATE_READ_RESPONSE:
+			if self.consumeResponse():
+				# report results to caller
+				if self.response['status'] == API_SUCCESS:
+					self.factory.deferred.callback(self.response['message'])
+				else:
+					self.factory.deferred.errback(BudapiServerException(self.response['message'], self.response['status']))
+				# break connection
+				self.transport.loseConnection()
+
+	def consumeLength(self):
+		"""Reads first two bytes from response which indicates length of the response."""
+		if len(self.receivedData) >= 2:
+			self.responselength = struct.unpack('!H', self.receivedData[0:2])[0]
+			self.receivedData = self.receivedData[2:]
+			return True
+		return False
+
+	def consumeResponse(self):
+		"""Reads the response."""
+		if len(self.receivedData) >= self.responselength:
+			# decode status and message from data
+			responseJson = self.receivedData[0:self.responselength]
+			self.response = json.loads(responseJson)
+			return True
+		return False
 
 class BudapiClientFactory(ClientFactory):
 	"""A factory for BudapiProtocols."""
@@ -112,3 +149,9 @@ class BudapiClientFactory(ClientFactory):
 		self.username = username
 		self.password = password
 		self.command  = command
+
+	def clientConnectionFailed(self, connector, reason):
+		"""This callback is called when connection attempt fails."""
+		if self.deferred is not None:
+			d, self.deferred = self.deferred, None
+			d.errback(reason)
