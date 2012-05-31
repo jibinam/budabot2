@@ -8,12 +8,19 @@ import pango
 import socket
 import gtk
 import re
+import gobject
 
-class Bot:
+class Bot(gobject.GObject):
 	""""""
 
+	# custom properties
+	__gproperties__ = {
+		'apiAccessible' : (gobject.TYPE_BOOLEAN, 'api accessible', 'is api accessible', False, gobject.PARAM_READWRITE)
+	}
+ 
 	def __init__(self, name, settingModel):
 		"""Constructor method."""
+		self.__gobject_init__()
 		self.name = name
 		self.settingModel = settingModel
 		self.api = budapi.Budapi()
@@ -21,7 +28,7 @@ class Bot:
 		self.consoleModel = gtk.TextBuffer()
 		self.configFile = None
 		self.noRestart = False
-
+		self.set_property('apiAccessible', False)
 		self.process.connect('stdout_received', self.onBotStdoutReceived)
 		self.process.connect('stderr_received', self.onBotStderrReceived)
 		self.process.connect('stopped', self.onBotDied)
@@ -40,6 +47,26 @@ class Bot:
 		errorTag = gtk.TextTag('response')   
 		errorTag.set_property('foreground', 'lightblue')
 		tagTable.add(errorTag)
+
+	def do_get_property(self, property):
+		"""Returns value of given property.
+		This is required to make GTK's properties to work.
+		See: http://www.pygtk.org/articles/subclassing-gobject/sub-classing-gobject-in-python.htm#d0e127
+		"""
+		if property.name == 'apiAccessible':
+			return self.apiAccessible
+		else:
+			raise AttributeError, 'unknown property %s' % property.name
+
+	def do_set_property(self, property, value):
+		"""Sets value of given property.
+		This is required to make GTK's properties to work.
+		See: http://www.pygtk.org/articles/subclassing-gobject/sub-classing-gobject-in-python.htm#d0e127
+		"""
+		if property.name == 'apiAccessible':
+			self.apiAccessible = value
+		else:
+			raise AttributeError, 'unknown property %s' % property.name
 
 	def getName(self):
 		"""Returns name of the bot."""
@@ -80,6 +107,7 @@ class Bot:
 		self.process.setConfigFilePath(configPath)
 		self.process.setWorkingDirectoryPath(self.settingModel.getValue(self.name, 'installdir'))
 		self.process.start()
+		self.pollApi()
 
 	def isPortFree(self, port):
 		"""Returns True if given TCP/IP port is free."""
@@ -123,13 +151,7 @@ class Bot:
 			command = 'say org ' + command
 		elif channel == 2: # private channel
 			command = 'say priv ' + command
-		# pull API settings from setting model
-		self.api.setUsername(self.configFile.getVar('SuperAdmin'))
-		self.api.setPassword('')
-		self.api.setHost('127.0.0.1')
-		self.api.setPort(self.configFile.getVar('API Port'))
-		# send command
-		self.api.sendCommand(command).addCallbacks(self.onCommandSuccess, self.onCommandFailed)
+		self.setupAndSendCommand(command).addCallbacks(self.onCommandSuccess, self.onCommandFailed)
 
 	def onCommandSuccess(self, response):
 		""""""
@@ -168,10 +190,21 @@ class Bot:
 
 	def onBotDied(self, sender):
 		"""This callback function is called when Budabot is shutdown."""
+		self.set_property('apiAccessible', False)
 		# restart the bot if needed
 		if (self.noRestart == False):
 			self.insertToModel("Restarting the bot\n")
 			self.start()
+			
+	def pollApi(self):
+		"""Starts polling bot's BudAPI and sets apiAccessible-property to true on success."""
+		def onResult(failure, self):
+			if failure.check(budapi.BudapiServerException):
+				self.set_property('apiAccessible', True)
+			else:
+				if self.process.isRunning():
+					self.setupAndSendCommand('').addErrback(onResult, self)
+		self.setupAndSendCommand('').addErrback(onResult, self)
 
 	def insertToModel(self, message, tagName=''):
 		"""This method adds message to end of gtk.TextView's model.
@@ -185,3 +218,14 @@ class Bot:
 			if tagName:
 				self.consoleModel.apply_tag_by_name(tagName, self.consoleModel.get_iter_at_offset(start), self.consoleModel.get_iter_at_offset(end))
 
+	def setupAndSendCommand(self, command):
+		# pull API settings from setting model
+		self.api.setUsername(self.configFile.getVar('SuperAdmin'))
+		self.api.setPassword('')
+		self.api.setHost('127.0.0.1')
+		self.api.setPort(self.configFile.getVar('API Port'))
+		# send command
+		return self.api.sendCommand(command)
+
+# register class so that custom signals will work
+gobject.type_register(Bot)
