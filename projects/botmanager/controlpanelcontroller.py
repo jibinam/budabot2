@@ -98,7 +98,7 @@ class ControlPanelController(gobject.GObject):
 
 	def onBotListViewRowActivated(self, sender, path, column):
 		"""This signal handler is called when user double clicks a row in the bot list view."""
-		self.emit('action_triggered', 'open', self.getCurrentlySelectedBotName())
+		self.emit('action_triggered', 'open', self.getCurrentlySelectedBot().getName())
 
 	def onBotListViewMousePressed(self, sender, event):
 		"""Signal handler for events which occur when user presses mouse button
@@ -114,6 +114,10 @@ class ControlPanelController(gobject.GObject):
 				path = pathArray[0]
 				selection.select_path(path)
 			# popup the context menu
+			bot = self.getCurrentlySelectedBot()
+			apiAccessible = bot.get_property('apiAccessible')
+			self.contextItemRestart.set_sensitive(apiAccessible)
+			self.contextItemShutdown.set_sensitive(apiAccessible)
 			self.botListContextMenu.popup(None, None, None, event.button, event.get_time())
 			return True
 		return False
@@ -127,7 +131,7 @@ class ControlPanelController(gobject.GObject):
 		bot list's context menu.
 		Emits context_item_clicked signal.
 		"""
-		self.emit('action_triggered', action, self.getCurrentlySelectedBotName())
+		self.emit('action_triggered', action, self.getCurrentlySelectedBot().getName())
 
 	def onViewShown(self, sender):
 		"""This signal handler is called when the control panel window is shown."""
@@ -137,11 +141,11 @@ class ControlPanelController(gobject.GObject):
 		"""This signal handler is called when the control panel window is hidden."""
 		self.emit('visibility_changed', False)
 
-	def getCurrentlySelectedBotName(self):
+	def getCurrentlySelectedBot(self):
 		""""""
 		selected = self.botListView.get_selection().get_selected()
-		name = self.botModel.get_value(selected[1], 1)
-		return name
+		bot = self.botModel.get_value(selected[1], 0)
+		return bot
 
 
 # register class so that custom signals will work

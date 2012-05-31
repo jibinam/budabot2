@@ -33,7 +33,6 @@ class Application:
 		settingModel = SettingModel()
 		self.botModel = BotModel(settingModel)
 		systrayController = SystrayController()
-		botWindowController = BotWindowController()
 
 		controlPanelController = ControlPanelController(self.botModel)
 		controlPanelController.connect('action_triggered', self.onControlPanelAction)
@@ -112,7 +111,5 @@ class Application:
 		"""
 		if botName not in self.botWindowControllers:
 			bot = self.botModel.getBotByName(botName)
-			self.botWindowControllers[botName] = BotWindowController();
-			self.botWindowControllers[botName].setConsoleModel(bot.getConsoleModel())
-			self.botWindowControllers[botName].connect_object('command_given', Bot.sendCommand, bot)
+			self.botWindowControllers[botName] = BotWindowController(bot);
 		return self.botWindowControllers[botName]

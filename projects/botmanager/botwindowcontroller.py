@@ -9,13 +9,13 @@ class BotWindowController(gobject.GObject):
 	
 	# Define custom signals that this class can emit.
 	__gsignals__ = {
-		# notifies that user has sent a command, first parameter is channel, second is the command
-		'command_given': (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, (gobject.TYPE_LONG, gobject.TYPE_STRING)),
 	}
 	
-	def __init__(self):
+	def __init__(self, bot):
 		"""Constructor method."""
 		self.__gobject_init__()
+		self.bot = bot
+		
 		# load botwindow.glade file
 		self.builder = gtk.Builder()
 		self.builder.add_from_file('botwindow.glade')
@@ -35,6 +35,12 @@ class BotWindowController(gobject.GObject):
 		
 		# prevent deletion of the window on close
 		self.botWindow.connect('delete-event', self.onDeleteEvent)
+		
+		# be notified when bot's API becomes (in)accessible
+		self.bot.connect('notify::apiAccessible', self.onApiAccessibilityChanged)
+
+		self.outputView.set_buffer(self.bot.getConsoleModel())
+		self.setApiRequiringActionsEnabled(self.bot.get_property('apiAccessible'))
 
 	def setConsoleModel(self, model):
 		"""Sets console window's buffer to given model."""
@@ -70,9 +76,15 @@ class BotWindowController(gobject.GObject):
 		self.commandEntry.set_text('')
 		# get output channel
 		channel = self.destinationSelector.get_model().get_value(self.destinationSelector.get_active_iter(), 1)
-		# notify of the command
-		self.emit('command_given', channel, command)
+		# send the command
+		self.bot.sendCommand(channel, command)
 
+	def onApiAccessibilityChanged(self, caller, property):
+		self.setApiRequiringActionsEnabled(self.bot.get_property('apiAccessible'))
+
+	def setApiRequiringActionsEnabled(self, enabled):
+		self.commandEntry.set_sensitive(enabled)
+		self.destinationSelector.set_sensitive(enabled)
 
 # register class so that custom signals will work
 gobject.type_register(BotWindowController)
