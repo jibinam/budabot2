@@ -15,7 +15,8 @@ class Bot(gobject.GObject):
 
 	# custom properties
 	__gproperties__ = {
-		'apiAccessible' : (gobject.TYPE_BOOLEAN, 'api accessible', 'is api accessible', False, gobject.PARAM_READWRITE)
+		'apiAccessible' : (gobject.TYPE_BOOLEAN, 'api accessible', 'is api accessible', False, gobject.PARAM_READWRITE),
+		'isRunning' : (gobject.TYPE_BOOLEAN, 'is running', 'is running', False, gobject.PARAM_READWRITE)
 	}
  
 	def __init__(self, name, settingModel):
@@ -55,6 +56,8 @@ class Bot(gobject.GObject):
 		"""
 		if property.name == 'apiAccessible':
 			return self.apiAccessible
+		elif property.name == 'isRunning':
+			return self.process.isRunning()
 		else:
 			raise AttributeError, 'unknown property %s' % property.name
 
@@ -107,6 +110,7 @@ class Bot(gobject.GObject):
 		self.process.setConfigFilePath(configPath)
 		self.process.setWorkingDirectoryPath(self.settingModel.getValue(self.name, 'installdir'))
 		self.process.start()
+		self.notify('isRunning')
 		self.pollApi()
 
 	def isPortFree(self, port):
@@ -191,6 +195,7 @@ class Bot(gobject.GObject):
 	def onBotDied(self, sender):
 		"""This callback function is called when Budabot is shutdown."""
 		self.set_property('apiAccessible', False)
+		self.notify('isRunning')
 		# restart the bot if needed
 		if (self.noRestart == False):
 			self.insertToModel("Restarting the bot\n")
