@@ -26,6 +26,10 @@ class BotWindowController(gobject.GObject):
 		self.outputView = self.builder.get_object('outputView')
 		self.commandEntry = self.builder.get_object('commandInputEntry')
 		self.destinationSelector = self.builder.get_object('destinationSelector')
+		self.startButton = self.builder.get_object('startButton')
+		self.restartButton = self.builder.get_object('restartButton')
+		self.shutdownButton = self.builder.get_object('shutdownButton')
+		self.terminateButton = self.builder.get_object('terminateButton')
 
 		# call scrollViewToBottom() when scroll area's vertical scrollbar changes
 		outputScrollArea.get_vadjustment().connect('changed', self.scrollViewToBottom)
@@ -36,11 +40,18 @@ class BotWindowController(gobject.GObject):
 		# prevent deletion of the window on close
 		self.botWindow.connect('delete-event', self.onDeleteEvent)
 		
-		# be notified when bot's API becomes (in)accessible
-		self.bot.connect('notify::apiAccessible', self.onApiAccessibilityChanged)
+		# be notified of bot's changes
+		self.bot.connect('notify::isRunning', self.onBotPropertyChanged)
+		self.bot.connect('notify::apiAccessible', self.onBotPropertyChanged)
+
+		# handle button clicks
+		self.startButton.connect('clicked', self.onButtonClicked)
+		self.restartButton.connect('clicked', self.onButtonClicked)
+		self.shutdownButton.connect('clicked', self.onButtonClicked)
+		self.terminateButton.connect('clicked', self.onButtonClicked)
 
 		self.outputView.set_buffer(self.bot.getConsoleModel())
-		self.setApiRequiringActionsEnabled(self.bot.get_property('apiAccessible'))
+		self.updateControlStates()
 
 	def setConsoleModel(self, model):
 		"""Sets console window's buffer to given model."""
@@ -66,6 +77,17 @@ class BotWindowController(gobject.GObject):
 		"""
 		adjustment.set_value(adjustment.upper - adjustment.page_size)
 
+	def onButtonClicked(self, button):
+		"""This signal handler is called when user clicks one of the buttons."""
+		if button == self.startButton:
+			self.bot.start()
+		elif button == self.restartButton:
+			self.bot.restart()
+		elif button == self.shutdownButton:
+			self.bot.shutdown()
+		elif button == self.terminateButton:
+			self.bot.terminate()
+
 	def onCommandGiven(self, sender):
 		"""This callback function is called when user hits enter-key in the command
 		input entry.
@@ -75,16 +97,26 @@ class BotWindowController(gobject.GObject):
 		command = self.commandEntry.get_text()
 		self.commandEntry.set_text('')
 		# get output channel
+		# TODO: we should use Bot.CHANNEL_XXX constants instead of blindly
+		#       trusting that the values in selector's model are correct
 		channel = self.destinationSelector.get_model().get_value(self.destinationSelector.get_active_iter(), 1)
 		# send the command
 		self.bot.sendCommand(channel, command)
 
-	def onApiAccessibilityChanged(self, caller, property):
-		self.setApiRequiringActionsEnabled(self.bot.get_property('apiAccessible'))
+	def onBotPropertyChanged(self, caller, property):
+		"""This handler is called when bot's some property has changed."""
+		self.updateControlStates()
 
-	def setApiRequiringActionsEnabled(self, enabled):
-		self.commandEntry.set_sensitive(enabled)
-		self.destinationSelector.set_sensitive(enabled)
+	def updateControlStates(self):
+		"""Updates states of buttons, command entry, destination selector, etc..."""
+		apiAccessible = self.bot.get_property('apiAccessible')
+		isRunning = self.bot.get_property('isRunning')
+		self.commandEntry.set_sensitive(isRunning and apiAccessible)
+		self.destinationSelector.set_sensitive(isRunning and apiAccessible)
+		self.startButton.set_sensitive(not isRunning)
+		self.restartButton.set_sensitive(isRunning and apiAccessible)
+		self.shutdownButton.set_sensitive(isRunning and apiAccessible)
+		self.terminateButton.set_sensitive(isRunning)
 
 # register class so that custom signals will work
 gobject.type_register(BotWindowController)

@@ -18,6 +18,10 @@ class Bot(gobject.GObject):
 		'apiAccessible' : (gobject.TYPE_BOOLEAN, 'api accessible', 'is api accessible', False, gobject.PARAM_READWRITE),
 		'isRunning' : (gobject.TYPE_BOOLEAN, 'is running', 'is running', False, gobject.PARAM_READWRITE)
 	}
+
+	CHANNEL_TELL = 0
+	CHANNEL_ORG = 1
+	CHANNEL_PRIVATE = 2
  
 	def __init__(self, name, settingModel):
 		"""Constructor method."""
@@ -131,12 +135,12 @@ class Bot(gobject.GObject):
 
 	def restart(self):
 		"""Restarts the bot."""
-		self.sendCommand(0, 'restart')
+		self.sendCommand(self.CHANNEL_TELL, 'restart')
 
 	def shutdown(self):
 		"""Shutdowns the bot."""
 		self.noRestart = True
-		self.sendCommand(0, 'shutdown')
+		self.sendCommand(self.CHANNEL_TELL, 'shutdown')
 
 	def terminate(self):
 		"""Terminates the bot."""
@@ -151,9 +155,9 @@ class Bot(gobject.GObject):
 		if self.process.isRunning() == False:
 			return
 		# prefix command depending of channel
-		if channel == 1: # org channel
+		if channel == self.CHANNEL_ORG:
 			command = 'say org ' + command
-		elif channel == 2: # private channel
+		elif channel == self.CHANNEL_PRIVATE:
 			command = 'say priv ' + command
 		self.setupAndSendCommand(command).addCallbacks(self.onCommandSuccess, self.onCommandFailed)
 
