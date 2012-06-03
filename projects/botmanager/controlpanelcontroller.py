@@ -3,6 +3,7 @@
 
 import gobject
 import gtk
+from addbotwizard import AddBotWizardController
 
 class ControlPanelController(gobject.GObject):
 	""""""
@@ -24,6 +25,7 @@ class ControlPanelController(gobject.GObject):
 		self.__gobject_init__()
 		self.botModel = botModel
 		self.position = (200, 200)
+		self.addBotWizardController = None
 		# load controlpanel.glade file
 		self.builder = gtk.Builder()
 		self.builder.add_from_file('controlpanel.glade')
@@ -69,6 +71,7 @@ class ControlPanelController(gobject.GObject):
 		self.contextItemShutdown.connect('activate', self.onContextMenuItemClicked, 'shutdown')
 		self.contextItemTerminate.connect('activate', self.onContextMenuItemClicked, 'terminate')
 		
+		self.builder.get_object('addBotButton').connect('clicked', self.onAddBotClicked)
 		self.builder.get_object('exitButton').connect('clicked', self.onExitClicked)
 
 	def show(self):
@@ -124,6 +127,12 @@ class ControlPanelController(gobject.GObject):
 			self.botListContextMenu.popup(None, None, None, event.button, event.get_time())
 			return True
 		return False
+
+	def onAddBotClicked(self, sender):
+		""""""
+		if not self.addBotWizardController:
+			self.addBotWizardController = AddBotWizardController(self.botModel)
+		self.addBotWizardController.show()
 
 	def onExitClicked(self, sender):
 		"""This signal handler is called when user clicks Exit-button."""
