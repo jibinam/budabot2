@@ -1,6 +1,20 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
+# this application isn't translated to other languages so lets not use local
+# language anywhere in the UI (like in default buttons which already have
+# localized versions).
+os.environ['LANGUAGE'] = 'C'
+
+# on Windows we need to use external library 'elib.intl' to force the
+# enviroment variable for use everywhere
+try:
+	import elib.intl
+	elib.intl._putenv('LANGUAGE', 'C')
+except ImportError:
+	pass
+
 # install Twisted/GTK reactor
 from twisted.internet import gtk2reactor
 gtk2reactor.install()
