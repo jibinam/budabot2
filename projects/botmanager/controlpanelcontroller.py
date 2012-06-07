@@ -20,10 +20,11 @@ class ControlPanelController(gobject.GObject):
 		'visibility_changed': (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, (gobject.TYPE_BOOLEAN,)),
 	}
 	
-	def __init__(self, botModel):
+	def __init__(self, botModel, settingModel):
 		"""Constructor method."""
 		self.__gobject_init__()
 		self.botModel = botModel
+		self.settingModel = settingModel
 		self.position = (200, 200)
 		self.addBotWizardController = None
 		# load controlpanel.glade file
@@ -131,7 +132,7 @@ class ControlPanelController(gobject.GObject):
 	def onAddBotClicked(self, sender):
 		""""""
 		if not self.addBotWizardController:
-			self.addBotWizardController = AddBotWizardController(self.botModel)
+			self.addBotWizardController = AddBotWizardController(self.botModel, self.settingModel)
 		self.addBotWizardController.show()
 
 	def onExitClicked(self, sender):

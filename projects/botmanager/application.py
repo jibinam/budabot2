@@ -48,7 +48,7 @@ class Application:
 		self.botModel = BotModel(settingModel)
 		systrayController = SystrayController()
 
-		controlPanelController = ControlPanelController(self.botModel)
+		controlPanelController = ControlPanelController(self.botModel, settingModel)
 		controlPanelController.connect('action_triggered', self.onControlPanelAction)
 
 		# open control panel when user select 'open' from systray's context menu

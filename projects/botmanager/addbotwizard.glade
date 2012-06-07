@@ -2,7 +2,7 @@
 <interface>
   <requires lib="gtk+" version="2.24"/>
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkListStore" id="liststore1">
+  <object class="GtkListStore" id="exampleData">
     <columns>
       <!-- column-name File -->
       <column type="gchararray"/>
@@ -23,6 +23,32 @@
         <col id="2" translatable="yes">RK 1</col>
       </row>
     </data>
+  </object>
+  <object class="GtkFrame" id="finishPage">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="label_xalign">0</property>
+    <child>
+      <object class="GtkAlignment" id="alignment3">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="left_padding">12</property>
+        <child>
+          <object class="GtkLabel" id="summaryLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child type="label">
+      <object class="GtkLabel" id="label3">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">&lt;b&gt;Summary of bot settings:&lt;/b&gt;</property>
+        <property name="use_markup">True</property>
+      </object>
+    </child>
   </object>
   <object class="GtkVBox" id="selectActionPage">
     <property name="visible">True</property>
@@ -97,7 +123,7 @@ Please select which action you wish to perform:</property>
             <property name="left_padding">12</property>
             <property name="right_padding">12</property>
             <child>
-              <object class="GtkFileChooserButton" id="filechooserbutton1">
+              <object class="GtkFileChooserButton" id="botImportDirChooser">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="action">select-folder</property>
@@ -136,11 +162,11 @@ Please select which action you wish to perform:</property>
             <property name="left_padding">12</property>
             <property name="right_padding">12</property>
             <child>
-              <object class="GtkTreeView" id="treeview1">
+              <object class="GtkTreeView" id="importBotListView">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="border_width">1</property>
-                <property name="model">liststore1</property>
+                <property name="model">exampleData</property>
                 <child>
                   <object class="GtkTreeViewColumn" id="fileColumn">
                     <property name="title" translatable="yes">File</property>

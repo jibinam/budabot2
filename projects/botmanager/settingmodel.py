@@ -4,6 +4,7 @@
 import gobject
 import appdirs
 from configobj import ConfigObj, ConfigObjError
+import configobj
 from validate import Validator
 import os
 
@@ -41,6 +42,17 @@ class SettingModel(gobject.GObject):
 			return self.config['common']['apiportrangehigh']
 		return None
 
+	def getDefaultBotRootPath(self):
+		""""""
+		if self.config:
+			return self.config['common']['defaultbotrootpath']
+		return None
+
+	def setDefaultBotRootPath(self, path):
+		""""""
+		if self.config:
+			self.config['common']['defaultbotrootpath'] = path
+
 	def getBotNames(self):
 		"""Returns a list of bot names."""
 		names = []
@@ -69,7 +81,7 @@ class SettingModel(gobject.GObject):
 		results = config.validate(validator)
 		if results != True:
 			message = 'Failed to read settings from "%s":\n' % configPath
-			for (sectionList, key, _) in flatten_errors(config, results):
+			for (sectionList, key, _) in configobj.flatten_errors(config, results):
 				if key is not None:
 					message += 'The "%s" key in the section "%s" failed validation\n' % (key, ', '.join(sectionList))
 				else:
