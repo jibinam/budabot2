@@ -6,6 +6,11 @@ import gtk
 import gobject
 from botconfigfile import BotPhpConfigFile
 
+SELECT_ACTION_PAGE_ID = 1
+SELECT_IMPORT_PAGE_ID = 2
+FINISH_PAGE_ID        = 3
+
+
 class AddBotWizardController:
 	""""""
 	
@@ -17,14 +22,13 @@ class AddBotWizardController:
 		self.builder.add_from_file('addbotwizard.glade')
 
 		self.assistant = Assistant()
-		self.assistant.set_forward_page_func(self.getNextPage)
 		self.assistant.connect('apply', self.onApplyClicked)
 		self.assistant.connect('cancel', self.onCancelClicked)
 		self.assistant.connect('close', self.onCloseClicked)
 
-		self.assistant.appendPage(SelectActionPage(self.builder))
-		self.assistant.appendPage(SelectImportPage(self.builder, settingModel))
-		self.assistant.appendPage(FinishPage(self.builder))
+		self.assistant.appendPage(SelectActionPage(SELECT_ACTION_PAGE_ID, self.builder))
+		self.assistant.appendPage(SelectImportPage(SELECT_IMPORT_PAGE_ID, self.builder, settingModel))
+		self.assistant.appendPage(FinishPage(FINISH_PAGE_ID, self.builder))
 
 	def show(self):
 		"""This method shows the wizard to user."""
@@ -33,21 +37,6 @@ class AddBotWizardController:
 	def hide(self):
 		"""This method hides the wizard from user."""
 		self.assistant.hide()
-
-	def getNextPage(self, currentPageIndex):
-		"""This method is called by GtkAssistant's implementation to determine
-		to which page index the wizard should change when user clicks
-		forward-button. -1 means error.
-		"""
-		page = self.assistant.getPageByIndex(currentPageIndex)
-		if isinstance(page, SelectActionPage):
-			if page.getChoice() == SelectActionPage.ADD_BOT:
-				return -1
-			elif page.getChoice() == SelectActionPage.IMPORT_BOT:
-				return self.assistant.getPageByType(SelectImportPage).index
-		elif isinstance(page, SelectImportPage):
-			return self.assistant.getPageByType(FinishPage).index
-		return -1
 
 	def onApplyClicked(self, caller):
 		""""""
@@ -90,6 +79,7 @@ class Assistant(gtk.Assistant):
 	def __init__(self):
 		super(Assistant, self).__init__()
 		self.pages = []
+		self.set_forward_page_func(self.getNextPage)
 		self.connect('prepare', self.onPreparePage)
 
 	def appendPage(self, page):
@@ -98,73 +88,65 @@ class Assistant(gtk.Assistant):
 		page.index = self.append_page(page.widget)
 		self.set_page_title(page.widget, page.getTitle())
 		self.set_page_type(page.widget, page.getType())
-		page.connect('completeness_changed', self.onPageCompletenessChanged)
+		page.connect('notify::complete', self.onPageCompletenessChanged)
 
-	def getPageByIndex(self, index):
+	def getNextPage(self, currentPageIndex):
+		"""This method is called by GtkAssistant's implementation to determine
+		to which page index the wizard should change when user clicks
+		forward-button. -1 means error.
+		"""
 		for page in self.pages:
-			if page.index == index:
-				return page
-		return None
-
-	def getPageByType(self, type):
-		for page in self.pages:
-			if isinstance(page, type):
-				return page
-		return None
+			if page.index == currentPageIndex:
+				for nextPage in self.pages:
+					if nextPage.id == page.getNextPageId():
+						return nextPage.index
+		return -1
 
 	def onPreparePage(self, caller, pageWidget):
 		for page in self.pages:
 			if page.widget == pageWidget:
 				page.prepare()
-				self.set_page_complete(page.widget, page.isComplete())
+				self.set_page_complete(page.widget, page.get_property('complete'))
 
-	def onPageCompletenessChanged(self, page):
-		self.set_page_complete(page.widget, page.isComplete())
+	def onPageCompletenessChanged(self, page, property):
+		self.set_page_complete(page.widget, page.get_property('complete'))
 
 class Page(gobject.GObject):
-	# Define custom signals that this class can emit.
-	__gsignals__ = {
-		'completeness_changed': (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, ()),
+	# custom properties
+	__gproperties__ = {
+		'complete' : (gobject.TYPE_BOOLEAN, 'complete', 'is page complete', False, gobject.PARAM_READWRITE),
 	}
 
-	def __init__():
+	def __init__(self, id):
 		self.__gobject_init__()
+		self.id = id
 		self.index = -1
 		self.widget = None
 
-	def isComplete(self):
-		return True
+	def do_get_property(self, property):
+		"""Returns value of given property.
+		This is required to make GTK's properties to work.
+		"""
+		if property.name == 'complete':
+			return True
 
 	def prepare(self):
 		pass
-	
-	def getTitle(self):
-		return ''
 
-	def getType(self):
+	def getNextPageId(self):
 		return None
 
 # register class so that custom signals will work
 gobject.type_register(Page)
 
 class SelectActionPage(Page):
-	ADD_BOT = 0
-	IMPORT_BOT = 1
 
-	def __init__(self, builder):
-		super(Page, self).__init__()
+	def __init__(self, id, builder):
+		super(SelectActionPage, self).__init__(id)
 		self.widget = builder.get_object('selectActionPage')
 		self.addBotRadioButton = builder.get_object('addBotRadioButton')
 		self.importBotRadioButton = builder.get_object('importBotRadioButton')
 		self.importBotRadioButton.set_group(self.addBotRadioButton)
-
-	def getChoice(self):
-		if self.addBotRadioButton.get_property('active'):
-			return self.ADD_BOT
-		elif self.importBotRadioButton.get_property('active'):
-			return self.IMPORT_BOT
-		# no radio button selected, wtf?
-		return None
 
 	def getTitle(self):
 		return 'Add or import bot'
@@ -172,9 +154,16 @@ class SelectActionPage(Page):
 	def getType(self):
 		return gtk.ASSISTANT_PAGE_INTRO
 
+	def getNextPageId(self):
+		if self.addBotRadioButton.get_property('active'):
+			return None
+		elif self.importBotRadioButton.get_property('active'):
+			return SELECT_IMPORT_PAGE_ID
+		return None
+
 class SelectImportPage(Page):
-	def __init__(self, builder, settingModel):
-		super(Page, self).__init__()
+	def __init__(self, id, builder, settingModel):
+		super(SelectImportPage, self).__init__(id)
 		self.widget = builder.get_object('selectImportPage')
 		self.settingModel = settingModel
 		dirChooser = builder.get_object('botImportDirChooser')
@@ -185,16 +174,23 @@ class SelectImportPage(Page):
 		self.botView.set_model(self.botImportModel)
 		self.botView.get_selection().connect('changed', self.onBotSelected)
 
-	def isComplete(self):
-		# we can proceed if at least one bot is selected in the bot list view
-		selected = self.botView.get_selection().get_selected()
-		return selected[1] != None
+	def do_get_property(self, property):
+		""""""
+		if property.name == 'complete':
+			# we can proceed if at least one bot is selected in the bot list view
+			selected = self.botView.get_selection().get_selected()
+			return selected[1] != None
+		else:
+			return super(SelectImportPage, self).do_get_property(property)
 
 	def getTitle(self):
 		return 'Import existing bot'
 
 	def getType(self):
 		return gtk.ASSISTANT_PAGE_CONTENT
+
+	def getNextPageId(self):
+		return FINISH_PAGE_ID
 
 	def onBotImportDirChoosen(self, chooser):
 		"""This signal handler is called when user chooses a directory in import wizard."""
@@ -209,11 +205,11 @@ class SelectImportPage(Page):
 			self.botImportModel.clear()
 
 	def onBotSelected(self, caller):
-		self.emit('completeness_changed')
+		self.notify('complete')
 
 class FinishPage(Page):
-	def __init__(self, builder):
-		super(Page, self).__init__()
+	def __init__(self, id, builder):
+		super(FinishPage, self).__init__(id)
 		self.widget = builder.get_object('finishPage')
 
 	def getTitle(self):
