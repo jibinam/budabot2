@@ -60,3 +60,9 @@ class BotPhpConfigFile(object):
 		"""Sets variable's value of given name."""
 		self.vars[name] = value
 
+	def __iter__(self):
+		"""Enables ability to iterate through the file's variables
+		with 'for...in'.
+		"""
+		for key, value in self.vars.items():
+			yield key, value

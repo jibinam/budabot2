@@ -26,9 +26,14 @@ class AddBotWizardController:
 		self.assistant.connect('cancel', self.onCancelClicked)
 		self.assistant.connect('close', self.onCloseClicked)
 
-		self.assistant.appendPage(SelectActionPage(SELECT_ACTION_PAGE_ID, self.builder))
-		self.assistant.appendPage(SelectImportPage(SELECT_IMPORT_PAGE_ID, self.builder, settingModel))
-		self.assistant.appendPage(FinishPage(FINISH_PAGE_ID, self.builder))
+		self.selectActionPage = SelectActionPage(SELECT_ACTION_PAGE_ID, self.builder)
+		self.selectImportPage = SelectImportPage(SELECT_IMPORT_PAGE_ID, self.builder, settingModel)
+		self.finishPage       = FinishPage(FINISH_PAGE_ID, self.builder)
+		self.assistant.appendPage(self.selectActionPage)
+		self.assistant.appendPage(self.selectImportPage)
+		self.assistant.appendPage(self.finishPage)
+
+		self.selectImportPage.connect('notify::complete', self.onSelectImportPageComplete)
 
 	def show(self):
 		"""This method shows the wizard to user."""
@@ -49,6 +54,16 @@ class AddBotWizardController:
 	def onCloseClicked(self, caller):
 		""""""
 		print 'close clicked'
+
+	def onSelectImportPageComplete(self, caller, property):
+		path = self.selectImportPage.getSelectedBotConfFilePath()
+		if path:
+			config = BotPhpConfigFile(path)
+			config.load()
+			values = {}
+			for key, value in config:
+				values[key] = value
+			self.finishPage.setValues(values)
 
 class BotImportModel(gtk.ListStore):
 	def __init__(self):
@@ -166,6 +181,7 @@ class SelectImportPage(Page):
 		super(SelectImportPage, self).__init__(id)
 		self.widget = builder.get_object('selectImportPage')
 		self.settingModel = settingModel
+		self.modelPath = ''
 		dirChooser = builder.get_object('botImportDirChooser')
 		dirChooser.connect('current-folder-changed', self.onBotImportDirChoosen)
 		dirChooser.set_current_folder(self.settingModel.getDefaultBotRootPath())
@@ -178,8 +194,7 @@ class SelectImportPage(Page):
 		""""""
 		if property.name == 'complete':
 			# we can proceed if at least one bot is selected in the bot list view
-			selected = self.botView.get_selection().get_selected()
-			return selected[1] != None
+			return self.getSelectedBotConfFilePath() != None
 		else:
 			return super(SelectImportPage, self).do_get_property(property)
 
@@ -192,11 +207,18 @@ class SelectImportPage(Page):
 	def getNextPageId(self):
 		return FINISH_PAGE_ID
 
+	def getSelectedBotConfFilePath(self):
+		selected = self.botView.get_selection().get_selected()
+		if selected[0] != None and selected[1] != None:
+			filename = selected[0].get(selected[1], 0)[0]
+			return os.path.join(self.modelPath, filename)
+		return None
+
 	def onBotImportDirChoosen(self, chooser):
 		"""This signal handler is called when user chooses a directory in import wizard."""
-		modelPath = os.path.join(chooser.get_filename(), 'conf')
-		if os.path.isdir(modelPath):
-			self.botImportModel.load(modelPath)
+		self.modelPath = os.path.join(chooser.get_filename(), 'conf')
+		if os.path.isdir(self.modelPath):
+			self.botImportModel.load(self.modelPath)
 			# save current path to settings for later use if bots were found
 			if len(self.botImportModel) > 0:
 				self.settingModel.setDefaultBotRootPath(chooser.get_filename())
@@ -211,9 +233,17 @@ class FinishPage(Page):
 	def __init__(self, id, builder):
 		super(FinishPage, self).__init__(id)
 		self.widget = builder.get_object('finishPage')
+		self.summaryLabel = builder.get_object('summaryLabel')
 
 	def getTitle(self):
 		return 'Summary'
 
 	def getType(self):
 		return gtk.ASSISTANT_PAGE_CONFIRM
+
+	def setValues(self, values):
+		contents = ''
+		for key, value in values.items():
+			contents += '<b>' + key + ':</b> ' + str(value) + '\n'
+		self.summaryLabel.set_markup(contents)
+
