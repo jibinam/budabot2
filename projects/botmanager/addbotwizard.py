@@ -45,7 +45,10 @@ class AddBotWizardController:
 
 	def onApplyClicked(self, caller):
 		""""""
-		print 'apply clicked'
+		rootPath = self.selectImportPage.getSelectedBotRootPath()
+		confPath = self.selectImportPage.getSelectedBotConfFilePath()
+		self.settingModel.addBot('UNKNOWN', rootPath, confPath)
+		self.settingModel.save()
 
 	def onCancelClicked(self, caller):
 		""""""
@@ -53,7 +56,7 @@ class AddBotWizardController:
 
 	def onCloseClicked(self, caller):
 		""""""
-		print 'close clicked'
+		self.hide()
 
 	def onSelectImportPageComplete(self, caller, property):
 		path = self.selectImportPage.getSelectedBotConfFilePath()
@@ -182,9 +185,9 @@ class SelectImportPage(Page):
 		self.widget = builder.get_object('selectImportPage')
 		self.settingModel = settingModel
 		self.modelPath = ''
-		dirChooser = builder.get_object('botImportDirChooser')
-		dirChooser.connect('current-folder-changed', self.onBotImportDirChoosen)
-		dirChooser.set_current_folder(self.settingModel.getDefaultBotRootPath())
+		self.dirChooser = builder.get_object('botImportDirChooser')
+		self.dirChooser.connect('current-folder-changed', self.onBotImportDirChoosen)
+		self.dirChooser.set_current_folder(self.settingModel.getDefaultBotRootPath())
 		self.botImportModel = BotImportModel()
 		self.botView = builder.get_object('importBotListView')
 		self.botView.set_model(self.botImportModel)
@@ -207,6 +210,10 @@ class SelectImportPage(Page):
 	def getNextPageId(self):
 		return FINISH_PAGE_ID
 
+	def getSelectedBotRootPath(self):
+		"""Returns path to the bot software's root folder."""
+		return self.dirChooser.get_filename()
+
 	def getSelectedBotConfFilePath(self):
 		selected = self.botView.get_selection().get_selected()
 		if selected[0] != None and selected[1] != None:
@@ -214,14 +221,14 @@ class SelectImportPage(Page):
 			return os.path.join(self.modelPath, filename)
 		return None
 
-	def onBotImportDirChoosen(self, chooser):
+	def onBotImportDirChoosen(self, caller):
 		"""This signal handler is called when user chooses a directory in import wizard."""
-		self.modelPath = os.path.join(chooser.get_filename(), 'conf')
+		self.modelPath = os.path.join(self.dirChooser.get_filename(), 'conf')
 		if os.path.isdir(self.modelPath):
 			self.botImportModel.load(self.modelPath)
 			# save current path to settings for later use if bots were found
 			if len(self.botImportModel) > 0:
-				self.settingModel.setDefaultBotRootPath(chooser.get_filename())
+				self.settingModel.setDefaultBotRootPath(self.dirChooser.get_filename())
 				self.settingModel.save()
 		else:
 			self.botImportModel.clear()

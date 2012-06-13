@@ -62,6 +62,19 @@ class SettingModel(gobject.GObject):
 			return self.config['bots']
 		return names
 
+	def addBot(self, botName, configFile, installDir):
+		if self.config:
+			# search unique bot name
+			botName2 = botName
+			counter = 2
+			while botName2 in self.config['bots']:
+				botName2 = botName + ' ' + str(counter)
+				counter += 1
+			# set data
+			self.config['bots'][botName2] = {}
+			self.config['bots'][botName2]['configfile'] = configFile
+			self.config['bots'][botName2]['installdir'] = installDir
+
 	def readSettingsFile(self):
 		"""Reads and returns settings object."""
 		config = None
