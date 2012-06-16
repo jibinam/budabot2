@@ -47,7 +47,8 @@ class AddBotWizardController:
 		""""""
 		rootPath = self.selectImportPage.getSelectedBotRootPath()
 		confPath = self.selectImportPage.getSelectedBotConfFilePath()
-		self.settingModel.addBot('UNKNOWN', confPath, rootPath)
+		name = '%s @ RK%d' % (self.botConfig.getVar('name'), self.botConfig.getVar('dimension'))
+		self.settingModel.addBot(name, confPath, rootPath)
 		self.settingModel.save()
 
 	def onCancelClicked(self, caller):
@@ -67,6 +68,7 @@ class AddBotWizardController:
 			for key, value in config:
 				values[key] = value
 			self.finishPage.setValues(values)
+			self.botConfig = config
 
 class BotImportModel(gtk.ListStore):
 	def __init__(self):

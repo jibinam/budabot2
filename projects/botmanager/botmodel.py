@@ -57,7 +57,7 @@ class BotModel(gtk.ListStore):
 		if sourceRow.parent == None and sourceRowName == SettingModel.ROW_BOTS:
 			self.botsRowReference = gtk.TreeRowReference(sourceModel, sourceRow.path)
 		# check that the changed row is a bot row, ignore others
-		if sourceRow.parent != None and sourceRow.parent.path == self.botsRowReference.get_path():
+		if sourceRow.parent != None and self.botsRowReference != None and sourceRow.parent.path == self.botsRowReference.get_path():
 			bot = None
 			# try to find an existing bot
 			for row in self:

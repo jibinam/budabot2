@@ -17,6 +17,8 @@ class SettingModel(gtk.TreeStore):
 
 	ROW_COMMON = 'common'
 	ROW_BOTS   = 'bots'
+	
+	VALUE_SECTION = 'SECTION' 
 
 	# Define custom signals that this class can emit.
 	__gsignals__ = {
@@ -31,7 +33,7 @@ class SettingModel(gtk.TreeStore):
 	def load(self):
 		"""This method loads the settings from a file."""
 		config = self.createConfigObj()
-		if config and self.validate(config):
+		if config != None and self.validate(config):
 			# populate the model
 			self.clear()
 			self.populate(config, None)
@@ -40,7 +42,7 @@ class SettingModel(gtk.TreeStore):
 		for key, value in section.items():
 			if isinstance(value, dict):
 				# change row type if necessary
-				rowIter = self.append(parentIter, (key, None))
+				rowIter = self.append(parentIter, (key, self.VALUE_SECTION))
 				self.populate(value, rowIter)
 			else:
 				self.append(parentIter, (key, value))
@@ -48,25 +50,18 @@ class SettingModel(gtk.TreeStore):
 	def save(self):
 		"""This method saves the settings to a file."""
 		
-		def hasRowChildren(row):
-			try:
-				row.iterchildren().next()
-			except StopIteration:
-				return False
-			return True
-		
 		def addValues(section, rowIterator):
 			for row in rowIterator:
 				name  = row[self.COLUMN_NAME]
 				value = row[self.COLUMN_VALUE]
-				if hasRowChildren(row):
+				if value == self.VALUE_SECTION:
 					section[name] = {}
 					addValues(section[name], row.iterchildren())
 				else:
 					section[name] = value
 		
 		config = self.createConfigObj()
-		if config and self.validate(config):
+		if config != None:
 			addValues(config, self)
 			if self.validate(config):
 				config.write()
@@ -121,7 +116,7 @@ class SettingModel(gtk.TreeStore):
 			counter += 1
 		# set data
 		botsRow = self.getRowWithNamePath((self.ROW_BOTS,))
-		botIter = self.append(botsRow.iter, (botName2, None))
+		botIter = self.append(botsRow.iter, (botName2, self.VALUE_SECTION))
 		self.append(botIter, ('configfile', configFile))
 		self.append(botIter, ('installdir', installDir))
 
@@ -143,8 +138,7 @@ class SettingModel(gtk.TreeStore):
 			config = ConfigObj(infile = configPath, create_empty = True, encoding = 'UTF8', configspec = 'settingsspec.ini')
 		except(ConfigObjError, IOError), e:
 			self.emit('error', 'Failed to read settings from "%s": %s' % (configPath, e))
-			return
-		# validate the ini-file
+			return None
 		return config
 
 	def validate(self, config):
@@ -154,7 +148,7 @@ class SettingModel(gtk.TreeStore):
 		results = config.validate(validator)
 		if results != True:
 			# report error
-			message = 'Failed to read settings from "%s":\n' % configPath
+			message = 'Failed to read settings\n'
 			for (sectionList, key, _) in configobj.flatten_errors(config, results):
 				if key is not None:
 					message += 'The "%s" key in the section "%s" failed validation\n' % (key, ', '.join(sectionList))
