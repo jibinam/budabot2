@@ -64,9 +64,9 @@ class AddBotWizardController:
 		if path:
 			config = BotPhpConfigFile(path)
 			config.load()
-			values = {}
+			values = []
 			for key, value in config:
-				values[key] = value
+				values.append((key, value))
 			self.finishPage.setValues(values)
 			self.botConfig = config
 
@@ -252,7 +252,9 @@ class FinishPage(Page):
 
 	def setValues(self, values):
 		contents = ''
-		for key, value in values.items():
+		for key, value in values:
+			if key == 'login' or key == 'password' or key == 'DB username' or key == 'DB password':
+				value = len(value) * '**'
 			contents += '<b>' + key + ':</b> ' + str(value) + '\n'
 		self.summaryLabel.set_markup(contents)
 

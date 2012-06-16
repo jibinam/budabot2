@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import re
+import collections
 
 class BotPhpConfigFile(object):
 	""""""
@@ -14,7 +15,12 @@ class BotPhpConfigFile(object):
 
 	def load(self):
 		"""This method loads the settings from a file."""
-		vars = {}
+		try:
+			# new in Python 2.7
+			self.vars = collections.OrderedDict()
+		except AttributeError:
+			self.vars = {}
+
 		with open(self.filePath, 'r') as file:
 			prefix = r'^\s*\$vars\[[\'"](.+)[\'"]\]\s*=\s*'
 			postfix = r'\s*;'
@@ -22,13 +28,12 @@ class BotPhpConfigFile(object):
 				# search for var with a string value:
 				match = re.search(prefix + r'[\'"](.*)[\'"]' + postfix, line)
 				if match:
-					vars[match.group(1)] = match.group(2)
+					self.vars[match.group(1)] = match.group(2)
 					continue
 				# search for var with a non-string value:
 				match = re.search(prefix + '(.*)' + postfix, line)
 				if match:
-					vars[match.group(1)] = int(match.group(2))
-		self.vars = vars
+					self.vars[match.group(1)] = int(match.group(2))
 
 	def save(self):
 		"""This method saves the settings to a file."""
@@ -64,5 +69,5 @@ class BotPhpConfigFile(object):
 		"""Enables ability to iterate through the file's variables
 		with 'for...in'.
 		"""
-		for key, value in self.vars.items():
+		for key, value in self.vars.iteritems():
 			yield key, value
