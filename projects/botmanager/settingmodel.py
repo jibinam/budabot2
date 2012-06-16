@@ -102,12 +102,11 @@ class SettingModel(gtk.TreeStore):
 		"""Returns a list of bot names."""
 		names = []
 		for row in self.getRowWithNamePath((self.ROW_BOTS,)).iterchildren():
-			names.append(row[self.COLUMN_VALUE])
+			names.append(row[self.COLUMN_NAME])
 		return names
 
 	def addBot(self, botName, configFile, installDir):
 		existingNames = self.getBotNames()
-
 		# search unique bot name
 		botName2 = botName
 		counter = 2

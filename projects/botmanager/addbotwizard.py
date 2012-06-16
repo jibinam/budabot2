@@ -8,7 +8,8 @@ from botconfigfile import BotPhpConfigFile
 
 SELECT_ACTION_PAGE_ID = 1
 SELECT_IMPORT_PAGE_ID = 2
-FINISH_PAGE_ID        = 3
+NAME_BOT_PAGE_ID      = 3
+FINISH_PAGE_ID        = 4
 
 
 class AddBotWizardController:
@@ -25,12 +26,15 @@ class AddBotWizardController:
 		self.assistant.connect('apply', self.onApplyClicked)
 		self.assistant.connect('cancel', self.onCancelClicked)
 		self.assistant.connect('close', self.onCloseClicked)
+		self.assistant.connect('prepare', self.onPreparePage)
 
 		self.selectActionPage = SelectActionPage(SELECT_ACTION_PAGE_ID, self.builder)
 		self.selectImportPage = SelectImportPage(SELECT_IMPORT_PAGE_ID, self.builder, settingModel)
+		self.botNamePage      = NameBotPage(NAME_BOT_PAGE_ID, self.builder)
 		self.finishPage       = FinishPage(FINISH_PAGE_ID, self.builder)
 		self.assistant.appendPage(self.selectActionPage)
 		self.assistant.appendPage(self.selectImportPage)
+		self.assistant.appendPage(self.botNamePage)
 		self.assistant.appendPage(self.finishPage)
 
 		self.selectImportPage.connect('notify::complete', self.onSelectImportPageComplete)
@@ -47,7 +51,7 @@ class AddBotWizardController:
 		""""""
 		rootPath = self.selectImportPage.getSelectedBotRootPath()
 		confPath = self.selectImportPage.getSelectedBotConfFilePath()
-		name = '%s @ RK%d' % (self.botConfig.getVar('name'), self.botConfig.getVar('dimension'))
+		name = self.botNamePage.getBotName()
 		self.settingModel.addBot(name, confPath, rootPath)
 		self.settingModel.save()
 
@@ -59,15 +63,26 @@ class AddBotWizardController:
 		""""""
 		self.hide()
 
+	def onPreparePage(self, caller, pageWidget):
+		if self.botNamePage.widget == pageWidget:
+			# set default name to the bot name page
+			name = '%s @ RK%d' % (self.botConfig.getVar('name'), self.botConfig.getVar('dimension'))
+			self.botNamePage.setBotName(name)
+			
+		elif self.finishPage.widget == pageWidget:
+			values = []
+			values.append(('Name', self.botNamePage.getBotName()))
+			values.append(('Bot software path', self.selectImportPage.getSelectedBotRootPath()))
+			values.append(('Bot config path', self.selectImportPage.getSelectedBotConfFilePath()))
+			for key, value in self.botConfig:
+				values.append((key, value))
+			self.finishPage.setValues(values)
+
 	def onSelectImportPageComplete(self, caller, property):
 		path = self.selectImportPage.getSelectedBotConfFilePath()
 		if path:
 			config = BotPhpConfigFile(path)
 			config.load()
-			values = []
-			for key, value in config:
-				values.append((key, value))
-			self.finishPage.setValues(values)
 			self.botConfig = config
 
 class BotImportModel(gtk.ListStore):
@@ -210,7 +225,7 @@ class SelectImportPage(Page):
 		return gtk.ASSISTANT_PAGE_CONTENT
 
 	def getNextPageId(self):
-		return FINISH_PAGE_ID
+		return NAME_BOT_PAGE_ID
 
 	def getSelectedBotRootPath(self):
 		"""Returns path to the bot software's root folder."""
@@ -236,6 +251,38 @@ class SelectImportPage(Page):
 			self.botImportModel.clear()
 
 	def onBotSelected(self, caller):
+		self.notify('complete')
+
+class NameBotPage(Page):
+	def __init__(self, id, builder):
+		super(NameBotPage, self).__init__(id)
+		self.widget = builder.get_object('nameBotPage')
+		self.botNameEntry = builder.get_object('botNameEntry')
+		self.botNameEntry.connect('notify::text', self.onBotNameChanged)
+
+	def do_get_property(self, property):
+		""""""
+		if property.name == 'complete':
+			return len(self.botNameEntry.get_text()) > 0
+		else:
+			return super(SelectImportPage, self).do_get_property(property)
+
+	def getNextPageId(self):
+		return FINISH_PAGE_ID
+
+	def getTitle(self):
+		return 'Bot Name'
+
+	def getType(self):
+		return gtk.ASSISTANT_PAGE_CONTENT
+
+	def getBotName(self):
+		return self.botNameEntry.get_text()
+
+	def setBotName(self, name):
+		self.botNameEntry.set_text(name)
+
+	def onBotNameChanged(self, caller, property):
 		self.notify('complete')
 
 class FinishPage(Page):
