@@ -4,6 +4,7 @@
 import gobject
 import gtk
 from addbotwizard import AddBotWizardController
+from botmodel import BotModel
 
 class ControlPanelController(gobject.GObject):
 	""""""
@@ -43,13 +44,18 @@ class ControlPanelController(gobject.GObject):
 		self.contextItemTerminate = self.builder.get_object('contextItemTerminate')
 		
 		self.botListView.set_model(self.botModel)
-		
-		# add cell renderer
+
+		# setup column for bot's name
+		def botNameSetter(column, cell, model, iter):
+			bot = model[iter][BotModel.COLUMN_BOTOBJECT]
+			name = bot.getName()
+			cell.set_property('text', name)
 		renderer = gtk.CellRendererText()
 		renderer.set_property('height', 50)
-		column = gtk.TreeViewColumn('Bot', renderer, text = 1)
+		column = gtk.TreeViewColumn('Bot', renderer)
+		column.set_cell_data_func(renderer, botNameSetter)
 		self.botListView.append_column(column)
-		
+
 		# set default action as bold
 		# TODO: to helper function
 		label = self.contextItemOpen.get_children()
@@ -157,7 +163,7 @@ class ControlPanelController(gobject.GObject):
 	def getCurrentlySelectedBot(self):
 		""""""
 		selected = self.botListView.get_selection().get_selected()
-		bot = self.botModel.get_value(selected[1], 0)
+		bot = self.botModel.get_value(selected[1], BotModel.COLUMN_BOTOBJECT)
 		return bot
 
 

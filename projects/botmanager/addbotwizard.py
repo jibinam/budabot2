@@ -47,7 +47,7 @@ class AddBotWizardController:
 		""""""
 		rootPath = self.selectImportPage.getSelectedBotRootPath()
 		confPath = self.selectImportPage.getSelectedBotConfFilePath()
-		self.settingModel.addBot('UNKNOWN', rootPath, confPath)
+		self.settingModel.addBot('UNKNOWN', confPath, rootPath)
 		self.settingModel.save()
 
 	def onCancelClicked(self, caller):

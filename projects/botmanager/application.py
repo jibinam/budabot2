@@ -67,7 +67,6 @@ class Application:
 		settingModel.connect('error', self.onError)
 
 		settingModel.load()
-		self.botModel.load()
 
 		controlPanelController.show()
 		# run Twisted + GTK event loop
