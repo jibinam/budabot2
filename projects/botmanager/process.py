@@ -64,6 +64,7 @@ class Process(gobject.GObject):
 			arguments.append('php-win.ini')
 		elif platform.system() == 'Linux':
 			arguments.append('php')
+		arguments.append('-f')
 		arguments.append('main.php')
 		arguments.append('--')
 		arguments.append(self.configFilePath)
