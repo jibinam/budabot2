@@ -157,19 +157,57 @@ class Page(gobject.GObject):
 		self.id = id
 		self.index = -1
 		self.widget = None
+		self.type = gtk.ASSISTANT_PAGE_CONTENT
+		self.title = ''
+		self.completenessFunc = lambda: True
+		self.completenessFuncArgs = []
+		self.nextPageIdFunc = lambda: None
+		self.nextPageIdFuncArgs = []
 
 	def do_get_property(self, property):
 		"""Returns value of given property.
 		This is required to make GTK's properties to work.
 		"""
 		if property.name == 'complete':
-			return True
+			return self.completenessFunc(*self.completenessFuncArgs)
 
 	def prepare(self):
 		pass
 
 	def getNextPageId(self):
-		return None
+		return self.nextPageIdFunc(*self.nextPageIdFuncArgs)
+
+	def getTitle(self):
+		return self.title
+
+	def getType(self):
+		return self.type
+
+	def setType(self, type):
+		"""This method sets type of the page."""
+		self.type = type
+
+	def setTitle(self, title):
+		"""This method sets given string as page's title."""
+		self.title = title
+
+	def setNextPageIdFunc(self, function, *args):
+		"""Sets function which should return id of the next page."""
+		self.nextPageIdFunc = function
+		self.nextPageIdFuncArgs = args
+
+	def setCompletenessFunc(self, function, *args):
+		"""Sets function which should return boolean value which indicates if
+		the page is complete or not.
+		"""
+		self.completenessFunc = function
+		self.completenessFuncArgs = args
+
+	def updateCompleteness(self, *args):
+		"""Notifies any connected listeners that the page complete-status might
+		have changed and should be updated.
+		"""
+		self.notify('complete')
 
 # register class so that custom signals will work
 gobject.type_register(Page)
@@ -178,18 +216,15 @@ class SelectActionPage(Page):
 
 	def __init__(self, id, builder):
 		super(SelectActionPage, self).__init__(id)
+		self.setType(gtk.ASSISTANT_PAGE_INTRO)
+		self.setTitle('Add or import bot')
+		self.setNextPageIdFunc(self.nextPageId)
 		self.widget = builder.get_object('selectActionPage')
 		self.addBotRadioButton = builder.get_object('addBotRadioButton')
 		self.importBotRadioButton = builder.get_object('importBotRadioButton')
 		self.importBotRadioButton.set_group(self.addBotRadioButton)
 
-	def getTitle(self):
-		return 'Add or import bot'
-
-	def getType(self):
-		return gtk.ASSISTANT_PAGE_INTRO
-
-	def getNextPageId(self):
+	def nextPageId(self):
 		if self.addBotRadioButton.get_property('active'):
 			return None
 		elif self.importBotRadioButton.get_property('active'):
@@ -199,6 +234,9 @@ class SelectActionPage(Page):
 class SelectImportPage(Page):
 	def __init__(self, id, builder, settingModel):
 		super(SelectImportPage, self).__init__(id)
+		self.setTitle('Import existing bot')
+		self.setNextPageIdFunc(lambda: NAME_BOT_PAGE_ID)
+		self.setCompletenessFunc(lambda self: self.getSelectedBotConfFilePath() != None, self)
 		self.widget = builder.get_object('selectImportPage')
 		self.settingModel = settingModel
 		self.modelPath = ''
@@ -208,24 +246,7 @@ class SelectImportPage(Page):
 		self.botImportModel = BotImportModel()
 		self.botView = builder.get_object('importBotListView')
 		self.botView.set_model(self.botImportModel)
-		self.botView.get_selection().connect('changed', self.onBotSelected)
-
-	def do_get_property(self, property):
-		""""""
-		if property.name == 'complete':
-			# we can proceed if at least one bot is selected in the bot list view
-			return self.getSelectedBotConfFilePath() != None
-		else:
-			return super(SelectImportPage, self).do_get_property(property)
-
-	def getTitle(self):
-		return 'Import existing bot'
-
-	def getType(self):
-		return gtk.ASSISTANT_PAGE_CONTENT
-
-	def getNextPageId(self):
-		return NAME_BOT_PAGE_ID
+		self.botView.get_selection().connect('changed', self.updateCompleteness)
 
 	def getSelectedBotRootPath(self):
 		"""Returns path to the bot software's root folder."""
@@ -250,31 +271,16 @@ class SelectImportPage(Page):
 		else:
 			self.botImportModel.clear()
 
-	def onBotSelected(self, caller):
-		self.notify('complete')
-
 class NameBotPage(Page):
 	def __init__(self, id, builder):
 		super(NameBotPage, self).__init__(id)
+		self.setTitle('Bot Name')
+		self.setNextPageIdFunc(lambda: FINISH_PAGE_ID)
+		# page is complete if given bot name is not empty
+		self.setCompletenessFunc(lambda self: len(self.botNameEntry.get_text()) > 0, self)
 		self.widget = builder.get_object('nameBotPage')
 		self.botNameEntry = builder.get_object('botNameEntry')
-		self.botNameEntry.connect('notify::text', self.onBotNameChanged)
-
-	def do_get_property(self, property):
-		""""""
-		if property.name == 'complete':
-			return len(self.botNameEntry.get_text()) > 0
-		else:
-			return super(SelectImportPage, self).do_get_property(property)
-
-	def getNextPageId(self):
-		return FINISH_PAGE_ID
-
-	def getTitle(self):
-		return 'Bot Name'
-
-	def getType(self):
-		return gtk.ASSISTANT_PAGE_CONTENT
+		self.botNameEntry.connect('notify::text', self.updateCompleteness)
 
 	def getBotName(self):
 		return self.botNameEntry.get_text()
@@ -282,20 +288,13 @@ class NameBotPage(Page):
 	def setBotName(self, name):
 		self.botNameEntry.set_text(name)
 
-	def onBotNameChanged(self, caller, property):
-		self.notify('complete')
-
 class FinishPage(Page):
 	def __init__(self, id, builder):
 		super(FinishPage, self).__init__(id)
+		self.setType(gtk.ASSISTANT_PAGE_CONFIRM)
+		self.setTitle('Summary')
 		self.widget = builder.get_object('finishPage')
 		self.summaryLabel = builder.get_object('summaryLabel')
-
-	def getTitle(self):
-		return 'Summary'
-
-	def getType(self):
-		return gtk.ASSISTANT_PAGE_CONFIRM
 
 	def setValues(self, values):
 		contents = ''
