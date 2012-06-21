@@ -21,10 +21,11 @@ import gtk
 import gobject
 from botconfigfile import BotPhpConfigFile
 
-SELECT_ACTION_PAGE_ID = 1
-SELECT_IMPORT_PAGE_ID = 2
-NAME_BOT_PAGE_ID      = 3
-FINISH_PAGE_ID        = 4
+SELECT_ACTION_PAGE_ID        = 1
+SELECT_IMPORT_PAGE_ID        = 2
+SELECT_BOT_DIRECTORY_PAGE_ID = 3
+NAME_BOT_PAGE_ID             = 4
+FINISH_PAGE_ID               = 5
 
 class Page(gobject.GObject):
 	"""A common base class for each page class.
@@ -162,7 +163,7 @@ class SelectActionPage(Page):
 	def nextPageId(self):
 		"""Returns ID of the next page to where wizard should change."""
 		if self.addBotRadioButton.get_property('active'):
-			return None
+			return SELECT_BOT_DIRECTORY_PAGE_ID
 		elif self.importBotRadioButton.get_property('active'):
 			return SELECT_IMPORT_PAGE_ID
 		return None
@@ -237,6 +238,41 @@ class BotImportModel(gtk.ListStore):
 				continue
 			# add to the config file to model
 			self.append((fileName, name, dimension))
+
+class SelectBotInstallDirectoryPage(Page):
+	"""This page class lets users browse for location of the Budabot installation."""
+	
+	def __init__(self, builder, settingModel):
+		"""Constructor method."""
+		super(SelectBotInstallDirectoryPage, self).__init__(SELECT_BOT_DIRECTORY_PAGE_ID)
+		self.pathIsValid = False
+		self.setTitle('Select Budabot\'s Directory')
+		self.setNextPageIdFunc(lambda: None)
+		self.setCompletenessFunc(lambda self: self.pathIsValid, self)
+		self.widget = builder.get_object('selectBotInstallDirectoryPage')
+		self.settingModel = settingModel
+		self.botPath = ''
+		self.dirChooser = builder.get_object('botRootDirChooser')
+		self.dirChooser.connect('current-folder-changed', self.onDirChoosen)
+		self.dirChooser.set_current_folder(self.settingModel.getDefaultBotRootPath())
+
+	def getSelectedBotRootPath(self):
+		"""Returns path to the bot software's root directory."""
+		return self.botPath
+
+	def onDirChoosen(self, caller):
+		"""This signal handler is called when user chooses a directory where
+		the bot software has been installed.
+		"""
+		self.botPath = self.dirChooser.get_filename()
+		# check that main.php exists in the directory before accepting the path
+		if os.path.exists(os.path.join(self.botPath, 'main.php')):
+			self.pathIsValid = True
+			self.settingModel.setDefaultBotRootPath(self.botPath)
+			self.settingModel.save()
+		else:
+			self.pathIsValid = False
+		self.updateCompleteness()
 
 class NameBotPage(Page):
 	"""This page class lets user to give a name for the bot."""
