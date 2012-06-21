@@ -24,8 +24,9 @@ from botconfigfile import BotPhpConfigFile
 SELECT_ACTION_PAGE_ID        = 1
 SELECT_IMPORT_PAGE_ID        = 2
 SELECT_BOT_DIRECTORY_PAGE_ID = 3
-NAME_BOT_PAGE_ID             = 4
-FINISH_PAGE_ID               = 5
+ENTER_ACCOUNT_INFO_PAGE_ID   = 4
+NAME_BOT_PAGE_ID             = 5
+FINISH_PAGE_ID               = 6
 
 class Page(gobject.GObject):
 	"""A common base class for each page class.
@@ -247,7 +248,7 @@ class SelectBotInstallDirectoryPage(Page):
 		super(SelectBotInstallDirectoryPage, self).__init__(SELECT_BOT_DIRECTORY_PAGE_ID)
 		self.pathIsValid = False
 		self.setTitle('Select Budabot\'s Directory')
-		self.setNextPageIdFunc(lambda: None)
+		self.setNextPageIdFunc(lambda: ENTER_ACCOUNT_INFO_PAGE_ID)
 		self.setCompletenessFunc(lambda self: self.pathIsValid, self)
 		self.widget = builder.get_object('selectBotInstallDirectoryPage')
 		self.settingModel = settingModel
@@ -273,6 +274,24 @@ class SelectBotInstallDirectoryPage(Page):
 		else:
 			self.pathIsValid = False
 		self.updateCompleteness()
+
+class EnterAccountInfoPage(Page):
+	"""This page class lets users to give AO account's username and password
+	which contains the character that will act as the bot.
+	"""
+
+	def __init__(self, builder):
+		"""Constructor method."""
+		super(EnterAccountInfoPage, self).__init__(ENTER_ACCOUNT_INFO_PAGE_ID)
+		self.pathIsValid = False
+		self.setTitle('Enter Account Information')
+		self.setNextPageIdFunc(lambda: None)
+		self.setCompletenessFunc(lambda self: len(self.usernameEntry.get_text()) > 0 and len(self.passwordEntry.get_text()) > 0, self)
+		self.widget = builder.get_object('enterAccountInfoPage')
+		self.usernameEntry = builder.get_object('accountUsernameEntry')
+		self.usernameEntry.connect('notify::text', self.updateCompleteness)
+		self.passwordEntry = builder.get_object('accountPasswordEntry')
+		self.passwordEntry.connect('notify::text', self.updateCompleteness)
 
 class NameBotPage(Page):
 	"""This page class lets user to give a name for the bot."""
