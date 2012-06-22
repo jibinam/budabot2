@@ -23,6 +23,8 @@ each page:
   ENTER_SUPER_ADMIN_PAGE_ID    - With this page user can give name of the super
                                  admin who will have access to all commands of 
                                  the bot.
+  SELECT_DB_SETTINGS_PAGE_ID   - With this page user can select between default
+                                 and manual database settings.
   NAME_BOT_PAGE_ID             - In this page user can give the bot a name.
   FINISH_PAGE_ID               - This is the final page which shows summary of
                                  the bot settings.
@@ -40,8 +42,9 @@ ENTER_ACCOUNT_INFO_PAGE_ID   = 4
 ENTER_CHARACTER_INFO_PAGE_ID = 5
 SELECT_BOT_TYPE_PAGE_ID      = 6
 ENTER_SUPER_ADMIN_PAGE_ID    = 7
-NAME_BOT_PAGE_ID             = 8
-FINISH_PAGE_ID               = 9
+SELECT_DB_SETTINGS_PAGE_ID   = 8
+NAME_BOT_PAGE_ID             = 9
+FINISH_PAGE_ID               = 10
 
 class Page(gobject.GObject):
 	"""A common base class for each page class.
@@ -374,12 +377,38 @@ class EnterSuperAdminPage(Page):
 		"""Constructor method."""
 		super(EnterSuperAdminPage, self).__init__(ENTER_SUPER_ADMIN_PAGE_ID)
 		self.setTitle('Super Administrator\'s Name')
-		self.setNextPageIdFunc(lambda: None)
+		self.setNextPageIdFunc(lambda: SELECT_DB_SETTINGS_PAGE_ID)
 		# page is complete if given admin name is not empty
 		self.setCompletenessFunc(lambda self: len(self.superAdminNameEntry.get_text()) > 0, self)
 		self.widget = builder.get_object('enterSuperAdminPage')
 		self.superAdminNameEntry = builder.get_object('superAdminNameEntry')
 		self.superAdminNameEntry.connect('notify::text', self.updateCompleteness)
+
+class SelectDatabaseSettingsPage(Page):
+	"""This page class lets user to select if he wants to use default database
+	settings or set it up manually.
+	"""
+
+	def __init__(self, builder):
+		"""Constructor method."""
+		super(SelectDatabaseSettingsPage, self).__init__(SELECT_DB_SETTINGS_PAGE_ID)
+		self.isComplete = True
+		self.setTitle('Database Setup')
+		self.setNextPageIdFunc(lambda: self.nextPageId)
+		self.setCompletenessFunc(lambda self: True, self)
+		# get widgets from builder
+		self.widget = builder.get_object('selectDatabaseSettingsPage')
+		self.defaultRadioButton = builder.get_object('defaultDBSettingsRadioButton')
+		self.manualRadioButton  = builder.get_object('manualDBSettingsRadioButton')
+		# group the radio buttons together
+		self.manualRadioButton.set_group(self.defaultRadioButton)
+
+	def nextPageId(self):
+		"""Returns ID of the next page to where wizard should change."""
+		if self.defaultRadioButton.get_property('active'):
+			return None
+		elif self.manualRadioButton.get_property('active'):
+			return None
 
 class NameBotPage(Page):
 	"""This page class lets user to give a name for the bot."""
