@@ -26,8 +26,9 @@ SELECT_IMPORT_PAGE_ID        = 2
 SELECT_BOT_DIRECTORY_PAGE_ID = 3
 ENTER_ACCOUNT_INFO_PAGE_ID   = 4
 ENTER_CHARACTER_INFO_PAGE_ID = 5
-NAME_BOT_PAGE_ID             = 6
-FINISH_PAGE_ID               = 7
+SELECT_BOT_TYPE_PAGE_ID      = 6
+NAME_BOT_PAGE_ID             = 7
+FINISH_PAGE_ID               = 8
 
 class Page(gobject.GObject):
 	"""A common base class for each page class.
@@ -304,12 +305,52 @@ class EnterCharacterInfoPage(Page):
 		super(EnterCharacterInfoPage, self).__init__(ENTER_CHARACTER_INFO_PAGE_ID)
 		self.pathIsValid = False
 		self.setTitle('Enter Character Information')
-		self.setNextPageIdFunc(lambda: None)
+		self.setNextPageIdFunc(lambda: SELECT_BOT_TYPE_PAGE_ID)
 		self.setCompletenessFunc(lambda self: len(self.characterNameEntry.get_text()) > 0, self)
 		self.widget = builder.get_object('enterCharacterInfoPage')
 		self.dimensionComboBox = builder.get_object('dimensionComboBox')
 		self.characterNameEntry = builder.get_object('characterNameEntry')
 		self.characterNameEntry.connect('notify::text', self.updateCompleteness)
+
+class SelectBotTypePage(Page):
+	"""This page class lets user to select which type of bot he would like
+	to create:
+	  - organization bot or
+	  - raid bot?
+	
+	In addition, if organization bot is chosen, user must also give name of
+	the organization.
+	"""
+
+	def __init__(self, builder):
+		"""Constructor method."""
+		super(SelectBotTypePage, self).__init__(SELECT_BOT_TYPE_PAGE_ID)
+		self.isComplete = True
+		self.setTitle('Select Bot Type')
+		self.setNextPageIdFunc(lambda: None)
+		self.setCompletenessFunc(lambda self: self.isComplete, self)
+		# get widgets from builder
+		self.widget = builder.get_object('selectBotTypePage')
+		self.raidBotRadioButton         = builder.get_object('raidBotRadioButton')
+		self.organizationBotRadioButton = builder.get_object('organizationBotRadioButton')
+		self.organizationNameEntry      = builder.get_object('organizationNameEntry')
+		# connect signals to update() method
+		self.raidBotRadioButton.connect('toggled', self.update)
+		self.organizationBotRadioButton.connect('toggled', self.update)
+		self.organizationNameEntry.connect('notify::text', self.update)
+		# group the radio buttons together
+		self.organizationBotRadioButton.set_group(self.raidBotRadioButton)
+		self.update()
+
+	def update(self, *args):
+		"""This method updates states of the UI elements on the page."""
+		if self.raidBotRadioButton.get_property('active'):
+			self.organizationNameEntry.set_sensitive(False)
+			self.isComplete = True
+		elif self.organizationBotRadioButton.get_property('active'):
+			self.organizationNameEntry.set_sensitive(True)
+			self.isComplete = len(self.organizationNameEntry.get_text()) > 0
+		self.updateCompleteness()
 
 class NameBotPage(Page):
 	"""This page class lets user to give a name for the bot."""
