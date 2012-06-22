@@ -7,13 +7,25 @@ importing bots.
 This module also provides following constants which are used to identify
 each page:
 
-  SELECT_ACTION_PAGE_ID - This is the first page where user can select if he is
-                          going add a new bot or import and existing bot.
-  SELECT_IMPORT_PAGE_ID - This is first page in the import functionality where
-                          user can browse for location of the bot.
-  NAME_BOT_PAGE_ID      - In this page user can give the bot a name.
-  FINISH_PAGE_ID        - This is the final page which shows summary of the
-                          bot settings.
+  SELECT_ACTION_PAGE_ID        - This is the first page where user can select
+                                 if he is going add a new bot or import and
+                                 existing bot.
+  SELECT_IMPORT_PAGE_ID        - This is first page in the import functionality
+                                 where user can browse for location of the bot.
+  SELECT_BOT_DIRECTORY_PAGE_ID - With this page user can give path to bot's
+                                 install directory.
+  ENTER_ACCOUNT_INFO_PAGE_ID   - With this page user provides login information
+                                 of the game account where the bot will be running.
+  ENTER_CHARACTER_INFO_PAGE_ID - With this page user provides name and dimension
+                                 of the bot's character.
+  SELECT_BOT_TYPE_PAGE_ID      - With this page user can select if the bot will
+                                 act as org or raid bot.
+  ENTER_SUPER_ADMIN_PAGE_ID    - With this page user can give name of the super
+                                 admin who will have access to all commands of 
+                                 the bot.
+  NAME_BOT_PAGE_ID             - In this page user can give the bot a name.
+  FINISH_PAGE_ID               - This is the final page which shows summary of
+                                 the bot settings.
 """
 
 import os
@@ -27,8 +39,9 @@ SELECT_BOT_DIRECTORY_PAGE_ID = 3
 ENTER_ACCOUNT_INFO_PAGE_ID   = 4
 ENTER_CHARACTER_INFO_PAGE_ID = 5
 SELECT_BOT_TYPE_PAGE_ID      = 6
-NAME_BOT_PAGE_ID             = 7
-FINISH_PAGE_ID               = 8
+ENTER_SUPER_ADMIN_PAGE_ID    = 7
+NAME_BOT_PAGE_ID             = 8
+FINISH_PAGE_ID               = 9
 
 class Page(gobject.GObject):
 	"""A common base class for each page class.
@@ -327,7 +340,7 @@ class SelectBotTypePage(Page):
 		super(SelectBotTypePage, self).__init__(SELECT_BOT_TYPE_PAGE_ID)
 		self.isComplete = True
 		self.setTitle('Select Bot Type')
-		self.setNextPageIdFunc(lambda: None)
+		self.setNextPageIdFunc(lambda: ENTER_SUPER_ADMIN_PAGE_ID)
 		self.setCompletenessFunc(lambda self: self.isComplete, self)
 		# get widgets from builder
 		self.widget = builder.get_object('selectBotTypePage')
@@ -351,6 +364,22 @@ class SelectBotTypePage(Page):
 			self.organizationNameEntry.set_sensitive(True)
 			self.isComplete = len(self.organizationNameEntry.get_text()) > 0
 		self.updateCompleteness()
+
+class EnterSuperAdminPage(Page):
+	"""This page class lets user to enter name of the character who will be
+	super administrator of the bot.
+	"""
+
+	def __init__(self, builder):
+		"""Constructor method."""
+		super(EnterSuperAdminPage, self).__init__(ENTER_SUPER_ADMIN_PAGE_ID)
+		self.setTitle('Super Administrator\'s Name')
+		self.setNextPageIdFunc(lambda: None)
+		# page is complete if given admin name is not empty
+		self.setCompletenessFunc(lambda self: len(self.superAdminNameEntry.get_text()) > 0, self)
+		self.widget = builder.get_object('enterSuperAdminPage')
+		self.superAdminNameEntry = builder.get_object('superAdminNameEntry')
+		self.superAdminNameEntry.connect('notify::text', self.updateCompleteness)
 
 class NameBotPage(Page):
 	"""This page class lets user to give a name for the bot."""
