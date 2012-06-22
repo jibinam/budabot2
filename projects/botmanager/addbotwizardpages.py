@@ -25,8 +25,9 @@ SELECT_ACTION_PAGE_ID        = 1
 SELECT_IMPORT_PAGE_ID        = 2
 SELECT_BOT_DIRECTORY_PAGE_ID = 3
 ENTER_ACCOUNT_INFO_PAGE_ID   = 4
-NAME_BOT_PAGE_ID             = 5
-FINISH_PAGE_ID               = 6
+ENTER_CHARACTER_INFO_PAGE_ID = 5
+NAME_BOT_PAGE_ID             = 6
+FINISH_PAGE_ID               = 7
 
 class Page(gobject.GObject):
 	"""A common base class for each page class.
@@ -285,13 +286,30 @@ class EnterAccountInfoPage(Page):
 		super(EnterAccountInfoPage, self).__init__(ENTER_ACCOUNT_INFO_PAGE_ID)
 		self.pathIsValid = False
 		self.setTitle('Enter Account Information')
-		self.setNextPageIdFunc(lambda: None)
+		self.setNextPageIdFunc(lambda: ENTER_CHARACTER_INFO_PAGE_ID)
 		self.setCompletenessFunc(lambda self: len(self.usernameEntry.get_text()) > 0 and len(self.passwordEntry.get_text()) > 0, self)
 		self.widget = builder.get_object('enterAccountInfoPage')
 		self.usernameEntry = builder.get_object('accountUsernameEntry')
 		self.usernameEntry.connect('notify::text', self.updateCompleteness)
 		self.passwordEntry = builder.get_object('accountPasswordEntry')
 		self.passwordEntry.connect('notify::text', self.updateCompleteness)
+
+class EnterCharacterInfoPage(Page):
+	"""This page class lets users to give dimension and name of the character
+	on which the bot will run on.
+	"""
+
+	def __init__(self, builder):
+		"""Constructor method."""
+		super(EnterCharacterInfoPage, self).__init__(ENTER_CHARACTER_INFO_PAGE_ID)
+		self.pathIsValid = False
+		self.setTitle('Enter Character Information')
+		self.setNextPageIdFunc(lambda: None)
+		self.setCompletenessFunc(lambda self: len(self.characterNameEntry.get_text()) > 0, self)
+		self.widget = builder.get_object('enterCharacterInfoPage')
+		self.dimensionComboBox = builder.get_object('dimensionComboBox')
+		self.characterNameEntry = builder.get_object('characterNameEntry')
+		self.characterNameEntry.connect('notify::text', self.updateCompleteness)
 
 class NameBotPage(Page):
 	"""This page class lets user to give a name for the bot."""

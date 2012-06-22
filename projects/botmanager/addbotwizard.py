@@ -5,6 +5,7 @@ import gtk
 from botconfigfile import BotPhpConfigFile
 from addbotwizardpages import SelectActionPage, SelectImportPage, NameBotPage
 from addbotwizardpages import FinishPage, SelectBotInstallDirectoryPage, EnterAccountInfoPage
+from addbotwizardpages import EnterCharacterInfoPage
 
 class AddBotWizardController:
 	""""""
@@ -26,12 +27,14 @@ class AddBotWizardController:
 		self.selectImportPage        = SelectImportPage(self.builder, settingModel)
 		self.selectBotInstallDirPage = SelectBotInstallDirectoryPage(self.builder, settingModel)
 		self.enterAccountInfoPage    = EnterAccountInfoPage(self.builder)
+		self.enterCharacterInfoPage  = EnterCharacterInfoPage(self.builder)
 		self.botNamePage             = NameBotPage(self.builder)
 		self.finishPage              = FinishPage(self.builder)
 		self.assistant.appendPage(self.selectActionPage)
 		self.assistant.appendPage(self.selectImportPage)
 		self.assistant.appendPage(self.selectBotInstallDirPage)
 		self.assistant.appendPage(self.enterAccountInfoPage)
+		self.assistant.appendPage(self.enterCharacterInfoPage)
 		self.assistant.appendPage(self.botNamePage)
 		self.assistant.appendPage(self.finishPage)
 
