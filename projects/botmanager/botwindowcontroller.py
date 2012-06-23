@@ -60,6 +60,7 @@ class BotWindowController(gobject.GObject):
 
 	def show(self):
 		"""Shows the window to user."""
+		self.botWindow.set_property('title', 'Budabot - %s' % self.bot.getName())
 		self.botWindow.show_all()
 
 	def onDeleteEvent(self, sender, event):

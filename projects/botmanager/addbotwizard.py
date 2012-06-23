@@ -22,6 +22,7 @@ class AddBotWizardController:
 		self.builder.add_from_file('addbotwizard.glade')
 
 		self.assistant = Assistant()
+		self.assistant.set_property('title', 'Budabot - Add Bot Wizard')
 
 		# position the wizard on top of control panel's window
 		self.assistant.set_transient_for(parentWindow)
