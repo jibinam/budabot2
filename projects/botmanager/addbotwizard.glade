@@ -691,6 +691,58 @@ between Mysql and Sqlite.</property>
       </packing>
     </child>
   </object>
+  <object class="GtkVBox" id="selectDefaultModuleStatusPage">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkLabel" id="label18">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="xalign">0</property>
+        <property name="label" translatable="yes">Do you want to have all modules/commands enabled by default?
+This is usefull when you are using this bot the first time so that all
+commands are available from the beginning.
+If you select 'no', you will need to enable the commands manually.</property>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkRadioButton" id="moduleStatusYesRadioButton">
+        <property name="label" translatable="yes">Yes (recommened)</property>
+        <property name="use_action_appearance">False</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">False</property>
+        <property name="active">True</property>
+        <property name="draw_indicator">True</property>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">False</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkRadioButton" id="moduleStatusNoRadioButton">
+        <property name="label" translatable="yes">No</property>
+        <property name="use_action_appearance">False</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">False</property>
+        <property name="active">True</property>
+        <property name="draw_indicator">True</property>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">False</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+  </object>
   <object class="GtkVBox" id="selectImportPage">
     <property name="visible">True</property>
     <property name="can_focus">False</property>

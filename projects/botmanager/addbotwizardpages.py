@@ -25,6 +25,8 @@ each page:
                                  the bot.
   SELECT_DB_SETTINGS_PAGE_ID   - With this page user can select between default
                                  and manual database settings.
+  SELECT_MODULE_STATUS_PAGE_ID - With this page user can select if all modules
+                                 are enabled or disabled by default.
   NAME_BOT_PAGE_ID             - In this page user can give the bot a name.
   FINISH_PAGE_ID               - This is the final page which shows summary of
                                  the bot settings.
@@ -43,8 +45,9 @@ ENTER_CHARACTER_INFO_PAGE_ID = 5
 SELECT_BOT_TYPE_PAGE_ID      = 6
 ENTER_SUPER_ADMIN_PAGE_ID    = 7
 SELECT_DB_SETTINGS_PAGE_ID   = 8
-NAME_BOT_PAGE_ID             = 9
-FINISH_PAGE_ID               = 10
+SELECT_MODULE_STATUS_PAGE_ID = 9
+NAME_BOT_PAGE_ID             = 10
+FINISH_PAGE_ID               = 11
 
 class Page(gobject.GObject):
 	"""A common base class for each page class.
@@ -394,8 +397,8 @@ class SelectDatabaseSettingsPage(Page):
 		super(SelectDatabaseSettingsPage, self).__init__(SELECT_DB_SETTINGS_PAGE_ID)
 		self.isComplete = True
 		self.setTitle('Database Setup')
-		self.setNextPageIdFunc(lambda: self.nextPageId)
-		self.setCompletenessFunc(lambda self: True, self)
+		self.setNextPageIdFunc(self.nextPageId)
+		self.setCompletenessFunc(lambda: True)
 		# get widgets from builder
 		self.widget = builder.get_object('selectDatabaseSettingsPage')
 		self.defaultRadioButton = builder.get_object('defaultDBSettingsRadioButton')
@@ -406,9 +409,29 @@ class SelectDatabaseSettingsPage(Page):
 	def nextPageId(self):
 		"""Returns ID of the next page to where wizard should change."""
 		if self.defaultRadioButton.get_property('active'):
-			return None
+			return SELECT_MODULE_STATUS_PAGE_ID
 		elif self.manualRadioButton.get_property('active'):
 			return None
+
+class SelectDefaultModuleStatusPage(Page):
+	"""This page class lets user to select if all modules are on or off
+	by default.
+	"""
+
+	def __init__(self, builder):
+		"""Constructor method."""
+		super(SelectDefaultModuleStatusPage, self).__init__(SELECT_MODULE_STATUS_PAGE_ID)
+		self.isComplete = True
+		self.setTitle('Enable/Disable All Commands')
+		self.setNextPageIdFunc(lambda: NAME_BOT_PAGE_ID)
+		self.setCompletenessFunc(lambda: True)
+		# get widgets from builder
+		self.widget = builder.get_object('selectDefaultModuleStatusPage')
+		self.yesRadioButton = builder.get_object('moduleStatusYesRadioButton')
+		self.noRadioButton  = builder.get_object('moduleStatusNoRadioButton')
+		# group the radio buttons together and select default button
+		self.yesRadioButton.set_group(self.noRadioButton)
+		self.yesRadioButton.set_active(True)
 
 class NameBotPage(Page):
 	"""This page class lets user to give a name for the bot."""
