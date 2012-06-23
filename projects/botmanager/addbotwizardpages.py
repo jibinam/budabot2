@@ -7,31 +7,33 @@ importing bots.
 This module also provides following constants which are used to identify
 each page:
 
-  SELECT_ACTION_PAGE_ID        - This is the first page where user can select
-                                 if he is going add a new bot or import and
-                                 existing bot.
-  SELECT_IMPORT_PAGE_ID        - This is first page in the import functionality
-                                 where user can browse for location of the bot.
-  SELECT_BOT_DIRECTORY_PAGE_ID - With this page user can give path to bot's
-                                 install directory.
-  ENTER_ACCOUNT_INFO_PAGE_ID   - With this page user provides login information
-                                 of the game account where the bot will be running.
-  ENTER_CHARACTER_INFO_PAGE_ID - With this page user provides name and dimension
-                                 of the bot's character.
-  SELECT_BOT_TYPE_PAGE_ID      - With this page user can select if the bot will
-                                 act as org or raid bot.
-  ENTER_SUPER_ADMIN_PAGE_ID    - With this page user can give name of the super
-                                 admin who will have access to all commands of 
-                                 the bot.
-  SELECT_DB_SETTINGS_PAGE_ID   - With this page user can select between default
-                                 and manual database settings.
-  SELECT_DB_TYPE_PAGE_ID       - With this page user can select between Sqlite
-                                 and MySQL.
-  SELECT_MODULE_STATUS_PAGE_ID - With this page user can select if all modules
-                                 are enabled or disabled by default.
-  NAME_BOT_PAGE_ID             - In this page user can give the bot a name.
-  FINISH_PAGE_ID               - This is the final page which shows summary of
-                                 the bot settings.
+  SELECT_ACTION_PAGE_ID         - This is the first page where user can select
+                                  if he is going add a new bot or import and
+                                  existing bot.
+  SELECT_IMPORT_PAGE_ID         - This is first page in the import functionality
+                                  where user can browse for location of the bot.
+  SELECT_BOT_DIRECTORY_PAGE_ID  - With this page user can give path to bot's
+                                  install directory.
+  ENTER_ACCOUNT_INFO_PAGE_ID    - With this page user provides login information
+                                  of the game account where the bot will be running.
+  ENTER_CHARACTER_INFO_PAGE_ID  - With this page user provides name and dimension
+                                  of the bot's character.
+  SELECT_BOT_TYPE_PAGE_ID       - With this page user can select if the bot will
+                                  act as org or raid bot.
+  ENTER_SUPER_ADMIN_PAGE_ID     - With this page user can give name of the super
+                                  admin who will have access to all commands of 
+                                  the bot.
+  SELECT_DB_SETTINGS_PAGE_ID    - With this page user can select between default
+                                  and manual database settings.
+  SELECT_DB_TYPE_PAGE_ID        - With this page user can select between Sqlite
+                                  and MySQL.
+  ENTER_SQLITE_SETTINGS_PAGE_ID - With this page user can enter Sqlite settings.
+  ENTER_MYSQL_SETTINGS_PAGE_ID  - With this page user can enter MySQL settings.
+  SELECT_MODULE_STATUS_PAGE_ID  - With this page user can select if all modules
+                                  are enabled or disabled by default.
+  NAME_BOT_PAGE_ID              - In this page user can give the bot a name.
+  FINISH_PAGE_ID                - This is the final page which shows summary of
+                                  the bot settings.
 """
 
 import os
@@ -39,18 +41,20 @@ import gtk
 import gobject
 from botconfigfile import BotPhpConfigFile
 
-SELECT_ACTION_PAGE_ID        = 1
-SELECT_IMPORT_PAGE_ID        = 2
-SELECT_BOT_DIRECTORY_PAGE_ID = 3
-ENTER_ACCOUNT_INFO_PAGE_ID   = 4
-ENTER_CHARACTER_INFO_PAGE_ID = 5
-SELECT_BOT_TYPE_PAGE_ID      = 6
-ENTER_SUPER_ADMIN_PAGE_ID    = 7
-SELECT_DB_SETTINGS_PAGE_ID   = 8
-SELECT_DB_TYPE_PAGE_ID       = 9
-SELECT_MODULE_STATUS_PAGE_ID = 10
-NAME_BOT_PAGE_ID             = 11
-FINISH_PAGE_ID               = 12
+SELECT_ACTION_PAGE_ID         = 1
+SELECT_IMPORT_PAGE_ID         = 2
+SELECT_BOT_DIRECTORY_PAGE_ID  = 3
+ENTER_ACCOUNT_INFO_PAGE_ID    = 4
+ENTER_CHARACTER_INFO_PAGE_ID  = 5
+SELECT_BOT_TYPE_PAGE_ID       = 6
+ENTER_SUPER_ADMIN_PAGE_ID     = 7
+SELECT_DB_SETTINGS_PAGE_ID    = 8
+SELECT_DB_TYPE_PAGE_ID        = 9
+ENTER_SQLITE_SETTINGS_PAGE_ID = 10
+ENTER_MYSQL_SETTINGS_PAGE_ID  = 11
+SELECT_MODULE_STATUS_PAGE_ID  = 12
+NAME_BOT_PAGE_ID              = 13
+FINISH_PAGE_ID                = 14
 
 class Page(gobject.GObject):
 	"""A common base class for each page class.
@@ -68,7 +72,7 @@ class Page(gobject.GObject):
 		'complete' : (gobject.TYPE_BOOLEAN, 'complete', 'is page complete', False, gobject.PARAM_READWRITE),
 	}
 
-	def __init__(self, id):
+	def __init__(self, controller, id):
 		"""Constructor method.
 		
 		The given id value is used to identify the page object by the
@@ -76,6 +80,7 @@ class Page(gobject.GObject):
 		"""
 		self.__gobject_init__()
 		self.id = id
+		self.controller = controller
 		self.index = -1
 		self.widget = None
 		self.type = gtk.ASSISTANT_PAGE_CONTENT
@@ -174,44 +179,53 @@ class SelectActionPage(Page):
 	a existing bot.
 	"""
 
-	def __init__(self, builder):
+	TYPE_ADDNEW = 1
+	TYPE_IMPORT = 2
+
+	def __init__(self, controller):
 		"""Constructor method."""
-		super(SelectActionPage, self).__init__(SELECT_ACTION_PAGE_ID)
+		super(SelectActionPage, self).__init__(controller, SELECT_ACTION_PAGE_ID)
 		self.setType(gtk.ASSISTANT_PAGE_INTRO)
 		self.setTitle('Add or import bot')
 		self.setNextPageIdFunc(self.nextPageId)
-		self.widget = builder.get_object('selectActionPage')
-		self.addBotRadioButton = builder.get_object('addBotRadioButton')
-		self.importBotRadioButton = builder.get_object('importBotRadioButton')
+		self.widget = controller.getViewObject('selectActionPage')
+		self.addBotRadioButton = controller.getViewObject('addBotRadioButton')
+		self.importBotRadioButton = controller.getViewObject('importBotRadioButton')
 		self.importBotRadioButton.set_group(self.addBotRadioButton)
+
+	def getActionType(self):
+		"""Returns type of action."""
+		if self.addBotRadioButton.get_property('active'):
+			return self.TYPE_ADDNEW
+		elif self.importBotRadioButton.get_property('active'):
+			return self.TYPE_IMPORT
 
 	def nextPageId(self):
 		"""Returns ID of the next page to where wizard should change."""
-		if self.addBotRadioButton.get_property('active'):
+		if self.getActionType() == self.TYPE_ADDNEW:
 			return SELECT_BOT_DIRECTORY_PAGE_ID
-		elif self.importBotRadioButton.get_property('active'):
+		elif self.getActionType() == self.TYPE_IMPORT:
 			return SELECT_IMPORT_PAGE_ID
-		return None
 
 class SelectImportPage(Page):
 	"""This page class lets users browse for location of the Budabot
 	installation and config file which should be imported to Bot Manager.
 	"""
 	
-	def __init__(self, builder, settingModel):
+	def __init__(self, controller):
 		"""Constructor method."""
-		super(SelectImportPage, self).__init__(SELECT_IMPORT_PAGE_ID)
+		super(SelectImportPage, self).__init__(controller, SELECT_IMPORT_PAGE_ID)
 		self.setTitle('Import existing bot')
 		self.setNextPageIdFunc(lambda: NAME_BOT_PAGE_ID)
 		self.setCompletenessFunc(lambda self: self.getSelectedBotConfFilePath() != None, self)
-		self.widget = builder.get_object('selectImportPage')
-		self.settingModel = settingModel
+		self.widget = controller.getViewObject('selectImportPage')
+		self.settingModel = controller.getSettingModel()
 		self.modelPath = ''
-		self.dirChooser = builder.get_object('botImportDirChooser')
+		self.dirChooser = controller.getViewObject('botImportDirChooser')
 		self.dirChooser.connect('current-folder-changed', self.onBotImportDirChoosen)
 		self.dirChooser.set_current_folder(self.settingModel.getDefaultBotRootPath())
 		self.botImportModel = BotImportModel()
-		self.botView = builder.get_object('importBotListView')
+		self.botView = controller.getViewObject('importBotListView')
 		self.botView.set_model(self.botImportModel)
 		self.botView.get_selection().connect('changed', self.updateCompleteness)
 
@@ -267,17 +281,17 @@ class BotImportModel(gtk.ListStore):
 class SelectBotInstallDirectoryPage(Page):
 	"""This page class lets users browse for location of the Budabot installation."""
 	
-	def __init__(self, builder, settingModel):
+	def __init__(self, controller):
 		"""Constructor method."""
-		super(SelectBotInstallDirectoryPage, self).__init__(SELECT_BOT_DIRECTORY_PAGE_ID)
+		super(SelectBotInstallDirectoryPage, self).__init__(controller, SELECT_BOT_DIRECTORY_PAGE_ID)
 		self.pathIsValid = False
 		self.setTitle('Select Budabot\'s Directory')
 		self.setNextPageIdFunc(lambda: ENTER_ACCOUNT_INFO_PAGE_ID)
 		self.setCompletenessFunc(lambda self: self.pathIsValid, self)
-		self.widget = builder.get_object('selectBotInstallDirectoryPage')
-		self.settingModel = settingModel
+		self.widget = controller.getViewObject('selectBotInstallDirectoryPage')
+		self.settingModel = controller.getSettingModel()
 		self.botPath = ''
-		self.dirChooser = builder.get_object('botRootDirChooser')
+		self.dirChooser = controller.getViewObject('botRootDirChooser')
 		self.dirChooser.connect('current-folder-changed', self.onDirChoosen)
 		self.dirChooser.set_current_folder(self.settingModel.getDefaultBotRootPath())
 
@@ -304,17 +318,17 @@ class EnterAccountInfoPage(Page):
 	which contains the character that will act as the bot.
 	"""
 
-	def __init__(self, builder):
+	def __init__(self, controller):
 		"""Constructor method."""
-		super(EnterAccountInfoPage, self).__init__(ENTER_ACCOUNT_INFO_PAGE_ID)
+		super(EnterAccountInfoPage, self).__init__(controller, ENTER_ACCOUNT_INFO_PAGE_ID)
 		self.pathIsValid = False
 		self.setTitle('Enter Account Information')
 		self.setNextPageIdFunc(lambda: ENTER_CHARACTER_INFO_PAGE_ID)
 		self.setCompletenessFunc(lambda self: len(self.usernameEntry.get_text()) > 0 and len(self.passwordEntry.get_text()) > 0, self)
-		self.widget = builder.get_object('enterAccountInfoPage')
-		self.usernameEntry = builder.get_object('accountUsernameEntry')
+		self.widget = controller.getViewObject('enterAccountInfoPage')
+		self.usernameEntry = controller.getViewObject('accountUsernameEntry')
 		self.usernameEntry.connect('notify::text', self.updateCompleteness)
-		self.passwordEntry = builder.get_object('accountPasswordEntry')
+		self.passwordEntry = controller.getViewObject('accountPasswordEntry')
 		self.passwordEntry.connect('notify::text', self.updateCompleteness)
 
 class EnterCharacterInfoPage(Page):
@@ -322,16 +336,16 @@ class EnterCharacterInfoPage(Page):
 	on which the bot will run on.
 	"""
 
-	def __init__(self, builder):
+	def __init__(self, controller):
 		"""Constructor method."""
-		super(EnterCharacterInfoPage, self).__init__(ENTER_CHARACTER_INFO_PAGE_ID)
+		super(EnterCharacterInfoPage, self).__init__(controller, ENTER_CHARACTER_INFO_PAGE_ID)
 		self.pathIsValid = False
 		self.setTitle('Enter Character Information')
 		self.setNextPageIdFunc(lambda: SELECT_BOT_TYPE_PAGE_ID)
 		self.setCompletenessFunc(lambda self: len(self.characterNameEntry.get_text()) > 0, self)
-		self.widget = builder.get_object('enterCharacterInfoPage')
-		self.dimensionComboBox = builder.get_object('dimensionComboBox')
-		self.characterNameEntry = builder.get_object('characterNameEntry')
+		self.widget = controller.getViewObject('enterCharacterInfoPage')
+		self.dimensionComboBox = controller.getViewObject('dimensionComboBox')
+		self.characterNameEntry = controller.getViewObject('characterNameEntry')
 		self.characterNameEntry.connect('notify::text', self.updateCompleteness)
 
 class SelectBotTypePage(Page):
@@ -344,18 +358,18 @@ class SelectBotTypePage(Page):
 	the organization.
 	"""
 
-	def __init__(self, builder):
+	def __init__(self, controller):
 		"""Constructor method."""
-		super(SelectBotTypePage, self).__init__(SELECT_BOT_TYPE_PAGE_ID)
+		super(SelectBotTypePage, self).__init__(controller, SELECT_BOT_TYPE_PAGE_ID)
 		self.isComplete = True
 		self.setTitle('Select Bot Type')
 		self.setNextPageIdFunc(lambda: ENTER_SUPER_ADMIN_PAGE_ID)
 		self.setCompletenessFunc(lambda self: self.isComplete, self)
 		# get widgets from builder
-		self.widget = builder.get_object('selectBotTypePage')
-		self.raidBotRadioButton         = builder.get_object('raidBotRadioButton')
-		self.organizationBotRadioButton = builder.get_object('organizationBotRadioButton')
-		self.organizationNameEntry      = builder.get_object('organizationNameEntry')
+		self.widget = controller.getViewObject('selectBotTypePage')
+		self.raidBotRadioButton         = controller.getViewObject('raidBotRadioButton')
+		self.organizationBotRadioButton = controller.getViewObject('organizationBotRadioButton')
+		self.organizationNameEntry      = controller.getViewObject('organizationNameEntry')
 		# connect signals to update() method
 		self.raidBotRadioButton.connect('toggled', self.update)
 		self.organizationBotRadioButton.connect('toggled', self.update)
@@ -379,15 +393,15 @@ class EnterSuperAdminPage(Page):
 	super administrator of the bot.
 	"""
 
-	def __init__(self, builder):
+	def __init__(self, controller):
 		"""Constructor method."""
-		super(EnterSuperAdminPage, self).__init__(ENTER_SUPER_ADMIN_PAGE_ID)
+		super(EnterSuperAdminPage, self).__init__(controller, ENTER_SUPER_ADMIN_PAGE_ID)
 		self.setTitle('Super Administrator\'s Name')
 		self.setNextPageIdFunc(lambda: SELECT_DB_SETTINGS_PAGE_ID)
 		# page is complete if given admin name is not empty
 		self.setCompletenessFunc(lambda self: len(self.superAdminNameEntry.get_text()) > 0, self)
-		self.widget = builder.get_object('enterSuperAdminPage')
-		self.superAdminNameEntry = builder.get_object('superAdminNameEntry')
+		self.widget = controller.getViewObject('enterSuperAdminPage')
+		self.superAdminNameEntry = controller.getViewObject('superAdminNameEntry')
 		self.superAdminNameEntry.connect('notify::text', self.updateCompleteness)
 
 class SelectDatabaseSettingsPage(Page):
@@ -395,17 +409,17 @@ class SelectDatabaseSettingsPage(Page):
 	settings or set it up manually.
 	"""
 
-	def __init__(self, builder):
+	def __init__(self, controller):
 		"""Constructor method."""
-		super(SelectDatabaseSettingsPage, self).__init__(SELECT_DB_SETTINGS_PAGE_ID)
+		super(SelectDatabaseSettingsPage, self).__init__(controller, SELECT_DB_SETTINGS_PAGE_ID)
 		self.isComplete = True
 		self.setTitle('Database Setup')
 		self.setNextPageIdFunc(self.nextPageId)
 		self.setCompletenessFunc(lambda: True)
 		# get widgets from builder
-		self.widget = builder.get_object('selectDatabaseSettingsPage')
-		self.defaultRadioButton = builder.get_object('defaultDBSettingsRadioButton')
-		self.manualRadioButton  = builder.get_object('manualDBSettingsRadioButton')
+		self.widget = controller.getViewObject('selectDatabaseSettingsPage')
+		self.defaultRadioButton = controller.getViewObject('defaultDBSettingsRadioButton')
+		self.manualRadioButton  = controller.getViewObject('manualDBSettingsRadioButton')
 		# group the radio buttons together
 		self.manualRadioButton.set_group(self.defaultRadioButton)
 
@@ -421,17 +435,17 @@ class SelectDatabaseTypePage(Page):
 	use, Sqlite or MySQL.
 	"""
 
-	def __init__(self, builder):
+	def __init__(self, controller):
 		"""Constructor method."""
-		super(SelectDatabaseTypePage, self).__init__(SELECT_DB_TYPE_PAGE_ID)
+		super(SelectDatabaseTypePage, self).__init__(controller, SELECT_DB_TYPE_PAGE_ID)
 		self.isComplete = True
-		self.setTitle('Database Setup')
+		self.setTitle('Database Setup - Select Type')
 		self.setNextPageIdFunc(self.nextPageId)
 		self.setCompletenessFunc(lambda: True)
 		# get widgets from builder
-		self.widget = builder.get_object('selectDatabaseTypePage')
-		self.sqliteRadioButton = builder.get_object('sqliteTypeRadioButton')
-		self.mysqlRadioButton  = builder.get_object('mysqlTypeRadioButton')
+		self.widget = controller.getViewObject('selectDatabaseTypePage')
+		self.sqliteRadioButton = controller.getViewObject('sqliteTypeRadioButton')
+		self.mysqlRadioButton  = controller.getViewObject('mysqlTypeRadioButton')
 		# group the radio buttons together and select default button
 		self.sqliteRadioButton.set_group(self.mysqlRadioButton)
 		self.sqliteRadioButton.set_active(True)
@@ -439,26 +453,66 @@ class SelectDatabaseTypePage(Page):
 	def nextPageId(self):
 		"""Returns ID of the next page to where wizard should change."""
 		if self.sqliteRadioButton.get_property('active'):
-			return None
+			return ENTER_SQLITE_SETTINGS_PAGE_ID
 		elif self.mysqlRadioButton.get_property('active'):
-			return None
+			return ENTER_MYSQL_SETTINGS_PAGE_ID
+
+class EnterSqliteSettingsPage(Page):
+	"""This page class lets user to enter Sqlite settings."""
+
+	def __init__(self, controller):
+		"""Constructor method."""
+		super(EnterSqliteSettingsPage, self).__init__(controller, ENTER_SQLITE_SETTINGS_PAGE_ID)
+		self.isComplete = True
+		self.setTitle('Database Setup - Sqlite Settings')
+		self.setNextPageIdFunc(lambda: SELECT_MODULE_STATUS_PAGE_ID)
+		self.setCompletenessFunc(lambda: True)
+		# get widgets from builder
+		self.widget = controller.getViewObject('enterSqliteSettingsPage')
+		self.sqliteDBFilePathEntry = controller.getViewObject('sqliteDBFilePathEntry')
+		controller.getViewObject('sqliteDBFileBrowseButton').connect('clicked', self.onBrowseClicked)
+		self.sqliteDBFilePathEntry.set_text(os.path.normpath('data/budabot.db'))
+
+	def onBrowseClicked(self, caller):
+		"""This signal handler method is called when user clicks the
+		browse button.
+		"""
+		# build the file chooser dialog
+		title = 'Select Sqlite Database File'
+		parent = self.controller.getAssistant()
+		action = gtk.FILE_CHOOSER_ACTION_SAVE
+		buttons = (gtk.STOCK_APPLY,  gtk.RESPONSE_ACCEPT,
+		           gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
+		dialog = gtk.FileChooserDialog(title, parent, action, buttons)
+		# get path where the bot is installed
+		installPath = self.controller.getBotInstallPath()
+		# set dialog's starting path
+		dbPath = os.path.normpath(os.path.join(installPath, self.sqliteDBFilePathEntry.get_text()))
+		dialog.select_filename(dbPath)
+		# run the dialog and if user clicked 'apply' set the selected file path
+		# to the entry as relative to bot's install directory
+		if dialog.run() == gtk.RESPONSE_ACCEPT:
+			dbPath = dialog.get_filename()
+			relativeDBPath = os.path.relpath(dbPath, installPath)
+			self.sqliteDBFilePathEntry.set_text(relativeDBPath)
+		dialog.destroy()
 
 class SelectDefaultModuleStatusPage(Page):
 	"""This page class lets user to select if all modules are on or off
 	by default.
 	"""
 
-	def __init__(self, builder):
+	def __init__(self, controller):
 		"""Constructor method."""
-		super(SelectDefaultModuleStatusPage, self).__init__(SELECT_MODULE_STATUS_PAGE_ID)
+		super(SelectDefaultModuleStatusPage, self).__init__(controller, SELECT_MODULE_STATUS_PAGE_ID)
 		self.isComplete = True
 		self.setTitle('Enable/Disable All Commands')
 		self.setNextPageIdFunc(lambda: NAME_BOT_PAGE_ID)
 		self.setCompletenessFunc(lambda: True)
 		# get widgets from builder
-		self.widget = builder.get_object('selectDefaultModuleStatusPage')
-		self.yesRadioButton = builder.get_object('moduleStatusYesRadioButton')
-		self.noRadioButton  = builder.get_object('moduleStatusNoRadioButton')
+		self.widget = controller.getViewObject('selectDefaultModuleStatusPage')
+		self.yesRadioButton = controller.getViewObject('moduleStatusYesRadioButton')
+		self.noRadioButton  = controller.getViewObject('moduleStatusNoRadioButton')
 		# group the radio buttons together and select default button
 		self.yesRadioButton.set_group(self.noRadioButton)
 		self.yesRadioButton.set_active(True)
@@ -466,15 +520,15 @@ class SelectDefaultModuleStatusPage(Page):
 class NameBotPage(Page):
 	"""This page class lets user to give a name for the bot."""
 
-	def __init__(self, builder):
+	def __init__(self, controller):
 		"""Constructor method."""
-		super(NameBotPage, self).__init__(NAME_BOT_PAGE_ID)
+		super(NameBotPage, self).__init__(controller, NAME_BOT_PAGE_ID)
 		self.setTitle('Bot Name')
 		self.setNextPageIdFunc(lambda: FINISH_PAGE_ID)
 		# page is complete if given bot name is not empty
 		self.setCompletenessFunc(lambda self: len(self.botNameEntry.get_text()) > 0, self)
-		self.widget = builder.get_object('nameBotPage')
-		self.botNameEntry = builder.get_object('botNameEntry')
+		self.widget = controller.getViewObject('nameBotPage')
+		self.botNameEntry = controller.getViewObject('botNameEntry')
 		self.botNameEntry.connect('notify::text', self.updateCompleteness)
 
 	def getBotName(self):
@@ -488,13 +542,13 @@ class FinishPage(Page):
 	before it is added to the Bot Manager.
 	"""
 
-	def __init__(self, builder):
+	def __init__(self, controller):
 		"""Constructor method."""
-		super(FinishPage, self).__init__(FINISH_PAGE_ID)
+		super(FinishPage, self).__init__(controller, FINISH_PAGE_ID)
 		self.setType(gtk.ASSISTANT_PAGE_CONFIRM)
 		self.setTitle('Summary')
-		self.widget = builder.get_object('finishPage')
-		self.summaryLabel = builder.get_object('summaryLabel')
+		self.widget = controller.getViewObject('finishPage')
+		self.summaryLabel = controller.getViewObject('summaryLabel')
 
 	def setValues(self, values):
 		"""Sets a list of key-value tuples to be shown in the page."""

@@ -8,7 +8,7 @@ from addbotwizardpages import SelectActionPage, SelectImportPage, NameBotPage
 from addbotwizardpages import FinishPage, SelectBotInstallDirectoryPage, EnterAccountInfoPage
 from addbotwizardpages import EnterCharacterInfoPage, SelectBotTypePage, EnterSuperAdminPage
 from addbotwizardpages import SelectDatabaseSettingsPage, SelectDefaultModuleStatusPage
-from addbotwizardpages import SelectDatabaseTypePage
+from addbotwizardpages import SelectDatabaseTypePage, EnterSqliteSettingsPage
 
 class AddBotWizardController:
 	""""""
@@ -26,18 +26,20 @@ class AddBotWizardController:
 		self.assistant.connect('close', self.onCloseClicked)
 		self.assistant.connect('prepare', self.onPreparePage)
 
-		self.selectActionPage        = SelectActionPage(self.builder)
-		self.selectImportPage        = SelectImportPage(self.builder, settingModel)
-		self.selectBotInstallDirPage = SelectBotInstallDirectoryPage(self.builder, settingModel)
-		self.enterAccountInfoPage    = EnterAccountInfoPage(self.builder)
-		self.enterCharacterInfoPage  = EnterCharacterInfoPage(self.builder)
-		self.selectBotTypePage       = SelectBotTypePage(self.builder)
-		self.enterSuperAdminPage     = EnterSuperAdminPage(self.builder)
-		self.selectDBSettingsPage    = SelectDatabaseSettingsPage(self.builder)
-		self.selectDBTypePage        = SelectDatabaseTypePage(self.builder)
-		self.selectModuleStatusPage  = SelectDefaultModuleStatusPage(self.builder)
-		self.botNamePage             = NameBotPage(self.builder)
-		self.finishPage              = FinishPage(self.builder)
+		self.selectActionPage        = SelectActionPage(self)
+		self.selectImportPage        = SelectImportPage(self)
+		self.selectBotInstallDirPage = SelectBotInstallDirectoryPage(self)
+		self.enterAccountInfoPage    = EnterAccountInfoPage(self)
+		self.enterCharacterInfoPage  = EnterCharacterInfoPage(self)
+		self.selectBotTypePage       = SelectBotTypePage(self)
+		self.enterSuperAdminPage     = EnterSuperAdminPage(self)
+		self.selectDBSettingsPage    = SelectDatabaseSettingsPage(self)
+		self.selectDBTypePage        = SelectDatabaseTypePage(self)
+		self.enterSqliteSettingsPage = EnterSqliteSettingsPage(self)
+		self.selectModuleStatusPage  = SelectDefaultModuleStatusPage(self)
+		self.botNamePage             = NameBotPage(self)
+		self.finishPage              = FinishPage(self)
+
 		self.assistant.appendPage(self.selectActionPage)
 		self.assistant.appendPage(self.selectImportPage)
 		self.assistant.appendPage(self.selectBotInstallDirPage)
@@ -47,6 +49,7 @@ class AddBotWizardController:
 		self.assistant.appendPage(self.enterSuperAdminPage)
 		self.assistant.appendPage(self.selectDBSettingsPage)
 		self.assistant.appendPage(self.selectDBTypePage)
+		self.assistant.appendPage(self.enterSqliteSettingsPage)
 		self.assistant.appendPage(self.selectModuleStatusPage)
 		self.assistant.appendPage(self.botNamePage)
 		self.assistant.appendPage(self.finishPage)
@@ -60,10 +63,24 @@ class AddBotWizardController:
 			except TypeError:
 				pass
 
-	def onLink(self, caller, uri):
-		"""Handles any clicked hyperlinks by opening them to default browser."""
-		webbrowser.open(uri)
-		return True
+	def getBotInstallPath(self):
+		"""Returns currently selected bot install path."""
+		if self.selectActionPage.getActionType() == SelectActionPage.TYPE_IMPORT:
+			return self.selectImportPage.getSelectedBotRootPath()
+		elif self.selectActionPage.getActionType() == SelectActionPage.TYPE_ADDNEW:
+			return self.selectBotInstallDirPage.getSelectedBotRootPath()
+
+	def getViewObject(self, name):
+		"""Wrapper method for requesting objects from Gtk's Builder."""
+		return self.builder.get_object(name)
+
+	def getSettingModel(self):
+		"""Returns the SettingModel object."""
+		return self.settingModel
+
+	def getAssistant(self):
+		"""Returns assistant's object."""
+		return self.assistant
 
 	def show(self):
 		"""This method shows the wizard to user."""
@@ -72,6 +89,11 @@ class AddBotWizardController:
 	def hide(self):
 		"""This method hides the wizard from user."""
 		self.assistant.hide()
+
+	def onLink(self, caller, uri):
+		"""Handles any clicked hyperlinks by opening them to default browser."""
+		webbrowser.open(uri)
+		return True
 
 	def onApplyClicked(self, caller):
 		""""""
