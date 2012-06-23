@@ -13,7 +13,8 @@ from addbotwizardpages import SelectDatabaseTypePage, EnterSqliteSettingsPage
 class AddBotWizardController:
 	""""""
 	
-	def __init__(self, botModel, settingModel):
+	def __init__(self, parentWindow, botModel, settingModel):
+		"""Constructor method."""
 		self.settingModel = settingModel
 
 		# load addbotwizard.glade file
@@ -21,6 +22,11 @@ class AddBotWizardController:
 		self.builder.add_from_file('addbotwizard.glade')
 
 		self.assistant = Assistant()
+
+		# position the wizard on top of control panel's window
+		self.assistant.set_transient_for(parentWindow)
+		self.assistant.set_property('window-position', gtk.WIN_POS_CENTER_ON_PARENT)
+
 		self.assistant.connect('apply', self.onApplyClicked)
 		self.assistant.connect('cancel', self.onCancelClicked)
 		self.assistant.connect('close', self.onCloseClicked)

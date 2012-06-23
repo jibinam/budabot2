@@ -27,7 +27,6 @@ class ControlPanelController(gobject.GObject):
 		self.botModel = botModel
 		self.settingModel = settingModel
 		self.position = (200, 200)
-		self.addBotWizardController = None
 		# load controlpanel.glade file
 		self.builder = gtk.Builder()
 		self.builder.add_from_file('controlpanel.glade')
@@ -137,9 +136,8 @@ class ControlPanelController(gobject.GObject):
 
 	def onAddBotClicked(self, sender):
 		""""""
-		if not self.addBotWizardController:
-			self.addBotWizardController = AddBotWizardController(self.botModel, self.settingModel)
-		self.addBotWizardController.show()
+		addBotWizardController = AddBotWizardController(self.view, self.botModel, self.settingModel)
+		addBotWizardController.show()
 
 	def onExitClicked(self, sender):
 		"""This signal handler is called when user clicks Exit-button."""
