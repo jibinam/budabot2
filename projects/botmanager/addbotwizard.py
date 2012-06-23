@@ -1,12 +1,14 @@
 ﻿#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import webbrowser
 import gtk
 from botconfigfile import BotPhpConfigFile
 from addbotwizardpages import SelectActionPage, SelectImportPage, NameBotPage
 from addbotwizardpages import FinishPage, SelectBotInstallDirectoryPage, EnterAccountInfoPage
 from addbotwizardpages import EnterCharacterInfoPage, SelectBotTypePage, EnterSuperAdminPage
 from addbotwizardpages import SelectDatabaseSettingsPage, SelectDefaultModuleStatusPage
+from addbotwizardpages import SelectDatabaseTypePage
 
 class AddBotWizardController:
 	""""""
@@ -32,6 +34,7 @@ class AddBotWizardController:
 		self.selectBotTypePage       = SelectBotTypePage(self.builder)
 		self.enterSuperAdminPage     = EnterSuperAdminPage(self.builder)
 		self.selectDBSettingsPage    = SelectDatabaseSettingsPage(self.builder)
+		self.selectDBTypePage        = SelectDatabaseTypePage(self.builder)
 		self.selectModuleStatusPage  = SelectDefaultModuleStatusPage(self.builder)
 		self.botNamePage             = NameBotPage(self.builder)
 		self.finishPage              = FinishPage(self.builder)
@@ -43,11 +46,24 @@ class AddBotWizardController:
 		self.assistant.appendPage(self.selectBotTypePage)
 		self.assistant.appendPage(self.enterSuperAdminPage)
 		self.assistant.appendPage(self.selectDBSettingsPage)
+		self.assistant.appendPage(self.selectDBTypePage)
 		self.assistant.appendPage(self.selectModuleStatusPage)
 		self.assistant.appendPage(self.botNamePage)
 		self.assistant.appendPage(self.finishPage)
 
 		self.selectImportPage.connect('notify::complete', self.onSelectImportPageComplete)
+
+		# connect any 'activate-link' signals (if available) to onLink() handler
+		for object in self.builder.get_objects():
+			try:
+				object.connect('activate-link', self.onLink)
+			except TypeError:
+				pass
+
+	def onLink(self, caller, uri):
+		"""Handles any clicked hyperlinks by opening them to default browser."""
+		webbrowser.open(uri)
+		return True
 
 	def show(self):
 		"""This method shows the wizard to user."""

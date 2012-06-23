@@ -50,7 +50,9 @@ GtkHScale::slider_length = 14
   text[SELECTED]	= @selected_fg_color
   text[INSENSITIVE]	= mix (0.5, @text_color, @base_color)
 
-  
+  # define hyperlink colors
+  GtkWidget			::link-color         = "#4790D3" # from AcidTech style
+  GtkWidget			::visited-link-color = "#4790D3" # from AcidTech style
 
 
 
@@ -82,7 +84,8 @@ GtkHScale::slider_length = 14
 
 }
 
-style "default"  {
+style "default"
+  {
   engine "pixmap"
   {
  
@@ -247,7 +250,8 @@ style "button"			= "default"
   }
 
 
-
+
+
     image 
     {
       function			= BOX
@@ -336,7 +340,8 @@ image
 
 
 style "scrollbar"
-{
+{
+
   engine "pixmap" 
   {
     image 
@@ -409,7 +414,8 @@ style "scrollbar"
       stretch				= TRUE
       orientation			= VERTICAL
 	
-	    }
+	
+    }
     image 
     {
       function			= SLIDER
@@ -734,13 +740,15 @@ image
       file				= "menubar.png"
 	border			= { 8,8,15,15 }
       stretch			= TRUE
-    }	
+    }	
+
   }
 }
 class "GtkMenuBar" style "menubar"
 
 
-
+
+
 
 style "tearoffmenuitem"	= "menuitem"
 {
@@ -764,7 +772,8 @@ style "tearoffmenuitem"	= "menuitem"
     }
   }
 }
-style "list-header"
+
+style "list-header"
 {
    GtkTreeView::odd_row_color = "#F5F5FA"
    GtkTreeView::even_row_color = "#FFFFFF"

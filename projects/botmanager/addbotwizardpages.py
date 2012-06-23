@@ -25,6 +25,8 @@ each page:
                                  the bot.
   SELECT_DB_SETTINGS_PAGE_ID   - With this page user can select between default
                                  and manual database settings.
+  SELECT_DB_TYPE_PAGE_ID       - With this page user can select between Sqlite
+                                 and MySQL.
   SELECT_MODULE_STATUS_PAGE_ID - With this page user can select if all modules
                                  are enabled or disabled by default.
   NAME_BOT_PAGE_ID             - In this page user can give the bot a name.
@@ -45,9 +47,10 @@ ENTER_CHARACTER_INFO_PAGE_ID = 5
 SELECT_BOT_TYPE_PAGE_ID      = 6
 ENTER_SUPER_ADMIN_PAGE_ID    = 7
 SELECT_DB_SETTINGS_PAGE_ID   = 8
-SELECT_MODULE_STATUS_PAGE_ID = 9
-NAME_BOT_PAGE_ID             = 10
-FINISH_PAGE_ID               = 11
+SELECT_DB_TYPE_PAGE_ID       = 9
+SELECT_MODULE_STATUS_PAGE_ID = 10
+NAME_BOT_PAGE_ID             = 11
+FINISH_PAGE_ID               = 12
 
 class Page(gobject.GObject):
 	"""A common base class for each page class.
@@ -411,6 +414,33 @@ class SelectDatabaseSettingsPage(Page):
 		if self.defaultRadioButton.get_property('active'):
 			return SELECT_MODULE_STATUS_PAGE_ID
 		elif self.manualRadioButton.get_property('active'):
+			return SELECT_DB_TYPE_PAGE_ID
+
+class SelectDatabaseTypePage(Page):
+	"""This page class lets user to select which database system he wishes to
+	use, Sqlite or MySQL.
+	"""
+
+	def __init__(self, builder):
+		"""Constructor method."""
+		super(SelectDatabaseTypePage, self).__init__(SELECT_DB_TYPE_PAGE_ID)
+		self.isComplete = True
+		self.setTitle('Database Setup')
+		self.setNextPageIdFunc(self.nextPageId)
+		self.setCompletenessFunc(lambda: True)
+		# get widgets from builder
+		self.widget = builder.get_object('selectDatabaseTypePage')
+		self.sqliteRadioButton = builder.get_object('sqliteTypeRadioButton')
+		self.mysqlRadioButton  = builder.get_object('mysqlTypeRadioButton')
+		# group the radio buttons together and select default button
+		self.sqliteRadioButton.set_group(self.mysqlRadioButton)
+		self.sqliteRadioButton.set_active(True)
+
+	def nextPageId(self):
+		"""Returns ID of the next page to where wizard should change."""
+		if self.sqliteRadioButton.get_property('active'):
+			return None
+		elif self.mysqlRadioButton.get_property('active'):
 			return None
 
 class SelectDefaultModuleStatusPage(Page):
