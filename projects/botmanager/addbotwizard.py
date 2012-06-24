@@ -8,7 +8,7 @@ from addbotwizardpages import SelectActionPage, SelectImportPage, NameBotPage
 from addbotwizardpages import FinishPage, SelectBotInstallDirectoryPage, EnterAccountInfoPage
 from addbotwizardpages import EnterCharacterInfoPage, SelectBotTypePage, EnterSuperAdminPage
 from addbotwizardpages import SelectDatabaseSettingsPage, SelectDefaultModuleStatusPage
-from addbotwizardpages import SelectDatabaseTypePage, EnterSqliteSettingsPage
+from addbotwizardpages import SelectDatabaseTypePage, EnterSqliteSettingsPage, EnterMysqlSettingsPage
 
 class AddBotWizardController:
 	""""""
@@ -32,7 +32,7 @@ class AddBotWizardController:
 		self.assistant.connect('cancel', self.onCancelClicked)
 		self.assistant.connect('close', self.onCloseClicked)
 		self.assistant.connect('prepare', self.onPreparePage)
-
+		# create pages
 		self.selectActionPage        = SelectActionPage(self)
 		self.selectImportPage        = SelectImportPage(self)
 		self.selectBotInstallDirPage = SelectBotInstallDirectoryPage(self)
@@ -43,11 +43,12 @@ class AddBotWizardController:
 		self.selectDBSettingsPage    = SelectDatabaseSettingsPage(self)
 		self.selectDBTypePage        = SelectDatabaseTypePage(self)
 		self.enterSqliteSettingsPage = EnterSqliteSettingsPage(self)
+		self.enterMysqlSettingsPage  = EnterMysqlSettingsPage(self)
 		self.selectModuleStatusPage  = SelectDefaultModuleStatusPage(self)
 		self.botNamePage             = NameBotPage(self)
 		self.finishPage              = FinishPage(self)
-
-		self.assistant.appendPage(self.selectActionPage)
+		# Add pages to the wizard
+		self.assistant.appendPage(self.selectActionPage) # first appended page is the starting page
 		self.assistant.appendPage(self.selectImportPage)
 		self.assistant.appendPage(self.selectBotInstallDirPage)
 		self.assistant.appendPage(self.enterAccountInfoPage)
@@ -57,6 +58,7 @@ class AddBotWizardController:
 		self.assistant.appendPage(self.selectDBSettingsPage)
 		self.assistant.appendPage(self.selectDBTypePage)
 		self.assistant.appendPage(self.enterSqliteSettingsPage)
+		self.assistant.appendPage(self.enterMysqlSettingsPage)
 		self.assistant.appendPage(self.selectModuleStatusPage)
 		self.assistant.appendPage(self.botNamePage)
 		self.assistant.appendPage(self.finishPage)

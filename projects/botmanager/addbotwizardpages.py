@@ -412,7 +412,6 @@ class SelectDatabaseSettingsPage(Page):
 	def __init__(self, controller):
 		"""Constructor method."""
 		super(SelectDatabaseSettingsPage, self).__init__(controller, SELECT_DB_SETTINGS_PAGE_ID)
-		self.isComplete = True
 		self.setTitle('Database Setup')
 		self.setNextPageIdFunc(self.nextPageId)
 		self.setCompletenessFunc(lambda: True)
@@ -438,7 +437,6 @@ class SelectDatabaseTypePage(Page):
 	def __init__(self, controller):
 		"""Constructor method."""
 		super(SelectDatabaseTypePage, self).__init__(controller, SELECT_DB_TYPE_PAGE_ID)
-		self.isComplete = True
 		self.setTitle('Database Setup - Select Type')
 		self.setNextPageIdFunc(self.nextPageId)
 		self.setCompletenessFunc(lambda: True)
@@ -463,7 +461,6 @@ class EnterSqliteSettingsPage(Page):
 	def __init__(self, controller):
 		"""Constructor method."""
 		super(EnterSqliteSettingsPage, self).__init__(controller, ENTER_SQLITE_SETTINGS_PAGE_ID)
-		self.isComplete = True
 		self.setTitle('Database Setup - Sqlite Settings')
 		self.setNextPageIdFunc(lambda: SELECT_MODULE_STATUS_PAGE_ID)
 		self.setCompletenessFunc(lambda: True)
@@ -496,6 +493,33 @@ class EnterSqliteSettingsPage(Page):
 			relativeDBPath = os.path.relpath(dbPath, installPath)
 			self.sqliteDBFilePathEntry.set_text(relativeDBPath)
 		dialog.destroy()
+
+class EnterMysqlSettingsPage(Page):
+	"""This page class lets user to enter MySQL settings."""
+
+	def __init__(self, controller):
+		"""Constructor method."""
+		super(EnterMysqlSettingsPage, self).__init__(controller, ENTER_MYSQL_SETTINGS_PAGE_ID)
+		self.setTitle('Database Setup - MySQL Settings')
+		self.setNextPageIdFunc(lambda: SELECT_MODULE_STATUS_PAGE_ID)
+		self.setCompletenessFunc(lambda: len(self.dbNameEntry.get_text()) > 0 and
+		                                 len(self.hostEntry.get_text()) > 0 and
+		                                 len(self.usernameEntry.get_text()) > 0)
+		# get widgets from builder
+		self.widget = controller.getViewObject('enterMysqlSettingsPage')
+		self.dbNameEntry   = controller.getViewObject('mysqlDbNameEntry')
+		self.hostEntry     = controller.getViewObject('mysqlHostEntry')
+		self.usernameEntry = controller.getViewObject('mysqlUsernameEntry')
+		self.passwordEntry = controller.getViewObject('mysqlPasswordEntry')
+		# set default values
+		self.dbNameEntry.set_text('budabot')
+		self.hostEntry.set_text('localhost')
+		self.usernameEntry.set_text('root')
+		self.passwordEntry.set_text('')
+		# update completeness when values in the entries change
+		self.dbNameEntry.connect('notify::text', self.updateCompleteness)
+		self.hostEntry.connect('notify::text', self.updateCompleteness)
+		self.usernameEntry.connect('notify::text', self.updateCompleteness)
 
 class SelectDefaultModuleStatusPage(Page):
 	"""This page class lets user to select if all modules are on or off
