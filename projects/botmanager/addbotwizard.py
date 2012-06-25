@@ -1,6 +1,7 @@
 ﻿#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 import webbrowser
 import gtk
 from botconfigfile import BotPhpConfigFile
@@ -9,6 +10,7 @@ from addbotwizardpages import FinishPage, SelectBotInstallDirectoryPage, EnterAc
 from addbotwizardpages import EnterCharacterInfoPage, SelectBotTypePage, EnterSuperAdminPage
 from addbotwizardpages import SelectDatabaseSettingsPage, SelectDefaultModuleStatusPage
 from addbotwizardpages import SelectDatabaseTypePage, EnterSqliteSettingsPage, EnterMysqlSettingsPage
+import addbotwizardpages
 
 class AddBotWizardController:
 	""""""
@@ -16,6 +18,7 @@ class AddBotWizardController:
 	def __init__(self, parentWindow, botModel, settingModel):
 		"""Constructor method."""
 		self.settingModel = settingModel
+		self.handler = None
 
 		# load addbotwizard.glade file
 		self.builder = gtk.Builder()
@@ -31,7 +34,6 @@ class AddBotWizardController:
 		self.assistant.connect('apply', self.onApplyClicked)
 		self.assistant.connect('cancel', self.onCancelClicked)
 		self.assistant.connect('close', self.onCloseClicked)
-		self.assistant.connect('prepare', self.onPreparePage)
 		# create pages
 		self.selectActionPage        = SelectActionPage(self)
 		self.selectImportPage        = SelectImportPage(self)
@@ -63,7 +65,7 @@ class AddBotWizardController:
 		self.assistant.appendPage(self.botNamePage)
 		self.assistant.appendPage(self.finishPage)
 
-		self.selectImportPage.connect('notify::complete', self.onSelectImportPageComplete)
+		self.selectActionPage.connect('left', self.onSelectActionPageLeft)
 
 		# connect any 'activate-link' signals (if available) to onLink() handler
 		for object in self.builder.get_objects():
@@ -71,13 +73,6 @@ class AddBotWizardController:
 				object.connect('activate-link', self.onLink)
 			except TypeError:
 				pass
-
-	def getBotInstallPath(self):
-		"""Returns currently selected bot install path."""
-		if self.selectActionPage.getActionType() == SelectActionPage.TYPE_IMPORT:
-			return self.selectImportPage.getSelectedBotRootPath()
-		elif self.selectActionPage.getActionType() == SelectActionPage.TYPE_ADDNEW:
-			return self.selectBotInstallDirPage.getSelectedBotRootPath()
 
 	def getViewObject(self, name):
 		"""Wrapper method for requesting objects from Gtk's Builder."""
@@ -106,11 +101,7 @@ class AddBotWizardController:
 
 	def onApplyClicked(self, caller):
 		""""""
-		rootPath = self.selectImportPage.getSelectedBotRootPath()
-		confPath = self.selectImportPage.getSelectedBotConfFilePath()
-		name = self.botNamePage.getBotName()
-		self.settingModel.addBot(name, confPath, rootPath)
-		self.settingModel.save()
+		self.handler.apply()
 
 	def onCancelClicked(self, caller):
 		""""""
@@ -120,32 +111,24 @@ class AddBotWizardController:
 		""""""
 		self.hide()
 
-	def onPreparePage(self, caller, pageWidget):
-		if self.botNamePage.getWidget() == pageWidget:
-			# set default name to the bot name page
-			name = '%s @ RK%d' % (self.botConfig.getVar('name'), self.botConfig.getVar('dimension'))
-			self.botNamePage.setBotName(name)
-			
-		elif self.finishPage.getWidget() == pageWidget:
-			values = []
-			values.append(('Name', self.botNamePage.getBotName()))
-			values.append(('Bot software path', self.selectImportPage.getSelectedBotRootPath()))
-			values.append(('Bot config path', self.selectImportPage.getSelectedBotConfFilePath()))
-			for key, value in self.botConfig:
-				values.append((key, value))
-			self.finishPage.setValues(values)
+	def onSelectActionPageLeft(self, page):
+		"""This signal handler is called when wizard leaves select action page."""
+		if page.getActionType() == SelectActionPage.TYPE_IMPORT:
+			self.handler = ImportHandler(self)
+		elif page.getActionType() == SelectActionPage.TYPE_ADDNEW:
+			self.handler = AddNewHandler(self)
 
-	def onSelectImportPageComplete(self, caller, property):
-		path = self.selectImportPage.getSelectedBotConfFilePath()
-		if path:
-			config = BotPhpConfigFile(path)
-			config.load()
-			self.botConfig = config
+	def __getattr__(self, name):
+		"""Called when given attribute name is not found.
+		Delegates any attribute requests to current handler.
+		"""
+		return getattr(self.handler, name)
 
 class Assistant(gtk.Assistant):
 	def __init__(self):
 		super(Assistant, self).__init__()
 		self.pages = []
+		self.currentPage = None
 		self.set_forward_page_func(self.getNextPage)
 		self.connect('prepare', self.onPreparePage)
 
@@ -170,10 +153,83 @@ class Assistant(gtk.Assistant):
 		return -1
 
 	def onPreparePage(self, caller, pageWidget):
+		if self.currentPage != None:
+			self.currentPage.leave()
 		for page in self.pages:
 			if page.getWidget() == pageWidget:
-				page.prepare()
+				page.enter()
 				self.set_page_complete(page.getWidget(), page.get_property('complete'))
+				self.currentPage = page
 
 	def onPageCompletenessChanged(self, page, property):
 		self.set_page_complete(page.getWidget(), page.get_property('complete'))
+
+class AddNewHandler(object):
+	""""""
+	def __init__(self, controller):
+		"""Constructor method."""
+		self.controller = controller
+
+	def apply(self):
+		rootPath = self.getBotInstallPath()
+		confPath = self.getBotConfigFilePath()
+		name = self.controller.botNamePage.getBotName()
+		self.controller.settingModel.addBot(name, confPath, rootPath)
+		self.controller.settingModel.save()
+
+	def getBotInstallPath(self):
+		"""Returns currently selected bot install path."""
+		return self.controller.selectBotInstallDirPage.getSelectedBotRootPath()
+
+	def getBotConfigFilePath(self):
+		raise NotImplementedError('foo')
+
+	def getCharacterName(self):
+		return self.controller.enterCharacterInfoPage.getCharacterName()
+
+	def getDimension(self):
+		return self.controller.enterCharacterInfoPage.getDimension()
+
+	def getSummaryValues(self):
+		values = {}
+		values['name'] = self.controller.botNamePage.getBotName()
+		values['root path'] = self.getBotInstallPath()
+		values['conf path'] = self.getBotConfigFilePath()
+		values['config'] = self.botConfig
+		return values
+
+class ImportHandler(object):
+	""""""
+	def __init__(self, controller):
+		"""Constructor method."""
+		self.controller = controller
+		controller.selectImportPage.connect('left', self.onSelectImportPageLeft)
+		self.botConfig = None
+
+	def apply(self):
+		rootPath = self.controller.selectImportPage.getSelectedBotRootPath()
+		confPath = self.controller.selectImportPage.getSelectedBotConfFilePath()
+		name = self.controller.botNamePage.getBotName()
+		self.controller.settingModel.addBot(name, confPath, rootPath)
+		self.controller.settingModel.save()
+
+	def getCharacterName(self):
+		return self.botConfig.getVar('name')
+
+	def getDimension(self):
+		return self.botConfig.getVar('dimension')
+
+	def getSummaryValues(self):
+		values = {}
+		values['name'] = self.controller.botNamePage.getBotName()
+		values['root path'] = self.controller.selectImportPage.getSelectedBotRootPath()
+		values['conf path'] = self.controller.selectImportPage.getSelectedBotConfFilePath()
+		values['config'] = self.botConfig
+		return values
+
+	def onSelectImportPageLeft(self, caller):
+		path = self.controller.selectImportPage.getSelectedBotConfFilePath()
+		if path:
+			config = BotPhpConfigFile(path)
+			config.load()
+			self.botConfig = config

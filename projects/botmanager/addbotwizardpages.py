@@ -67,6 +67,14 @@ class Page(gobject.GObject):
 	appendPage() before it can be used.
 	"""
 
+	# Define custom signals that this class can emit.
+	__gsignals__ = {
+		# this signal is emitted wizard entered this page
+		'entered': (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, ()),
+		# this signal is emitted wizard left this page
+		'left': (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, ()),
+	}
+
 	# custom properties
 	__gproperties__ = {
 		'complete' : (gobject.TYPE_BOOLEAN, 'complete', 'is page complete', False, gobject.PARAM_READWRITE),
@@ -97,8 +105,17 @@ class Page(gobject.GObject):
 		if property.name == 'complete':
 			return self.completenessFunc(*self.completenessFuncArgs)
 
-	def prepare(self):
-		pass
+	def enter(self):
+		"""This method is called when wizard enters this page. By default it
+		emits 'entered' signal.
+		"""
+		self.emit('entered')
+
+	def leave(self):
+		"""This method is called when wizard leaves this page. By default it
+		emits 'left' signal.
+		"""
+		self.emit('left')
 
 	def getWidget(self):
 		"""Returns widget object which represents the visible contents
@@ -348,6 +365,18 @@ class EnterCharacterInfoPage(Page):
 		self.characterNameEntry = controller.getViewObject('characterNameEntry')
 		self.characterNameEntry.connect('notify::text', self.updateCompleteness)
 
+	def getDimension(self):
+		"""Returns number of the dimension server where the bot character is at."""
+		model = self.dimensionComboBox.get_model()
+		iter = self.dimensionComboBox.get_active_iter()
+		if model == None or iter == None:
+			return None
+		return model[iter][0]
+
+	def getCharacterName(self):
+		"""Returns character's name as a string."""
+		return self.characterNameEntry.get_text()
+
 class SelectBotTypePage(Page):
 	"""This page class lets user to select which type of bot he would like
 	to create:
@@ -554,6 +583,14 @@ class NameBotPage(Page):
 		self.widget = controller.getViewObject('nameBotPage')
 		self.botNameEntry = controller.getViewObject('botNameEntry')
 		self.botNameEntry.connect('notify::text', self.updateCompleteness)
+		self.name = ''
+
+	def enter(self):
+		# only modify the bot name if user hasn't changed it
+		if self.name == self.botNameEntry.get_text():
+			self.name = '%s @ RK%s' % (self.controller.getCharacterName(), self.controller.getDimension())
+			self.botNameEntry.set_text(self.name)
+		super(NameBotPage, self).enter()
 
 	def getBotName(self):
 		return self.botNameEntry.get_text()
@@ -574,11 +611,35 @@ class FinishPage(Page):
 		self.widget = controller.getViewObject('finishPage')
 		self.summaryLabel = controller.getViewObject('summaryLabel')
 
-	def setValues(self, values):
-		"""Sets a list of key-value tuples to be shown in the page."""
+	def enter(self):
+		values = self.controller.getSummaryValues()
+		config = values['config']
+		super(FinishPage, self).enter()
+
+		def buildLine(name, value):
+			return '<b>' + name + ':</b> ' + str(value) + '\n'
+
 		contents = ''
-		for key, value in values:
-			if key == 'login' or key == 'password' or key == 'DB username' or key == 'DB password':
-				value = len(value) * '**'
-			contents += '<b>' + key + ':</b> ' + str(value) + '\n'
+		contents += '------ General Settings ------\n'
+		contents += buildLine('Name', values['name'])
+		contents += buildLine('Bot Software Path', values['root path'])
+		contents += buildLine('Bot Config Path', values['conf path'])
+		contents += '---- Game Account Settings ----\n'
+		contents += buildLine('Game Account Username', len(config.getVar('login')) * '*')
+		contents += buildLine('Game Account Password', len(config.getVar('password')) * '*')
+		contents += buildLine('Game Character', config.getVar('name'))
+		contents += buildLine('Game Dimension', config.getVar('dimension'))
+		if len(config.getVar('my_guild')) > 0:
+			contents += buildLine('Organization Name', config.getVar('my_guild'))
+		contents += buildLine('Super Administrator', config.getVar('SuperAdmin'))
+		contents += '------ Database Settings ------\n'
+		if config.getVar('DB Type') == 'sqlite':
+			path = os.path.join(values['root path'], config.getVar('DB Host'), config.getVar('DB Name'))
+			path = os.path.normpath(path)
+			contents += buildLine('Sqlite Database File Path', path)
+		elif config.getVar('DB Type') == 'mysql':
+			contents += buildLine('MySQL Database Name', config.getVar('DB Name'))
+			contents += buildLine('MySQL Host Address', config.getVar('DB Host'))
+			contents += buildLine('MySQL Username', len(config.getVar('DB username')) * '*')
+			contents += buildLine('MySQL Password', len(config.getVar('DB password')) * '*')
 		self.summaryLabel.set_markup(contents)
