@@ -169,6 +169,8 @@ class AddNewHandler(object):
 	def __init__(self, controller):
 		"""Constructor method."""
 		self.controller = controller
+		controller.selectBotInstallDirPage.connect('left', self.onSelectBotInstallDirectoryPageLeft)
+		self.botConfig = None
 
 	def apply(self):
 		rootPath = self.getBotInstallPath()
@@ -182,7 +184,16 @@ class AddNewHandler(object):
 		return self.controller.selectBotInstallDirPage.getSelectedBotRootPath()
 
 	def getBotConfigFilePath(self):
-		raise NotImplementedError('foo')
+		"""Returns path to the configuration file where the new bot's settings
+		will be stored.
+		"""
+		dirPath = os.path.join(self.getBotInstallPath(), 'conf')
+		fileName = 'config.php'
+		counter = 0
+		while os.path.exists(os.path.join(dirPath, fileName)):
+			fileName = 'config%s.php' % (counter + 2)
+			counter += 1
+		return os.path.join(dirPath, fileName)
 
 	def getCharacterName(self):
 		return self.controller.enterCharacterInfoPage.getCharacterName()
@@ -190,13 +201,26 @@ class AddNewHandler(object):
 	def getDimension(self):
 		return self.controller.enterCharacterInfoPage.getDimension()
 
+	def updateConfig(self):
+		raise NotImplementedError('Populating the config file is not yet implemented!')
+		#self.botConfig.setVar('', )
+
 	def getSummaryValues(self):
 		values = {}
 		values['name'] = self.controller.botNamePage.getBotName()
 		values['root path'] = self.getBotInstallPath()
 		values['conf path'] = self.getBotConfigFilePath()
+		self.updateConfig()
 		values['config'] = self.botConfig
 		return values
+
+	def onSelectBotInstallDirectoryPageLeft(self, page):
+		"""This signal handler is called when wizard leaves page where user can
+		give path to the bot's directory.
+		"""
+		if page.get_property('complete'):
+			path = self.getBotConfigFilePath()
+			self.botConfig = BotPhpConfigFile(path)
 
 class ImportHandler(object):
 	""""""
@@ -227,9 +251,10 @@ class ImportHandler(object):
 		values['config'] = self.botConfig
 		return values
 
-	def onSelectImportPageLeft(self, caller):
-		path = self.controller.selectImportPage.getSelectedBotConfFilePath()
-		if path:
-			config = BotPhpConfigFile(path)
-			config.load()
-			self.botConfig = config
+	def onSelectImportPageLeft(self, page):
+		if page.get_property('complete'):
+			path = self.controller.selectImportPage.getSelectedBotConfFilePath()
+			if path:
+				config = BotPhpConfigFile(path)
+				config.load()
+				self.botConfig = config
