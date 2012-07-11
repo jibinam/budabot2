@@ -37,6 +37,7 @@ each page:
 """
 
 import os
+import sys
 import gtk
 import gobject
 from botconfigfile import BotPhpConfigFile
@@ -335,6 +336,14 @@ class EnterAccountInfoPage(Page):
 	which contains the character that will act as the bot.
 	"""
 
+	def getUsername(self):
+		"""This method returns the username that user has inputted."""
+		return self.usernameEntry.get_text()
+
+	def getPassword(self):
+		"""This method returns the password that user has inputted."""
+		return self.passwordEntry.get_text()
+
 	def __init__(self, controller):
 		"""Constructor method."""
 		super(EnterAccountInfoPage, self).__init__(controller, ENTER_ACCOUNT_INFO_PAGE_ID)
@@ -407,6 +416,14 @@ class SelectBotTypePage(Page):
 		self.organizationBotRadioButton.set_group(self.raidBotRadioButton)
 		self.update()
 
+	def isOrganizationBot(self):
+		"""Returns True if user has selected to create a organization bot."""
+		return self.organizationBotRadioButton.get_property('active')
+
+	def getOrganizationName(self):
+		"""Returns name of the organization of which the new bot will act in."""
+		return self.organizationNameEntry.get_text()
+
 	def update(self, *args):
 		"""This method updates states of the UI elements on the page."""
 		if self.raidBotRadioButton.get_property('active'):
@@ -433,6 +450,10 @@ class EnterSuperAdminPage(Page):
 		self.superAdminNameEntry = controller.getViewObject('superAdminNameEntry')
 		self.superAdminNameEntry.connect('notify::text', self.updateCompleteness)
 
+	def getSuperAdminName(self):
+		"""Returns name of the character that will act as the new bot's super administrator."""
+		return self.superAdminNameEntry.get_text()
+
 class SelectDatabaseSettingsPage(Page):
 	"""This page class lets user to select if he wants to use default database
 	settings or set it up manually.
@@ -450,6 +471,10 @@ class SelectDatabaseSettingsPage(Page):
 		self.manualRadioButton  = controller.getViewObject('manualDBSettingsRadioButton')
 		# group the radio buttons together
 		self.manualRadioButton.set_group(self.defaultRadioButton)
+
+	def areManualSettingsUsed(self):
+		"""Returns True if manual database settings should be used."""
+		return self.manualRadioButton.get_property('active')
 
 	def nextPageId(self):
 		"""Returns ID of the next page to where wizard should change."""
@@ -477,6 +502,14 @@ class SelectDatabaseTypePage(Page):
 		self.sqliteRadioButton.set_group(self.mysqlRadioButton)
 		self.sqliteRadioButton.set_active(True)
 
+	def isSqliteSelected(self):
+		"""Returns True if user had selected to use Sqlite database."""
+		return self.sqliteRadioButton.get_property('active')
+
+	def isMysqlSelected(self):
+		"""Returns True if user had selected to use MySQL database."""
+		return self.mysqlRadioButton.get_property('active')
+
 	def nextPageId(self):
 		"""Returns ID of the next page to where wizard should change."""
 		if self.sqliteRadioButton.get_property('active'):
@@ -498,6 +531,16 @@ class EnterSqliteSettingsPage(Page):
 		self.sqliteDBFilePathEntry = controller.getViewObject('sqliteDBFilePathEntry')
 		controller.getViewObject('sqliteDBFileBrowseButton').connect('clicked', self.onBrowseClicked)
 		self.sqliteDBFilePathEntry.set_text(os.path.normpath('data/budabot.db'))
+
+	def getDatabaseFolderPath(self):
+		"""Returns relative path to the folder where Sqlite database file is located at."""
+		filePath = self.sqliteDBFilePathEntry.get_text()
+		return os.path.dirname(filePath)
+
+	def getDatabaseFilename(self):
+		"""Returns filename of the Sqlite database file."""
+		filePath = self.sqliteDBFilePathEntry.get_text()
+		return os.path.basename(filePath)
 
 	def onBrowseClicked(self, caller):
 		"""This signal handler method is called when user clicks the
@@ -550,6 +593,23 @@ class EnterMysqlSettingsPage(Page):
 		self.hostEntry.connect('notify::text', self.updateCompleteness)
 		self.usernameEntry.connect('notify::text', self.updateCompleteness)
 
+	def getDatabaseName(self):
+		"""Returns name of the MySQL database."""
+		return self.dbNameEntry.get_text()
+
+	def getHost(self):
+		"""Returns hostname of ip-address of the MySQL server."""
+		return self.hostEntry.get_text()
+
+	def getUsername(self):
+		"""Returns username of the MySQL database."""
+		return self.usernameEntry.get_text()
+
+	def getPassword(self):
+		"""Returns password of the MySQL database."""
+		return self.passwordEntry.get_text()
+
+
 class SelectDefaultModuleStatusPage(Page):
 	"""This page class lets user to select if all modules are on or off
 	by default.
@@ -569,6 +629,12 @@ class SelectDefaultModuleStatusPage(Page):
 		# group the radio buttons together and select default button
 		self.yesRadioButton.set_group(self.noRadioButton)
 		self.yesRadioButton.set_active(True)
+
+	def areModulesEnabledByDefault(self):
+		"""Returns True if all modules will be enabled by default.
+		On False modules are disabled.
+		"""
+		return self.yesRadioButton.get_property('active')
 
 class NameBotPage(Page):
 	"""This page class lets user to give a name for the bot."""

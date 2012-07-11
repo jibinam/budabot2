@@ -4,6 +4,7 @@
 import os
 import webbrowser
 import gtk
+import sys
 from botconfigfile import BotPhpConfigFile
 from addbotwizardpages import SelectActionPage, SelectImportPage, NameBotPage
 from addbotwizardpages import FinishPage, SelectBotInstallDirectoryPage, EnterAccountInfoPage
@@ -173,6 +174,7 @@ class AddNewHandler(object):
 		self.botConfig = None
 
 	def apply(self):
+		self.botConfig.save()
 		rootPath = self.getBotInstallPath()
 		confPath = self.getBotConfigFilePath()
 		name = self.controller.botNamePage.getBotName()
@@ -202,8 +204,34 @@ class AddNewHandler(object):
 		return self.controller.enterCharacterInfoPage.getDimension()
 
 	def updateConfig(self):
-		raise NotImplementedError('Populating the config file is not yet implemented!')
-		#self.botConfig.setVar('', )
+		self.botConfig.setVar('login', self.controller.enterAccountInfoPage.getUsername())
+		self.botConfig.setVar('password', self.controller.enterAccountInfoPage.getPassword())
+
+		self.botConfig.setVar('name', self.controller.enterCharacterInfoPage.getCharacterName())
+		self.botConfig.setVar('dimension', int(self.controller.enterCharacterInfoPage.getDimension()))
+
+		if self.controller.selectBotTypePage.isOrganizationBot():
+			self.botConfig.setVar('my_guild', self.controller.selectBotTypePage.getOrganizationName())
+
+		self.botConfig.setVar('SuperAdmin', self.controller.enterSuperAdminPage.getSuperAdminName())
+
+		if self.controller.selectDBSettingsPage.areManualSettingsUsed():
+			if self.controller.selectDBTypePage.isSqliteSelected():
+				self.botConfig.setVar('DB Type', 'sqlite')
+				self.botConfig.setVar('DB Name', self.controller.enterSqliteSettingsPage.getDatabaseFilename())
+				path = self.controller.enterSqliteSettingsPage.getDatabaseFolderPath()
+				if sys.platform.startswith('win32'):
+					path = path.replace('\\', '/')
+				path = './' + path + '/'
+				self.botConfig.setVar('DB Host', path)
+			elif self.controller.selectDBTypePage.isMysqlSelected():
+				self.botConfig.setVar('DB Type', 'mysql')
+				self.botConfig.setVar('DB Name', self.controller.enterMysqlSettingsPage.getDatabaseName())
+				self.botConfig.setVar('DB Host', self.controller.enterMysqlSettingsPage.getHost())
+				self.botConfig.setVar('DB username', self.controller.enterMysqlSettingsPage.getUsername())
+				self.botConfig.setVar('DB password', self.controller.enterMysqlSettingsPage.getPassword())
+
+		self.botConfig.setVar('default_module_status', int(self.controller.selectModuleStatusPage.areModulesEnabledByDefault()))
 
 	def getSummaryValues(self):
 		values = {}
@@ -221,6 +249,7 @@ class AddNewHandler(object):
 		if page.get_property('complete'):
 			path = self.getBotConfigFilePath()
 			self.botConfig = BotPhpConfigFile(path)
+			self.botConfig.load()
 
 class ImportHandler(object):
 	""""""
