@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import re
+import os
+import shutil
 import collections
 
 class BotPhpConfigFile(object):
@@ -12,6 +14,7 @@ class BotPhpConfigFile(object):
 		super(BotPhpConfigFile, self).__init__()
 		self.filePath = filePath
 		self.vars = {}
+		self.contents = ''
 
 	def load(self):
 		"""This method loads the settings from a file."""
@@ -20,11 +23,21 @@ class BotPhpConfigFile(object):
 			self.vars = collections.OrderedDict()
 		except AttributeError:
 			self.vars = {}
+		sourceFilePath = self.filePath
+		# if target file doesn't exist yet, use the template file instead
+		if os.path.exists(sourceFilePath) == False:
+			folderPath = os.path.dirname(sourceFilePath)
+			sourceFilePath = os.path.join(folderPath, 'config.template.php')
+			if os.path.exists(sourceFilePath) == False:
+				raise ValueError("Failed to find 'config.template.php' from configuration folder '%s'!" % folderPath)
 
-		with open(self.filePath, 'r') as file:
+		with open(sourceFilePath, 'r') as file:
+			self.contents = ''
 			prefix = r'^\s*\$vars\[[\'"](.+)[\'"]\]\s*=\s*'
 			postfix = r'\s*;'
 			for line in file:
+				if line.strip() != '?>':  # ignore possibly offending php end-tag
+					self.contents += line
 				# search for var with a string value:
 				match = re.search(prefix + r'[\'"](.*)[\'"]' + postfix, line)
 				if match:
@@ -36,26 +49,22 @@ class BotPhpConfigFile(object):
 					self.vars[match.group(1)] = int(match.group(2))
 
 	def save(self):
-		"""This method saves the settings to a file."""
-		with open(self.filePath, 'r+b') as file:
-			contents = file.read()
-			contents = contents.replace('?>', '') # remove possibly offending php end-tag
+		"""This method saves the settings to the target file."""
+		with open(self.filePath, 'w+b') as file:
 			for name, value in self.vars.items():
-				matcher = re.compile(r'^\s*\$vars\[[\'"]{0}[\'"]\]\s*=.*;'.format(name), re.MULTILINE)
+				matcher = re.compile(r'\$vars\[[\'"]{0}[\'"]\]\s*=.*;'.format(name), re.MULTILINE)
 				# wrap string value to quotes
 				if isinstance(value, str):
 					value = '"{0}"'.format(value)
 				varString = '$vars[\'{0}\'] = {1};'.format(name, value)
-				if matcher.search(contents):
+				if matcher.search(self.contents):
 					# replace existing variable
-					contents = matcher.sub(varString, contents)
+					self.contents = matcher.sub(varString, self.contents)
 				else:
 					# add new variable to file's end
-					contents += '\n{0}\n'.format(varString)
+					self.contents += '\n{0}\n'.format(varString)
 			# write contents back to the file
-			file.seek(0)
-			file.truncate()
-			file.write(contents)
+			file.write(self.contents)
 
 	def getVar(self, name):
 		"""Return variable's value of given name."""
