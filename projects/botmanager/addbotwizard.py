@@ -176,7 +176,7 @@ class AddNewHandler(object):
 	def apply(self):
 		self.botConfig.save()
 		rootPath = self.getBotInstallPath()
-		confPath = self.getBotConfigFilePath()
+		confPath = self.botConfig.getFilePath()
 		name = self.controller.botNamePage.getBotName()
 		self.controller.settingModel.addBot(name, confPath, rootPath)
 		self.controller.settingModel.save()
@@ -184,18 +184,6 @@ class AddNewHandler(object):
 	def getBotInstallPath(self):
 		"""Returns currently selected bot install path."""
 		return self.controller.selectBotInstallDirPage.getSelectedBotRootPath()
-
-	def getBotConfigFilePath(self):
-		"""Returns path to the configuration file where the new bot's settings
-		will be stored.
-		"""
-		dirPath = os.path.join(self.getBotInstallPath(), 'conf')
-		fileName = 'config.php'
-		counter = 0
-		while os.path.exists(os.path.join(dirPath, fileName)):
-			fileName = 'config%s.php' % (counter + 2)
-			counter += 1
-		return os.path.join(dirPath, fileName)
 
 	def getCharacterName(self):
 		return self.controller.enterCharacterInfoPage.getCharacterName()
@@ -237,7 +225,7 @@ class AddNewHandler(object):
 		values = {}
 		values['name'] = self.controller.botNamePage.getBotName()
 		values['root path'] = self.getBotInstallPath()
-		values['conf path'] = self.getBotConfigFilePath()
+		values['conf path'] = self.botConfig.getFilePath()
 		self.updateConfig()
 		values['config'] = self.botConfig
 		return values
@@ -247,7 +235,15 @@ class AddNewHandler(object):
 		give path to the bot's directory.
 		"""
 		if page.get_property('complete'):
-			path = self.getBotConfigFilePath()
+			# build a path to the new configuration file
+			dirPath = os.path.join(self.getBotInstallPath(), 'conf')
+			fileName = 'config.php'
+			counter = 0
+			while os.path.exists(os.path.join(dirPath, fileName)):
+				fileName = 'config%s.php' % (counter + 2)
+				counter += 1
+			path = os.path.join(dirPath, fileName)
+			# initialize the file
 			self.botConfig = BotPhpConfigFile(path)
 			self.botConfig.load()
 

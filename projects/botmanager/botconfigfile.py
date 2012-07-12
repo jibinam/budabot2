@@ -74,6 +74,10 @@ class BotPhpConfigFile(object):
 		"""Sets variable's value of given name."""
 		self.vars[name] = value
 
+	def getFilePath(self):
+		"""Returns path to the configuration file."""
+		return self.filePath
+
 	def __iter__(self):
 		"""Enables ability to iterate through the file's variables
 		with 'for...in'.
