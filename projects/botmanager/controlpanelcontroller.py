@@ -66,6 +66,7 @@ class ControlPanelController(gobject.GObject):
 		self.view.connect('hide', self.onViewHidden)
 		
 		self.botListView.connect('button-press-event', self.onBotListViewMousePressed)
+		self.botListView.connect('key-press-event', self.onBotListViewKeyPressed)
 		
 		self.botListView.connect('row-activated', self.onBotListViewRowActivated)
 		
@@ -133,6 +134,19 @@ class ControlPanelController(gobject.GObject):
 			self.botListContextMenu.popup(None, None, None, event.button, event.get_time())
 			return True
 		return False
+	
+	def onBotListViewKeyPressed(self, sender, event):
+		"""Signal handler for events which occur when user presses a button
+		from keyboard down when bot list view has focus.
+		
+		Returns true if the event was handled, false if default handler
+		should be used.
+		"""
+		keyname = gtk.gdk.keyval_name(event.keyval)
+		if keyname == 'Delete' and self.getCurrentlySelectedBot() != None:
+			self.removeBot()
+			return True
+		return False
 
 	def onAddBotClicked(self, sender):
 		""""""
@@ -148,7 +162,10 @@ class ControlPanelController(gobject.GObject):
 		bot list's context menu.
 		Emits context_item_clicked signal.
 		"""
-		self.emit('action_triggered', action, self.getCurrentlySelectedBot().getName())
+		if action == 'remove' and self.getCurrentlySelectedBot() != None:
+			self.removeBot()
+		else:
+			self.emit('action_triggered', action, self.getCurrentlySelectedBot().getName())
 
 	def onViewShown(self, sender):
 		"""This signal handler is called when the control panel window is shown."""
@@ -158,12 +175,39 @@ class ControlPanelController(gobject.GObject):
 		"""This signal handler is called when the control panel window is hidden."""
 		self.emit('visibility_changed', False)
 
-	def getCurrentlySelectedBot(self):
-		""""""
-		selected = self.botListView.get_selection().get_selected()
-		bot = self.botModel.get_value(selected[1], BotModel.COLUMN_BOTOBJECT)
-		return bot
+	def removeBot(self):
+		"""Asks from user if currently selected bot should be removed and if
+		OK, emits action_triggered signal.
+		"""
+		bot = self.getCurrentlySelectedBot()
+		if bot != None:
+			dialog = gtk.MessageDialog(self.view, gtk.DIALOG_MODAL, gtk.MESSAGE_QUESTION, gtk.BUTTONS_YES_NO)
+			dialog.set_title('Remove bot %s' % bot.getName())
+			message = "Are you sure you want to remove the bot '%s'?" % bot.getName()
+			if bot.get_property('isRunning'):
+				message += "\nThis will also terminate the running bot."
+			dialog.set_markup(message)
+			configCheck = gtk.CheckButton('Delete configuration file as well?')
+			configCheck.set_active(True)
+			try: # add the check box to dialog, requires PyGTK 2.22+
+				dialog.get_message_area().add(configCheck)
+				configCheck.show()
+			except AttributeError:
+				pass # too old PyGTK, don't show the check box just use its default value
 
+			if dialog.run() == gtk.RESPONSE_YES:
+				bot.remove(removeConfig=configCheck.get_active())
+				self.settingModel.removeBot(bot.getName())
+				self.settingModel.save()
+			dialog.destroy()
+		
+	def getCurrentlySelectedBot(self):
+		"""Returns currently selected bot, or None if none is selected."""
+		bot = None
+		selected = self.botListView.get_selection().get_selected()
+		if selected[1] != None:
+			bot = self.botModel.get_value(selected[1], BotModel.COLUMN_BOTOBJECT)
+		return bot
 
 # register class so that custom signals will work
 gobject.type_register(ControlPanelController)

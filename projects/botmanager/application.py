@@ -19,6 +19,7 @@ except ImportError:
 from twisted.internet import gtk2reactor
 gtk2reactor.install()
 
+import sys
 import gtk
 from twisted.internet import reactor
 from settingmodel import SettingModel
@@ -46,6 +47,8 @@ class Application:
 
 		settingModel = SettingModel()
 		self.botModel = BotModel(settingModel)
+		self.botModel.connect('botRemoved', self.onBotRemoved)
+
 		systrayController = SystrayController()
 
 		controlPanelController = ControlPanelController(self.botModel, settingModel)
@@ -89,7 +92,7 @@ class Application:
 		dialog.destroy()
 
 	def onControlPanelAction(self, sender, action, botName):
-		"""This signal handler is called when user actives some action
+		"""This signal handler is called when user activates some action
 		in control panel.
 		"""
 		bot = self.botModel.getBotByName(botName)
@@ -111,6 +114,17 @@ class Application:
 		"""This signal handler is called when an error occurs within the application"""
 		self.showErrorMessage(message)
 
+	def onBotRemoved(self, caller, botName):
+		"""This signal handler is called when a bot is removed from BotModel.
+		
+		Closes and deletes bot's window.
+		"""
+		if botName in self.botWindowControllers:
+			ctrl = self.botWindowControllers.pop(botName)
+			ctrl.destroy()
+			# only references remaining should be ctrl and getrefcount's parameter
+			assert sys.getrefcount(ctrl) == 2
+		
 	def showErrorMessage(self, message):
 		"""Shows error dialog to user."""
 		dialog = gtk.MessageDialog(None, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR, gtk.BUTTONS_OK, 'Error')

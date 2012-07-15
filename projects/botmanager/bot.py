@@ -9,6 +9,7 @@ import socket
 import gtk
 import re
 import gobject
+import os
 
 class Bot(gobject.GObject):
 	""""""
@@ -146,6 +147,19 @@ class Bot(gobject.GObject):
 		"""Terminates the bot."""
 		self.noRestart = True
 		self.process.stop()
+
+	def remove(self, removeConfig):
+		"""Removes this bot.
+		
+		The bot is terminated first if it's still running.
+		If removeConfig is set to True then bot's configuration file from
+		conf-folder is deleted as well.
+		"""
+		if self.process.isRunning() == True:
+			self.terminate()
+		if removeConfig == True:
+			configPath = self.settingModel.getValue(self.name, 'configfile')
+			os.remove(configPath)
 
 	def sendCommand(self, channel, command):
 		"""Sends command to the bot process through its API."""

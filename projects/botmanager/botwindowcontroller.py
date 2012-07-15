@@ -3,6 +3,7 @@
 
 import gobject
 import gtk
+from utils import weak_connect
 
 class BotWindowController(gobject.GObject):
 	""""""
@@ -32,26 +33,31 @@ class BotWindowController(gobject.GObject):
 		self.terminateButton = self.builder.get_object('terminateButton')
 
 		# call scrollViewToBottom() when scroll area's vertical scrollbar changes
-		outputScrollArea.get_vadjustment().connect('changed', self.scrollViewToBottom)
+		weak_connect(outputScrollArea.get_vadjustment(), 'changed', self.scrollViewToBottom)
 
 		# call onCommandGiven() when user hits enter-key within the entry
-		self.commandEntry.connect('activate', self.onCommandGiven)
+		weak_connect(self.commandEntry, 'activate', self.onCommandGiven)
 		
 		# prevent deletion of the window on close
-		self.botWindow.connect('delete-event', self.onDeleteEvent)
+		weak_connect(self.botWindow, 'delete-event', self.onDeleteEvent)
 		
 		# be notified of bot's changes
-		self.bot.connect('notify::isRunning', self.onBotPropertyChanged)
-		self.bot.connect('notify::apiAccessible', self.onBotPropertyChanged)
+		weak_connect(self.bot, 'notify::isRunning', self.onBotPropertyChanged)
+		weak_connect(self.bot, 'notify::apiAccessible', self.onBotPropertyChanged)
 
 		# handle button clicks
-		self.startButton.connect('clicked', self.onButtonClicked)
-		self.restartButton.connect('clicked', self.onButtonClicked)
-		self.shutdownButton.connect('clicked', self.onButtonClicked)
-		self.terminateButton.connect('clicked', self.onButtonClicked)
+		weak_connect(self.startButton, 'clicked', self.onButtonClicked)
+		weak_connect(self.restartButton, 'clicked', self.onButtonClicked)
+		weak_connect(self.shutdownButton, 'clicked', self.onButtonClicked)
+		weak_connect(self.terminateButton, 'clicked', self.onButtonClicked)
 
 		self.outputView.set_buffer(self.bot.getConsoleModel())
 		self.updateControlStates()
+
+	def destroy(self):
+		""""""
+		self.botWindow.destroy()
+		self.bot = None
 
 	def setConsoleModel(self, model):
 		"""Sets console window's buffer to given model."""

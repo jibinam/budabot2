@@ -119,6 +119,12 @@ class SettingModel(gtk.TreeStore):
 		self.append(botIter, ('configfile', configFile))
 		self.append(botIter, ('installdir', installDir))
 
+	def removeBot(self, botName):
+		"""This method removes botName's settings."""
+		botRow = self.getRowWithNamePath((self.ROW_BOTS, botName))
+		if botRow != None:
+			self.remove(botRow.iter)
+
 	def getValue(self, botName, name):
 		""""""
 		row = self.getRowWithNamePath((self.ROW_BOTS, botName, name))

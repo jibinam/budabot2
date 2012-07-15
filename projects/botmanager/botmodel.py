@@ -12,6 +12,13 @@ class BotModel(gtk.ListStore):
 	COLUMN_BOTOBJECT = 0
 	COLUMN_SOURCEROWREFERENCE = 1
 
+	# define custom signals that this class can emit
+	__gsignals__ = {
+		# this signal is emitted when a bot has been removed from the model,
+		# the parameter contains bot's name
+		'botRemoved': (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, (gobject.TYPE_STRING,)),
+	}
+
 	def __init__(self, sourceModel):
 		super(BotModel, self).__init__(gobject.TYPE_PYOBJECT, gobject.TYPE_PYOBJECT)
 		self.botRowReferenceMap = {}
@@ -41,7 +48,12 @@ class BotModel(gtk.ListStore):
 		return bots
 
 	def onSourceRowDeleted(self, sourceModel, sourcePath):
-		raise NotImplementedError('Deleting rows from bot model is not implemented')
+		"""This signal handler is called when a row is removed from source model."""
+		for row in self:
+			if row[self.COLUMN_SOURCEROWREFERENCE].valid() == False:
+				bot = row[self.COLUMN_BOTOBJECT]
+				self.remove(row.iter)
+				self.emit('botRemoved', bot.getName())
 
 	def onSourceRowsReordered(self, sourceModel, sourcePath, sourceIter, new_order):
 		raise NotImplementedError('Reordering rows of bot model is not implemented')
@@ -73,3 +85,6 @@ class BotModel(gtk.ListStore):
 				bot = Bot(sourceRowName, self.sourceModel)
 				sourceRef = gtk.TreeRowReference(sourceModel, sourceRow.path)
 				self.append((bot, sourceRef))
+
+# register class so that custom signals will work
+gobject.type_register(BotModel)
