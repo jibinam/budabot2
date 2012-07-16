@@ -27,7 +27,7 @@ class CallbackWrapper(object):
 			self.handle = None
 			self.sender = None
 
-def weak_connect(sender, signal, callback):
+def weakConnect(sender, signal, callback):
 	"""Connects given callback weakly to given signal so that the callback
 	will not increase reference count.
 	
@@ -37,3 +37,9 @@ def weak_connect(sender, signal, callback):
 	wrapper = CallbackWrapper(sender, callback)
 	wrapper.handle = sender.connect(signal, wrapper)
 	return wrapper.handle
+
+def setItemAsBold(item):
+	"""Sets item's text to bold, to indicate that the item is the default."""
+	label = item.get_children()
+	label = label[0]
+	label.set_markup('<b>' + label.get_text() + '</b>')

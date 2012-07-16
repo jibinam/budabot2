@@ -41,18 +41,17 @@ class Bot(gobject.GObject):
 
 		tagTable = self.consoleModel.get_tag_table()
 
-		# create a red bolded error tag
-		# TODO: to helper function
-		errorTag = gtk.TextTag('error')   
-		errorTag.set_property('foreground', 'red')
-		errorTag.set_property('weight', pango.WEIGHT_BOLD)
-		tagTable.add(errorTag)
+		def addTag(buffer, name, foreground, weight = None):
+			"""Adds a text tag to buffer with given name and styles."""
+			tag = gtk.TextTag(name)
+			tag.set_property('foreground', foreground)
+			if weight != None:
+				tag.set_property('weight', weight)
+			buffer.get_tag_table().add(tag)
 
-		# create a blue response tag
-		# TODO: to helper function
-		errorTag = gtk.TextTag('response')   
-		errorTag.set_property('foreground', 'lightblue')
-		tagTable.add(errorTag)
+		addTag(self.consoleModel, 'error', foreground = 'red', weight = pango.WEIGHT_BOLD)
+		addTag(self.consoleModel, 'response', foreground = 'lightblue')
+
 
 	def do_get_property(self, property):
 		"""Returns value of given property.

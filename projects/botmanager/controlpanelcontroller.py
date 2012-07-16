@@ -5,6 +5,7 @@ import gobject
 import gtk
 from addbotwizard import AddBotWizardController
 from botmodel import BotModel
+from utils import setItemAsBold
 
 class ControlPanelController(gobject.GObject):
 	""""""
@@ -56,10 +57,7 @@ class ControlPanelController(gobject.GObject):
 		self.botListView.append_column(column)
 
 		# set default action as bold
-		# TODO: to helper function
-		label = self.contextItemOpen.get_children()
-		label = label[0]
-		label.set_markup('<b>' + label.get_text() + '</b>')
+		setItemAsBold(self.contextItemOpen)
 
 		self.view.connect('delete-event', self.onDeleteEvent)
 		self.view.connect('show', self.onViewShown)

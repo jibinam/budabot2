@@ -3,6 +3,7 @@
 
 import gobject
 import gtk
+from utils import setItemAsBold
 
 # check which systray functionality we should use
 haveAppIndicator = True
@@ -55,10 +56,7 @@ class SystrayController(gobject.GObject):
 		self.contextMenu.append(itemExit)
 		
 		# set default action as bold
-		# TODO: to helper function
-		label = self.itemOpen.get_children()
-		label = label[0]
-		label.set_markup('<b>' + label.get_text() + '</b>')
+		setItemAsBold(self.itemOpen)
 		
 		self.closeTimerId = None
 
