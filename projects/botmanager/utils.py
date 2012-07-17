@@ -3,29 +3,24 @@
 
 import weakref
 
-class CallbackWrapper(object):
+class WeakCallback(object):
 	"""
 	Wrapper for callbacks.
-	The wrapper holds weak reference to the callback.
+	The wrapper holds weak reference to the given callback.
 	
-	From http://stackoverflow.com/questions/1364923/ by Liori.
+	Modified from Liori's example at
+	  http://stackoverflow.com/questions/1364923/
 	"""
 
-	def __init__(self, sender, callback):
+	def __init__(self, callback):
 		self.weak_obj = weakref.ref(callback.im_self)
 		self.weak_fun = weakref.ref(callback.im_func)
-		self.sender = sender
-		self.handle = None
 
 	def __call__(self, *things):
 		obj = self.weak_obj()
 		fun = self.weak_fun()
 		if obj is not None and fun is not None:
 			return fun(obj, *things)
-		elif self.handle is not None:
-			self.sender.disconnect(self.handle)
-			self.handle = None
-			self.sender = None
 
 def weakConnect(sender, signal, callback):
 	"""Connects given callback weakly to given signal so that the callback
@@ -34,9 +29,8 @@ def weakConnect(sender, signal, callback):
 	This will help with memory handling as the signal-connects will not prevent
 	garbage collector from removing unneeded objects.
 	"""
-	wrapper = CallbackWrapper(sender, callback)
-	wrapper.handle = sender.connect(signal, wrapper)
-	return wrapper.handle
+	wrapper = WeakCallback(callback)
+	return sender.connect(signal, wrapper)
 
 def setItemAsBold(item):
 	"""Sets item's text to bold, to indicate that the item is the default."""

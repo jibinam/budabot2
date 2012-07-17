@@ -33,8 +33,7 @@ class BotWindowController(gobject.GObject):
 		self.terminateButton = self.builder.get_object('terminateButton')
 
 		# call scrollViewToBottom() when scroll area's vertical scrollbar changes
-		self.vadjustment = outputScrollArea.get_vadjustment()
-		weakConnect(self.vadjustment, 'changed', self.scrollViewToBottom)
+		weakConnect(outputScrollArea.get_vadjustment(), 'changed', self.scrollViewToBottom)
 
 		# call onCommandGiven() when user hits enter-key within the entry
 		weakConnect(self.commandEntry, 'activate', self.onCommandGiven)
