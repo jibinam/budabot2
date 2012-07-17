@@ -7,6 +7,9 @@ import weakref
 
 class ConfigWindowController(object):
 	
+	RESPONSE_CANCEL = 0
+	RESPONSE_SAVE = 1
+	
 	def __init__(self, bot, configFile, parent):
 		self.configFile = configFile
 		self.builder = gtk.Builder()
@@ -17,6 +20,14 @@ class ConfigWindowController(object):
 		# append bot name to dialog's title
 		self.dialog.set_title(self.dialog.get_title() % bot.getName())
 		weakConnect(self.dialog, 'response', self.onConfigDialogResponse)
+		# add buttons, must be added in Gnome's preferred order, see:
+		# http://developer.gnome.org/hig-book/3.4/windows-alert.html.en#alert-button-order
+		self.dialog.add_button(gtk.STOCK_CANCEL, self.RESPONSE_CANCEL)
+		saveButton = self.dialog.add_button(gtk.STOCK_SAVE, self.RESPONSE_SAVE)
+		saveButton.grab_default()
+		# add alternative order for Windows, see:
+		# http://msdn.microsoft.com/en-us/library/windows/desktop/aa511268.aspx#commitButtons
+		self.dialog.set_alternative_button_order([self.RESPONSE_SAVE, self.RESPONSE_CANCEL])
 
 	def show(self):
 		self.configFile.load()
@@ -25,9 +36,9 @@ class ConfigWindowController(object):
 		self.dialog.show_all()
 		
 	def onConfigDialogResponse(self, caller, responseId):
-		if responseId == 0: # cancel
+		if responseId == self.RESPONSE_CANCEL:
 			self.dialog.destroy()
-		elif responseId == 1: # save
+		elif responseId == self.RESPONSE_SAVE:
 			self.configFile.save()
 			self.dialog.destroy()
 			if self.botRef().get_property('isRunning'):
