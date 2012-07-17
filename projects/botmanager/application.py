@@ -28,6 +28,8 @@ from systraycontroller import SystrayController
 from botwindowcontroller import BotWindowController
 from controlpanelcontroller import ControlPanelController
 from bot import Bot
+from botconfigfile import BotPhpConfigFile
+from configwindow import ConfigWindowController
 
 class Application:
 	"""The main application class"""
@@ -45,13 +47,13 @@ class Application:
 		settings = gtk.settings_get_default()
 		settings.set_string_property("gtk-theme-name", "Cillop-Midnite", "")
 
-		settingModel = SettingModel()
-		self.botModel = BotModel(settingModel)
+		self.settingModel = SettingModel()
+		self.botModel = BotModel(self.settingModel)
 		self.botModel.connect('botRemoved', self.onBotRemoved)
 
 		systrayController = SystrayController()
 
-		controlPanelController = ControlPanelController(self.botModel, settingModel)
+		controlPanelController = ControlPanelController(self.botModel, self.settingModel)
 		controlPanelController.connect('action_triggered', self.onControlPanelAction)
 
 		# open control panel when user select 'open' from systray's context menu
@@ -67,9 +69,9 @@ class Application:
 		systrayController.connect_object('exit_requested', Application.quit, self)
 
 		# show errors to user
-		settingModel.connect('error', self.onError)
+		self.settingModel.connect('error', self.onError)
 
-		settingModel.load()
+		self.settingModel.load()
 
 		controlPanelController.show()
 		# run Twisted + GTK event loop
@@ -91,7 +93,7 @@ class Application:
 			reactor.stop()
 		dialog.destroy()
 
-	def onControlPanelAction(self, sender, action, botName):
+	def onControlPanelAction(self, controller, action, botName):
 		"""This signal handler is called when user activates some action
 		in control panel.
 		"""
@@ -99,6 +101,13 @@ class Application:
 		if action == 'open':
 			botController = self.botWindowController(botName)
 			botController.show()
+		elif action == 'configure':
+			# show configuration window to user
+			configPath = self.settingModel.getValue(botName, 'configfile')
+			configFile = BotPhpConfigFile(configPath)
+			self.configWindowController = ConfigWindowController(bot, configFile, parent=controller.getView())
+			self.configWindowController.show()
+
 		elif action == 'start':
 			bot.start()
 		elif action == 'restart':

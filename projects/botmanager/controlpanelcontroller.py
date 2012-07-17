@@ -36,7 +36,7 @@ class ControlPanelController(gobject.GObject):
 		self.botListView = self.builder.get_object('botListView')
 		self.botListContextMenu = self.builder.get_object('botListContextMenu')
 		self.contextItemOpen = self.builder.get_object('contextItemOpen')
-		self.contextItemModify = self.builder.get_object('contextItemModify')
+		self.contextItemModify = self.builder.get_object('contextItemConfigure')
 		self.contextItemRemove = self.builder.get_object('contextItemRemove')
 		self.contextItemStart = self.builder.get_object('contextItemStart')
 		self.contextItemRestart = self.builder.get_object('contextItemRestart')
@@ -69,7 +69,7 @@ class ControlPanelController(gobject.GObject):
 		self.botListView.connect('row-activated', self.onBotListViewRowActivated)
 		
 		self.contextItemOpen.connect('activate', self.onContextMenuItemClicked, 'open')
-		self.contextItemModify.connect('activate', self.onContextMenuItemClicked, 'modify')
+		self.contextItemModify.connect('activate', self.onContextMenuItemClicked, 'configure')
 		self.contextItemRemove.connect('activate', self.onContextMenuItemClicked, 'remove')
 		self.contextItemStart.connect('activate', self.onContextMenuItemClicked, 'start')
 		self.contextItemRestart.connect('activate', self.onContextMenuItemClicked, 'restart')
@@ -95,6 +95,10 @@ class ControlPanelController(gobject.GObject):
 			self.hide()
 		else:
 			self.show()
+
+	def getView(self):
+		"""This method returns the top level window of this controller."""
+		return self.view
 
 	def onDeleteEvent(self, sender, event):
 		"""This method catches delete event and instead of simply deleting the
