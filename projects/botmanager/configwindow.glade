@@ -2,6 +2,24 @@
 <interface>
   <requires lib="gtk+" version="2.24"/>
   <!-- interface-naming-policy project-wide -->
+  <object class="GtkListStore" id="dbTypeList">
+    <columns>
+      <!-- column-name value -->
+      <column type="gchararray"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">sqlite</col>
+        <col id="1" translatable="yes">Sqlite</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">mysql</col>
+        <col id="1" translatable="yes">MySQL</col>
+      </row>
+    </data>
+  </object>
   <object class="GtkDialog" id="configDialog">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
@@ -52,7 +70,7 @@
                                 <property name="column_spacing">6</property>
                                 <property name="row_spacing">6</property>
                                 <child>
-                                  <object class="GtkLabel" id="label2">
+                                  <object class="GtkLabel" id="loginNameLabel">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="xalign">1</property>
@@ -63,7 +81,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="label3">
+                                  <object class="GtkLabel" id="loginPasswordLabel">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="xalign">1</property>
@@ -76,7 +94,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="label4">
+                                  <object class="GtkLabel" id="botNameLabel">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="xalign">1</property>
@@ -89,7 +107,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="label5">
+                                  <object class="GtkLabel" id="botDimensionLabel">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="xalign">1</property>
@@ -102,7 +120,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkEntry" id="entry3">
+                                  <object class="GtkEntry" id="botNameEntry">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="invisible_char">●</property>
@@ -120,7 +138,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkEntry" id="entry2">
+                                  <object class="GtkEntry" id="loginPasswordEntry">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="invisible_char">●</property>
@@ -138,7 +156,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkEntry" id="entry1">
+                                  <object class="GtkEntry" id="loginNameEntry">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="invisible_char">●</property>
@@ -154,9 +172,16 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkComboBox" id="combobox1">
+                                  <object class="GtkComboBox" id="botDimensionCombobox">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
+                                    <property name="model">dimensionsList</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                                      <attributes>
+                                        <attribute name="text">1</attribute>
+                                      </attributes>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="left_attach">1</property>
@@ -204,7 +229,7 @@
                                 <property name="column_spacing">6</property>
                                 <property name="row_spacing">6</property>
                                 <child>
-                                  <object class="GtkLabel" id="label7">
+                                  <object class="GtkLabel" id="superAdminLabel">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="xalign">1</property>
@@ -215,7 +240,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkEntry" id="entry4">
+                                  <object class="GtkEntry" id="superAdminEntry">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="invisible_char">●</property>
@@ -269,9 +294,16 @@
                                 <property name="column_spacing">6</property>
                                 <property name="row_spacing">6</property>
                                 <child>
-                                  <object class="GtkComboBox" id="combobox2">
+                                  <object class="GtkComboBox" id="dbTypeCombobox">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
+                                    <property name="model">dbTypeList</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="cellrenderertext2"/>
+                                      <attributes>
+                                        <attribute name="text">1</attribute>
+                                      </attributes>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="left_attach">1</property>
@@ -280,7 +312,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="label9">
+                                  <object class="GtkLabel" id="dbTypeLabel">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="xalign">1</property>
@@ -288,7 +320,7 @@
                                   </object>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="label10">
+                                  <object class="GtkLabel" id="dbNameLabel">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="xalign">1</property>
@@ -300,7 +332,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="label11">
+                                  <object class="GtkLabel" id="dbHostLabel">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="xalign">1</property>
@@ -312,7 +344,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="label12">
+                                  <object class="GtkLabel" id="dbUsernameLabel">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="xalign">1</property>
@@ -324,7 +356,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="label13">
+                                  <object class="GtkLabel" id="dbPasswordLabel">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="xalign">1</property>
@@ -336,7 +368,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkEntry" id="entry5">
+                                  <object class="GtkEntry" id="dbNameEntry">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="invisible_char">●</property>
@@ -354,7 +386,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkEntry" id="entry6">
+                                  <object class="GtkEntry" id="dbHostEntry">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="invisible_char">●</property>
@@ -372,7 +404,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkEntry" id="entry7">
+                                  <object class="GtkEntry" id="dbUsernameEntry">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="invisible_char">●</property>
@@ -390,7 +422,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkEntry" id="entry8">
+                                  <object class="GtkEntry" id="dbPasswordEntry">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="invisible_char">●</property>
@@ -472,7 +504,7 @@
                                 <property name="can_focus">False</property>
                                 <property name="spacing">6</property>
                                 <child>
-                                  <object class="GtkCheckButton" id="checkbutton1">
+                                  <object class="GtkCheckButton" id="useProxyCheckbox">
                                     <property name="label" translatable="yes">Use AO chat proxy</property>
                                     <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
@@ -495,7 +527,7 @@
                                     <property name="column_spacing">6</property>
                                     <property name="row_spacing">6</property>
                                     <child>
-                                      <object class="GtkLabel" id="label15">
+                                      <object class="GtkLabel" id="proxyServerLabel">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="xalign">1</property>
@@ -503,7 +535,7 @@
                                       </object>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="label16">
+                                      <object class="GtkLabel" id="proxyPortLabel">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="xalign">1</property>
@@ -515,7 +547,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkEntry" id="entry9">
+                                      <object class="GtkEntry" id="proxyServerEntry">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="invisible_char">●</property>
@@ -531,7 +563,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkEntry" id="entry10">
+                                      <object class="GtkEntry" id="proxyServerEntr">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="invisible_char">●</property>
@@ -591,7 +623,7 @@
                                 <property name="can_focus">False</property>
                                 <property name="spacing">6</property>
                                 <child>
-                                  <object class="GtkCheckButton" id="checkbutton2">
+                                  <object class="GtkCheckButton" id="moduleStatusCheckbox">
                                     <property name="label" translatable="yes">Modules enabled by default</property>
                                     <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
@@ -606,7 +638,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkCheckButton" id="checkbutton3">
+                                  <object class="GtkCheckButton" id="showAomlCheckbox">
                                     <property name="label" translatable="yes">Show AOML markup in logs/console</property>
                                     <property name="use_action_appearance">False</property>
                                     <property name="visible">True</property>
@@ -629,7 +661,7 @@
                                     <property name="column_spacing">6</property>
                                     <property name="row_spacing">6</property>
                                     <child>
-                                      <object class="GtkLabel" id="label19">
+                                      <object class="GtkLabel" id="cacheFolderLabel">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="xalign">1</property>
@@ -637,7 +669,7 @@
                                       </object>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel" id="label21">
+                                      <object class="GtkLabel" id="apiPortEntry">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="xalign">1</property>
@@ -649,7 +681,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkEntry" id="entry11">
+                                      <object class="GtkEntry" id="cacheFolderEntry">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="invisible_char">●</property>
@@ -665,7 +697,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkEntry" id="entry12">
+                                      <object class="GtkEntry" id="apiPortLabel">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="invisible_char">●</property>
@@ -754,5 +786,27 @@
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkListStore" id="dimensionsList">
+    <columns>
+      <!-- column-name value -->
+      <column type="gint"/>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0">1</col>
+        <col id="1" translatable="yes">Atlantean</col>
+      </row>
+      <row>
+        <col id="0">2</col>
+        <col id="1" translatable="yes">Rimor</col>
+      </row>
+      <row>
+        <col id="0">4</col>
+        <col id="1" translatable="yes">Test Live</col>
+      </row>
+    </data>
   </object>
 </interface>
