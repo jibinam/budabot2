@@ -11,6 +11,27 @@ class ConfigWindowController(object):
 	RESPONSE_CANCEL = 0
 	RESPONSE_SAVE = 1
 	
+	VARIABLE_WIDGET_DICT = {
+		'login'                : 'loginNameEntry',
+		'password'             : 'loginPasswordEntry',
+		'name'                 : 'botNameEntry',
+		'dimension'            : 'botDimensionCombobox',
+		'my_guild'             : 'botOrganizationEntry',
+		'SuperAdmin'           : 'superAdminEntry',
+		'DB Type'              : 'dbTypeCombobox',
+		'DB Name'              : 'dbNameEntry',
+		'DB Host'              : 'dbHostEntry',
+		'DB username'          : 'dbUsernameEntry',
+		'DB password'          : 'dbPasswordEntry',
+		'use_proxy'            : 'useProxyCheckbox',
+		'proxy_server'         : 'proxyServerEntry',
+		'proxy_port'           : 'proxyPortSpin',
+		'default_module_status': 'moduleStatusCheckbox',
+		'show_aoml_markup'     : 'showAomlCheckbox',
+		'cachefolder'          : 'cacheFolderEntry',
+		'API Port'             : 'apiPortSpin'
+	}
+	
 	def __init__(self, bot, configFile, parent):
 		"""Constructor method.
 		
@@ -50,50 +71,57 @@ class ConfigWindowController(object):
 		"""Loads variables from the config file and populates the
 		window's input widgets.
 		"""
-		def loadEntry(configName, entryName):
-			"""Helper function for setting value from config file to a
-			gtk entry widget in the window.
-			"""
-			value = self.configFile.getVar(configName)
-			self.builder.get_object(entryName).set_text(str(value))
-
-		def loadCombo(configName, comboboxName):
-			"""Helper function for setting value from config file to a
-			gtk combobox widget in the window.
-			"""
-			value = self.configFile.getVar(configName)
-			model = self.builder.get_object(comboboxName).get_model()
-			for index in range(0, len(model)):
-				if model[index][0] == value:
-					self.builder.get_object(comboboxName).set_active(index)
-					break
-		
-		def loadCheck(configName, checkboxName):
-			"""Helper function for setting value from config file to a
-			gtk checkbutton widget in the window.
-			"""
-			value = self.configFile.getVar(configName)
-			self.builder.get_object(checkboxName).set_active(value)
-
 		self.configFile.load()
-		loadEntry('login',                 'loginNameEntry')
-		loadEntry('password',              'loginPasswordEntry')
-		loadEntry('name',                  'botNameEntry')
-		loadCombo('dimension',             'botDimensionCombobox')
-		loadEntry('my_guild',              'botOrganizationEntry')
-		loadEntry('SuperAdmin',            'superAdminEntry')
-		loadCombo('DB Type',               'dbTypeCombobox')
-		loadEntry('DB Name',               'dbNameEntry')
-		loadEntry('DB Host',               'dbHostEntry')
-		loadEntry('DB username',           'dbUsernameEntry')
-		loadEntry('DB password',           'dbPasswordEntry')
-		loadCheck('use_proxy',             'useProxyCheckbox')
-		loadEntry('proxy_server',          'proxyServerEntry')
-		loadEntry('proxy_port',            'proxyPortEntry')
-		loadCheck('default_module_status', 'moduleStatusCheckbox')
-		loadCheck('show_aoml_markup',      'showAomlCheckbox')
-		loadEntry('cachefolder',           'cacheFolderEntry')
-		loadEntry('API Port',              'apiPortLabel')
+		for varName, widgetName in self.VARIABLE_WIDGET_DICT.items():
+			def getValue(default):
+				try:
+					return self.configFile.getVar(varName)
+				except KeyError:
+					return default
+
+			widget = self.builder.get_object(widgetName)
+			# set check box's state (value should be either 0 or 1)
+			if isinstance(widget, gtk.CheckButton):
+				widget.set_active(bool(getValue(default=0)))
+			# set spin button's contents from value
+			elif isinstance(widget, gtk.SpinButton):
+				widget.set_value(int(getValue(default=0)))
+			# set text entry widget's contents from value
+			elif isinstance(widget, gtk.Entry):
+				widget.set_text(str(getValue(default='')))
+			# find value from combo box model's first column and select
+			# row which matches
+			elif isinstance(widget, gtk.ComboBox):
+				model = widget.get_model()
+				value = getValue(default=None)
+				widget.set_active(0)
+				for index in range(0, len(model)):
+					if model[index][0] == value:
+						widget.set_active(index)
+						break
+
+	def saveConfigFile(self):
+		"""Collects values from input widgets and saves them to
+		the config file.
+		"""
+		for varName, widgetName in self.VARIABLE_WIDGET_DICT.items():
+			widget = self.builder.get_object(widgetName)
+			value = None
+			# get integer value (1 or 0) depending if check box is toggled or not
+			if isinstance(widget, gtk.CheckButton):
+				value = int(widget.get_active())
+			# get int value from the entry widget
+			elif isinstance(widget, gtk.SpinButton):
+				value = widget.get_value_as_int()
+			# get text value from the entry widget
+			elif isinstance(widget, gtk.Entry):
+				value = widget.get_text()
+			# get value from combo box's selected row's first column
+			elif isinstance(widget, gtk.ComboBox):
+				model = widget.get_model()
+				value = model[widget.get_active()][0]
+			self.configFile.setVar(varName, value)
+		self.configFile.save()
 	
 	def onDbTypeChanged(self, comboBox):
 		"""This signal handler is called when database type's value changes.
@@ -114,7 +142,7 @@ class ConfigWindowController(object):
 		"""
 		proxyEnabled = checkbox.get_active()
 		self.builder.get_object('proxyServerEntry').set_sensitive(proxyEnabled)
-		self.builder.get_object('proxyPortEntry').set_sensitive(proxyEnabled)
+		self.builder.get_object('proxyPortSpin').set_sensitive(proxyEnabled)
 		
 	def onConfigDialogResponse(self, caller, responseId):
 		"""This signal handler is called when user clicks either
@@ -126,7 +154,7 @@ class ConfigWindowController(object):
 		if responseId == self.RESPONSE_CANCEL:
 			self.dialog.destroy()
 		elif responseId == self.RESPONSE_SAVE:
-			self.configFile.save()
+			self.saveConfigFile()
 			self.dialog.destroy()
 			if self.botRef().get_property('isRunning'):
 				self.restartDialog = gtk.MessageDialog(
