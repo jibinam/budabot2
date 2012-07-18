@@ -32,6 +32,27 @@ class ConfigWindowController(object):
 		'API Port'             : 'apiPortSpin'
 	}
 	
+	TOOLTIPS = [
+		(('loginNameLabel', 'loginNameEntry'),             "Game account's login name which contains the bot character (case-sensitive)"),
+		(('loginPasswordLabel', 'loginPasswordEntry'),     "Game account's login password which contains the bot character (case-sensitive)"),
+		(('botNameLabel', 'botNameEntry'),                 "Name of the bot character"),
+		(('botDimensionLabel', 'botDimensionLabel'),       "Game server dimension which has the bot character"),
+		(('botOrganizationLabel', 'botOrganizationEntry'), "Name of bot character's organization, or leave it as blank to run the bot as a raid bot. The name must match exactly including case and punctuation!"),
+		(('superAdminLabel', 'superAdminEntry'),           "Name of the character who has access to all commands and settings on the bot"),
+		(('dbTypeLabel', 'dbTypeCombobox'),                "Type of the database which the bot will use"),
+		(('dbNameLabel', 'dbNameEntry'),                   "Sqlite: file name of the database,\nMySQL: name of the database"),
+		(('dbHostLabel', 'dbHostEntry'),                   "Sqlite: folder path where the database file is stored,\nMySQL: hostname or IP-address of the database server"),
+		(('dbUsernameLabel', 'dbUsernameEntry'),           "Username of the MySQL server"),
+		(('dbPasswordLabel', 'dbPasswordEntry'),           "Password of the MySQL server"),
+		(('useProxyCheckbox',),                            "Enable if you're going to AO Chat Proxy"),
+		(('proxyServerLabel', 'proxyServerEntry'),         "Hostname or IP-address of the AO Chat Proxy"),
+		(('proxyPortLabel', 'proxyPortSpin'),              "Port of the AO Chat Proxy"),
+		(('moduleStatusCheckbox',),                        "Enable to have all modules enabled by default"),
+		(('showAomlCheckbox',),                            "Enable for bot to print AOML to console and logs, instead of pretty printing human-friendly messages"),
+		(('cacheFolderLabel', 'cacheFolderEntry'),         "Cache folder for storing organization XML files"),
+		(('apiPortLabel', 'apiPortSpin'),                  "Port where the bot will listen for BudAPI requests, this value will change automatically if the port is in use")
+	]
+	
 	def __init__(self, bot, configFile, parent):
 		"""Constructor method.
 		
@@ -59,6 +80,13 @@ class ConfigWindowController(object):
 		# add alternative order for Windows, see:
 		# http://msdn.microsoft.com/en-us/library/windows/desktop/aa511268.aspx#commitButtons
 		self.dialog.set_alternative_button_order([self.RESPONSE_SAVE, self.RESPONSE_CANCEL])
+		# set tooltip texts to widgets
+		for tooltipData in self.TOOLTIPS:
+			widgetNames = tooltipData[0]
+			text = tooltipData[1]
+			for widgetName in widgetNames:
+				widget = self.builder.get_object(widgetName)
+				widget.set_tooltip_text(text)
 
 	def show(self):
 		"""Shows the config window to user."""
