@@ -65,7 +65,7 @@
                               <object class="GtkTable" id="table1">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="n_rows">4</property>
+                                <property name="n_rows">5</property>
                                 <property name="n_columns">2</property>
                                 <property name="column_spacing">6</property>
                                 <property name="row_spacing">6</property>
@@ -141,6 +141,7 @@
                                   <object class="GtkEntry" id="loginPasswordEntry">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <property name="visibility">False</property>
                                     <property name="invisible_char">●</property>
                                     <property name="invisible_char_set">True</property>
                                     <property name="primary_icon_activatable">False</property>
@@ -159,6 +160,7 @@
                                   <object class="GtkEntry" id="loginNameEntry">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <property name="visibility">False</property>
                                     <property name="invisible_char">●</property>
                                     <property name="invisible_char_set">True</property>
                                     <property name="primary_icon_activatable">False</property>
@@ -189,6 +191,34 @@
                                     <property name="top_attach">3</property>
                                     <property name="bottom_attach">4</property>
                                     <property name="y_options">GTK_EXPAND</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="botOrganizationLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="label" translatable="yes">Bot character's organization:</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">4</property>
+                                    <property name="bottom_attach">5</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkEntry" id="botOrganizationEntry">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="invisible_char">●</property>
+                                    <property name="primary_icon_activatable">False</property>
+                                    <property name="secondary_icon_activatable">False</property>
+                                    <property name="primary_icon_sensitive">True</property>
+                                    <property name="secondary_icon_sensitive">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
+                                    <property name="top_attach">4</property>
+                                    <property name="bottom_attach">5</property>
                                   </packing>
                                 </child>
                               </object>
@@ -407,6 +437,7 @@
                                   <object class="GtkEntry" id="dbUsernameEntry">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <property name="visibility">False</property>
                                     <property name="invisible_char">●</property>
                                     <property name="invisible_char_set">True</property>
                                     <property name="primary_icon_activatable">False</property>
@@ -425,6 +456,7 @@
                                   <object class="GtkEntry" id="dbPasswordEntry">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <property name="visibility">False</property>
                                     <property name="invisible_char">●</property>
                                     <property name="invisible_char_set">True</property>
                                     <property name="primary_icon_activatable">False</property>
@@ -549,6 +581,7 @@
                                     <child>
                                       <object class="GtkEntry" id="proxyServerEntry">
                                         <property name="visible">True</property>
+                                        <property name="sensitive">False</property>
                                         <property name="can_focus">True</property>
                                         <property name="invisible_char">●</property>
                                         <property name="invisible_char_set">True</property>
@@ -563,8 +596,9 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkEntry" id="proxyServerEntr">
+                                      <object class="GtkEntry" id="proxyPortEntry">
                                         <property name="visible">True</property>
+                                        <property name="sensitive">False</property>
                                         <property name="can_focus">True</property>
                                         <property name="invisible_char">●</property>
                                         <property name="invisible_char_set">True</property>
