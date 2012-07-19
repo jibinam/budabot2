@@ -2,6 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import weakref
+import gtk
+
+botStatusNotRunningPixBuf = gtk.gdk.pixbuf_new_from_file_at_size('images/status_not_running.png', 24, 24)
+botStatusStartedPixBuf    = gtk.gdk.pixbuf_new_from_file_at_size('images/status_started.png', 24, 24)
+botStatusRunningPixBuf    = gtk.gdk.pixbuf_new_from_file_at_size('images/status_running.png', 24, 24)
 
 class WeakCallback(object):
 	"""
@@ -37,3 +42,14 @@ def setItemAsBold(item):
 	label = item.get_children()
 	label = label[0]
 	label.set_markup('<b>' + label.get_text() + '</b>')
+
+def getBotUIStatus(bot):
+	"""Returns bot's status as a text and pixbuf, ready to be usable on UI."""
+	apiAccessible = bot.get_property('apiAccessible')
+	isRunning = bot.get_property('isRunning')
+	if isRunning and apiAccessible:
+		return ('Running', botStatusRunningPixBuf)
+	elif isRunning:
+		return ('Started', botStatusStartedPixBuf)
+	else:
+		return ('Not running', botStatusNotRunningPixBuf)

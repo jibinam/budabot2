@@ -3,7 +3,7 @@
 
 import gobject
 import gtk
-from utils import weakConnect
+from utils import weakConnect, getBotUIStatus
 
 class BotWindowController(gobject.GObject):
 	""""""
@@ -31,6 +31,8 @@ class BotWindowController(gobject.GObject):
 		self.restartButton = self.builder.get_object('restartButton')
 		self.shutdownButton = self.builder.get_object('shutdownButton')
 		self.terminateButton = self.builder.get_object('terminateButton')
+		self.statusImage = self.builder.get_object('statusImage')
+		self.statusLabel = self.builder.get_object('statusLabel')
 
 		# call scrollViewToBottom() when scroll area's vertical scrollbar changes
 		weakConnect(outputScrollArea.get_vadjustment(), 'changed', self.scrollViewToBottom)
@@ -124,6 +126,11 @@ class BotWindowController(gobject.GObject):
 		self.restartButton.set_sensitive(isRunning and apiAccessible)
 		self.shutdownButton.set_sensitive(isRunning and apiAccessible)
 		self.terminateButton.set_sensitive(isRunning)
+
+		# set bot status indicator
+		status = getBotUIStatus(self.bot)
+		self.statusLabel.set_label(status[0])
+		self.statusImage.set_property('pixbuf', status[1])
 
 # register class so that custom signals will work
 gobject.type_register(BotWindowController)

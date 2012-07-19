@@ -5,7 +5,7 @@ import gobject
 import gtk
 from addbotwizard import AddBotWizardController
 from botmodel import BotModel
-from utils import setItemAsBold
+from utils import setItemAsBold, getBotUIStatus
 
 class ControlPanelController(gobject.GObject):
 	""""""
@@ -58,19 +58,11 @@ class ControlPanelController(gobject.GObject):
 		self.botListView.append_column(nameColumn)
 		
 		# setup column for bot's status
-		notRunningPixBuf = gtk.gdk.pixbuf_new_from_file_at_size('images/status_not_running.png', 24, 24)
-		startedPixBuf    = gtk.gdk.pixbuf_new_from_file_at_size('images/status_started.png', 24, 24)
-		runningPixBuf    = gtk.gdk.pixbuf_new_from_file_at_size('images/status_running.png', 24, 24)
 		def botStatusSetter(column, cell, model, iter):
 			bot = model[iter][BotModel.COLUMN_BOTOBJECT]
-			isRunning = bot.get_property('isRunning')
-			apiAccessible = bot.get_property('apiAccessible')
-			if isRunning and apiAccessible:
-				cell.set_property('pixbuf', runningPixBuf)
-			elif isRunning:
-				cell.set_property('pixbuf', startedPixBuf)
-			else:
-				cell.set_property('pixbuf', notRunningPixBuf)
+			status = getBotUIStatus(bot)
+			cell.set_property('pixbuf', status[1])
+
 		statusRenderer = gtk.CellRendererPixbuf()
 		statusRenderer.set_property('width', 50)
 		statusColumn = gtk.TreeViewColumn('Status', statusRenderer)
