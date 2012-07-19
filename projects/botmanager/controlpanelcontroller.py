@@ -50,12 +50,33 @@ class ControlPanelController(gobject.GObject):
 			bot = model[iter][BotModel.COLUMN_BOTOBJECT]
 			name = bot.getName()
 			cell.set_property('text', name)
-		renderer = gtk.CellRendererText()
-		renderer.set_property('height', 50)
-		column = gtk.TreeViewColumn('Bot', renderer)
-		column.set_cell_data_func(renderer, botNameSetter)
-		self.botListView.append_column(column)
-
+		nameRenderer = gtk.CellRendererText()
+		nameRenderer.set_property('height', 50)
+		nameColumn = gtk.TreeViewColumn('Bot', nameRenderer)
+		nameColumn.set_property('expand', True)
+		nameColumn.set_cell_data_func(nameRenderer, botNameSetter)
+		self.botListView.append_column(nameColumn)
+		
+		# setup column for bot's status
+		notRunningPixBuf = gtk.gdk.pixbuf_new_from_file_at_size('images/status_not_running.png', 24, 24)
+		startedPixBuf    = gtk.gdk.pixbuf_new_from_file_at_size('images/status_started.png', 24, 24)
+		runningPixBuf    = gtk.gdk.pixbuf_new_from_file_at_size('images/status_running.png', 24, 24)
+		def botStatusSetter(column, cell, model, iter):
+			bot = model[iter][BotModel.COLUMN_BOTOBJECT]
+			isRunning = bot.get_property('isRunning')
+			apiAccessible = bot.get_property('apiAccessible')
+			if isRunning and apiAccessible:
+				cell.set_property('pixbuf', runningPixBuf)
+			elif isRunning:
+				cell.set_property('pixbuf', startedPixBuf)
+			else:
+				cell.set_property('pixbuf', notRunningPixBuf)
+		statusRenderer = gtk.CellRendererPixbuf()
+		statusRenderer.set_property('width', 50)
+		statusColumn = gtk.TreeViewColumn('Status', statusRenderer)
+		statusColumn.set_cell_data_func(statusRenderer, botStatusSetter)
+		self.botListView.append_column(statusColumn)
+		
 		# set default action as bold
 		setItemAsBold(self.contextItemOpen)
 
@@ -176,7 +197,7 @@ class ControlPanelController(gobject.GObject):
 	def onViewHidden(self, sender):
 		"""This signal handler is called when the control panel window is hidden."""
 		self.emit('visibility_changed', False)
-
+				
 	def removeBot(self):
 		"""Asks from user if currently selected bot should be removed and if
 		OK, emits action_triggered signal.

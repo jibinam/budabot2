@@ -83,8 +83,21 @@ class BotModel(gtk.ListStore):
 			# if bot was not found, create it
 			else:
 				bot = Bot(sourceRowName, self.sourceModel)
+				bot.connect('notify::apiAccessible', self.onBotPropertyChanged)
+				bot.connect('notify::isRunning', self.onBotPropertyChanged)
 				sourceRef = gtk.TreeRowReference(sourceModel, sourceRow.path)
 				self.append((bot, sourceRef))
+	
+	def onBotPropertyChanged(self, bot, property):
+		"""This signal handler is called when one of bot's
+		properties change.
+		
+		Emits row-changed signal to notify listeners that
+		bot's state has changed.
+		"""
+		for row in self:
+			if row[self.COLUMN_BOTOBJECT] is bot:
+				self.row_changed(row.path, row.iter)
 
 # register class so that custom signals will work
 gobject.type_register(BotModel)
