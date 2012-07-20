@@ -43,6 +43,7 @@ class SystrayController(gobject.GObject):
 			self.icon.connect('popup-menu', self.onMenu)
 			self.icon.set_visible(True)
 			self.icon.set_blinking(False)
+			self.icon.set_tooltip_text('Budabot Bot Manager')
 			self.contextMenu.connect('enter-notify-event', self.onMouseEnterContextMenu)
 			self.contextMenu.connect('leave-notify-event', self.onMouseLeaveContextMenu)
 		
