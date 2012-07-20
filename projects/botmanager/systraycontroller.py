@@ -32,12 +32,13 @@ class SystrayController(gobject.GObject):
 		self.contextMenu = gtk.Menu()
 
 		if haveAppIndicator:
-			self.icon = appindicator.Indicator('botmanager-indicator', 'gtk-execute', appindicator.CATEGORY_APPLICATION_STATUS)
+			iconPath = gtk.icon_theme_get_default().lookup_icon('program-icon', 16, 0).get_filename()
+			self.icon = appindicator.Indicator('botmanager-indicator', iconPath, appindicator.CATEGORY_APPLICATION_STATUS)
 			self.icon.set_status(appindicator.STATUS_ACTIVE)
 			self.icon.set_menu(self.contextMenu)
 		else:
 			self.icon = gtk.StatusIcon()
-			self.icon.set_from_stock(gtk.STOCK_FILE)
+			self.icon.set_from_icon_name('program-icon')
 			self.icon.connect('activate', self.onSystrayClicked)
 			self.icon.connect('popup-menu', self.onMenu)
 			self.icon.set_visible(True)
