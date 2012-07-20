@@ -37,6 +37,7 @@ each page:
 """
 
 import os
+import re
 import sys
 import gtk
 import gobject
@@ -261,15 +262,54 @@ class SelectImportPage(Page):
 
 	def onBotImportDirChoosen(self, caller):
 		"""This signal handler is called when user chooses a directory in import wizard."""
-		self.modelPath = os.path.join(self.dirChooser.get_filename(), 'conf')
-		if os.path.isdir(self.modelPath):
-			self.botImportModel.load(self.modelPath)
-			# save current path to settings for later use if bots were found
-			if len(self.botImportModel) > 0:
-				self.settingModel.setDefaultBotRootPath(self.dirChooser.get_filename())
-				self.settingModel.save()
-		else:
+		rootPath = self.dirChooser.get_filename()
+		isRequiredVersion = False
+		try:
+			with open(os.path.join(rootPath, 'main.php'), 'r') as file:
+				# attempt to parse something like this: '$version = "3.0_Alpha"';
+				match = re.search(r'\$version\s*=\s*[\'"](.+)[\'"]', file.read())
+				if match == None:
+					raise WrongRootPathError()
+				currentVersion = match.group(1)
+				minimumVersion = '3.0' # require at least Budabot 3.0
+
+				def tryint(s):
+					"""Part of natural sort algorithm from:
+					  http://nedbatchelder.com/blog/200712.html#e20071211T054956
+					"""
+					try:
+						return int(s)
+					except:
+						return s
+				def alphanum_key(s):
+					"""Turn a string into a list of string and number chunks.
+					"z23a" -> ["z", 23, "a"]
+					Part of natural sort algorithm from:
+					  http://nedbatchelder.com/blog/200712.html#e20071211T054956
+					"""
+					return [ tryint(c) for c in re.split('([0-9]+)', s) ]
+
+				# compare current and minimum required version using natural sort
+				isRequiredVersion = alphanum_key(currentVersion) >= alphanum_key(minimumVersion)
+
+			if isRequiredVersion == False:
+				raise WrongRootPathError()
+
+			self.modelPath = os.path.join(rootPath, 'conf')
+			if os.path.isdir(self.modelPath):
+				self.botImportModel.load(self.modelPath)
+				# save current path to settings for later use if bots were found
+				if len(self.botImportModel) > 0:
+					self.settingModel.setDefaultBotRootPath(rootPath)
+					self.settingModel.save()
+			else:
+				raise WrongRootPathError()
+			
+		except WrongRootPathError:
 			self.botImportModel.clear()
+
+class WrongRootPathError(Exception):
+	pass
 
 class BotImportModel(gtk.ListStore):
 	def __init__(self):
