@@ -47,6 +47,12 @@ class Application:
 		settings = gtk.settings_get_default()
 		settings.set_string_property("gtk-theme-name", "Cillop-Midnite", "")
 
+		# load icon theme
+		theme = gtk.icon_theme_get_default()
+		theme.prepend_search_path(os.path.join(sys.path[0], 'themes'))
+		settings.set_string_property("gtk-icon-theme-name", "budabot-icon-theme", "")
+		gtk.icon_size_register('status-icon-size', 24, 24)
+
 		self.settingModel = SettingModel()
 		self.botModel = BotModel(self.settingModel)
 		self.botModel.connect('botRemoved', self.onBotRemoved)

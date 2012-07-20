@@ -4,10 +4,6 @@
 import weakref
 import gtk
 
-botStatusNotRunningPixBuf = gtk.gdk.pixbuf_new_from_file_at_size('images/status_not_running.png', 24, 24)
-botStatusStartedPixBuf    = gtk.gdk.pixbuf_new_from_file_at_size('images/status_started.png', 24, 24)
-botStatusRunningPixBuf    = gtk.gdk.pixbuf_new_from_file_at_size('images/status_running.png', 24, 24)
-
 class WeakCallback(object):
 	"""
 	Wrapper for callbacks.
@@ -48,8 +44,8 @@ def getBotUIStatus(bot):
 	apiAccessible = bot.get_property('apiAccessible')
 	isRunning = bot.get_property('isRunning')
 	if isRunning and apiAccessible:
-		return ('Running', botStatusRunningPixBuf)
+		return ('Running', 'status-running')
 	elif isRunning:
-		return ('Started', botStatusStartedPixBuf)
+		return ('Started', 'status-started')
 	else:
-		return ('Not running', botStatusNotRunningPixBuf)
+		return ('Not running', 'status-not-running')

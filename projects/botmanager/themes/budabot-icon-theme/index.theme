@@ -1,0 +1,9 @@
+[Icon Theme]
+Name=budabot-icon-theme
+Comment=Budabot icon theme by Marebone
+Directories=32x32/apps
+
+[32x32/apps]
+Size=32
+Context=Apps
+Type=fixed

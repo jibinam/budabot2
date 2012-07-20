@@ -61,10 +61,11 @@ class ControlPanelController(gobject.GObject):
 		def botStatusSetter(column, cell, model, iter):
 			bot = model[iter][BotModel.COLUMN_BOTOBJECT]
 			status = getBotUIStatus(bot)
-			cell.set_property('pixbuf', status[1])
+			cell.set_property('icon-name', status[1])
 
 		statusRenderer = gtk.CellRendererPixbuf()
 		statusRenderer.set_property('width', 50)
+		statusRenderer.set_property('stock-size', gtk.icon_size_from_name('status-icon-size'))
 		statusColumn = gtk.TreeViewColumn('Status', statusRenderer)
 		statusColumn.set_cell_data_func(statusRenderer, botStatusSetter)
 		self.botListView.append_column(statusColumn)

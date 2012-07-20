@@ -54,6 +54,7 @@ class BotWindowController(gobject.GObject):
 		weakConnect(self.terminateButton, 'clicked', self.onButtonClicked)
 
 		self.outputView.set_buffer(self.bot.getConsoleModel())
+		self.statusImage.set_property('icon-size', gtk.icon_size_from_name('status-icon-size'))
 		self.updateControlStates()
 
 	def destroy(self):
@@ -130,7 +131,7 @@ class BotWindowController(gobject.GObject):
 		# set bot status indicator
 		status = getBotUIStatus(self.bot)
 		self.statusLabel.set_label(status[0])
-		self.statusImage.set_property('pixbuf', status[1])
+		self.statusImage.set_property('icon-name', status[1])
 
 # register class so that custom signals will work
 gobject.type_register(BotWindowController)
