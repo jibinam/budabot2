@@ -139,15 +139,15 @@ class ControlPanelController(gobject.GObject):
 			if pathArray:
 				path = pathArray[0]
 				selection.select_path(path)
-			# popup the context menu
-			bot = self.getCurrentlySelectedBot()
-			apiAccessible = bot.get_property('apiAccessible')
-			isRunning = bot.get_property('isRunning')
-			self.contextItemRestart.set_sensitive(isRunning and apiAccessible)
-			self.contextItemShutdown.set_sensitive(isRunning and apiAccessible)
-			self.contextItemStart.set_sensitive(not isRunning)
-			self.contextItemTerminate.set_sensitive(isRunning)
-			self.botListContextMenu.popup(None, None, None, event.button, event.get_time())
+				# popup the context menu
+				bot = self.getCurrentlySelectedBot()
+				apiAccessible = bot.get_property('apiAccessible')
+				isRunning = bot.get_property('isRunning')
+				self.contextItemRestart.set_sensitive(isRunning and apiAccessible)
+				self.contextItemShutdown.set_sensitive(isRunning and apiAccessible)
+				self.contextItemStart.set_sensitive(not isRunning)
+				self.contextItemTerminate.set_sensitive(isRunning)
+				self.botListContextMenu.popup(None, None, None, event.button, event.get_time())
 			return True
 		return False
 	
