@@ -49,7 +49,7 @@ class Application:
 
 		# load icon theme
 		theme = gtk.icon_theme_get_default()
-		theme.prepend_search_path(os.path.join(sys.path[0], 'themes'))
+		theme.prepend_search_path('themes')
 		settings.set_string_property("gtk-icon-theme-name", "budabot-icon-theme", "")
 		gtk.icon_size_register('status-icon-size', 24, 24)
 
