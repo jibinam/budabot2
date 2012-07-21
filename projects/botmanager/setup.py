@@ -69,6 +69,7 @@ class Target:
 windows_target = Target(
 	script = 'botmanager.py',
 	dest_base = 'BotManager',
+	icon_resources = [(0, os.path.join('icon', 'icon.ico'))]
 )
 
 # include these in the distribution, but do not bundle them
