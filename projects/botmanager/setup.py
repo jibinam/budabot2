@@ -6,6 +6,7 @@ import gtk
 
 GTK_RUNTIME_DIR = os.path.join(os.path.split(os.path.dirname(gtk.__file__))[0], "runtime")
 assert os.path.exists(GTK_RUNTIME_DIR), "Cannot find GTK runtime data"
+GTK_RUNTIME_BIN_DIR = os.path.join(GTK_RUNTIME_DIR, 'bin')
 GTK_THEME_ENGINES_DIR = os.path.join("lib", "gtk-2.0", "2.10.0", "engines")
 
 def generate_data_files(prefix, tree, file_filter=None):
@@ -37,6 +38,11 @@ def generate_data_files(prefix, tree, file_filter=None):
 	"""
 	data_files = []
 	for root, dirs, files in os.walk(os.path.join(prefix, tree)):
+		if 'build' in dirs:
+			dirs.remove('build')
+		if 'dist' in dirs:
+			dirs.remove('dist')
+
 		to_dir = os.path.relpath(root, prefix)
 
 		if file_filter is not None:
@@ -65,6 +71,60 @@ windows_target = Target(
 	dest_base = 'BotManager',
 )
 
+# include these in the distribution, but do not bundle them
+gtkDlls = [
+	"intl.dll",
+	"libatk-1.0-0.dll",
+	"libgdk_pixbuf-2.0-0.dll",
+	"libgdk-win32-2.0-0.dll",
+	"libglib-2.0-0.dll",
+	"libgmodule-2.0-0.dll",
+	"libgobject-2.0-0.dll",
+	"libgthread-2.0-0.dll",
+	"libgtk-win32-2.0-0.dll",
+	"libpango-1.0-0.dll",
+	'libpangocairo-1.0-0.dll',
+	"libpangowin32-1.0-0.dll",
+	'libgio-2.0-0.dll',
+	'freetype6.dll',
+	'libcairo-2.dll',
+	'libexpat-1.dll',
+	'libfontconfig-1.dll',
+	'libpangoft2-1.0-0.dll',
+	'libpng14-14.dll'
+]
+
+# do not include any of these files
+dllExcludes = [
+	'w9xpopen.exe'
+	'API-MS-Win-Core-Debug-L1-1-0.dll',
+	'API-MS-Win-Core-Debug-L1-1-0.dll',
+	'API-MS-Win-Core-DelayLoad-L1-1-0.dll',
+	'API-MS-Win-Core-ErrorHandling-L1-1-0.dll',
+	'API-MS-Win-Core-File-L1-1-0.dll',
+	'API-MS-Win-Core-Handle-L1-1-0.dll',
+	'API-MS-Win-Core-Heap-L1-1-0.dll',
+	'API-MS-Win-Core-Interlocked-L1-1-0.dll',
+	'API-MS-Win-Core-IO-L1-1-0.dll',
+	'API-MS-Win-Core-LibraryLoader-L1-1-0.dll',
+	'API-MS-Win-Core-Localization-L1-1-0.dll',
+	'API-MS-Win-Core-LocalRegistry-L1-1-0.dll',
+	'API-MS-Win-Core-Memory-L1-1-0.dll',
+	'API-MS-Win-Core-Misc-L1-1-0.dll',
+	'API-MS-Win-Core-ProcessEnvironment-L1-1-0.dll',
+	'API-MS-Win-Core-ProcessThreads-L1-1-0.dll',
+	'API-MS-Win-Core-Profile-L1-1-0.dll',
+	'API-MS-Win-Core-String-L1-1-0.dll',
+	'API-MS-Win-Core-Synch-L1-1-0.dll',
+	'API-MS-Win-Core-SysInfo-L1-1-0.dll',
+	'MSWSOCK.DLL',
+	'w9xpopen.exe',
+	'wtsapi32.dll',
+	'DNSAPI.DLL',
+	'USP10.DLL',
+	'MSIMG32.DLL'
+]
+
 dataFiles = []
 dataFiles += generate_data_files('.', '',
 	lambda root, name: name == 'settingsspec.ini')
@@ -73,19 +133,23 @@ dataFiles += generate_data_files('.', '',
 dataFiles += generate_data_files('.', 'themes')
 dataFiles += generate_data_files(GTK_RUNTIME_DIR, GTK_THEME_ENGINES_DIR, 
 	lambda root, name: name == 'libpixmap.dll' or name == 'libclearlooks.dll')
+dataFiles += generate_data_files(GTK_RUNTIME_DIR, 'etc')
+dataFiles += generate_data_files(GTK_RUNTIME_BIN_DIR, '',
+	lambda root, name: name.lower() in gtkDlls)
+dataFiles += generate_data_files('.', 'Microsoft.VC90.CRT')
+dataFiles += [('.', [os.path.join(GTK_RUNTIME_BIN_DIR, 'zlib1.dll')])]
 
 setup(
 	options = {
 		'py2exe': {
-			#'packages':'encodings',
 			'includes': 'cairo, pango, pangocairo, atk, gobject, gio',
-			#'compressed': 1,
-			#'optimize': 2,
-			#'bundle_files': 1,
-			'dll_excludes': ['w9xpopen.exe']
+			'compressed': 1,
+			'optimize': 2,
+			'bundle_files': 1,
+			'dll_excludes': dllExcludes + gtkDlls
 		}
 	},
 	windows = [windows_target],
-	data_files = dataFiles
-	#zipfile = None
+	data_files = dataFiles,
+	zipfile = None
 )

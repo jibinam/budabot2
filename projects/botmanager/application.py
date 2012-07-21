@@ -39,8 +39,8 @@ class Application:
 	def execute(self):
 		""""""
 
-		# intialize thread support
-		gtk.gdk.threads_init()
+		# intialize thread support (hangs on winxp)
+		#gtk.gdk.threads_init()
 
 		# load Cillop-Midnite theme
 		gtk.rc_add_default_file("themes/Cillop-Midnite/gtk-2.0/gtkrc")
