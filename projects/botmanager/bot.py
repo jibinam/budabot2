@@ -104,7 +104,7 @@ class Bot(gobject.GObject):
 
 		# find a free port if currently set port is not free
 		if self.isPortFree(port) == False:
-			for port in range(low, high + 1):
+			for port in range(lowPort, highPort + 1):
 				if self.isPortFree(port):
 					self.configFile.setVar('API Port', port)
 					self.configFile.save()
@@ -125,8 +125,6 @@ class Bot(gobject.GObject):
 			s.bind(('0.0.0.0', port))
 			return True
 		except socket.error, e:
-			# TODO: ignore error which indicates that port is in use
-			self.emit('error', 'Failed to check if port is free, error was: ' + e)
 			try:
 				s.close()
 			except:
