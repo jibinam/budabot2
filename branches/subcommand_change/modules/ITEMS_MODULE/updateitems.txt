@@ -1,0 +1,2 @@
+<highlight>To update your local items db:<end>
+<tab><symbol>updateitems
