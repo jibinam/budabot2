@@ -1,0 +1,5 @@
+<highlight>Set a new healassist<end>
+<tab><symbol>heal 'name'
+
+<highlight>Show current healassist<end>
+<tab><symbol>heal
