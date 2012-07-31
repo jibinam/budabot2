@@ -1,1 +1,0 @@
-You can disable the relay by setting 'relaybot' to 'Off' (case-sensitive).  However it is recommended that you instead disable the entire RELAY_MODULE.

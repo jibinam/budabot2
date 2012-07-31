@@ -1,2 +1,0 @@
-<highlight>Kick everyone out of the Bot after 10 seconds<end>
-<tab><symbol>kickall

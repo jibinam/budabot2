@@ -1,9 +1,0 @@
-<highlight>To shows all links:<end>
-<tab><symbol>links
-
-<highlight>To add a link to the list:<end>
-<tab><symbol>links add 'url' 'description'
-
-<highlight>To remove a note from your list:<end>
-<tab><symbol>links rem 'link id'
-

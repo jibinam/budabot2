@@ -1,2 +1,0 @@
-<highlight>Repeat a message 3 times<end>
-<tab><symbol>tell 'message'

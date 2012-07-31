@@ -1,8 +1,0 @@
-<highlight>Check on all player<end>
-<tab><symbol>check all
-
-<highlight>Check after proffessions<end>
-<tab><symbol>check prof
-
-<highlight>Check after orgs<end>
-<tab><symbol>check org

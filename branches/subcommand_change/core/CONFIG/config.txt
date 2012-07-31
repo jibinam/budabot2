@@ -1,8 +1,0 @@
-<highlight>To show a list of all the modules that can be configured:<end>
-<symbol>config
-
-<highlight>To configure a specific module:<end>
-<symbol>config 'MODULE_NAME'
-
-<highlight>To configure a specific command:<end>
-<symbol>config cmd 'cmd_name'

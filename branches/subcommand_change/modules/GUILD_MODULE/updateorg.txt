@@ -1,2 +1,0 @@
-<highlight>To force an update of the orgroster do:<end>
-<tab><symbol>updateorg
