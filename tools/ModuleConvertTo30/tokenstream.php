@@ -10,9 +10,11 @@ class Token {
 		if (is_array($token)) {
 			$this->type  = $token[0];
 			$this->value = $token[1];
+			$this->line  = $token[2];
 		} else {
 			$this->type  = CODE_CHAR;
 			$this->value = $token;
+			$this->line  = '?';
 		}
 	}
 }
@@ -21,26 +23,22 @@ class TokenStream {
 	public function __construct($tokens) {
 		$this->tokens = $tokens;
 		$this->index  = -1;
-		$this->withWhiteSpace = true;
+		$this->withCodeOnly = false;
 	}
 	
-	public function withWhiteSpace($enabled) {
-		$this->withWhiteSpace = $enabled;
-	}
-	
-	public function atEnd() {
-		return $this->atEndWithIndex($this->index);
+	public function withCodeOnly($enabled) {
+		$this->withCodeOnly = $enabled;
 	}
 	
 	public function getNext() {
 		$tokenObj = null;
 		while (true) {
 			$this->index++;
-			if ($this->atEnd()) {
+			if (!isset($this->tokens[$this->index])) {
 				return null;
 			}
 			$tokenObj = new Token($this->tokens[$this->index]);
-			if ($tokenObj->type == T_WHITESPACE && $this->withWhiteSpace == false) {
+			if ($this->isTokenDisabled($tokenObj)) {
 				continue;
 			}
 			break;
@@ -52,11 +50,12 @@ class TokenStream {
 		$tokenObj = null;
 		$index = $this->index + $offset;
 		while (true) {
-			if ($this->atEndWithIndex($index)) {
+			if (!isset($this->tokens[$index])) {
 				return null;
 			}
 			$tokenObj = new Token($this->tokens[$index]);
-			if ($tokenObj->type == T_WHITESPACE && $this->withWhiteSpace == false) {
+			if ($this->isTokenDisabled($tokenObj)) {
+				$index++;
 				continue;
 			}
 			break;
@@ -64,17 +63,8 @@ class TokenStream {
 		return $tokenObj;
 	}
 	
-	private function getNextIndex($from, $ignoreWhiteSpace) {
-		$index = $this->index;
-		if ($index < count($this->tokens)) {
-			return $index + 1;
-		} else {
-			return -1;
-		}
-	}
-	
-	private function atEndWithIndex($index) {
-		return $index >= (count($this->tokens) - 1);
+	private function isTokenDisabled($token) {
+		return ($token->type == T_WHITESPACE || $token->type == T_COMMENT) && $this->withCodeOnly;
 	}
 
 	private $index;

@@ -31,6 +31,7 @@ class Template {
 class ControllerClassTemplate extends Template {
 
 	private $reservedNames = array();
+	private $commands = array();
 
 	public function setModuleName($name) {
 		$name = toCamelCase(rightStripString($name, '_MODULE'));
@@ -54,6 +55,15 @@ class ControllerClassTemplate extends Template {
 		}
 		$this->setData('defineKeySpace', $keySpace);
 		$this->setData('defines', $defines);
+		$this->commands = $commands;
+	}
+	
+	public function setCommandHandlers($handlers) {
+		foreach ($handlers as $handler) {
+			$handler->name = $this->createMethodName($handler->command);
+			$handler->description = strtolower($this->commands[$handler->command]['description']);
+		}
+		$this->setData('commandHandlers', $handlers);
 	}
 
 	public function setEvents($events) {
@@ -109,7 +119,6 @@ class ControllerClassTemplate extends Template {
 	}
 	
 	private function createMethodName($name) {
-		$name = rightStripString($name, '.php');
 		$name = toCamelCase($name);
 		$name = lcfirst($name);
 		$name = $this->createFreeName($name);

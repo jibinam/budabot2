@@ -26,6 +26,22 @@ class <?= $moduleName ?>Controller {
 	private $<?= $var ?>;
 <? endforeach ?>
 
+<? foreach ($commandHandlers as $handler): ?>
+	/**
+	 * This command handler <?= $handler->description ?>.
+	 *
+	 * @HandlesCommand("<?= $handler->command ?>")
+<? foreach ($handler->matchers as $matcher): ?>
+	 * @Matches("<?= $matcher ?>")
+<? endforeach ?>
+	 */
+	public function <?= $handler->name ?>Command($message, $channel, $sender, $sendto, $args) {
+	<?= $this->indent($handler->contents, 1) ?>
+
+	}
+
+<? endforeach ?>
+
 <? foreach ($events as $event): ?>
 	/**
 	 * This event handler <?= $event->description ?>.
@@ -36,6 +52,7 @@ class <?= $moduleName ?>Controller {
 	 */
 	public function <?= lcfirst($event->name) ?>Event($eventObj) {
 <?= $this->indent($event->contents, 2) ?>
+
 	}
 
 <? endforeach ?>

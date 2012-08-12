@@ -22,6 +22,10 @@ function rightStripString($string, $strip) {
 	return substr($string, 0, $index);
 }
 
+function trimQuotes($value) {
+	return trim($value, "\"'");
+}
+
 
 $pathToModule = $argv[1];
 $moduleName   = basename($pathToModule);
@@ -32,6 +36,7 @@ $scanner->scanModule();
 $template = new ControllerClassTemplate();
 $template->setModuleName($moduleName);
 $template->setCommands($scanner->commands);
+$template->setCommandHandlers($scanner->commandHandlers);
 $template->setEvents($scanner->events);
 $template->setMemberVars($scanner->memberVars);
 $template->setInjectVars($scanner->injectVars);
