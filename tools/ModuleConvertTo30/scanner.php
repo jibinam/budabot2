@@ -138,25 +138,10 @@ class ModuleScanner {
 			$data .= $token->value;
 		}
 		
-		$self = $this;
-
-		$memberVarCallback = function($matches) use ($self) {
-			if (!in_array($matches[1], $self->memberVars)) {
-				$self->memberVars []= $matches[1];
-			}
-			return "\$this->$matches[1]";
-		};
-		$data = preg_replace_callback("/\\\$chatBot->data\\[['\"]([^'\"]+)['\"]\\]/", $memberVarCallback, $data);
 		$data = str_replace('$sender', '$eventObj->sender', $data);
-
-		$injectVarCallback = function($matches) use ($self) {
-			$varName = lcfirst($matches[1]);
-			if (!in_array($varName, $self->injectVars)) {
-				$self->injectVars []= $varName;
-			}
-			return "\$this->$varName->";
-		};
-		$data = preg_replace_callback("/([a-z0-9_]+)::/i", $injectVarCallback, $data);
+		$data = $this->chatbotDataToMemberVars($data);
+		$data = $this->staticCallsToInjects($data);
+		$data = $this->globalVarsToInjects($data);
 		return $data;
 	}
 	
@@ -256,6 +241,9 @@ class ModuleScanner {
 				foreach ($handlerTokens as $token) {
 					$handler->contents .= $token->value;
 				}
+				$handler->contents = $this->chatbotDataToMemberVars($handler->contents);
+				$handler->contents = $this->staticCallsToInjects($handler->contents);
+				$handler->contents = $this->globalVarsToInjects($handler->contents);
 				$this->commandHandlers []= $handler;
 			} else if ($token->type == T_OPEN_TAG || $token->type == T_CLOSE_TAG) {
 				continue;
@@ -275,6 +263,41 @@ class ModuleScanner {
 			array_pop($tokens);
 		}
 		return $tokens;
+	}
+	
+	private function chatbotDataToMemberVars($code) {
+		$self = $this;
+		$memberVarCallback = function($matches) use ($self) {
+			if (!in_array($matches[1], $self->memberVars)) {
+				$self->memberVars []= $matches[1];
+			}
+			return "\$this->$matches[1]";
+		};
+		return preg_replace_callback("/\\\$chatBot->data\\[['\"]([^'\"]+)['\"]\\]/", $memberVarCallback, $code);
+	}
+	
+	private function staticCallsToInjects($code) {
+		$self = $this;
+		$injectVarCallback = function($matches) use ($self) {
+			$varName = lcfirst($matches[1]);
+			if (!in_array($varName, $self->injectVars)) {
+				$self->injectVars []= $varName;
+			}
+			return "\$this->$varName->";
+		};
+		return preg_replace_callback("/([a-z0-9_]+)::/i", $injectVarCallback, $code);
+	}
+	
+	private function globalVarsToInjects($code) {
+		$self = $this;
+		$injectVarCallback = function($matches) use ($self) {
+			$varName = $matches[1];
+			if (!in_array($varName, $self->injectVars)) {
+				$self->injectVars []= $varName;
+			}
+			return "\$this->$varName->";
+		};
+		return preg_replace_callback("/\\\$(chatBot|db|setting|buddylistManager)->/", $injectVarCallback, $code);
 	}
 }
 

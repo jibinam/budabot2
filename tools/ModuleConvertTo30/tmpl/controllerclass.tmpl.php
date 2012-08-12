@@ -16,8 +16,8 @@
 <? endif ?>
  */
 class <?= $moduleName ?>Controller {
-
 <? foreach ($injects as $var): ?>
+
 	/** @Inject */
 	public $<?= $var ?>;
 <? endforeach ?>
