@@ -158,6 +158,68 @@ class ModuleScanner {
 	
 	private function parseCommandHandlerFile($command, $fileName) {
 		$stream = $this->getTokenStream($fileName);
+		$stream->withWhiteSpace(true);
+		$braceCount = 0;
+
+		while (!$stream->atEnd()) {
+			$token = $stream->getNext();
+			// look for top-level if ( ... ) { ... }, parse regexp matchers
+			// from condition and get contents from within curly braces
+			if ($token->type == T_IF && $braceCount == 0) {
+				$stream->withWhiteSpace(false);
+				$token = $stream->getNext();
+				if ($token->value != '(') {
+					continue;
+				}
+				// read condition from inside parentheses
+				$parenthesisCount = 1;
+				$conditionTokens = array();
+				while ($parenthesisCount) {
+					$token = $stream->getNext();
+					if ($token->value == '(') {
+						$parenthesisCount++;
+					} else if ($token->value == ')') {
+						$parenthesisCount--;
+					}
+					if ($parenthesisCount == 0) {
+						break;
+					}
+					$conditionTokens []= $token;
+				}
+				$token = $stream->getNext();
+				if ($token->value != '{') {
+					var_dump($token);
+					continue;
+				}
+				// read handler code from within curly braces
+				$braceCount++;
+				$handlerTokens = array();
+				$stream->withWhiteSpace(true);
+				while ($braceCount) {
+					$token = $stream->getNext();
+					if ($token->value == '{') {
+						$braceCount++;
+					} else if ($token->value == '}') {
+						$braceCount--;
+					}
+					if ($braceCount == 0) {
+						break;
+					}
+					$handlerTokens []= $token;
+				}
+				// debug print condition and handler code
+				print "condition: ";
+				foreach ($conditionTokens as $token) {
+					print $token->value;
+				}
+				print "\n";				
+				print "handler: \n";
+				foreach ($handlerTokens as $token) {
+					print $token->value;
+				}
+				print "\n";				
+			}
+		}
 	}
 }
 
