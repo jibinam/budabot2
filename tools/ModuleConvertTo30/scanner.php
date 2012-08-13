@@ -11,109 +11,7 @@ class ModuleScanner {
 		$this->rootPath = $pathToModule;
 	}
 	
-	public function scanModule() {
-		$moduleName  = basename($this->rootPath);
-		$this->parse("{$moduleName}.php");
-	}
-	
-	private function parse($fileName) {
-		$stream = $this->getTokenStream($fileName);
-
-		while (true) {
-			$stream->withCodeOnly(false);
-			$token = $stream->getNext();
-			if ($token == null) {
-				break;
-			}
-			if ($token->type == T_VARIABLE && $token->value == '$command') {
-				$stream->withCodeOnly(true);
-				if ($stream->peek(1)->value == '->' && $stream->peek(2)->value == 'register') {
-					$this->parseCommandRegister($stream);
-				}
-			}
-			else if ($token->type == T_VARIABLE && $token->value == '$event') {
-				$stream->withCodeOnly(true);
-				if ($stream->peek(1)->value == '->' && $stream->peek(2)->value == 'register') {
-					$this->parseEventRegister($stream);
-				}
-			}
-		}
-	}
-	
-	private function getTokenStream($fileName) {
-		$filePath = "{$this->rootPath}/$fileName";
-		$contents = file_get_contents($filePath);
-		$tokens   = token_get_all($contents);
-		$stream   = new TokenStream($tokens);
-		return $stream;
-	}
-	
-	private function parseCommandRegister($stream) {
-		$stream->getNext(); // ->
-		$stream->getNext(); // register
-		$stream->getNext(); // (
-		$args = array();
-		while (true) {
-			$value = $stream->getNext()->value;
-			if ($value == ')') {
-				break;
-			}
-			if ($value != ',') {
-				$args []= trimQuotes($value);
-			}
-		}
-		$stream->getNext(); // ;
-		$index = 0;
-		$getNextArg = function() use ($args, &$index) {
-			$value = ($index < count($args))? $args[$index]: null;
-			$index++;
-			return $value;
-		};
-		
-		$register['module']        = $getNextArg();
-		$register['channels']      = $getNextArg();
-		$register['filename']      = $getNextArg();
-		$register['command']       = $getNextArg();
-		$register['accessLevel']   = $getNextArg();
-		$register['description']   = $getNextArg();
-		$register['help']          = $getNextArg();
-		$register['defaultStatus'] = $getNextArg();
-		$this->commands[$register['command']] = $register;
-		$this->parseCommandHandlerFile($register['command'], $register['filename']);
-	}
-
-	private function parseEventRegister($stream) {
-		$stream->getNext(); // ->
-		$stream->getNext(); // register
-		$stream->getNext(); // (
-		$args = array();
-		while (true) {
-			$value = $stream->getNext()->value;
-			if ($value == ')') {
-				break;
-			}
-			if ($value != ',') {
-				$args []= trim($value, "\"'");
-			}
-		}
-		$stream->getNext(); // ;
-		$index = 0;
-		$getNextArg = function() use ($args, &$index) {
-			$value = ($index < count($args))? $args[$index]: null;
-			$index++;
-			return $value;
-		};
-		$register['module']        = $getNextArg();
-		$register['type']          = $getNextArg();
-		$register['filename']      = $getNextArg();
-		$register['description']   = $getNextArg();
-		$register['help']          = $getNextArg();
-		$register['defaultStatus'] = $getNextArg();
-		$register['contents'] = $this->parseEventHandlerFile($register['filename']);
-		$this->events []= $register;
-	}
-	
-	private function parseEventHandlerFile($fileName) {
+	public function scanEventHandlerFile($fileName) {
 		$tokens = array();
 		$stream = $this->getTokenStream($fileName);
 
@@ -145,7 +43,7 @@ class ModuleScanner {
 		return $data;
 	}
 	
-	private function parseCommandHandlerFile($command, $fileName) {
+	public function scanCommandHandlerFile($command, $fileName) {
 		$stream = $this->getTokenStream($fileName);
 		
 		// throws exception if given token's value is not correct
@@ -254,7 +152,15 @@ class ModuleScanner {
 			}
 		}
 	}
-	
+
+	private function getTokenStream($fileName) {
+		$filePath = "{$this->rootPath}/$fileName";
+		$contents = file_get_contents($filePath);
+		$tokens   = token_get_all($contents);
+		$stream   = new TokenStream($tokens);
+		return $stream;
+	}
+
 	private function trimTokens($tokens, $trimmedTypes) {
 		while (in_array($tokens[0]->type, $trimmedTypes)) {
 			array_shift($tokens);

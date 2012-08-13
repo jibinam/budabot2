@@ -96,6 +96,44 @@ class ControllerClassTemplate extends Template {
 		$this->setData('events', $defines);
 	}
 	
+	public function setSettings($settings) {
+		$settingObjs = array();
+		foreach ($settings as $setting) {
+			$settingObj = new StdClass();
+			$settingObj->name = toCamelCase($setting['name']);
+			$settingObj->value = isset($setting['value'])? $setting['value']: '';
+			$settingObj->annos = array();
+			foreach ($setting as $key => $value) {
+				if ($value) {
+					$annoName = '';
+					if ($key == 'name') {
+						$annoName = 'Setting';
+					} else if ($key == 'description') {
+						$annoName = 'Description';
+					} else if ($key == 'help') {
+						$annoName = 'Help';
+					} else if ($key == 'type') {
+						$annoName = 'Type';
+					} else if ($key == 'mode') {
+						$annoName = 'Visibility';
+					} else if ($key == 'options') {
+						$annoName = 'Options';
+					} else if ($key == 'intoptions') {
+						$annoName = 'Intoptions';
+					} else if ($key == 'admin') {
+						$annoName = 'AccessLevel';
+					}
+					if ($annoName) {
+						$settingObj->annos[$annoName] = $value;
+					}
+				}
+			}
+			$settingObjs []= $settingObj;
+		}
+
+		$this->setData('settings', $settingObjs);
+	}
+	
 	public function setMemberVars($vars) {
 		$this->setData('vars', $vars);
 	}

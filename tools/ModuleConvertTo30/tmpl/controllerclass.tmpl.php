@@ -22,6 +22,16 @@ class <?= $moduleName ?>Controller {
 	public $<?= $var ?>;
 <? endforeach ?>
 
+<? foreach ($settings as $setting): ?>
+
+	/**
+<? foreach ($setting->annos as $name => $value): ?>
+	 * @<?= $name ?>("<?= $value ?>")
+<? endforeach ?>
+	 */
+	public $default<?= $setting->name ?> = "<?= $setting->value ?>";
+<? endforeach ?>
+
 <? foreach ($vars as $var): ?>
 	private $<?= $var ?>;
 <? endforeach ?>
