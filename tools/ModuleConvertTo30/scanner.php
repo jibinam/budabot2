@@ -44,6 +44,7 @@ class ModuleScanner {
 	}
 	
 	public function scanCommandHandlerFile($command, $fileName) {
+		$variables = array();
 		$stream = $this->getTokenStream($fileName);
 		
 		// throws exception if given token's value is not correct
@@ -115,7 +116,7 @@ class ModuleScanner {
 				$cToken = array_shift($conditionTokens);
 				if ($cToken->value == ',') {
 					$cToken = array_shift($conditionTokens);
-					$expectTokenValue($cToken, '$args');
+					$matcherVariable = $cToken->value;
 					$cToken = array_shift($conditionTokens);
 				}
 				$expectTokenValue($cToken, ')');
@@ -142,11 +143,35 @@ class ModuleScanner {
 				$handler->contents = $this->chatbotDataToMemberVars($handler->contents);
 				$handler->contents = $this->staticCallsToInjects($handler->contents);
 				$handler->contents = $this->globalVarsToInjects($handler->contents);
+				// replace varibles which were defined outside of the top level
+				// if-checks with their contents
+				foreach ($variables as $name => $value) {
+					$handler->contents = str_replace($name, $value, $handler->contents);
+				}
+				if (isset($matcherVariable)) {
+					$handler->contents = str_replace($matcherVariable, '$args', $handler->contents);
+				}
+
 				$this->commandHandlers []= $handler;
 			} else if ($token->type == T_OPEN_TAG || $token->type == T_CLOSE_TAG) {
 				continue;
 			} else if ($token->type == T_ELSE) {
-				$readTokensFromBraces($stream, 0);
+				$stream->withCodeOnly(true);
+				if ($stream->peek(1)->type != T_IF) {
+					$readTokensFromBraces($stream, 0);
+				}
+			} else if ($token->type == T_VARIABLE) {
+				$variable = $token->value;
+
+				$stream->withCodeOnly(true);
+				$token = $stream->getNext();
+				$expectTokenValue($token, '=');
+				$value = '';
+				do {
+					$token = $stream->getNext();
+					$value .= $token->value;
+				} while($token->value != ';');
+				$variables[$variable] = substr($value, 0, -1);
 			} else {
 				throw new ScanError("Unknown token ". token_name($token->type) .", ({$token->value}) in $fileName @ line {$token->line}");
 			}

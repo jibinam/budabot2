@@ -2,7 +2,8 @@
 
 class FakeEventManager {
 
-	public $registers = array();
+	public $events = array();
+	public $setup;
 
 	public function register($module, $type, $filename, $description = 'none', $help = '', $defaultStatus = null) {
 		$register = array();
@@ -12,7 +13,11 @@ class FakeEventManager {
 		$register['description']   = $description;
 		$register['help']          = $help;
 		$register['defaultStatus'] = $defaultStatus;
-		$this->registers []= $register;
+		if (strtolower($type) == 'setup') {
+			$this->setup = $register;
+		} else {
+			$this->events []= $register;
+		}
 	}
 }
 
@@ -54,11 +59,21 @@ class FakeSetting {
 	}
 }
 
+class FakeDB {
+	public $sqlFiles = array();
+
+	public function loadSQLFile($module, $name) {
+		$this->sqlFiles []= $name;
+	}
+}
+
 class ModuleLoader {
 
 	public $commands;
 	public $events;
 	public $settings;
+	public $setup;
+	public $sqlFiles;
 
 	private $modulePath;
 
@@ -72,10 +87,14 @@ class ModuleLoader {
 		$event       = new FakeEventManager();
 		$command     = new FakeCommandManager();
 		$setting     = new FakeSetting();
+		$db          = new FakeDB();
+
 		include "{$this->modulePath}/{$moduleName}.php";
 		
 		$this->commands = $command->registers;
-		$this->events   = $event->registers;
+		$this->events   = $event->events;
+		$this->setup    = $event->setup;
 		$this->settings = $setting->adds;
+		$this->sqlFiles = $db->sqlFiles;
 	}
 }

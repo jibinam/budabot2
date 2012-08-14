@@ -142,8 +142,27 @@ class ControllerClassTemplate extends Template {
 		$this->setData('injects', $vars);
 	}
 
+	public function setSetupEvent($setup) {
+		if ($setup) {
+			$this->setData('setup', $setup);
+			$this->setData('hasSetupEvent', true);
+		}
+	}
+
+	public function setSqlFiles($files) {
+		if (count($files)) {
+			$this->setData('sqlFiles', $files);
+			$this->setData('hasSetupEvent', true);
+			$this->setData('hasModuleName', true);
+		}
+	}
+
 	public function __construct() {
 		parent::__construct('controllerclass');
+		$this->setData('sqlFiles', array());
+		$this->setData('setup', null);
+		$this->setData('hasModuleName', false);
+		$this->setData('hasSetupEvent', false);
 	}
 
 	private function createFreeName($name) {

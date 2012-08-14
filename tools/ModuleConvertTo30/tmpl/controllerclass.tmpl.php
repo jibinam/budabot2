@@ -16,6 +16,14 @@
 <? endif ?>
  */
 class <?= $moduleName ?>Controller {
+
+<? if ($hasModuleName): ?>
+	/**
+	 * Name of the module.
+	 * Set automatically by module loader.
+	 */
+	public $moduleName;
+<? endif ?>
 <? foreach ($injects as $var): ?>
 
 	/** @Inject */
@@ -35,6 +43,20 @@ class <?= $moduleName ?>Controller {
 <? foreach ($vars as $var): ?>
 	private $<?= $var ?>;
 <? endforeach ?>
+
+<? if ($hasSetupEvent): ?>
+	/**
+	 * @Setup
+	 * This handler is called on bot startup.
+	 */
+	public function setup() {
+<? foreach ($sqlFiles as $file): ?>
+		$this->db->loadSQLFile($this->moduleName, '<?= $file ?>');
+<? endforeach ?>
+<?= $this->indent($setup, 2) ?>
+
+	}
+<? endif ?>
 
 <? foreach ($commandHandlers as $handler): ?>
 	/**
