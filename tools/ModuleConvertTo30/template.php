@@ -156,6 +156,10 @@ class ControllerClassTemplate extends Template {
 			$this->setData('hasModuleName', true);
 		}
 	}
+	
+	public function setLogger($enabled) {
+		$this->setData('hasLogger', $enabled);
+	}
 
 	public function __construct() {
 		parent::__construct('controllerclass');
@@ -163,6 +167,7 @@ class ControllerClassTemplate extends Template {
 		$this->setData('setup', null);
 		$this->setData('hasModuleName', false);
 		$this->setData('hasSetupEvent', false);
+		$this->setData('hasLogger', false);
 	}
 
 	private function createFreeName($name) {

@@ -6,6 +6,7 @@ class ModuleScanner {
 	public $events = array();
 	public $memberVars = array();
 	public $injectVars = array();
+	public $hasLogger = false;
 
 	public function __construct($pathToModule) {
 		$this->rootPath = $pathToModule;
@@ -39,6 +40,7 @@ class ModuleScanner {
 		$data = str_replace('$sender', '$eventObj->sender', $data);
 		$data = $this->chatbotDataToMemberVars($data);
 		$data = $this->registryGetInstanceToInjects($data);
+		$data = $this->legacyLoggerToInject($data);
 		$data = $this->staticCallsToInjects($data);
 		$data = $this->globalVarsToInjects($data);
 		return $data;
@@ -148,6 +150,7 @@ class ModuleScanner {
 				}
 				$handler->contents = $this->chatbotDataToMemberVars($handler->contents);
 				$handler->contents = $this->registryGetInstanceToInjects($handler->contents);
+				$handler->contents = $this->legacyLoggerToInject($handler->contents);
 				$handler->contents = $this->staticCallsToInjects($handler->contents);
 				$handler->contents = $this->globalVarsToInjects($handler->contents);
 				if (isset($matcherVariable)) {
@@ -219,6 +222,12 @@ class ModuleScanner {
 			return "\$this->$varName";
 		};
 		return preg_replace_callback('/Registry::getInstance\(\'([a-z0-9_]+)\'\)/i', $injectVarCallback, $code);
+	}
+
+	private function legacyLoggerToInject($code) {
+		$code = str_replace('LegacyLogger::', '$this->logger->', $code, $count);
+		$this->hasLogger |= $count > 0;
+		return $code;
 	}
 
 	private function staticCallsToInjects($code) {

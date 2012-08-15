@@ -30,6 +30,10 @@ class <?= $moduleName ?>Controller {
 	public $<?= $var ?>;
 <? endforeach ?>
 
+<? if ($hasLogger): ?>
+	/** @Logger */
+	public $logger;
+<? endif ?>
 <? foreach ($settings as $setting): ?>
 
 	/**

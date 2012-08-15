@@ -67,5 +67,6 @@ if ($loader->setup) {
 	$setup = $scanner->scanEventHandlerFile($loader->setup['filename']);
 	$template->setSetupEvent($setup);
 }
+$template->setLogger($scanner->hasLogger);
 print $template->runTemplate();
 
