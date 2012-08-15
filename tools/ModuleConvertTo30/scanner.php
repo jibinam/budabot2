@@ -38,6 +38,7 @@ class ModuleScanner {
 		
 		$data = str_replace('$sender', '$eventObj->sender', $data);
 		$data = $this->chatbotDataToMemberVars($data);
+		$data = $this->registryGetInstanceToInjects($data);
 		$data = $this->staticCallsToInjects($data);
 		$data = $this->globalVarsToInjects($data);
 		return $data;
@@ -140,14 +141,15 @@ class ModuleScanner {
 				foreach ($handlerTokens as $token) {
 					$handler->contents .= $token->value;
 				}
-				$handler->contents = $this->chatbotDataToMemberVars($handler->contents);
-				$handler->contents = $this->staticCallsToInjects($handler->contents);
-				$handler->contents = $this->globalVarsToInjects($handler->contents);
-				// replace varibles which were defined outside of the top level
+				// replace variables which were defined outside of the top level
 				// if-checks with their contents
 				foreach ($variables as $name => $value) {
 					$handler->contents = str_replace($name, $value, $handler->contents);
 				}
+				$handler->contents = $this->chatbotDataToMemberVars($handler->contents);
+				$handler->contents = $this->registryGetInstanceToInjects($handler->contents);
+				$handler->contents = $this->staticCallsToInjects($handler->contents);
+				$handler->contents = $this->globalVarsToInjects($handler->contents);
 				if (isset($matcherVariable)) {
 					$handler->contents = str_replace($matcherVariable, '$args', $handler->contents);
 				}
@@ -206,7 +208,19 @@ class ModuleScanner {
 		};
 		return preg_replace_callback("/\\\$chatBot->data\\[['\"]([^'\"]+)['\"]\\]/", $memberVarCallback, $code);
 	}
-	
+
+	private function registryGetInstanceToInjects($code) {
+		$self = $this;
+		$injectVarCallback = function($matches) use ($self) {
+			$varName = lcfirst($matches[1]);
+			if (!in_array($varName, $self->injectVars)) {
+				$self->injectVars []= $varName;
+			}
+			return "\$this->$varName";
+		};
+		return preg_replace_callback('/Registry::getInstance\(\'([a-z0-9_]+)\'\)/i', $injectVarCallback, $code);
+	}
+
 	private function staticCallsToInjects($code) {
 		$self = $this;
 		$injectVarCallback = function($matches) use ($self) {
