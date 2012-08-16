@@ -36,6 +36,10 @@ $scanner = new ModuleScanner($pathToModule);
 
 $loader->load();
 
+if ($loader->inNewFormat) {
+	exit(0);
+}
+
 $events = array();
 foreach ($loader->events as $event) {
 	$event['contents'] = $scanner->scanEventHandlerFile($event['filename']);

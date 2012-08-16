@@ -74,6 +74,7 @@ class ModuleLoader {
 	public $settings;
 	public $setup;
 	public $sqlFiles;
+	public $inNewFormat = false;
 
 	private $modulePath;
 
@@ -84,13 +85,19 @@ class ModuleLoader {
 	public function load() {
 		$moduleName  = basename($this->modulePath);
 		$MODULE_NAME = strtoupper($moduleName);
+		$filePath    = "{$this->modulePath}/{$moduleName}.php";
+		if (!file_exists($filePath)) {
+			// ignore modules which are already in new format
+			$this->inNewFormat = true;
+			return;
+		}
 		$event       = new FakeEventManager();
 		$command     = new FakeCommandManager();
 		$setting     = new FakeSetting();
 		$db          = new FakeDB();
 
-		include "{$this->modulePath}/{$moduleName}.php";
-		
+		include $filePath;
+
 		$this->commands = $command->registers;
 		$this->events   = $event->events;
 		$this->setup    = $event->setup;
