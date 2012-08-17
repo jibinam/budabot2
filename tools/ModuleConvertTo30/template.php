@@ -4,6 +4,10 @@ class Template {
 	private $data = array();
 	private $template;
 	
+	public function getData($name) {
+		return $this->data[$name];
+	}
+
 	public function setData($name, $value) {
 		$this->data[$name] = $value;
 	}
@@ -41,7 +45,7 @@ class ControllerClassTemplate extends Template {
 	public function setCommands($commands) {
 		$keySpace = 0;
 		$defines = array();
-		$allowedArgs = array('command', 'channels', 'accessLevel', 'description', 'help', 'defaultStatus');
+		$allowedArgs = array('command', 'channels', 'accessLevel', 'description', 'help', 'defaultStatus', 'alias');
 		foreach ($commands as $command) {
 			$define = array();
 			foreach ($command as $key => $value) {
@@ -151,7 +155,17 @@ class ControllerClassTemplate extends Template {
 
 	public function setSqlFiles($files) {
 		if (count($files)) {
+			$this->addInjectVar('db');
 			$this->setData('sqlFiles', $files);
+			$this->setData('hasSetupEvent', true);
+			$this->setData('hasModuleName', true);
+		}
+	}
+
+	public function setAliases($aliases) {
+		if (count($aliases)) {
+			$this->addInjectVar('commandAlias');
+			$this->setData('aliases', $aliases);
 			$this->setData('hasSetupEvent', true);
 			$this->setData('hasModuleName', true);
 		}
@@ -164,6 +178,7 @@ class ControllerClassTemplate extends Template {
 	public function __construct() {
 		parent::__construct('controllerclass');
 		$this->setData('sqlFiles', array());
+		$this->setData('aliases', array());
 		$this->setData('setup', null);
 		$this->setData('hasModuleName', false);
 		$this->setData('hasSetupEvent', false);
@@ -185,5 +200,12 @@ class ControllerClassTemplate extends Template {
 		$name = lcfirst($name);
 		$name = $this->createFreeName($name);
 		return $name;
+	}
+
+	private function addInjectVar($var) {
+		$injects = $this->getData('injects');
+		$injects []= $var;
+		$injects = array_unique($injects);
+		$this->setData('injects', $injects);
 	}
 }

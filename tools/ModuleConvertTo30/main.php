@@ -51,13 +51,6 @@ foreach ($loader->commands as $command) {
 	$scanner->scanCommandHandlerFile($command['command'], $command['filename']);
 }
 
-$injectVars = $scanner->injectVars;
-// we need at least db-injection if SQL files are loaded
-if (count($loader->sqlFiles)) {
-	$injectVars []= 'db';
-	$injectVars = array_unique($injectVars);
-}
-
 $template = new ControllerClassTemplate();
 $template->setModuleName($moduleName);
 $template->setCommands($commands);
@@ -65,8 +58,9 @@ $template->setEvents($events);
 $template->setSettings($loader->settings);
 $template->setCommandHandlers($scanner->commandHandlers);
 $template->setMemberVars($scanner->memberVars);
-$template->setInjectVars($injectVars);
+$template->setInjectVars($scanner->injectVars);
 $template->setSqlFiles($loader->sqlFiles);
+$template->setAliases($loader->aliases);
 if ($loader->setup) {
 	$setup = $scanner->scanEventHandlerFile($loader->setup['filename']);
 	$template->setSetupEvent($setup);

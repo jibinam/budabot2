@@ -54,6 +54,9 @@ class <?= $moduleName ?>Controller {
 	 * This handler is called on bot startup.
 	 */
 	public function setup() {
+<? foreach ($aliases as $alias): ?>
+		$this->commandAlias->register($this->moduleName, '<?= $alias['command'] ?>', '<?= $alias['alias'] ?>');
+<? endforeach ?>
 <? foreach ($sqlFiles as $file): ?>
 		$this->db->loadSQLFile($this->moduleName, '<?= $file ?>');
 <? endforeach ?>

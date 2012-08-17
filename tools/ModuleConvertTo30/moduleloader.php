@@ -1,5 +1,14 @@
 <?php
 
+class LoadError extends Exception {
+}
+
+class FakeBudabot {
+	public function registerInstance($MODULE_NAME, $name, &$obj) {
+		// do nothing
+	}
+}
+
 class FakeEventManager {
 
 	public $events = array();
@@ -67,6 +76,30 @@ class FakeDB {
 	}
 }
 
+class FakeCommandAlias {
+	public $aliases = array();
+	private $commandObj;
+
+	public function __construct($commandObj) {
+		$this->commandObj = $commandObj;
+	}
+
+	public function register($module, $command, $alias) {
+		foreach ($this->commandObj->registers as &$cmdRegister) {
+			if ($cmdRegister['command'] == $command) {
+				if (!isset($cmdRegister['alias'])) {
+					$cmdRegister['alias'] = $alias;
+					return;
+				}
+			}
+		}
+		$this->aliases []= array(
+			'command' => $command, 
+			'alias'   => $alias
+		);
+	}
+}
+
 class ModuleLoader {
 
 	public $commands;
@@ -74,6 +107,7 @@ class ModuleLoader {
 	public $settings;
 	public $setup;
 	public $sqlFiles;
+	public $aliases;
 	public $inNewFormat = false;
 
 	private $modulePath;
@@ -91,10 +125,12 @@ class ModuleLoader {
 			$this->inNewFormat = true;
 			return;
 		}
-		$event       = new FakeEventManager();
-		$command     = new FakeCommandManager();
-		$setting     = new FakeSetting();
-		$db          = new FakeDB();
+		$chatBot      = new FakeBudabot();
+		$event        = new FakeEventManager();
+		$command      = new FakeCommandManager();
+		$setting      = new FakeSetting();
+		$db           = new FakeDB();
+		$commandAlias = new FakeCommandAlias($command);
 
 		include $filePath;
 
@@ -103,5 +139,6 @@ class ModuleLoader {
 		$this->setup    = $event->setup;
 		$this->settings = $setting->adds;
 		$this->sqlFiles = $db->sqlFiles;
+		$this->aliases  = $commandAlias->aliases;
 	}
 }
