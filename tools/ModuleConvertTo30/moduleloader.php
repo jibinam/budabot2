@@ -3,6 +3,9 @@
 class LoadError extends Exception {
 }
 
+interface CommandReply {
+}
+
 class FakeBudabot {
 	public function registerInstance($MODULE_NAME, $name, &$obj) {
 		// do nothing

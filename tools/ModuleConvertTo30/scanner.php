@@ -102,29 +102,31 @@ class ModuleScanner {
 					$conditionTokens []= $token;
 				}
 				// parse the condition into matchers
-				$cToken = array_shift($conditionTokens);
-				$expectTokenValue($cToken, 'preg_match');
+				$matcherVariables = array();
+				$matchers = array();
+				$conditionStream = new TokenStream($conditionTokens);
+				while (true) {
+					$function = $this->scanFunction($conditionStream);
+					if ($function['name'] != 'preg_match' || $function['params'][1] != '$message') {
+						throw new ScanError('Expected preg_match(...), got ' . $function['name'] . '(' . implode(', ', $function['params']) . ')');
+					}
 
-				$cToken = array_shift($conditionTokens);
-				$expectTokenValue($cToken, '(');
-
-				$regExpString = trimQuotes(array_shift($conditionTokens)->value);
-
-				$cToken = array_shift($conditionTokens);
-				$expectTokenValue($cToken, ',');
-
-				$cToken = array_shift($conditionTokens);
-				$expectTokenValue($cToken, '$message');
-
-				$cToken = array_shift($conditionTokens);
-				if ($cToken->value == ',') {
-					$cToken = array_shift($conditionTokens);
-					$matcherVariable = $cToken->value;
-					$cToken = array_shift($conditionTokens);
+					$matchers []= trimQuotes($function['params'][0]);
+					if (count($function['params']) <= 3) {
+						$matcherVariables []= $function['params'][2];
+					}
+					$token = $conditionStream->getNext();
+					if ($token == null) {
+						break;
+					}
+					// on boolean OR scan another preg_match() call
+					if ($token->type == T_BOOLEAN_OR) { // ||
+						continue;
+					}
 				}
-				$expectTokenValue($cToken, ')');
 				
-				if (!empty($conditionTokens)) {
+				
+				if ($conditionStream->getNext() != null) {
 					throw new ScanError("Failed to parse condition in $fileName");
 				}
 				
@@ -136,8 +138,7 @@ class ModuleScanner {
 				$handlerTokens = $this->trimTokens($handlerTokens, array(T_WHITESPACE));
 				// collect data and add it to commandHandlers
 				$handler = new StdClass();
-				$handler->matchers = array();
-				$handler->matchers []= $regExpString;
+				$handler->matchers = $matchers;
 				$handler->command = $command;
 				$handler->contents = '';
 				foreach ($handlerTokens as $token) {
@@ -153,8 +154,8 @@ class ModuleScanner {
 				$handler->contents = $this->legacyLoggerToInject($handler->contents);
 				$handler->contents = $this->staticCallsToInjects($handler->contents);
 				$handler->contents = $this->globalVarsToInjects($handler->contents);
-				if (isset($matcherVariable)) {
-					$handler->contents = str_replace($matcherVariable, '$args', $handler->contents);
+				foreach ($matcherVariables as $var) {
+					$handler->contents = str_replace($var, '$args', $handler->contents);
 				}
 
 				$this->commandHandlers []= $handler;
@@ -177,6 +178,10 @@ class ModuleScanner {
 					$value .= $token->value;
 				} while($token->value != ';');
 				$variables[$variable] = substr($value, 0, -1);
+			} else if ($token->type == T_INCLUDE) {
+				$stream->withCodeOnly(true);
+				$stream->getNext(); // filename
+				$stream->getNext(); // ;
 			} else {
 				throw new ScanError("Unknown token ". token_name($token->type) .", ({$token->value}) in $fileName @ line {$token->line}");
 			}
@@ -189,6 +194,44 @@ class ModuleScanner {
 		$tokens   = token_get_all($contents);
 		$stream   = new TokenStream($tokens);
 		return $stream;
+	}
+	
+	private function scanFunction($stream) {
+		$results = array(
+			'name'   => '',
+			'params' => array()
+		);
+		$stream->withCodeOnlyCallback(function() use ($stream, &$results) {
+			// throws exception if given token's value is not correct
+			$expectToken = function($token, $expectedValue) {
+				if ($token->type != $expectedValue && $token->value != $expectedValue) {
+					throw new ScanError("Unexpected token '{$token->type}, {$token->value}' (expected: $expectedValue) while parsing a function");
+				}
+			};
+			$token = $stream->getCurrent();
+			if ($token->type != T_STRING) {
+				$token = $stream->getNext();
+			}
+			$expectToken($token, T_STRING);
+			$functionName = $token->value;
+			$params = array();
+			$token = $stream->getNext();
+			$expectToken($token, '(');
+
+			while (true) {
+				$token = $stream->getNext();
+				if ($token->value == ')') {
+					break;
+				} else if ($token->value != ',') {
+					$params []= $token->value;
+				}
+			}
+			$expectToken($token, ')');
+
+			$results['name'] = $functionName;
+			$results['params'] = $params;
+		});
+		return $results;
 	}
 
 	private function trimTokens($tokens, $trimmedTypes) {

@@ -5,9 +5,14 @@ define( CODE_CHAR, 10000 );
 class Token {
 	public $type;
 	public $value;
+	public $line;
 
 	public function __construct($token) {
-		if (is_array($token)) {
+		if ($token instanceof Token) {
+			$this->type  = $token->type;
+			$this->value = $token->value;
+			$this->line  = $token->line;
+		} else if (is_array($token)) {
 			$this->type  = $token[0];
 			$this->value = $token[1];
 			$this->line  = $token[2];
@@ -28,6 +33,13 @@ class TokenStream {
 	
 	public function withCodeOnly($enabled) {
 		$this->withCodeOnly = $enabled;
+	}
+
+	public function withCodeOnlyCallback($callback) {
+		$originalStatus = $this->withCodeOnly;
+		$this->withCodeOnly = true;
+		$callback();
+		$this->withCodeOnly = originalStatus;
 	}
 	
 	public function getNext() {
@@ -61,6 +73,13 @@ class TokenStream {
 			break;
 		}
 		return $tokenObj;
+	}
+	
+	public function getCurrent() {
+		if (!isset($this->tokens[$this->index])) {
+			return null;
+		}
+		return $this->tokens[$this->index];
 	}
 	
 	private function isTokenDisabled($token) {
