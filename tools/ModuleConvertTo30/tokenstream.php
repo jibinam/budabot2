@@ -83,7 +83,7 @@ class TokenStream {
 	}
 	
 	private function isTokenDisabled($token) {
-		return ($token->type == T_WHITESPACE || $token->type == T_COMMENT) && $this->withCodeOnly;
+		return ($token->type == T_WHITESPACE || $token->type == T_COMMENT || $token->type == T_DOC_COMMENT) && $this->withCodeOnly;
 	}
 
 	private $index;
