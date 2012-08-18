@@ -48,6 +48,23 @@ class FakeCommandManager {
 	}
 }
 
+class FakeSubcommand {
+	public $registers = array();
+
+	public function register($module, $channel, $filename, $command, $admin, $parent_command, $description = 'none', $help = '', $defaultStatus = null) {
+		$register = array();
+		$register['module']        = $module;
+		$register['channels']      = $channel;
+		$register['filename']      = $filename;
+		$register['command']       = $command;
+		$register['accessLevel']   = $admin;
+		$register['description']   = $description;
+		$register['help']          = $help;
+		$register['defaultStatus'] = $defaultStatus;
+		$this->registers []= $register;
+	}
+}
+
 class FakeSetting {
 
 	public $adds = array();
@@ -128,13 +145,18 @@ class ModuleLoader {
 		$chatBot      = new FakeBudabot();
 		$event        = new FakeEventManager();
 		$command      = new FakeCommandManager();
+		$subcommand   = new FakeSubcommand();
 		$setting      = new FakeSetting();
 		$db           = new FakeDB();
 		$commandAlias = new FakeCommandAlias($command);
 
 		include $filePath;
 
-		$this->commands = $command->registers;
+		$this->commands = array_merge($command->registers, $subcommand->registers);
+		usort($this->commands, function($register1, $register2) {
+			return strcmp($register1['command'], $register2['command']);
+		});
+
 		$this->events   = $event->events;
 		$this->setup    = $event->setup;
 		$this->settings = $setting->adds;
