@@ -90,9 +90,17 @@ class FakeSetting {
 
 class FakeDB {
 	public $sqlFiles = array();
+	public $tableReplaces = array();
 
 	public function loadSQLFile($module, $name) {
 		$this->sqlFiles []= $name;
+	}
+
+	public function add_table_replace($search, $replace) {
+		$this->tableReplaces [] = array(
+			'search' => $search,
+			'replace' => $replace
+		);
 	}
 }
 
@@ -127,6 +135,7 @@ class ModuleLoader {
 	public $settings;
 	public $setup;
 	public $sqlFiles;
+	public $tableReplaces;
 	public $aliases;
 	public $inNewFormat = false;
 
@@ -160,10 +169,11 @@ class ModuleLoader {
 			return strcmp($register1['command'], $register2['command']);
 		});
 
-		$this->events   = $event->events;
-		$this->setup    = $event->setup;
-		$this->settings = $setting->adds;
-		$this->sqlFiles = $db->sqlFiles;
-		$this->aliases  = $commandAlias->aliases;
+		$this->events        = $event->events;
+		$this->setup         = $event->setup;
+		$this->settings      = $setting->adds;
+		$this->sqlFiles      = $db->sqlFiles;
+		$this->tableReplaces = $db->tableReplaces;
+		$this->aliases       = $commandAlias->aliases;
 	}
 }

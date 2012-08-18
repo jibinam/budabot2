@@ -61,6 +61,7 @@ $template->setCommandHandlers($scanner->commandHandlers);
 $template->setMemberVars($scanner->memberVars);
 $template->setInjectVars($scanner->injectVars);
 $template->setSqlFiles($loader->sqlFiles);
+$template->setTableReplaces($loader->tableReplaces);
 $template->setAliases($loader->aliases);
 if ($loader->setup) {
 	$setup = $scanner->scanEventHandlerFile($loader->setup['filename']);

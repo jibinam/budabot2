@@ -162,6 +162,14 @@ class ControllerClassTemplate extends Template {
 		}
 	}
 
+	public function setTableReplaces($replaces) {
+		if (count($replaces)) {
+			$this->addInjectVar('db');
+			$this->setData('tableReplaces', $replaces);
+			$this->setData('hasSetupEvent', true);
+		}
+	}
+
 	public function setAliases($aliases) {
 		if (count($aliases)) {
 			$this->addInjectVar('commandAlias');
@@ -177,6 +185,7 @@ class ControllerClassTemplate extends Template {
 
 	public function __construct() {
 		parent::__construct('controllerclass');
+		$this->setData('tableReplaces', array());
 		$this->setData('sqlFiles', array());
 		$this->setData('aliases', array());
 		$this->setData('setup', null);

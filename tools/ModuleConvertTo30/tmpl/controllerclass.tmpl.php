@@ -57,6 +57,9 @@ class <?= $moduleName ?>Controller {
 <? foreach ($aliases as $alias): ?>
 		$this->commandAlias->register($this->moduleName, '<?= $alias['command'] ?>', '<?= $alias['alias'] ?>');
 <? endforeach ?>
+<? foreach ($tableReplaces as $tableReplace): ?>
+		$this->db->add_table_replace('<?= $tableReplace['search'] ?>', '<?= $tableReplace['replace'] ?>');
+<? endforeach ?>
 <? foreach ($sqlFiles as $file): ?>
 		$this->db->loadSQLFile($this->moduleName, '<?= $file ?>');
 <? endforeach ?>
