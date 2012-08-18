@@ -101,6 +101,9 @@ function runModules($modulesDirPath) {
 	while (false !== ($entry = $d->read())) {
 		if (in_array($entry, $modules)) {
 			$errors = runGenerator("$modulesDirPath/$entry");
+			if ($errors == 'Already in new format, nothing to do.') {
+				continue;
+			}
 			$report = new StdClass();
 			$report->name = $entry;
 			$report->success = !strlen($errors);

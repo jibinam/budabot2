@@ -37,6 +37,7 @@ $scanner = new ModuleScanner($pathToModule);
 $loader->load();
 
 if ($loader->inNewFormat) {
+	file_put_contents('php://stderr', 'Already in new format, nothing to do.');
 	exit(0);
 }
 
