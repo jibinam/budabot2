@@ -96,6 +96,23 @@ class ModuleScanner {
 						throw new ScanError("Failed to parse condition in $fileName");
 					}
 					
+					// test that given $command could match to any of the matchers
+					if (count($matchers)) {
+						$testCommand = explode(' ', $command);
+						$testCommand = $testCommand[0];
+						$matched = false;
+						foreach($matchers as $matcher) {
+							if(stripos($matcher, $testCommand) !== false) {
+								$matched = true;
+								break;
+							}
+						}
+						if (!$matched) {
+							// no match --> skip rest of the scanning and ignore this handler
+							continue;
+						}
+					}
+
 					// collect data and add it to commandHandlers
 					$handler = new StdClass();
 					$handler->matchers = $matchers;
