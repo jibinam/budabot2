@@ -39,7 +39,7 @@ class TokenStream {
 		$originalStatus = $this->withCodeOnly;
 		$this->withCodeOnly = true;
 		$callback();
-		$this->withCodeOnly = originalStatus;
+		$this->withCodeOnly = $originalStatus;
 	}
 	
 	public function getNext() {
@@ -79,7 +79,7 @@ class TokenStream {
 		if (!isset($this->tokens[$this->index])) {
 			return null;
 		}
-		return $this->tokens[$this->index];
+		return new Token($this->tokens[$this->index]);
 	}
 	
 	private function isTokenDisabled($token) {
