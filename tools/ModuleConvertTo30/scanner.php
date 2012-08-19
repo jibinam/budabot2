@@ -47,7 +47,7 @@ class ModuleScanner {
 	}
 	
 	public function scanCommandHandlerFile($command, $fileName) {
-		$variables = array();
+		$varStatements = array();
 		$stream = $this->getTokenStream($fileName);
 		
 		// throws exception if given token's value is not correct
@@ -118,13 +118,11 @@ class ModuleScanner {
 					$handler->matchers = $matchers;
 					$handler->command = $command;
 					$handler->contents = '';
+					foreach ($varStatements as $statement) {
+						$handler->contents .= "$statement\n\t";
+					}
 					foreach ($ifStatement['codeblock'] as $token) {
 						$handler->contents .= $token->value;
-					}
-					// replace variables which were defined outside of the top level
-					// if-checks with their contents
-					foreach ($variables as $name => $value) {
-						$handler->contents = str_replace($name, $value, $handler->contents);
 					}
 					$handler->contents = $this->chatbotDataToMemberVars($handler->contents);
 					$handler->contents = $this->registryGetInstanceToInjects($handler->contents);
@@ -147,17 +145,14 @@ class ModuleScanner {
 					$this->scanTokensFromBraces($stream, 0);
 				}
 			} else if ($token->type == T_VARIABLE) {
-				$variable = $token->value;
-
-				$stream->withCodeOnly(true);
-				$token = $stream->getNext();
-				$expectTokenValue($token, '=');
-				$value = '';
-				do {
+				$stream->withCodeOnly(false);
+				$varStatement = $token->value;
+				while ($token->value != ';') {
 					$token = $stream->getNext();
-					$value .= $token->value;
-				} while($token->value != ';');
-				$variables[$variable] = substr($value, 0, -1);
+					$varStatement .= $token->value;
+				}
+				$varStatement = trim($varStatement);
+				$varStatements []= $varStatement;
 			} else if ($token->type == T_INCLUDE) {
 				$stream->withCodeOnly(true);
 				$stream->getNext(); // filename
