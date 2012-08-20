@@ -15,7 +15,7 @@ class FakeBudabot {
 class FakeEventManager {
 
 	public $events = array();
-	public $setup;
+	public $setup = array();
 
 	public function register($module, $type, $filename, $description = 'none', $help = '', $defaultStatus = null) {
 		$register = array();
@@ -26,9 +26,9 @@ class FakeEventManager {
 		$register['help']          = $help;
 		$register['defaultStatus'] = $defaultStatus;
 		if (strtolower($type) == 'setup') {
-			$this->setup = $register;
+			$this->setup[$module] = $register;
 		} else {
-			$this->events []= $register;
+			$this->events[$module] []= $register;
 		}
 	}
 }
@@ -47,7 +47,7 @@ class FakeCommandManager {
 		$register['description']   = $description;
 		$register['help']          = $help;
 		$register['defaultStatus'] = $defaultStatus;
-		$this->registers []= $register;
+		$this->registers[$module] []= $register;
 	}
 }
 
@@ -64,7 +64,7 @@ class FakeSubcommand {
 		$register['description']   = $description;
 		$register['help']          = $help;
 		$register['defaultStatus'] = $defaultStatus;
-		$this->registers []= $register;
+		$this->registers[$module] []= $register;
 	}
 }
 
@@ -84,7 +84,7 @@ class FakeSetting {
 		$add['intoptions'] = $intoptions;
 		$add['admin'] = $admin;
 		$add['help'] = $help;
-		$this->adds []= $add;
+		$this->adds[$module] []= $add;
 	}
 }
 
@@ -93,7 +93,7 @@ class FakeDB {
 	public $tableReplaces = array();
 
 	public function loadSQLFile($module, $name) {
-		$this->sqlFiles []= $name;
+		$this->sqlFiles[$module] []= $name;
 	}
 
 	public function add_table_replace($search, $replace) {
@@ -114,14 +114,14 @@ class FakeCommandAlias {
 
 	public function register($module, $command, $alias) {
 		foreach ($this->commandObj->registers as &$cmdRegister) {
-			if ($cmdRegister['command'] == $command) {
+			if ($cmdRegister[$module]['command'] == $command) {
 				if (!isset($cmdRegister['alias'])) {
 					$cmdRegister['alias'] = $alias;
 					return;
 				}
 			}
 		}
-		$this->aliases []= array(
+		$this->aliases[$module] []= array(
 			'command' => $command, 
 			'alias'   => $alias
 		);
@@ -138,6 +138,7 @@ class ModuleLoader {
 	public $tableReplaces;
 	public $aliases;
 	public $inNewFormat = false;
+	public $modules = array();
 
 	private $modulePath;
 
@@ -147,7 +148,7 @@ class ModuleLoader {
 	
 	public function load() {
 		$moduleName  = basename($this->modulePath);
-		$MODULE_NAME = strtoupper($moduleName);
+		$MODULE_NAME = toCamelCase(rightStripString($moduleName, '_MODULE'));
 		$filePath    = "{$this->modulePath}/{$moduleName}.php";
 		if (!file_exists($filePath)) {
 			// ignore modules which are already in new format
@@ -164,10 +165,24 @@ class ModuleLoader {
 
 		include $filePath;
 
-		$this->commands = array_merge($command->registers, $subcommand->registers);
-		usort($this->commands, function($register1, $register2) {
-			return strcmp($register1['command'], $register2['command']);
-		});
+		$this->modules = array_unique(array_merge(
+			array_keys($command->registers),
+			array_keys($subcommand->registers),
+			array_keys($event->events),
+			array_keys($event->setup),
+			array_keys($setting->adds),
+			array_keys($db->sqlFiles),
+			array_keys($commandAlias->aliases)
+		));
+
+		foreach($this->modules as $module) {
+			$commands    = isset($command->registers[$module])? $command->registers[$module]: array();
+			$subcommands = isset($subcommand->registers[$module])? $subcommand->registers[$module]: array();
+			$this->commands[$module] = array_merge($commands, $subcommands);
+			usort($this->commands[$module], function($register1, $register2) {
+				return strcmp($register1['command'], $register2['command']);
+			});
+		}
 
 		$this->events        = $event->events;
 		$this->setup         = $event->setup;

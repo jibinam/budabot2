@@ -99,3 +99,5 @@ class <?= $moduleName ?>Controller {
 
 <? endforeach ?>
 }
+
+<?= '?>' ?>
