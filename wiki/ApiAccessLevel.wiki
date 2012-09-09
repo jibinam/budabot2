@@ -1,0 +1,473 @@
+#summary The AccessLevel class provides functionality for checking character's level of access. 
+
+=Class AccessLevel=
+
+The AccessLevel class provides functionality for checking character's level
+of access.
+
+Lond description here.
+
+
+There is an instance of this class with name 'accesslevel'. You can include it a module via injection:
+{{{
+	/** @Inject */
+	public $accesslevel;
+}}}
+Or:
+{{{
+	/** @Inject("accesslevel") */
+	public $someVariableName;
+}}}
+
+
+
+
+
+
+
+
+
+
+
+		<b>Instance("accesslevel")</b>
+		<br />
+<b>Located at</b> <a href="null.html#3" title="Go to source code">AccessLevel.class.php</a><br />
+
+
+<table class="summary" id="methods">
+<caption>Methods summary</caption>
+<tr data-order="checkAccess" id="_checkAccess">
+
+	<td class="attributes"><code>
+		 public 
+		
+		
+		</code>
+	</td>
+
+	<td class="name"><div>
+	<a class="anchor" href="#_checkAccess">#</a>
+	<code><a href="null.html#31" title="Go to source code">checkAccess</a>( <span> <var>$sender</var></span>, <span> <var>$accessLevel</var></span> )</code>
+
+
+	<div class="description detailed">
+		
+
+
+
+
+
+			<h4>Name:</h4>
+			<div class="list">
+					checkAccess<br />
+			</div>
+			<h4>Param:</h4>
+			<div class="list">
+					$sender - the name of the person you want to check access on<br />
+					$accessLevel - can be one of: superadmin, admininistrator, moderator,
+raidleader, guild, member, all<br />
+			</div>
+			<h4>Returns:</h4>
+			<div class="list">
+					true if $sender has at least $accessLevel, false otherwise<br />
+			</div>
+
+
+	</div>
+	</div></td>
+</tr>
+<tr data-order="checkSingleAccess" id="_checkSingleAccess">
+
+	<td class="attributes"><code>
+		 public 
+		
+		
+		</code>
+	</td>
+
+	<td class="name"><div>
+	<a class="anchor" href="#_checkSingleAccess">#</a>
+	<code><a href="null.html#59" title="Go to source code">checkSingleAccess</a>( <span> <var>$sender</var></span>, <span> <var>$accessLevel</var></span> )</code>
+
+
+	<div class="description detailed">
+		
+
+
+
+
+
+
+
+	</div>
+	</div></td>
+</tr>
+<tr data-order="normalizeAccessLevel" id="_normalizeAccessLevel">
+
+	<td class="attributes"><code>
+		 public 
+		
+		
+		</code>
+	</td>
+
+	<td class="name"><div>
+	<a class="anchor" href="#_normalizeAccessLevel">#</a>
+	<code><a href="null.html#67" title="Go to source code">normalizeAccessLevel</a>( <span> <var>$accessLevel</var></span> )</code>
+
+
+	<div class="description detailed">
+		
+
+
+
+
+
+
+
+	</div>
+	</div></td>
+</tr>
+<tr data-order="getDisplayName" id="_getDisplayName">
+
+	<td class="attributes"><code>
+		 public 
+		
+		
+		</code>
+	</td>
+
+	<td class="name"><div>
+	<a class="anchor" href="#_getDisplayName">#</a>
+	<code><a href="null.html#84" title="Go to source code">getDisplayName</a>( <span> <var>$accessLevel</var></span> )</code>
+
+
+	<div class="description detailed">
+		
+
+
+
+
+
+
+
+	</div>
+	</div></td>
+</tr>
+<tr data-order="getSingleAccessLevel" id="_getSingleAccessLevel">
+
+	<td class="attributes"><code>
+		 public 
+		
+		
+		</code>
+	</td>
+
+	<td class="name"><div>
+	<a class="anchor" href="#_getSingleAccessLevel">#</a>
+	<code><a href="null.html#101" title="Go to source code">getSingleAccessLevel</a>( <span> <var>$sender</var></span> )</code>
+
+
+	<div class="description detailed">
+		
+
+
+
+
+
+
+
+	</div>
+	</div></td>
+</tr>
+<tr data-order="getAccessLevelForCharacter" id="_getAccessLevelForCharacter">
+
+	<td class="attributes"><code>
+		 public 
+		
+		
+		</code>
+	</td>
+
+	<td class="name"><div>
+	<a class="anchor" href="#_getAccessLevelForCharacter">#</a>
+	<code><a href="null.html#135" title="Go to source code">getAccessLevelForCharacter</a>( <span> <var>$sender</var></span> )</code>
+
+
+	<div class="description detailed">
+		
+
+
+
+
+
+
+
+	</div>
+	</div></td>
+</tr>
+<tr data-order="checkGuildAdmin" id="_checkGuildAdmin">
+
+	<td class="attributes"><code>
+		 public 
+		
+		
+		</code>
+	</td>
+
+	<td class="name"><div>
+	<a class="anchor" href="#_checkGuildAdmin">#</a>
+	<code><a href="null.html#153" title="Go to source code">checkGuildAdmin</a>( <span> <var>$sender</var></span>, <span> <var>$accessLevel</var></span> )</code>
+
+
+	<div class="description detailed">
+		
+
+
+
+
+
+
+
+	</div>
+	</div></td>
+</tr>
+<tr data-order="compareAccessLevels" id="_compareAccessLevels">
+
+	<td class="attributes"><code>
+		 public 
+		
+		
+		</code>
+	</td>
+
+	<td class="name"><div>
+	<a class="anchor" href="#_compareAccessLevels">#</a>
+	<code><a href="null.html#165" title="Go to source code">compareAccessLevels</a>( <span> <var>$accessLevel1</var></span>, <span> <var>$accessLevel2</var></span> )</code>
+
+
+	<div class="description detailed">
+		
+
+
+
+
+
+			<h4>Description:</h4>
+			<div class="list">
+					Returns a positive number if $accessLevel1 is a greater access level than
+$accessLevel2, a negative number if $accessLevel1 is a lesser access level than
+$accessLevel2, and 0 if the access levels are equal.<br />
+			</div>
+
+
+	</div>
+	</div></td>
+</tr>
+<tr data-order="compareCharacterAccessLevels" id="_compareCharacterAccessLevels">
+
+	<td class="attributes"><code>
+		 public 
+		
+		
+		</code>
+	</td>
+
+	<td class="name"><div>
+	<a class="anchor" href="#_compareCharacterAccessLevels">#</a>
+	<code><a href="null.html#177" title="Go to source code">compareCharacterAccessLevels</a>( <span> <var>$char1</var></span>, <span> <var>$char2</var></span> )</code>
+
+
+	<div class="description detailed">
+		
+
+
+
+
+
+
+
+	</div>
+	</div></td>
+</tr>
+</table>
+
+
+
+
+
+
+
+<table class="summary" id="properties">
+<caption>Properties summary</caption>
+<tr data-order="ACCESS_LEVELS" id="$ACCESS_LEVELS">
+
+	<td class="attributes"><code>
+		public static
+		array
+	</code></td>
+
+	<td class="name">
+			<a href="null.html#11" title="Go to source code"><var>$ACCESS_LEVELS</var></a>
+	</td>
+	<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'none'</span> =&gt; <span class="php-num">0</span>, <span class="php-quote">'superadmin'</span> =&gt; <span class="php-num">1</span>,  <span class="php-quote">'admin'</span> =&gt; <span class="php-num">2</span>, <span class="php-quote">'mod'</span> =&gt; <span class="php-num">3</span>, <span class="php-quote">'rl'</span> =&gt; <span class="php-num">4</span>, <span class="php-quote">'guild'</span> =&gt; <span class="php-num">6</span>, <span class="php-quote">'member'</span> =&gt; <span class="php-num">7</span>, <span class="php-quote">'all'</span> =&gt; <span class="php-num">8</span>)</code></td>
+	<td class="description"><div>
+		<a href="#$ACCESS_LEVELS" class="anchor">#</a>
+
+
+		<div class="description detailed">
+			
+
+		</div>
+	</div></td>
+</tr>
+<tr data-order="db" id="$db">
+
+	<td class="attributes"><code>
+		public 
+		
+	</code></td>
+
+	<td class="name">
+			<a href="null.html#13" title="Go to source code"><var>$db</var></a>
+	</td>
+	<td class="value"><code></code></td>
+	<td class="description"><div>
+		<a href="#$db" class="anchor">#</a>
+
+
+		<div class="description detailed">
+			
+
+				<h4>Inject</h4>
+				<div class="list">
+				</div>
+		</div>
+	</div></td>
+</tr>
+<tr data-order="setting" id="$setting">
+
+	<td class="attributes"><code>
+		public 
+		
+	</code></td>
+
+	<td class="name">
+			<a href="null.html#16" title="Go to source code"><var>$setting</var></a>
+	</td>
+	<td class="value"><code></code></td>
+	<td class="description"><div>
+		<a href="#$setting" class="anchor">#</a>
+
+
+		<div class="description detailed">
+			
+
+				<h4>Inject</h4>
+				<div class="list">
+				</div>
+		</div>
+	</div></td>
+</tr>
+<tr data-order="chatBot" id="$chatBot">
+
+	<td class="attributes"><code>
+		public 
+		
+	</code></td>
+
+	<td class="name">
+			<a href="null.html#19" title="Go to source code"><var>$chatBot</var></a>
+	</td>
+	<td class="value"><code></code></td>
+	<td class="description"><div>
+		<a href="#$chatBot" class="anchor">#</a>
+
+
+		<div class="description detailed">
+			
+
+				<h4>Inject</h4>
+				<div class="list">
+				</div>
+		</div>
+	</div></td>
+</tr>
+<tr data-order="admin" id="$admin">
+
+	<td class="attributes"><code>
+		public 
+		
+	</code></td>
+
+	<td class="name">
+			<a href="null.html#22" title="Go to source code"><var>$admin</var></a>
+	</td>
+	<td class="value"><code></code></td>
+	<td class="description"><div>
+		<a href="#$admin" class="anchor">#</a>
+
+
+		<div class="description detailed">
+			
+
+				<h4>Inject</h4>
+				<div class="list">
+				</div>
+		</div>
+	</div></td>
+</tr>
+<tr data-order="logger" id="$logger">
+
+	<td class="attributes"><code>
+		public 
+		
+	</code></td>
+
+	<td class="name">
+			<a href="null.html#25" title="Go to source code"><var>$logger</var></a>
+	</td>
+	<td class="value"><code></code></td>
+	<td class="description"><div>
+		<a href="#$logger" class="anchor">#</a>
+
+
+		<div class="description detailed">
+			
+
+				<h4>Logger</h4>
+				<div class="list">
+				</div>
+		</div>
+	</div></td>
+</tr>
+<tr data-order="alts" id="$alts">
+
+	<td class="attributes"><code>
+		public 
+		
+	</code></td>
+
+	<td class="name">
+			<a href="null.html#28" title="Go to source code"><var>$alts</var></a>
+	</td>
+	<td class="value"><code></code></td>
+	<td class="description"><div>
+		<a href="#$alts" class="anchor">#</a>
+
+
+		<div class="description detailed">
+			
+
+				<h4>Inject</h4>
+				<div class="list">
+				</div>
+		</div>
+	</div></td>
+</tr>
+</table>
+
+
+
+
+
