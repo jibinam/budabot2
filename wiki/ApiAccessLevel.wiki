@@ -27,23 +27,23 @@ Or:
 
 
 ==Methods==
-[#boolean_checkAccess_(_string__$sender_,_string__$accessLevel__) checkAccess]
+[#boolean_checkAccess_(_string_$sender_,_string_$accessLevel_) checkAccess]
 
-[#checkSingleAccess_(_mixed__$sender_,_mixed__$accessLevel__) checkSingleAccess]
+[#checkSingleAccess_(_mixed_$sender_,_mixed_$accessLevel_) checkSingleAccess]
 
-[#normalizeAccessLevel_(_mixed__$accessLevel__) normalizeAccessLevel]
+[#normalizeAccessLevel_(_mixed_$accessLevel_) normalizeAccessLevel]
 
-[#getDisplayName_(_mixed__$accessLevel__) getDisplayName]
+[#getDisplayName_(_mixed_$accessLevel_) getDisplayName]
 
-[#getSingleAccessLevel_(_mixed__$sender__) getSingleAccessLevel]
+[#getSingleAccessLevel_(_mixed_$sender_) getSingleAccessLevel]
 
-[#getAccessLevelForCharacter_(_mixed__$sender__) getAccessLevelForCharacter]
+[#getAccessLevelForCharacter_(_mixed_$sender_) getAccessLevelForCharacter]
 
-[#checkGuildAdmin_(_mixed__$sender_,_mixed__$accessLevel__) checkGuildAdmin]
+[#checkGuildAdmin_(_mixed_$sender_,_mixed_$accessLevel_) checkGuildAdmin]
 
-[#compareAccessLevels_(_mixed__$accessLevel1_,_mixed__$accessLevel2__) compareAccessLevels]
+[#compareAccessLevels_(_mixed_$accessLevel1_,_mixed_$accessLevel2_) compareAccessLevels]
 
-[#compareCharacterAccessLevels_(_mixed__$char1_,_mixed__$char2__) compareCharacterAccessLevels]
+[#compareCharacterAccessLevels_(_mixed_$char1_,_mixed_$char2_) compareCharacterAccessLevels]
 
 
 ==Methods Documentation==
