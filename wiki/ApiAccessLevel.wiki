@@ -26,25 +26,23 @@ Or:
 
 
 
+
+
+
+
+
+
+
 ==Methods==
-[#boolean_checkAccess_(_string_$sender_,_string_$accessLevel_) checkAccess]
-
-[#checkSingleAccess_(_mixed_$sender_,_mixed_$accessLevel_) checkSingleAccess]
-
-[#normalizeAccessLevel_(_mixed_$accessLevel_) normalizeAccessLevel]
-
-[#getDisplayName_(_mixed_$accessLevel_) getDisplayName]
-
-[#getSingleAccessLevel_(_mixed_$sender_) getSingleAccessLevel]
-
-[#getAccessLevelForCharacter_(_mixed_$sender_) getAccessLevelForCharacter]
-
-[#checkGuildAdmin_(_mixed_$sender_,_mixed_$accessLevel_) checkGuildAdmin]
-
-[#compareAccessLevels_(_mixed_$accessLevel1_,_mixed_$accessLevel2_) compareAccessLevels]
-
-[#compareCharacterAccessLevels_(_mixed_$char1_,_mixed_$char2_) compareCharacterAccessLevels]
-
+    * boolean [#boolean_checkAccess_(_string_$sender_,_string_$accessLevel_) checkAccess] ( string <var>$sender</var>, string <var>$accessLevel</var> )
+    * null [#null_checkSingleAccess_(_mixed_$sender_,_mixed_$accessLevel_) checkSingleAccess] ( mixed <var>$sender</var>, mixed <var>$accessLevel</var> )
+    * null [#null_normalizeAccessLevel_(_mixed_$accessLevel_) normalizeAccessLevel] ( mixed <var>$accessLevel</var> )
+    * null [#null_getDisplayName_(_mixed_$accessLevel_) getDisplayName] ( mixed <var>$accessLevel</var> )
+    * null [#null_getSingleAccessLevel_(_mixed_$sender_) getSingleAccessLevel] ( mixed <var>$sender</var> )
+    * null [#null_getAccessLevelForCharacter_(_mixed_$sender_) getAccessLevelForCharacter] ( mixed <var>$sender</var> )
+    * null [#null_checkGuildAdmin_(_mixed_$sender_,_mixed_$accessLevel_) checkGuildAdmin] ( mixed <var>$sender</var>, mixed <var>$accessLevel</var> )
+    * null [#null_compareAccessLevels_(_mixed_$accessLevel1_,_mixed_ compareAccessLevels] ( mixed <var>$accessLevel1</var>, mixed <var>$accessLevel2</var> )
+    * null [#null_compareCharacterAccessLevels_(_mixed_$char1_,_mixed_$char2 compareCharacterAccessLevels] ( mixed <var>$char1</var>, mixed <var>$char2</var> )
 
 ==Methods Documentation==
 
@@ -68,7 +66,7 @@ booleantrue if $sender has at least $accessLevel, false otherwise<br />
 
 
 
-===checkSingleAccess ( mixed <var>$sender</var>, mixed <var>$accessLevel</var> )===
+===null checkSingleAccess ( mixed <var>$sender</var>, mixed <var>$accessLevel</var> )===
 
 
 
@@ -80,7 +78,7 @@ booleantrue if $sender has at least $accessLevel, false otherwise<br />
 
 
 
-===normalizeAccessLevel ( mixed <var>$accessLevel</var> )===
+===null normalizeAccessLevel ( mixed <var>$accessLevel</var> )===
 
 
 
@@ -92,7 +90,7 @@ booleantrue if $sender has at least $accessLevel, false otherwise<br />
 
 
 
-===getDisplayName ( mixed <var>$accessLevel</var> )===
+===null getDisplayName ( mixed <var>$accessLevel</var> )===
 
 
 
@@ -104,7 +102,7 @@ booleantrue if $sender has at least $accessLevel, false otherwise<br />
 
 
 
-===getSingleAccessLevel ( mixed <var>$sender</var> )===
+===null getSingleAccessLevel ( mixed <var>$sender</var> )===
 
 
 
@@ -116,7 +114,7 @@ booleantrue if $sender has at least $accessLevel, false otherwise<br />
 
 
 
-===getAccessLevelForCharacter ( mixed <var>$sender</var> )===
+===null getAccessLevelForCharacter ( mixed <var>$sender</var> )===
 
 
 
@@ -128,7 +126,7 @@ booleantrue if $sender has at least $accessLevel, false otherwise<br />
 
 
 
-===checkGuildAdmin ( mixed <var>$sender</var>, mixed <var>$accessLevel</var> )===
+===null checkGuildAdmin ( mixed <var>$sender</var>, mixed <var>$accessLevel</var> )===
 
 
 
@@ -140,7 +138,7 @@ booleantrue if $sender has at least $accessLevel, false otherwise<br />
 
 
 
-===compareAccessLevels ( mixed <var>$accessLevel1</var>, mixed <var>$accessLevel2</var> )===
+===null compareAccessLevels ( mixed <var>$accessLevel1</var>, mixed <var>$accessLevel2</var> )===
 
 
 
@@ -158,7 +156,7 @@ $accessLevel2, and 0 if the access levels are equal.<br />
 
 
 
-===compareCharacterAccessLevels ( mixed <var>$char1</var>, mixed <var>$char2</var> )===
+===null compareCharacterAccessLevels ( mixed <var>$char1</var>, mixed <var>$char2</var> )===
 
 
 
