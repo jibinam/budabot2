@@ -30,9 +30,6 @@ Or:
 
 
 
-
-
-
 ==Methods==
     * boolean [#boolean_checkAccess_(_string_$sender_,_string_$accessLevel_) checkAccess] ( string <var>$sender</var>, string <var>$accessLevel</var> )
     * null [#null_checkSingleAccess_(_mixed_$sender_,_mixed_$accessLevel_) checkSingleAccess] ( mixed <var>$sender</var>, mixed <var>$accessLevel</var> )
@@ -41,7 +38,7 @@ Or:
     * null [#null_getSingleAccessLevel_(_mixed_$sender_) getSingleAccessLevel] ( mixed <var>$sender</var> )
     * null [#null_getAccessLevelForCharacter_(_mixed_$sender_) getAccessLevelForCharacter] ( mixed <var>$sender</var> )
     * null [#null_checkGuildAdmin_(_mixed_$sender_,_mixed_$accessLevel_) checkGuildAdmin] ( mixed <var>$sender</var>, mixed <var>$accessLevel</var> )
-    * null [#null_compareAccessLevels_(_mixed_$accessLevel1_,_mixed_ compareAccessLevels] ( mixed <var>$accessLevel1</var>, mixed <var>$accessLevel2</var> )
+    * null [#null_compareAccessLevels_(_mixed_$accessLevel1_,_mixed_$accessLe compareAccessLevels] ( mixed <var>$accessLevel1</var>, mixed <var>$accessLevel2</var> )
     * null [#null_compareCharacterAccessLevels_(_mixed_$char1_,_mixed_$char2 compareCharacterAccessLevels] ( mixed <var>$char1</var>, mixed <var>$char2</var> )
 
 ==Methods Documentation==
@@ -192,4 +189,5 @@ array
 
 		</div>
 	</div></td>
+
 
