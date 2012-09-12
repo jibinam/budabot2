@@ -9,13 +9,13 @@
 	/* **************************************** */
 	
 	// Insert your Account infos here
-	$vars['login'] 			= "botbotbotbotbot";               
-	$vars['password'] 		= "xxxxxxx";               
-	$vars['name'] 			= "Recibot";      
+	$vars['login'] 			= "";               
+	$vars['password'] 		= "";               
+	$vars['name'] 			= "";      
 	$vars['my guild'] 		= "";               
 	$vars['dimension'] 		= 1;              
 	//Insert the Administratorname here
-	$settings['Super Admin'] 	= "Blondedocc";               	
+	$settings['Super Admin'] 	= "";               	
     // What prefix should be used for private/Guild channel
 	$settings['symbol']			= "!";                 	
 
@@ -51,8 +51,8 @@
 	$settings['DB Type'] = "Mysql";                //What type of Database should be used? (Sqlite or Mysql)
     $settings['DB Name'] = "reci";                // Database Name
 	$settings['DB Host'] = "localhost";                // Hostname or File location.
-	$settings['DB username'] = "root";                // Mysql User name
-    $settings['DB password'] = "9404795";                // Mysql Password
+	$settings['DB username'] = "";                // Mysql User name
+    $settings['DB password'] = "";                // Mysql Password
 
 	//Cache folder for storing char or org xml files
     $vars['cachefolder'] = "./cache/";               
