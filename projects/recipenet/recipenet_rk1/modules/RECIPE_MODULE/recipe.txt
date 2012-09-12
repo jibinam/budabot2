@@ -1,0 +1,6 @@
+<header>::::: Recipe Module :::::<end>
+
+<highlight>To look up the recipes on any item type:<end>
+<tab>rec -drop your item here-
+
+Make sure you have a space between the word 'rec' and the item or it wont work.

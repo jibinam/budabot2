@@ -1,0 +1,24 @@
+
+<center><font color=#FFFF00>:::: About <myname> ::::</font>
+
+
+
+--------------------------------------
+
+<myname> Created By: <highlight>Captainzero (RK1)<end>
+
+--------------------------------------
+
+
+
+<highlight>Bot Core:<end>
+Powered by: <highlight>Budabot<end>
+Programing Language: <highlight>PHP 5.1<end>
+Database Management System: <highlight>MySQL or SQLite<end>
+Project Site: <highlight>http://sourceforge.net/projects/budabot/<end>
+Project Forum and more Details: <highlight>http://budabot.aodevs.com<end>
+
+<highlight>RecipeNET:<end>
+Homepage: <highlight>http://aorecipenet.com/<end>
+Add a Recipe: <highlight>http://aorecipenet.com/addrecipe.php<end>
+Forum: <highlight>http://aorecipenet.com/forum/<end>

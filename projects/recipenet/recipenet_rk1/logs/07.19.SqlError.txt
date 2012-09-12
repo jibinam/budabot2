@@ -1,0 +1,26 @@
+[17:41] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%pistol%" ORDER BY `name` LIMIT 0, 40: 
+[17:41] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '123667': 
+[17:44] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%concrete%" AND `lowql` <= 30 AND `highql` >= 30 ORDER BY `name` LIMIT 0, 40: 
+[17:51] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%concrete%" AND `lowql` <= 30 AND `highql` >= 30 ORDER BY `name` LIMIT 0, 40: 
+[17:53] [SqlError] Error in: SELECT * FROM aodb WHERE `name` LIKE "%concrete%" AND `lowql` <= 30 AND `highql` >= 30 ORDER BY `name` LIMIT 0, 40: 
+[17:53] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '164523': 
+[17:53] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '164523': 
+[17:57] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '164523': 
+[18:02] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '164523': 
+[19:42] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '202884': 
+[19:42] [SqlError] Error in: SELECT * FROM members_rk1 WHERE member_name = 'Blondedocc': 
+[19:42] [SqlError] Error in: SELECT * FROM aodb WHERE lowid = '202884' OR highid = '202884': 
+[19:42] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[19:42] [SqlError] Error in: SELECT * FROM aodb WHERE lowid = '202884' OR highid = '202884': 
+[19:42] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[19:47] [SqlError] Error in: SELECT * FROM aodb: 
+[19:57] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '162745': 
+[19:57] [SqlError] Error in: SELECT * FROM members_rk1 WHERE member_name = 'Blondedocc': 
+[19:57] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[19:57] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '': 
+[20:01] [SqlError] Error in: SELECT * FROM itemsdb WHERE item_id = '247123': 
+[20:15] [SqlError] Error in: SELECT * FROM members_rk1 WHERE member_name = 'Blondedocc': 
+[20:16] [SqlError] Error in: SELECT * FROM members_rk1 WHERE member_name = 'Blondedocc': 
+[20:17] [SqlError] Error in: SELECT * FROM members_rk1 WHERE member_name = 'Blondedocc': 
+[20:18] [SqlError] Error in: SELECT * FROM members_rk1 WHERE member_name = 'Blondedocc': 
+[20:18] [SqlError] Error in: INSERT INTO members_rk1 (member_name, member_cl) VALUES ('Blondedocc', '1853'): 

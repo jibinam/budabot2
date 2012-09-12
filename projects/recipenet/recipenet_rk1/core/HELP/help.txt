@@ -1,0 +1,26 @@
+
+<center><font color=#FFFF00>:::: <myname> Help ::::</font>
+
+
+<img src=rdb://136330>
+
+To use <myname> help simply type
+
+<highlight>/tell <myname> help<end>
+
+for the full list of helpfiles, or ...
+
+<highlight>/tell <myname> help search string<end>
+
+to search all the helpfiles for a particular topic
+
+
+
+
+<font color=#9CD6DE>====================================</font>
+<a href='chatcmd:///tell <myname> recipe'><myname> Main Menu</a> / <a href='chatcmd:///tell <myname> help'>Help</a> / <a href='chatcmd:///tell <myname> about'>About</a>
+<font color=#9CD6DE>====================================</font>
+Thank you for using <myname>.
+Part of the <highlight>A<end>narchy <highlight>O<end>nline bot <highlight>NET<end>work</center>
+
+<font color=#FFFFFF>Visit our new website! <a href='chatcmd:///start http://aorecipenet.com'>AORecipeNET.com</a></font>
