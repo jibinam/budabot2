@@ -2,5 +2,20 @@
 
 == Classes ==
     * [ApiAccessLevel AccessLevel]
+    * [ApiAdmin Admin]
+    * [ApiBan Ban]
+    * [ApiBudabot Budabot]
+    * [ApiBuddylistManager BuddylistManager]
+    * [ApiCommandAlias CommandAlias]
+    * [ApiCommandManager CommandManager]
+    * [ApiDB DB]
+    * [ApiEventManager EventManager]
+    * [ApiHelp Help]
+    * [ApiPlayfields Playfields]
+    * [ApiRow Row]
+    * [ApiSetting Setting]
+    * [ApiSubcommand Subcommand]
+    * [ApiText Text]
+    * [ApiUtil Util]
 
 == Interfaces ==
