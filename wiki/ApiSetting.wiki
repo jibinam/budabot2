@@ -11,6 +11,7 @@
     * mixed [#mixed_save_(_mixed_$name_,_mixed_$value_) save] ( mixed <var>$name</var>, mixed <var>$value</var> )
     * mixed [#mixed_displayValue_(_mixed_$row_) displayValue] ( mixed <var>$row</var> )
     * mixed [#mixed_upload_(_) upload] ( )
+    * mixed [#mixed_registerChangeListener_(_string_$settingName_,_callable_$c registerChangeListener] ( string <var>$settingName</var>, callable <var>$callback</var>, mixed <var>$data</var> )
 
 ----
 ==Variables Documentation==
@@ -92,6 +93,27 @@ false if the setting with that name does not exist, true otherwise<br />
 ===mixed displayValue ( mixed <var>$row</var> )===
 
 ===mixed upload ( )===
+
+===mixed registerChangeListener ( string <var>$settingName</var>, callable <var>$callback</var>, mixed <var>$data</var> )===
+
+Adds listener callback which will be called if given $settingName changes.
+
+The callback has following signature:
+<code>function callback($value, $data)</code>
+$value: new value of the setting
+$data:  optional data variable given on register
+
+Example usage:
+<code>
+$this->setting->registerChangeListener("some_setting_name", function($value) {
+	// ...
+} );
+</code>
+
+<h4>Parameters</h4>
+    * <var>$settingName</var> - 
+    * <var>$callback</var> - 
+    * <var>$data</var> - 
 
 
 <br />
