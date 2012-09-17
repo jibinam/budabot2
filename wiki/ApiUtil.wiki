@@ -16,7 +16,8 @@
     * mixed [#mixed_isValidSender_(_mixed_$sender_) isValidSender] ( mixed <var>$sender</var> )
     * mixed [#mixed_genRandomString_(_mixed_$length_=_10_) genRandomString] ( mixed <var>$length</var> = <span class="php-num">10</span> )
     * mixed [#mixed_getStackTrace_(_) getStackTrace] ( )
-    * mixed [#mixed_httpGet_(_string_$uri_,_callable_$callback_,_mixed_$data_= httpGet] ( string <var>$uri</var>, callable <var>$callback</var>, mixed <var>$data</var> = <span class="php-keyword1">null</span> )
+    * mixed [#mixed_httpGet_(_string_$uri_,_array_$params_=_array_(),_callable httpGet] ( string <var>$uri</var>, array <var>$params</var> = <span class="php-keyword1">array</span>(), callable <var>$callback</var> = <span class="php-keyword1">null</span>, mixed <var>$data</var> = <span class="php-keyword1">null</span> )
+    * mixed [#mixed_httpPost_(_string_$uri_,_array_$params_=_array_(),_callabl httpPost] ( string <var>$uri</var>, array <var>$params</var> = <span class="php-keyword1">array</span>(), callable <var>$callback</var> = <span class="php-keyword1">null</span>, mixed <var>$data</var> = <span class="php-keyword1">null</span> )
 
 ----
 ==Methods Documentation==
@@ -77,7 +78,7 @@ verify_filename<br />
 
 ===mixed getStackTrace ( )===
 
-===mixed httpGet ( string <var>$uri</var>, callable <var>$callback</var>, mixed <var>$data</var> = <span class="php-keyword1">null</span> )===
+===mixed httpGet ( string <var>$uri</var>, array <var>$params</var> = <span class="php-keyword1">array</span>(), callable <var>$callback</var> = <span class="php-keyword1">null</span>, mixed <var>$data</var> = <span class="php-keyword1">null</span> )===
 
 Requests contents of given $uri and on completion calls $callback.
 
@@ -100,13 +101,28 @@ The callback has following signature:
 
 Example usage:
 <code>
-$this->util->httpGet( "http://www.google.com/", function($response) {
+$this->util->httpGet( "http://www.google.com/", array(), function($response) {
     print $response->body;
 });
 </code>
 
 <h4>Parameters</h4>
     * <var>$uri</var> - 
+    * <var>$params</var> - 
+    * <var>$callback</var> - 
+    * <var>$data</var> - 
+
+===mixed httpPost ( string <var>$uri</var>, array <var>$params</var> = <span class="php-keyword1">array</span>(), callable <var>$callback</var> = <span class="php-keyword1">null</span>, mixed <var>$data</var> = <span class="php-keyword1">null</span> )===
+
+Requests contents of given $uri and on completion calls $callback.
+
+This method works exactly as httpGet(), but it uses HTTP POST method
+instead GET method. Parameters in $params are passed as url-encoded
+query in the request's body.
+
+<h4>Parameters</h4>
+    * <var>$uri</var> - 
+    * <var>$params</var> - 
     * <var>$callback</var> - 
     * <var>$data</var> - 
 
