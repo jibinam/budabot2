@@ -19,6 +19,7 @@
     * mixed [#mixed_httpGet_(_string_$uri_,_array_$params_=_array_(),_callable httpGet] ( string <var>$uri</var>, array <var>$params</var> = <span class="php-keyword1">array</span>(), callable <var>$callback</var> = <span class="php-keyword1">null</span>, mixed <var>$data</var> = <span class="php-keyword1">null</span> )
     * mixed [#mixed_httpPost_(_string_$uri_,_array_$params_=_array_(),_callabl httpPost] ( string <var>$uri</var>, array <var>$params</var> = <span class="php-keyword1">array</span>(), callable <var>$callback</var> = <span class="php-keyword1">null</span>, mixed <var>$data</var> = <span class="php-keyword1">null</span> )
     * mixed [#mixed_strpos_r_(_string_$haystack_,_array_$needles_) strpos_r] ( string <var>$haystack</var>, array <var>$needles</var> )
+    * mixed [#mixed_callLater_(_integer_$delay_,_callable_$callback_) callLater] ( integer <var>$delay</var>, callable <var>$callback</var> )
 
 ----
 ==Methods Documentation==
@@ -135,6 +136,28 @@ with the key indicating the offset and the value indicating the string found.
 <h4>Parameters</h4>
     * <var>$haystack</var> - 
     * <var>$needles</var> - 
+
+===mixed callLater ( integer <var>$delay</var>, callable <var>$callback</var> )===
+
+Calls given callback asyncronously after $delay seconds.
+
+The callback has following signature:
+<code>
+function callback($data)
+</code>
+ * $data - optional value which is same as given as argument to this method.
+
+Example usage:
+<code>
+$this->util->callLater(5, function($message) {
+    print $message;
+}, 'Hello World');
+</code>
+Prints 'Hello World' after 5 seconds.
+
+<h4>Parameters</h4>
+    * <var>$delay</var> - 
+    * <var>$callback</var> - 
 
 
 <br />

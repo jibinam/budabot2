@@ -37,6 +37,7 @@
     * mixed [#mixed_is_ready_(_) is_ready] ( )
     * mixed [#mixed_addSocketNotifier_(_mixed_$socketNotifier_) addSocketNotifier] ( mixed <var>$socketNotifier</var> )
     * mixed [#mixed_removeSocketNotifier_(_mixed_$socketNotifier_) removeSocketNotifier] ( mixed <var>$socketNotifier</var> )
+    * mixed [#mixed_addTimerEvent_(_mixed_$delay_,_mixed_$callback_,_mixed_$ar addTimerEvent] ( mixed <var>$delay</var>, mixed <var>$callback</var>, mixed <var>$args</var> )
 
 ----
 ==Variables Documentation==
@@ -207,6 +208,8 @@ monitored for activity.
 ===mixed removeSocketNotifier ( mixed <var>$socketNotifier</var> )===
 
 Removes given socket notifier from list of sockets being monitored.
+
+===mixed addTimerEvent ( mixed <var>$delay</var>, mixed <var>$callback</var>, mixed <var>$args</var> )===
 
 
 <br />
