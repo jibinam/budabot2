@@ -2,6 +2,16 @@
 
 =Class !Budabot=
 
+{{{
+There is an instance of this class with name 'chatBot' available.
+You can include it into a module via injection:
+	/** @Inject */
+	public $chatBot;
+Or:
+	/** @Inject("chatBot") */
+	public $someVariableName;
+}}}
+
 ==Variables==
     * boolean [#Variable_$ready $ready] 
     * array [#Variable_$chatlist $chatlist] 
@@ -10,18 +20,16 @@
     * array [#Variable_$channelsToIgnore $channelsToIgnore] 
 
 ==Methods==
-    * mixed [#mixed___construct_(_mixed_&amp;_$vars_) __construct] ( mixed <var>&amp; $vars</var> )
+    * mixed [#mixed_init_(_mixed_&amp;_$vars_) init] ( mixed <var>&amp; $vars</var> )
     * mixed [#mixed_connectAO_(_mixed_$login_,_mixed_$password_,_mixed_$server connectAO] ( mixed <var>$login</var>, mixed <var>$password</var>, mixed <var>$server</var>, mixed <var>$port</var> )
     * mixed [#mixed_run_(_) run] ( )
-    * mixed [#mixed_init_(_) init] ( )
     * mixed [#mixed_loadCoreModules_(_) loadCoreModules] ( )
-    * mixed [#mixed_loadModules_(_) loadModules] ( )
+    * mixed [#mixed_loadUserModules_(_) loadUserModules] ( )
     * mixed [#mixed_registerModule_(_mixed_$baseDir_,_mixed_$MODULE_NAME_) registerModule] ( mixed <var>$baseDir</var>, mixed <var>$MODULE_NAME</var> )
     * mixed [#mixed_sendPrivate_(_mixed_$message_,_mixed_$disable_relay_=_fals sendPrivate] ( mixed <var>$message</var>, mixed <var>$disable_relay</var> = <span class="php-keyword1">false</span>, mixed <var>$group</var> = <span class="php-keyword1">null</span> )
     * mixed [#mixed_sendGuild_(_mixed_$message_,_mixed_$disable_relay_=_false sendGuild] ( mixed <var>$message</var>, mixed <var>$disable_relay</var> = <span class="php-keyword1">false</span>, mixed <var>$priority</var> = <span class="php-keyword1">null</span> )
     * mixed [#mixed_sendTell_(_mixed_$message_,_mixed_$character_,_mixed_$prio sendTell] ( mixed <var>$message</var>, mixed <var>$character</var>, mixed <var>$priority</var> = <span class="php-keyword1">null</span> )
     * mixed [#mixed_sendPublic_(_mixed_$message_,_mixed_$channel_,_mixed_$prio sendPublic] ( mixed <var>$message</var>, mixed <var>$channel</var>, mixed <var>$priority</var> = <span class="php-keyword1">null</span> )
-    * mixed [#mixed_send_(_mixed_$message_,_mixed_$target_,_mixed_$disable_rel send] ( mixed <var>$message</var>, mixed <var>$target</var>, mixed <var>$disable_relay</var> = <span class="php-keyword1">false</span>, mixed <var>$priority</var> = <span class="php-keyword1">null</span> )
     * mixed [#mixed_processCommandArgs_(_mixed_&amp;_$type_,_mixed_&amp;_$admi processCommandArgs] ( mixed <var>&amp; $type</var>, mixed <var>&amp; $admin</var> )
     * mixed [#mixed_process_packet_(_mixed_$packet_) process_packet] ( mixed <var>$packet</var> )
     * mixed [#mixed_process_all_packets_(_mixed_$packet_) process_all_packets] ( mixed <var>$packet</var> )
@@ -35,9 +43,6 @@
     * mixed [#mixed_process_private_channel_invite_(_mixed_$args_) process_private_channel_invite] ( mixed <var>$args</var> )
     * mixed [#mixed_registerInstance_(_mixed_$MODULE_NAME_,_mixed_$name_,_mixe registerInstance] ( mixed <var>$MODULE_NAME</var>, mixed <var>$name</var>, mixed <var>&amp; $obj</var> )
     * mixed [#mixed_is_ready_(_) is_ready] ( )
-    * mixed [#mixed_addSocketNotifier_(_mixed_$socketNotifier_) addSocketNotifier] ( mixed <var>$socketNotifier</var> )
-    * mixed [#mixed_removeSocketNotifier_(_mixed_$socketNotifier_) removeSocketNotifier] ( mixed <var>$socketNotifier</var> )
-    * mixed [#mixed_addTimerEvent_(_mixed_$delay_,_mixed_$callback_,_mixed_$ar addTimerEvent] ( mixed <var>$delay</var>, mixed <var>$callback</var>, mixed <var>$args</var> )
 
 ----
 ==Variables Documentation==
@@ -96,7 +101,7 @@ array("", 'IRRK News Wire', 'OT OOC', 'OT Newbie OOC', 'OT Jpn OOC', 'OT shoppin
 ----
 ==Methods Documentation==
 
-===mixed __construct ( mixed <var>&amp; $vars</var> )===
+===mixed init ( mixed <var>&amp; $vars</var> )===
 
 ===mixed connectAO ( mixed <var>$login</var>, mixed <var>$password</var>, mixed <var>$server</var>, mixed <var>$port</var> )===
 
@@ -111,11 +116,9 @@ connect<br />
 
 ===mixed run ( )===
 
-===mixed init ( )===
-
 ===mixed loadCoreModules ( )===
 
-===mixed loadModules ( )===
+===mixed loadUserModules ( )===
 
 <h4>Description:</h4>
 <div class="list">
@@ -123,7 +126,7 @@ load all user modules<br />
 </div>
 <h4>Name:</h4>
 <div class="list">
-loadModules<br />
+loadUserModules<br />
 </div>
 
 ===mixed registerModule ( mixed <var>$baseDir</var>, mixed <var>$MODULE_NAME</var> )===
@@ -135,17 +138,6 @@ loadModules<br />
 ===mixed sendTell ( mixed <var>$message</var>, mixed <var>$character</var>, mixed <var>$priority</var> = <span class="php-keyword1">null</span> )===
 
 ===mixed sendPublic ( mixed <var>$message</var>, mixed <var>$channel</var>, mixed <var>$priority</var> = <span class="php-keyword1">null</span> )===
-
-===mixed send ( mixed <var>$message</var>, mixed <var>$target</var>, mixed <var>$disable_relay</var> = <span class="php-keyword1">false</span>, mixed <var>$priority</var> = <span class="php-keyword1">null</span> )===
-
-<h4>Description:</h4>
-<div class="list">
-format a message and send it to private channel, guild channel, or a player<br />
-</div>
-<h4>Name:</h4>
-<div class="list">
-send<br />
-</div>
 
 ===mixed processCommandArgs ( mixed <var>&amp; $type</var>, mixed <var>&amp; $admin</var> )===
 
@@ -199,17 +191,6 @@ tells when the bot is logged on and all the start up events have finished<br />
 <div class="list">
 is_ready<br />
 </div>
-
-===mixed addSocketNotifier ( mixed <var>$socketNotifier</var> )===
-
-Adds given socket notifier to list of sockets which are
-monitored for activity.
-
-===mixed removeSocketNotifier ( mixed <var>$socketNotifier</var> )===
-
-Removes given socket notifier from list of sockets being monitored.
-
-===mixed addTimerEvent ( mixed <var>$delay</var>, mixed <var>$callback</var>, mixed <var>$args</var> )===
 
 
 <br />

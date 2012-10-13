@@ -8,7 +8,7 @@
     * array [#Variable_$table_replaces $table_replaces] 
 
 ==Methods==
-    * mixed [#mixed___construct_(_mixed_$type_,_mixed_$dbName_,_mixed_$host_= __construct] ( mixed <var>$type</var>, mixed <var>$dbName</var>, mixed <var>$host</var> = <span class="php-keyword1">NULL</span>, mixed <var>$user</var> = <span class="php-keyword1">NULL</span>, mixed <var>$pass</var> = <span class="php-keyword1">NULL</span> )
+    * mixed [#mixed_connect_(_mixed_$type_,_mixed_$dbName_,_mixed_$host_=_NULL connect] ( mixed <var>$type</var>, mixed <var>$dbName</var>, mixed <var>$host</var> = <span class="php-keyword1">NULL</span>, mixed <var>$user</var> = <span class="php-keyword1">NULL</span>, mixed <var>$pass</var> = <span class="php-keyword1">NULL</span> )
     * mixed [#mixed_get_type_(_) get_type] ( )
     * mixed [#mixed_queryRow_(_mixed_$sql_) queryRow] ( mixed <var>$sql</var> )
     * mixed [#mixed_query_(_mixed_$sql_) query] ( mixed <var>$sql</var> )
@@ -48,7 +48,7 @@ array()
 ----
 ==Methods Documentation==
 
-===mixed __construct ( mixed <var>$type</var>, mixed <var>$dbName</var>, mixed <var>$host</var> = <span class="php-keyword1">NULL</span>, mixed <var>$user</var> = <span class="php-keyword1">NULL</span>, mixed <var>$pass</var> = <span class="php-keyword1">NULL</span> )===
+===mixed connect ( mixed <var>$type</var>, mixed <var>$dbName</var>, mixed <var>$host</var> = <span class="php-keyword1">NULL</span>, mixed <var>$user</var> = <span class="php-keyword1">NULL</span>, mixed <var>$pass</var> = <span class="php-keyword1">NULL</span> )===
 
 ===mixed get_type ( )===
 

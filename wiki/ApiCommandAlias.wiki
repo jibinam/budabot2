@@ -11,7 +11,7 @@
     * mixed [#mixed_register_(_mixed_$module_,_mixed_$command_,_mixed_$alias_, register] ( mixed <var>$module</var>, mixed <var>$command</var>, mixed <var>$alias</var>, mixed <var>$status</var> = <span class="php-num">1</span> )
     * mixed [#mixed_activate_(_mixed_$command_,_mixed_$alias_) activate] ( mixed <var>$command</var>, mixed <var>$alias</var> )
     * mixed [#mixed_deactivate_(_mixed_$alias_) deactivate] ( mixed <var>$alias</var> )
-    * mixed [#mixed_process_(_mixed_$message_,_mixed_$channel_,_mixed_$sender process] ( mixed <var>$message</var>, mixed <var>$channel</var>, mixed <var>$sender</var>, mixed <var>$sendto</var> )
+    * mixed [#mixed_process_(_mixed_$message_,_mixed_$channel_,_mixed_$sender process] ( mixed <var>$message</var>, mixed <var>$channel</var>, mixed <var>$sender</var>, CommandReply <var>$sendto</var> )
     * mixed [#mixed_add_(_mixed_&amp;_$row_) add] ( mixed <var>&amp; $row</var> )
     * mixed [#mixed_update_(_mixed_&amp;_$row_) update] ( mixed <var>&amp; $row</var> )
     * mixed [#mixed_get_(_mixed_$alias_) get] ( mixed <var>$alias</var> )
@@ -79,7 +79,7 @@ Deactivates a command alias<br />
 deactivate<br />
 </div>
 
-===mixed process ( mixed <var>$message</var>, mixed <var>$channel</var>, mixed <var>$sender</var>, mixed <var>$sendto</var> )===
+===mixed process ( mixed <var>$message</var>, mixed <var>$channel</var>, mixed <var>$sender</var>, CommandReply <var>$sendto</var> )===
 
 ===mixed add ( mixed <var>&amp; $row</var> )===
 

@@ -12,8 +12,8 @@
     * mixed [#mixed_update_status_(_mixed_$channel_,_mixed_$cmd_,_mixed_$modul update_status] ( mixed <var>$channel</var>, mixed <var>$cmd</var>, mixed <var>$module</var>, mixed <var>$status</var>, mixed <var>$admin</var> )
     * mixed [#mixed_loadCommands_(_) loadCommands] ( )
     * mixed [#mixed_get_(_mixed_$command_,_mixed_$channel_=_null_) get] ( mixed <var>$command</var>, mixed <var>$channel</var> = <span class="php-keyword1">null</span> )
-    * mixed [#mixed_process_(_mixed_$channel_,_mixed_$message_,_mixed_$sender process] ( mixed <var>$channel</var>, mixed <var>$message</var>, mixed <var>$sender</var>, mixed <var>$sendto</var> )
-    * mixed [#mixed_callCommandHandler_(_mixed_$commandHandler_,_mixed_$messag callCommandHandler] ( mixed <var>$commandHandler</var>, mixed <var>$message</var>, mixed <var>$channel</var>, mixed <var>$sender</var>, mixed <var>$sendto</var> )
+    * mixed [#mixed_process_(_mixed_$channel_,_mixed_$message_,_mixed_$sender process] ( mixed <var>$channel</var>, mixed <var>$message</var>, mixed <var>$sender</var>, CommandReply <var>$sendto</var> )
+    * mixed [#mixed_callCommandHandler_(_mixed_$commandHandler_,_mixed_$messag callCommandHandler] ( mixed <var>$commandHandler</var>, mixed <var>$message</var>, mixed <var>$channel</var>, mixed <var>$sender</var>, CommandReply <var>$sendto</var> )
     * mixed [#mixed_getActiveCommandHandler_(_mixed_$cmd_,_mixed_$channel_,_mi getActiveCommandHandler] ( mixed <var>$cmd</var>, mixed <var>$channel</var>, mixed <var>$message</var> )
     * mixed [#mixed_getHelpForCommand_(_mixed_$cmd_,_mixed_$channel_,_mixed_$s getHelpForCommand] ( mixed <var>$cmd</var>, mixed <var>$channel</var>, mixed <var>$sender</var> )
     * mixed [#mixed_checkMatches_(_mixed_$instance_,_mixed_$method_,_mixed_$me checkMatches] ( mixed <var>$instance</var>, mixed <var>$method</var>, mixed <var>$message</var> )
@@ -77,9 +77,9 @@ loadCommands<br />
 
 ===mixed get ( mixed <var>$command</var>, mixed <var>$channel</var> = <span class="php-keyword1">null</span> )===
 
-===mixed process ( mixed <var>$channel</var>, mixed <var>$message</var>, mixed <var>$sender</var>, mixed <var>$sendto</var> )===
+===mixed process ( mixed <var>$channel</var>, mixed <var>$message</var>, mixed <var>$sender</var>, CommandReply <var>$sendto</var> )===
 
-===mixed callCommandHandler ( mixed <var>$commandHandler</var>, mixed <var>$message</var>, mixed <var>$channel</var>, mixed <var>$sender</var>, mixed <var>$sendto</var> )===
+===mixed callCommandHandler ( mixed <var>$commandHandler</var>, mixed <var>$message</var>, mixed <var>$channel</var>, mixed <var>$sender</var>, CommandReply <var>$sendto</var> )===
 
 ===mixed getActiveCommandHandler ( mixed <var>$cmd</var>, mixed <var>$channel</var>, mixed <var>$message</var> )===
 

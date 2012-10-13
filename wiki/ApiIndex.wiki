@@ -2,7 +2,7 @@
 
 == Classes ==
     * [ApiAccessLevel AccessLevel]
-    * [ApiAdmin Admin]
+    * [ApiAdminManager AdminManager]
     * [ApiBan Ban]
     * [ApiBudabot Budabot]
     * [ApiBuddylistManager BuddylistManager]
@@ -11,10 +11,8 @@
     * [ApiDB DB]
     * [ApiEventManager EventManager]
     * [ApiHelp Help]
-    * [ApiPlayfields Playfields]
-    * [ApiRow Row]
     * [ApiSetting Setting]
-    * [ApiSubcommand Subcommand]
+    * [ApiSubcommandManager SubcommandManager]
     * [ApiText Text]
     * [ApiUtil Util]
 

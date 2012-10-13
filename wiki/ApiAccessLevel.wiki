@@ -7,16 +7,6 @@ The AccessLevel class provides functionality for checking character's level of a
 
 Lond description here.
 
-{{{
-There is an instance of this class with name 'accesslevel' available.
-You can include it into a module via injection:
-	/** @Inject */
-	public $accesslevel;
-Or:
-	/** @Inject("accesslevel") */
-	public $someVariableName;
-}}}
-
 ==Variables==
     * array [#Variable_$ACCESS_LEVELS $ACCESS_LEVELS] _`[static`]_
 
@@ -59,9 +49,6 @@ However, there are some cases where you may need this functionality.
 For instance, you may have a command that displays the names of the last
 ten people to send a tell to the bot.  You may wish to display a "ban"
 link when a moderator or higher uses that command.
-
-The $accessLevel is any one of: superadmin, admininistrator, moderator,
-raidleader, guildadmin, leader, guild, member, or all.
 
 To check if a player named 'Tyrence' has raidleader access,
 you would do:
