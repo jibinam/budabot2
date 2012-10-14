@@ -1,0 +1,74 @@
+#summary Explains how to install and use Budabot's build tool
+
+= Introduction =
+
+Budabot 3.0+ uses [http://www.phing.info/ Phing] as its build tool. With the tool you can:
+  * [Creating_a_Release create a release archive],
+  * [http://ci.budabot.com/userContent/budabot-api/index.html generate api documentation],
+  * [ApiIndex generate wiki documentation] and
+  * also perhaps in future run unit tests, integration tests, etc...
+
+Before you can use the build tool you need to install it first.
+
+= Installing =
+
+  # Install Subversion client, for Windows users use e.g. [http://tortoisesvn.net/downloads.html TortoiseSvn] (make sure you include command-line client in the installer as well),
+  # Install PHP 5.3 or newer, for Windows users look at [http://windows.php.net/download/ here], for users of other OSes use your own package manager to install it,
+  # Install PHP's package manager Pear ([http://pear.php.net/manual/en/installation.getting.php instructions]),
+  # Install Phing build tool with Pear ([http://www.phing.info/trac/wiki/Users/Installation instructions]), you may need to install phing/phing-alpha if you're using Subversion 1.7 client or newer,
+  # Install PHP Subversion client wrapper with Pear ([https://pear.php.net/package/VersionControl_SVN/ instructions]), install VersionControl_SVN-alpha (otherwise you get errors complaining that there are no stable release),
+  # Install !ApiGen documentation generator with Pear ([http://apigen.org/##installation instructions])
+
+= Usage =
+Open command prompt (or bash, etc...) and cd to Budabot's branch or trunk folder, make sure that there is a file named *build.xml* in it.
+
+To see what targets there are available, run:
+{{{
+phing -list
+}}}
+Prints something like this:
+{{{
+Buildfile: E:\PHP\budabot_svn\trunk\build.xml
+Default target:
+-------------------
+ build
+
+Subtargets:
+-------------------
+ apidoc
+ build
+ wikidoc
+}}}
+
+== Build Target ==
+This will create a release archive of the current branch. The created archive can be found afterwards from build folder.
+To run this:
+{{{
+phing build
+}}}
+Or just:
+{{{
+phing
+}}}
+
+== !ApiDoc Target ==
+This will create API documentation of Budabot's sources to docs/api folder. Continuous integration server will run this whenever trunk's sources change, but you can run this as well.
+Run it like this:
+{{{
+phing apidoc
+}}}
+You can also pick another location for the documentation, like this:
+{{{
+phing -Dapidoc.destination=$JENKINS_HOME/userContent/budabot-api apidoc
+}}}
+
+== !WikiDoc Target ==
+This will create Google Wiki documentation of Budabot's sources to docs/wiki folder. Continuous integration server will run this whenever trunk's sources change and commit them to the Wiki, but you can run this as well.
+Run it like this:
+{{{
+phing wikidoc
+}}}
+You can also pick another location for the documentation, like this:
+{{{
+phing -Dwikidoc.destination=../wiki wikidoc
+}}}
