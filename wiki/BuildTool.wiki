@@ -12,12 +12,13 @@ Before you can use the build tool you need to install it first.
 
 = Installing =
 
-  # Install Subversion client, for Windows users use e.g. [http://tortoisesvn.net/downloads.html TortoiseSvn] (make sure you include command-line client in the installer as well),
   # Install PHP 5.3 or newer, for Windows users look at [http://windows.php.net/download/ here], for users of other OSes use your own package manager to install it,
   # Install PHP's package manager Pear ([http://pear.php.net/manual/en/installation.getting.php instructions]),
   # Install Phing build tool with Pear ([http://www.phing.info/trac/wiki/Users/Installation instructions]), you may need to install phing/phing-alpha if you're using Subversion 1.7 client or newer,
-  # Install PHP Subversion client wrapper with Pear ([https://pear.php.net/package/VersionControl_SVN/ instructions]), install VersionControl_SVN-alpha (otherwise you get errors complaining that there are no stable release),
-  # Install !ApiGen documentation generator with Pear ([http://apigen.org/##installation instructions])
+  # Install command-line Subversion client, for Windows users you can use e.g. [http://tortoisesvn.net/downloads.html TortoiseSvn] and make sure that you include the command-line client in the installer (required for build-target),
+  # Install PHP Subversion client wrapper with Pear ([https://pear.php.net/package/VersionControl_SVN/ instructions]), install VersionControl_SVN-alpha, otherwise you get errors complaining that there are no stable release (required for build-target),
+  # Install !ApiGen documentation generator with Pear ([http://apigen.org/##installation instructions]), (required for wikidoc- and apidoc-targets)
+  # Install PHP SSH2 extension, Windows users can get it from [http://downloads.php.net/pierre/ here], for users of other OSes use your own package manager to install it (required for upload-targets),
 
 = Usage =
 Open command prompt (or bash, etc...) and cd to Budabot's branch or trunk folder, make sure that there is a file named *build.xml* in it.
@@ -36,7 +37,9 @@ Default target:
 Subtargets:
 -------------------
  apidoc
+ apidoc+upload
  build
+ build+upload
  wikidoc
 }}}
 
@@ -51,6 +54,14 @@ Or just:
 phing
 }}}
 
+== Build+Upload Target ==
+This will first run *build*-target and then it uploads the generated archive using SCP-protocol to remote server.
+You need to provide properties for the target, specifying the remote server's *username*, *password*, *host*-address and *path* to folder at the remote server where the archive will be stored.
+To run this:
+{{{
+phing -Dupload.username=username -Dupload.password=password -Dupload.hostname=host -Dbuild.upload_destination=path build+upload
+}}}
+
 == !ApiDoc Target ==
 This will create API documentation of Budabot's sources to docs/api folder. Continuous integration server will run this whenever trunk's sources change, but you can run this as well.
 Run it like this:
@@ -61,6 +72,15 @@ You can also pick another location for the documentation, like this:
 {{{
 phing -Dapidoc.destination=$JENKINS_HOME/userContent/budabot-api apidoc
 }}}
+
+== !ApiDoc+Upload Target ==
+This will first run *apidoc*-target and then it uploads the generated api documentation files using SCP-protocol to remote server.
+You need to provide properties for the target, specifying the remote server's *username*, *password*, *host*-address and *path* to folder at the remote server where the documentation's files will be stored.
+To run this:
+{{{
+phing -Dupload.username=username -Dupload.password=password -Dupload.hostname=host -Dapidoc.upload_destination=path apidoc+upload
+}}}
+NOTE: The uploading seems to be quite slow, this might take easily 20 minutes to execute.
 
 == !WikiDoc Target ==
 This will create Google Wiki documentation of Budabot's sources to docs/wiki folder. Continuous integration server will run this whenever trunk's sources change and commit them to the Wiki, but you can run this as well.
