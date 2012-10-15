@@ -12,6 +12,8 @@ pecl install package.xml
 echo 'extension=runkit.so' > /etc/php.d/runkit.ini
 }}}
 
+If you receive this error: 'undefined symbol: ZVAL_REFCOUNT in Unknown on line 0', uninstall runkit and use the install instructions from here: [https://github.com/zenovich/runkit/issues/5]
+
 = Compiling for Linux (Ubuntu 11.04) =
 
 Instructions are similar to CentOS's above, with changes to package manager, paths and using root access through sudo-command:
