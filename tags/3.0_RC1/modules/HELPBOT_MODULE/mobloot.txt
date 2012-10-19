@@ -1,0 +1,2 @@
+<highlight>To see the ql of items that a mob can drop:<end>
+<tab><symbol>mobloot 'ql of mob'

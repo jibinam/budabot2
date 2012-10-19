@@ -1,0 +1,10 @@
+<highlight>To see the current rally:<end>
+<tab><symbol>rally
+
+<highlight>To set the rally:<end>
+<tab><symbol>rally 'x' 'y' 'playfield'
+
+<highlight>To clear the rally:<end>
+<tab><symbol>rally clear
+
+Note: 'playfield' can be the playfield id, or any of the short or long names defined in <symbol>playfields
