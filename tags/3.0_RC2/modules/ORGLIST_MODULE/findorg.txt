@@ -1,0 +1,2 @@
+<highlight>To find an org by org name:<end>
+<tab><symbol>findorg 'org name'
