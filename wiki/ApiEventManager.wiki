@@ -10,6 +10,9 @@
     * mixed [#mixed_register_(_mixed_$module_,_mixed_$type_,_mixed_$filename_, register] ( mixed <var>$module</var>, mixed <var>$type</var>, mixed <var>$filename</var>, mixed <var>$description</var> = <span class="php-quote">'none'</span>, mixed <var>$help</var> = <span class="php-quote">''</span>, mixed <var>$defaultStatus</var> = <span class="php-keyword1">null</span> )
     * mixed [#mixed_activate_(_mixed_$type_,_mixed_$filename_) activate] ( mixed <var>$type</var>, mixed <var>$filename</var> )
     * mixed [#mixed_deactivate_(_mixed_$type_,_mixed_$filename_) deactivate] ( mixed <var>$type</var>, mixed <var>$filename</var> )
+    * mixed [#mixed_activateIfDeactivated_(_Object_$obj_) activateIfDeactivated] ( Object <var>$obj</var> )
+    * mixed [#mixed_deactivateIfActivated_(_Object_$obj_) deactivateIfActivated] ( Object <var>$obj</var> )
+    * mixed [#mixed_getEventTypeByMethod_(_mixed_$obj_,_mixed_$methodName_) getEventTypeByMethod] ( mixed <var>$obj</var>, mixed <var>$methodName</var> )
     * mixed [#mixed_getKeyForCronEvent_(_mixed_$time_,_mixed_$filename_) getKeyForCronEvent] ( mixed <var>$time</var>, mixed <var>$filename</var> )
     * mixed [#mixed_update_status_(_mixed_$type_,_mixed_$module_,_mixed_$filen update_status] ( mixed <var>$type</var>, mixed <var>$module</var>, mixed <var>$filename</var>, mixed <var>$status</var> )
     * mixed [#mixed_loadEvents_(_) loadEvents] ( )
@@ -79,6 +82,24 @@ Deactivates an event<br />
 <div class="list">
 deactivate<br />
 </div>
+
+===mixed activateIfDeactivated ( Object <var>$obj</var> )===
+
+Activates events that are annotated on one or more method names
+if the events are not already activated
+
+<h4>Parameters</h4>
+    * <var>$obj</var> - 
+
+===mixed deactivateIfActivated ( Object <var>$obj</var> )===
+
+Deactivates events that are annotated on one or more method names
+if the events are not already deactivated
+
+<h4>Parameters</h4>
+    * <var>$obj</var> - 
+
+===mixed getEventTypeByMethod ( mixed <var>$obj</var>, mixed <var>$methodName</var> )===
 
 ===mixed getKeyForCronEvent ( mixed <var>$time</var>, mixed <var>$filename</var> )===
 
