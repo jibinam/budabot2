@@ -1,7 +1,0 @@
-{
-	"require": {
-		"react/http": "0.2.1",
-		"react/socket": "0.2.1",
-		"dhaarbrink/jsonrpc": "1.1.4"
-	}
-}
