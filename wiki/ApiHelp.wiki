@@ -11,6 +11,7 @@
     * mixed [#mixed_update_(_mixed_$helpTopic_,_mixed_$admin_) update] ( mixed <var>$helpTopic</var>, mixed <var>$admin</var> )
     * mixed [#mixed_checkForHelpFile_(_mixed_$module_,_mixed_$file_,_mixed_$na checkForHelpFile] ( mixed <var>$module</var>, mixed <var>$file</var>, mixed <var>$name</var> )
     * mixed [#mixed_getAllHelpTopics_(_mixed_$char_) getAllHelpTopics] ( mixed <var>$char</var> )
+    * mixed [#mixed_checkAccessLevels_(_mixed_$accessLevel1_,_mixed_$accessLev checkAccessLevels] ( mixed <var>$accessLevel1</var>, mixed <var>$accessLevelsArray</var> )
 
 ----
 ==Variables Documentation==
@@ -54,6 +55,8 @@ find<br />
 ===mixed checkForHelpFile ( mixed <var>$module</var>, mixed <var>$file</var>, mixed <var>$name</var> )===
 
 ===mixed getAllHelpTopics ( mixed <var>$char</var> )===
+
+===mixed checkAccessLevels ( mixed <var>$accessLevel1</var>, mixed <var>$accessLevelsArray</var> )===
 
 
 <br />
