@@ -3,7 +3,7 @@
 
 import gobject
 import gtk
-from utils import weakConnect, getBotUIStatus
+from utils import weakConnect, getBotUIStatus, resourcePath
 
 class BotWindowController(gobject.GObject):
 	""""""
@@ -19,7 +19,7 @@ class BotWindowController(gobject.GObject):
 		
 		# load botwindow.glade file
 		self.builder = gtk.Builder()
-		self.builder.add_from_file('botwindow.glade')
+		self.builder.add_from_file(resourcePath('botwindow.glade'))
 
 		# get some widgets and objects for easier access
 		self.botWindow  = self.builder.get_object('botwindow')

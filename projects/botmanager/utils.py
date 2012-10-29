@@ -3,6 +3,8 @@
 
 import weakref
 import gtk
+import os
+import sys
 
 class WeakCallback(object):
 	"""
@@ -49,3 +51,12 @@ def getBotUIStatus(bot):
 		return ('Started', 'status-started')
 	else:
 		return ('Not running', 'status-not-running')
+
+def resourcePath(relative):
+	"""Returns path to where application resource are."""
+	try:
+		basePath = sys._MEIPASS
+	except AttributeError:
+		basePath = os.path.abspath(".")
+	return os.path.join(basePath, relative)
+

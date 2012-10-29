@@ -30,6 +30,7 @@ from controlpanelcontroller import ControlPanelController
 from bot import Bot
 from botconfigfile import BotPhpConfigFile
 from configwindow import ConfigWindowController
+from utils import resourcePath
 
 class Application:
 	"""The main application class"""
@@ -43,13 +44,13 @@ class Application:
 		#gtk.gdk.threads_init()
 
 		# load Cillop-Midnite theme
-		gtk.rc_add_default_file("themes/Cillop-Midnite/gtk-2.0/gtkrc")
+		gtk.rc_add_default_file(resourcePath("themes/Cillop-Midnite/gtk-2.0/gtkrc"))
 		settings = gtk.settings_get_default()
 		settings.set_string_property("gtk-theme-name", "Cillop-Midnite", "")
 
 		# load icon theme
 		theme = gtk.icon_theme_get_default()
-		theme.prepend_search_path('themes')
+		theme.prepend_search_path(resourcePath('themes'))
 		settings.set_string_property("gtk-icon-theme-name", "budabot-icon-theme", "")
 		gtk.icon_size_register('status-icon-size', 24, 24)
 

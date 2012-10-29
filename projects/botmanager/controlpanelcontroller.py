@@ -5,7 +5,7 @@ import gobject
 import gtk
 from addbotwizard import AddBotWizardController
 from botmodel import BotModel
-from utils import setItemAsBold, getBotUIStatus
+from utils import setItemAsBold, getBotUIStatus, resourcePath
 
 class ControlPanelController(gobject.GObject):
 	""""""
@@ -30,7 +30,7 @@ class ControlPanelController(gobject.GObject):
 		self.position = (200, 200)
 		# load controlpanel.glade file
 		self.builder = gtk.Builder()
-		self.builder.add_from_file('controlpanel.glade')
+		self.builder.add_from_file(resourcePath('controlpanel.glade'))
 		
 		self.view = self.builder.get_object('controlPanelWindow')
 		self.botListView = self.builder.get_object('botListView')

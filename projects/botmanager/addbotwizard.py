@@ -12,6 +12,7 @@ from addbotwizardpages import EnterCharacterInfoPage, SelectBotTypePage, EnterSu
 from addbotwizardpages import SelectDatabaseSettingsPage, SelectDefaultModuleStatusPage
 from addbotwizardpages import SelectDatabaseTypePage, EnterSqliteSettingsPage, EnterMysqlSettingsPage
 import addbotwizardpages
+from utils import resourcePath
 
 class AddBotWizardController:
 	""""""
@@ -23,7 +24,7 @@ class AddBotWizardController:
 
 		# load addbotwizard.glade file
 		self.builder = gtk.Builder()
-		self.builder.add_from_file('addbotwizard.glade')
+		self.builder.add_from_file(resourcePath('addbotwizard.glade'))
 
 		self.assistant = Assistant()
 		self.assistant.set_property('title', 'Budabot - Add Bot Wizard')

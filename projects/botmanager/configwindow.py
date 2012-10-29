@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import gtk
-from utils import weakConnect
+from utils import weakConnect, resourcePath
 import weakref
 
 class ConfigWindowController(object):
@@ -62,7 +62,7 @@ class ConfigWindowController(object):
 		"""
 		self.configFile = configFile
 		self.builder = gtk.Builder()
-		self.builder.add_from_file('configwindow.glade')
+		self.builder.add_from_file(resourcePath('configwindow.glade'))
 		self.dialog = self.builder.get_object('configDialog')
 		self.botRef = weakref.ref(bot)
 		self.parentRef = weakref.ref(parent)

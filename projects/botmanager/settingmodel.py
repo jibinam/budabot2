@@ -8,6 +8,7 @@ from configobj import ConfigObj, ConfigObjError
 import configobj
 from validate import Validator
 import os
+from utils import resourcePath
 
 class SettingModel(gtk.TreeStore):
 	""""""
@@ -140,7 +141,7 @@ class SettingModel(gtk.TreeStore):
 		configPath = os.path.join(configDir, 'settings.ini')
 		# load the ini-file
 		try:
-			config = ConfigObj(infile = configPath, create_empty = True, encoding = 'UTF8', configspec = 'settingsspec.ini')
+			config = ConfigObj(infile = configPath, create_empty = True, encoding = 'UTF8', configspec = resourcePath('settingsspec.ini'))
 		except(ConfigObjError, IOError), e:
 			self.emit('error', 'Failed to read settings from "%s": %s' % (configPath, e))
 			return None
