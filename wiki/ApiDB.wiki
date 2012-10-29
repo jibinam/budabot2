@@ -3,8 +3,6 @@
 =Class !DB=
 
 ==Variables==
-    * integer [#Variable_$errorCode $errorCode] 
-    * mixed [#Variable_$errorInfo $errorInfo] 
     * array [#Variable_$table_replaces $table_replaces] 
 
 ==Methods==
@@ -25,16 +23,6 @@
 
 ----
 ==Variables Documentation==
-===Variable $errorCode===
-
-<h4>Type</h4>
-    integer
-
-===Variable $errorInfo===
-
-<h4>Type</h4>
-    mixed
-
 ===Variable $table_replaces===
 
 <h4>Type</h4>
