@@ -1,0 +1,41 @@
+#summary Budabot's continuous integration server how-to
+
+= Introduction =
+
+The current CI server can be found http://ci.budabot.com/ and is maintained by Marebone.
+
+= Install =
+TODO
+
+== Jenkins ==
+TODO
+
+== Dependencies for cross-platform jobs == 
+See installation instructions from BuildTool.
+TODO
+
+== Dependencies for Wine jobs == 
+TODO
+
+= Jobs =
+
+== Building release archive of Budabot ==
+  * Job on CI server: http://ci.budabot.com/job/Build%20and%20Upload%20Release%20Archive/
+  * Archives are uploaded to: http://budabot.jkbff.com/builds/
+
+=== Configuration ===
+Source Code Management:
+  * Subversion
+  * Repository URL: http://budabot2.googlecode.com/svn/trunk
+  * Local module directory: trunk
+
+Build Triggers:
+  * Poll SCM
+  * Schedule: {{{ */15 * * * * }}}
+
+Build steps:
+  * Execute shell:
+{{{
+cd trunk
+phing -propertyfile $JENKINS_HOME/budabot-ci-phing.properties build+upload
+}}}
