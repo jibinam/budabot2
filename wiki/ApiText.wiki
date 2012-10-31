@@ -5,6 +5,7 @@
 ==Methods==
     * mixed [#mixed_make_header_links_(_mixed_$links_) make_header_links] ( mixed <var>$links</var> )
     * mixed [#mixed_make_blob_(_mixed_$name_,_mixed_$content_,_mixed_$header_= make_blob] ( mixed <var>$name</var>, mixed <var>$content</var>, mixed <var>$header</var> = <span class="php-keyword1">NULL</span> )
+    * mixed [#mixed_make_blob2_(_mixed_$name_,_mixed_$content_,_mixed_$header make_blob2] ( mixed <var>$name</var>, mixed <var>$content</var>, mixed <var>$header</var> = <span class="php-keyword1">NULL</span> )
     * mixed [#mixed_make_legacy_blob_(_mixed_$name_,_mixed_$content_) make_legacy_blob] ( mixed <var>$name</var>, mixed <var>$content</var> )
     * mixed [#mixed_paginate_(_mixed_$input_,_mixed_$maxLength_,_mixed_$symbol paginate] ( mixed <var>$input</var>, mixed <var>$maxLength</var>, mixed <var>$symbols</var> )
     * mixed [#mixed_make_chatcmd_(_mixed_$name_,_mixed_$content_,_mixed_$style make_chatcmd] ( mixed <var>$name</var>, mixed <var>$content</var>, mixed <var>$style</var> = <span class="php-keyword1">NULL</span> )
@@ -19,6 +20,8 @@
 ===mixed make_header_links ( mixed <var>$links</var> )===
 
 ===mixed make_blob ( mixed <var>$name</var>, mixed <var>$content</var>, mixed <var>$header</var> = <span class="php-keyword1">NULL</span> )===
+
+===mixed make_blob2 ( mixed <var>$name</var>, mixed <var>$content</var>, mixed <var>$header</var> = <span class="php-keyword1">NULL</span> )===
 
 <h4>Description:</h4>
 <div class="list">
