@@ -7,7 +7,7 @@
 	<!-- ============================================  -->
 	<target name="build_exe">
 		<echo>Create Windows executable of Budabot Bot Manager.</echo>
-		<property name="pyinstaller.executable" value="" />
+		<property name="pyinstaller.dirpath" value="c:/pyinstaller" />
 
 		<delete dir="build" quiet="true" />
 		<delete dir="dist"  quiet="true" />
