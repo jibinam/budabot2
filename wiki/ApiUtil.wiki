@@ -21,6 +21,7 @@
     * mixed [#mixed_strpos_r_(_string_$haystack_,_array_$needles_) strpos_r] ( string <var>$haystack</var>, array <var>$needles</var> )
     * mixed [#mixed_getFilesInDirectory_(_mixed_$path_) getFilesInDirectory] ( mixed <var>$path</var> )
     * mixed [#mixed_date_(_mixed_$unixtime_) date] ( mixed <var>$unixtime</var> )
+    * mixed [#mixed_endsWith_(_mixed_$string_,_mixed_$test_) endsWith] ( mixed <var>$string</var>, mixed <var>$test</var> )
 
 ----
 ==Methods Documentation==
@@ -141,6 +142,8 @@ with the key indicating the offset and the value indicating the string found.
 ===mixed getFilesInDirectory ( mixed <var>$path</var> )===
 
 ===mixed date ( mixed <var>$unixtime</var> )===
+
+===mixed endsWith ( mixed <var>$string</var>, mixed <var>$test</var> )===
 
 
 <br />
