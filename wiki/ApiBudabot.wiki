@@ -23,6 +23,7 @@ Or:
     * mixed [#mixed_init_(_mixed_&amp;_$vars_) init] ( mixed <var>&amp; $vars</var> )
     * mixed [#mixed_connectAO_(_mixed_$login_,_mixed_$password_,_mixed_$server connectAO] ( mixed <var>$login</var>, mixed <var>$password</var>, mixed <var>$server</var>, mixed <var>$port</var> )
     * mixed [#mixed_run_(_) run] ( )
+    * mixed [#mixed_processNextPacket_(_) processNextPacket] ( )
     * mixed [#mixed_loadCoreModules_(_) loadCoreModules] ( )
     * mixed [#mixed_loadUserModules_(_) loadUserModules] ( )
     * mixed [#mixed_registerModule_(_mixed_$baseDir_,_mixed_$MODULE_NAME_) registerModule] ( mixed <var>$baseDir</var>, mixed <var>$MODULE_NAME</var> )
@@ -115,6 +116,8 @@ connect<br />
 </div>
 
 ===mixed run ( )===
+
+===mixed processNextPacket ( )===
 
 ===mixed loadCoreModules ( )===
 
