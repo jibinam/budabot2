@@ -2,6 +2,14 @@
 
 = Compiling for Linux (CentOS 5.x) =
 
+Method 1:
+{{{
+yum install php-pear
+pecl install http://github.com/downloads/zenovich/runkit/runkit-1.0.2.tgz
+}}}
+(taken from [https://github.com/zenovich/runkit/issues/5])
+
+Method 2:
 Original instructions written by Tyrence [http://budabot.com/forum/viewtopic.php?p=3438#p3438 in the forums]:
 {{{
 yum install gcc  // if it's not already installed
@@ -11,8 +19,6 @@ cd runkit
 pecl install package.xml
 echo 'extension=runkit.so' > /etc/php.d/runkit.ini
 }}}
-
-If you receive this error: 'undefined symbol: ZVAL_REFCOUNT in Unknown on line 0', uninstall runkit and use the install instructions from here: [https://github.com/zenovich/runkit/issues/5]
 
 = Compiling for Linux (Ubuntu 11.04) =
 
