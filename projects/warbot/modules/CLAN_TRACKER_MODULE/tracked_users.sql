@@ -1,1 +1,0 @@
-CREATE TABLE IF NOT EXISTS tracked_users_<myname> (`uid` INT NOT NULL PRIMARY KEY, `name` VARCHAR(25) NOT NULL, `guild` VARCHAR(30), `guild_rank` VARCHAR(20), `level` INT, `profession` VARCHAR(15), `breed` VARCHAR(10), `ai_level` INT, `added_by` VARCHAR(25) NOT NULL, `added_dt` INT NOT NULL, `last_seen` INT);
