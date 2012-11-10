@@ -1,0 +1,2 @@
+To show various stats about current tower site ownership:
+<highlight><tab><symbol>towerstatus<end>

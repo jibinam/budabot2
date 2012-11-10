@@ -1,0 +1,10 @@
+To see which sites of the other factions are currently vulnerable:
+<highlight><tab><symbol>open 'low ct ql' 'high ct ql'<end>
+
+To see which sites of a specific faction are currently vulnerable:
+<highlight><tab><symbol>open 'faction'<end>
+<highlight><tab><symbol>open 'faction' 'low ct ql' 'high ct ql'<end>
+where 'faction' is one of clan, omni, or neutral
+
+To see when sites of the other factions become vulnerable:
+<highlight><tab><symbol>opentimes 'low ct ql' 'high ct ql'<end>

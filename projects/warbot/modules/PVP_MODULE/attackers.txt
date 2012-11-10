@@ -1,0 +1,11 @@
+To see attackers who are online:
+<highlight><tab><symbol>attackers<end>
+
+To see all attackers:
+<highlight><tab><symbol>attackers all<end>
+
+To add a player to the attackers list:
+<highlight><tab><symbol>attackers add 'player'<end>
+
+To remove a player from the attackers list:
+<highlight><tab><symbol>attackers rem 'player'<end>

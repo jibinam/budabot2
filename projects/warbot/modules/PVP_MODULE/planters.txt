@@ -1,0 +1,2 @@
+To show orgs who are eligible to plant a tower site:
+<highlight><tab><symbol>planters 'playfield' 'site number'<end>

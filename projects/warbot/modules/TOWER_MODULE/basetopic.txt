@@ -1,0 +1,6 @@
+To use a base topic as the current topic:
+<highlight><tab><symbol>basetopic 'playfield' 'site number'<end>
+<highlight><tab><symbol>basetopic 'playfield' 'site number' 'additional comment'<end>
+
+To set the rally and topic for a site:
+<highlight><tab><symbol>setbasetopic 'playfield' 'site number' 'rally x coord' 'rally y coord' 'rally playfield' 'comment'<end>

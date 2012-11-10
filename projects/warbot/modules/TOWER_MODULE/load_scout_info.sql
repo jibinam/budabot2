@@ -1,0 +1,1 @@
+INSERT INTO scout_info (playfield_id, site_number, scouted_on, scouted_by, ct_ql, guild_name, faction, close_time, is_current) SELECT playfield_id, site_number, 0 AS scouted_on, '' AS scouted_by, 0 AS ct_ql, '' AS guild_name, '' AS faction, 0 AS close_time, 0 AS is_current from tower_site;

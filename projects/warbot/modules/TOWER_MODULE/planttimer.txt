@@ -1,0 +1,5 @@
+To see a list of sites that have recently been lost:
+<highlight><tab><symbol>planttimer<end>
+
+To set a planttimer for a site that has been recently lost:
+<highlight><tab><symbol>planttimer 'time'<end>

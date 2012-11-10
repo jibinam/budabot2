@@ -1,0 +1,2 @@
+To show orgs have tower sits in penalty:
+<highlight><tab><symbol>penalty<end>

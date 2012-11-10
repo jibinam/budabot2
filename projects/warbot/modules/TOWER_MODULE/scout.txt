@@ -1,0 +1,13 @@
+To scout a tower site:
+<highlight><tab><symbol>scout 'playfield' 'site number' 'closing time' 'ct ql' 'faction' 'guild name'<end>
+
+For instance:
+<highlight><tab><symbol>scout PW 4 12:34:56 190 clan Dark Ninjas<end>
+
+Note that the closing time is the "Created at" time, but only the time part, not the date part.
+
+To remove a scouted tower site:
+<highlight><tab><symbol>remscout 'playfield' 'site number'<end>
+
+To show info on the list of scouted bases:
+<highlight><tab><symbol>opentimes<end>

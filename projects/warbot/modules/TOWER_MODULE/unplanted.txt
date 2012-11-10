@@ -1,0 +1,5 @@
+To see the list of sites that are unplanted:
+<highlight><tab><symbol>unplanted<end>
+
+To add a site to the list of unplanted sites:
+<highlight><tab><symbol>unplanted 'playfield' 'site number'<end>
