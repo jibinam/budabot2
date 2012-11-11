@@ -1,4 +1,0 @@
-<header> :::::: Filter Command :::::: <end>
-
-<highlight>To filter messages from being displayed in chat:<end>
-<tab><symbol>filter add content 'regex'

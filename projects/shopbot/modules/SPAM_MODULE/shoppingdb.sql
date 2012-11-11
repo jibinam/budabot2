@@ -1,1 +1,0 @@
-CREATE TABLE IF NOT EXISTS shoppingdb (`channel` VARCHAR(255), `name` VARCHAR(25), `datetime` INT(11), `message` VARCHAR(7800), `lowid` INT(11), `highid` INT(11), `ql` INT(11), `itemname` VARCHAR(255), `icon` INT (11));
