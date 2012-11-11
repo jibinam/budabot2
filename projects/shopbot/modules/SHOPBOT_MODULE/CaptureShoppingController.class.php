@@ -8,9 +8,9 @@
  *
  * Commands this controller contains:
  *	@DefineCommand(
- *		command     = 'shop'
- *		accessLevel = 'member', 
- *		description = 'Searches shopping messages', 
+ *		command     = 'shop',
+ *		accessLevel = 'member',
+ *		description = 'Searches shopping messages',
  *		help        = 'shop.txt'
  *	)
  */
@@ -54,7 +54,7 @@ class CaptureShoppingController {
 		$this->db->loadSQLFile($this->moduleName, "shopping_messages");
 		$this->db->loadSQLFile($this->moduleName, "shopping_items");
 		
-		$this->settingManager->register($this->moduleName, "shop_message_age", "How long to keep shopping messages", "edit", "time", "10d", "1d;2d;5d;10d;15d;20d");
+		$this->settingManager->add($this->moduleName, "shop_message_age", "How long to keep shopping messages", "edit", "time", "10d", "1d;2d;5d;10d;15d;20d");
 	}
 	
 	/**

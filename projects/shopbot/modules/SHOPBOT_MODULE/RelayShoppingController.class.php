@@ -8,25 +8,25 @@
  *
  * Commands this controller contains:
  *	@DefineCommand(
- *		command     = 'spam'
- *		accessLevel = 'member', 
- *		description = 'Spams message to public channel', 
+ *		command     = 'spam',
+ *		accessLevel = 'member',
+ *		description = 'Spams message to public channel',
  *		help        = 'spam.txt'
  *	)
  *	@DefineCommand(
- *		command     = 'spamproxy'
- *		accessLevel = 'mod', 
- *		description = 'Spams message to public channel on behalf of another player', 
+ *		command     = 'spamproxy',
+ *		accessLevel = 'mod',
+ *		description = 'Spams message to public channel on behalf of another player',
  *		help        = 'spamproxy.txt'
  *	)
  *	@DefineCommand(
- *		command     = 'filter'
- *		accessLevel = 'mod', 
- *		description = 'Manage filters for incoming shopping messages', 
+ *		command     = 'filter',
+ *		accessLevel = 'mod',
+ *		description = 'Manage filters for incoming shopping messages',
  *		help        = 'filter.txt'
  *	)
  */
-class CaptureShoppingController {
+class RelayShoppingController {
 
 	/**
 	 * Name of the module.
@@ -72,9 +72,9 @@ class CaptureShoppingController {
 	public function setup() {
 		$this->db->loadSQLFile($this->moduleName, "filtercontent");
 
-		$this->settingManager->register($this->moduleName, "shopbot_master", "Set the shopbot master", "edit", "text", "0");
-		$this->settingManager->register($this->moduleName, "time_between_messages", "Time users must wait between spamming messages", "edit", "time", "30m", "5m;10m;15m;20m;30m;45m;60m");
-		$this->settingManager->register($this->moduleName, "add_ql_info", "Enable showing ql as part of item links", "edit", "options", "0", "true;false", "1;0");
+		$this->settingManager->add($this->moduleName, "shopbot_master", "Set the shopbot master", "edit", "text", "0");
+		$this->settingManager->add($this->moduleName, "time_between_messages", "Time users must wait between spamming messages", "edit", "time", "30m", "5m;10m;15m;20m;30m;45m;60m");
+		$this->settingManager->add($this->moduleName, "add_ql_info", "Enable showing ql as part of item links", "edit", "options", "0", "true;false", "1;0");
 	}
 	
 	/**
@@ -93,7 +93,7 @@ class CaptureShoppingController {
 	}
 	
 	/**
-	 * @HandlesCommand("spam")
+	 * @HandlesCommand("spamproxy")
 	 * @Matches("/^spamproxy (shopping|ooc) (clan|omni|neut|all|both) ([a-z0-9-]+) (.+)$/i")
 	 */
 	public function spamproxyCommand($message, $channel, $sender, $sendto, $args) {
@@ -167,7 +167,7 @@ class CaptureShoppingController {
 			$newChannel = str_replace(" shopping 11-50", "", $channel);  // shorten channel name (e.g. remove "shopping " from "OT shopping 11-50" to get "OT")
 
 			$senderLink = $this->text->make_userlink($sender);
-			$this->chatBot->sendPrivate("[$newChannel] $senderLink: $message", $this->settingManager->get('shopbot_master'));
+			$this->sendToMasterChannel("[$newChannel] $senderLink: $message");
 			$this->lastMessage = $message;
 		} else {
 			//echo "DUPLICATE-$message\n";
@@ -182,9 +182,9 @@ class CaptureShoppingController {
 		$sender = $eventObj->sender;
 		if (strtolower($sender) == strtolower($this->settingManager->get('shopbot_master'))) {
 			return;
-		} else if (!$this->accessLevelt->check_access($sender, 'member')) {
+		} else if (!$this->accessLevel->checkAccess($sender, 'member')) {
 			$senderLink = $this->text->make_userlink($sender);
-			$this->chatBot->sendPrivate("<green>[Inc. Msg.]<end> {$senderLink}: <green>{$message}<end>", $this->settingManager->get('shopbot_master'));
+			$this->sendToMasterChannel("<green>[Inc. Msg.]<end> {$senderLink}: <green>{$message}<end>");
 
 			// we don't want the bot to respond back to people
 			throw new StopExecutionException();
@@ -213,8 +213,12 @@ class CaptureShoppingController {
 		if ($message[0] == $this->settingManager->get('symbol') && strtolower($channel) == strtolower($this->settingManager->get('shopbot_master'))) {
 			$message = substr($message, 1);
 			$sendto = new PrivateMessageCommandReply($this->chatBot, $sender);
-			$this->commandManager->process($channel, $message, $sender, $sendto);
+			$this->commandManager->process("msg", $message, $sender, $sendto);
 		}
+	}
+	
+	public function sendToMasterChannel($msg) {
+		$this->chatBot->sendPrivate($msg, false, $this->settingManager->get('shopbot_master'));
 	}
 }
 	
