@@ -53,7 +53,7 @@ class RelayShoppingController {
 	public $util;
 	
 	/** @Inject */
-	public $accessLevel;
+	public $accessManager;
 	
 	/** @Inject */
 	public $playerManager;
@@ -182,7 +182,7 @@ class RelayShoppingController {
 		$sender = $eventObj->sender;
 		if (strtolower($sender) == strtolower($this->settingManager->get('shopbot_master'))) {
 			return;
-		} else if (!$this->accessLevel->checkAccess($sender, 'member')) {
+		} else if (!$this->accessManager->checkAccess($sender, 'member')) {
 			$senderLink = $this->text->make_userlink($sender);
 			$this->sendToMasterChannel("<green>[Inc. Msg.]<end> {$senderLink}: <green>{$message}<end>");
 
@@ -219,6 +219,75 @@ class RelayShoppingController {
 	
 	public function sendToMasterChannel($msg) {
 		$this->chatBot->sendPrivate($msg, false, $this->settingManager->get('shopbot_master'));
+	}
+	
+	public function spam_shopping_message($message, $channel, $side = 'both') {
+		$this->logger->log('DEBUG', "Sending spam => $channel $side: '$message'");
+
+		if ($channel == 'shopping') {
+			if ($side == 'omni') {
+				$this->chatBot->sendPublic($message, "OT shopping 11-50");
+			} else if ($side == 'clan') {
+				$this->chatBot->sendPublic($message, "Clan shopping 11-50");
+			} else if ($side == 'neut') {
+				$this->chatBot->sendPublic($message, "Neu. shopping 11-50");
+			} else if ($side == 'both') {
+				$this->chatBot->sendPublic($message, "OT shopping 11-50");
+				$this->chatBot->sendPublic($message, "Clan shopping 11-50");
+			} else if ($side == 'all') {
+				$this->chatBot->sendPublic($message, "OT shopping 11-50");
+				$this->chatBot->sendPublic($message, "Clan shopping 11-50");
+				$this->chatBot->sendPublic($message, "Neu. shopping 11-50");
+			}
+		} else if ($channel == 'ooc') {
+			if ($side == 'omni') {
+				$this->chatBot->sendPublic($message, "OT OOC");
+			} else if ($side == 'clan') {
+				$this->chatBot->sendPublic($message, "Clan OOC");
+			} else if ($side == 'neut') {
+				$this->chatBot->sendPublic($message, "Neu. OOC");
+			} else if ($side == 'both') {
+				$this->chatBot->sendPublic($message, "OT OOC");
+				$this->chatBot->sendPublic($message, "Clan OOC");
+			} else if ($side == 'all') {
+				$this->chatBot->sendPublic($message, "OT OOC");
+				$this->chatBot->sendPublic($message, "Clan OOC");
+				$this->chatBot->sendPublic($message, "Neu. OOC");
+			}
+		}
+	}
+	
+	public function time_left_for_spam_protection($sender) {
+		$time_between_messages = $this->settingManager->get('time_between_messages');
+		
+		if ($this->accessManager->checkAccess($sender, "rl")) {
+			return 0;
+		}
+
+		$current_time = time();
+		if (!isset($this->shopping_spam_protection[$sender])) {
+			$this->shopping_spam_protection[$sender] = 0;
+		}
+		$last_time_msg_sent = $this->shopping_spam_protection[$sender];
+
+		if (($current_time - $last_time_msg_sent) < $time_between_messages) {
+			return $time_between_messages - ($current_time - $last_time_msg_sent);
+		}
+
+		return 0;
+	}
+	
+	public function process_spam_request($sender, $message, $channel, $side) {
+		$current_time = time();
+		$timeleft = $this->time_left_for_spam_protection($sender);
+
+		if ($timeleft > 0) {
+			$this->chatBot->send("You may not send a message for another " . round($timeleft / 60) . " minutes.", $sender);
+		} else {
+			$this->shopping_spam_protection[$sender] = $current_time;
+
+			$this->spam_shopping_message($message, $channel, $side);
+		}
 	}
 }
 	
