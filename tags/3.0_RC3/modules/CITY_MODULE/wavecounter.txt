@@ -1,0 +1,12 @@
+To show the current wave:
+<highlight><tab><symbol>citywave<end>
+
+To start the wave timer:
+<highlight><tab><symbol>startwave<end>
+
+To stop the wave timer:
+<highlight><tab><symbol>stopwave<end>
+
+Note: the Wave Counter should start and end automatically and normally these commands are not needed.
+
+By Funkman (RK2)

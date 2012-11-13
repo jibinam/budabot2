@@ -1,0 +1,5 @@
+To set your logon message:
+<highlight><tab><symbol>logon 'logon message'<end>
+
+To clear your logon message:
+<highlight><tab><symbol>logon clear<end>

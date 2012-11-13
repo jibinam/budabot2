@@ -1,0 +1,3 @@
+To see the loot of a specific sector:
+<highlight><tab><symbol>apf 'sector number'<end>
+<tab>(Allowed Sector numbers are 13, 28 and 35)

@@ -1,0 +1,8 @@
+To show the current assist macro:
+<highlight><tab><symbol>assist<end>
+
+To create an assist macro for a single player:
+<highlight><tab><symbol>assist 'player'<end>
+
+To create an assist macro for a multiple players:
+<highlight><tab><symbol>assist 'player1' 'player2' 'player3' ...<end>

@@ -1,0 +1,5 @@
+To see all bio material types:
+<highlight><tab><symbol>bioinfo<end>
+
+To see info on a particular bio material type:
+<highlight><tab><symbol>bioinfo 'type'<end>

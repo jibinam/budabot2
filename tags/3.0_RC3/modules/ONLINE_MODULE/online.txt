@@ -1,0 +1,6 @@
+To show the online list:
+<highlight><tab><symbol>online<end>
+<highlight><tab><symbol>online all<end>
+
+To show the online list filtered by profession:
+<highlight><tab><symbol>online 'prof'<end>

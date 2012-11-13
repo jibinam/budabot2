@@ -1,0 +1,17 @@
+<header2>Flip Command<end>
+
+To flip a coin:
+<highlight><tab><symbol>flip<end>
+
+<header2>Roll Command<end>
+
+To roll a number between 1 and a number:
+<highlight><tab><symbol>roll 'number'<end>
+
+To roll a number between a startvalue and a endvalue:
+<highlight><tab><symbol>roll 'startvalue' 'endvalue'<end>
+
+<header2>Verify Command<end>
+
+To verify a roll:
+<highlight><tab><symbol>verify 'verify number'<end>

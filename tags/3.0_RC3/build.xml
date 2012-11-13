@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>
+<!-- 
+	When you update this, make sure that http://code.google.com/p/budabot2/wiki/BuildTool
+	is up to date as well!
+-->
+<project name="Budabot" default="build" basedir=".">
+	<!-- include custom task for reading budabot's version from main.php file -->
+	<taskdef classname="lib.PhingTasks.BudabotVersionTask" name="budabotversion" />
+	<!-- include custom task for running Behat -->
+	<taskdef classname="lib.PhingTasks.BehatTask" name="behat" />
+
+	<svnlastrevision workingcopy="."       propertyname="svn.revision" />
+	<budabotversion  sourcefile="main.php" propertyname="budabot.version" />
+
+	<patternset id="common_files">
+		<include name="conf/log4php.xml" />
+		<include name="conf/config.template.php" />
+		<include name="core/**" />
+		<include name="data/text.mdb" />
+		<include name="docs/*.txt" />
+		<include name="lib/**" />
+		<exclude name="lib/Process.class.php" />
+		<exclude name="lib/composer.*" />
+		<exclude name="lib/*.patch" />
+		<exclude name="lib/PhingTasks**" />
+		<exclude name="lib/bin**" />
+		<exclude name="lib/vendor/behat**" />
+		<exclude name="lib/vendor/dhaarbrink**" />
+		<exclude name="lib/vendor/symfony/config**" />
+		<exclude name="lib/vendor/symfony/console**" />
+		<exclude name="lib/vendor/symfony/dependency-injection**" />
+		<exclude name="lib/vendor/symfony/finder**" />
+		<exclude name="lib/vendor/symfony/translation**" />
+		<exclude name="lib/vendor/symfony/yaml**" />
+
+		<include name="*.php" />
+		<include name="modules/**" />
+		<!-- define here modules which you wish to leave out of the archive -->
+		<exclude name="modules/CIA_MODULE**" />
+		<exclude name="modules/SVN_MODULE**" />
+		<exclude name="modules/TEST_MODULE**" />
+		<exclude name="modules/WORLDNET_MODULE**" />
+	</patternset>
+
+	<patternset id="win32_files">
+		<include name="win32/**" />
+		<include name="chatbot.bat" />
+		<include name="php-win.ini" />
+	</patternset>
+
+	<patternset id="linux_files">
+		<include name="chatbot.sh" />
+		<include name="botmanager.sh" />
+	</patternset>
+
+	<!-- ============================================  -->
+	<!-- (DEFAULT) Target: build                       --> 
+	<!-- ============================================  -->
+	<target name="build" depends="build_linux, build_win32" />
+
+	<!-- ============================================  -->
+	<!-- (DEFAULT) Target: build_linux                 --> 
+	<!-- ============================================  -->
+	<target name="build_linux" depends="clean">
+		<echo>Create release package of Budabot.</echo>
+		<property name="build.basename"    value="Budabot${budabot.version}_build${svn.revision}_linux" override="true" />
+		<property name="build.contentsdir" value="${project.basedir}/build/contents_linux" override="true" />
+		<property name="build.archivedir"  value="${build.contentsdir}/${build.basename}" override="true" />
+
+		<!-- Include Bot Manager -->
+		<phing dir="botmanager" target="copy">
+			<property name="botmanager.copyto" value="${build.archivedir}/botmanager" />
+		</phing>
+
+		<copy todir="${build.archivedir}">
+			<fileset dir=".">
+				<patternset refid="common_files" />
+				<patternset refid="linux_files" />
+			</fileset>
+		</copy>
+		<zip basedir="${build.contentsdir}" destfile="build/${build.basename}.zip" />
+	</target>
+
+	<!-- ============================================  -->
+	<!-- (DEFAULT) Target: Build_win32                 --> 
+	<!-- ============================================  -->
+	<target name="build_win32" depends="clean">
+		<echo>Create release package of Budabot (Windows version).</echo>
+		<property name="build.basename"    value="Budabot${budabot.version}_build${svn.revision}_win32" override="true" />
+		<property name="build.contentsdir" value="${project.basedir}/build/contents_win32" override="true" />
+		<property name="build.archivedir"  value="${build.contentsdir}/${build.basename}" override="true" />
+
+		<!-- Include Bot Manager -->
+		<phing dir="botmanager" target="build" />
+		<copy file="botmanager/dist/botmanager.exe" todir="${build.archivedir}" />
+
+		<!-- Include Budabot's files -->
+		<copy todir="${build.archivedir}">
+			<fileset dir=".">
+				<patternset refid="common_files" />
+				<patternset refid="win32_files" />
+			</fileset>
+		</copy>
+
+		<!-- Compress the files into an archive -->
+		<zip basedir="${build.contentsdir}" destfile="build/${build.basename}.zip" />
+	</target>
+
+	<!-- ============================================  -->
+	<!-- Target: Wikidoc                               -->
+	<!-- ============================================  -->
+	<target name="wikidoc">
+		<echo>Generate Google Wiki documentation with ApiGen.</echo>
+		<!-- destination can be overridden at command line -->
+		<property name="wikidoc.destination" value="docs/wiki" />
+		<apigen config="docs/apigen_wiki.neon" destination="${wikidoc.destination}" />
+	</target>
+
+	<!-- ============================================  -->
+	<!-- Target: Apidoc                                -->
+	<!-- ============================================  -->
+	<target name="apidoc">
+		<echo>Generate API documentation with ApiGen.</echo>
+		<!-- destination can be overridden at command line -->
+		<property name="apidoc.destination" value="docs/api" />
+		<apigen source="core,modules" destination="${apidoc.destination}" title="Budabot" />
+	</target>
+
+	<!-- ============================================  -->
+	<!-- Target: behat                                 --> 
+	<!-- ============================================  -->
+	<target name="behat">
+		<echo>Run integration tests with Behat.</echo>
+		<property name="behat.profile" value="" />
+		<!-- create logs folder for log files when ran as continuous integration server -->
+		<if>
+			<equals arg1="${behat.profile}" arg2="ci"/>
+			<then>
+				<mkdir dir="logs" />
+			</then>
+		</if>
+		<!-- run test suite -->
+		<behat workingdir="tests" executable="lib/bin/behat" profile="${behat.profile}" />
+	</target>
+
+	<!-- ============================================  -->
+	<!-- Target: clean                                 --> 
+	<!-- ============================================  -->
+	<target name="clean">
+		<echo>Remove temporary files.</echo>
+		<delete dir="build" quiet="true" />
+	</target>
+
+</project>
