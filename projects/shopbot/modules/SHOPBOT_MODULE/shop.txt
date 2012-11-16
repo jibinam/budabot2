@@ -1,0 +1,2 @@
+To search for items that have been posted to the shopping channels:
+<highlight><tab><symbol>shop 'search'<end>

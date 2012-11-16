@@ -1,0 +1,16 @@
+To spam a message to public channels:
+<highlight><tab><symbol>spam 'channel type' 'channel faction' 'message'<end>
+
+To spam a message to public channels in behalf of another player:
+<highlight><tab><symbol>spamproxy 'player' 'channel type' 'channel faction' 'message'<end>
+
+<header2>Channel Types<end>
+shopping - Clan shopping 11-50, Neu. shopping 11-50, OT shopping 11-50
+ooc - Clan OOC, Neu. OOC, or OT OOC
+
+<header2>Channel Factions<end>
+clan
+omni
+neut
+all - Omni, Neutral, and Clan
+both - Omni and Clan
