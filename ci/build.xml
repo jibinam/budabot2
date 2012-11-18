@@ -18,7 +18,7 @@
 
 	<target name="build_and_upload_archives">
 		<!-- Create release archives -->
-		<phing dir="../trunk" target="build" />
+		<phing dir="../trunk" target="build" haltonfailure="true" />
 
 		<!-- Upload the archives -->
 		<scp username="${upload.username}" password="${upload.password}" host="${upload.hostname}" todir="${build.upload_destination}">
@@ -46,8 +46,8 @@
 	</target>
 
 	<target name="run_tests">
-		<phing dir="../trunk" target="behat" />
-		<phing dir="../trunk" target="check_style" />
+		<phing dir="../trunk" target="behat" haltonfailure="true" />
+		<phing dir="../trunk" target="check_style" haltonfailure="true" />
 	</target>
 
 </project>
