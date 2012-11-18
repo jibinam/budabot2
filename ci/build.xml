@@ -47,6 +47,7 @@
 
 	<target name="run_tests">
 		<phing dir="../trunk" target="behat" />
+		<phing dir="../trunk" target="check_style" />
 	</target>
 
 </project>
