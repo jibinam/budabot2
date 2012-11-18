@@ -145,6 +145,7 @@ namespace BudabotItemsExtractor
                     continue;
                 }
                 string[] parms = line.Split(',');
+                logMessage("Processing static entry: '" + parms[0].ToString() + "', '" + parms[1].ToString() + "', '" + parms[2].ToString() + "', '" + parms[3].ToString() + "'");
                 Hashtable low = db.QuerySingle(string.Format(
                     "SELECT * FROM entries WHERE aoid = {0} AND ql = {1}",
                     parms[0].ToString(), parms[2].ToString()
@@ -157,6 +158,10 @@ namespace BudabotItemsExtractor
                     high["ql"] = parms[3].ToString();
 
                     addItem(db, low, high);
+                }
+                else
+                {
+                    logMessage("ERROR-Could not find item id '" + parms[0].ToString() + "' at ql '" + parms[2].ToString() + "'");
                 }
             }
 
@@ -311,7 +316,7 @@ namespace BudabotItemsExtractor
                 "INSERT INTO aodb (lowid, highid, lowql, highql, name, icon) " +
                 "VALUES ({0}, {1}, {2}, {3}, '{4}', {5})",
                 low["aoid"].ToString(), high["aoid"].ToString(), low["ql"].ToString(), high["ql"].ToString(),
-                db.Escape(low["name"].ToString()), low["icon"].ToString()
+                db.Escape(low["name"].ToString().Trim()), low["icon"].ToString()
             );
             db.NonQuery(sql);
             logMessage(sql);
