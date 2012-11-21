@@ -1,0 +1,1070 @@
+# Settings
+!settings save shop_message_age 864000
+!settings save guest_color_channel <font color=#C3C3C3>
+!settings save guest_color_guild <font color=#C3C3C3>
+!settings save guest_color_guest <font color=#C3C3C3>
+!settings save guest_relay 1
+!settings save guest_relay_commands 0
+!settings save priv_status 1
+!settings save priv_status_reason none
+!settings save topic &quot;!spam shopping both msg&quot;, &quot;!spam ooc both msg&quot;, &quot;!search combined&quot;
+!settings save topic_setby Tyrence7
+!settings save topic_time 1318320101
+!settings save leaderecho 1
+!settings save leaderecho_color <font color=#FFFF00>
+!settings save time_between_messages 60
+!settings save relaytype 1
+!settings save relaysymbol @
+!settings save relaybot Off
+!settings save bot_relay_commands 0
+!settings save relay_color_guild <font color='#C3C3C3'>
+!settings save relay_color_priv <font color='#C3C3C3'>
+!settings save broadcast_to_guild 1
+!settings save broadcast_to_privchan 0
+!settings save dnet_status 0
+!settings save online_expire 900
+!settings save chatlist_tell 1
+!settings save fancy_online 1
+!settings save icon_fancy_online 1
+!settings save online_group_by profession
+!settings save online_show_org_guild 1
+!settings save online_show_org_priv 2
+!settings save online_colorful 1
+!settings save online_admin 0
+!settings save maxitems 40
+!settings save relay_guild_abbreviation none
+!settings save add_ql_info 1
+!settings save default_guild_color <font color='#84FFFF'>
+!settings save default_priv_color <font color='#84FFFF'>
+!settings save default_window_color <font color='#84FFFF'>
+!settings save default_tell_color <font color='#DDDDDD'>
+!settings save default_highlight_color <font color='#9CC6E7'>
+!settings save default_header_color <font color='#FFFF00'>
+!settings save default_clan_color <font color='#F79410'>
+!settings save default_omni_color <font color='#00FFFF'>
+!settings save default_neut_color <font color='#EEEEEE'>
+!settings save default_unknown_color <font color='#FF0000'>
+!settings save symbol !
+!settings save guild_admin_rank 1
+!settings save guild_admin_access_level all
+!settings save spam_protection 0
+!settings save max_blob_size 7500
+!settings save xml_timeout 5
+!settings save logon_delay 5
+!settings save guild_channel_status 1
+!settings save guild_channel_cmd_feedback 1
+!settings save private_channel_cmd_feedback 1
+!settings save notify_banned_player 0
+!settings save tell_req_lvl 0
+!settings save tell_req_faction all
+!settings save tell_req_open all
+!settings save alts_inherit_admin 0
+!settings save validate_from_validated_alt 1
+!settings save record_usage_stats 1
+!settings save last_submitted_stats 1353403075
+!settings save default_header2_color <font color='#FCA712'>
+!settings save httpapi_port 80
+!settings save httpapi_base_uri 
+!settings save httpapi_enabled 0
+!settings save bank_file_location ./modules/BANK_MODULE/import.csv
+!settings save max_bank_items 200
+!settings save tower_attack_spam 1
+!settings save tower_faction_def 7
+!settings save tower_faction_atk 7
+!settings save tower_page_size 15
+!settings save check_close_time_on_scout 1
+!settings save check_guild_name_on_scout 1
+!settings save rally 
+!settings save bbin_status 0
+!settings save bbin_server irc.funcom.com
+!settings save bbin_port 6667
+!settings save bbin_nickname Buynsell
+!settings save bbin_channel #buynsell
+!settings save bbin_password none
+!settings save add_on_loot 2
+!settings save showcloakstatus 1
+!settings save cloak_reminder_interval 300
+!settings save vote_channel_spam 2
+!settings save vote_add_new_choices 1
+!settings save vote_create_min -1
+!settings save vote_use_min -1
+!settings save showfullurls 0
+!settings save worldnet_bot Worldnet
+!settings save worldnet_channel_color <font color='#FFFFFF'>
+!settings save worldnet_message_color <font color='#FFFFFF'>
+!settings save worldnet_sender_color <font color='#FFFFFF'>
+!settings save irc_status 0
+!settings save irc_server irc.funcom.com
+!settings save irc_port 6667
+!settings save irc_nickname Buynsell
+!settings save irc_channel #Buynsell
+!settings save irc_password none
+!settings save irc_guild_message_color <font color='#FFFFFF'>
+!settings save irc_guild_name_color <font color='#FFFFFF'>
+!settings save irc_message_color <font color='#FFFFFF'>
+!settings save irc_ignore none
+!settings save quote_stat_count 10
+!settings save ventaddress unknown
+!settings save ventport unknown
+!settings save ventpass unknown
+!settings save showventpassword 1
+!settings save showextendedinfo 1
+!settings save max_logon_msg_size 200
+!settings save max_logoff_msg_size 200
+!settings save first_and_last_alt_only 0
+!settings save svnconflict theirs-conflict
+!settings save svnpath svn
+!settings save maxnano 40
+!settings save shownanolineicons 0
+!settings save relaysymbolmethod 0
+!settings save ts_username serveradmin
+!settings save ts_password password
+!settings save ts_queryport 10011
+!settings save ts_clientport 9987
+!settings save ts_description Teamspeak 3 Server
+!settings save ts_server 127.0.0.1
+!settings save show_test_commands 0
+!settings save show_test_results 0
+!settings save dnet_channel_pvp 1
+!settings save dnet_channel_pvm 1
+!settings save dnet_channel_event 1
+!settings save dnet_channel_shopping 1
+!settings save dnet_channel_lootrights 1
+!settings save dnet_channel_general 1
+!settings save dnet_channel_announce 1
+!settings save tell_min_player_age 1
+!settings save tell_generic_error_msg 0
+
+# Events
+!config event logon alts.checkUnvalidatedAltsEvent disable all
+!config event 24hrs usagecontroller.submitUsage enable all
+!config event connect apicontroller.connectEvent disable all
+!config event connect privatechannelcontroller.connectEvent enable all
+!config event guild privatechannelcontroller.relayPrivateChannelEvent disable all
+!config event priv privatechannelcontroller.relayGuildChannelEvent disable all
+!config event logon privatechannelcontroller.logonAutoinviteEvent enable all
+!config event joinpriv privatechannelcontroller.joinPrivateChannelMessageEvent disable all
+!config event leavepriv privatechannelcontroller.leavePrivateChannelMessageEvent disable all
+!config event joinpriv privatechannelcontroller.joinPrivateChannelRecordEvent enable all
+!config event leavepriv privatechannelcontroller.leavePrivateChannelRecordEvent enable all
+!config event joinpriv privatechannelcontroller.joinPrivateChannelShowOnlineEvent disable all
+!config event joinpriv privatechannelcontroller.joinPrivateChannelShowChatlistEvent disable all
+!config event 1min bbincontroller.autoReconnectEvent disable all
+!config event 2s bbincontroller.checkForIRCEvent disable all
+!config event priv bbincontroller.relayPrivMessagesEvent disable all
+!config event guild bbincontroller.relayGuildMessagesEvent disable all
+!config event joinpriv bbincontroller.joinPrivEvent disable all
+!config event logon bbincontroller.logonEvent disable all
+!config event leavepriv bbincontroller.leavePrivEvent disable all
+!config event logoff bbincontroller.logoffEvent disable all
+!config event guild wavecountercontroller.autoStartWaveCounterEvent disable all
+!config event 2sec wavecountercontroller.checkWaveCounterTimerEvent disable all
+!config event guild cloakcontroller.recordCloakChangesEvent disable all
+!config event 1min cloakcontroller.checkTimerEvent disable all
+!config event 1min cloakcontroller.cloakReminderEvent disable all
+!config event logon cloakcontroller.cityGuildLogonEvent disable all
+!config event connect ciacontroller.openApiSocket disable all
+!config event logon eventscontroller.logonEvent disable all
+!config event joinpriv eventscontroller.joinPrivEvent disable all
+!config event 2sec votecontroller.checkVote disable all
+!config event 1sec timercontroller.checkTimers disable all
+!config event 1min whoiscontroller.saveCharIds disable all
+!config event allpackets whoiscontroller.recordCharIds disable all
+!config event 2sec rafflecontroller.checkRaffleEvent disable all
+!config event towers towercontroller.attackMessagesEvent disable all
+!config event towers towercontroller.victoryMessagesEvent disable all
+!config event 24hrs itemscontroller.checkForUpdate disable all
+!config event logon chattopiccontroller.logonEvent disable all
+!config event joinpriv chattopiccontroller.joinPrivEvent disable all
+!config event joinpriv chatrallycontroller.sendRally disable all
+!config event priv chatleadercontroller.privEvent disable all
+!config event leavepriv chatleadercontroller.leavePrivEvent disable all
+!config event logon news.logonEvent disable all
+!config event joinpriv news.privateChannelJoinEvent disable all
+!config event logon worldnet.logon disable all
+!config event connect worldnet.connect disable all
+!config event extjoinprivrequest worldnet.acceptInvite disable all
+!config event extpriv worldnet.incomingMessage disable all
+!config event 1min irccontroller.autoReconnectEvent disable all
+!config event 2s irccontroller.checkForIRCEvent disable all
+!config event priv irccontroller.relayPrivMessagesEvent disable all
+!config event guild irccontroller.relayGuildMessagesEvent disable all
+!config event joinpriv irccontroller.joinPrivEvent disable all
+!config event logon irccontroller.logonEvent disable all
+!config event leavepriv irccontroller.leavePrivEvent disable all
+!config event logoff irccontroller.logoffEvent disable all
+!config event connect trackercontroller.trackedUsersConnectEvent disable all
+!config event logon trackercontroller.trackLogonEvent disable all
+!config event logoff trackercontroller.trackLogoffEvent disable all
+!config event msg broadcastcontroller.incomingMessageEvent disable all
+!config event allpackets relayshoppingcontroller.relayShoppingMessagesEvent enable all
+!config event msg relayshoppingcontroller.tellMessagesEvent enable all
+!config event extjoinprivrequest relayshoppingcontroller.inviteFromShopbotMasterEvent disable all
+!config event extpriv relayshoppingcontroller.processExternalPrivateCommandEvent disable all
+!config event allpackets captureshoppingcontroller.captureShoppingMessagesEvent enable all
+!config event 24hrs captureshoppingcontroller.removeOldMessagesEvent enable all
+!config event logon ventrilocontroller.sendVentStatusLogonEvent disable all
+!config event 24hrs guildcontroller.downloadOrgRosterEvent disable all
+!config event orgmsg guildcontroller.autoNotifyOrgMembersEvent disable all
+!config event logon guildcontroller.orgMemberLogonMessageEvent disable all
+!config event logoff guildcontroller.orgMemberLogoffMessageEvent disable all
+!config event logoff guildcontroller.orgMemberLogoffRecordEvent disable all
+!config event logon isonlinecontroller.logonEvent disable all
+!config event logoff isonlinecontroller.logoffEvent disable all
+!config event logon orglistcontroller.orgMemberLogonEvent enable all
+!config event logoff orglistcontroller.orgMemberLogoffEvent enable all
+!config event logon onlinecontroller.recordLogonEvent disable all
+!config event logoff onlinecontroller.recordLogoffEvent disable all
+!config event logon onlinecontroller.showOnlineOnLogonEvent disable all
+!config event 10mins onlinecontroller.onlineCheckEvent enable all
+!config event priv onlinecontroller.afkCheckPrivateChannelEvent disable all
+!config event guild onlinecontroller.afkCheckGuildChannelEvent disable all
+!config event priv onlinecontroller.afkPrivateChannelEvent disable all
+!config event guild onlinecontroller.afkGuildChannelEvent disable all
+!config event extpriv relaycontroller.receiveRelayMessageExtPrivEvent disable all
+!config event priv relaycontroller.receiveRelayMessagePrivEvent disable all
+!config event guild relaycontroller.orgChatToRelayEvent disable all
+!config event priv relaycontroller.privChatToRelayEvent disable all
+!config event extjoinprivrequest relaycontroller.acceptPrivJoinEvent disable all
+!config event orgmsg relaycontroller.relayOrgMessagesEvent disable all
+!config event logon relaycontroller.relayLogonMessagesEvent disable all
+!config event logoff relaycontroller.relayLogoffMessagesEvent disable all
+!config event joinpriv relaycontroller.relayJoinPrivMessagesEvent disable all
+!config event leavepriv relaycontroller.relayLeavePrivMessagesEvent disable all
+!config event logon teamspeakcontroller.sendTSStatusLogonEvent disable all
+!config event orgmsg oscontroller.osTimerEvent disable all
+!config event orgmsg orghistorycontroller.captureOrgMessagesEvent disable all
+!config event extpriv dnetcontroller.incomingPrivateChannelMessageEvent disable all
+!config event extjoinprivrequest dnetcontroller.incomingPrivateChannelJoinEvent disable all
+!config event connect dnetcontroller.joinDnetOnConnectEvent disable all
+!config event 1hour systemcontroller.refreshMySQLConnectionEvent enable all
+!config event 2sec systemcontroller.reduceSpamValuesEvent enable all
+!config event connect systemcontroller.onConnectEvent enable all
+!config event connect admincontroller.checkAdminsEvent enable all
+!config event 1min bancontroller.checkTempBan enable all
+
+# Commands
+!config cmd shop enable msg
+!config cmd shop enable priv
+!config cmd shop enable guild
+!config cmd members enable msg
+!config cmd members enable priv
+!config cmd members enable guild
+!config cmd sm enable msg
+!config cmd sm enable priv
+!config cmd sm enable guild
+!config cmd autoinvite enable msg
+!config cmd autoinvite enable priv
+!config cmd autoinvite enable guild
+!config cmd join enable guild
+!config cmd join enable msg
+!config cmd leave enable priv
+!config cmd leave enable msg
+!config cmd count enable msg
+!config cmd count enable priv
+!config cmd count enable guild
+!config cmd kickall enable msg
+!config cmd kickall enable priv
+!config cmd kickall enable guild
+!config cmd lock enable msg
+!config cmd lock enable priv
+!config cmd lock enable guild
+!config cmd unlock enable msg
+!config cmd unlock enable priv
+!config cmd unlock enable guild
+!config cmd adduser enable msg
+!config cmd adduser enable priv
+!config cmd adduser enable guild
+!config cmd remuser enable msg
+!config cmd remuser enable priv
+!config cmd remuser enable guild
+!config cmd accept enable msg
+!config cmd accept enable priv
+!config cmd accept enable guild
+!config cmd check enable msg
+!config cmd check enable priv
+!config cmd check enable guild
+!config cmd topic enable msg
+!config cmd topic enable priv
+!config cmd topic enable guild
+!config cmd topic (.+) enable msg
+!config cmd topic (.+) enable priv
+!config cmd topic (.+) enable guild
+!config cmd leader enable priv
+!config cmd leader (.+) enable priv
+!config cmd leaderecho enable msg
+!config cmd leaderecho enable priv
+!config cmd leaderecho enable guild
+!config cmd assist enable msg
+!config cmd assist enable priv
+!config cmd assist enable guild
+!config cmd assist (.+) enable msg
+!config cmd assist (.+) enable priv
+!config cmd assist (.+) enable guild
+!config cmd heal enable msg
+!config cmd heal enable priv
+!config cmd heal enable guild
+!config cmd heal (.+) enable msg
+!config cmd heal (.+) enable priv
+!config cmd heal (.+) enable guild
+!config cmd tell enable msg
+!config cmd tell enable priv
+!config cmd tell enable guild
+!config cmd cmd enable msg
+!config cmd cmd enable priv
+!config cmd cmd enable guild
+!config cmd spamproxy enable msg
+!config cmd spamproxy enable priv
+!config cmd spamproxy enable guild
+!config cmd spam enable msg
+!config cmd spam enable priv
+!config cmd spam enable guild
+!config cmd tellrelay enable msg
+!config cmd tellrelay enable priv
+!config cmd tellrelay enable guild
+!config cmd grc enable msg
+!config cmd broadcast enable msg
+!config cmd broadcast enable priv
+!config cmd broadcast enable guild
+!config cmd dnet enable msg
+!config cmd dnet enable priv
+!config cmd dnet enable guild
+!config cmd filter enable msg
+!config cmd filter enable priv
+!config cmd filter enable guild
+!config cmd online enable msg
+!config cmd online enable priv
+!config cmd online enable guild
+!config cmd items enable msg
+!config cmd items enable priv
+!config cmd items enable guild
+!config cmd updateitems enable msg
+!config cmd updateitems enable priv
+!config cmd updateitems enable guild
+!config cmd clearqueue disable msg
+!config cmd clearqueue disable priv
+!config cmd clearqueue disable guild
+!config cmd loadsql enable msg
+!config cmd loadsql enable priv
+!config cmd loadsql enable guild
+!config cmd checkaccess enable msg
+!config cmd checkaccess enable priv
+!config cmd checkaccess enable guild
+!config cmd macro disable msg
+!config cmd macro disable priv
+!config cmd macro disable guild
+!config cmd unban enable msg
+!config cmd unban enable priv
+!config cmd unban enable guild
+!config cmd unbanorg enable msg
+!config cmd unbanorg enable priv
+!config cmd unbanorg enable guild
+!config cmd ban enable msg
+!config cmd ban enable priv
+!config cmd ban enable guild
+!config cmd banorg enable msg
+!config cmd banorg enable priv
+!config cmd banorg enable guild
+!config cmd banlist enable msg
+!config cmd banlist enable priv
+!config cmd banlist enable guild
+!config cmd addalias enable msg
+!config cmd addalias enable priv
+!config cmd addalias enable guild
+!config cmd remalias enable msg
+!config cmd remalias enable priv
+!config cmd remalias enable guild
+!config cmd aliaslist enable msg
+!config cmd aliaslist enable priv
+!config cmd aliaslist enable guild
+!config cmd cmdlist enable msg
+!config cmd cmdlist enable priv
+!config cmd cmdlist enable guild
+!config cmd eventlist enable msg
+!config cmd eventlist enable priv
+!config cmd eventlist enable guild
+!config cmd cmdsearch enable msg
+!config cmd cmdsearch enable priv
+!config cmd cmdsearch enable guild
+!config cmd whitelist disable msg
+!config cmd whitelist disable priv
+!config cmd whitelist disable guild
+!config cmd friendlist enable msg
+!config cmd friendlist enable priv
+!config cmd friendlist enable guild
+!config cmd addbuddy disable msg
+!config cmd addbuddy disable priv
+!config cmd addbuddy disable guild
+!config cmd rembuddy disable msg
+!config cmd rembuddy disable priv
+!config cmd rembuddy disable guild
+!config cmd rembuddyall disable msg
+!config cmd rembuddyall disable priv
+!config cmd rembuddyall disable guild
+!config cmd altvalidate disable msg
+!config cmd altvalidate disable priv
+!config cmd altvalidate disable guild
+!config cmd altsadmin disable msg
+!config cmd altsadmin disable priv
+!config cmd altsadmin disable guild
+!config cmd alts disable msg
+!config cmd alts disable priv
+!config cmd alts disable guild
+!config cmd alts main (.+) disable msg
+!config cmd alts main (.+) disable priv
+!config cmd alts main (.+) disable guild
+!config cmd usage disable msg
+!config cmd usage disable priv
+!config cmd usage disable guild
+!config cmd apipassword disable msg
+!config cmd apipassword disable priv
+!config cmd apipassword disable guild
+!config cmd showcommand disable msg
+!config cmd showcommand disable priv
+!config cmd showcommand disable guild
+!config cmd httpapi disable msg
+!config cmd httpapi disable priv
+!config cmd httpapi disable guild
+!config cmd profile enable msg
+!config cmd profile enable priv
+!config cmd profile enable guild
+!config cmd inviteuser disable msg
+!config cmd inviteuser disable priv
+!config cmd inviteuser disable guild
+!config cmd kickuser disable msg
+!config cmd kickuser disable priv
+!config cmd kickuser disable guild
+!config cmd startbbin disable msg
+!config cmd startbbin disable priv
+!config cmd startbbin disable guild
+!config cmd stopbbin disable msg
+!config cmd stopbbin disable priv
+!config cmd stopbbin disable guild
+!config cmd setbbin disable msg
+!config cmd setbbin disable priv
+!config cmd setbbin disable guild
+!config cmd onlinebbin disable msg
+!config cmd onlinebbin disable priv
+!config cmd onlinebbin disable guild
+!config cmd loot disable msg
+!config cmd loot disable priv
+!config cmd loot disable guild
+!config cmd multiloot disable msg
+!config cmd multiloot disable priv
+!config cmd multiloot disable guild
+!config cmd remloot disable msg
+!config cmd remloot disable priv
+!config cmd remloot disable guild
+!config cmd reroll disable msg
+!config cmd reroll disable priv
+!config cmd reroll disable guild
+!config cmd flatroll disable msg
+!config cmd flatroll disable priv
+!config cmd flatroll disable guild
+!config cmd add disable msg
+!config cmd add disable priv
+!config cmd add disable guild
+!config cmd rem disable msg
+!config cmd rem disable priv
+!config cmd rem disable guild
+!config cmd loot .+ disable msg
+!config cmd loot .+ disable priv
+!config cmd loot .+ disable guild
+!config cmd alb disable msg
+!config cmd alb disable priv
+!config cmd alb disable guild
+!config cmd db1 disable msg
+!config cmd db1 disable priv
+!config cmd db1 disable guild
+!config cmd db2 disable msg
+!config cmd db2 disable priv
+!config cmd db2 disable guild
+!config cmd 13 disable msg
+!config cmd 13 disable priv
+!config cmd 13 disable guild
+!config cmd 28 disable msg
+!config cmd 28 disable priv
+!config cmd 28 disable guild
+!config cmd 35 disable msg
+!config cmd 35 disable priv
+!config cmd 35 disable guild
+!config cmd apf disable msg
+!config cmd apf disable priv
+!config cmd apf disable guild
+!config cmd beastarmor disable msg
+!config cmd beastarmor disable priv
+!config cmd beastarmor disable guild
+!config cmd beastweaps disable msg
+!config cmd beastweaps disable priv
+!config cmd beastweaps disable guild
+!config cmd beaststars disable msg
+!config cmd beaststars disable priv
+!config cmd beaststars disable guild
+!config cmd tnh disable msg
+!config cmd tnh disable priv
+!config cmd tnh disable guild
+!config cmd sb disable msg
+!config cmd sb disable priv
+!config cmd sb disable guild
+!config cmd aries disable msg
+!config cmd aries disable priv
+!config cmd aries disable guild
+!config cmd leo disable msg
+!config cmd leo disable priv
+!config cmd leo disable guild
+!config cmd virgo disable msg
+!config cmd virgo disable priv
+!config cmd virgo disable guild
+!config cmd aquarius disable msg
+!config cmd aquarius disable priv
+!config cmd aquarius disable guild
+!config cmd cancer disable msg
+!config cmd cancer disable priv
+!config cmd cancer disable guild
+!config cmd gemini disable msg
+!config cmd gemini disable priv
+!config cmd gemini disable guild
+!config cmd libra disable msg
+!config cmd libra disable priv
+!config cmd libra disable guild
+!config cmd pisces disable msg
+!config cmd pisces disable priv
+!config cmd pisces disable guild
+!config cmd taurus disable msg
+!config cmd taurus disable priv
+!config cmd taurus disable guild
+!config cmd capricorn disable msg
+!config cmd capricorn disable priv
+!config cmd capricorn disable guild
+!config cmd sagittarius disable msg
+!config cmd sagittarius disable priv
+!config cmd sagittarius disable guild
+!config cmd scorpio disable msg
+!config cmd scorpio disable priv
+!config cmd scorpio disable guild
+!config cmd bastion disable msg
+!config cmd bastion disable priv
+!config cmd bastion disable guild
+!config cmd pande disable msg
+!config cmd pande disable priv
+!config cmd pande disable guild
+!config cmd xan disable msg
+!config cmd xan disable priv
+!config cmd xan disable guild
+!config cmd vortexx disable msg
+!config cmd vortexx disable priv
+!config cmd vortexx disable guild
+!config cmd mitaar disable msg
+!config cmd mitaar disable priv
+!config cmd mitaar disable guild
+!config cmd 12m disable msg
+!config cmd 12m disable priv
+!config cmd 12m disable guild
+!config cmd bank disable msg
+!config cmd bank disable priv
+!config cmd bank disable guild
+!config cmd updatebank disable msg
+!config cmd updatebank disable priv
+!config cmd updatebank disable guild
+!config cmd startwave disable msg
+!config cmd startwave disable priv
+!config cmd startwave disable guild
+!config cmd stopwave disable msg
+!config cmd stopwave disable priv
+!config cmd stopwave disable guild
+!config cmd citywave disable msg
+!config cmd citywave disable priv
+!config cmd citywave disable guild
+!config cmd cloak disable msg
+!config cmd cloak disable priv
+!config cmd cloak disable guild
+!config cmd testcia disable msg
+!config cmd testcia disable priv
+!config cmd testcia disable guild
+!config cmd doja disable msg
+!config cmd doja disable priv
+!config cmd doja disable guild
+!config cmd weather disable msg
+!config cmd weather disable priv
+!config cmd weather disable guild
+!config cmd beer disable msg
+!config cmd beer disable priv
+!config cmd beer disable guild
+!config cmd brain disable msg
+!config cmd brain disable priv
+!config cmd brain disable guild
+!config cmd chuck disable msg
+!config cmd chuck disable priv
+!config cmd chuck disable guild
+!config cmd credz disable msg
+!config cmd credz disable priv
+!config cmd credz disable guild
+!config cmd cybor disable msg
+!config cmd cybor disable priv
+!config cmd cybor disable guild
+!config cmd doh disable msg
+!config cmd doh disable priv
+!config cmd doh disable guild
+!config cmd dwight disable msg
+!config cmd dwight disable priv
+!config cmd dwight disable guild
+!config cmd fc disable msg
+!config cmd fc disable priv
+!config cmd fc disable guild
+!config cmd homer disable msg
+!config cmd homer disable priv
+!config cmd homer disable guild
+!config cmd pirates disable msg
+!config cmd pirates disable priv
+!config cmd pirates disable guild
+!config cmd ding disable msg
+!config cmd ding disable priv
+!config cmd ding disable guild
+!config cmd fight disable msg
+!config cmd fight disable priv
+!config cmd fight disable guild
+!config cmd events disable msg
+!config cmd events disable priv
+!config cmd events disable guild
+!config cmd events add .+ disable msg
+!config cmd events add .+ disable priv
+!config cmd events add .+ disable guild
+!config cmd events rem .+ disable msg
+!config cmd events rem .+ disable priv
+!config cmd events rem .+ disable guild
+!config cmd events setdesc .+ disable msg
+!config cmd events setdesc .+ disable priv
+!config cmd events setdesc .+ disable guild
+!config cmd events setdate .+ disable msg
+!config cmd events setdate .+ disable priv
+!config cmd events setdate .+ disable guild
+!config cmd whereis disable msg
+!config cmd whereis disable priv
+!config cmd whereis disable guild
+!config cmd vote disable msg
+!config cmd vote disable priv
+!config cmd vote disable guild
+!config cmd implant disable msg
+!config cmd implant disable priv
+!config cmd implant disable guild
+!config cmd premade disable msg
+!config cmd premade disable priv
+!config cmd premade disable guild
+!config cmd cluster disable msg
+!config cmd cluster disable priv
+!config cmd cluster disable guild
+!config cmd spirits disable msg
+!config cmd spirits disable priv
+!config cmd spirits disable guild
+!config cmd spiritslvl disable msg
+!config cmd spiritslvl disable priv
+!config cmd spiritslvl disable guild
+!config cmd spiritsagi disable msg
+!config cmd spiritsagi disable priv
+!config cmd spiritsagi disable guild
+!config cmd spiritssen disable msg
+!config cmd spiritssen disable priv
+!config cmd spiritssen disable guild
+!config cmd orgcities disable msg
+!config cmd orgcities disable priv
+!config cmd orgcities disable guild
+!config cmd time disable msg
+!config cmd time disable priv
+!config cmd time disable guild
+!config cmd server disable msg
+!config cmd server disable priv
+!config cmd server disable guild
+!config cmd playfields disable msg
+!config cmd playfields disable priv
+!config cmd playfields disable guild
+!config cmd waypoint disable msg
+!config cmd waypoint disable priv
+!config cmd waypoint disable guild
+!config cmd mobloot disable msg
+!config cmd mobloot disable priv
+!config cmd mobloot disable guild
+!config cmd dyna disable msg
+!config cmd dyna disable priv
+!config cmd dyna disable guild
+!config cmd inspect disable msg
+!config cmd inspect disable priv
+!config cmd inspect disable guild
+!config cmd oe disable msg
+!config cmd oe disable priv
+!config cmd oe disable guild
+!config cmd calc disable msg
+!config cmd calc disable priv
+!config cmd calc disable guild
+!config cmd research disable msg
+!config cmd research disable priv
+!config cmd research disable guild
+!config cmd buffitem disable msg
+!config cmd buffitem disable priv
+!config cmd buffitem disable guild
+!config cmd whatbuffs disable msg
+!config cmd whatbuffs disable priv
+!config cmd whatbuffs disable guild
+!config cmd random disable msg
+!config cmd random disable priv
+!config cmd random disable guild
+!config cmd roll disable msg
+!config cmd roll disable priv
+!config cmd roll disable guild
+!config cmd flip disable msg
+!config cmd flip disable priv
+!config cmd flip disable guild
+!config cmd verify disable msg
+!config cmd verify disable priv
+!config cmd verify disable guild
+!config cmd stopwatch disable msg
+!config cmd stopwatch disable priv
+!config cmd stopwatch disable guild
+!config cmd countdown disable msg
+!config cmd countdown disable priv
+!config cmd countdown disable guild
+!config cmd rtimer disable msg
+!config cmd rtimer disable priv
+!config cmd rtimer disable guild
+!config cmd timers disable msg
+!config cmd timers disable priv
+!config cmd timers disable guild
+!config cmd whois disable msg
+!config cmd whois disable priv
+!config cmd whois disable guild
+!config cmd whoisall disable msg
+!config cmd whoisall disable priv
+!config cmd whoisall disable guild
+!config cmd namehistory disable msg
+!config cmd namehistory disable priv
+!config cmd namehistory disable guild
+!config cmd lookup disable msg
+!config cmd lookup disable priv
+!config cmd lookup disable guild
+!config cmd history disable msg
+!config cmd history disable priv
+!config cmd history disable guild
+!config cmd aggdef disable msg
+!config cmd aggdef disable priv
+!config cmd aggdef disable guild
+!config cmd as disable msg
+!config cmd as disable priv
+!config cmd as disable guild
+!config cmd nanoinit disable msg
+!config cmd nanoinit disable priv
+!config cmd nanoinit disable guild
+!config cmd fullauto disable msg
+!config cmd fullauto disable priv
+!config cmd fullauto disable guild
+!config cmd burst disable msg
+!config cmd burst disable priv
+!config cmd burst disable guild
+!config cmd fling disable msg
+!config cmd fling disable priv
+!config cmd fling disable guild
+!config cmd mafist disable msg
+!config cmd mafist disable priv
+!config cmd mafist disable guild
+!config cmd dimach disable msg
+!config cmd dimach disable priv
+!config cmd dimach disable guild
+!config cmd brawl disable msg
+!config cmd brawl disable priv
+!config cmd brawl disable guild
+!config cmd fastattack disable msg
+!config cmd fastattack disable priv
+!config cmd fastattack disable guild
+!config cmd inits disable msg
+!config cmd inits disable priv
+!config cmd inits disable guild
+!config cmd specials disable msg
+!config cmd specials disable priv
+!config cmd specials disable guild
+!config cmd raffle disable msg
+!config cmd raffle disable priv
+!config cmd raffle disable guild
+!config cmd test disable msg
+!config cmd test disable priv
+!config cmd test disable guild
+!config cmd testorgjoin disable msg
+!config cmd testorgjoin disable priv
+!config cmd testorgjoin disable guild
+!config cmd testtowerattack disable msg
+!config cmd testtowerattack disable priv
+!config cmd testtowerattack disable guild
+!config cmd testtowervictory disable msg
+!config cmd testtowervictory disable priv
+!config cmd testtowervictory disable guild
+!config cmd showcmdregex disable msg
+!config cmd showcmdregex disable priv
+!config cmd showcmdregex disable guild
+!config cmd reloadinstance disable msg
+!config cmd reloadinstance disable priv
+!config cmd reloadinstance disable guild
+!config cmd trickle disable msg
+!config cmd trickle disable priv
+!config cmd trickle disable guild
+!config cmd towerstats disable msg
+!config cmd towerstats disable priv
+!config cmd towerstats disable guild
+!config cmd attacks disable msg
+!config cmd attacks disable priv
+!config cmd attacks disable guild
+!config cmd forcescout disable msg
+!config cmd forcescout disable priv
+!config cmd forcescout disable guild
+!config cmd lc disable msg
+!config cmd lc disable priv
+!config cmd lc disable guild
+!config cmd opentimes disable msg
+!config cmd opentimes disable priv
+!config cmd opentimes disable guild
+!config cmd penalty disable msg
+!config cmd penalty disable priv
+!config cmd penalty disable guild
+!config cmd remscout disable msg
+!config cmd remscout disable priv
+!config cmd remscout disable guild
+!config cmd scout disable msg
+!config cmd scout disable priv
+!config cmd scout disable guild
+!config cmd victory disable msg
+!config cmd victory disable priv
+!config cmd victory disable guild
+!config cmd itemid disable msg
+!config cmd itemid disable priv
+!config cmd itemid disable guild
+!config cmd rally disable msg
+!config cmd rally disable priv
+!config cmd rally disable guild
+!config cmd say disable msg
+!config cmd say disable priv
+!config cmd say disable guild
+!config cmd leader disable msg
+!config cmd leader disable guild
+!config cmd leader (.+) disable msg
+!config cmd leader (.+) disable guild
+!config cmd recipe disable msg
+!config cmd recipe disable priv
+!config cmd recipe disable guild
+!config cmd rshow disable msg
+!config cmd rshow disable priv
+!config cmd rshow disable guild
+!config cmd rb disable msg
+!config cmd rb disable priv
+!config cmd rb disable guild
+!config cmd rbshow disable msg
+!config cmd rbshow disable priv
+!config cmd rbshow disable guild
+!config cmd news disable msg
+!config cmd news disable priv
+!config cmd news disable guild
+!config cmd news .+ disable msg
+!config cmd news .+ disable priv
+!config cmd news .+ disable guild
+!config cmd links disable msg
+!config cmd links disable priv
+!config cmd links disable guild
+!config cmd notes disable msg
+!config cmd notes disable priv
+!config cmd notes disable guild
+!config cmd connectirc disable msg
+!config cmd connectirc disable priv
+!config cmd connectirc disable guild
+!config cmd disconnectirc disable msg
+!config cmd disconnectirc disable priv
+!config cmd disconnectirc disable guild
+!config cmd setirc disable msg
+!config cmd setirc disable priv
+!config cmd setirc disable guild
+!config cmd onlineirc disable msg
+!config cmd onlineirc disable priv
+!config cmd onlineirc disable guild
+!config cmd track disable msg
+!config cmd track disable priv
+!config cmd track disable guild
+!config cmd whompah disable msg
+!config cmd whompah disable priv
+!config cmd whompah disable guild
+!config cmd reputation disable msg
+!config cmd reputation disable priv
+!config cmd reputation disable guild
+!config cmd boss disable msg
+!config cmd boss disable priv
+!config cmd boss disable guild
+!config cmd bossloot disable msg
+!config cmd bossloot disable priv
+!config cmd bossloot disable guild
+!config cmd quote disable msg
+!config cmd quote disable priv
+!config cmd quote disable guild
+!config cmd vent disable msg
+!config cmd vent disable priv
+!config cmd vent disable guild
+!config cmd leprocs disable msg
+!config cmd leprocs disable priv
+!config cmd leprocs disable guild
+!config cmd ofabarmor disable msg
+!config cmd ofabarmor disable priv
+!config cmd ofabarmor disable guild
+!config cmd ofabweapons disable msg
+!config cmd ofabweapons disable priv
+!config cmd ofabweapons disable guild
+!config cmd aigen disable msg
+!config cmd aigen disable priv
+!config cmd aigen disable guild
+!config cmd aiarmor disable msg
+!config cmd aiarmor disable priv
+!config cmd aiarmor disable guild
+!config cmd bio disable msg
+!config cmd bio disable priv
+!config cmd bio disable guild
+!config cmd bioinfo disable msg
+!config cmd bioinfo disable priv
+!config cmd bioinfo disable guild
+!config cmd logon disable msg
+!config cmd logon disable priv
+!config cmd logon disable guild
+!config cmd logoff disable msg
+!config cmd logoff disable priv
+!config cmd logoff disable guild
+!config cmd logonadmin disable msg
+!config cmd logonadmin disable priv
+!config cmd logonadmin disable guild
+!config cmd logoffadmin disable msg
+!config cmd logoffadmin disable priv
+!config cmd logoffadmin disable guild
+!config cmd orghistory disable msg
+!config cmd orghistory disable priv
+!config cmd orghistory disable guild
+!config cmd lastseen disable msg
+!config cmd lastseen disable priv
+!config cmd lastseen disable guild
+!config cmd recentseen disable msg
+!config cmd recentseen disable priv
+!config cmd recentseen disable guild
+!config cmd tellall disable msg
+!config cmd tellall disable priv
+!config cmd tellall disable guild
+!config cmd notify disable msg
+!config cmd notify disable priv
+!config cmd notify disable guild
+!config cmd inactivemem disable msg
+!config cmd inactivemem disable priv
+!config cmd inactivemem disable guild
+!config cmd updateorg disable msg
+!config cmd updateorg disable priv
+!config cmd updateorg disable guild
+!config cmd orgmembers disable msg
+!config cmd orgmembers disable priv
+!config cmd orgmembers disable guild
+!config cmd orgranks disable msg
+!config cmd orgranks disable priv
+!config cmd orgranks disable guild
+!config cmd findorg disable msg
+!config cmd findorg disable priv
+!config cmd findorg disable guild
+!config cmd is disable msg
+!config cmd is disable priv
+!config cmd is disable guild
+!config cmd whoisorg disable msg
+!config cmd whoisorg disable priv
+!config cmd whoisorg disable guild
+!config cmd orglist enable msg
+!config cmd orglist disable priv
+!config cmd orglist disable guild
+!config cmd pb disable msg
+!config cmd pb disable priv
+!config cmd pb disable guild
+!config cmd symb disable msg
+!config cmd symb disable priv
+!config cmd symb disable guild
+!config cmd svn enable msg
+!config cmd svn enable priv
+!config cmd svn enable guild
+!config cmd nano disable msg
+!config cmd nano disable priv
+!config cmd nano disable guild
+!config cmd nanolines disable msg
+!config cmd nanolines disable priv
+!config cmd nanolines disable guild
+!config cmd nanoloc disable msg
+!config cmd nanoloc disable priv
+!config cmd nanoloc disable guild
+!config cmd level disable msg
+!config cmd level disable priv
+!config cmd level disable guild
+!config cmd missions disable msg
+!config cmd missions disable priv
+!config cmd missions disable guild
+!config cmd xp disable msg
+!config cmd xp disable priv
+!config cmd xp disable guild
+!config cmd capxp disable msg
+!config cmd capxp disable priv
+!config cmd capxp disable guild
+!config cmd axp disable msg
+!config cmd axp disable priv
+!config cmd axp disable guild
+!config cmd guides disable msg
+!config cmd guides disable priv
+!config cmd guides disable guild
+!config cmd aou disable msg
+!config cmd aou disable priv
+!config cmd aou disable guild
+!config cmd aospeak disable msg
+!config cmd aospeak disable priv
+!config cmd aospeak disable guild
+!config cmd ts disable msg
+!config cmd ts disable priv
+!config cmd ts disable guild
+!config cmd testos disable msg
+!config cmd testos disable priv
+!config cmd testos disable guild
+!config cmd settings enable msg
+!config cmd settings enable priv
+!config cmd settings enable guild
+!config cmd querysql disable msg
+!config cmd querysql disable priv
+!config cmd querysql disable guild
+!config cmd executesql disable msg
+!config cmd executesql disable priv
+!config cmd executesql disable guild
+!config cmd system disable msg
+!config cmd system disable priv
+!config cmd system disable guild
+!config cmd restart enable msg
+!config cmd restart enable priv
+!config cmd restart enable guild
+!config cmd shutdown enable msg
+!config cmd shutdown enable priv
+!config cmd shutdown enable guild
+!config cmd reloadconfig disable msg
+!config cmd reloadconfig disable priv
+!config cmd reloadconfig disable guild
+!config cmd logs disable msg
+!config cmd logs disable priv
+!config cmd logs disable guild
+!config cmd adminlist enable msg
+!config cmd adminlist enable priv
+!config cmd adminlist enable guild
+!config cmd addadmin enable msg
+!config cmd addadmin enable priv
+!config cmd addadmin enable guild
+!config cmd remadmin enable msg
+!config cmd remadmin enable priv
+!config cmd remadmin enable guild
+!config cmd addmod enable msg
+!config cmd addmod enable priv
+!config cmd addmod enable guild
+!config cmd remmod enable msg
+!config cmd remmod enable priv
+!config cmd remmod enable guild
+!config cmd help enable msg
+!config cmd help enable priv
+!config cmd help enable guild
+!config cmd about enable msg
+!config cmd about enable priv
+!config cmd about enable guild
+!config cmd testevent disable msg
+!config cmd testevent disable priv
+!config cmd testevent disable guild

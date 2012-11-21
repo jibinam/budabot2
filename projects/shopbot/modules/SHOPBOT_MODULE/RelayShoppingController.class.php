@@ -184,7 +184,7 @@ class RelayShoppingController {
 			return;
 		} else if (!$this->accessManager->checkAccess($sender, 'member')) {
 			$senderLink = $this->text->make_userlink($sender);
-			$this->sendToMasterChannel("<green>[Inc. Msg.]<end> {$senderLink}: <green>{$message}<end>");
+			$this->sendToMasterChannel("<green>[Inc. Msg.]<end> {$senderLink}: <green>{$eventObj->message}<end>");
 
 			// we don't want the bot to respond back to people
 			throw new StopExecutionException();
@@ -282,7 +282,7 @@ class RelayShoppingController {
 		$timeleft = $this->time_left_for_spam_protection($sender);
 
 		if ($timeleft > 0) {
-			$this->chatBot->send("You may not send a message for another " . round($timeleft / 60) . " minutes.", $sender);
+			$this->chatBot->sendTell("You may not send a message for another " . round($timeleft / 60) . " minutes.", $sender);
 		} else {
 			$this->shopping_spam_protection[$sender] = $current_time;
 
