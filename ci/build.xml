@@ -16,7 +16,13 @@
 	<property name="svn.username"              value="user" />
 	<property name="svn.password"              value="pass" />
 
-	<target name="build_and_upload_archives">
+	<target name="test_build_and_upload_archives">
+		<phing dir="../trunk" target="clean" />
+
+		<!-- Run tests -->
+		<phing dir="../trunk" target="behat" haltonfailure="true" />
+		<phing dir="../trunk" target="check_style" haltonfailure="true" />
+
 		<!-- Create release archives -->
 		<phing dir="../trunk" target="build" haltonfailure="true" />
 
