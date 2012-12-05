@@ -86,8 +86,8 @@ class RelayShoppingController {
 		$side = strtolower($args[2]);
 		$spammsg = $args[3];
 
-		$link = "<a $style href='user://$sender'>Send $sender a tell</a>";
-		$msg = "$spammsg -> $link";
+		$link = $this->text->make_userlink($sender);
+		$msg = "$spammsg [$link]";
 
 		$this->process_spam_request($sender, $msg, $spamchannel, $side);
 	}
