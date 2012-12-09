@@ -1,6 +1,0 @@
-/tell <myname> <symbol>dimach [<orange>D<end>]
-[<orange>D<end>] = Dimach Skill
-
-Example:
-You have 750 dimach Skill.
-<a href='chatcmd:///tell <myname> <symbol>dimach 750'>/tell <myname> <symbol>dimach 750</a>

@@ -1,2 +1,0 @@
-<highlight>To see the LE procs for a specifc profession:<end>
-<tab><symbol>leprocs 'profession'
