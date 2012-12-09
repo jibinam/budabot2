@@ -1,4 +1,0 @@
-<header> :::::: Usage Command :::::: <end>
-
-<highlight>To show usage stats:<end>
-<tab><symbol>usage

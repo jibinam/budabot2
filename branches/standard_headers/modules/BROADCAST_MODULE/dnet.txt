@@ -1,9 +1,0 @@
-<header> :::::: Dnet :::::: <end>
-
-<highlight>Enable Dnet support<end>
-<tab><symbol>dnet enable
-
-<highlight>Disable Dnet support<end>
-<tab><symbol>dnet disable
-
-Note: Dnet is currently available on RK1 only.  See !help neutnet for an RK2 equivalent.

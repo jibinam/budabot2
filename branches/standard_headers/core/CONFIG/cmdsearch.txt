@@ -1,4 +1,0 @@
-<header> :::::: Cmdsearch Command :::::: <end>
-
-<highlight>To find a command:<end>
-<tab><symbol>cmdsearch 'search'

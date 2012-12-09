@@ -1,7 +1,0 @@
-<header> :::::: Lookup Command :::::: <end>
-
-<highlight>To show the character id for a character:<end>
-<tab><symbol>lookup 'character'
-
-<highlight>To show the name(s) for a character id:<end>
-<tab><symbol>lookup 'character id'

@@ -1,9 +1,0 @@
-<header> :::::: Penalty Command :::::: <end>
-
-<highlight>To show orgs who have attack or won battles in the last 2 hours:<end>
-<tab><symbol>penalty
-<tab><symbol>penalty 'time'
-
-Note: if you leave off the 'time' parameter, the bot will use 2 hours as the time.
-
-See <a href='chatcmd:///tell <myname> help budatime'><symbol>help budatime</a> for info on the format of the 'time' parameter.

@@ -1,1 +1,0 @@
-CREATE TABLE IF NOT EXISTS roll (`id` INTEGER PRIMARY KEY AUTO_INCREMENT, `time` INT, `name` VARCHAR(25), `type` INT, `start` INT, `end` INT, `result` INT);

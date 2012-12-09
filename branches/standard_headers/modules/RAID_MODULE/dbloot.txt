@@ -1,9 +1,0 @@
-<header>::::: DB1/DB2 Instance Loot Module :::::<end>
-
-This module is designed to assist in adding DB1/DB2 loot to a loot list.
-
-<highlight>To View Loot<end>
-<tab><symbol>db1 - DB1/Old DB/Twister
-<tab><symbol>db2 - DB2/New DB/Inside the Machine
-
-<orange>Developed by <highlight>Chachy<end> (RK2), based on code for Pande Loot Module by <highlight>Marinerecon<end> (RK2)<end>
