@@ -1,1 +1,0 @@
-CREATE TABLE IF NOT EXISTS admin_<myname> (uid INT NOT NULL PRIMARY KEY, `access_level` INT NOT NULL);
