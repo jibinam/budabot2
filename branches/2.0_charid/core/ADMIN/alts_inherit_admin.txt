@@ -1,5 +1,0 @@
-<header> :::::: Setting: alts_inherit_admin :::::: <end>
-
-<orange>IMPORTANT! If you enable this setting you MUST disable the <cyan><symbol>alts main<end> command so that people cannot use it to set themselves as an admin's alt and gain admin privileges.<end>
-
-<a href='chatcmd:///tell <myname> config subcmd alts main (.+) disable all'>Disable <symbol>alts main</a>  <a href='chatcmd:///tell <myname> config subcmd alts main (.+) enable all'>Enable <symbol>alts main</a>
