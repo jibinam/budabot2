@@ -1,5 +1,0 @@
-<highlight>To search for a nano:<end>
-<tab><symbol>nano 'name'
-
-<highlight>To browse nanos by location:<end>
-<tab><symbol>nanoloc

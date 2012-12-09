@@ -1,2 +1,0 @@
-<highlight>To clear the queue for guild channel and tell messages:<end>
-<tab><symbol>clearqueue
