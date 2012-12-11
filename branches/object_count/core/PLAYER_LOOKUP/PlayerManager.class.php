@@ -81,7 +81,7 @@ class PlayerManager {
 	private function lookup_url($url) {
 		$playerbio = xml::getUrl($url);
 
-		$xml = new stdClass;
+		$xml = new BotStruct;
 
 		// parsing of the player data
 		$xml->firstname      = xml::spliceData($playerbio, '<firstname>', '</firstname>');

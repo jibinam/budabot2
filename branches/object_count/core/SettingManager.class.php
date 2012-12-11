@@ -199,7 +199,7 @@ class SettingManager {
 		}
 		$settingName = strtolower($settingName);
 
-		$listener = new StdClass();
+		$listener = new BotStruct();
 		$listener->callback = $callback;
 		$listener->data = $data;
 		$this->changeListeners[$settingName] []= $listener;

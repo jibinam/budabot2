@@ -551,7 +551,7 @@ class IRCController {
 	public function getIRCPlayerInfo($sender, $type) {
 		$whois = $this->playerManager->get_by_name($sender);
 		if ($whois === null) {
-			$whois = new stdClass;
+			$whois = new BotStruct;
 			$whois->name = $sender;
 		}
 

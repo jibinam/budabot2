@@ -84,7 +84,7 @@ class WhompahController {
 
 		$whompahs = $this->build_whompah_network();
 
-		$whompah = new stdClass;
+		$whompah = new BotStruct;
 		$whompah->id = $endCity->id;
 		$whompah->city_name = $whompahs[$endCity->id]->city_name;
 		$whompah->previous = null;
@@ -142,7 +142,7 @@ class WhompahController {
 		forEach ($whompahs[$current_whompah->id]->connections as $city2_id) {
 			if ($whompahs[$city2_id]->visited !== true) {
 				$whompahs[$city2_id]->visited = true;
-				$next_whompah = new stdClass;
+				$next_whompah = new BotStruct;
 				$next_whompah->id = $city2_id;
 				$next_whompah->city_name = $whompahs[$city2_id]->city_name;
 				$next_whompah->previous = &$current_whompah;

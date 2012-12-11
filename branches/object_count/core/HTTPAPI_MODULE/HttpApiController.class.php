@@ -80,7 +80,7 @@ class HttpApiController {
 
 		$that = $this;
 		$this->httpServer->on('request', function ($request, $response) use ($that) {
-			$session = new StdClass();
+			$session = new BotStruct();
 			$session->request  = $request;
 			$session->response = $response;
 			$session->body     = '';
@@ -153,7 +153,7 @@ class HttpApiController {
 			$this->logger->log('ERROR', 'Given callback is not valid.');
 			return;
 		}
-		$handler = new StdClass();
+		$handler = new BotStruct();
 		$handler->path = $path;
 		$handler->callback = $callback;
 		$handler->data = $data;

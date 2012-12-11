@@ -169,7 +169,7 @@ class TowerController {
 			$this->logger->log('ERROR', 'Given callback is not valid.');
 			return;
 		}
-		$listener = new StdClass();
+		$listener = new BotStruct();
 		$listener->callback = $callback;
 		$listener->data = $data;
 		$this->attackListeners []= $listener;
@@ -769,7 +769,7 @@ class TowerController {
 		// attack message where applicable because that will always be most up to date
 		$whois = $this->playerManager->get_by_name($att_player);
 		if ($whois === null) {
-			$whois = new stdClass;
+			$whois = new BotStruct;
 			$whois->type = 'npc';
 			
 			// in case it's not a player who causes attack message (pet, mob, etc)
@@ -786,7 +786,7 @@ class TowerController {
 		$playfield = $this->playfieldController->get_playfield_by_name($playfield_name);
 		$closest_site = $this->get_closest_site($playfield->id, $x_coords, $y_coords);
 
-		$defender = new stdClass();
+		$defender = new BotStruct();
 		$defender->faction   = $def_side;
 		$defender->guild     = $def_guild;
 		$defender->playfield = $playfield;
@@ -955,7 +955,7 @@ class TowerController {
 		if ($last_attack !== null) {
 			$this->rem_scout_site($last_attack->playfield_id, $last_attack->site_number);
 		} else {
-			$last_attack = new stdClass;
+			$last_attack = new BotStruct;
 			$last_attack->att_guild_name = $win_guild_name;
 			$last_attack->def_guild_name = $lose_guild_name;
 			$last_attack->att_faction = $win_faction;
@@ -1336,7 +1336,7 @@ class TowerController {
 	private function getGasLevel($close_time) {
 		$current_time = time() % 86400;
 
-		$site = new stdClass();
+		$site = new BotStruct();
 		$site->current_time = $current_time;
 		$site->close_time = $close_time;
 

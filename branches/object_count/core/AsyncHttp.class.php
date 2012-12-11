@@ -141,7 +141,7 @@ class AsyncHttp {
 	}
 
 	private function buildResponse() {
-		$response = new StdClass();
+		$response = new BotStruct();
 		$response->error   = $this->errorString;
 		$response->headers = $this->responseHeaders;
 		$response->body    = $this->getResponseBody();

@@ -46,7 +46,7 @@ class AliasController {
 		$alias = strtolower($args[1]);
 		$cmd = $args[2];
 	
-		$alias_obj = new stdClass;
+		$alias_obj = new BotStruct;
 		$alias_obj->module = '';
 		$alias_obj->cmd = $cmd;
 		$alias_obj->alias = $alias;

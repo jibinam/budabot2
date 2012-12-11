@@ -248,28 +248,28 @@ class TimerController {
 		$alerts = array();
 		
 		if ($endTime - 60*60 > time()) {
-			$alert = new stdClass;
+			$alert = new BotStruct;
 			$alert->message = "Reminder: Timer <highlight>$name<end> has <highlight>1 hour<end> left. [set by <highlight>$sender<end>]";
 			$alert->time = $endTime - 60*60;
 			$alerts []= $alert;
 		}
 		
 		if ($endTime - 60*15 > time()) {
-			$alert = new stdClass;
+			$alert = new BotStruct;
 			$alert->message = "Reminder: Timer <highlight>$name<end> has <highlight>15 minutes<end> left. [set by <highlight>$sender<end>]";
 			$alert->time = $endTime - 60*15;
 			$alerts []= $alert;
 		}
 		
 		if ($endTime - 60 > time()) {
-			$alert = new stdClass;
+			$alert = new BotStruct;
 			$alert->message = "Reminder: Timer <highlight>$name<end> has <highlight>1 minute<end> left. [set by <highlight>$sender<end>]";
 			$alert->time = $endTime - 60;
 			$alerts []= $alert;
 		}
 		
 		if ($endTime > time()) {
-			$alert = new stdClass;
+			$alert = new BotStruct;
 			$alert->message = "<highlight>$sender<end> your timer named <highlight>$name<end> has gone off.";
 			$alert->time = $endTime;
 			$alerts []= $alert;
@@ -304,7 +304,7 @@ class TimerController {
 	}
 
 	public function add($name, $owner, $mode, $time, $alerts, $callback = null, $callback_param = null) {
-		$timer = new stdClass;
+		$timer = new BotStruct;
 		$timer->name = $name;
 		$timer->owner = $owner;
 		$timer->mode = $mode;

@@ -100,7 +100,7 @@ class EventManager {
 		}
 
 		if ($type == "setup") {
-			$eventObj = new stdClass;
+			$eventObj = new BotStruct;
 			$eventObj->type = 'setup';
 
 			$this->callEventHandler($eventObj, $filename);
@@ -259,7 +259,7 @@ class EventManager {
 			if ($event['nextevent'] <= $time) {
 				$this->logger->log('DEBUG', "Executing cron event '${event['filename']}'");
 
-				$eventObj = new stdClass;
+				$eventObj = new BotStruct;
 				$eventObj->type = strtolower($event['time']);
 
 				$this->cronevents[$key]['nextevent'] = $time + $event['time'];
@@ -281,7 +281,7 @@ class EventManager {
 
 		$this->logger->log('DEBUG', "Executing connected events");
 
-		$eventObj = new stdClass;
+		$eventObj = new BotStruct;
 		$eventObj->type = 'connect';
 
 		$this->fireEvent($eventObj);

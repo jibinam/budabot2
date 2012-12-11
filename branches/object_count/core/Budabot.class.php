@@ -452,7 +452,7 @@ class Budabot extends AOChat {
 	}
 
 	function process_all_packets($packet) {
-		$eventObj = new stdClass;
+		$eventObj = new BotStruct;
 		$eventObj->type = 'allpackets';
 		$eventObj->packet = $packet;
 		$this->eventManager->fireEvent($eventObj);
@@ -468,7 +468,7 @@ class Budabot extends AOChat {
 	}
 
 	function process_private_channel_join($args) {
-		$eventObj = new stdClass;
+		$eventObj = new BotStruct;
 		$channel = $this->lookup_user($args[0]);
 		$sender = $this->lookup_user($args[1]);
 		$eventObj->channel = $channel;
@@ -498,7 +498,7 @@ class Budabot extends AOChat {
 	}
 
 	function process_private_channel_leave($args) {
-		$eventObj = new stdClass;
+		$eventObj = new BotStruct;
 		$channel = $this->lookup_user($args[0]);
 		$sender = $this->lookup_user($args[1]);
 		$eventObj->channel = $channel;
@@ -526,7 +526,7 @@ class Budabot extends AOChat {
 		$sender	= $this->lookup_user($args[0]);
 		$status	= 0 + $args[1];
 
-		$eventObj = new stdClass;
+		$eventObj = new BotStruct;
 		$eventObj->sender = $sender;
 
 		$this->logger->log('DEBUG', "AOCP_BUDDY_ADD => sender: '$sender' status: '$status'");
@@ -567,7 +567,7 @@ class Budabot extends AOChat {
 			$message = $args[1];
 		}
 
-		$eventObj = new stdClass;
+		$eventObj = new BotStruct;
 		$eventObj->sender = $sender;
 		$eventObj->type = $type;
 		$eventObj->message = $message;
@@ -619,7 +619,7 @@ class Budabot extends AOChat {
 		$channel = $this->lookup_user($args[0]);
 		$message = $args[2];
 
-		$eventObj = new stdClass;
+		$eventObj = new BotStruct;
 		$eventObj->sender = $sender;
 		$eventObj->channel = $channel;
 		$eventObj->message = $message;
@@ -664,7 +664,7 @@ class Budabot extends AOChat {
 		$message = $args[2];
 		$channel = $this->get_gname($args[0]);
 
-		$eventObj = new stdClass;
+		$eventObj = new BotStruct;
 		$eventObj->sender = $sender;
 		$eventObj->channel = $channel;
 		$eventObj->message = $message;
@@ -723,7 +723,7 @@ class Budabot extends AOChat {
 		$uid = $args[0];
 		$sender = $this->lookup_user($uid);
 
-		$eventObj = new stdClass;
+		$eventObj = new BotStruct;
 		$eventObj->sender = $sender;
 		$eventObj->type = $type;
 

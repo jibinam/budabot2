@@ -283,7 +283,7 @@ class ItemsController {
 		$doc->prevservWhiteSpace = false;
 		$doc->loadXML($data);
 		
-		$obj = new stdClass;
+		$obj = new BotStruct;
 		
 		if ($doc->documentElement === null) {
 			$this->logger->log('WARN', "Could not parse xml: '$url'");

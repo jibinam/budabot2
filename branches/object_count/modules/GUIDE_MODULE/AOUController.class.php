@@ -159,7 +159,7 @@ class AOUController {
 	}
 	
 	private function getGuideObject($guide) {
-		$obj = new stdClass;
+		$obj = new BotStruct;
 		$obj->id = $guide->getElementsByTagName('id')->item(0)->nodeValue;
 		$obj->name = $guide->getElementsByTagName('name')->item(0)->nodeValue;
 		$obj->description = $guide->getElementsByTagName('desc')->item(0)->nodeValue;

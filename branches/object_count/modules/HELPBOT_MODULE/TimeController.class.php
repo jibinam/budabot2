@@ -52,7 +52,7 @@ class TimeController {
 		$link .= "<tab><highlight>Germany/France/Netherlands/Italy/Austria<end>\n";
 		$link .= "<tab><tab>Standard Time (CET = GMT+1): " . $this->getTimezone("CET")->time . "\n";
 		$link .= "<tab><tab>Summer Time (CEST = GMT+2): " . $this->getTimezone("CEST")->time . "\n";
-		$link .= "<tab><highlight>Ägypten/Bulgarien/Finnland/Griechenland<end>\n";
+		$link .= "<tab><highlight>ï¿½gypten/Bulgarien/Finnland/Griechenland<end>\n";
 		$link .= "<tab><tab>Standard Time (EET = GMT+2): " . $this->getTimezone("EET")->time . "\n";
 		$link .= "<tab><tab>Summer Time (EEST/EEDT = GMT+3): " . $this->getTimezone("EEST")->time . "\n";
 		$link .= "<tab><highlight>Bahrain/Irak/Russland/Saudi Arabien<end>\n";
@@ -230,7 +230,7 @@ class TimeController {
 				return null;
 		}
 
-		$obj = new stdClass;
+		$obj = new BotStruct;
 		$obj->name = $name;
 		$obj->offset = $offset;
 		$obj->time = date($time_format, $time + $offset);

@@ -498,7 +498,7 @@ class VoteController {
 				$data = $this->db->query("SELECT * FROM $this->table WHERE `question` = ?", $question);
 				if (count($data) == 0) {
 					$this->db->exec("INSERT INTO $this->table (`question`, `author`, `started`, `duration`, `answer`, `status`) VALUES (?, ?, ?, ?, ?, ?)", $question, $sender, time(), $newtime, $answers, $status);
-					$obj = new stdClass;
+					$obj = new BotStruct;
 					$obj->question = $question;
 					$obj->author = $sender;
 					$obj->started = time();

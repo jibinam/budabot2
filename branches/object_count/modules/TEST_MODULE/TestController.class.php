@@ -180,7 +180,7 @@ class TestController extends AutoInject {
 	 * @Matches("/^testorgjoin (.+)$/i")
 	 */
 	public function testorgjoinCommand($message, $channel, $sender, $sendto, $args) {
-		$packet = new stdClass;
+		$packet = new BotStruct;
 		$packet->type = AOCP_GROUP_MESSAGE;
 		$packet->args = array();
 		$packet->args[0] = $this->chatBot->get_gid('org msg');
@@ -195,7 +195,7 @@ class TestController extends AutoInject {
 	 * @Matches("/^testtowerattack (clan|neutral|omni) (.+) (.+) (clan|neutral|omni) (.+) (.+) (\d+) (\d+)$/i")
 	 */
 	public function testtowerattackCommand($message, $channel, $sender, $sendto, $args) {
-		$eventObj = new stdClass;
+		$eventObj = new BotStruct;
 		$eventObj->sender = -1;
 		$eventObj->channel = "All Towers";
 		$eventObj->message = "The $args[1] organization $args[2] just entered a state of war! $args[3] attacked the $args[4] organization $args[5]'s tower in $args[6] at location ($args[7],$args[8]).";
@@ -208,7 +208,7 @@ class TestController extends AutoInject {
 	 * @Matches("/^testtowervictory (Clan|Neutral|Omni) (.+) (Clan|Neutral|Omni) (.+) (.+)$/i")
 	 */
 	public function testtowervictoryCommand($message, $channel, $sender, $sendto, $args) {
-		$packet = new stdClass;
+		$packet = new BotStruct;
 		$packet->type = AOCP_GROUP_MESSAGE;
 		$packet->args = array();
 		$packet->args[0] = $this->chatBot->get_gid('tower battle outcome');
@@ -225,7 +225,7 @@ class TestController extends AutoInject {
 	public function testosCommand($message, $channel, $sender, $sendto, $args) {
 		$launcher = ucfirst(strtolower($args[1]));
 	
-		$packet = new stdClass;
+		$packet = new BotStruct;
 		$packet->type = AOCP_GROUP_MESSAGE;
 		$packet->args = array();
 		$packet->args[0] = $this->chatBot->get_gid('org msg');
