@@ -1,0 +1,2 @@
+To show a highly visible message repeated 3 times:
+<highlight><tab><symbol>tell 'message'<end>

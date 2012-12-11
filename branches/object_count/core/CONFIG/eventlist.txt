@@ -1,0 +1,2 @@
+To show the list of all events and their statuses:
+<highlight><tab><symbol>eventlist<end>

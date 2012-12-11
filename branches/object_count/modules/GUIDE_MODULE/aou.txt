@@ -1,0 +1,5 @@
+To search for a guide on AO-Universe:
+<highlight><tab><symbol>aou 'search'<end>
+
+To view a guide on AO-Universe:
+<highlight><tab><symbol>aou 'guide id'<end>

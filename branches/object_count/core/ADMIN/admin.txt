@@ -1,0 +1,10 @@
+To see the list of raidleaders, moderators, and administrators (<highlight>access: All<end>):
+<highlight><tab><symbol>adminlist<end>
+
+To add or remove moderators (<highlight>access: Administrators<end>):
+<highlight><tab><symbol>addmod <i>player</i><end>
+<highlight><tab><symbol>remmod <i>player</i><end>
+
+To add or remove administrators (<highlight>access: Super-administrator<end>):
+<highlight><tab><symbol>addadmin <i>player</i><end>
+<highlight><tab><symbol>remadmin <i>player</i><end>

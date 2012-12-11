@@ -1,0 +1,17 @@
+To start a raffle:
+<highlight><tab><symbol>raffle start (count) 'item'<end>
+
+To cancel the raffle immediately:
+<highlight><tab><symbol>raffle cancel<end>
+
+To end the raffle immediately and post the result:
+<highlight><tab><symbol>raffle end<end>
+
+To display the last raffle result:
+<highlight><tab><symbol>raffle result<end>
+
+To join the raffle:
+<highlight><tab><symbol>raffle join<end>
+
+To leave the raffle:
+<highlight><tab><symbol>raffle leave<end>

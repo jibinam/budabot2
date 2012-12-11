@@ -1,0 +1,2 @@
+To kick everyone out of the private channel after 10 seconds:
+<highlight><tab><symbol>kickall<end>

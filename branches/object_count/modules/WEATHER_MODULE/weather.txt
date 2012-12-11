@@ -1,0 +1,4 @@
+To search for weather data based on City/Zip/Airport:
+<highlight><tab><symbol>weather 'city or zip or airport'<end>
+
+If a list of choices is replied back, choose one of the places for a closer match. If some links show redundant multiple results, you may have to go to wunderground.com and look for an airport code. For example, both links for Beijing show the same links.  On the website, you could find an airport 'zbaa'.  <highlight><symbol>weather zbaa<end> should reply back with weather from beijing.
