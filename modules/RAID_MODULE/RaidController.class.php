@@ -221,7 +221,7 @@ class RaidController {
 				$key = 1;
 			}
 			
-			$item = new stdClass;
+			$item = new BotStruct;
 			
 			$item->name = $item_name;
 			$item->icon = $looticon;

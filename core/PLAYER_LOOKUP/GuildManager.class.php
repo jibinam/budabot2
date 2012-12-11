@@ -48,7 +48,7 @@ class GuildManager {
 			return null;
 		}
 		
-		$guild = new stdClass;
+		$guild = new BotStruct;
 		$guild->guild_id = $guild_id;
 
 		// parsing of the memberdata
@@ -71,7 +71,7 @@ class GuildManager {
 				$charid = 0;
 			}
 
-			$guild->members[$name]                 = new stdClass;
+			$guild->members[$name]                 = new BotStruct;
 			$guild->members[$name]->charid         = $charid;
 			$guild->members[$name]->firstname      = xml::spliceData($member, '<firstname>', '</firstname>');
 			$guild->members[$name]->name           = xml::spliceData($member, '<nickname>', '</nickname>');

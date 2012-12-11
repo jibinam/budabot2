@@ -11,6 +11,9 @@ function isWindows() {
 	}
 }
 
+class BotStruct {
+}
+
 class BotRunner {
 
 	// budabot's current version

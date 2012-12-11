@@ -198,7 +198,7 @@ class ServerStatusController {
 		$data = xml::spliceMultiData($data, "<playfield", "/>");
 		forEach ($data as $hdata) {
 			if (preg_match("/id=\"(.+)\" name=\"(.+)\" status=\"(.+)\" load=\"(.+)\" players=\"(.+)%\"/i", $hdata, $arr)) {
-				$playfield = new stdClass;
+				$playfield = new BotStruct;
 				$playfield->id = $arr[1];
 				$playfield->long_name = $arr[2];
 				$playfield->status = $arr[3];

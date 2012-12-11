@@ -133,7 +133,7 @@ class HelpManager extends Annotation {
 		$topics = array();
 		forEach ($data as $row) {
 			if ($char === null || $this->checkAccessLevels($accessLevel, explode(",", $row->admin_list))) {
-				$obj = new stdClass;
+				$obj = new BotStruct;
 				$obj->module = $row->module;
 				$obj->name = $row->name;
 				$obj->description = $row->description;

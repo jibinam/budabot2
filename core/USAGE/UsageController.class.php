@@ -216,7 +216,7 @@ class UsageController {
 		$settings['max_blob_size'] = $this->settingManager->get('max_blob_size');
 		$settings['logon_delay'] = $this->settingManager->get('logon_delay');
 
-		$obj = new stdClass;
+		$obj = new BotStruct;
 		$obj->id = sha1($botid . $this->chatBot->vars['name'] . $this->chatBot->vars['dimension']);
 		$obj->version = "1.3";
 		$obj->debug = ($debug == true ? '1' : '0');

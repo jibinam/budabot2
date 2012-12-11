@@ -35,7 +35,7 @@ class PlayerHistoryManager {
 			$data = xml::splicemultidata($data, "<entry", "/>");
 			forEach ($data as $hdata) {
 				preg_match("/date=\"(.+)\" level=\"(.+)\" ailevel=\"(.*)\" faction=\"(.+)\" guild=\"(.*)\" rank=\"(.*)\"/i", $hdata, $arr);
-				$entry = new stdClass;
+				$entry = new BotStruct;
 				$entry->date = $arr[1];
 				$entry->level = $arr[2];
 				$entry->aiLevel = $arr[3];

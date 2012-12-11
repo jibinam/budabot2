@@ -119,7 +119,7 @@ class CommandManager {
 			}
 		}
 
-		$obj = new stdClass;
+		$obj = new BotStruct;
 		$obj->file = $filename;
 		$obj->admin = $admin;
 
