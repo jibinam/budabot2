@@ -72,6 +72,12 @@
  *		description = "Test the bot commands", 
  *		help        = 'test.txt'
  *	)
+ *	@DefineCommand(
+ *		command     = 'instancecounts',
+ *		accessLevel = 'admin',
+ *		description = "Test the bot commands",
+ *		help        = 'test.txt'
+ *	)
  */
 class TestController extends AutoInject {
 
@@ -363,6 +369,19 @@ class TestController extends AutoInject {
 	 */
 	public function stacktraceCommand($message, $channel, $sender, $sendto, $args) {
 		$msg = $this->text->make_blob("Current Stacktrace", $this->util->getStackTrace());
+		$sendto->reply($msg);
+	}
+
+	/**
+	 * @HandlesCommand("instancecounts")
+	 * @Matches("/^instancecounts$/i")
+	 */
+	public function instancecountsCommand($message, $channel, $sender, $sendto, $args) {
+		$blob = '';
+		foreach(BotRunner::$instanceCounts as $name => $count) {
+			$blob .= "$name: $count\n";
+		}
+		$msg = $this->text->make_blob("Object Instance Counts", $blob);
 		$sendto->reply($msg);
 	}
 }

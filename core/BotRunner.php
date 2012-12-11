@@ -16,6 +16,8 @@ class BotRunner {
 	// budabot's current version
 	public $version = "3.0_RC3";
 
+	public static $instanceCounts = array();
+
 	private $argv = array();
 
 	public function __construct($argv) {
@@ -27,6 +29,8 @@ class BotRunner {
 
 	public function run() {
 		$this->setDefaultTimeZone();
+
+		$this->enableTestInstanceCounting();
 
 		echo $this->getInitialInfoMessage();
 		$this->loadPhpExtensions();
@@ -64,6 +68,27 @@ class BotRunner {
 
 	private function setDefaultTimeZone() {
 		date_default_timezone_set("UTC");
+	}
+
+	private function enableTestInstanceCounting() {
+		if (function_exists('set_new_overload')) {
+			set_new_overload(function ($className) {
+				if (isset(BotRunner::$instanceCounts[$className])) {
+					BotRunner::$instanceCounts[$className]++;
+				} else {
+					if (function_exists('runkit_method_add') && !method_exists($className, '__destruct')) {
+						$added = runkit_method_add($className, '__destruct', '',
+							'BotRunner::$instanceCounts[get_class($this)]--;', RUNKIT_ACC_PUBLIC);
+						if (!$added) {
+							print "Failed to add destructor to class: $className\n";
+						}
+					}
+
+					BotRunner::$instanceCounts[$className] = 1;
+				}
+				return $className;
+			});
+		}
 	}
 
 	private function getInitialInfoMessage() {
