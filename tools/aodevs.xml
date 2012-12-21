@@ -25,7 +25,8 @@
     </Page>
   </Pages>
   <Staff>
-    <Member Position="Lead Developer" Name="Tyrence" Server="Rimor" />
+    <Member Position="Lead Developer" Name="Marebone" Server="Rimor" />
+    <Member Position="Developer" Name="Tyrence" Server="Rimor" />
     <Member Position="Website Administrator" Name="Captainzero" Server="Atlantean" />
     <Member Position="Website Moderator" Name="Snakebite" Server="Rimor" />
   </Staff>
