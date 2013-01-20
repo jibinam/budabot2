@@ -13,7 +13,7 @@
       # run: phing build
     * Or manually:
       # If you "Checked Out" you will need to search for and remove all the .svn folders
-      # Remove CIA_MODULE, SVN_MODULE, TEST_MODULE, and WORLDNET_MODULE from /modules
+      # Remove DEV_MODULE and GIT_MODULE from /modules
       # Remove from lib-folder composer-files, patch-file(s) and !PhingTasks subfolder
       # Remove from docs-folder everything else except txt-files
       # Remove build.xml
