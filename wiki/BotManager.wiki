@@ -32,6 +32,8 @@ GTK and Python seems to come preinstalled so there is no need to worry about tho
 
 == Configuration Files ==
 Bot Manager stores its list of bots to a ini-file. Here's paths to the ini-file for Ubuntu and Windows 7:
-*In Windows 7:* _C:\Users\<username>\AppData\Local\budabot.com\Budabot Bot Manager\1.0\settings.ini_
-*In Ubuntu:* _/home/<username>/.config/budabot bot manager/1.0/settings.ini_
+
+*In Windows 7:* _C:\Users\$USERNAME\AppData\Local\budabot.com\Budabot Bot Manager\1.0\settings.ini_
+
+*In Ubuntu:* _/home/$USERNAME/.config/budabot bot manager/1.0/settings.ini_
 An empty file is created when Bot Manager is ran the first time.
