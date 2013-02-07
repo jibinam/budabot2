@@ -21,5 +21,4 @@
       # Zip the folder into a zip file called `"Budabot<version>_<build>"` (eg: "Budabot1.0_RC9_build390.zip", "Budabot2.0_GA_build420.zip", etc)
   # Upload to the downloads section
   # Make a post on budabot.com notifying people of the releasing, listing the fixes and changes, and listing any known issues that still need to be addressed
-  # If this is a GA release, edit /svn/tools/aodevs.xml (http://code.google.com/p/budabot2/source/browse/tools/aodevs.xml) to reflect the changes
 All done!
