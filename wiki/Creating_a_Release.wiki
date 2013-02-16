@@ -2,17 +2,17 @@
 #labels Phase-Implementation
 
 =How to create a release version of Budabot from SVN=
-  # Open "/main.php" and update $version (ex: $version = "1.0_RC9")
+  # Open "/core/BotRunner.php" and update $version (ex: $version = "1.0_RC9")
   # Update "/docs/releasenotes.txt" for this release
   # Commit these changes
-  # Tag this release (/tags/1.0_RC9)
-  # "Checkout" or "Export" from the tagged branch you just created
+  # Tag this release (1.0_RC9)
   # Create the archive
     * Using Phing (recommended):
       # Open command prompt and cd to the branch
       # run: phing build
     * Or manually:
-      # If you "Checked Out" you will need to search for and remove all the .svn folders
+      # "Checkout" or "Export" from the tagged branch you just created
+      # If you "Checked Out" you will need to remove the .git folder
       # Remove DEV_MODULE and GIT_MODULE from /modules
       # Remove from lib-folder composer-files, patch-file(s) and !PhingTasks subfolder
       # Remove from docs-folder everything else except txt-files
