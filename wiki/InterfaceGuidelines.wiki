@@ -1,0 +1,38 @@
+#summary Guidelines that should be followed when developing modules and commands for Budabot for public use.
+
+= Introduction =
+
+Because Budabot is used by many different people and organizations, and for many different purposes, it is important that the interface remains consistent.  This is important because familiarity will reduce frustration on new bots.  In addition, it improves the aesthetics.
+
+
+= Guidelines =
+
+== Default Command Aliases ==
+Command aliases are a way to give additional command names to a particular command.  Bot administrators are able to manage these aliases with the !alias command.  However, module developers are also able to add alias using the CommandAliasManager:
+
+`$this->commandAlias->register($this->moduleName, "command", "alias");`
+
+Where "command" is the original command name and "alias" is the command alias.
+
+*In general, command aliases should not be specified by module developers.*  Good command aliases are hard to choose and what is obvious to one person may not be obvious to another.  However, there are certain circumstances when it is appropriate:
+  * when an equivalent command exists on another bot with a different name
+  * when a command name has been changed but the old name is still commonly used
+  * when slight variations of the command are common (ex: !timer and !timers)
+
+When writing the help file or when making reference to the command on the forums, the original command name, and not the command alias, should be used.
+
+== Colors ==
+Colors provide a way to enrich the user interface and highlight important parts of the bot output.  Budabot provides short cut tags for many of the colors which can be seen here: [https://github.com/Budabot/Budabot/blob/master/core/Text.class.php#L189-L212]
+
+*In general, colors should not be used.*  Color and beauty are in the eye of the beholder and what looks good to one person may not look good to another.  Instead, we provide some simple tags that let you mark up your output semantically.  They are:
+  * `<header>`
+  * `<header2>`
+  * `<highlight>`
+
+`<header>` is mainly used by the bot for blob headers.  Most module developers probably won't have an occasion to use this.
+
+`<header2>` is used for subheaders in blob output.  When you have output with two or more sections, you should use `<header2>` to label the sections.  See !help budabot ([https://github.com/Budabot/Budabot/blob/master/core/SYSTEM/budatime.txt]) for an example of `<header2>` usage.
+
+`<highlight>` is used to highlight specific parts of output inline.  Typically, org names, player names, command names, and any variable output should be highlighted.
+
+Bot administrators are allowed to choose which colors they want for `<header>`, `<header2>`, and `<highlight>`.  Following these guidelines allows for all modules to respect the color theme the bot administrator has chosen, thereby providing a consistent feel throughout all commands and features on the bot.
