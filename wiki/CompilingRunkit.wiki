@@ -33,7 +33,7 @@ sudo sh -c 'echo "extension=runkit.so" >> /etc/php5/conf.d/runkit.ini'
 
 = Compiling for Windows =
 
-Note that compiling runkit for Windows is not required as it comes ready-made with the Budabot release.
+Note that compiling runkit for Windows is not required as it comes ready-made with the Budabot release.  The instructions for compiling for Windows are included for informational purposes.
 
 You need to compile PHP first in order to get all the development stuff that the extension depends of.
 Follow [https://wiki.php.net/internals/windows/stepbystepbuild compiling instructions in PHP's wiki].
