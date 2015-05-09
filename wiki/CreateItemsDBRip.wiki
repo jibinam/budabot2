@@ -1,9 +1,0 @@
-#summary How to create an Items DB rip for the ITEMS_MODULE
-
-= Instructions =
-
-  # Download Xyphos' XRDB4 tool from the first post at: http://xyphos.com/viewtopic.php?f=6&t=10000091 and follow the directions there
-  # Download the Budabot Items Extractor plugin from: http://budabot.com/forum/viewtopic.php?f=7&t=873&start=0
-  # Overwrite static_list.txt, delete_list.txt, and nameseperation_list.txt in the Budabot Items Extractor plugin with the versions from this link http://budabot2.googlecode.com/svn/tools/BudabotItemsExtractor/BudabotItemsExtractor/ to ensure you have the latest versions
-  # Follow the instructions in the readme.txt file of the Budabot Items Extractor plugin to install the plugin
-  # Run the XRDB4 tool and use the plugin to create the new rip
